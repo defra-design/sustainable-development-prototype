@@ -1,44 +1,94 @@
 
 {% extends "layout.html" %}
+{% set serviceName = "" %}
 
 {% block pageTitle %}
-  GOV.UK Prototype Kit
+Sustainable development
 {% endblock %}
 
 {% block content %}
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-xl">
-        The GOV.UK Prototype Kit
-        <span class="govuk-caption-xl">{{releaseVersion}}</span>
-      </h1>{{releaseVersion | log }}
-      <p>
-        This kit lets you rapidly create HTML prototypes of GOV.UK services.
-      </p>
-
-      <p>
-        It contains all you need to prototype anything from simple static pages to complex, data-driven transactions.
-      </p>
-
-      <h2 class="govuk-heading-m">About this page</h2>
-
-      <p>We recommend you add links to your prototype to this page, rather than delete it.
-        You'll find this page in the kit at '/app/views/index.html'.</p>
-
-      <p>You can change the service name by editing the file '/app/config.js'.</p>
-
-      <h2 class="govuk-heading-m">Examples and documentation</h2>
-
-      <ul class="govuk-list govuk-list--bullet">
-        <li>
-          <a href="/docs/tutorials-and-examples">Example pages and documentation</a>
-        </li>
-        <li>
-          <a href="https://design-system.service.gov.uk">GOV.UK Design System</a>
-        </li>
-      </ul>
-    </div>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+      Prototypes for:
+    </h1>
+    <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-6 govuk-!-font-weight-bold govuk-!-font-size-24">
+      <li>Apply for a wildlife licence</li>
+      <!-- <li>Assess a wildlife licence application</li> -->
+    </ul>
   </div>
+</div>
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            User research, copydecks, flow diagrams and tickets
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+
+          <p class="govuk-body govuk-!-margin-bottom-2">User research:</p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li><a href="#" target="_blank" class="govuk-link govuk-link--no-visited-state">View the usability findings on confluence</a> <span style="color:red">(TO ADD LINK)</span></li>
+          </ul>
+
+          <p class="govuk-body govuk-!-margin-bottom-2">Copydecks:</p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li><a href="#" target="_blank" class="govuk-link govuk-link--no-visited-state">View the copydecks in sharepoint</a> <span style="color:red">(TO ADD LINK)</span></li>
+          </ul>
+        
+          <p class="govuk-body govuk-!-margin-bottom-2">Flow diagrams:</p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li><a href="#" target="_blank" class="govuk-link govuk-link--no-visited-state">View the flow diagrams on confluence</a> <span style="color:red">(TO ADD LINK)</span></li>
+          </ul>
+
+          <p class="govuk-body govuk-!-margin-bottom-2">Tickets:</p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li><a href="#" target="_blank" class="govuk-link govuk-link--no-visited-state">View the design tickets on JIRA <span style="color:red">(TO ADD LINK)</span></a></li>
+          </ul>
+
+        </div>
+      </details>
+      
+      
+
+    <table class="govuk-table">
+      <thead class="govuk-table__head" >
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Version</th>
+          <th scope="col" class="govuk-table__header">Status</th>
+          <th scope="col" class="govuk-table__header">What changed</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell" >
+            <a href="/1-0/setup?r=t" class="govuk-link govuk-link--no-visited-state govuk-!-font-size-27 govuk-!-font-weight-bold">Version&nbsp;1-0</a>
+          </td>
+          <td class="govuk-table__cell" >
+            <strong class="govuk-tag" style="background: green;" >
+              IN PROGRESS
+            </strong>
+            <br>
+            <!-- tested -->
+
+          </td>
+          
+          <td class="govuk-table__cell" >
+            <ul class="govuk-list govuk-list--bullet">
+              <li>[to add]</li>
+            </ul>
+          </td>
+        </tr>
+        
+    </tbody>
+  </table>
+
+    
+  </div>
+</div>
 
 {% endblock %}
