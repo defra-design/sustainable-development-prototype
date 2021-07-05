@@ -117,15 +117,43 @@ _myData.batSpecies.forEach(function(_bat, index) {
 var _batMethods = [
     {
         "id": "_method-1",
-        "name": "Method 1"
+        "name": "By hand"
     },
     {
         "id": "_method-2",
-        "name": "Method 2"
+        "name": "By static hand-held net"
     },
     {
         "id": "_method-3",
-        "name": "Method 3"
+        "name": "Temporary exclusion"
+    },
+    {
+        "id": "_method-4",
+        "name": "Permanent exclusion"
+    },
+    {
+        "id": "_method-5",
+        "name": "Destructive search by soft demolition"
+    },
+    {
+        "id": "_method-6",
+        "name": "Mechanical demolition"
+    },
+    {
+        "id": "_method-7",
+        "name": "Disturbance by illumination (intentional by torch)"
+    },
+    {
+        "id": "_method-8",
+        "name": "Disturbance by noise or vibration"
+    },
+    {
+        "id": "_method-9",
+        "name": "Temporary obstruction of roost access"
+    },
+    {
+        "id": "_method-10",
+        "name": "Endoscopes"
     }
 ]
 _myData.batSpecies.forEach(function(_bat, index) {

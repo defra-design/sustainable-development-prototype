@@ -134,7 +134,7 @@ module.exports = function (router,_myData) {
             req.session.myData.validationError = "true"
             req.session.myData.validationErrors.activitiesBatAnswer = {
                 "anchor": "_activity-1",
-                "message": "[error here]"
+                "message": "Select the activities that will be used to affect this species of bat"
             }
         }
 
@@ -178,7 +178,7 @@ module.exports = function (router,_myData) {
                     req.session.myData.validationErrors[_activity.id] = {
                         // "anchor": _activity.id,
                         "anchor": _activity.id + "-1",
-                        "message": "[error for " + _activity.name + "]"
+                        "message": "Select the methods that will be used to affect this species of bat"
                     }
                 } else {
                     //Set selected methods
@@ -230,25 +230,7 @@ module.exports = function (router,_myData) {
         });
     });
     router.post('/' + version + '/numbers-bat', function (req, res) {
-
-        // Decide next page
-        // if(req.session.myData.selectedBatLoop < req.session.myData.selectedBatTotal){
-        //     req.session.myData.selectedBatLoop++
-        //     var _loop = 1
-        //     req.session.myData.batSpecies.forEach(function(_bat, index) {
-        //         if(_bat.selected){
-        //             if(req.session.myData.selectedBatLoop == _loop){
-        //                 req.session.myData.bat = _bat.id
-        //             }
-        //             _loop++
-        //         }
-        //     });
-        //     setSelectedBat(req,req.session.myData.bat)
-            res.redirect(301, '/' + version + '/date-bat?bat=' + req.session.myData.selectedBat.id + "&loop=" + req.session.myData.selectedBatLoop);
-        // } else {
-        //     res.redirect(301, '/' + version + '/test-end');
-        // }
-
+        res.redirect(301, '/' + version + '/date-bat?bat=' + req.session.myData.selectedBat.id + "&loop=" + req.session.myData.selectedBatLoop);
     });
 
     // BAT date

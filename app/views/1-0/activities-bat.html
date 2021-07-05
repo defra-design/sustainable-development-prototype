@@ -3,7 +3,7 @@
 {% set _inError = myData.validationError %}
 
 {% block pageTitle %} 
-{% if _inError == "true" %}Error: {% endif %}What activity will be used to affect this species?
+{% if _inError == "true" %}Error: {% endif %}Which activities will be used to affect this species of bat?
 {% endblock %}
 
 {% block beforeContent %}
@@ -49,12 +49,12 @@
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
                         <span class="govuk-caption-xl">{{myData.selectedBat.name}} bat</span>
                         <h1 class="govuk-fieldset__heading">
-                            What activity will be used to affect this species?
+                            Which activities will be used to affect this species of bat?
                         </h1>
                     </legend>
 
                     <div id="bat-activities-hint" class="govuk-hint">
-                        Select all activities that apply.
+                        Select all that apply.
                     </div>
 
                     {% if myData.validationErrors.activitiesBatAnswer %}

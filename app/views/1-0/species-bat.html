@@ -3,7 +3,7 @@
 {% set _inError = myData.validationError %}
 
 {% block pageTitle %} 
-{% if _inError == "true" %}Error: {% endif %}What species of bat will be affected?
+{% if _inError == "true" %}Error: {% endif %}Which species of bat will be affected?
 {% endblock %}
 
 {% block beforeContent %}
@@ -48,12 +48,12 @@
                     
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
                         <h1 class="govuk-fieldset__heading">
-                            What species of bat will be affected?
+                            Which species of bat will be affected?
                         </h1>
                     </legend>
 
                     <div id="bat-species-hint" class="govuk-hint">
-                        Select all species that apply.
+                        Select all that apply.
                     </div>
 
                     {% if myData.validationErrors.speciesBatAnswer %}

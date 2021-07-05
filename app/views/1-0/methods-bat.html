@@ -3,7 +3,7 @@
 {% set _inError = myData.validationError %}
 
 {% block pageTitle %} 
-{% if _inError == "true" %}Error: {% endif %}Which methods will be used?
+{% if _inError == "true" %}Error: {% endif %}Which methods will be used to do each activity?
 {% endblock %}
 
 {% block beforeContent %}
@@ -35,7 +35,7 @@
 
 		<span class="govuk-caption-xl">{{myData.selectedBat.name}} bat</span>
         <h1 class="govuk-heading-xl">
-            Which methods will be used?
+            Which methods will be used to do each activity?
         </h1>
 
 	</div>
@@ -57,9 +57,9 @@
                             {{_activity.name}}
                         </legend>
 
-                        <!-- <div id="bat-methods-hint-{{_activity.id}}" class="govuk-hint">
-                            Select all methods that apply.
-                        </div> -->
+                        <div id="bat-methods-hint-{{_activity.id}}" class="govuk-hint">
+                            Select all that apply.
+                        </div>
 
                         {% if myData.validationErrors[_activityID] %}
                         <span id="{{_activityID}}-error" class="govuk-error-message">
