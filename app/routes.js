@@ -78,6 +78,41 @@ var _myData = {
     ]
 }
 
+// Set activities list on each bat species
+var _batActivities = [
+    {
+        "id": "_activity-1",
+        "name": "Capture"
+    },
+    {
+        "id": "_activity-2",
+        "name": "Disturb"
+    },
+    {
+        "id": "_activity-3",
+        "name": "Transport"
+    },
+    {
+        "id": "_activity-4",
+        "name": "Damage breeding site"
+    },
+    {
+        "id": "_activity-5",
+        "name": "Destroy breeding site"
+    },
+    {
+        "id": "_activity-6",
+        "name": "Damage resting place"
+    },
+    {
+        "id": "_activity-7",
+        "name": "Destroy resting place"
+    }
+]
+_myData.batSpecies.forEach(function(_bat, index) {
+    _bat.activities = _batActivities
+});
+
 //Sort bats
 _myData.batSpecies.sort(function(a,b){
     if (a.name.toUpperCase() < b.name.toUpperCase()){

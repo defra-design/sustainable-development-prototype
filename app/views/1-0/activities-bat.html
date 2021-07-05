@@ -3,7 +3,7 @@
 {% set _inError = myData.validationError %}
 
 {% block pageTitle %} 
-[TO DO]
+{% if _inError == "true" %}Error: {% endif %}What activity will be used to affect this species?
 {% endblock %}
 
 {% block beforeContent %}
@@ -47,32 +47,33 @@
                 <fieldset class="govuk-fieldset" aria-describedby="bat-activities-hint">
                     
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+                        <span class="govuk-caption-l">{{myData.selectedBat.name}} bat</span>
                         <h1 class="govuk-fieldset__heading">
-                            [activities] for {{myData.selectedBat.name}}
+                            What activity will be used to affect this species?
                         </h1>
                     </legend>
 
-                    <!-- <div id="bat-species-hint" class="govuk-hint">
-                        Select all that apply.
+                    <div id="bat-activities-hint" class="govuk-hint">
+                        Select all activities that apply.
                     </div>
 
-                    {% if myData.validationErrors.speciesBatAnswer %}
-                    <span id="speciesBat-error" class="govuk-error-message">
+                    {% if myData.validationErrors.activitiesBatAnswer %}
+                    <span id="activitiesBat-error" class="govuk-error-message">
                         <span class="govuk-visually-hidden">Error:</span>
-                        {{myData.validationErrors.speciesBatAnswer.message}}
+                        {{myData.validationErrors.activitiesBatAnswer.message}}
                     </span>
                     {% endif %}
 
                     <div class="govuk-checkboxes" data-module="govuk-checkboxes">
-                        {% for _bat in myData.batSpecies %}
+                        {% for _activity in myData.selectedBat.activities %}
                         <div class="govuk-checkboxes__item">
-                            <input {% if _bat.selected %}checked{% endif %} class="govuk-checkboxes__input" id="{{_bat.id}}" name="bat" type="checkbox" value="{{_bat.id}}">
-                            <label class="govuk-label govuk-checkboxes__label" for="{{_bat.id}}">
-                                {{_bat.name}}
+                            <input {% if _activity.selected %}checked{% endif %} class="govuk-checkboxes__input" id="{{_activity.id}}" name="activity" type="checkbox" value="{{_activity.id}}">
+                            <label class="govuk-label govuk-checkboxes__label" for="{{_activity.id}}">
+                                {{_activity.name}}
                             </label>
                         </div>
                         {% endfor %}
-                    </div> -->
+                    </div>
 
                 </fieldset>
             </div>
