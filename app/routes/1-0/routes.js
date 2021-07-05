@@ -139,7 +139,6 @@ module.exports = function (router,_myData) {
         }
 
         if(req.session.myData.validationError == "true") {
-            req.session.myData.selectedBat.selectedActivitiesTotal = 0
             req.session.myData.selectedBat.activities.forEach(function(_activity, index) {
                 _activity.selected = false
             });
@@ -151,12 +150,9 @@ module.exports = function (router,_myData) {
             req.session.myData.activitiesBatAnswer = req.session.myData.activitiesBatAnswerTemp
             req.session.myData.activitiesBatAnswerTemp = ''
 
-            req.session.myData.selectedBat.selectedActivitiesTotal = 0
-
             req.session.myData.selectedBat.activities.forEach(function(_activity, index) {
                 if(req.session.myData.activitiesBatAnswer.indexOf(_activity.id.toString()) != -1){
                     _activity.selected = true
-                    req.session.myData.selectedBat.selectedActivitiesTotal++
                 } else {
                     _activity.selected = false
                 }
@@ -193,22 +189,56 @@ module.exports = function (router,_myData) {
     });
     router.post('/' + version + '/methods-bat', function (req, res) {
 
-        // Decide next page
-        if(req.session.myData.selectedBatLoop < req.session.myData.selectedBatTotal){
-            req.session.myData.selectedBatLoop++
-            var _loop = 1
-            req.session.myData.batSpecies.forEach(function(_bat, index) {
-                if(_bat.selected){
-                    if(req.session.myData.selectedBatLoop == _loop){
-                        req.session.myData.bat = _bat.id
+        req.session.myData.selectedBat.activities.forEach(function(_activity, index) {
+            if(_activity.selected){
+                var _answer = req.body[_activity.id]
+
+                if(_answer == "_unchecked"){
+                    req.session.myData.validationError = "true"
+                    req.session.myData.validationErrors[_activity.id] = {
+                        // "anchor": _activity.id,
+                        "anchor": _activity.id + "-1",
+                        "message": "[error for " + _activity.name + "]"
                     }
-                    _loop++
+                } else {
+                    //Set selected methods
+                    _activity.methods.forEach(function(_method, index) {
+                        if(_answer.indexOf(_method.id.toString()) != -1){
+                            _method.selected = true
+                        } else {
+                            _method.selected = false
+                        }
+                    });
                 }
+                if(req.session.myData.includeValidation == "false"){
+                    req.session.myData.methodAnswersTemp[_activity.id] = _answer || "_method-1"
+                }
+            }
+
+        });
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/methods-bat', {
+                myData:req.session.myData
             });
-            setSelectedBat(req,req.session.myData.bat)
-            res.redirect(301, '/' + version + '/activities-bat?bat=' + req.session.myData.selectedBat.id + "&loop=" + req.session.myData.selectedBatLoop);
         } else {
-            res.redirect(301, '/' + version + '/end');
+            // Decide next page
+            if(req.session.myData.selectedBatLoop < req.session.myData.selectedBatTotal){
+                req.session.myData.selectedBatLoop++
+                var _loop = 1
+                req.session.myData.batSpecies.forEach(function(_bat, index) {
+                    if(_bat.selected){
+                        if(req.session.myData.selectedBatLoop == _loop){
+                            req.session.myData.bat = _bat.id
+                        }
+                        _loop++
+                    }
+                });
+                setSelectedBat(req,req.session.myData.bat)
+                res.redirect(301, '/' + version + '/activities-bat?bat=' + req.session.myData.selectedBat.id + "&loop=" + req.session.myData.selectedBatLoop);
+            } else {
+                res.redirect(301, '/' + version + '/end');
+            }
         }
 
     });
