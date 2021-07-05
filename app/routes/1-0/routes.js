@@ -148,7 +148,6 @@ module.exports = function (router,_myData) {
             });
         } else {
 
-            // TO DO ADD STUFF HERE
             req.session.myData.activitiesBatAnswer = req.session.myData.activitiesBatAnswerTemp
             req.session.myData.activitiesBatAnswerTemp = ''
 
@@ -164,24 +163,52 @@ module.exports = function (router,_myData) {
             });
 
             // Decide next page
-            if(req.session.myData.selectedBatLoop < req.session.myData.selectedBatTotal){
-                req.session.myData.selectedBatLoop++
-                var _loop = 1
-                req.session.myData.batSpecies.forEach(function(_bat, index) {
-                    if(_bat.selected){
-                        if(req.session.myData.selectedBatLoop == _loop){
-                            req.session.myData.bat = _bat.id
-                        }
-                        _loop++
+            // if(req.session.myData.selectedBatLoop < req.session.myData.selectedBatTotal){
+                // req.session.myData.selectedBatLoop++
+                // var _loop = 1
+                // req.session.myData.batSpecies.forEach(function(_bat, index) {
+                //     if(_bat.selected){
+                //         if(req.session.myData.selectedBatLoop == _loop){
+                //             req.session.myData.bat = _bat.id
+                //         }
+                //         _loop++
+                //     }
+                // });
+                // setSelectedBat(req,req.session.myData.bat)
+                res.redirect(301, '/' + version + '/methods-bat?bat=' + req.session.myData.selectedBat.id + "&loop=" + req.session.myData.selectedBatLoop);
+            // } else {
+            //     res.redirect(301, '/' + version + '/next-page');
+            // }
+
+
+        }
+
+    });
+
+    // BAT Methods
+    router.get('/' + version + '/methods-bat', function (req, res) {
+        res.render(version + '/methods-bat', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/methods-bat', function (req, res) {
+
+        // Decide next page
+        if(req.session.myData.selectedBatLoop < req.session.myData.selectedBatTotal){
+            req.session.myData.selectedBatLoop++
+            var _loop = 1
+            req.session.myData.batSpecies.forEach(function(_bat, index) {
+                if(_bat.selected){
+                    if(req.session.myData.selectedBatLoop == _loop){
+                        req.session.myData.bat = _bat.id
                     }
-                });
-                setSelectedBat(req,req.session.myData.bat)
-                res.redirect(301, '/' + version + '/activities-bat?bat=' + req.session.myData.selectedBat.id + "&loop=" + req.session.myData.selectedBatLoop);
-            } else {
-                res.redirect(301, '/' + version + '/next-page');
-            }
-
-
+                    _loop++
+                }
+            });
+            setSelectedBat(req,req.session.myData.bat)
+            res.redirect(301, '/' + version + '/activities-bat?bat=' + req.session.myData.selectedBat.id + "&loop=" + req.session.myData.selectedBatLoop);
+        } else {
+            res.redirect(301, '/' + version + '/end');
         }
 
     });

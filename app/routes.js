@@ -113,6 +113,27 @@ _myData.batSpecies.forEach(function(_bat, index) {
     _bat.activities = _batActivities
 });
 
+// Set methods list on each activity
+var _batMethods = [
+    {
+        "id": "_method-1",
+        "name": "Method 1"
+    },
+    {
+        "id": "_method-2",
+        "name": "Method 2"
+    },
+    {
+        "id": "_method-3",
+        "name": "Method 3"
+    }
+]
+_myData.batSpecies.forEach(function(_bat, index) {
+    _bat.activities.forEach(function(_activity, index) {
+        _activity.methods = _batMethods
+    });
+});
+
 //Sort bats
 _myData.batSpecies.sort(function(a,b){
     if (a.name.toUpperCase() < b.name.toUpperCase()){
