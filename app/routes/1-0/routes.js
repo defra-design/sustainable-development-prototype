@@ -232,6 +232,34 @@ module.exports = function (router,_myData) {
     router.post('/' + version + '/numbers-bat', function (req, res) {
 
         // Decide next page
+        // if(req.session.myData.selectedBatLoop < req.session.myData.selectedBatTotal){
+        //     req.session.myData.selectedBatLoop++
+        //     var _loop = 1
+        //     req.session.myData.batSpecies.forEach(function(_bat, index) {
+        //         if(_bat.selected){
+        //             if(req.session.myData.selectedBatLoop == _loop){
+        //                 req.session.myData.bat = _bat.id
+        //             }
+        //             _loop++
+        //         }
+        //     });
+        //     setSelectedBat(req,req.session.myData.bat)
+            res.redirect(301, '/' + version + '/date-bat?bat=' + req.session.myData.selectedBat.id + "&loop=" + req.session.myData.selectedBatLoop);
+        // } else {
+        //     res.redirect(301, '/' + version + '/end');
+        // }
+
+    });
+
+    // BAT date
+    router.get('/' + version + '/date-bat', function (req, res) {
+        res.render(version + '/date-bat', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/date-bat', function (req, res) {
+
+        // Decide next page
         if(req.session.myData.selectedBatLoop < req.session.myData.selectedBatTotal){
             req.session.myData.selectedBatLoop++
             var _loop = 1
