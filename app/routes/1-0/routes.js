@@ -217,7 +217,7 @@ module.exports = function (router,_myData) {
             //     setSelectedBat(req,req.session.myData.bat)
                 res.redirect(301, '/' + version + '/numbers-bat?bat=' + req.session.myData.selectedBat.id + "&loop=" + req.session.myData.selectedBatLoop);
             // } else {
-            //     res.redirect(301, '/' + version + '/end');
+            //     res.redirect(301, '/' + version + '/test-end');
             // }
         }
 
@@ -246,7 +246,7 @@ module.exports = function (router,_myData) {
         //     setSelectedBat(req,req.session.myData.bat)
             res.redirect(301, '/' + version + '/date-bat?bat=' + req.session.myData.selectedBat.id + "&loop=" + req.session.myData.selectedBatLoop);
         // } else {
-        //     res.redirect(301, '/' + version + '/end');
+        //     res.redirect(301, '/' + version + '/test-end');
         // }
 
     });
@@ -274,9 +274,24 @@ module.exports = function (router,_myData) {
             setSelectedBat(req,req.session.myData.bat)
             res.redirect(301, '/' + version + '/activities-bat?bat=' + req.session.myData.selectedBat.id + "&loop=" + req.session.myData.selectedBatLoop);
         } else {
-            res.redirect(301, '/' + version + '/end');
+            res.redirect(301, '/' + version + '/test-end');
         }
 
+    });
+
+
+
+
+
+
+    // test end
+    router.get('/' + version + '/test-end', function (req, res) {
+        res.render(version + '/test-end', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/test-end', function (req, res) {
+        res.redirect(301, '/' + version + '/species-bat?r=t');
     });
 
 }
