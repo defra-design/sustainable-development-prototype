@@ -78,42 +78,43 @@ var _myData = {
     ]
 }
 
-// Set activities list on each bat species
 var _batActivities = [
     {
         "id": "_activity-1",
-        "name": "Capture"
+        "name": "Capture",
+        "methodsMapping": ["_method-1", "_method-2"]
     },
     {
         "id": "_activity-2",
-        "name": "Disturb"
+        "name": "Disturb",
+        "methodsMapping": ["_method-1", "_method-2", "_method-3", "_method-4", "_method-5", "_method-6", "_method-7", "_method-8", "_method-9", "_method-10"]
     },
     {
         "id": "_activity-3",
-        "name": "Transport"
+        "name": "Transport",
+        "methodsMapping": ["_method-1"]
     },
     {
         "id": "_activity-4",
-        "name": "Damage breeding site"
+        "name": "Damage breeding site",
+        "methodsMapping": ["_method-4","_method-5","_method-6","_method-7", "_method-8"]
     },
     {
         "id": "_activity-5",
-        "name": "Destroy breeding site"
+        "name": "Destroy breeding site",
+        "methodsMapping": ["_method-4","_method-5","_method-6"]
     },
     {
         "id": "_activity-6",
-        "name": "Damage resting place"
+        "name": "Damage resting place",
+        "methodsMapping": ["_method-4","_method-5","_method-6","_method-7", "_method-8"]
     },
     {
         "id": "_activity-7",
-        "name": "Destroy resting place"
+        "name": "Destroy resting place",
+        "methodsMapping": ["_method-4","_method-5","_method-6"]
     }
 ]
-_myData.batSpecies.forEach(function(_bat, index) {
-    _bat.activities = _batActivities
-});
-
-// Set methods list on each activity
 var _batMethods = [
     {
         "id": "_method-1",
@@ -156,9 +157,21 @@ var _batMethods = [
         "name": "Endoscopes"
     }
 ]
+
 _myData.batSpecies.forEach(function(_bat, index) {
+
+    //Set Activities
+    _bat.activities = _batActivities
+
+    //Set Methods on activities
     _bat.activities.forEach(function(_activity, index) {
-        _activity.methods = _batMethods
+        _activity.methods = []
+        _batMethods.forEach(function(_method, index) {
+            if(_activity.methodsMapping.indexOf(_method.id.toString()) != -1){
+                _activity.methods.push(_method)
+            }
+        });
+        // _activity.methods = _batMethods
     });
 });
 
