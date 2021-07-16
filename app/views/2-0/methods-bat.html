@@ -1,0 +1,112 @@
+{% extends "layout.html" %}
+
+{% set _inError = myData.validationError %}
+
+{% block pageTitle %} 
+{% if _inError == "true" %}Error: {% endif %}Which methods will be used to do each activity?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {% if _inError == "true" %}
+        <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+            <h2 class="govuk-error-summary__title" id="error-summary-title">
+                There is a problem
+            </h2>
+            <div class="govuk-error-summary__body">
+                <ul class="govuk-list govuk-error-summary__list">
+                    {% for name, item in myData.validationErrors %}
+                    <li>
+                        <a href="#{{item.anchor}}">{{item.message}}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+
+		<span class="govuk-caption-xl">{{myData.selectedBat.name}} bat</span>
+        <h1 class="govuk-heading-xl">
+            Which methods will be used to do each activity?
+        </h1>
+
+	</div>
+</div>
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+		<form method="POST">
+            <div class="govuk-form-group">
+
+                {% for _activity in myData.selectedBat.activities %}
+                {% set _activityID = _activity.id %}
+                {% if _activity.selected %}
+                <div class="govuk-form-group {% if myData.validationErrors[_activityID] %}govuk-form-group--error{% endif %} govuk-!-margin-bottom-8">
+                    <fieldset class="govuk-fieldset" aria-describedby="bat-methods-hint-{{_activity.id}}">
+                        
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                            {{_activity.name}}
+                        </legend>
+
+                        <div id="bat-methods-hint-{{_activity.id}}" class="govuk-hint">
+                            Select all that apply.
+                        </div>
+
+                        {% if myData.validationErrors[_activityID] %}
+                        <span id="{{_activityID}}-error" class="govuk-error-message">
+                            <span class="govuk-visually-hidden">Error:</span>
+                            {{myData.validationErrors[_activityID].message}}
+                        </span>
+                        {% endif %}
+
+                        <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                            {% for _method in _activity.methods %}
+                            {% set _activityID_method = _activityID + "-" + loop.index %}
+                            <div class="govuk-checkboxes__item">
+
+                                <input {% if _method.selected %}checked{% endif %} class="govuk-checkboxes__input" id="{{_activityID_method}}" name="{{_activityID}}" type="checkbox" value="{{_method.id}}" >
+                                <label class="govuk-label govuk-checkboxes__label" for="{{_activityID_method}}">
+                                {{_method.name}}
+                                </label>
+
+
+                                <!-- <input class="govuk-checkboxes__input" id="{{_activityID_method}}" name="{{_activityID}}" type="checkbox" value="{{_method.id}}" {% if (_inError and myData.methodAnswersTemp[_activityID] == _method.id) or (_inError == 'false' and myData.methodAnswers[_activityID] == _method.id) %}checked{% endif %} >
+                                <label class="govuk-label govuk-checkboxes__label" for="{{_activityID_method}}">
+                                {{_method.name}}
+                                </label> -->
+
+
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </fieldset>
+                </div>
+                {% endif %}
+                {% endfor %}
+
+
+            </div>
+		
+            {{govukButton({
+                text: "Continue"
+            })}}
+
+        </form>
+
+	</div>
+</div>
+
+
+{% endblock %}
+
+{% block pageScripts %}
+{% endblock pageScripts %}

@@ -75,6 +75,124 @@ var _myData = {
             "id": "_bat-17",
             "name": "Lesser horseshoe"
         }
+    ],
+    "batSpecies2": [
+        {
+            "id": "_bat-1",
+            "name": "Alcathoe"
+        },
+        {
+            "id": "_bat-2",
+            "name": "Nathusius’ pipistrelle"
+        },
+        {
+            "id": "_bat-3",
+            "name": "Barbastelle"
+        },
+        {
+            "id": "_bat-4",
+            "name": "Natterer’s"
+        },
+        {
+            "id": "_bat-5",
+            "name": "Bechstein’s"
+        },
+        {
+            "id": "_bat-6",
+            "name": "Greater horseshoe"
+        },
+        {
+            "id": "_bat-7",
+            "name": "Noctule"
+        },
+        {
+            "id": "_bat-8",
+            "name": "Brandt’s"
+        },
+        {
+            "id": "_bat-9",
+            "name": "Serotine"
+        },
+        {
+            "id": "_bat-10",
+            "name": "Brown long-eared"
+        },
+        {
+            "id": "_bat-11",
+            "name": "Grey long-eared"
+        },
+        {
+            "id": "_bat-12",
+            "name": "Soprano pipistrelle"
+        },
+        {
+            "id": "_bat-13",
+            "name": "Common pipistrelle"
+        },
+        {
+            "id": "_bat-14",
+            "name": "Leisler’s"
+        },
+        {
+            "id": "_bat-15",
+            "name": "Whiskered"
+        },
+        {
+            "id": "_bat-16",
+            "name": "Daubenton’s"
+        },
+        {
+            "id": "_bat-17",
+            "name": "Lesser horseshoe"
+        }
+    ],
+    "roostUses": [
+        {
+            "id": "_roostUse-1",
+            "name": "Maternity"
+        },
+        {
+            "id": "_roostUse-2",
+            "name": "Hibernation"
+        },
+        {
+            "id": "_roostUse-3",
+            "name": "Minor"
+        },
+        {
+            "id": "_roostUse-4",
+            "name": "Day"
+        },
+        {
+            "id": "_roostUse-5",
+            "name": "Night"
+        },
+        {
+            "id": "_roostUse-6",
+            "name": "Feeding"
+        },
+        {
+            "id": "_roostUse-7",
+            "name": "Transitional/Occasional"
+        },
+        {
+            "id": "_roostUse-8",
+            "name": "Satellite"
+        },
+        {
+            "id": "_roostUse-9",
+            "name": "Swarming"
+        },
+        {
+            "id": "_roostUse-10",
+            "name": "Mating"
+        }
+    ],
+    "applications": [
+        {
+            "id": 1,
+            "roosts": []
+        }
     ]
 }
 
@@ -173,6 +291,7 @@ _myData.batSpecies.forEach(function(_bat, index) {
         });
         // _activity.methods = _batMethods
     });
+
 });
 
 //Sort bats
@@ -184,7 +303,16 @@ _myData.batSpecies.sort(function(a,b){
     }
     return 0;
 });
+_myData.batSpecies2.sort(function(a,b){
+    if (a.name.toUpperCase() < b.name.toUpperCase()){
+        return -1
+    } else if(a.name.toUpperCase() > b.name.toUpperCase()){
+        return 1
+    }
+    return 0;
+});
 
 require('./routes/1-0/routes.js')(router,JSON.parse(JSON.stringify(_myData)));
+require('./routes/2-0/routes.js')(router,JSON.parse(JSON.stringify(_myData)));
 
 module.exports = router

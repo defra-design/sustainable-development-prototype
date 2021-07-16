@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %} 
+[TO DO]
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    <!-- {% include "includes/back-link.html" %} -->
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        <form method="POST">
+
+            <h1 class="govuk-heading-xl">
+                [Adding roost details]
+            </h1>
+
+            <p class="govuk-body">[Some introductory text before they start.]</p>
+
+            <p class="govuk-body">[We will ask for the details for each roost.]</p>
+                
+            <p class="govuk-body">[You will be able to add additional roosts after adding the first one.]</p>
+
+            {{govukButton({
+                text: "Continue"
+            })}}
+
+        </form>
+
+	</div>
+</div>
+
+
+{% endblock %}

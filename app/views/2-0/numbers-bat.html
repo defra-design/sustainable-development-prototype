@@ -1,0 +1,112 @@
+{% extends "layout.html" %}
+
+{% set _inError = myData.validationError %}
+
+{% block pageTitle %} 
+{% if _inError == "true" %}Error: {% endif %}[TO DO]
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+			{% if _inError == "true" %}
+            <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+                <h2 class="govuk-error-summary__title" id="error-summary-title">
+                    There is a problem
+                </h2>
+                <div class="govuk-error-summary__body">
+                    <ul class="govuk-list govuk-error-summary__list">
+                        {% for name, item in myData.validationErrors %}
+                        <li>
+                            <a href="#{{item.anchor}}">{{item.message}}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            {% endif %}
+
+			<h1 class="govuk-heading-xl">
+				[Numbers of bats using this roost? roost = {{myData.roost}}]
+			</h1>
+
+            <!-- <p>Selected Roost:
+                <br>
+                {{myData.selectedRoost|dump|safe}}
+            </p> -->
+
+	</div>
+</div>
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="POST">
+
+            <!-- Bats -->
+            {% for _bat in myData.selectedRoost.bats %}
+
+                {% set _batID = _bat.id %}
+                {% set _numberUsingTemp = myData['numberUsingTemp' + _batID] %}
+                {% set _numberUsingName = 'numberUsing' + _bat.id %}
+                {% set _numberInTemp = myData['numberInTemp' + _batID] %}
+                {% set _numberInName = 'numberIn' + _bat.id %}
+
+                <div class="govuk-form-group" >
+                    <h2 class="govuk-heading-m">{{_bat.name}} bats</h2>
+
+                    <!-- Number using -->
+                    <div class="govuk-form-group {% if myData.validationErrors[_numberUsingName] %}govuk-form-group--error{% endif %}">
+                        <h1 class="govuk-label-wrapper">
+                            <label class="govuk-label" for="numberUsing{{_batID}}">
+                                {{_bat.name}} using
+                            </label>
+                        </h1>
+                        {% if myData.validationErrors[_numberUsingName] %}
+                        <span id="orgNameAnswer-error" class="govuk-error-message">
+                            <span class="govuk-visually-hidden">Error:</span>
+                            {{myData.validationErrors[_numberUsingName].message}}
+                        </span>
+                        {% endif %}
+                        <input class="govuk-input govuk-input--width-5" id="{{_numberUsingName}}" name="{{_numberUsingName}}" type="text" spellcheck="false" pattern="[0-9]*" inputmode="numeric" value="{{_numberUsingTemp}}">
+                    </div>
+
+                    <!-- Number in roost when work carried out -->
+                    <div class="govuk-form-group {% if myData.validationErrors[_numberInName] %}govuk-form-group--error{% endif %}">
+                        <h1 class="govuk-label-wrapper">
+                            <label class="govuk-label" for="numberIn{{_batID}}">
+                                {{_bat.name}} in roost when works carried out
+                            </label>
+                        </h1>
+                        {% if myData.validationErrors[_numberInName] %}
+                        <span id="orgNameAnswer-error" class="govuk-error-message">
+                            <span class="govuk-visually-hidden">Error:</span>
+                            {{myData.validationErrors[_numberInName].message}}
+                        </span>
+                        {% endif %}
+                        <input class="govuk-input govuk-input--width-5" id="{{_numberInName}}" name="{{_numberInName}}" type="text" spellcheck="false" pattern="[0-9]*" inputmode="numeric" value="{{_numberInTemp}}">
+                    </div>
+
+                </div>
+            {% endfor %}
+		
+            {{govukButton({
+                text: "Continue"
+            })}}
+
+        </form>
+
+	</div>
+</div>
+
+
+{% endblock %}
+
+{% block pageScripts %}
+{% endblock pageScripts %}
