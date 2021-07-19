@@ -11,9 +11,6 @@
     {% include "includes/back-link.html" %}
 {% endblock %}
 
-{% set _roosts = myData.selectedApplication.roosts %}
-{% set _roostsCount = _roosts.length %}
-
 {% block content %}
 
 <div class="govuk-grid-row">
@@ -36,9 +33,9 @@
             </div>
             {% endif %}
 
-			<h1 class="govuk-heading-xl">
+			<!-- <h1 class="govuk-heading-xl">
 				[You have added {{_roostsCount}} roost{% if _roostsCount != 1 %}s{% endif %}]
-			</h1>
+			</h1> -->
 
             <!-- <p>Selected Roost:
                 <br>
@@ -52,46 +49,46 @@
 	<div class="govuk-grid-column-two-thirds">
 		<form method="POST">
 
-            <p>Roosts:
+            <!-- <p>Roosts:
                 <br><br>
                 {% for _roost in _roosts %}
                     {{_roost|dump|safe}}<br>
                     <a href="roost-remove?roostToRemove={{_roost.id}}">Remove roost</a>
                     <br><br>
                 {% endfor %}
-            </p>
+            </p> -->
 
             <!-- Roosts added -->
-            <div class="govuk-form-group {% if myData.validationErrors.addRoost %}govuk-form-group--error{% endif %}">
-                <fieldset class="govuk-fieldset" aria-describedby="addRoost-hint">
+            <div class="govuk-form-group {% if myData.validationErrors.surveysBat %}govuk-form-group--error{% endif %}">
+                <fieldset class="govuk-fieldset" aria-describedby="surveysBat-hint">
 
-                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
                         <h1 class="govuk-fieldset__heading">
-                        [Add another roost?]
+                        [Surveys conducted?]
                         </h1>
                     </legend>
 
-                    <div id="addRoost-hint" class="govuk-hint">
+                    <div id="surveysBat-hint" class="govuk-hint">
                         [hint]
                     </div>
 
-                    {% if myData.validationErrors.addRoost %}
+                    {% if myData.validationErrors.surveysBat %}
                     <span id="speciesBat-error" class="govuk-error-message">
                         <span class="govuk-visually-hidden">Error:</span>
-                        {{myData.validationErrors.addRoost.message}}
+                        {{myData.validationErrors.surveysBat.message}}
                     </span>
                     {% endif %}
 
                     <div class="govuk-radios">
                         <div class="govuk-radios__item">
-                            <input class="govuk-radios__input" id="addRoost-1" name="addRoost" type="radio" value="yes">
-                            <label class="govuk-label govuk-radios__label" for="addRoost-1">
+                            <input class="govuk-radios__input" id="surveysBat-1" name="surveysBat" type="radio" value="yes">
+                            <label class="govuk-label govuk-radios__label" for="surveysBat-1">
                             Yes
                             </label>
                         </div>
                         <div class="govuk-radios__item">
-                            <input class="govuk-radios__input" id="addRoost-2" name="addRoost" type="radio" value="no">
-                            <label class="govuk-label govuk-radios__label" for="addRoost-2">
+                            <input class="govuk-radios__input" id="surveysBat-2" name="surveysBat" type="radio" value="no">
+                            <label class="govuk-label govuk-radios__label" for="surveysBat-2">
                             No
                             </label>
                         </div>

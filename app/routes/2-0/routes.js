@@ -422,7 +422,7 @@ module.exports = function (router,_myData) {
                 res.redirect(301, '/' + version + '/species-bat');
 
             } else {
-                res.redirect(301, '/' + version + '/test-end');
+                res.redirect(301, '/' + version + '/date-bat');
             }
 
         }
@@ -485,17 +485,57 @@ module.exports = function (router,_myData) {
             }
 
         }
-
-        
-
-        //TO DO
-        //remove roost
-            // remove from app
-
-        
     });
 
+    // BAT date
+    router.get('/' + version + '/date-bat', function (req, res) {
+        res.render(version + '/date-bat', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/date-bat', function (req, res) {
 
+        res.redirect(301, '/' + version + '/surveys-bat');
+
+    });
+
+    // Surveys conducted
+    router.get('/' + version + '/surveys-bat', function (req, res) {
+        res.render(version + '/surveys-bat', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/surveys-bat', function (req, res) {
+
+        req.session.myData.surveysBatAnswer = req.body.surveysBat
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.surveysBatAnswer = req.session.myData.surveysBatAnswer || "no"
+        }
+
+        if(!req.session.myData.surveysBatAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.surveysBat = {
+                "anchor": "surveysBat-1",
+                "message": "[error message for surveys conducted]"
+            }
+        }
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/surveys-bat', {
+                myData: req.session.myData
+            });
+        } else {
+
+            if(req.session.myData.surveysBatAnswer == 'yes'){
+                res.redirect(301, '/' + version + '/test-end');
+            } else {
+                res.redirect(301, '/' + version + '/test-end');
+            }
+
+        }
+        
+    });
      
 
 
@@ -511,33 +551,7 @@ module.exports = function (router,_myData) {
 
 
 
-    // BAT date
-    router.get('/' + version + '/date-bat', function (req, res) {
-        res.render(version + '/date-bat', {
-            myData:req.session.myData
-        });
-    });
-    router.post('/' + version + '/date-bat', function (req, res) {
-
-        // Decide next page
-        if(req.session.myData.selectedBatLoop < req.session.myData.selectedBatTotal){
-            req.session.myData.selectedBatLoop++
-            var _loop = 1
-            req.session.myData.batSpecies2.forEach(function(_bat, index) {
-                if(_bat.selected){
-                    if(req.session.myData.selectedBatLoop == _loop){
-                        req.session.myData.bat = _bat.id
-                    }
-                    _loop++
-                }
-            });
-            setSelectedBat(req,req.session.myData.bat)
-            res.redirect(301, '/' + version + '/activities-bat?bat=' + req.session.myData.selectedBat.id + "&loop=" + req.session.myData.selectedBatLoop);
-        } else {
-            res.redirect(301, '/' + version + '/test-end');
-        }
-
-    });
+    
 
 
 
