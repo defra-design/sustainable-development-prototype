@@ -1,0 +1,111 @@
+{% extends "layout.html" %}
+
+{% set _inError = myData.validationError %}
+
+{% block pageTitle %} 
+{% if _inError == "true" %}Error: {% endif %}[TO DO]
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% set _roosts = myData.selectedApplication.roosts %}
+{% set _roostsCount = _roosts.length %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+			{% if _inError == "true" %}
+            <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+                <h2 class="govuk-error-summary__title" id="error-summary-title">
+                    There is a problem
+                </h2>
+                <div class="govuk-error-summary__body">
+                    <ul class="govuk-list govuk-error-summary__list">
+                        {% for name, item in myData.validationErrors %}
+                        <li>
+                            <a href="#{{item.anchor}}">{{item.message}}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            {% endif %}
+
+			<h1 class="govuk-heading-xl">
+				[You have added {{_roostsCount}} roost{% if _roostsCount != 1 %}s{% endif %}]
+			</h1>
+
+            <!-- <p>Selected Roost:
+                <br>
+                {{myData.selectedRoost|dump|safe}}
+            </p> -->
+
+	</div>
+</div>
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="POST">
+
+            <p>Roosts:
+                <br><br>
+                {% for _roost in _roosts %}
+                    {{_roost|dump|safe}}<br><br>
+                {% endfor %}
+            </p>
+
+            <!-- Roosts added -->
+            <div class="govuk-form-group {% if myData.validationErrors.addRoostAnswer %}govuk-form-group--error{% endif %}">
+                <fieldset class="govuk-fieldset" aria-describedby="addRoost-hint">
+
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                        <h1 class="govuk-fieldset__heading">
+                        [Add another roost?]
+                        </h1>
+                    </legend>
+
+                    <div id="addRoost-hint" class="govuk-hint">
+                        [hint]
+                    </div>
+
+                    {% if myData.validationErrors.addRoost %}
+                    <span id="speciesBat-error" class="govuk-error-message">
+                        <span class="govuk-visually-hidden">Error:</span>
+                        {{myData.validationErrors.addRoost.message}}
+                    </span>
+                    {% endif %}
+
+                    <div class="govuk-radios">
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="addRoost-1" name="addRoost" type="radio" value="yes">
+                            <label class="govuk-label govuk-radios__label" for="addRoost-1">
+                            Yes
+                            </label>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="addRoost-2" name="addRoost" type="radio" value="no">
+                            <label class="govuk-label govuk-radios__label" for="addRoost-2">
+                            No
+                            </label>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </div>
+
+            {{govukButton({
+                text: "Continue"
+            })}}
+
+        </form>
+
+	</div>
+</div>
+
+
+{% endblock %}
