@@ -36,7 +36,6 @@ module.exports = function (router,_myData) {
             //TODO fix it not thinking the currently added new one is existing
 
             if(_existingRoost){
-                console.log("existing roost " + _existingRoost.id)
                 req.session.myData.selectedRoost = _existingRoost
             } else {
                 if(!req.session.myData.newRoost.inprogress){
@@ -240,6 +239,9 @@ module.exports = function (router,_myData) {
 
                 _bat.numberUsing = req.session.myData["numberUsing" + _bat.id]
                 _bat.numberIn = req.session.myData["numberIn" + _bat.id]
+
+                req.session.myData["numberUsingTemp" + _bat.id] = ""
+                req.session.myData["numberInTemp" + _bat.id] = ""
             });
 
             //Roost query string
@@ -294,6 +296,59 @@ module.exports = function (router,_myData) {
 
         if(req.session.myData.validationError == "true") {
             res.render(version + '/using-roost', {
+                myData:req.session.myData
+            });
+        } else {
+            
+            //Roost query string
+            var _roostQS = ''
+            if(!req.session.myData.selectedRoost.new){
+                _roostQS = '?roost=' + req.session.myData.roost
+            }
+
+            res.redirect(301, '/' + version + '/activities-bat' + _roostQS);
+        }
+
+    });
+
+    // Activities on bats in roost
+    router.get('/' + version + '/activities-bat', function (req, res) {
+        res.render(version + '/activities-bat', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/activities-bat', function (req, res) {
+
+        req.session.myData.selectedRoost.bats.forEach(function(_bat, index) {
+
+                var _answer = req.body[_bat.id]
+
+                if(_answer == "_unchecked"){
+                    req.session.myData.validationError = "true"
+                    req.session.myData.validationErrors[_bat.id] = {
+                        "anchor": _bat.id + "-1",
+                        "message": "[error message]"
+                    }
+                } else {
+                    _bat.activities = []
+                    //Set selected bat activities
+                    req.session.myData.batActivities.forEach(function(_batActivity, index) {
+                        if(_answer.indexOf(_batActivity.id.toString()) != -1){
+                            _bat.activities.push(_batActivity)
+                            // _roostUse.selected = true
+                        } else {
+                            // _roostUse.selected = false
+                        }
+                    });
+                }
+                if(req.session.myData.includeValidation == "false"){
+                    req.session.myData.batActivitiesAnswersTemp[_bat.id] = _answer || "_batActivity-1"
+                }
+
+        });
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/activities-bat', {
                 myData:req.session.myData
             });
         } else {
@@ -381,117 +436,80 @@ module.exports = function (router,_myData) {
         
     });
 
+    // Roost remove
+    router.get('/' + version + '/roost-remove', function (req, res) {
 
+        req.session.myData.roostToRemove = req.query.roostToRemove
 
-
-
-
-
-
-    // BAT Activities
-    router.get('/' + version + '/activities-bat', function (req, res) {
-        res.render(version + '/activities-bat', {
+        res.render(version + '/roost-remove', {
             myData:req.session.myData
         });
     });
-    router.post('/' + version + '/activities-bat', function (req, res) {
+    router.post('/' + version + '/roost-remove', function (req, res) {
 
-        req.session.myData.activitiesBatAnswerTemp = req.body.activity
+        req.session.myData.removeRoostAnswer = req.body.removeRoost
+
         if(req.session.myData.includeValidation == "false"){
-            req.session.myData.activitiesBatAnswerTemp = req.session.myData.activitiesBatAnswerTemp || "_activity-1"
+            req.session.myData.removeRoostAnswer = req.session.myData.removeRoostAnswer || "no"
         }
-        if(req.session.myData.activitiesBatAnswerTemp == "_unchecked"){
+
+        if(!req.session.myData.removeRoostAnswer){
             req.session.myData.validationError = "true"
-            req.session.myData.validationErrors.activitiesBatAnswer = {
-                "anchor": "_activity-1",
-                "message": "Select the activities that will be used to affect this species of bat"
+            req.session.myData.validationErrors.removeRoost = {
+                "anchor": "removeRoost-1",
+                "message": "[error message for add roost]"
             }
         }
 
         if(req.session.myData.validationError == "true") {
-            req.session.myData.selectedBat.activities.forEach(function(_activity, index) {
-                _activity.selected = false
-            });
-            res.render(version + '/activities-bat', {
+            res.render(version + '/roost-remove', {
                 myData: req.session.myData
             });
         } else {
-            req.session.myData.activitiesBatAnswer = req.session.myData.activitiesBatAnswerTemp
-            req.session.myData.activitiesBatAnswerTemp = ''
 
-            req.session.myData.selectedBat.activities.forEach(function(_activity, index) {
-                if(req.session.myData.activitiesBatAnswer.indexOf(_activity.id.toString()) != -1){
-                    _activity.selected = true
-                } else {
-                    _activity.selected = false
+            if(req.session.myData.removeRoostAnswer == 'yes'){
+
+                var _removeID = req.session.myData.roostToRemove.toString(),
+                    _roost = req.session.myData.selectedApplication.roosts.find(obj => {return obj.id.toString() === _removeID})
+                
+                if(_roost){
+                    //remove it
+                    var removeIndex = req.session.myData.selectedApplication.roosts.map(item => item.id.toString()).indexOf(_removeID);
+                    (removeIndex >= 0) && req.session.myData.selectedApplication.roosts.splice(removeIndex, 1);
                 }
-            });
-            res.redirect(301, '/' + version + '/methods-bat?bat=' + req.session.myData.selectedBat.id + "&loop=" + req.session.myData.selectedBatLoop);
-        }
 
-    });
+                res.redirect(301, '/' + version + '/roosts-added');
 
-    // BAT Methods
-    router.get('/' + version + '/methods-bat', function (req, res) {
-        res.render(version + '/methods-bat', {
-            myData:req.session.myData
-        });
-    });
-    router.post('/' + version + '/methods-bat', function (req, res) {
-
-        req.session.myData.selectedBat.activities.forEach(function(_activity, index) {
-            if(_activity.selected){
-                var _answer = req.body[_activity.id]
-
-                if(_answer == "_unchecked"){
-                    req.session.myData.validationError = "true"
-                    req.session.myData.validationErrors[_activity.id] = {
-                        // "anchor": _activity.id,
-                        "anchor": _activity.id + "-1",
-                        "message": "Select the methods that will be used to affect this species of bat"
-                    }
-                } else {
-                    //Set selected methods
-                    _activity.methods.forEach(function(_method, index) {
-                        if(_answer.indexOf(_method.id.toString()) != -1){
-                            _method.selected = true
-                        } else {
-                            _method.selected = false
-                        }
-                    });
-                }
-                if(req.session.myData.includeValidation == "false"){
-                    req.session.myData.methodAnswersTemp[_activity.id] = _answer || "_method-1"
-                }
+            } else {
+                res.redirect(301, '/' + version + '/roosts-added');
             }
 
-        });
-
-        if(req.session.myData.validationError == "true") {
-            res.render(version + '/methods-bat', {
-                myData:req.session.myData
-            });
-        } else {
-            // Decide next page
-            // if(req.session.myData.selectedBatLoop < req.session.myData.selectedBatTotal){
-            //     req.session.myData.selectedBatLoop++
-            //     var _loop = 1
-            //     req.session.myData.batSpecies2.forEach(function(_bat, index) {
-            //         if(_bat.selected){
-            //             if(req.session.myData.selectedBatLoop == _loop){
-            //                 req.session.myData.bat = _bat.id
-            //             }
-            //             _loop++
-            //         }
-            //     });
-            //     setSelectedBat(req,req.session.myData.bat)
-                res.redirect(301, '/' + version + '/numbers-bat?bat=' + req.session.myData.selectedBat.id + "&loop=" + req.session.myData.selectedBatLoop);
-            // } else {
-            //     res.redirect(301, '/' + version + '/test-end');
-            // }
         }
 
+        
+
+        //TO DO
+        //remove roost
+            // remove from app
+
+        
     });
+
+
+     
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     // BAT date
     router.get('/' + version + '/date-bat', function (req, res) {

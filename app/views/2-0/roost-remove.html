@@ -11,9 +11,6 @@
     {% include "includes/back-link.html" %}
 {% endblock %}
 
-{% set _roosts = myData.selectedApplication.roosts %}
-{% set _roostsCount = _roosts.length %}
-
 {% block content %}
 
 <div class="govuk-grid-row">
@@ -36,9 +33,9 @@
             </div>
             {% endif %}
 
-			<h1 class="govuk-heading-xl">
+			<!-- <h1 class="govuk-heading-xl">
 				[You have added {{_roostsCount}} roost{% if _roostsCount != 1 %}s{% endif %}]
-			</h1>
+			</h1> -->
 
             <!-- <p>Selected Roost:
                 <br>
@@ -52,46 +49,44 @@
 	<div class="govuk-grid-column-two-thirds">
 		<form method="POST">
 
-            <p>Roosts:
+            <!-- <p>Roosts:
                 <br><br>
                 {% for _roost in _roosts %}
-                    {{_roost|dump|safe}}<br>
-                    <a href="roost-remove?roostToRemove={{_roost.id}}">Remove roost</a>
-                    <br><br>
+                    {{_roost|dump|safe}}<br><br>
                 {% endfor %}
-            </p>
+            </p> -->
 
             <!-- Roosts added -->
-            <div class="govuk-form-group {% if myData.validationErrors.addRoostAnswer %}govuk-form-group--error{% endif %}">
-                <fieldset class="govuk-fieldset" aria-describedby="addRoost-hint">
+            <div class="govuk-form-group {% if myData.validationErrors.removeRoostAnswer %}govuk-form-group--error{% endif %}">
+                <fieldset class="govuk-fieldset" aria-describedby="removeRoost-hint">
 
-                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
                         <h1 class="govuk-fieldset__heading">
-                        [Add another roost?]
+                        [Sure you want to remove roost?]
                         </h1>
                     </legend>
 
-                    <div id="addRoost-hint" class="govuk-hint">
+                    <div id="removeRoost-hint" class="govuk-hint">
                         [hint]
                     </div>
 
-                    {% if myData.validationErrors.addRoost %}
+                    {% if myData.validationErrors.removeRoost %}
                     <span id="speciesBat-error" class="govuk-error-message">
                         <span class="govuk-visually-hidden">Error:</span>
-                        {{myData.validationErrors.addRoost.message}}
+                        {{myData.validationErrors.removeRoost.message}}
                     </span>
                     {% endif %}
 
                     <div class="govuk-radios">
                         <div class="govuk-radios__item">
-                            <input class="govuk-radios__input" id="addRoost-1" name="addRoost" type="radio" value="yes">
-                            <label class="govuk-label govuk-radios__label" for="addRoost-1">
+                            <input class="govuk-radios__input" id="removeRoost-1" name="removeRoost" type="radio" value="yes">
+                            <label class="govuk-label govuk-radios__label" for="removeRoost-1">
                             Yes
                             </label>
                         </div>
                         <div class="govuk-radios__item">
-                            <input class="govuk-radios__input" id="addRoost-2" name="addRoost" type="radio" value="no">
-                            <label class="govuk-label govuk-radios__label" for="addRoost-2">
+                            <input class="govuk-radios__input" id="removeRoost-2" name="removeRoost" type="radio" value="no">
+                            <label class="govuk-label govuk-radios__label" for="removeRoost-2">
                             No
                             </label>
                         </div>

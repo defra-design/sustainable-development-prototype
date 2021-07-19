@@ -188,6 +188,78 @@ var _myData = {
             "name": "Mating"
         }
     ],
+    "batActivities": [
+        {
+            "id": "_batActivity-1",
+            "name": "Capture by hand"
+        },
+        {
+            "id": "_batActivity-2",
+            "name": "Capture by net"
+        },
+        {
+            "id": "_batActivity-3",
+            "name": "Transport"
+        },
+        {
+            "id": "_batActivity-4",
+            "name": "Disturb with endoscope"
+        },
+        {
+            "id": "_batActivity-5",
+            "name": "Temporary exclusion / temporary obstruction of roost access"
+        },
+        {
+            "id": "_batActivity-6",
+            "name": "Disturb with illumination"
+        },
+        {
+            "id": "_batActivity-7",
+            "name": "Disturb with noise or vibration"
+        } 
+    ],
+    "roostActivities": [
+        {
+            "id": "_roostActivity-1",
+            "name": "Destroying",
+            "subActivities": [
+                {
+                    "id": "_roostSubActivity-1",
+                    "name": "Permanent exclusion"
+                },
+                {
+                    "id": "_roostSubActivity-2",
+                    "name": "Destructive search by soft demolition"
+                },
+                {
+                    "id": "_roostSubActivity-3",
+                    "name": "Mechanical demolition"
+                }
+            ]
+        },
+        {
+            "id": "_roostActivity-2",
+            "name": "Damaging",
+            "subActivities": [
+                {
+                    "id": "_roostSubActivity-1",
+                    "name": "Permanent exclusion"
+                },
+                {
+                    "id": "_roostSubActivity-2",
+                    "name": "Destructive search by soft demolition"
+                },
+                {
+                    "id": "_roostSubActivity-3",
+                    "name": "Mechanical demolition"
+                }
+            ]
+        },
+        {
+            "id": "_roostActivity-3",
+            "name": "Neither"
+        }
+    ],
     "applications": [
         {
             "id": 1,
@@ -276,6 +348,7 @@ var _batMethods = [
     }
 ]
 
+//For v1
 _myData.batSpecies.forEach(function(_bat, index) {
 
     //Set Activities
