@@ -79,16 +79,26 @@
 
                                 {% set _selected = false %}
                                 {% for _batRoostUse in _bat.roostUses %}
-                                    {% if _roostUse.id == _batRoostUse.id %}
+
+                                    {% if _inError == "true" %}
+                                        {% for _tempRoostUse in myData.roostUsesAnswersTemp[_batID] %}
+                                            {% if _roostUse.id == _tempRoostUse %}
+                                                {% set _selected = true %}
+                                                {% set _selected2 = "1" %}
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% elif _roostUse.id == _batRoostUse.id %}
                                         {% set _selected = true %}
+                                        {% set _selected2 = "2" %}
                                     {% endif %}
+
                                 {% endfor %}
 
                                 <div class="govuk-checkboxes__item">
 
                                     <input {% if _selected %}checked{% endif %} class="govuk-checkboxes__input" id="{{_batID_roostUse}}" name="{{_batID}}" type="checkbox" value="{{_roostUse.id}}" >
                                     <label class="govuk-label govuk-checkboxes__label" for="{{_batID_roostUse}}">
-                                    {{_roostUse.name}}
+                                    {{_roostUse.name}} - {{_selected2}} - {{myData.roostUsesAnswersTemp[_batID]}}
                                     </label>
 
                                 </div>

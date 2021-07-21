@@ -265,33 +265,22 @@ module.exports = function (router,_myData) {
     });
     router.post('/' + version + '/using-roost', function (req, res) {
 
+        req.session.myData.roostUsesAnswersTemp = []
+
         req.session.myData.selectedRoost.bats.forEach(function(_bat, index) {
 
-                var _answer = req.body[_bat.id]
+                req.session.myData.roostUsesAnswersTemp[_bat.id] = req.body[_bat.id]
 
-                if(_answer == "_unchecked"){
+                if(req.session.myData.includeValidation == "false"){
+                    req.session.myData.roostUsesAnswersTemp[_bat.id] = req.session.myData.roostUsesAnswersTemp[_bat.id] || "_roostUse-1"
+                }
+                if(req.session.myData.roostUsesAnswersTemp[_bat.id] == "_unchecked"){
                     req.session.myData.validationError = "true"
                     req.session.myData.validationErrors[_bat.id] = {
                         "anchor": _bat.id + "-1",
                         "message": "[error message]"
                     }
-                } else {
-                    _bat.roostUses = []
-                    //Set selected roost uses
-                    req.session.myData.roostUses.forEach(function(_roostUse, index) {
-                    // _bat.roostUses.forEach(function(_roostUse, index) {
-                        if(_answer.indexOf(_roostUse.id.toString()) != -1){
-                            _bat.roostUses.push(_roostUse)
-                            // _roostUse.selected = true
-                        } else {
-                            // _roostUse.selected = false
-                        }
-                    });
                 }
-                if(req.session.myData.includeValidation == "false"){
-                    req.session.myData.roostUsesAnswersTemp[_bat.id] = _answer || "_roostUse-1"
-                }
-
         });
 
         if(req.session.myData.validationError == "true") {
@@ -299,6 +288,17 @@ module.exports = function (router,_myData) {
                 myData:req.session.myData
             });
         } else {
+
+            //Set selected roost uses
+            req.session.myData.selectedRoost.bats.forEach(function(_bat, index) {
+                _bat.roostUses = []
+                req.session.myData.roostUses.forEach(function(_roostUse, index) {
+                    if(req.session.myData.roostUsesAnswersTemp[_bat.id].indexOf(_roostUse.id.toString()) != -1){
+                        _bat.roostUses.push(_roostUse)
+                    }
+                });
+            });
+            req.session.myData.roostUsesAnswersTemp = []
             
             //Roost query string
             var _roostQS = ''
@@ -306,6 +306,54 @@ module.exports = function (router,_myData) {
                 _roostQS = '?roost=' + req.session.myData.roost
             }
 
+            res.redirect(301, '/' + version + '/activities-roost' + _roostQS);
+
+        }
+
+    });
+
+    // Activities on roost
+    router.get('/' + version + '/activities-roost', function (req, res) {
+        res.render(version + '/activities-roost', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/activities-roost', function (req, res) {
+
+        req.session.myData.roostActivityTempAnswer = req.body.roostActivity
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.roostActivityTempAnswer = req.session.myData.roostActivityTempAnswer || "Neither"
+        }
+
+        if(!req.session.myData.roostActivityTempAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.roostActivity = {
+                "anchor": "roostActivity-1",
+                "message": "[error message for not selecting a radio]"
+            }
+        }
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/activities-roost', {
+                myData:req.session.myData
+            });
+        } else {
+
+            //Set selected roost uses
+            req.session.myData.selectedRoost.activity = {
+                "type": req.session.myData.roostActivityTempAnswer,
+                "methods": []
+            }
+            req.session.myData.roostActivityTempAnswer = ""
+            
+            //Roost query string
+            var _roostQS = ''
+            if(!req.session.myData.selectedRoost.new){
+                _roostQS = '?roost=' + req.session.myData.roost
+            }
+
+            // TODO go to bat activities if count of at least one bat species is 0
             res.redirect(301, '/' + version + '/activities-bat' + _roostQS);
         }
 
@@ -426,14 +474,6 @@ module.exports = function (router,_myData) {
             }
 
         }
-
-        
-
-        //TO DO
-        //remove roost
-            // remove from app
-
-        
     });
 
     // Roost remove

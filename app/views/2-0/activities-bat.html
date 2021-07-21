@@ -51,6 +51,8 @@
 		<form method="POST">
             <div class="govuk-form-group">
 
+                <!-- TODO only display bat activities if count of bat species is 0 -->
+
                 {% for _bat in myData.selectedRoost.bats %}
                 {% set _batID = _bat.id %}
 
