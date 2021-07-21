@@ -321,17 +321,47 @@ module.exports = function (router,_myData) {
     router.post('/' + version + '/activities-roost', function (req, res) {
 
         req.session.myData.roostActivityTempAnswer = req.body.roostActivity
+        req.session.myData.roostActivityMethodsTempAnswer = ""
 
         if(req.session.myData.includeValidation == "false"){
             req.session.myData.roostActivityTempAnswer = req.session.myData.roostActivityTempAnswer || "Neither"
+            req.session.myData.roostActivityMethodsTempAnswer = req.session.myData.roostActivityMethodsTempAnswer || ""
         }
 
         if(!req.session.myData.roostActivityTempAnswer){
             req.session.myData.validationError = "true"
             req.session.myData.validationErrors.roostActivity = {
-                "anchor": "roostActivity-1",
+                "anchor": "_roostActivity-1",
                 "message": "[error message for not selecting a radio]"
             }
+        } else {
+            // Check methods
+
+            //Selected Roost Activity
+            req.session.myData.roostActivities.forEach(function(_roostActivity, index) {
+
+                if(req.session.myData.roostActivityTempAnswer == _roostActivity.id){
+
+                    if(_roostActivity.methods){
+
+                        //validate for methods
+
+                        var _methodsName = _roostActivity.id + "-method"
+                        req.session.myData.roostActivityMethodsTempAnswer = req.body[_methodsName]
+
+                        if(req.session.myData.roostActivityMethodsTempAnswer == "_unchecked"){
+                            req.session.myData.validationError = "true"
+                            req.session.myData.validationErrors[_roostActivity.id] = {
+                                "anchor": _roostActivity.id + "-1",
+                                "message": "[error message for no ticked checkboxes under " + _roostActivity.name +"]"
+                            }
+                        }
+
+                    }
+                }
+
+            });
+
         }
 
         if(req.session.myData.validationError == "true") {
@@ -340,12 +370,25 @@ module.exports = function (router,_myData) {
             });
         } else {
 
-            //Set selected roost uses
-            req.session.myData.selectedRoost.activity = {
-                "type": req.session.myData.roostActivityTempAnswer,
-                "methods": []
+            var _selectedRoostActivity = req.session.myData.roostActivities.find(obj => {return obj.id.toString() === req.session.myData.roostActivityTempAnswer});
+
+            //Set selected roost activity
+            req.session.myData.selectedRoost.activity = _selectedRoostActivity
+
+            //Set selected roost activity methods (if any)
+            var _methods = req.session.myData.selectedRoost.activity.methods,
+                _methodsSelected = []
+            if(_methods){
+                _methods.forEach(function(_method, index) {
+                    if(req.session.myData.roostActivityMethodsTempAnswer.indexOf(_method.id.toString()) != -1){
+                        _methodsSelected.push(_method)
+                    }
+                });
+                req.session.myData.selectedRoost.activity.methods = _methodsSelected
             }
+
             req.session.myData.roostActivityTempAnswer = ""
+            req.session.myData.roostActivityMethodsTempAnswer = ""
             
             //Roost query string
             var _roostQS = ''

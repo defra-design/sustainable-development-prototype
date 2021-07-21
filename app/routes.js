@@ -222,17 +222,17 @@ var _myData = {
         {
             "id": "_roostActivity-1",
             "name": "Destroying",
-            "subActivities": [
+            "methods": [
                 {
-                    "id": "_roostSubActivity-1",
+                    "id": "_roostActivityMethod-1",
                     "name": "Permanent exclusion"
                 },
                 {
-                    "id": "_roostSubActivity-2",
+                    "id": "_roostActivityMethod-2",
                     "name": "Destructive search by soft demolition"
                 },
                 {
-                    "id": "_roostSubActivity-3",
+                    "id": "_roostActivityMethod-3",
                     "name": "Mechanical demolition"
                 }
             ]
@@ -240,17 +240,17 @@ var _myData = {
         {
             "id": "_roostActivity-2",
             "name": "Damaging",
-            "subActivities": [
+            "methods": [
                 {
-                    "id": "_roostSubActivity-1",
+                    "id": "_roostActivityMethod-1",
                     "name": "Permanent exclusion"
                 },
                 {
-                    "id": "_roostSubActivity-2",
+                    "id": "_roostActivityMethod-2",
                     "name": "Destructive search by soft demolition"
                 },
                 {
-                    "id": "_roostSubActivity-3",
+                    "id": "_roostActivityMethod-3",
                     "name": "Mechanical demolition"
                 }
             ]

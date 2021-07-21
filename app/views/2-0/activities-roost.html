@@ -79,47 +79,65 @@
                     {% if _inError == "true" %}
                         {% set _selected = myData.roostActivityTempAnswer %}
                     {% else %}
-                        {% set _selected = _roost.activity.type %}
+                        {% set _selected = _roost.activity.id %}
                     {% endif %}
 
-                    <div class="govuk-radios__item">
-                      <input {% if _selected == 'Destroying' %}checked{% endif %} class="govuk-radios__input" id="roostActivity-1" name="roostActivity" type="radio" value="Destroying" data-aria-controls="conditional-destroy">
-                      <label class="govuk-label govuk-radios__label" for="roostActivity-1">
-                        Destroying
-                      </label>
-                    </div>
-                    <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-destroy">
-                        <div class="govuk-form-group">
-                            <p>[revealed by destroy radio]</p>
+                    {% for _roostActivity in myData.roostActivities %}
+
+                        <div class="govuk-radios__item">
+                            <input {% if _selected == _roostActivity.id %}checked{% endif %} class="govuk-radios__input" id="{{_roostActivity.id}}" name="roostActivity" type="radio" value="{{_roostActivity.id}}" data-aria-controls="conditional-{{_roostActivity.name}}">
+                            <label class="govuk-label govuk-radios__label" for="{{_roostActivity.id}}">
+                                {{_roostActivity.name}}
+                            </label>
                         </div>
-                    </div>
+
+                        {% if _roostActivity.methods %}
+                        <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-{{_roostActivity.name}}">
 
 
+                            <div class="govuk-form-group">
+                                <fieldset class="govuk-fieldset" aria-describedby="roostActivityMethods-hint-{{_roostActivity.id}}">
+                                    
+                                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                                        [How?]
+                                    </legend>
+
+                                    <div id="roostActivityMethods-hint-{{_roostActivity.id}}" class="govuk-hint">
+                                        Select all that apply.
+                                    </div>
+
+                                    <!-- TODO red line - check manage funding prototype -->
+
+                                    {% if myData.validationErrors[_roostActivity.id] %}
+                                    <span id="roostActivity-error" class="govuk-error-message">
+                                        <span class="govuk-visually-hidden">Error:</span>
+                                        {{myData.validationErrors[_roostActivity.id].message}}
+                                    </span>
+                                    {% endif %}
 
 
-                    <div class="govuk-radios__item">
-                      <input {% if _selected == 'Damaging' %}checked{% endif %} class="govuk-radios__input" id="roostActivity-2" name="roostActivity" type="radio" value="Damaging" data-aria-controls="conditional-damage">
-                      <label class="govuk-label govuk-radios__label" for="roostActivity-2">
-                        Damaging
-                      </label>
-                    </div>
-                    <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-damage">
-                        <div class="govuk-form-group">
-                            <p>[revealed by damage radio]</p>
+                                    <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                                        {% for _roostActivityMethod in _roostActivity.methods %}
+
+                                            {% set _roostActivity_method = _roostActivity.id + "-" + loop.index %}
+
+                                            <div class="govuk-checkboxes__item">
+
+                                                <input class="govuk-checkboxes__input" id="{{_roostActivity_method}}" name="{{_roostActivity.id}}-method" type="checkbox" value="{{_roostActivityMethod.id}}" >
+                                                <label class="govuk-label govuk-checkboxes__label" for="{{_roostActivity_method}}">
+                                                {{_roostActivityMethod.name}}
+                                                </label>
+
+                                            </div>
+
+                                        {% endfor %}
+                                    </div>
+                                </fieldset>
+                            </div>
                         </div>
-                    </div>
-                    
+                        {% endif %}
 
-
-
-
-                    <div class="govuk-radios__item">
-                      <input {% if _selected == 'Neither' %}checked{% endif %} class="govuk-radios__input" id="roostActivity-3" name="roostActivity" type="radio" value="Neither" >
-                      <label class="govuk-label govuk-radios__label" for="roostActivity-3">
-                        Neither
-                      </label>
-                    </div>
-
+                    {% endfor %}
 
                   </div>
                 </fieldset>
