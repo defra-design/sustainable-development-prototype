@@ -68,10 +68,6 @@
                         </h1>
                     </legend>
 
-                    <div id="surveysBat-hint" class="govuk-hint">
-                        [hint]
-                    </div>
-
                     {% if myData.validationErrors.surveysBat %}
                     <span id="speciesBat-error" class="govuk-error-message">
                         <span class="govuk-visually-hidden">Error:</span>
@@ -79,19 +75,35 @@
                     </span>
                     {% endif %}
 
-                    <div class="govuk-radios">
+                    <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
                         <div class="govuk-radios__item">
                             <input class="govuk-radios__input" id="surveysBat-1" name="surveysBat" type="radio" value="yes">
                             <label class="govuk-label govuk-radios__label" for="surveysBat-1">
                             Yes
                             </label>
                         </div>
+
+
                         <div class="govuk-radios__item">
-                            <input class="govuk-radios__input" id="surveysBat-2" name="surveysBat" type="radio" value="no">
+                            <input class="govuk-radios__input" id="surveysBat-2" name="surveysBat" type="radio" value="no" data-aria-controls="conditional-no">
                             <label class="govuk-label govuk-radios__label" for="surveysBat-2">
                             No
                             </label>
                         </div>
+
+                        <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-no">
+                            <div class="govuk-form-group">
+                                <label class="govuk-label" for="more-detail">
+                                    [label]
+                                  </label>
+                                </h1>
+                                <textarea class="govuk-textarea" id="more-detail" name="more-detail" rows="5" aria-describedby="more-detail-hint"></textarea>
+                            </div>
+                        </div>
+
+
+
+
                     </div>
 
                 </fieldset>
