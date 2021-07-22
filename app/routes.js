@@ -191,67 +191,65 @@ var _myData = {
     "batActivities": [
         {
             "id": "_batActivity-1",
-            "name": "Capture by hand"
+            "name": "Capture by hand or using a net"
         },
         {
             "id": "_batActivity-2",
-            "name": "Capture by net"
+            "name": "Move them from the roost"
         },
         {
             "id": "_batActivity-3",
-            "name": "Transport"
+            "name": "Disturb with an endoscope"
         },
         {
             "id": "_batActivity-4",
-            "name": "Disturb with endoscope"
+            "name": "Temporarily stop the bats from entering the roost"
         },
         {
             "id": "_batActivity-5",
-            "name": "Temporary exclusion / temporary obstruction of roost access"
+            "name": "Disturb with light"
         },
         {
             "id": "_batActivity-6",
-            "name": "Disturb with illumination"
-        },
-        {
-            "id": "_batActivity-7",
             "name": "Disturb with noise or vibration"
-        } 
+        }
     ],
     "roostActivities": [
         {
             "id": "_roostActivity-1",
-            "name": "Destroying",
+            "name": "Destroy the roost",
+            "methods-description": "How will your activity destroy the roost?",
             "methods": [
                 {
                     "id": "_roostActivityMethod-1",
-                    "name": "Permanent exclusion"
+                    "name": "Permanently stop the bats from entering the roost"
                 },
                 {
                     "id": "_roostActivityMethod-2",
-                    "name": "Destructive search by soft demolition"
+                    "name": "Take the roost apart by hand or with tools"
                 },
                 {
                     "id": "_roostActivityMethod-3",
-                    "name": "Mechanical demolition"
+                    "name": "Demolish the building that supported the bat roost once you’ve removed the bats"
                 }
             ]
         },
         {
             "id": "_roostActivity-2",
-            "name": "Damaging",
+            "name": "Damage the roost",
+            "methods-description": "How will your activity damage the roost?",
             "methods": [
                 {
                     "id": "_roostActivityMethod-1",
-                    "name": "Permanent exclusion"
+                    "name": "Permanently stop the bats from entering the roost"
                 },
                 {
                     "id": "_roostActivityMethod-2",
-                    "name": "Destructive search by soft demolition"
+                    "name": "Take the roost apart by hand or with tools"
                 },
                 {
                     "id": "_roostActivityMethod-3",
-                    "name": "Mechanical demolition"
+                    "name": "Demolish the building that supported the bat roost once you’ve removed the bats"
                 }
             ]
         },

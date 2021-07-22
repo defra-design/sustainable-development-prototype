@@ -1,9 +1,9 @@
 {% extends "layout.html" %}
 
-{% set _inError = myData.validationError %}
+{% set _inError = myData.validationError == "true"  %}
 
 {% block pageTitle %} 
-{% if _inError == "true" %}Error: {% endif %}[TO DO]
+{% if _inError %}Error: {% endif %}Do you want to remove this roost?
 {% endblock %}
 
 {% block beforeContent %}
@@ -16,61 +16,45 @@
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-			{% if _inError == "true" %}
-            <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
-                <h2 class="govuk-error-summary__title" id="error-summary-title">
-                    There is a problem
-                </h2>
-                <div class="govuk-error-summary__body">
-                    <ul class="govuk-list govuk-error-summary__list">
-                        {% for name, item in myData.validationErrors %}
-                        <li>
-                            <a href="#{{item.anchor}}">{{item.message}}</a>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </div>
+        {% if _inError %}
+        <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+            <h2 class="govuk-error-summary__title" id="error-summary-title">
+                There is a problem
+            </h2>
+            <div class="govuk-error-summary__body">
+                <ul class="govuk-list govuk-error-summary__list">
+                    {% for name, item in myData.validationErrors %}
+                    <li>
+                        <a href="#{{item.anchor}}">{{item.message}}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
             </div>
+        </div>
+        {% endif %}
+
+        <h1 class="govuk-heading-xl">Do you want to remove this roost?</h1>
+
+        {% set _index = 1 %}
+        {% for _roost in myData.selectedApplication.roosts %}
+            {% if _roost.id == myData.selectedRoostToRemove.id %}
+                {% set _index = loop.index %}
             {% endif %}
+        {% endfor %}
 
-			<!-- <h1 class="govuk-heading-xl">
-				[You have added {{_roostsCount}} roost{% if _roostsCount != 1 %}s{% endif %}]
-			</h1> -->
+        <p class="govuk-body govuk-!-margin-bottom-6">
+            <span class="govuk-!-font-weight-bold">Roost {{_index}}</span><br>
+            {% for _bat in myData.selectedRoostToRemove.bats %}
+            {{_bat.name}} bat<br>
+            {% endfor %}
+        </p>
 
-            <!-- <p>Selected Roost:
-                <br>
-                {{myData.selectedRoost|dump|safe}}
-            </p> -->
-
-	</div>
-</div>
-
-<div class="govuk-grid-row">
-	<div class="govuk-grid-column-two-thirds">
 		<form method="POST">
 
-            <!-- <p>Roosts:
-                <br><br>
-                {% for _roost in _roosts %}
-                    {{_roost|dump|safe}}<br><br>
-                {% endfor %}
-            </p> -->
+            <div class="govuk-form-group {% if _inError %}govuk-form-group--error{% endif %}">
+                <fieldset class="govuk-fieldset" >
 
-            <!-- Roosts added -->
-            <div class="govuk-form-group {% if myData.validationErrors.removeRoostAnswer %}govuk-form-group--error{% endif %}">
-                <fieldset class="govuk-fieldset" aria-describedby="removeRoost-hint">
-
-                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
-                        <h1 class="govuk-fieldset__heading">
-                        [Sure you want to remove roost?]
-                        </h1>
-                    </legend>
-
-                    <div id="removeRoost-hint" class="govuk-hint">
-                        [hint]
-                    </div>
-
-                    {% if myData.validationErrors.removeRoost %}
+                    {% if _inError %}
                     <span id="speciesBat-error" class="govuk-error-message">
                         <span class="govuk-visually-hidden">Error:</span>
                         {{myData.validationErrors.removeRoost.message}}

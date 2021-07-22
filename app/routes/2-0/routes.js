@@ -533,6 +533,7 @@ module.exports = function (router,_myData) {
     router.get('/' + version + '/roost-remove', function (req, res) {
 
         req.session.myData.roostToRemove = req.query.roostToRemove
+        req.session.myData.selectedRoostToRemove = req.session.myData.selectedApplication.roosts.find(obj => {return obj.id.toString() === req.session.myData.roostToRemove})
 
         res.render(version + '/roost-remove', {
             myData:req.session.myData

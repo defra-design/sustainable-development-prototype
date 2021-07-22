@@ -1,9 +1,9 @@
 {% extends "layout.html" %}
 
-{% set _inError = myData.validationError %}
+{% set _inError = myData.validationError == "true" %}
 
 {% block pageTitle %} 
-{% if _inError == "true" %}Error: {% endif %}What is each species using the roost for?
+{% if _inError %}Error: {% endif %}What is each species using the roost for?
 {% endblock %}
 
 {% block beforeContent %}
@@ -16,7 +16,7 @@
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-        {% if _inError == "true" %}
+        {% if _inError %}
         <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
             <h2 class="govuk-error-summary__title" id="error-summary-title">
                 There is a problem
@@ -36,14 +36,6 @@
         <h1 class="govuk-heading-xl">
             What is each species using the roost for?
         </h1>
-
-        <p class="govuk-body">You need to tell us the type of roosts your activity will affect for each species of bat.</p>
-
-	</div>
-</div>
-
-<div class="govuk-grid-row">
-	<div class="govuk-grid-column-two-thirds">
 
 		<form method="POST">
             <div class="govuk-form-group">
@@ -115,6 +107,5 @@
 
 	</div>
 </div>
-
 
 {% endblock %}
