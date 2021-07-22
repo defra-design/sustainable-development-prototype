@@ -342,7 +342,7 @@ module.exports = function (router,_myData) {
             req.session.myData.validationError = "true"
             req.session.myData.validationErrors.roostActivity = {
                 "anchor": "_roostActivity-1",
-                "message": "[error message for not selecting a radio]"
+                "message": "[error message]"
             }
         } else {
             // Check methods
@@ -363,7 +363,7 @@ module.exports = function (router,_myData) {
                             req.session.myData.validationError = "true"
                             req.session.myData.validationErrors[_roostActivity.id] = {
                                 "anchor": _roostActivity.id + "-1",
-                                "message": "[error message for no ticked checkboxes under " + _roostActivity.name +"]"
+                                "message": "[error message for " + _roostActivity.name +"]"
                             }
                         }
 
@@ -550,7 +550,7 @@ module.exports = function (router,_myData) {
             req.session.myData.validationError = "true"
             req.session.myData.validationErrors.removeRoost = {
                 "anchor": "removeRoost-1",
-                "message": "[error message for add roost]"
+                "message": "[error message for remove roost]"
             }
         }
 
@@ -610,7 +610,7 @@ module.exports = function (router,_myData) {
             req.session.myData.validationError = "true"
             req.session.myData.validationErrors.surveysBat = {
                 "anchor": "surveysBat-1",
-                "message": "[error message for surveys conducted]"
+                "message": "[error message]"
             }
         }
 

@@ -3,7 +3,7 @@
 {% set _inError = myData.validationError %}
 
 {% block pageTitle %} 
-{% if _inError == "true" %}Error: {% endif %}Which species of bat will be affected?
+{% if _inError == "true" %}Error: {% endif %}Which species of bat is using the roost?
 {% endblock %}
 
 {% block beforeContent %}
@@ -33,10 +33,6 @@
             </div>
             {% endif %}
 
-			<!-- <h1 class="govuk-heading-xl">
-				[Title]
-			</h1> -->
-
 	</div>
 </div>
 
@@ -48,18 +44,14 @@
                     
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
                         <h1 class="govuk-fieldset__heading">
-                            {% if myData.selectedRoost.new %}
+                            <!-- {% if myData.selectedRoost.new %}
                             [NEW ROOST species? roost = {{myData.roost}}]
                             {% else %}
                             [EDITING SAVED ROOST species? roost = {{myData.roost}}]
-                            {% endif %}
+                            {% endif %} -->
+                            Which species of bat is using the roost?
                         </h1>
                     </legend>
-
-                    <!-- <p>Selected Roost:
-                        <br>
-                        {{myData.selectedRoost|dump|safe}}
-                    </p> -->
 
                     <div id="bat-species-hint" class="govuk-hint">
                         Select all that apply.

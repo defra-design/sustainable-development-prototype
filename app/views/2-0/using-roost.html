@@ -3,7 +3,7 @@
 {% set _inError = myData.validationError %}
 
 {% block pageTitle %} 
-{% if _inError == "true" %}Error: {% endif %}[TO DO]
+{% if _inError == "true" %}Error: {% endif %}What is each species using the roost for?
 {% endblock %}
 
 {% block beforeContent %}
@@ -34,13 +34,10 @@
         {% endif %}
 
         <h1 class="govuk-heading-xl">
-            [Use roost for?]
+            What is each species using the roost for?
         </h1>
 
-        <!-- <p>Selected Roost:
-            <br>
-            {{myData.selectedRoost|dump|safe}}
-        </p> -->
+        <p class="govuk-body">You need to tell us the type of roosts your activity will affect for each species of bat.</p>
 
 	</div>
 </div>
@@ -58,7 +55,7 @@
                     <fieldset class="govuk-fieldset" aria-describedby="bat-use-hint-{{_batID}}">
                         
                         <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                            {{_bat.name}}
+                            {{_bat.name}} bat
                         </legend>
 
                         <div id="bat-use-hint-{{_batID}}" class="govuk-hint">
@@ -84,12 +81,10 @@
                                         {% for _tempRoostUse in myData.roostUsesAnswersTemp[_batID] %}
                                             {% if _roostUse.id == _tempRoostUse %}
                                                 {% set _selected = true %}
-                                                {% set _selected2 = "1" %}
                                             {% endif %}
                                         {% endfor %}
                                     {% elif _roostUse.id == _batRoostUse.id %}
                                         {% set _selected = true %}
-                                        {% set _selected2 = "2" %}
                                     {% endif %}
 
                                 {% endfor %}
@@ -98,7 +93,7 @@
 
                                     <input {% if _selected %}checked{% endif %} class="govuk-checkboxes__input" id="{{_batID_roostUse}}" name="{{_batID}}" type="checkbox" value="{{_roostUse.id}}" >
                                     <label class="govuk-label govuk-checkboxes__label" for="{{_batID_roostUse}}">
-                                    {{_roostUse.name}} - {{_selected2}} - {{myData.roostUsesAnswersTemp[_batID]}}
+                                    {{_roostUse.name}}
                                     </label>
 
                                 </div>
