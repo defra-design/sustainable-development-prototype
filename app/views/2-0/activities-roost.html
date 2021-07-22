@@ -35,15 +35,6 @@
             </div>
             {% endif %}
 
-			<!-- <h1 class="govuk-heading-xl">
-				[You have added {{_roostsCount}} roost{% if _roostsCount != 1 %}s{% endif %}]
-			</h1> -->
-
-            <!-- <p>Selected Roost:
-                <br>
-                {{myData.selectedRoost|dump|safe}}
-            </p> -->
-
 	</div>
 </div>
 
@@ -51,14 +42,7 @@
 	<div class="govuk-grid-column-two-thirds">
 		<form method="POST">
 
-            <!-- <p>Roosts:
-                <br><br>
-                {% for _roost in _roosts %}
-                    {{_roost|dump|safe}}<br><br>
-                {% endfor %}
-            </p> -->
-
-            <div class="govuk-form-group {% if myData.validationErrors.roostActivity %}govuk-form-group--error{% endif %}">
+            <div class="govuk-form-group {% if _inError == 'true' %}govuk-form-group--error{% endif %}">
                 <fieldset class="govuk-fieldset" aria-describedby="roostActivity-hint">
                   <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
                     <h1 class="govuk-fieldset__heading">
@@ -106,14 +90,14 @@
                                         Select all that apply.
                                     </div>
 
-                                    <!-- TODO red line - check manage funding prototype -->
-
                                     {% if myData.validationErrors[_roostActivity.id] %}
                                     <span id="roostActivity-error" class="govuk-error-message">
                                         <span class="govuk-visually-hidden">Error:</span>
                                         {{myData.validationErrors[_roostActivity.id].message}}
                                     </span>
                                     {% endif %}
+
+                                    <!-- TODO selected checkboxes -->
 
 
                                     <div class="govuk-checkboxes" data-module="govuk-checkboxes">

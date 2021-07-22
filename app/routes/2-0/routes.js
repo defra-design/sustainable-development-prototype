@@ -4,6 +4,16 @@ module.exports = function (router,_myData) {
 
     var version = "2-0";
 
+    //For copying objects to other objects
+    function clone(obj) {
+        if (null == obj || "object" != typeof obj) return obj;
+        var copy = obj.constructor();
+        for (var attr in obj) {
+            if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
+        }
+        return copy;
+    }
+
     function sortByName(req,array){
         array.sort(function(a,b){
             if (a.name.toUpperCase() < b.name.toUpperCase()){
@@ -373,7 +383,7 @@ module.exports = function (router,_myData) {
             var _selectedRoostActivity = req.session.myData.roostActivities.find(obj => {return obj.id.toString() === req.session.myData.roostActivityTempAnswer});
 
             //Set selected roost activity
-            req.session.myData.selectedRoost.activity = _selectedRoostActivity
+            req.session.myData.selectedRoost.activity = clone(_selectedRoostActivity)
 
             //Set selected roost activity methods (if any)
             var _methods = req.session.myData.selectedRoost.activity.methods,
@@ -611,13 +621,23 @@ module.exports = function (router,_myData) {
         } else {
 
             if(req.session.myData.surveysBatAnswer == 'yes'){
-                res.redirect(301, '/' + version + '/test-end');
+                res.redirect(301, '/' + version + '/cya-bat');
             } else {
-                res.redirect(301, '/' + version + '/test-end');
+                res.redirect(301, '/' + version + '/cya-bat');
             }
 
         }
         
+    });
+
+    // Check your answers bat
+    router.get('/' + version + '/cya-bat', function (req, res) {
+        res.render(version + '/cya-bat', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/cya-bat', function (req, res) {
+        res.redirect(301, '/' + version + '/test-end');
     });
      
 
