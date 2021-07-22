@@ -218,12 +218,14 @@ module.exports = function (router,_myData) {
                 req.session.myData["numberInTemp" + _bat.id] = req.session.myData["numberInTemp" + _bat.id] || 1
             }
 
+            // TODO order of errors
+
             //check validation
             if(!req.session.myData["numberUsingTemp" + _bat.id]){
                 req.session.myData.validationError = "true"
                 req.session.myData.validationErrors["numberUsing" + _bat.id] = {
                     "anchor": "numberUsing" + _bat.id,
-                    "message": "[error message for NUMBER USING " + _bat.name + "]"
+                    "message": "[error message for " + _bat.name + "]"
                 }
             }
 
@@ -231,7 +233,7 @@ module.exports = function (router,_myData) {
                 req.session.myData.validationError = "true"
                 req.session.myData.validationErrors["numberIn" + _bat.id] = {
                     "anchor": "numberIn" + _bat.id,
-                    "message": "[error message for NUMBER IN DURING WORKS " + _bat.name + "]"
+                    "message": "[error message for " + _bat.name + "]"
                 }
             }
 

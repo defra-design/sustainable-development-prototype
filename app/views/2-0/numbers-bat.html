@@ -1,9 +1,9 @@
 {% extends "layout.html" %}
 
-{% set _inError = myData.validationError %}
+{% set _inError = myData.validationError == "true" %}
 
 {% block pageTitle %} 
-{% if _inError == "true" %}Error: {% endif %}[TO DO]
+{% if _inError %}Error: {% endif %}How many bats are using the roost?
 {% endblock %}
 
 {% block beforeContent %}
@@ -16,65 +16,48 @@
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-			{% if _inError == "true" %}
-            <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
-                <h2 class="govuk-error-summary__title" id="error-summary-title">
-                    There is a problem
-                </h2>
-                <div class="govuk-error-summary__body">
-                    <ul class="govuk-list govuk-error-summary__list">
-                        {% for name, item in myData.validationErrors %}
-                        <li>
-                            <a href="#{{item.anchor}}">{{item.message}}</a>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </div>
+        {% if _inError %}
+        <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+            <h2 class="govuk-error-summary__title" id="error-summary-title">
+                There is a problem
+            </h2>
+            <div class="govuk-error-summary__body">
+                <ul class="govuk-list govuk-error-summary__list">
+                    {% for name, item in myData.validationErrors %}
+                    <li>
+                        <a href="#{{item.anchor}}">{{item.message}}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
             </div>
-            {% endif %}
+        </div>
+        {% endif %}
 
-			<h1 class="govuk-heading-xl">
-				[Numbers of bats using this roost? roost = {{myData.roost}}]
-			</h1>
+        <h1 class="govuk-heading-xl">
+            How many bats are using the roost?
+        </h1>
 
-            <!-- <p>Selected Roost:
-                <br>
-                {{myData.selectedRoost|dump|safe}}
-            </p> -->
-
-	</div>
-</div>
-
-<div class="govuk-grid-row">
-	<div class="govuk-grid-column-two-thirds">
 		<form method="POST">
 
-            <!-- Bats -->
-            {% for _bat in myData.selectedRoost.bats %}
 
-                {% set _batID = _bat.id %}
-                {% set _numberUsingTemp = myData['numberUsingTemp' + _batID] %}
-                {% set _numberUsingName = 'numberUsing' + _bat.id %}
-                {% set _numberInTemp = myData['numberInTemp' + _batID] %}
-                {% set _numberInName = 'numberIn' + _bat.id %}
+            <div class="govuk-form-group" >
+                <h2 class="govuk-heading-m">Existing number of bats</h2>
+                <!--Then all species-->
+                {% for _bat in myData.selectedRoost.bats %}
+                    {% set _batID = _bat.id %}
+                    {% set _numberUsingTemp = myData['numberUsingTemp' + _batID] %}
+                    {% set _numberUsingName = 'numberUsing' + _bat.id %}
+                    {% set _valueNumberUsing = _bat.numberUsing %}
 
-                {% set _valueNumberUsing = _bat.numberUsing %}
-                {% set _valueNumberIn = _bat.numberIn %}
-
-                {% if _inError == "true" %}
-                    {% set _valueNumberUsing = _numberUsingTemp %}
-                    {% set _valueNumberIn = _numberInTemp %}
-                {% endif %}
-
-
-                <div class="govuk-form-group" >
-                    <h2 class="govuk-heading-m">{{_bat.name}} bats</h2>
+                    {% if _inError %}
+                        {% set _valueNumberUsing = _numberUsingTemp %}
+                    {% endif %}
 
                     <!-- Number using -->
                     <div class="govuk-form-group {% if myData.validationErrors[_numberUsingName] %}govuk-form-group--error{% endif %}">
                         <h1 class="govuk-label-wrapper">
                             <label class="govuk-label" for="numberUsing{{_batID}}">
-                                {{_bat.name}} using
+                                {{_bat.name}} bat
                             </label>
                         </h1>
                         {% if myData.validationErrors[_numberUsingName] %}
@@ -86,11 +69,27 @@
                         <input class="govuk-input govuk-input--width-5" id="{{_numberUsingName}}" name="{{_numberUsingName}}" type="text" spellcheck="false" pattern="[0-9]*" inputmode="numeric" value="{{_valueNumberUsing}}">
                     </div>
 
-                    <!-- Number in roost when work carried out -->
+                {% endfor %}
+            </div>
+
+
+            <div class="govuk-form-group" >
+                <h2 class="govuk-heading-m">Number of bats when your activity will affect them</h2>
+                <!--Then all species-->
+                {% for _bat in myData.selectedRoost.bats %}
+                    {% set _batID = _bat.id %}
+                    {% set _numberInTemp = myData['numberInTemp' + _batID] %}
+                    {% set _numberInName = 'numberIn' + _bat.id %}
+                    {% set _valueNumberIn = _bat.numberIn %}
+
+                    {% if _inError %}
+                        {% set _valueNumberIn = _numberInTemp %}
+                    {% endif %}
+
                     <div class="govuk-form-group {% if myData.validationErrors[_numberInName] %}govuk-form-group--error{% endif %}">
                         <h1 class="govuk-label-wrapper">
                             <label class="govuk-label" for="numberIn{{_batID}}">
-                                {{_bat.name}} in roost when works carried out
+                                {{_bat.name}} bat
                             </label>
                         </h1>
                         {% if myData.validationErrors[_numberInName] %}
@@ -102,8 +101,10 @@
                         <input class="govuk-input govuk-input--width-5" id="{{_numberInName}}" name="{{_numberInName}}" type="text" spellcheck="false" pattern="[0-9]*" inputmode="numeric" value="{{_valueNumberIn}}">
                     </div>
 
-                </div>
-            {% endfor %}
+
+
+                {% endfor %}
+            </div>
 		
             {{govukButton({
                 text: "Continue"
