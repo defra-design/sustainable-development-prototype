@@ -3,7 +3,7 @@
 {% set _inError = myData.validationError %}
 
 {% block pageTitle %} 
-{% if _inError == "true" %}Error: {% endif %}[TO DO]
+{% if _inError == "true" %}Error: {% endif %}Have you had bat surveys that follow best practice guidelines?
 {% endblock %}
 
 {% block beforeContent %}
@@ -33,15 +33,6 @@
             </div>
             {% endif %}
 
-			<!-- <h1 class="govuk-heading-xl">
-				[You have added {{_roostsCount}} roost{% if _roostsCount != 1 %}s{% endif %}]
-			</h1> -->
-
-            <!-- <p>Selected Roost:
-                <br>
-                {{myData.selectedRoost|dump|safe}}
-            </p> -->
-
 	</div>
 </div>
 
@@ -49,22 +40,12 @@
 	<div class="govuk-grid-column-two-thirds">
 		<form method="POST">
 
-            <!-- <p>Roosts:
-                <br><br>
-                {% for _roost in _roosts %}
-                    {{_roost|dump|safe}}<br>
-                    <a href="roost-remove?roostToRemove={{_roost.id}}">Remove roost</a>
-                    <br><br>
-                {% endfor %}
-            </p> -->
-
-            <!-- Roosts added -->
             <div class="govuk-form-group {% if myData.validationErrors.surveysBat %}govuk-form-group--error{% endif %}">
                 <fieldset class="govuk-fieldset" aria-describedby="surveysBat-hint">
 
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
                         <h1 class="govuk-fieldset__heading">
-                        [Surveys conducted?]
+                            Have you had bat surveys that follow best practice guidelines?
                         </h1>
                     </legend>
 
@@ -93,16 +74,16 @@
 
                         <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-no">
                             <div class="govuk-form-group">
-                                <label class="govuk-label" for="more-detail">
-                                    [label]
-                                  </label>
-                                </h1>
+                                <!-- <legend class="govuk-fieldset__legend govuk-fieldset__legend--m"></legend> -->
+                                <label class="govuk-label govuk-label--m" for="more-detail">
+                                    Give details
+                                </label>
+                                <span class="govuk-hint">
+                                    Explain the types of surveys you’ve done to understand the species of bats, their roost types, and any connection to the environment surrounding the site.
+                                </span>
                                 <textarea class="govuk-textarea" id="more-detail" name="more-detail" rows="5" aria-describedby="more-detail-hint" value="{{myData.selectedApplication.surveysReason}}"></textarea>
                             </div>
                         </div>
-
-
-
 
                     </div>
 
@@ -117,6 +98,5 @@
 
 	</div>
 </div>
-
 
 {% endblock %}
