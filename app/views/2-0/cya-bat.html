@@ -165,7 +165,7 @@
                 <input type="hidden" value="yes" name="addRoost">
             </form>
 
-            <h2 class="govuk-heading-l">[Other details]</h2>
+            <h2 class="govuk-heading-l">Application details</h2>
 
             <dl class="govuk-summary-list">
 
@@ -203,7 +203,7 @@
                 {% if myData.selectedApplication.surveys == "No" %}
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        [Give details]
+                        What types of surveys did you do?
                     </dt>
                     <dd class="govuk-summary-list__value">
                         {{myData.selectedApplication.surveysReason}}
@@ -221,11 +221,11 @@
     
             <h2 class="govuk-heading-l">Now send your application</h2>
 
-            <p class="govuk-body">By sending your application, you are confirming that the details you have included are correct as far as you know.</p>
+            <p class="govuk-body">By sending your application, you are confirming that the information you are providing is correct as far as you know.</p>
 
             <form method="POST">
                 {{govukButton({
-                    text: "Send application"
+                    text: "Confirm and send"
                 })}}
                 <input type="hidden" value="yes" name="addApplication">
             </form>
