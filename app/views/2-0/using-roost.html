@@ -3,7 +3,7 @@
 {% set _inError = myData.validationError == "true" %}
 
 {% block pageTitle %} 
-{% if _inError %}Error: {% endif %}What is each species using the roost for?
+{% if _inError %}Error: {% endif %}What is each species of bat using the roost for?
 {% endblock %}
 
 {% block beforeContent %}
@@ -34,7 +34,7 @@
         {% endif %}
 
         <h1 class="govuk-heading-xl">
-            What is each species using the roost for?
+            What is each species of bat using the roost for?
         </h1>
 
 		<form method="POST">
@@ -47,7 +47,7 @@
                     <fieldset class="govuk-fieldset" aria-describedby="bat-use-hint-{{_batID}}">
                         
                         <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                            {{_bat.name}} bat
+                            {{_bat.name}}
                         </legend>
 
                         <div id="bat-use-hint-{{_batID}}" class="govuk-hint">

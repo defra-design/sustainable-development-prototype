@@ -5,9 +5,9 @@
 {% set _roosts = myData.selectedApplication.roosts %}
 {% set _roostsCount = _roosts.length %}
 
-{% set _title = "Summary of roosts you’ve added" %}
+{% set _title = "Summary of bat roosts you’ve added" %}
 {% if _roostsCount == 0 %}
-    {% set _title = "You haven’t added any roosts" %}
+    {% set _title = "You haven’t added any bat roosts" %}
 {% endif %}
 
 {% block pageTitle %} 
@@ -66,7 +66,7 @@
                     </dt>
                     <dd class="govuk-summary-list__value">
                         {% for _bat in _roost.bats %}
-                            {{_bat.name}} bat{% if loop.last != true %}<br>{% endif %}
+                            {{_bat.name}}{% if loop.last != true %}<br>{% endif %}
                         {% endfor %}
                     </dd>
                     <dd class="govuk-summary-list__actions">
@@ -85,7 +85,7 @@
 
                         <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                             <h1 class="govuk-fieldset__heading">
-                                Do you want to add another roost?
+                                Do you want to add another bat roost?
                             </h1>
                         </legend>
 

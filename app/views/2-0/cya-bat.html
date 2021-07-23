@@ -16,23 +16,26 @@
 
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
-		<form method="POST">
 
             <h1 class="govuk-heading-xl">
-				[Check your answers]
+				Check your answers
 			</h1>
     
-            <h2 class="govuk-heading-l">{{_roostsCount}} roost{% if _roostsCount != 1 %}s{% endif %}</h2>
+            <h2 class="govuk-heading-l">Roosts you’ve added</h2>
     
             {% for _roost in _roosts %}
-            <h2 class="govuk-heading-m">[Roost {{loop.index}}]</h2>
-            <!-- {{_roost|dump|safe}} -->
-            <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+            <h2 class="govuk-heading-m">Roost {{loop.index}}</h2>
+            <p class="govuk-body">
+                <a class="govuk-link govuk-link--no-visited-state" href="roost-remove?roostToRemove={{_roost.id}}">
+                    Remove roost<span class="govuk-visually-hidden"> {{loop.index}}</span>
+                </a>
+            </p>
+            <dl class="govuk-summary-list">
 
                 <!-- Bat species -->
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        [Bat species]
+                        Bat species
                     </dt>
                     <dd class="govuk-summary-list__value">
                         {% for _bat in _roost.bats %}
@@ -46,21 +49,36 @@
                     </dd>
                 </div>
 
-                <!-- Bat numbers -->
+                <!-- Existing number of bats -->
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        [Numbers]
+                        Existing number of bats
                     </dt>
                     <dd class="govuk-summary-list__value">
                         {% for _bat in _roost.bats %}
-                            {{_bat.name}}:<br>
-                            {{_bat.numberUsing}} using<br>
-                            {{_bat.numberIn}} during works{% if loop.last != true %}<br><br>{% endif %}
+                            {{_bat.numberUsing}} {{_bat.name}}{% if loop.last != true %}<br>{% endif %}
                         {% endfor %}
                     </dd>
                     <dd class="govuk-summary-list__actions">
                         <a class="govuk-link govuk-link--no-visited-state" href="numbers-bat?roost={{_roost.id}}">
-                            Change<span class="govuk-visually-hidden"> numbers</span>
+                            Change<span class="govuk-visually-hidden"> existing number of bats</span>
+                        </a>
+                    </dd>
+                </div>
+
+                <!-- Number of bats when your activity will affect them -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Number of bats when your activity will affect them
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {% for _bat in _roost.bats %}
+                            {{_bat.numberIn}} {{_bat.name}}{% if loop.last != true %}<br>{% endif %}
+                        {% endfor %}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="numbers-bat?roost={{_roost.id}}">
+                            Change<span class="govuk-visually-hidden"> number of bats when your activity will affect them</span>
                         </a>
                     </dd>
                 </div>
@@ -68,23 +86,21 @@
                 <!-- Roost use -->
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        [Roost use]
+                        What the bats use the roost for
                     </dt>
                     <dd class="govuk-summary-list__value">
                         {% for _bat in _roost.bats %}
                             {{_bat.name}}:<br>
-
+                            <ul class="govuk-list govuk-list--bullet">
                             {% for _batRoostUse in _bat.roostUses %}
-                            {{_batRoostUse.name}}{% if loop.last != true %},{% endif %}
+                            <li>{{_batRoostUse.name}}</li>
                             {% endfor %}
-                            
-                            {% if loop.last != true %}<br><br>{% endif %}
+                            </ul>
                         {% endfor %}
-
                     </dd>
                     <dd class="govuk-summary-list__actions">
                         <a class="govuk-link govuk-link--no-visited-state" href="using-roost?roost={{_roost.id}}">
-                            Change<span class="govuk-visually-hidden"> roost uses</span>
+                            Change<span class="govuk-visually-hidden"> what the bats use the roost for</span>
                         </a>
                     </dd>
                 </div>
@@ -92,17 +108,23 @@
                 <!-- Roost activities -->
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        [Affecting roost]
+                        Affect on roost
                     </dt>
                     <dd class="govuk-summary-list__value">
-                        {{_roost.activity.name}}<br>
-                        {% for _roostActivityMethod in _roost.activity.methods %}
-                            {{_roostActivityMethod.name}}{% if loop.last != true %},{% endif %}
-                        {% endfor %}
+                        {% if _roost.activity.id == '_roostActivity-3' %}
+                            None
+                        {% else %}
+                            {{_roost.activity.name}}<br>
+                            <ul class="govuk-list govuk-list--bullet">
+                                {% for _roostActivityMethod in _roost.activity.methods %}
+                                    <li>{{_roostActivityMethod.name}}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
                     </dd>
                     <dd class="govuk-summary-list__actions">
                         <a class="govuk-link govuk-link--no-visited-state" href="activities-roost?roost={{_roost.id}}">
-                            Change<span class="govuk-visually-hidden"> roost activity</span>
+                            Change<span class="govuk-visually-hidden"> affect on roost</span>
                         </a>
                     </dd>
                 </div>
@@ -110,37 +132,49 @@
                 <!-- Bat activities -->
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        [Affecting bats]
+                        How will you affect the bats?
                     </dt>
                     <dd class="govuk-summary-list__value">
                         {% for _bat in _roost.bats %}
                             {{_bat.name}}:<br>
 
+                            <ul class="govuk-list govuk-list--bullet">
                             {% for _batActivity in _bat.activities %}
-                            {{_batActivity.name}}{% if loop.last != true %},{% endif %}
+                                <li>{{_batActivity.name}}</li>
                             {% endfor %}
-                            
-                            {% if loop.last != true %}<br><br>{% endif %}
+                            </ul>
+
                         {% endfor %}
 
                     </dd>
                     <dd class="govuk-summary-list__actions">
                         <a class="govuk-link govuk-link--no-visited-state" href="activities-bat?roost={{_roost.id}}">
-                            Change<span class="govuk-visually-hidden"> bat activities</span>
+                            Change<span class="govuk-visually-hidden"> how will you affect the bats</span>
                         </a>
                     </dd>
                 </div>
             
             </dl>
             {% endfor %}
-    
-            <h2 class="govuk-heading-m">[Now save your answers]</h2>  
-                      
-            {{govukButton({
-                text: "Continue"
-            })}}
 
-        </form>
+            <form method="POST">
+                {{govukButton({
+                    text: "Add another roost",
+                    classes: 'govuk-button--secondary govuk-!-margin-bottom-9'
+                })}}
+                <input type="hidden" value="yes" name="addRoost">
+            </form>
+    
+            <h2 class="govuk-heading-l">Now send your application</h2>
+
+            <p class="govuk-body">By sending your application, you are confirming that the details you have included are correct as far as you know.</p>
+
+            <form method="POST">
+                {{govukButton({
+                    text: "Send application"
+                })}}
+                <input type="hidden" value="yes" name="addApplication">
+            </form>
 
 	</div>
 </div>

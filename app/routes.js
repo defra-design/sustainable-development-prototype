@@ -230,7 +230,7 @@ var _myData = {
                 },
                 {
                     "id": "_roostActivityMethod-3",
-                    "name": "Demolish the building that supported the bat roost once you’ve removed the bats"
+                    "name": "Demolish the building supporting the roost"
                 }
             ]
         },
@@ -249,7 +249,7 @@ var _myData = {
                 },
                 {
                     "id": "_roostActivityMethod-3",
-                    "name": "Demolish the building that supported the bat roost once you’ve removed the bats"
+                    "name": "Demolish the building supporting the roost"
                 }
             ]
         },

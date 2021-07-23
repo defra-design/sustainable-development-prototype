@@ -640,7 +640,26 @@ module.exports = function (router,_myData) {
         });
     });
     router.post('/' + version + '/cya-bat', function (req, res) {
-        res.redirect(301, '/' + version + '/test-end');
+
+        // Add another roost
+        if(req.body.addRoost == "yes"){
+            var _randomID = Math.floor(100000 + Math.random() * 900000)
+            req.session.myData.newRoost.id = _randomID
+            req.session.myData.newRoost.inprogress = false
+            setSelectedRoost(req, _randomID)
+            res.redirect(301, '/' + version + '/species-bat');
+        // Add application
+        } else if(req.body.addApplication == "yes"){
+            res.redirect(301, '/' + version + '/complete-bat');
+        }
+         
+    });
+
+    // Complete bat
+    router.get('/' + version + '/complete-bat', function (req, res) {
+        res.render(version + '/complete-bat', {
+            myData:req.session.myData
+        });
     });
      
 

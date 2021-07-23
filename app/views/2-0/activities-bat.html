@@ -3,7 +3,7 @@
 {% set _inError = myData.validationError == "true" %}
 
 {% block pageTitle %} 
-{% if _inError %}Error: {% endif %}Which activities will you do to affect the bats?
+{% if _inError %}Error: {% endif %}How will you affect the bats?
 {% endblock %}
 
 {% block beforeContent %}
@@ -34,7 +34,7 @@
         {% endif %}
 
         <h1 class="govuk-heading-xl">
-            Which activities will you do to affect the bats?
+            How will you affect the bats?
         </h1>
 
 		<form method="POST">
@@ -49,7 +49,7 @@
                     <fieldset class="govuk-fieldset" aria-describedby="bat-activity-hint-{{_batID}}">
                         
                         <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                            {{_bat.name}} bat
+                            {{_bat.name}}
                         </legend>
 
                         <div id="bat-activity-hint-{{_batID}}" class="govuk-hint">

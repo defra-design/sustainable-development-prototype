@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %} 
+Application sent
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    <!-- {% include "includes/back-link.html" %} -->
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        <div class="govuk-panel govuk-panel--confirmation">
+            <h1 class="govuk-panel__title">
+                Application sent
+            </h1>
+        </div>
+
+        <p class="govuk-body">We have sent you a confirmation email.</p>
+
+        <h2 class="govuk-heading-m">What happens next</h2>
+
+        <p class="govuk-body">We’ve sent your application to Natural England.</p>
+
+        <p class="govuk-body">They will contact you either to confirm your registration, or to ask for more information.</p>
+
+        <h2 class="govuk-heading-m">What you need to do</h2>
+
+        <p class="govuk-body">To help us process your application, you must send the results of your bat survey and habitat assessment to your local environmental records centre (LERC).</p>
+
+	</div>
+</div>
+
+{% endblock %}
