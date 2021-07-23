@@ -164,6 +164,60 @@
                 })}}
                 <input type="hidden" value="yes" name="addRoost">
             </form>
+
+            <h2 class="govuk-heading-l">[Other details]</h2>
+
+            <dl class="govuk-summary-list">
+
+                <!-- Date -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Date of first activity that will affect the bat roosts
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{myData.selectedApplication.firstDate.day}} {{myData.selectedApplication.firstDate.month}} {{myData.selectedApplication.firstDate.year}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="date-bat">
+                            Change<span class="govuk-visually-hidden"> date of first activity that will affect the bat roosts</span>
+                        </a>
+                    </dd>
+                </div>
+
+                <!-- Surveys -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Have you had bat surveys that follow best practice guidelines?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{myData.selectedApplication.surveys}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="surveys-bat">
+                            Change<span class="govuk-visually-hidden"> if you have had bat surveys that follow best practice guidelines</span>
+                        </a>
+                    </dd>
+                </div>
+
+                <!-- Surveys - reason for No -->
+                {% if myData.selectedApplication.surveys == "No" %}
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        [Give details]
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{myData.selectedApplication.surveysReason}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="surveys-bat">
+                            Change<span class="govuk-visually-hidden"> [Give details]</span>
+                        </a>
+                    </dd>
+                </div>
+                {% endif %}
+
+            </dl>
+            
     
             <h2 class="govuk-heading-l">Now send your application</h2>
 

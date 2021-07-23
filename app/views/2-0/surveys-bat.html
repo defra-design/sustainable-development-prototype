@@ -77,7 +77,7 @@
 
                     <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
                         <div class="govuk-radios__item">
-                            <input class="govuk-radios__input" id="surveysBat-1" name="surveysBat" type="radio" value="yes">
+                            <input {% if myData.selectedApplication.surveys == "Yes" %}checked{% endif %} class="govuk-radios__input" id="surveysBat-1" name="surveysBat" type="radio" value="yes">
                             <label class="govuk-label govuk-radios__label" for="surveysBat-1">
                             Yes
                             </label>
@@ -85,7 +85,7 @@
 
 
                         <div class="govuk-radios__item">
-                            <input class="govuk-radios__input" id="surveysBat-2" name="surveysBat" type="radio" value="no" data-aria-controls="conditional-no">
+                            <input {% if myData.selectedApplication.surveys == "No" %}checked{% endif %} class="govuk-radios__input" id="surveysBat-2" name="surveysBat" type="radio" value="no" data-aria-controls="conditional-no">
                             <label class="govuk-label govuk-radios__label" for="surveysBat-2">
                             No
                             </label>
@@ -97,7 +97,7 @@
                                     [label]
                                   </label>
                                 </h1>
-                                <textarea class="govuk-textarea" id="more-detail" name="more-detail" rows="5" aria-describedby="more-detail-hint"></textarea>
+                                <textarea class="govuk-textarea" id="more-detail" name="more-detail" rows="5" aria-describedby="more-detail-hint" value="{{myData.selectedApplication.surveysReason}}"></textarea>
                             </div>
                         </div>
 

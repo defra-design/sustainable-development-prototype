@@ -591,6 +591,12 @@ module.exports = function (router,_myData) {
     });
     router.post('/' + version + '/date-bat', function (req, res) {
 
+        req.session.myData.selectedApplication.firstDate = {
+            "day": req.body.day,
+            "month": req.body.month,
+            "year": req.body.year
+        }
+
         res.redirect(301, '/' + version + '/surveys-bat');
 
     });
@@ -624,8 +630,12 @@ module.exports = function (router,_myData) {
         } else {
 
             if(req.session.myData.surveysBatAnswer == 'yes'){
+                req.session.myData.selectedApplication.surveys = "Yes"
+                req.session.myData.selectedApplication.surveysReason = ""
                 res.redirect(301, '/' + version + '/cya-bat');
             } else {
+                req.session.myData.selectedApplication.surveys = "No"
+                req.session.myData.selectedApplication.surveysReason = req.body["more-detail"]
                 res.redirect(301, '/' + version + '/cya-bat');
             }
 
