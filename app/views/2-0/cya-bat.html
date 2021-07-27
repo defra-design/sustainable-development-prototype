@@ -52,7 +52,7 @@
                 <!-- Existing number of bats -->
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        Existing number of bats
+                        Number of bats based on the ecological survey
                     </dt>
                     <dd class="govuk-summary-list__value">
                         {% for _bat in _roost.bats %}
@@ -114,7 +114,7 @@
                         {% if _roost.activity.id == '_roostActivity-3' %}
                             None
                         {% else %}
-                            {{_roost.activity.name}}<br>
+                            {{_roost.activity.name}}:<br>
                             <ul class="govuk-list govuk-list--bullet">
                                 {% for _roostActivityMethod in _roost.activity.methods %}
                                     <li>{{_roostActivityMethod.name}}</li>
