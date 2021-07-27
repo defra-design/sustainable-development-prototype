@@ -25,6 +25,22 @@ module.exports = function (router,_myData) {
         });
     }
 
+    function addRoostToApplication(req,roost){
+        roost.new = false
+        roost.inprogress = false
+
+        var _existingRoost = req.session.myData.selectedApplication.roosts.find(obj => {return obj.id.toString() === roost.id.toString()});
+                    
+        if(_existingRoost){
+            //replace existing
+            var _existingIndex = req.session.myData.selectedApplication.roosts.map(item => item.id.toString()).indexOf(roost.id.toString());
+            req.session.myData.selectedApplication.roosts[_existingIndex] = roost;
+        } else {
+            // add new
+            req.session.myData.selectedApplication.roosts.push(roost)
+        }
+    }
+
     function setSelectedApplication(req, _applicationParameter){
         if(_applicationParameter){
             for (var i = 0; i < req.session.myData.applications.length; i++) {
@@ -48,9 +64,14 @@ module.exports = function (router,_myData) {
             if(_existingRoost){
                 req.session.myData.selectedRoost = _existingRoost
             } else {
-                if(!req.session.myData.newRoost.inprogress){
-                    req.session.myData.newRoost.inprogress = true
-                    req.session.myData.selectedRoost = req.session.myData.newRoost
+                if(req.session.myData.testdata == "true"){
+                    req.session.myData.selectedRoost = req.session.myData.testRoost
+                    addRoostToApplication(req,req.session.myData.selectedRoost)
+                } else {
+                    if(!req.session.myData.newRoost.inprogress){
+                        req.session.myData.newRoost.inprogress = true
+                        req.session.myData.selectedRoost = req.session.myData.newRoost
+                    }
                 }
             }
             req.session.myData.roost = req.session.myData.selectedRoost.id
@@ -63,11 +84,37 @@ module.exports = function (router,_myData) {
 
         // Default setup
         req.session.myData.service = "apply"
+        req.session.myData.roostToRemove = req.session.myData.roostToRemove || "123456789"
 
         //Default answers
         req.session.myData.application = 1
         req.session.myData.roost = Math.floor(100000 + Math.random() * 900000)
         req.session.myData.newRoost = {"id": req.session.myData.roost,"bats":[],"new":true, "inprogress": false}
+
+        //Set test roost (just for deep links to work) - in pages if testdata == true, we will use the testRoost
+        req.session.myData.testdata = 'false'
+        req.session.myData.testRoost = {
+            "id": 123456789,
+            "bats": [
+                {
+                    "id": req.session.myData.batSpecies2[0].id,
+                    "name": req.session.myData.batSpecies2[0].name,
+                    "numberUsing": "5",
+                    "numberIn": "3",
+                    "roostUses": [
+                        clone(req.session.myData.roostUses[0]),
+                        clone(req.session.myData.roostUses[1])
+                    ],
+                    "activities": [
+                        clone(req.session.myData.batActivities[0]),
+                        clone(req.session.myData.batActivities[1])
+                    ]
+                }
+            ],
+            "new": false,
+            "inprogress": false,
+            "activity": clone(req.session.myData.roostActivities[0])
+        }
 
     }
 
@@ -93,25 +140,11 @@ module.exports = function (router,_myData) {
         // req.session.myData.example =  req.query.eg || req.session.myData.example
 
         //Constant checks for query
+        req.session.myData.testdata = req.query.testdata || req.session.myData.testdata
         setSelectedApplication(req,req.session.myData.application)
 
         req.session.myData.roost = req.query.roost || req.session.myData.roost
         setSelectedRoost(req,req.session.myData.roost)
-
-        //Set default roost (for deep links to work)
-        // req.session.myData.defaultRoost = {
-        //     "id":"111111",
-        //     "bats":[],
-        //     "new":false,
-        //     "inprogress":false
-        // }
-        // req.session.myData.batSpecies2.forEach(function(_bat, index) {
-        //     var _batObject = {
-        //         "id":_bat.id,
-        //         "name":_bat.name
-        //     }
-        //     req.session.myData.defaultRoost.bats.push(_batObject)
-        // });
 
         next()
     });
@@ -457,23 +490,10 @@ module.exports = function (router,_myData) {
         } else {
 
             //ADD ROOST TO APPLICATION
-            req.session.myData.selectedRoost.new = false
-            req.session.myData.selectedRoost.inprogress = false
-
-            var _existingRoost = req.session.myData.selectedApplication.roosts.find(obj => {return obj.id.toString() === req.session.myData.selectedRoost.id.toString()});
-                        
-            if(_existingRoost){
-                //replace existing
-                var _existingIndex = req.session.myData.selectedApplication.roosts.map(item => item.id.toString()).indexOf(req.session.myData.selectedRoost.id.toString());
-                req.session.myData.selectedApplication.roosts[_existingIndex] = req.session.myData.selectedRoost;
-            } else {
-                // add new
-                req.session.myData.selectedApplication.roosts.push(req.session.myData.selectedRoost)
-            }
+            addRoostToApplication(req,req.session.myData.selectedRoost)
 
             setSelectedRoost(req,req.session.myData.selectedRoost.id.toString())
             
-
             //TODO check if this needs to be set BEFORE changing new to false
             //Roost query string
             var _roostQS = ''
@@ -535,6 +555,7 @@ module.exports = function (router,_myData) {
     router.get('/' + version + '/roost-remove', function (req, res) {
 
         req.session.myData.roostToRemove = req.query.roostToRemove
+
         req.session.myData.selectedRoostToRemove = req.session.myData.selectedApplication.roosts.find(obj => {return obj.id.toString() === req.session.myData.roostToRemove})
 
         res.render(version + '/roost-remove', {
