@@ -295,7 +295,11 @@ module.exports = function (router,_myData) {
                 _roostQS = '?roost=' + req.session.myData.roost
             }
 
-            res.redirect(301, '/' + version + '/using-roost' + _roostQS);
+            if(req.query.cya == "true"){
+                res.redirect(301, '/' + version + '/cya-bat');
+            } else {
+                res.redirect(301, '/' + version + '/using-roost' + _roostQS);
+            }
 
         }
         
@@ -351,7 +355,11 @@ module.exports = function (router,_myData) {
                 _roostQS = '?roost=' + req.session.myData.roost
             }
 
-            res.redirect(301, '/' + version + '/activities-roost' + _roostQS);
+            if(req.query.cya == "true"){
+                res.redirect(301, '/' + version + '/cya-bat');
+            } else {
+                res.redirect(301, '/' + version + '/activities-roost' + _roostQS);
+            }
 
         }
 
@@ -441,8 +449,12 @@ module.exports = function (router,_myData) {
                 _roostQS = '?roost=' + req.session.myData.roost
             }
 
-            // TODO go to bat activities if count of at least one bat species is 0
-            res.redirect(301, '/' + version + '/activities-bat' + _roostQS);
+            if(req.query.cya == "true"){
+                res.redirect(301, '/' + version + '/cya-bat');
+            } else {
+                // TODO go to bat activities if count of at least one bat species is 0
+                res.redirect(301, '/' + version + '/activities-bat' + _roostQS);
+            }
         }
 
     });
@@ -501,7 +513,11 @@ module.exports = function (router,_myData) {
                 _roostQS = '?roost=' + req.session.myData.roost
             }
 
-            res.redirect(301, '/' + version + '/roosts-added' + _roostQS);
+            if(req.query.cya == "true"){
+                res.redirect(301, '/' + version + '/cya-bat');
+            } else {
+                res.redirect(301, '/' + version + '/roosts-added' + _roostQS);
+            }
         }
 
     });
@@ -618,7 +634,11 @@ module.exports = function (router,_myData) {
             "year": req.body.year
         }
 
-        res.redirect(301, '/' + version + '/surveys-bat');
+        if(req.query.cya == "true"){
+            res.redirect(301, '/' + version + '/cya-bat');
+        } else {
+            res.redirect(301, '/' + version + '/surveys-bat');
+        }
 
     });
 
