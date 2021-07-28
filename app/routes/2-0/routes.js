@@ -157,7 +157,6 @@ module.exports = function (router,_myData) {
     });
 
 
-
     // Intro roosts
     router.get('/' + version + '/intro-roosts', function (req, res) {
         res.render(version + '/intro-roosts', {
@@ -167,7 +166,6 @@ module.exports = function (router,_myData) {
     router.post('/' + version + '/intro-roosts', function (req, res) {
         res.redirect(301, '/' + version + '/species-bat');
     });
-
 
 
     // BAT Species
@@ -227,7 +225,6 @@ module.exports = function (router,_myData) {
             res.redirect(301, '/' + version + '/numbers-bat' + _roostQS);
         }
     });
-
 
 
     // BAT Numbers
@@ -713,35 +710,5 @@ module.exports = function (router,_myData) {
         });
     });
      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-    // test end
-    router.get('/' + version + '/test-end', function (req, res) {
-        res.render(version + '/test-end', {
-            myData:req.session.myData
-        });
-    });
-    router.post('/' + version + '/test-end', function (req, res) {
-        res.redirect(301, '/' + version + '/species-bat?r=t');
-    });
 
 }
