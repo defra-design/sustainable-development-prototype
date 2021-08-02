@@ -205,48 +205,6 @@ module.exports = function (router,_myData) {
             if(req.query.cya == "true"){
                 res.redirect(301, '/' + version + '/cya-bat');
             } else {
-                res.redirect(301, '/' + version + '/reason-bat');
-            }
-
-        }
-        
-    });
-
-    // Reason bat
-    router.get('/' + version + '/reason-bat', function (req, res) {
-        res.render(version + '/reason-bat', {
-            myData:req.session.myData
-        });
-    });
-    router.post('/' + version + '/reason-bat', function (req, res) {
-
-        req.session.myData.reasonBatAnswer = req.body.reasonBat
-
-        if(req.session.myData.includeValidation == "false"){
-            req.session.myData.reasonBatAnswer = req.session.myData.reasonBatAnswer || req.session.myData.batApplicationReasons[0].id
-        }
-
-        if(!req.session.myData.reasonBatAnswer){
-            req.session.myData.validationError = "true"
-            req.session.myData.validationErrors.reasonBat = {
-                "anchor": "reasonBat",
-                "message": "[error message]"
-            }
-        }
-
-        if(req.session.myData.validationError == "true") {
-            res.render(version + '/reason-bat', {
-                myData: req.session.myData
-            });
-        } else {
-
-            var _reason = req.session.myData.batApplicationReasons.find(obj => {return obj.id.toString() === req.session.myData.reasonBatAnswer.toString()});
-
-            req.session.myData.selectedApplication.reasonBat = clone(_reason)
-
-            if(req.query.cya == "true"){
-                res.redirect(301, '/' + version + '/cya-bat');
-            } else {
                 res.redirect(301, '/' + version + '/category-bat');
             }
 
@@ -285,6 +243,48 @@ module.exports = function (router,_myData) {
             var _category = req.session.myData.workCategories.find(obj => {return obj.id.toString() === req.session.myData.categoryBatAnswer.toString()});
 
             req.session.myData.selectedApplication.categoryBat = clone(_category)
+
+            if(req.query.cya == "true"){
+                res.redirect(301, '/' + version + '/cya-bat');
+            } else {
+                res.redirect(301, '/' + version + '/reason-bat');
+            }
+
+        }
+        
+    });
+
+    // Reason bat
+    router.get('/' + version + '/reason-bat', function (req, res) {
+        res.render(version + '/reason-bat', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/reason-bat', function (req, res) {
+
+        req.session.myData.reasonBatAnswer = req.body.reasonBat
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.reasonBatAnswer = req.session.myData.reasonBatAnswer || req.session.myData.batApplicationReasons[0].id
+        }
+
+        if(!req.session.myData.reasonBatAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.reasonBat = {
+                "anchor": "reasonBat",
+                "message": "[error message]"
+            }
+        }
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/reason-bat', {
+                myData: req.session.myData
+            });
+        } else {
+
+            var _reason = req.session.myData.batApplicationReasons.find(obj => {return obj.id.toString() === req.session.myData.reasonBatAnswer.toString()});
+
+            req.session.myData.selectedApplication.reasonBat = clone(_reason)
 
             if(req.query.cya == "true"){
                 res.redirect(301, '/' + version + '/cya-bat');
