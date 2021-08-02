@@ -79,12 +79,25 @@ module.exports = function (router,_myData) {
         }
     }
 
+    function startNewRoost(req){
+        var _randomID = Math.floor(100000 + Math.random() * 900000)
+        req.session.myData.newRoost.id = _randomID
+        req.session.myData.newRoost.inprogress = false
+        setSelectedRoost(req, _randomID)
+    }
+
     function reset(req){
         req.session.myData = JSON.parse(JSON.stringify(_myData))
 
         // Default setup
         req.session.myData.service = "apply"
-        req.session.myData.roostToRemove = req.session.myData.roostToRemove || "123456789"
+        req.session.myData.roostToRemove = "123456789"
+        req.session.myData.firstDate = {
+            "day": "01",
+            "month": "12",
+            "year": "2021"
+        }
+        
 
         //Default answers
         req.session.myData.application = 1
@@ -549,11 +562,7 @@ module.exports = function (router,_myData) {
 
             if(req.session.myData.addRoostAnswer == 'yes'){
 
-                var _randomID = Math.floor(100000 + Math.random() * 900000)
-                req.session.myData.newRoost.id = _randomID
-                
-                req.session.myData.newRoost.inprogress = false
-                setSelectedRoost(req, _randomID)
+                startNewRoost(req)
 
                 res.redirect(301, '/' + version + '/species-bat');
 
@@ -683,6 +692,16 @@ module.exports = function (router,_myData) {
 
     // Check your answers bat
     router.get('/' + version + '/cya-bat', function (req, res) {
+
+        //Set test data
+        if(req.session.myData.testdata == "true"){
+            //Date
+            req.session.myData.selectedApplication.firstDate = req.session.myData.selectedApplication.firstDate || req.session.myData.firstDate
+            //Surveys
+            req.session.myData.selectedApplication.surveys = req.session.myData.selectedApplication.surveys || "No"
+            req.session.myData.selectedApplication.surveysReason = req.session.myData.selectedApplication.surveysReason || "My reason here"
+        }
+
         res.render(version + '/cya-bat', {
             myData:req.session.myData
         });
@@ -691,10 +710,9 @@ module.exports = function (router,_myData) {
 
         // Add another roost
         if(req.body.addRoost == "yes"){
-            var _randomID = Math.floor(100000 + Math.random() * 900000)
-            req.session.myData.newRoost.id = _randomID
-            req.session.myData.newRoost.inprogress = false
-            setSelectedRoost(req, _randomID)
+
+            startNewRoost(req)
+
             res.redirect(301, '/' + version + '/species-bat');
         // Add application
         } else if(req.body.addApplication == "yes"){
