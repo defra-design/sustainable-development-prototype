@@ -261,23 +261,23 @@ var _myData = {
     "batApplicationReasons": [
         {
             "id": "_reasonBat-1",
-            "name": "[reason 1]"
+            "name": "Imperative reasons of overriding public interest including those of a social or economic nature and beneficial consequences of primary importance for the environment"
         },
         {
             "id": "_reasonBat-2",
-            "name": "[reason 2]"
+            "name": "Preserving public health or public safety"
         },
         {
             "id": "_reasonBat-3",
-            "name": "[reason 3]"
+            "name": "Preventing serious damage to livestock, foodstuffs for livestock, crops, vegetables, fruit, growing timber, fisheries or inland waters, or any other form of property"
         },
         {
             "id": "_reasonBat-4",
-            "name": "[reason 4]"
+            "name": "Preventing the spread of disease"
         },
         {
             "id": "_reasonBat-5",
-            "name": "[reason 5]"
+            "name": "Other"
         }
     ],
     "workCategories": [
