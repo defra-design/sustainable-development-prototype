@@ -20,6 +20,72 @@
             <h1 class="govuk-heading-xl">
 				Check your answers
 			</h1>
+
+            <h2 class="govuk-heading-l" style="color:red">[Purpose title]</h2>
+
+            <dl class="govuk-summary-list">
+
+                <!-- Proposal -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key" style="color:red">
+                        [Proposal]
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{myData.selectedApplication.proposalBat}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="proposal-bat?cya=true">
+                            Change<span class="govuk-visually-hidden"> [Proposal]</span>
+                        </a>
+                    </dd>
+                </div>
+
+                <!-- Reason -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key" style="color:red">
+                        [Reason]
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{myData.selectedApplication.reasonBat.name}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="reason-bat?cya=true">
+                            Change<span class="govuk-visually-hidden"> [Reason]</span>
+                        </a>
+                    </dd>
+                </div>
+
+                <!-- Category -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key" style="color:red">
+                        [Category]
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{myData.selectedApplication.categoryBat.name}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="category-bat?cya=true">
+                            Change<span class="govuk-visually-hidden"> [category]</span>
+                        </a>
+                    </dd>
+                </div>
+
+                 <!-- Multiplot -->
+                 <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key" style="color:red">
+                        [Mutliplot]
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{myData.selectedApplication.multiplot}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="multiplot-bat?cya=true">
+                            Change<span class="govuk-visually-hidden"> [multiplot]</span>
+                        </a>
+                    </dd>
+                </div>
+
+            </dl>
     
             <h2 class="govuk-heading-l">Roosts you’ve added</h2>
     

@@ -258,6 +258,110 @@ var _myData = {
             "name": "Neither"
         }
     ],
+    "batApplicationReasons": [
+        {
+            "id": "_reasonBat-1",
+            "name": "[reason 1]"
+        },
+        {
+            "id": "_reasonBat-2",
+            "name": "[reason 2]"
+        },
+        {
+            "id": "_reasonBat-3",
+            "name": "[reason 3]"
+        },
+        {
+            "id": "_reasonBat-4",
+            "name": "[reason 4]"
+        },
+        {
+            "id": "_reasonBat-5",
+            "name": "[reason 5]"
+        }
+    ],
+    "workCategories": [
+        {
+            "id": "_categoryWork-1",
+            "name": "Agriculture / Farming / Fishing / Forestry / Nature Conservation"
+        },
+        {
+            "id": "_categoryWork-2",
+            "name": "Archaeological investigation"
+        },
+        {
+            "id": "_categoryWork-3",
+            "name": "Barn conversion"
+        },
+        {
+            "id": "_categoryWork-4",
+            "name": "Commercial"
+        },
+        {
+            "id": "_categoryWork-5",
+            "name": "Communications"
+        },
+        {
+            "id": "_categoryWork-6",
+            "name": "Energy generation / Energy supply"
+        },
+        {
+            "id": "_categoryWork-7",
+            "name": "Flood and coastal defences"
+        },
+        {
+            "id": "_categoryWork-8",
+            "name": "Health & safety"
+        },
+        {
+            "id": "_categoryWork-9",
+            "name": "Heritage / Historical"
+        },
+        {
+            "id": "_categoryWork-10",
+            "name": "Householder home improvements"
+        },
+        {
+            "id": "_categoryWork-11",
+            "name": "Housing (non-householder)"
+        },
+        {
+            "id": "_categoryWork-12",
+            "name": "Industrial / Manufacturing"
+        },
+        {
+            "id": "_categoryWork-13",
+            "name": "Mineral extraction / Quarrying"
+        },
+        {
+            "id": "_categoryWork-14",
+            "name": "Nationally Significant Infrastructure Projects"
+        },
+        {
+            "id": "_categoryWork-15",
+            "name": "Places of worship"
+        },
+        {
+            "id": "_categoryWork-16",
+            "name": "Public buildings and land"
+        },
+        {
+            "id": "_categoryWork-17",
+            "name": "Tourism / Leisure"
+        },
+        {
+            "id": "_categoryWork-18",
+            "name": "Transport / Highways"
+        },
+        {
+            "id": "_categoryWork-19",
+            "name": "Waste management"
+        },
+        {
+            "id": "_categoryWork-20",
+            "name": "Water supply and treatment / water environment"
+        }
+    ],
     "applications": [
         {
             "id": 1,
@@ -375,6 +479,16 @@ _myData.batSpecies.sort(function(a,b){
     return 0;
 });
 _myData.batSpecies2.sort(function(a,b){
+    if (a.name.toUpperCase() < b.name.toUpperCase()){
+        return -1
+    } else if(a.name.toUpperCase() > b.name.toUpperCase()){
+        return 1
+    }
+    return 0;
+});
+
+//Sort categories
+_myData.workCategories.sort(function(a,b){
     if (a.name.toUpperCase() < b.name.toUpperCase()){
         return -1
     } else if(a.name.toUpperCase() > b.name.toUpperCase()){

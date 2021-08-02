@@ -107,9 +107,34 @@
                 </tr>
 
                 <tr class="govuk-table__row">
-                    <th class="govuk-table__cell" colspan="2"> <h2 class="govuk-heading-m govuk-!-margin-top-4">Apply</h2><br>
+                    <th class="govuk-table__cell" colspan="2"> 
                         <p class="govuk-body" style="color:red">NOTE: Deep links currently won't work as expected, work in progress</p>
                     </th>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell" colspan="2"> <h2 class="govuk-heading-m govuk-!-margin-top-4">Apply</h2>
+                    </th>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Proposal</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="proposal-bat?r=t">/proposal-bat</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Reason</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="reason-bat?r=t">/reason-bat</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Category of work</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="category-bat?r=t">/category-bat</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Multi plot?</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="multiplot-bat?r=t">/multiplot-bat</a></td>
                 </tr>
 
                 <tr class="govuk-table__row">
@@ -194,7 +219,7 @@
             //Queries
             var _urlReset = "r=t",
                 _urlService = "&s=" + $('input[name=service]:checked').val(),
-                _urlPage = "intro-roosts?";
+                _urlPage = "proposal-bat?";
                 // _urlPage = _options.filter("#start").val() + "?",
                 // _urlStart = "&s=" + _options.filter("#start").val(),
                 // _urlptVersion = "&p=" + _options.filter("#ptVersion").val();
