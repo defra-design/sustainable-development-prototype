@@ -3,7 +3,7 @@
 {% set _inError = myData.validationError == "true" %}
 
 {% block pageTitle %} 
-{% if _inError %}Error: {% endif %}[TO DO]
+{% if _inError %}Error: {% endif %}Will your work be part of a phased or multi-plot development? 
 {% endblock %}
 
 {% block beforeContent %}
@@ -45,7 +45,7 @@
 
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
                         <h1 class="govuk-fieldset__heading">
-                            [multi plot?]
+                            Will your work be part of a phased or multi-plot development? 
                         </h1>
                     </legend>
 
@@ -56,12 +56,19 @@
                     </span>
                     {% endif %}
 
-                    <div class="govuk-radios" data-module="govuk-radios">
+                    <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
+                        
                         <div class="govuk-radios__item">
-                            <input {% if myData.selectedApplication.multiplot == "Yes" %}checked{% endif %} class="govuk-radios__input" id="multiplotBat-1" name="multiplotBat" type="radio" value="Yes">
+                            <input {% if myData.selectedApplication.multiplot == "Yes" %}checked{% endif %} class="govuk-radios__input" id="multiplotBat-1" name="multiplotBat" type="radio" value="Yes" data-aria-controls="conditional-yes">
                             <label class="govuk-label govuk-radios__label" for="multiplotBat-1">
                             Yes
                             </label>
+                        </div>
+
+                        <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-yes">
+                            <div class="govuk-form-group">
+                                <p class="govuk-body">You’ll need to upload a master plan and habitat maintenance and management plan as part of your application.</p>
+                            </div>
                         </div>
 
 

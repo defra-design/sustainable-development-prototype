@@ -3,7 +3,7 @@
 {% set _inError = myData.validationError == "true" %}
 
 {% block pageTitle %} 
-{% if _inError %}Error: {% endif %}[TO DO]
+{% if _inError %}Error: {% endif %}What activity or development work are you planning to do?
 {% endblock %}
 
 {% block beforeContent %}
@@ -44,7 +44,7 @@
                 
                 <h1 class="govuk-label-wrapper">
                     <label class="govuk-label govuk-label--xl" for="proposalBat">
-                        [What activity or development work are you planning to do?]
+                        What activity or development work are you planning to do?
                     </label>
                 </h1>
 
@@ -59,6 +59,10 @@
                 {% if _inError %}
                     {% set _value = myData.proposalBatAnswer %}
                 {% endif %}
+
+                <span class="govuk-hint">
+                    For example, construction of a new road, maintenance of a bridge, construction of five flats with access road and car parking area.
+                </span>
 
                 <textarea class="govuk-textarea" id="proposalBat" name="proposalBat" rows="5" >{{_value}}</textarea>
 
