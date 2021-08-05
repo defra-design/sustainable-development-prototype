@@ -1,0 +1,302 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %} 
+[TO DO]
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% set _roosts = myData.selectedApplication.roosts %}
+{% set _roostsCount = _roosts.length %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+            <h1 class="govuk-heading-xl">
+				Check your answers
+			</h1>
+
+            <h2 class="govuk-heading-l" >Your activity or development work</h2>
+
+            <dl class="govuk-summary-list">
+
+                <!-- Proposal -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key" >
+                        What activity or development work do you plan to do?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{myData.selectedApplication.proposalBat}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="proposal-bat?cya=true">
+                            Change<span class="govuk-visually-hidden"> [Proposal]</span>
+                        </a>
+                    </dd>
+                </div>
+
+                <!-- Category -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key" >
+                        Which type of development work or activity do you plan to do?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{myData.selectedApplication.categoryBat.name}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="category-bat?cya=true">
+                            Change<span class="govuk-visually-hidden"> [category]</span>
+                        </a>
+                    </dd>
+                </div>
+
+                <!-- Reason -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key" >
+                        Why do you need to do the activity or development work?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{myData.selectedApplication.reasonBat.name}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="reason-bat?cya=true">
+                            Change<span class="govuk-visually-hidden"> [Reason]</span>
+                        </a>
+                    </dd>
+                </div>
+
+                 <!-- Multiplot -->
+                 <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key" >
+                        Will your work be part of a phased or multi-plot development?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{myData.selectedApplication.multiplot}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="multiplot-bat?cya=true">
+                            Change<span class="govuk-visually-hidden"> [multiplot]</span>
+                        </a>
+                    </dd>
+                </div>
+
+            </dl>
+    
+            <h2 class="govuk-heading-l">Roosts you’ve added</h2>
+    
+            {% for _roost in _roosts %}
+            <h2 class="govuk-heading-m">Roost {{loop.index}}</h2>
+            <p class="govuk-body">
+                <a class="govuk-link govuk-link--no-visited-state" href="roost-remove?roostToRemove={{_roost.id}}">
+                    Remove roost<span class="govuk-visually-hidden"> {{loop.index}}</span>
+                </a>
+            </p>
+            <dl class="govuk-summary-list">
+
+                <!-- Bat species -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Bat species
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {% for _bat in _roost.bats %}
+                            {{_bat.name}}{% if loop.last != true %}<br>{% endif %}
+                        {% endfor %}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="species-bat?roost={{_roost.id}}&cya=true">
+                            Change<span class="govuk-visually-hidden"> bat species</span>
+                        </a>
+                    </dd>
+                </div>
+
+                <!-- Existing number of bats -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Number of bats based on the ecological survey
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {% for _bat in _roost.bats %}
+                            {{_bat.numberUsing}} {{_bat.name}}{% if loop.last != true %}<br>{% endif %}
+                        {% endfor %}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="numbers-bat?roost={{_roost.id}}&cya=true">
+                            Change<span class="govuk-visually-hidden"> existing number of bats</span>
+                        </a>
+                    </dd>
+                </div>
+
+                <!-- Number of bats when your activity will affect them -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Number of bats when your activity will affect them
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {% for _bat in _roost.bats %}
+                            {{_bat.numberIn}} {{_bat.name}}{% if loop.last != true %}<br>{% endif %}
+                        {% endfor %}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="numbers-bat?roost={{_roost.id}}&cya=true">
+                            Change<span class="govuk-visually-hidden"> number of bats when your activity will affect them</span>
+                        </a>
+                    </dd>
+                </div>
+
+                <!-- Roost use -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        What the bats use the roost for
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {% for _bat in _roost.bats %}
+                            {{_bat.name}}:<br>
+                            <ul class="govuk-list govuk-list--bullet">
+                            {% for _batRoostUse in _bat.roostUses %}
+                            <li>{{_batRoostUse.name}}</li>
+                            {% endfor %}
+                            </ul>
+                        {% endfor %}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="using-roost?roost={{_roost.id}}&cya=true">
+                            Change<span class="govuk-visually-hidden"> what the bats use the roost for</span>
+                        </a>
+                    </dd>
+                </div>
+
+                <!-- Roost activities -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Affect on roost
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {% if _roost.activity.id == '_roostActivity-3' %}
+                            None
+                        {% else %}
+                            {{_roost.activity.name}}:<br>
+                            <ul class="govuk-list govuk-list--bullet">
+                                {% for _roostActivityMethod in _roost.activity.methods %}
+                                    <li>{{_roostActivityMethod.name}}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="activities-roost?roost={{_roost.id}}&cya=true">
+                            Change<span class="govuk-visually-hidden"> affect on roost</span>
+                        </a>
+                    </dd>
+                </div>
+
+                <!-- Bat activities -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        How will you affect the bats?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {% for _bat in _roost.bats %}
+                            {{_bat.name}}:<br>
+
+                            <ul class="govuk-list govuk-list--bullet">
+                            {% for _batActivity in _bat.activities %}
+                                <li>{{_batActivity.name}}</li>
+                            {% endfor %}
+                            </ul>
+
+                        {% endfor %}
+
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="activities-bat?roost={{_roost.id}}&cya=true">
+                            Change<span class="govuk-visually-hidden"> how will you affect the bats</span>
+                        </a>
+                    </dd>
+                </div>
+            
+            </dl>
+            {% endfor %}
+
+            <form method="POST">
+                {{govukButton({
+                    text: "Add another roost",
+                    classes: 'govuk-button--secondary govuk-!-margin-bottom-9'
+                })}}
+                <input type="hidden" value="yes" name="addRoost">
+            </form>
+
+            <h2 class="govuk-heading-l">Application details</h2>
+
+            <dl class="govuk-summary-list">
+
+                <!-- Date -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Date of first activity that will affect the bat roosts
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{myData.selectedApplication.firstDate.day}} {{myData.selectedApplication.firstDate.month}} {{myData.selectedApplication.firstDate.year}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="date-bat?cya=true">
+                            Change<span class="govuk-visually-hidden"> date of first activity that will affect the bat roosts</span>
+                        </a>
+                    </dd>
+                </div>
+
+                <!-- Surveys -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Did you do the bat surveys following good practice guidelines?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{myData.selectedApplication.surveys}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="surveys-bat">
+                            Change<span class="govuk-visually-hidden"> whether you did the bat surveys following good practice guidelines</span>
+                        </a>
+                    </dd>
+                </div>
+
+                <!-- Surveys - reason for No -->
+                {% if myData.selectedApplication.surveys == "No" %}
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        What types of surveys did you do?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{myData.selectedApplication.surveysReason}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="surveys-bat">
+                            Change<span class="govuk-visually-hidden"> [Give details]</span>
+                        </a>
+                    </dd>
+                </div>
+                {% endif %}
+
+            </dl>
+            
+    
+            <h2 class="govuk-heading-l">Now send your application</h2>
+
+            <p class="govuk-body">By sending your application, you are confirming that the information you are providing is correct as far as you know.</p>
+
+            <form method="POST">
+                {{govukButton({
+                    text: "Confirm and send"
+                })}}
+                <input type="hidden" value="yes" name="addApplication">
+            </form>
+
+	</div>
+</div>
+
+{% endblock %}

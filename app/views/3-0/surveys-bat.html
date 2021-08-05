@@ -1,0 +1,102 @@
+{% extends "layout.html" %}
+
+{% set _inError = myData.validationError %}
+
+{% block pageTitle %} 
+{% if _inError == "true" %}Error: {% endif %}Did you do the bat surveys following good practice guidelines?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+			{% if _inError == "true" %}
+            <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+                <h2 class="govuk-error-summary__title" id="error-summary-title">
+                    There is a problem
+                </h2>
+                <div class="govuk-error-summary__body">
+                    <ul class="govuk-list govuk-error-summary__list">
+                        {% for name, item in myData.validationErrors %}
+                        <li>
+                            <a href="#{{item.anchor}}">{{item.message}}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            {% endif %}
+
+	</div>
+</div>
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="POST">
+
+            <div class="govuk-form-group {% if myData.validationErrors.surveysBat %}govuk-form-group--error{% endif %}">
+                <fieldset class="govuk-fieldset" aria-describedby="surveysBat-hint">
+
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+                        <h1 class="govuk-fieldset__heading">
+                            Did you do the bat surveys following good practice guidelines?
+                        </h1>
+                    </legend>
+
+                    {% if myData.validationErrors.surveysBat %}
+                    <span id="speciesBat-error" class="govuk-error-message">
+                        <span class="govuk-visually-hidden">Error:</span>
+                        {{myData.validationErrors.surveysBat.message}}
+                    </span>
+                    {% endif %}
+
+                    <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
+                        <div class="govuk-radios__item">
+                            <input {% if myData.selectedApplication.surveys == "Yes" %}checked{% endif %} class="govuk-radios__input" id="surveysBat-1" name="surveysBat" type="radio" value="yes">
+                            <label class="govuk-label govuk-radios__label" for="surveysBat-1">
+                            Yes
+                            </label>
+                        </div>
+
+
+                        <div class="govuk-radios__item">
+                            <input {% if myData.selectedApplication.surveys == "No" %}checked{% endif %} class="govuk-radios__input" id="surveysBat-2" name="surveysBat" type="radio" value="no" data-aria-controls="conditional-no">
+                            <label class="govuk-label govuk-radios__label" for="surveysBat-2">
+                            No
+                            </label>
+                        </div>
+
+                        <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-no">
+                            <div class="govuk-form-group">
+                                <!-- <legend class="govuk-fieldset__legend govuk-fieldset__legend--m"></legend> -->
+                                <label class="govuk-label govuk-label--m" for="more-detail">
+                                    Give details
+                                </label>
+                                <span class="govuk-hint">
+                                    Explain the types of surveys you’ve done to understand the species of bats, their roost types, and any connection to the environment surrounding the site.
+                                </span>
+                                <textarea class="govuk-textarea" id="more-detail" name="more-detail" rows="5" aria-describedby="more-detail-hint" >{{myData.selectedApplication.surveysReason}}</textarea>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </fieldset>
+            </div>
+
+            {{govukButton({
+                text: "Continue"
+            })}}
+
+        </form>
+
+	</div>
+</div>
+
+{% endblock %}

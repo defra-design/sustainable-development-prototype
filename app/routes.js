@@ -499,5 +499,6 @@ _myData.workCategories.sort(function(a,b){
 
 require('./routes/1-0/routes.js')(router,JSON.parse(JSON.stringify(_myData)));
 require('./routes/2-0/routes.js')(router,JSON.parse(JSON.stringify(_myData)));
+require('./routes/3-0/routes.js')(router,JSON.parse(JSON.stringify(_myData)));
 
 module.exports = router

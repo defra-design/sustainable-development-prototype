@@ -1,0 +1,245 @@
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+
+    <div class="govuk-grid-row">
+		<div class="govuk-grid-column-three-quarters">
+			<div class="govuk-breadcrumbs ">
+				<ol class="govuk-breadcrumbs__list">
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/">Back to all versions list</a>
+                    </li>
+                </ol>
+			</div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-m">Prototype {{myData.version}} setup</h1>
+
+        <!-- <p class="govuk-body" >
+            <a href="setup?r=true" class="govuk-link govuk-link--no-visited-state">Reset setup options</a>
+        </p>   -->
+
+        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+    </div>
+</div>
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">
+
+        <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+                <legend class="govuk-fieldset__legend">Service</legend>
+                <div class="govuk-radios">
+                    <div class="govuk-radios__item">
+                        <input {% if myData.service == 'apply' %}checked{% endif %} class="govuk-radios__input" data-option="service-1" id="service-1" name="service" type="radio" value="apply">
+                        <label class="govuk-label govuk-radios__label" for="service-1">Apply for a wildlife licence</label>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+        <!-- Prototype version -->
+        <!-- <div class="govuk-form-group">
+            <label class="govuk-label" >
+              Version
+            </label>
+            <select class="govuk-select" style="min-width: 100%" id="ptVersion" name="ptVersion" data-option="ptVersion">
+                <option {% if myData.ptVersion == 'mvs' %}selected{% endif %} value="mvs">MVS</option>
+            </select>
+        </div> -->
+
+        <!-- Start from -->
+        <!-- <div class="govuk-form-group">
+          <label class="govuk-label" >
+            Start from
+          </label>
+          <select class="govuk-select" style="min-width: 100%" id="start" name="start" data-option="start">
+              <option {% if myData.start == 'start' %}selected{% endif %} value="start">Start page</option>
+              <option {% if myData.start == 'home' %}selected{% endif %} value="home">Home page</option>
+          </select>
+      </div> -->
+
+    </div>
+
+    <div class="govuk-grid-column-one-half" >
+
+
+    </div>
+</div>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <p class="govuk-body" id="start-url" style="display:none">
+            <a href="#" role="button" draggable="false" class="govuk-button">Start prototype</a>
+        </p>
+
+        <p class="govuk-body" >
+            <span class="govuk-!-font-weight-bold">Shareable link:</span><br>
+            <span class="govuk-body" id="start-url-label" style="display:none"></span>
+        </p>
+
+        <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+
+    </div>
+</div>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+        <h2 class="govuk-heading-m">Full page list</h2>
+
+
+        <table class="govuk-table">
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header">Page</th>
+                <th scope="col" class="govuk-table__header">Link</th>
+                </tr>
+            </thead>
+            <tbody class="govuk-table__body">    
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">_Setup prototype</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="setup">/setup</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell" colspan="2"> 
+                        <p class="govuk-body" style="color:red">NOTE: Deep links currently won't work as expected, work in progress</p>
+                    </th>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell" colspan="2"> <h2 class="govuk-heading-m govuk-!-margin-top-4">Apply</h2>
+                    </th>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Proposal</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="proposal-bat?r=t">/proposal-bat</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Category of work</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="category-bat?r=t">/category-bat</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Reason</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="reason-bat?r=t">/reason-bat</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Multi plot?</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="multiplot-bat?r=t">/multiplot-bat</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Adding roosts intro</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="intro-roosts?r=t">/intro-roosts</a></td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Select bat species</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="species-bat?r=t">/species-bat</a></td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Select bat numbers</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="numbers-bat?r=t&testdata=true">/numbers-bat</a></td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Select bat roost uses</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="using-roost?r=t&testdata=true">/using-roost</a></td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Select roost activities</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="activities-roost?r=t">/activities-roost</a></td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Select bat activities</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="activities-bat?r=t&testdata=true">/activities-bat</a></td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Summary of roosts added - add another roost?</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="roosts-added?r=t">/roosts-added</a></td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Remove roost</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="roost-remove?r=t&testdata=true&roostToRemove=123456789">/roost-remove</a></td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Date bat activity</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="date-bat?r=t&testdata=true">/date-bat</a></td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Surveys conducted?</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="surveys-bat?r=t&testdata=true">/surveys-bat</a></td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Check your answers - bat application details</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="cya-bat?r=t&testdata=true">/cya-bat</a></td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Application complete</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="complete-bat?r=t">/complete-bat</a></td>
+                </tr>
+                
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <p class="govuk-body" >{{myData.apiData|dump|safe}}</p>
+    </div>
+</div> -->
+
+{% endblock %}
+
+{% block pageScripts %}
+<script>
+    $(document).ready(function(){
+
+        var _startURL = $("#start-url a"),
+            _startURLLabel = $("#start-url-label"),
+            _options = $("[data-option]")
+
+        _options.change(function(){
+            setValues()
+        }).trigger("change");
+
+        //SET VALUES
+        function setValues(){
+            //Base URL
+            var _urlBase = "https://sustainable-prototype.herokuapp.com/" + {{myData.version|dump|safe}} + "/";
+            //Queries
+            var _urlReset = "r=t",
+                _urlService = "&s=" + $('input[name=service]:checked').val(),
+                _urlPage = "proposal-bat?";
+                // _urlPage = _options.filter("#start").val() + "?",
+                // _urlStart = "&s=" + _options.filter("#start").val(),
+                // _urlptVersion = "&p=" + _options.filter("#ptVersion").val();
+           
+            //Queries combined
+            var _urlPageQueries = _urlPage + _urlReset + _urlService;
+
+            //URL text
+            var _startURLText = _urlBase + _urlPageQueries,
+                _startURLHREF =  _urlPageQueries;
+            // update label
+            _startURLLabel
+                .text(_startURLText)
+                .show()
+            //update link
+            _startURL
+                .attr("href", _startURLHREF)
+                .parent().show()
+        }
+
+    });
+</script>
+{% endblock %}

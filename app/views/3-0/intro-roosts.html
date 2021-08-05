@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %} 
+Tell us about the bat roosts your work will affect
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    <!-- {% include "includes/back-link.html" %} -->
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        <form method="POST">
+
+            <h1 class="govuk-heading-xl">
+                Tell us about the bat roosts your work will affect
+            </h1>
+
+            <p class="govuk-body">You need to tell us the following information about the bat roosts your work activity will affect:</p>
+
+            <ul class="govuk-list govuk-list--bullet">
+                <li>the number of bat roosts</li>
+                <li>which species of bat is using each roost</li>
+                <li>what each species of bat is using the roost for (such as feeding, mating or hibernation)</li>
+                <li>how many bats are in each roost (both now and when the work activity will start)</li>
+                <li>how your work will affect each bat species</li>
+            </ul>
+
+            <p class="govuk-body">You can add more than one roost.</p>
+
+            {{govukButton({
+                text: "Add a roost"
+            })}}
+
+        </form>
+
+	</div>
+</div>
+
+
+{% endblock %}
