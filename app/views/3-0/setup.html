@@ -1,5 +1,7 @@
 {% extends "layout.html" %}
 
+{% set serviceName = "" %}
+
 {% block beforeContent %}
 
     <div class="govuk-grid-row">
@@ -118,6 +120,11 @@
                 </tr>
 
                 <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Task list</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="tasklist-bat?r=t">/tasklist-bat</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
                     <th class="govuk-table__cell">Proposal</th>
                     <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="proposal-bat?r=t">/proposal-bat</a></td>
                 </tr>
@@ -219,7 +226,7 @@
             //Queries
             var _urlReset = "r=t",
                 _urlService = "&s=" + $('input[name=service]:checked').val(),
-                _urlPage = "proposal-bat?";
+                _urlPage = "tasklist-bat?";
                 // _urlPage = _options.filter("#start").val() + "?",
                 // _urlStart = "&s=" + _options.filter("#start").val(),
                 // _urlptVersion = "&p=" + _options.filter("#ptVersion").val();

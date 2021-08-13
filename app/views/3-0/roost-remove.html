@@ -1,5 +1,7 @@
 {% extends "layout.html" %}
 
+{% set serviceName = myData.serviceName %}
+
 {% set _inError = myData.validationError == "true"  %}
 
 {% block pageTitle %} 

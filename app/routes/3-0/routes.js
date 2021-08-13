@@ -86,8 +86,33 @@ module.exports = function (router,_myData) {
         setSelectedRoost(req, _randomID)
     }
 
+    function updateTasklist(req){ 
+
+        var cansubmit = true
+
+        // Counts
+        req.session.myData.tasklist.completed = 0
+        for (const [key, value] of Object.entries(req.session.myData.tasklist.sections)) {
+            if(value == "completed"){
+                req.session.myData.tasklist.completed++
+            } else {
+                if(key == "1" || key == "2"){
+                    cansubmit = false
+                }
+            }
+        }
+
+        //Set submit to "notstarted" if all others completed
+        if(cansubmit && req.session.myData.tasklist.sections["3"] == "cannotstartyet"){
+            req.session.myData.tasklist.sections["3"] = "notstarted"
+        }
+
+    }
+
     function reset(req){
         req.session.myData = JSON.parse(JSON.stringify(_myData))
+
+        req.session.myData.serviceName = "Apply for a licence to do work that will affect bats"
 
         // Default setup
         req.session.myData.service = "apply"
@@ -96,6 +121,15 @@ module.exports = function (router,_myData) {
             "day": "01",
             "month": "12",
             "year": "2021"
+        }
+
+        req.session.myData.tasklist = {
+            "sections": {
+                "1": "notstarted",
+                "2": "notstarted",
+                "3": "cannotstartyet"
+            },
+            "completed": 0
         }
         
 
@@ -172,8 +206,18 @@ module.exports = function (router,_myData) {
 
 
 
+    // Tasklist bat
+    router.get('/' + version + '/tasklist-bat', function (req, res) {
+        res.render(version + '/tasklist-bat', {
+            myData:req.session.myData
+        });
+    });
+
     // Proposal bat
     router.get('/' + version + '/proposal-bat', function (req, res) {
+
+        req.session.myData.tasklist.sections["1"] = "inprogress"
+
         res.render(version + '/proposal-bat', {
             myData:req.session.myData
         });
@@ -296,8 +340,8 @@ module.exports = function (router,_myData) {
         
     });
 
-     // Multiplot?
-     router.get('/' + version + '/multiplot-bat', function (req, res) {
+    // Multiplot?
+    router.get('/' + version + '/multiplot-bat', function (req, res) {
         res.render(version + '/multiplot-bat', {
             myData:req.session.myData
         });
@@ -325,12 +369,16 @@ module.exports = function (router,_myData) {
         } else {
 
             req.session.myData.selectedApplication.multiplot = req.session.myData.multiplotBatAnswer
+           
+            req.session.myData.tasklist.sections["1"] = "completed"
+            updateTasklist(req)
+            res.redirect(301, '/' + version + '/tasklist-bat');
 
-            if(req.query.cya == "true"){
-                res.redirect(301, '/' + version + '/cya-bat');
-            } else {
-                res.redirect(301, '/' + version + '/intro-roosts');
-            }
+            // if(req.query.cya == "true"){
+            //     res.redirect(301, '/' + version + '/cya-bat');
+            // } else {
+            //     res.redirect(301, '/' + version + '/intro-roosts');
+            // }
 
         }
         
@@ -339,6 +387,9 @@ module.exports = function (router,_myData) {
 
     // Intro roosts
     router.get('/' + version + '/intro-roosts', function (req, res) {
+
+        req.session.myData.tasklist.sections["2"] = "inprogress"
+
         res.render(version + '/intro-roosts', {
             myData:req.session.myData
         });
@@ -846,12 +897,16 @@ module.exports = function (router,_myData) {
             if(req.session.myData.surveysBatAnswer == 'yes'){
                 req.session.myData.selectedApplication.surveys = "Yes"
                 req.session.myData.selectedApplication.surveysReason = ""
-                res.redirect(301, '/' + version + '/cya-bat');
+                // res.redirect(301, '/' + version + '/cya-bat');
             } else {
                 req.session.myData.selectedApplication.surveys = "No"
                 req.session.myData.selectedApplication.surveysReason = req.body["more-detail"]
-                res.redirect(301, '/' + version + '/cya-bat');
+                // res.redirect(301, '/' + version + '/cya-bat');
             }
+
+            req.session.myData.tasklist.sections["2"] = "completed"
+            updateTasklist(req)
+            res.redirect(301, '/' + version + '/tasklist-bat');
 
         }
         
