@@ -5,7 +5,7 @@
 {% set _inError = myData.validationError == "true" %}
 
 {% block pageTitle %} 
-{% if _inError %}Error: {% endif %}How many bats are using the roost?
+{% if _inError %}Error: {% endif %}How many bats use this roost?
 {% endblock %}
 
 {% block beforeContent %}
@@ -36,14 +36,14 @@
         {% endif %}
 
         <h1 class="govuk-heading-xl">
-            How many bats are using the roost?
+            How many bats use this roost?
         </h1>
 
 		<form method="POST">
 
 
             <div class="govuk-form-group" >
-                <h2 class="govuk-heading-m">Number of bats based on the ecological survey</h2>
+                <p class="govuk-body">Enter the maximum number based on the bat survey.</p>
                 <!--Then all species-->
                 {% for _bat in myData.selectedRoost.bats %}
                     {% set _batID = _bat.id %}
@@ -70,40 +70,6 @@
                         {% endif %}
                         <input class="govuk-input govuk-input--width-5" id="{{_numberUsingName}}" name="{{_numberUsingName}}" type="text" spellcheck="false" pattern="[0-9]*" inputmode="numeric" value="{{_valueNumberUsing}}">
                     </div>
-
-                {% endfor %}
-            </div>
-
-
-            <div class="govuk-form-group" >
-                <h2 class="govuk-heading-m">Number of bats when your activity will affect them</h2>
-                <!--Then all species-->
-                {% for _bat in myData.selectedRoost.bats %}
-                    {% set _batID = _bat.id %}
-                    {% set _numberInTemp = myData['numberInTemp' + _batID] %}
-                    {% set _numberInName = 'numberIn' + _bat.id %}
-                    {% set _valueNumberIn = _bat.numberIn %}
-
-                    {% if _inError %}
-                        {% set _valueNumberIn = _numberInTemp %}
-                    {% endif %}
-
-                    <div class="govuk-form-group {% if myData.validationErrors[_numberInName] %}govuk-form-group--error{% endif %}">
-                        <h1 class="govuk-label-wrapper">
-                            <label class="govuk-label" for="numberIn{{_batID}}">
-                                {{_bat.name}}
-                            </label>
-                        </h1>
-                        {% if myData.validationErrors[_numberInName] %}
-                        <span id="orgNameAnswer-error" class="govuk-error-message">
-                            <span class="govuk-visually-hidden">Error:</span>
-                            {{myData.validationErrors[_numberInName].message}}
-                        </span>
-                        {% endif %}
-                        <input class="govuk-input govuk-input--width-5" id="{{_numberInName}}" name="{{_numberInName}}" type="text" spellcheck="false" pattern="[0-9]*" inputmode="numeric" value="{{_valueNumberIn}}">
-                    </div>
-
-
 
                 {% endfor %}
             </div>

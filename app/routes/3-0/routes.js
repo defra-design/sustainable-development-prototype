@@ -147,7 +147,6 @@ module.exports = function (router,_myData) {
                     "id": req.session.myData.batSpecies2[0].id,
                     "name": req.session.myData.batSpecies2[0].name,
                     "numberUsing": "5",
-                    "numberIn": "3",
                     "roostUses2": [
                         clone(req.session.myData.roostUses2[0]),
                         clone(req.session.myData.roostUses2[1])
@@ -471,12 +470,10 @@ module.exports = function (router,_myData) {
 
             //entered values (set to temp)
             req.session.myData["numberUsingTemp" + _bat.id] = req.body["numberUsing" + _bat.id]
-            req.session.myData["numberInTemp" + _bat.id] = req.body["numberIn" + _bat.id]
 
             //no validation defaults
             if(req.session.myData.includeValidation == "false"){
                 req.session.myData["numberUsingTemp" + _bat.id] = req.session.myData["numberUsingTemp" + _bat.id] || 1
-                req.session.myData["numberInTemp" + _bat.id] = req.session.myData["numberInTemp" + _bat.id] || 1
             }
 
             // TODO order of errors
@@ -486,14 +483,6 @@ module.exports = function (router,_myData) {
                 req.session.myData.validationError = "true"
                 req.session.myData.validationErrors["numberUsing" + _bat.id] = {
                     "anchor": "numberUsing" + _bat.id,
-                    "message": "[error message for " + _bat.name + "]"
-                }
-            }
-
-            if(!req.session.myData["numberInTemp" + _bat.id]){
-                req.session.myData.validationError = "true"
-                req.session.myData.validationErrors["numberIn" + _bat.id] = {
-                    "anchor": "numberIn" + _bat.id,
                     "message": "[error message for " + _bat.name + "]"
                 }
             }
@@ -508,13 +497,10 @@ module.exports = function (router,_myData) {
 
             req.session.myData.selectedRoost.bats.forEach(function(_bat, index) {
                 req.session.myData["numberUsing" + _bat.id] = req.session.myData["numberUsingTemp" + _bat.id]
-                req.session.myData["numberIn" + _bat.id] = req.session.myData["numberInTemp" + _bat.id]
 
                 _bat.numberUsing = req.session.myData["numberUsing" + _bat.id]
-                _bat.numberIn = req.session.myData["numberIn" + _bat.id]
 
                 req.session.myData["numberUsingTemp" + _bat.id] = ""
-                req.session.myData["numberInTemp" + _bat.id] = ""
             });
 
             //Roost query string
