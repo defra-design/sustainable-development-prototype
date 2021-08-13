@@ -252,6 +252,32 @@ var _myData = {
             "name": "Disturb with noise or vibration"
         }
     ],
+    "batActivities2": [
+        {
+            "id": "_batActivity-1",
+            "name": "Capture by hand or using a net"
+        },
+        {
+            "id": "_batActivity-2",
+            "name": "Move them from the roost"
+        },
+        {
+            "id": "_batActivity-3",
+            "name": "Disturb with an endoscope"
+        },
+        {
+            "id": "_batActivity-4",
+            "name": "Temporarily block the roost"
+        },
+        {
+            "id": "_batActivity-5",
+            "name": "Disturb with light"
+        },
+        {
+            "id": "_batActivity-6",
+            "name": "Disturb with noise or vibration"
+        }
+    ],
     "roostActivities": [
         {
             "id": "_roostActivity-1",
@@ -452,6 +478,8 @@ var _myData = {
     ]
 }
 
+
+//For v1
 var _batActivities = [
     {
         "id": "_activity-1",
@@ -531,8 +559,6 @@ var _batMethods = [
         "name": "Endoscopes"
     }
 ]
-
-//For v1
 _myData.batSpecies.forEach(function(_bat, index) {
 
     //Set Activities

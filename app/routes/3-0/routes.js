@@ -152,8 +152,8 @@ module.exports = function (router,_myData) {
                         clone(req.session.myData.roostUses2[1])
                     ],
                     "activities": [
-                        clone(req.session.myData.batActivities[0]),
-                        clone(req.session.myData.batActivities[1])
+                        clone(req.session.myData.batActivities2[0]),
+                        clone(req.session.myData.batActivities2[1])
                     ]
                 }
             ],
@@ -694,7 +694,7 @@ module.exports = function (router,_myData) {
                 } else {
                     _bat.activities = []
                     //Set selected bat activities
-                    req.session.myData.batActivities.forEach(function(_batActivity, index) {
+                    req.session.myData.batActivities2.forEach(function(_batActivity, index) {
                         if(_answer.indexOf(_batActivity.id.toString()) != -1){
                             _bat.activities.push(_batActivity)
                             // _roostUse.selected = true

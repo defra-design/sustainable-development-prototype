@@ -5,7 +5,7 @@
 {% set _inError = myData.validationError == "true" %}
 
 {% block pageTitle %} 
-{% if _inError %}Error: {% endif %}How will you affect the bats?
+{% if _inError %}Error: {% endif %}How will the activity affect the bats in this roost?
 {% endblock %}
 
 {% block beforeContent %}
@@ -36,7 +36,7 @@
         {% endif %}
 
         <h1 class="govuk-heading-xl">
-            How will you affect the bats?
+            How will the activity affect the bats in this roost?
         </h1>
 
 		<form method="POST">
@@ -66,7 +66,7 @@
                         {% endif %}
 
                         <div class="govuk-checkboxes" data-module="govuk-checkboxes">
-                            {% for _batActivity in myData.batActivities %}
+                            {% for _batActivity in myData.batActivities2 %}
 
                                 {% set _batID_batActivity = _batID + "-" + loop.index %}
 
