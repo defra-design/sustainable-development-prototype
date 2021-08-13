@@ -46,7 +46,7 @@
                     </dd>
                     <dd class="govuk-summary-list__actions">
                         <a class="govuk-link govuk-link--no-visited-state" href="species-bat?roost={{_roost.id}}&cya=true">
-                            Change<span class="govuk-visually-hidden"> bat species</span>
+                            Change<span class="govuk-visually-hidden"> </span>
                         </a>
                     </dd>
                 </div>
@@ -54,7 +54,7 @@
                 <!-- Existing number of bats -->
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        Number of bats based on the ecological survey
+                        How many bats use this roost?
                     </dt>
                     <dd class="govuk-summary-list__value">
                         {% for _bat in _roost.bats %}
@@ -63,24 +63,7 @@
                     </dd>
                     <dd class="govuk-summary-list__actions">
                         <a class="govuk-link govuk-link--no-visited-state" href="numbers-bat?roost={{_roost.id}}&cya=true">
-                            Change<span class="govuk-visually-hidden"> existing number of bats</span>
-                        </a>
-                    </dd>
-                </div>
-
-                <!-- Number of bats when your activity will affect them -->
-                <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key">
-                        Number of bats when your activity will affect them
-                    </dt>
-                    <dd class="govuk-summary-list__value">
-                        {% for _bat in _roost.bats %}
-                            {{_bat.numberIn}} {{_bat.name}}{% if loop.last != true %}<br>{% endif %}
-                        {% endfor %}
-                    </dd>
-                    <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link govuk-link--no-visited-state" href="numbers-bat?roost={{_roost.id}}&cya=true">
-                            Change<span class="govuk-visually-hidden"> number of bats when your activity will affect them</span>
+                            Change<span class="govuk-visually-hidden"> </span>
                         </a>
                     </dd>
                 </div>
@@ -88,7 +71,7 @@
                 <!-- Roost use -->
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        What the bats use the roost for
+                        What are the bats using this roost for?
                     </dt>
                     <dd class="govuk-summary-list__value">
                         {% for _bat in _roost.bats %}
@@ -102,7 +85,7 @@
                     </dd>
                     <dd class="govuk-summary-list__actions">
                         <a class="govuk-link govuk-link--no-visited-state" href="using-roost?roost={{_roost.id}}&cya=true">
-                            Change<span class="govuk-visually-hidden"> what the bats use the roost for</span>
+                            Change<span class="govuk-visually-hidden"> </span>
                         </a>
                     </dd>
                 </div>
@@ -110,7 +93,7 @@
                 <!-- Roost activities -->
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        Affect on roost
+                        How will the activity affect this roost?
                     </dt>
                     <dd class="govuk-summary-list__value">
                         {% if _roost.activity.id == '_roostActivity-3' %}
@@ -126,7 +109,7 @@
                     </dd>
                     <dd class="govuk-summary-list__actions">
                         <a class="govuk-link govuk-link--no-visited-state" href="activities-roost?roost={{_roost.id}}&cya=true">
-                            Change<span class="govuk-visually-hidden"> affect on roost</span>
+                            Change<span class="govuk-visually-hidden"> </span>
                         </a>
                     </dd>
                 </div>
@@ -134,7 +117,7 @@
                 <!-- Bat activities -->
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        How will you affect the bats?
+                        How will the activity affect the bats in this roost?
                     </dt>
                     <dd class="govuk-summary-list__value">
                         {% for _bat in _roost.bats %}
@@ -151,7 +134,7 @@
                     </dd>
                     <dd class="govuk-summary-list__actions">
                         <a class="govuk-link govuk-link--no-visited-state" href="activities-bat?roost={{_roost.id}}&cya=true">
-                            Change<span class="govuk-visually-hidden"> how will you affect the bats</span>
+                            Change<span class="govuk-visually-hidden"> </span>
                         </a>
                     </dd>
                 </div>
