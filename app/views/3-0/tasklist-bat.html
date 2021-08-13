@@ -42,7 +42,7 @@
                     {% else %}
                     <a href="proposal-bat" class="govuk-link--no-visited-state" >
                     {% endif %}
-                        [Purpose]
+                        Give work activity details
                     </a>
                 </span>
 
@@ -60,16 +60,18 @@
 
             <!-- Application details -->
             <li class="app-task-list__item">
-                <span class="app-task-list__task-name">
-
-                    {% set _link2 = "intro-roosts" %}
-
-                    <a href="{{_link2}}" class="govuk-link--no-visited-state"  >
-                    [Actions]
-                    </a>
-                </span>
 
                 {% set _status2 = myData.tasklist.sections["2"] %}
+
+                <span class="app-task-list__task-name">
+                    {% if _status2 == "completed" %}
+                    <a href="cya-bat" class="govuk-link--no-visited-state" >
+                    {% else %}
+                    <a href="intro-roosts" class="govuk-link--no-visited-state"  >
+                    {% endif %}
+                        Add roosts the work will affect
+                    </a>
+                </span>
 
                 {% if _status2 == "notstarted" %}
                 <strong class="govuk-tag govuk-tag--grey app-task-list__tag" >Not started</strong>
@@ -100,7 +102,7 @@
                 [Submit application]
                 {% else %}
                 <a href="complete-bat" class="govuk-link--no-visited-state"  >
-                    [Submit application]
+                    Send application
                 </a>
                 {% endif %}
 

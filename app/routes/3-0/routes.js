@@ -787,11 +787,7 @@ module.exports = function (router,_myData) {
                 startNewRoost(req)
                 res.redirect(301, '/' + version + '/species-bat');
             } else {
-
-                req.session.myData.tasklist.sections["2"] = "completed"
-                updateTasklist(req)
-
-                res.redirect(301, '/' + version + '/tasklist-bat');
+                res.redirect(301, '/' + version + '/cya-bat');
             }
 
         }
@@ -875,8 +871,10 @@ module.exports = function (router,_myData) {
 
             res.redirect(301, '/' + version + '/species-bat');
         // Add application
-        } else if(req.body.addApplication == "yes"){
-            res.redirect(301, '/' + version + '/complete-bat');
+        } else {
+            req.session.myData.tasklist.sections["2"] = "completed"
+            updateTasklist(req)
+            res.redirect(301, '/' + version + '/tasklist-bat');
         }
          
     });
