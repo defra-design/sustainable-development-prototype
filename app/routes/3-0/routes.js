@@ -148,9 +148,9 @@ module.exports = function (router,_myData) {
                     "name": req.session.myData.batSpecies2[0].name,
                     "numberUsing": "5",
                     "numberIn": "3",
-                    "roostUses": [
-                        clone(req.session.myData.roostUses[0]),
-                        clone(req.session.myData.roostUses[1])
+                    "roostUses2": [
+                        clone(req.session.myData.roostUses2[0]),
+                        clone(req.session.myData.roostUses2[1])
                     ],
                     "activities": [
                         clone(req.session.myData.batActivities[0]),
@@ -569,7 +569,7 @@ module.exports = function (router,_myData) {
             //Set selected roost uses
             req.session.myData.selectedRoost.bats.forEach(function(_bat, index) {
                 _bat.roostUses = []
-                req.session.myData.roostUses.forEach(function(_roostUse, index) {
+                req.session.myData.roostUses2.forEach(function(_roostUse, index) {
                     if(req.session.myData.roostUsesAnswersTemp[_bat.id].indexOf(_roostUse.id.toString()) != -1){
                         _bat.roostUses.push(_roostUse)
                     }
