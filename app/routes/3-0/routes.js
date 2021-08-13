@@ -246,7 +246,7 @@ module.exports = function (router,_myData) {
             req.session.myData.selectedApplication.proposalBat = req.session.myData.proposalBatAnswer
 
             if(req.query.cya == "true"){
-                res.redirect(301, '/' + version + '/cya-bat');
+                res.redirect(301, '/' + version + '/cya-purpose');
             } else {
                 res.redirect(301, '/' + version + '/category-bat');
             }
@@ -288,7 +288,7 @@ module.exports = function (router,_myData) {
             req.session.myData.selectedApplication.categoryBat = clone(_category)
 
             if(req.query.cya == "true"){
-                res.redirect(301, '/' + version + '/cya-bat');
+                res.redirect(301, '/' + version + '/cya-purpose');
             } else {
                 res.redirect(301, '/' + version + '/reason-bat');
             }
@@ -330,7 +330,7 @@ module.exports = function (router,_myData) {
             req.session.myData.selectedApplication.reasonBat = clone(_reason)
 
             if(req.query.cya == "true"){
-                res.redirect(301, '/' + version + '/cya-bat');
+                res.redirect(301, '/' + version + '/cya-purpose');
             } else {
                 res.redirect(301, '/' + version + '/multiplot-bat');
             }
@@ -369,19 +369,37 @@ module.exports = function (router,_myData) {
 
             req.session.myData.selectedApplication.multiplot = req.session.myData.multiplotBatAnswer
            
-            req.session.myData.tasklist.sections["1"] = "completed"
-            updateTasklist(req)
-            res.redirect(301, '/' + version + '/tasklist-bat');
-
-            // if(req.query.cya == "true"){
-            //     res.redirect(301, '/' + version + '/cya-bat');
-            // } else {
-            //     res.redirect(301, '/' + version + '/intro-roosts');
-            // }
+            res.redirect(301, '/' + version + '/cya-purpose');
 
         }
         
     });
+
+    // Check your answers bat - purpose
+    router.get('/' + version + '/cya-purpose', function (req, res) {
+        res.render(version + '/cya-purpose', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/cya-purpose', function (req, res) {
+
+        req.session.myData.tasklist.sections["1"] = "completed"
+        updateTasklist(req)
+        res.redirect(301, '/' + version + '/tasklist-bat');
+        
+    });
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     // Intro roosts
