@@ -778,14 +778,16 @@ module.exports = function (router,_myData) {
             });
         } else {
 
+
             if(req.session.myData.addRoostAnswer == 'yes'){
-
                 startNewRoost(req)
-
                 res.redirect(301, '/' + version + '/species-bat');
-
             } else {
-                res.redirect(301, '/' + version + '/date-bat');
+
+                req.session.myData.tasklist.sections["2"] = "completed"
+                updateTasklist(req)
+
+                res.redirect(301, '/' + version + '/tasklist-bat');
             }
 
         }
@@ -842,31 +844,6 @@ module.exports = function (router,_myData) {
             }
 
         }
-    });
-
-    // BAT date
-    router.get('/' + version + '/date-bat', function (req, res) {
-        res.render(version + '/date-bat', {
-            myData:req.session.myData
-        });
-    });
-    router.post('/' + version + '/date-bat', function (req, res) {
-
-        req.session.myData.selectedApplication.firstDate = {
-            "day": req.body.day,
-            "month": req.body.month,
-            "year": req.body.year
-        }
-
-        req.session.myData.tasklist.sections["2"] = "completed"
-        updateTasklist(req)
-
-        if(req.query.cya == "true"){
-            res.redirect(301, '/' + version + '/cya-bat');
-        } else {
-            res.redirect(301, '/' + version + '/tasklist-bat');
-        }
-
     });
 
     // Check your answers bat
