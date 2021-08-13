@@ -858,58 +858,15 @@ module.exports = function (router,_myData) {
             "year": req.body.year
         }
 
+        req.session.myData.tasklist.sections["2"] = "completed"
+        updateTasklist(req)
+
         if(req.query.cya == "true"){
             res.redirect(301, '/' + version + '/cya-bat');
         } else {
-            res.redirect(301, '/' + version + '/surveys-bat');
-        }
-
-    });
-
-    // Surveys conducted
-    router.get('/' + version + '/surveys-bat', function (req, res) {
-        res.render(version + '/surveys-bat', {
-            myData:req.session.myData
-        });
-    });
-    router.post('/' + version + '/surveys-bat', function (req, res) {
-
-        req.session.myData.surveysBatAnswer = req.body.surveysBat
-
-        if(req.session.myData.includeValidation == "false"){
-            req.session.myData.surveysBatAnswer = req.session.myData.surveysBatAnswer || "no"
-        }
-
-        if(!req.session.myData.surveysBatAnswer){
-            req.session.myData.validationError = "true"
-            req.session.myData.validationErrors.surveysBat = {
-                "anchor": "surveysBat-1",
-                "message": "[error message]"
-            }
-        }
-
-        if(req.session.myData.validationError == "true") {
-            res.render(version + '/surveys-bat', {
-                myData: req.session.myData
-            });
-        } else {
-
-            if(req.session.myData.surveysBatAnswer == 'yes'){
-                req.session.myData.selectedApplication.surveys = "Yes"
-                req.session.myData.selectedApplication.surveysReason = ""
-                // res.redirect(301, '/' + version + '/cya-bat');
-            } else {
-                req.session.myData.selectedApplication.surveys = "No"
-                req.session.myData.selectedApplication.surveysReason = req.body["more-detail"]
-                // res.redirect(301, '/' + version + '/cya-bat');
-            }
-
-            req.session.myData.tasklist.sections["2"] = "completed"
-            updateTasklist(req)
             res.redirect(301, '/' + version + '/tasklist-bat');
-
         }
-        
+
     });
 
     // Check your answers bat
