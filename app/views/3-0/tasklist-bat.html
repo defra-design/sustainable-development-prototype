@@ -34,23 +34,27 @@
 
             <!-- Purpose - section 1 -->
             <li class="app-task-list__item">
-              <span class="app-task-list__task-name">
-                <a href="proposal-bat" class="govuk-link--no-visited-state" >
-                    [Purpose]
-                </a>
-              </span>
+                {% set _status1 = myData.tasklist.sections["1"] %}
 
-              {% set _status1 = myData.tasklist.sections["1"] %}
+                <span class="app-task-list__task-name">
+                    {% if _status1 == "completed" %}
+                    <a href="cya-purpose" class="govuk-link--no-visited-state" >
+                    {% else %}
+                    <a href="proposal-bat" class="govuk-link--no-visited-state" >
+                    {% endif %}
+                        [Purpose]
+                    </a>
+                </span>
 
-              {% if _status1 == "notstarted" %}
-              <strong class="govuk-tag govuk-tag--grey app-task-list__tag" >Not started</strong>
-              {% elif _status1 == "cannotstartyet" %}
-              <strong class="govuk-tag govuk-tag--grey app-task-list__tag" >Cannot start yet</strong>
-              {% elif _status1 == "inprogress" %}
-              <strong class="govuk-tag govuk-tag--blue app-task-list__tag" >In progress</strong>
-              {% elif _status1 == "completed" %}
-              <strong class="govuk-tag app-task-list__tag" >Completed</strong>
-              {% endif %}
+                {% if _status1 == "notstarted" %}
+                <strong class="govuk-tag govuk-tag--grey app-task-list__tag" >Not started</strong>
+                {% elif _status1 == "cannotstartyet" %}
+                <strong class="govuk-tag govuk-tag--grey app-task-list__tag" >Cannot start yet</strong>
+                {% elif _status1 == "inprogress" %}
+                <strong class="govuk-tag govuk-tag--blue app-task-list__tag" >In progress</strong>
+                {% elif _status1 == "completed" %}
+                <strong class="govuk-tag app-task-list__tag" >Completed</strong>
+                {% endif %}
 
             </li>
 
