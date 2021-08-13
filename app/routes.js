@@ -296,6 +296,50 @@ var _myData = {
             "name": "Neither"
         }
     ],
+    "roostActivities2": [
+        {
+            "id": "_roostActivity-1",
+            "name": "Destroy the roost",
+            "methods-description": "How will the activity destroy this roost?",
+            "methods": [
+                {
+                    "id": "_roostActivityMethod-1",
+                    "name": "Permanently block the roost"
+                },
+                {
+                    "id": "_roostActivityMethod-2",
+                    "name": "Take the roost apart by hand or with tools"
+                },
+                {
+                    "id": "_roostActivityMethod-3",
+                    "name": "Demolish the roost by machine"
+                }
+            ]
+        },
+        {
+            "id": "_roostActivity-2",
+            "name": "Damage the roost",
+            "methods-description": "How will the activity damage this roost?",
+            "methods": [
+                {
+                    "id": "_roostActivityMethod-1",
+                    "name": "Permanently block the roost"
+                },
+                {
+                    "id": "_roostActivityMethod-2",
+                    "name": "Take the roost apart by hand or with tools"
+                },
+                {
+                    "id": "_roostActivityMethod-3",
+                    "name": "Demolish the roost by machine"
+                }
+            ]
+        },
+        {
+            "id": "_roostActivity-3",
+            "name": "Neither"
+        }
+    ],
     "batApplicationReasons": [
         {
             "id": "_reasonBat-1",

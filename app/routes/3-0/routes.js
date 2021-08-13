@@ -159,7 +159,7 @@ module.exports = function (router,_myData) {
             ],
             "new": false,
             "inprogress": false,
-            "activity": clone(req.session.myData.roostActivities[0])
+            "activity": clone(req.session.myData.roostActivities2[0])
         }
 
     }
@@ -605,7 +605,7 @@ module.exports = function (router,_myData) {
             // Check methods
 
             //Selected Roost Activity
-            req.session.myData.roostActivities.forEach(function(_roostActivity, index) {
+            req.session.myData.roostActivities2.forEach(function(_roostActivity, index) {
 
                 if(req.session.myData.roostActivityTempAnswer == _roostActivity.id){
 
@@ -637,7 +637,7 @@ module.exports = function (router,_myData) {
             });
         } else {
 
-            var _selectedRoostActivity = req.session.myData.roostActivities.find(obj => {return obj.id.toString() === req.session.myData.roostActivityTempAnswer});
+            var _selectedRoostActivity = req.session.myData.roostActivities2.find(obj => {return obj.id.toString() === req.session.myData.roostActivityTempAnswer});
 
             //Set selected roost activity
             req.session.myData.selectedRoost.activity = clone(_selectedRoostActivity)

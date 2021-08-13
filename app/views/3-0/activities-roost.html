@@ -5,7 +5,7 @@
 {% set _inError = myData.validationError == "true" %}
 
 {% block pageTitle %} 
-{% if _inError %}Error: {% endif %}Which activity will you do to affect the bat roost?
+{% if _inError %}Error: {% endif %}How will the activity affect this roost?
 {% endblock %}
 
 {% set _roost = myData.selectedRoost %}
@@ -44,7 +44,7 @@
 
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
                     <h1 class="govuk-fieldset__heading">
-                        Which activity will you do to affect the bat roost?
+                        How will the activity affect this roost?
                     </h1>
                     </legend>
 
@@ -64,7 +64,7 @@
                         {% set _selected = _roost.activity.id %}
                     {% endif %}
 
-                    {% for _roostActivity in myData.roostActivities %}
+                    {% for _roostActivity in myData.roostActivities2 %}
 
                         <div class="govuk-radios__item">
                             <input {% if _selected == _roostActivity.id %}checked{% endif %} class="govuk-radios__input" id="{{_roostActivity.id}}" name="roostActivity" type="radio" value="{{_roostActivity.id}}" data-aria-controls="conditional-{{_roostActivity.id}}">
