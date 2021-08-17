@@ -369,6 +369,294 @@ module.exports = function (router,_myData) {
 
             req.session.myData.selectedApplication.multiplot = req.session.myData.multiplotBatAnswer
            
+            if(req.query.cya == "true"){
+                res.redirect(301, '/' + version + '/cya-purpose');
+            } else {
+                res.redirect(301, '/' + version + '/work-home');
+            }
+
+        }
+        
+    });
+
+    // Work home?
+    router.get('/' + version + '/work-home', function (req, res) {
+        res.render(version + '/work-home', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/work-home', function (req, res) {
+
+        req.session.myData.workHomeAnswer = req.body.workHome
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.workHomeAnswer = req.session.myData.workHomeAnswer || "no"
+        }
+
+        if(!req.session.myData.workHomeAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.workHome = {
+                "anchor": "workHome-1",
+                "message": "[error message]"
+            }
+        }
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/work-home', {
+                myData: req.session.myData
+            });
+        } else {
+
+            req.session.myData.selectedApplication.workhome = req.session.myData.workHomeAnswer
+           
+            if(req.query.cya == "true"){
+                res.redirect(301, '/' + version + '/cya-purpose');
+            } else {
+                res.redirect(301, '/' + version + '/work-small');
+            }
+
+        }
+        
+    });
+
+    // Work small?
+    router.get('/' + version + '/work-small', function (req, res) {
+        res.render(version + '/work-small', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/work-small', function (req, res) {
+
+        req.session.myData.workSmallAnswer = req.body.workSmall
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.workSmallAnswer = req.session.myData.workSmallAnswer || "no"
+        }
+
+        if(!req.session.myData.workSmallAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.workSmall = {
+                "anchor": "workSmall-1",
+                "message": "[error message]"
+            }
+        }
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/work-small', {
+                myData: req.session.myData
+            });
+        } else {
+
+            req.session.myData.selectedApplication.worksmall = req.session.myData.workSmallAnswer
+           
+            if(req.query.cya == "true"){
+                res.redirect(301, '/' + version + '/cya-purpose');
+            } else {
+                res.redirect(301, '/' + version + '/work-protected');
+            }
+
+        }
+        
+    });
+
+    // Work protected?
+    router.get('/' + version + '/work-protected', function (req, res) {
+        res.render(version + '/work-protected', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/work-protected', function (req, res) {
+
+        req.session.myData.workProtectedAnswer = req.body.workProtected
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.workProtectedAnswer = req.session.myData.workProtectedAnswer || "no"
+        }
+
+        if(!req.session.myData.workProtectedAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.workProtected = {
+                "anchor": "workProtected-1",
+                "message": "[error message]"
+            }
+        }
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/work-protected', {
+                myData: req.session.myData
+            });
+        } else {
+
+            req.session.myData.selectedApplication.workprotected = req.session.myData.workProtectedAnswer
+           
+            if(req.query.cya == "true"){
+                res.redirect(301, '/' + version + '/cya-purpose');
+            } else {
+                res.redirect(301, '/' + version + '/work-public');
+            }
+
+        }
+        
+    });
+
+    // Work public?
+    router.get('/' + version + '/work-public', function (req, res) {
+        res.render(version + '/work-public', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/work-public', function (req, res) {
+
+        req.session.myData.workPublicAnswer = req.body.workPublic
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.workPublicAnswer = req.session.myData.workPublicAnswer || "no"
+        }
+
+        if(!req.session.myData.workPublicAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.workPublic = {
+                "anchor": "workPublic-1",
+                "message": "[error message]"
+            }
+        }
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/work-public', {
+                myData: req.session.myData
+            });
+        } else {
+
+            req.session.myData.selectedApplication.workpublic = req.session.myData.workPublicAnswer
+           
+            if(req.session.myData.selectedApplication.workpublic == "Yes"){
+                res.redirect(301, '/' + version + '/work-extend');
+            } else {
+                if(req.query.cya == "true"){
+                    res.redirect(301, '/' + version + '/cya-purpose');
+                } else {
+                    res.redirect(301, '/' + version + '/important-populations');
+                }
+            }
+
+        }
+        
+    });
+
+    // Work extend?
+    router.get('/' + version + '/work-extend', function (req, res) {
+        res.render(version + '/work-extend', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/work-extend', function (req, res) {
+
+        req.session.myData.workExtendAnswer = req.body.workExtend
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.workExtendAnswer = req.session.myData.workExtendAnswer || "no"
+        }
+
+        if(!req.session.myData.workExtendAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.workExtend = {
+                "anchor": "workExtend-1",
+                "message": "[error message]"
+            }
+        }
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/work-public', {
+                myData: req.session.myData
+            });
+        } else {
+
+            req.session.myData.selectedApplication.workextend = req.session.myData.workExtendAnswer
+
+            if(req.session.myData.selectedApplication.workextend == "No"){
+                res.redirect(301, '/' + version + '/work-private');
+            } else {
+                if(req.query.cya == "true"){
+                    res.redirect(301, '/' + version + '/cya-purpose');
+                } else {
+                    res.redirect(301, '/' + version + '/important-populations');
+                }
+            }
+
+        }
+        
+    });
+
+    // Work private?
+    router.get('/' + version + '/work-private', function (req, res) {
+        res.render(version + '/work-private', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/work-private', function (req, res) {
+
+        req.session.myData.workPrivateAnswer = req.body.workPrivate
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.workPrivateAnswer = req.session.myData.workPrivateAnswer || "no"
+        }
+
+        if(!req.session.myData.workPrivateAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.workPrivate = {
+                "anchor": "workPrivate-1",
+                "message": "[error message]"
+            }
+        }
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/work-private', {
+                myData: req.session.myData
+            });
+        } else {
+
+            req.session.myData.selectedApplication.workprivate = req.session.myData.workPrivateAnswer
+           
+            if(req.query.cya == "true"){
+                res.redirect(301, '/' + version + '/cya-purpose');
+            } else {
+                res.redirect(301, '/' + version + '/important-populations');
+            }
+
+        }
+        
+    });
+
+    // Important populations?
+    router.get('/' + version + '/important-populations', function (req, res) {
+        res.render(version + '/important-populations', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/important-populations', function (req, res) {
+
+        req.session.myData.importantPopulationsAnswer = req.body.importantPopulations
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.importantPopulationsAnswer = req.session.myData.importantPopulationsAnswer || "no"
+        }
+
+        if(!req.session.myData.importantPopulationsAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.importantPopulations = {
+                "anchor": "importantPopulations-1",
+                "message": "[error message]"
+            }
+        }
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/important-populations', {
+                myData: req.session.myData
+            });
+        } else {
+
+            req.session.myData.selectedApplication.importantpopulations = req.session.myData.importantPopulationsAnswer
+           
             res.redirect(301, '/' + version + '/cya-purpose');
 
         }

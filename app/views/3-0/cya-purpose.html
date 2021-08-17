@@ -82,6 +82,115 @@
                     </dd>
                 </div>
 
+                <!-- Work home -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key" >
+                        Will the work be for home improvements?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{myData.selectedApplication.workhome}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="work-home?cya=true">
+                            Change<span class="govuk-visually-hidden"> </span>
+                        </a>
+                    </dd>
+                </div>
+
+                <!-- Work small -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key" >
+                        Will the work be for a building development of less than one hectare (ha)?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{myData.selectedApplication.worksmall}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="work-small?cya=true">
+                            Change<span class="govuk-visually-hidden"> </span>
+                        </a>
+                    </dd>
+                </div>
+
+                <!-- Work protected -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key" >
+                        Will the work be to protect listed buildings, scheduled monuments or places of worship?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{myData.selectedApplication.workprotected}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="work-protected?cya=true">
+                            Change<span class="govuk-visually-hidden"> </span>
+                        </a>
+                    </dd>
+                </div>
+
+                <!-- Work public -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key" >
+                        Will the work be for public buildings or public land?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{myData.selectedApplication.workpublic}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="work-public?cya=true">
+                            Change<span class="govuk-visually-hidden"> </span>
+                        </a>
+                    </dd>
+                </div>
+
+                <!-- Work extend -->
+                {% if myData.selectedApplication.workpublic == "Yes" %}
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key" >
+                        Will the work extend public buildings beyond existing boundaries?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{myData.selectedApplication.workextend}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="work-extend?cya=true">
+                            Change<span class="govuk-visually-hidden"> </span>
+                        </a>
+                    </dd>
+                </div>
+                {% endif %}
+
+                <!-- Work private -->
+                {% if myData.selectedApplication.workpublic == "Yes" and myData.selectedApplication.workextend == "No" %}
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key" >
+                        Will the work change any buildings or land to private use?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{myData.selectedApplication.workprivate}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="work-private?cya=true">
+                            Change<span class="govuk-visually-hidden"> </span>
+                        </a>
+                    </dd>
+                </div>
+                {% endif %}
+
+                <!-- important populations -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key" >
+                        Will the work affect a regionally or nationally important population of a European Protected Species?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{myData.selectedApplication.importantpopulations}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="important-populations?cya=true">
+                            Change<span class="govuk-visually-hidden"> </span>
+                        </a>
+                    </dd>
+                </div>
+
             </dl>
 
             <form method="POST">
