@@ -1,0 +1,94 @@
+{% extends "layout.html" %}
+
+{% set serviceName = myData.serviceName %}
+
+{% set _inError = myData.validationError == "true" %}
+
+{% block pageTitle %} 
+{% if _inError %}Error: {% endif %}Which species of bat use this roost?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        {% if _inError %}
+        <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+            <h2 class="govuk-error-summary__title" id="error-summary-title">
+                There is a problem
+            </h2>
+            <div class="govuk-error-summary__body">
+                <ul class="govuk-list govuk-error-summary__list">
+                    {% for name, item in myData.validationErrors %}
+                    <li>
+                        <a href="#{{item.anchor}}">{{item.message}}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+
+		<form method="POST">
+            <div class="govuk-form-group {% if _inError %}govuk-form-group--error{% endif %}">
+                <fieldset class="govuk-fieldset" aria-describedby="bat-species-hint">
+                    
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+                        <h1 class="govuk-fieldset__heading">
+                            Which species of bat use this roost?
+                        </h1>
+                    </legend>
+
+                    <div id="bat-species-hint" class="govuk-hint">
+                        Select all that apply.
+                    </div>
+
+                    {% if _inError %}
+                    <span id="speciesBat-error" class="govuk-error-message">
+                        <span class="govuk-visually-hidden">Error:</span>
+                        {{myData.validationErrors.speciesBatAnswer.message}}
+                    </span>
+                    {% endif %}
+
+                    <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+
+                        {% for _bat in myData.batSpecies2 %}
+
+                            {% set _selected = false %}
+                            {% for _batInRoost in myData.selectedRoost.bats %}
+                                {% if _bat.id == _batInRoost.id %}
+                                    {% set _selected = true %}
+                                {% endif %}
+                            {% endfor %}
+
+                            <div class="govuk-checkboxes__item">
+                                <input {% if _selected == true %}checked{% endif %} class="govuk-checkboxes__input" id="{{_bat.id}}" name="bat" type="checkbox" value="{{_bat.id}}">
+                                <label class="govuk-label govuk-checkboxes__label" for="{{_bat.id}}">
+                                    {{_bat.name}}
+                                </label>
+                            </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                </fieldset>
+            </div>
+		
+            {{govukButton({
+                text: "Continue"
+            })}}
+
+        </form>
+
+	</div>
+</div>
+
+
+{% endblock %}

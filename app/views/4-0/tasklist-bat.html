@@ -1,0 +1,128 @@
+{% extends "layout.html" %}
+
+{% set serviceName = myData.serviceName %}
+
+{% set _inError = myData.validationError == "true" %}
+
+{% block pageTitle %} 
+{% if _inError %}Error: {% endif %}[TO DO]
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    <!-- {% include "includes/back-link.html" %} -->
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        {{myData.serviceName}}
+      </h1>
+
+      <h2 class="govuk-heading-s govuk-!-margin-bottom-2">Application incomplete</h2>
+      <p class="govuk-body govuk-!-margin-bottom-7" >You have completed {{myData.tasklist.completed}} of 3 sections.</p>
+
+      <ol class="app-task-list">
+
+        <li>
+          <h2 class="app-task-list__section">
+            <span class="app-task-list__section-number">1. </span> Prepare application
+          </h2>
+          <ul class="app-task-list__items">
+
+            <!-- Purpose - section 1 -->
+            <li class="app-task-list__item">
+                {% set _status1 = myData.tasklist.sections["1"] %}
+
+                <span class="app-task-list__task-name">
+                    {% if _status1 == "completed" %}
+                    <a href="cya-purpose" class="govuk-link--no-visited-state" >
+                    {% else %}
+                    <a href="proposal-bat" class="govuk-link--no-visited-state" >
+                    {% endif %}
+                        Give work activity details
+                    </a>
+                </span>
+
+                {% if _status1 == "notstarted" %}
+                <strong class="govuk-tag govuk-tag--grey app-task-list__tag" >Not started</strong>
+                {% elif _status1 == "cannotstartyet" %}
+                <strong class="govuk-tag govuk-tag--grey app-task-list__tag" >Cannot start yet</strong>
+                {% elif _status1 == "inprogress" %}
+                <strong class="govuk-tag govuk-tag--blue app-task-list__tag" >In progress</strong>
+                {% elif _status1 == "completed" %}
+                <strong class="govuk-tag app-task-list__tag" >Completed</strong>
+                {% endif %}
+
+            </li>
+
+            <!-- Application details -->
+            <li class="app-task-list__item">
+
+                {% set _status2 = myData.tasklist.sections["2"] %}
+
+                <span class="app-task-list__task-name">
+                    {% if _status2 == "completed" %}
+                    <a href="cya-bat" class="govuk-link--no-visited-state" >
+                    {% else %}
+                    <a href="intro-roosts" class="govuk-link--no-visited-state"  >
+                    {% endif %}
+                        Add roosts the work will affect
+                    </a>
+                </span>
+
+                {% if _status2 == "notstarted" %}
+                <strong class="govuk-tag govuk-tag--grey app-task-list__tag" >Not started</strong>
+                {% elif _status2 == "cannotstartyet" %}
+                <strong class="govuk-tag govuk-tag--grey app-task-list__tag" >Cannot start yet</strong>
+                {% elif _status2 == "inprogress" %}
+                <strong class="govuk-tag govuk-tag--blue app-task-list__tag" >In progress</strong>
+                {% elif _status2 == "completed" %}
+                <strong class="govuk-tag app-task-list__tag" >Completed</strong>
+                {% endif %}
+
+              </li>
+
+          </ul>
+        </li>
+
+        <li>
+          <h2 class="app-task-list__section">
+            <span class="app-task-list__section-number">2. </span> Apply
+          </h2>
+          <ul class="app-task-list__items">
+            <li class="app-task-list__item">
+
+                {% set _status3 = myData.tasklist.sections["3"] %}
+                <span class="app-task-list__task-name">
+
+                {% if _status3 == "cannotstartyet" %}
+                Send application
+                {% else %}
+                <a href="complete-bat" class="govuk-link--no-visited-state"  >
+                    Send application
+                </a>
+                {% endif %}
+
+              </span>
+
+                {% if _status3 == "notstarted" %}
+                <strong class="govuk-tag govuk-tag--grey app-task-list__tag" >Not started</strong>
+                {% elif _status3 == "cannotstartyet" %}
+                <strong class="govuk-tag govuk-tag--grey app-task-list__tag" >Cannot start yet</strong>
+                {% elif _status3 == "inprogress" %}
+                <strong class="govuk-tag govuk-tag--blue app-task-list__tag" >In progress</strong>
+                {% elif _status3 == "completed" %}
+                <strong class="govuk-tag app-task-list__tag" >Completed</strong>
+                {% endif %}
+
+            </li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+  </div>
+
+{% endblock %}

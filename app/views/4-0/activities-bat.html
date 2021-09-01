@@ -1,0 +1,108 @@
+{% extends "layout.html" %}
+
+{% set serviceName = myData.serviceName %}
+
+{% set _inError = myData.validationError == "true" %}
+
+{% block pageTitle %} 
+{% if _inError %}Error: {% endif %}How will the activity affect the bats in this roost?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {% if _inError %}
+        <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+            <h2 class="govuk-error-summary__title" id="error-summary-title">
+                There is a problem
+            </h2>
+            <div class="govuk-error-summary__body">
+                <ul class="govuk-list govuk-error-summary__list">
+                    {% for name, item in myData.validationErrors %}
+                    <li>
+                        <a href="#{{item.anchor}}">{{item.message}}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+
+        <h1 class="govuk-heading-xl">
+            How will the activity affect the bats in this roost?
+        </h1>
+
+		<form method="POST">
+            <div class="govuk-form-group">
+
+                <!-- TODO only display bat activities if count of bat species is 0 -->
+
+                {% for _bat in myData.selectedRoost.bats %}
+                {% set _batID = _bat.id %}
+
+                <div class="govuk-form-group {% if myData.validationErrors[_batID] %}govuk-form-group--error{% endif %} govuk-!-margin-bottom-8">
+                    <fieldset class="govuk-fieldset" aria-describedby="bat-activity-hint-{{_batID}}">
+                        
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                            {{_bat.name}}
+                        </legend>
+
+                        <div id="bat-activity-hint-{{_batID}}" class="govuk-hint">
+                            Select all that apply.
+                        </div>
+
+                        {% if myData.validationErrors[_batID] %}
+                        <span id="{{_batID}}-error" class="govuk-error-message">
+                            <span class="govuk-visually-hidden">Error:</span>
+                            {{myData.validationErrors[_batID].message}}
+                        </span>
+                        {% endif %}
+
+                        <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                            {% for _batActivity in myData.batActivities2 %}
+
+                                {% set _batID_batActivity = _batID + "-" + loop.index %}
+
+                                {% set _selected = false %}
+                                {% for _savedBatActivity in _bat.activities %}
+                                    {% if _batActivity.id == _savedBatActivity.id %}
+                                        {% set _selected = true %}
+                                    {% endif %}
+                                {% endfor %}
+
+                                <div class="govuk-checkboxes__item">
+
+                                    <input {% if _selected %}checked{% endif %} class="govuk-checkboxes__input" id="{{_batID_batActivity}}" name="{{_batID}}" type="checkbox" value="{{_batActivity.id}}" >
+                                    <label class="govuk-label govuk-checkboxes__label" for="{{_batID_batActivity}}">
+                                    {{_batActivity.name}}
+                                    </label>
+
+                                </div>
+
+                            {% endfor %}
+                        </div>
+                    </fieldset>
+                </div>
+                {% endfor %}
+
+
+            </div>
+		
+            {{govukButton({
+                text: "Continue"
+            })}}
+
+        </form>
+
+	</div>
+</div>
+
+
+{% endblock %}

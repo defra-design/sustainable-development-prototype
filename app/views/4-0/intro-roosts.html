@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% set serviceName = myData.serviceName %}
+
+{% block pageTitle %} 
+Tell us about each bat roost your work will affect
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        <form method="POST">
+
+            <h1 class="govuk-heading-xl">
+                Tell us about each bat roost your work will affect
+            </h1>
+
+            <p class="govuk-body">We’ll ask you about each roost and what each species of bat is using it for.</p>
+
+            <p class="govuk-body">You can add more than one roost.</p>
+
+            {{govukButton({
+                text: "Add the first roost"
+            })}}
+
+        </form>
+
+	</div>
+</div>
+
+
+{% endblock %}

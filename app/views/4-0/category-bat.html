@@ -1,0 +1,84 @@
+{% extends "layout.html" %}
+
+{% set serviceName = myData.serviceName %}
+
+{% set _inError = myData.validationError == "true" %}
+
+{% block pageTitle %} 
+{% if _inError %}Error: {% endif %}Which type of development work or activity do you plan to do?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {% if _inError %}
+        <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+            <h2 class="govuk-error-summary__title" id="error-summary-title">
+                There is a problem
+            </h2>
+            <div class="govuk-error-summary__body">
+                <ul class="govuk-list govuk-error-summary__list">
+                    {% for name, item in myData.validationErrors %}
+                    <li>
+                        <a href="#{{item.anchor}}">{{item.message}}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+
+		<form method="POST">
+
+            <div class="govuk-form-group {% if _inError %}govuk-form-group--error{% endif %}">
+                <fieldset class="govuk-fieldset" >
+
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+                    <h1 class="govuk-fieldset__heading">
+                        Which type of development work or activity do you plan to do?
+                    </h1>
+                    </legend>
+
+                    {% if _inError %}
+                    <span id="categoryBat-error" class="govuk-error-message">
+                        <span class="govuk-visually-hidden">Error:</span>
+                        {{myData.validationErrors.categoryBat.message}}
+                    </span>
+                    {% endif %}
+
+                    <div class="govuk-radios" data-module="govuk-radios">
+
+                    {% set _selected = myData.selectedApplication.categoryBat.id %}
+
+                    {% for _categoryBat in myData.workCategories %}
+
+                        <div class="govuk-radios__item">
+                            <input {% if _selected == _categoryBat.id %}checked{% endif %} class="govuk-radios__input" id="{{_categoryBat.id}}" name="categoryBat" type="radio" value="{{_categoryBat.id}}" >
+                            <label class="govuk-label govuk-radios__label" for="{{_categoryBat.id}}">
+                                {{_categoryBat.name}}
+                            </label>
+                        </div>
+
+                    {% endfor %}
+
+                    </div>
+                </fieldset>
+            </div>
+
+            {{govukButton({
+                text: "Continue"
+            })}}
+
+        </form>
+
+	</div>
+</div>
+
+{% endblock %}
