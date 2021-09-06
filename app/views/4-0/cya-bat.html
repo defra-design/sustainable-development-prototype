@@ -51,23 +51,6 @@
                     </dd>
                 </div>
 
-                <!-- Existing number of bats -->
-                <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key">
-                        How many bats use this roost?
-                    </dt>
-                    <dd class="govuk-summary-list__value">
-                        {% for _bat in _roost.bats %}
-                            {{_bat.numberUsing}} {{_bat.name}}{% if loop.last != true %}<br>{% endif %}
-                        {% endfor %}
-                    </dd>
-                    <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link govuk-link--no-visited-state" href="numbers-bat?roost={{_roost.id}}&cya=true">
-                            Change<span class="govuk-visually-hidden"> </span>
-                        </a>
-                    </dd>
-                </div>
-
                 <!-- Roost use -->
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
@@ -85,6 +68,23 @@
                     </dd>
                     <dd class="govuk-summary-list__actions">
                         <a class="govuk-link govuk-link--no-visited-state" href="using-roost?roost={{_roost.id}}&cya=true">
+                            Change<span class="govuk-visually-hidden"> </span>
+                        </a>
+                    </dd>
+                </div>
+
+                <!-- Existing number of bats -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        How many bats use this roost?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {% for _bat in _roost.bats %}
+                            {{_bat.numberUsing}} {{_bat.name}}{% if loop.last != true %}<br>{% endif %}
+                        {% endfor %}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="numbers-bat?roost={{_roost.id}}&cya=true">
                             Change<span class="govuk-visually-hidden"> </span>
                         </a>
                     </dd>
