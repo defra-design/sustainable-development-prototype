@@ -4,8 +4,10 @@
 
 {% set _inError = myData.validationError == "true" %}
 
+{% set _species = myData.selectedRoost.bats[0] %}
+
 {% block pageTitle %} 
-{% if _inError %}Error: {% endif %}How many bats use this roost?
+{% if _inError %}Error: {% endif %}How many {{_species.name}} bats are using this roost?
 {% endblock %}
 
 {% block beforeContent %}
@@ -36,14 +38,17 @@
         {% endif %}
 
         <h1 class="govuk-heading-xl">
-            How many bats use this roost?
+            How many {{_species.name}} bats are using this roost?
         </h1>
 
 		<form method="POST">
 
 
             <div class="govuk-form-group" >
-                <p class="govuk-body">Enter the maximum number based on the bat survey.</p>
+                <!-- <p class="govuk-body">Enter the maximum number based on the bat survey.</p> -->
+
+
+
                 <!--Then all species-->
                 {% for _bat in myData.selectedRoost.bats %}
                     {% set _batID = _bat.id %}
@@ -59,7 +64,7 @@
                     <div class="govuk-form-group {% if myData.validationErrors[_numberUsingName] %}govuk-form-group--error{% endif %}">
                         <h1 class="govuk-label-wrapper">
                             <label class="govuk-label" for="numberUsing{{_batID}}">
-                                {{_bat.name}}
+                                Enter the maximum number based on the bat surveys.
                             </label>
                         </h1>
                         {% if myData.validationErrors[_numberUsingName] %}
@@ -85,6 +90,3 @@
 
 
 {% endblock %}
-
-{% block pageScripts %}
-{% endblock pageScripts %}

@@ -4,8 +4,10 @@
 
 {% set _inError = myData.validationError == "true" %}
 
+{% set _species = myData.selectedRoost.bats[0] %}
+
 {% block pageTitle %} 
-{% if _inError %}Error: {% endif %}How will the activity affect the bats in this roost?
+{% if _inError %}Error: {% endif %}What will you do to affect the {{_species}} bats in this roost?
 {% endblock %}
 
 {% block beforeContent %}
@@ -35,10 +37,6 @@
         </div>
         {% endif %}
 
-        <h1 class="govuk-heading-xl">
-            How will the activity affect the bats in this roost?
-        </h1>
-
 		<form method="POST">
             <div class="govuk-form-group">
 
@@ -50,8 +48,10 @@
                 <div class="govuk-form-group {% if myData.validationErrors[_batID] %}govuk-form-group--error{% endif %} govuk-!-margin-bottom-8">
                     <fieldset class="govuk-fieldset" aria-describedby="bat-activity-hint-{{_batID}}">
                         
-                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                            {{_bat.name}}
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+                            <h1 class="govuk-fieldset__heading">
+                                What will you do to affect the {{_bat.name}} bats in this roost?
+                            </h1>
                         </legend>
 
                         <div id="bat-activity-hint-{{_batID}}" class="govuk-hint">
@@ -66,7 +66,7 @@
                         {% endif %}
 
                         <div class="govuk-checkboxes" data-module="govuk-checkboxes">
-                            {% for _batActivity in myData.batActivities2 %}
+                            {% for _batActivity in myData.batActivities3 %}
 
                                 {% set _batID_batActivity = _batID + "-" + loop.index %}
 

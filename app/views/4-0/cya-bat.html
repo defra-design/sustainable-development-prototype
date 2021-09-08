@@ -2,8 +2,10 @@
 
 {% set serviceName = myData.serviceName %}
 
+{% set _inError = myData.validationError == "true" %}
+
 {% block pageTitle %} 
-[TO DO]
+{% if _inError %}Error: {% endif %}Check your answers
 {% endblock %}
 
 {% block beforeContent %}
@@ -54,16 +56,19 @@
                 <!-- Roost use -->
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        What are the bats using this roost for?
+                        Roost type
                     </dt>
                     <dd class="govuk-summary-list__value">
                         {% for _bat in _roost.bats %}
-                            {{_bat.name}}:<br>
-                            <ul class="govuk-list govuk-list--bullet">
-                            {% for _batRoostUse in _bat.roostUses %}
-                            <li>{{_batRoostUse.name}}</li>
-                            {% endfor %}
-                            </ul>
+                            {% if _bat.roostUses.length == 1 %}
+                                {{_bat.roostUses[0].name}}
+                            {% else %}
+                                <ul class="govuk-list govuk-list--bullet">
+                                    {% for _batRoostUse in _bat.roostUses %}
+                                    <li>{{_batRoostUse.name}}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
                         {% endfor %}
                     </dd>
                     <dd class="govuk-summary-list__actions">
@@ -76,11 +81,11 @@
                 <!-- Existing number of bats -->
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        How many bats use this roost?
+                        Number of bats
                     </dt>
                     <dd class="govuk-summary-list__value">
                         {% for _bat in _roost.bats %}
-                            {{_bat.numberUsing}} {{_bat.name}}{% if loop.last != true %}<br>{% endif %}
+                            {{_bat.numberUsing}}
                         {% endfor %}
                     </dd>
                     <dd class="govuk-summary-list__actions">
@@ -90,45 +95,22 @@
                     </dd>
                 </div>
 
-                <!-- Roost activities -->
-                <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key">
-                        How will the activity affect this roost?
-                    </dt>
-                    <dd class="govuk-summary-list__value">
-                        {% if _roost.activity.id == '_roostActivity-3' %}
-                            None
-                        {% else %}
-                            {{_roost.activity.name}}:<br>
-                            <ul class="govuk-list govuk-list--bullet">
-                                {% for _roostActivityMethod in _roost.activity.methods %}
-                                    <li>{{_roostActivityMethod.name}}</li>
-                                {% endfor %}
-                            </ul>
-                        {% endif %}
-                    </dd>
-                    <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link govuk-link--no-visited-state" href="activities-roost?roost={{_roost.id}}&cya=true">
-                            Change<span class="govuk-visually-hidden"> </span>
-                        </a>
-                    </dd>
-                </div>
-
                 <!-- Bat activities -->
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        How will the activity affect the bats in this roost?
+                        Affect on bats
                     </dt>
                     <dd class="govuk-summary-list__value">
                         {% for _bat in _roost.bats %}
-                            {{_bat.name}}:<br>
-
-                            <ul class="govuk-list govuk-list--bullet">
-                            {% for _batActivity in _bat.activities %}
-                                <li>{{_batActivity.name}}</li>
-                            {% endfor %}
-                            </ul>
-
+                            {% if _bat.activities.length == 1 %}
+                                {{_bat.activities[0].name}}
+                            {% else %}
+                                <ul class="govuk-list govuk-list--bullet">
+                                    {% for _batActivity in _bat.activities %}
+                                    <li>{{_batActivity.name}}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
                         {% endfor %}
 
                     </dd>
@@ -143,18 +125,45 @@
             {% endfor %}
 
             <form method="POST">
-                {{govukButton({
-                    text: "Add another roost",
-                    classes: 'govuk-button--secondary govuk-!-margin-bottom-9'
-                })}}
-                <input type="hidden" value="yes" name="addRoost">
-            </form>
 
-            <form method="POST">
+                <div class="govuk-form-group {% if _inError %}govuk-form-group--error{% endif %}">
+                    <fieldset class="govuk-fieldset" aria-describedby="addRoost-hint">
+
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                            <h1 class="govuk-fieldset__heading">
+                                Do you want to add another bat roost?
+                            </h1>
+                        </legend>
+
+                        {% if _inError %}
+                        <span id="speciesBat-error" class="govuk-error-message">
+                            <span class="govuk-visually-hidden">Error:</span>
+                            {{myData.validationErrors.addRoost.message}}
+                        </span>
+                        {% endif %}
+
+                        <div class="govuk-radios">
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="addRoost-1" name="addRoost" type="radio" value="yes">
+                                <label class="govuk-label govuk-radios__label" for="addRoost-1">
+                                Yes
+                                </label>
+                            </div>
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="addRoost-2" name="addRoost" type="radio" value="no">
+                                <label class="govuk-label govuk-radios__label" for="addRoost-2">
+                                No
+                                </label>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </div>
+
                 {{govukButton({
-                    text: "Confirm"
+                    text: "Continue"
                 })}}
-                <!-- <input type="hidden" value="yes" name="addApplication"> -->
+
             </form>
 
 	</div>

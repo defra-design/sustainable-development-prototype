@@ -4,8 +4,10 @@
 
 {% set _inError = myData.validationError == "true" %}
 
+{% set _species = myData.selectedRoost.bats[0] %}
+
 {% block pageTitle %} 
-{% if _inError %}Error: {% endif %}What are the bats using this roost for?
+{% if _inError %}Error: {% endif %}What are the {{_species.name}} using this roost for?
 {% endblock %}
 
 {% block beforeContent %}
@@ -35,10 +37,6 @@
         </div>
         {% endif %}
 
-        <h1 class="govuk-heading-xl">
-            What are the bats using this roost for?
-        </h1>
-
 		<form method="POST">
             <div class="govuk-form-group">
 
@@ -47,9 +45,11 @@
 
                 <div class="govuk-form-group {% if myData.validationErrors[_batID] %}govuk-form-group--error{% endif %} govuk-!-margin-bottom-8">
                     <fieldset class="govuk-fieldset" aria-describedby="bat-use-hint-{{_batID}}">
-                        
-                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                            {{_bat.name}}
+
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+                            <h1 class="govuk-fieldset__heading">
+                                What are the {{_bat.name}} bats using this roost for?
+                            </h1>
                         </legend>
 
                         <div id="bat-use-hint-{{_batID}}" class="govuk-hint">
@@ -64,7 +64,7 @@
                         {% endif %}
 
                         <div class="govuk-checkboxes" data-module="govuk-checkboxes">
-                            {% for _roostUse in myData.roostUses2 %}
+                            {% for _roostUse in myData.roostUses %}
 
                                 {% set _batID_roostUse = _batID + "-" + loop.index %}
 

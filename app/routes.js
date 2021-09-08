@@ -278,6 +278,40 @@ var _myData = {
             "name": "Disturb with noise or vibration"
         }
     ],
+    "batActivities3": [
+        {
+            "id": "_batActivity-1",
+            "name": "Disturb with light"
+        },
+        {
+            "id": "_batActivity-2",
+            "name": "Disturb with noise or vibration"
+        },
+        {
+            "id": "_batActivity-3",
+            "name": "Disturb with an endoscope"
+        },
+        {
+            "id": "_batActivity-4",
+            "name": "Capture by hand or net"
+        },
+        {
+            "id": "_batActivity-5",
+            "name": "Move them from the roost"
+        },
+        {
+            "id": "_batActivity-6",
+            "name": "Temporarily block roost access"
+        },
+        {
+            "id": "_batActivity-7",
+            "name": "Permanently block roost access"
+        },
+        {
+            "id": "_batActivity-8",
+            "name": "Destroy their roost"
+        }
+    ],
     "roostActivities": [
         {
             "id": "_roostActivity-1",

@@ -5,7 +5,7 @@
 {% set _inError = myData.validationError == "true" %}
 
 {% block pageTitle %} 
-{% if _inError %}Error: {% endif %}Which species of bat use this roost?
+{% if _inError %}Error: {% endif %}Which species of bat is using this roost?
 {% endblock %}
 
 {% block beforeContent %}
@@ -41,13 +41,9 @@
                     
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
                         <h1 class="govuk-fieldset__heading">
-                            Which species of bat use this roost?
+                            Which species of bat is using this roost?
                         </h1>
                     </legend>
-
-                    <div id="bat-species-hint" class="govuk-hint">
-                        Select all that apply.
-                    </div>
 
                     {% if _inError %}
                     <span id="speciesBat-error" class="govuk-error-message">
