@@ -7,7 +7,7 @@
 {% set _species = myData.selectedRoost.bats[0] %}
 
 {% block pageTitle %} 
-{% if _inError %}Error: {% endif %}How will you affect the {{_species}} bats in this roost?
+{% if _inError %}Error: {% endif %}How will you affect the {{_species.name}} bats in this roost?
 {% endblock %}
 
 {% block beforeContent %}
@@ -50,9 +50,10 @@
                         
                         <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
                             <h1 class="govuk-fieldset__heading">
-                                How will you affect the {{_species}} bats in this roost?
+                                How will you affect the {{_bat.name}} bats in this roost?
                             </h1>
                         </legend>
+                        
 
                         <div id="bat-activity-hint-{{_batID}}" class="govuk-hint">
                             Select all that apply.
