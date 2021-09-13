@@ -234,7 +234,7 @@ var _myData = {
         {
             "id": "_roostUse-2",
             "name": "Hibernation"
-        }
+        },
         {
             "id": "_roostUse-3",
             "name": "Day"
