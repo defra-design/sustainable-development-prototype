@@ -226,6 +226,44 @@ var _myData = {
             "name": "Mating"
         }
     ],
+    "roostUses3": [
+        {
+            "id": "_roostUse-1",
+            "name": "Maternity"
+        },
+        {
+            "id": "_roostUse-2",
+            "name": "Hibernation"
+        }
+        {
+            "id": "_roostUse-3",
+            "name": "Day"
+        },
+        {
+            "id": "_roostUse-4",
+            "name": "Night"
+        },
+        {
+            "id": "_roostUse-5",
+            "name": "Feeding"
+        },
+        {
+            "id": "_roostUse-6",
+            "name": "Transitional/Occasional"
+        },
+        {
+            "id": "_roostUse-7",
+            "name": "Satellite"
+        },
+        {
+            "id": "_roostUse-8",
+            "name": "Swarming"
+        },
+        {
+            "id": "_roostUse-9",
+            "name": "Mating"
+        }
+    ],
     "batActivities": [
         {
             "id": "_batActivity-1",
