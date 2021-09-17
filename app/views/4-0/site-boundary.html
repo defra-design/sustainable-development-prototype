@@ -34,8 +34,10 @@ TO DO
     {% endif %}
 
     <h1 class="govuk-heading-xl">
-      Title
+      Draw the area of planned activity
     </h1>
+
+    <p class="govuk-body">Your drawing must include all habitats used by the species on the site.</p>
 
   </div>
 </div>
@@ -45,7 +47,7 @@ TO DO
 
 	<div class="govuk-grid-row">
 		<div class="govuk-grid-column-two-thirds" >
-			<h3 class="govuk-heading-s govuk-!-margin-bottom-2">[title]</h3>
+			<h3 class="govuk-heading-s govuk-!-margin-bottom-2">Find the location</h3>
 		</div>
 	</div>
 	
@@ -61,16 +63,19 @@ TO DO
                 <div class="govuk-radios__item">
                     <input class="govuk-radios__input" id="findlocation-1" name="findlocation" type="radio" value="place" data-aria-controls="conditional-place">
                     <label class="govuk-label govuk-radios__label" for="findlocation-1">
-                    [postcode/place]
+                      Place or postcode
                     </label>
                 </div>
 
                 <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-place">
                   <div class="govuk-form-group govuk-!-margin-bottom-5" >
                     <div class="search-wrapper govuk-form-group search-wrapper-das search-wrapper-das-small" >
-                        <label for="search-location" class="govuk-label" >
-                            [label]
-                        </label>
+                        <!-- <label for="search-location" class="govuk-label" >
+                          For example, Bakewell or WA4 1AB
+                        </label> -->
+                        <span class="govuk-hint">
+                          For example, Bakewell or WA4 1AB
+                        </span>
                         <div class="search-input-wrapper">
                             <input type="search" value="" id="search-location" name="location" title="Search" class="govuk-input ">
                             <div class="search-input-submit-wrapper">
@@ -85,16 +90,19 @@ TO DO
                 <div class="govuk-radios__item">
                     <input class="govuk-radios__input" id="findlocation-2" name="findlocation" type="radio" value="gridref" data-aria-controls="conditional-gridref">
                     <label class="govuk-label govuk-radios__label" for="findlocation-2">
-                    [os grid]
+                      National Grid Reference
                     </label>
                 </div>
 
                 <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-gridref">
                   <div class="govuk-form-group govuk-!-margin-bottom-5" >
                     <div class="search-wrapper govuk-form-group search-wrapper-das search-wrapper-das-small" >
-                        <label for="search-gridref" class="govuk-label" >
-                            [label]
-                        </label>
+                        <!-- <label for="search-gridref" class="govuk-label" >
+                          For example, NY395557
+                        </label> -->
+                        <span class="govuk-hint">
+                          For example, NY395557
+                        </span>
                         <div class="search-input-wrapper">
                             <input type="search" value="" id="search-gridref" name="gridref" title="Search" class="govuk-input ">
                             <div class="search-input-submit-wrapper">
@@ -175,11 +183,6 @@ TO DO
 </div> -->
 
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">
-        Sub header
-      </h1>
-    </div>
   
     <div class="govuk-grid-column-full">
 
@@ -216,7 +219,7 @@ TO DO
                 </div>
               </div> -->
               <button disabled class="govuk-button govuk-button--secondary" data-module="govuk-button" name="delete-shape" value="delete-shape" id="deleteShapeBtn">
-                [clear/delete boundary/area]
+                Delete area
               </button>
             </fieldset>
           </div>
