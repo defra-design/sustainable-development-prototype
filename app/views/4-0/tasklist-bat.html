@@ -58,6 +58,32 @@
 
             </li>
 
+            <!-- Site - section 3 -->
+            <li class="app-task-list__item">
+              {% set _status4 = myData.tasklist.sections["4"] %}
+
+              <span class="app-task-list__task-name">
+                  {% if _status4 == "completed" %}
+                  <a href="cya-site" class="govuk-link--no-visited-state" >
+                  {% else %}
+                  <a href="site-boundary" class="govuk-link--no-visited-state" >
+                  {% endif %}
+                    Give the location of planned activity
+                  </a>
+              </span>
+
+              {% if _status4 == "notstarted" %}
+              <strong class="govuk-tag govuk-tag--grey app-task-list__tag" >Not started</strong>
+              {% elif _status4 == "cannotstartyet" %}
+              <strong class="govuk-tag govuk-tag--grey app-task-list__tag" >Cannot start yet</strong>
+              {% elif _status4 == "inprogress" %}
+              <strong class="govuk-tag govuk-tag--blue app-task-list__tag" >In progress</strong>
+              {% elif _status4 == "completed" %}
+              <strong class="govuk-tag app-task-list__tag" >Completed</strong>
+              {% endif %}
+
+          </li>
+
             <!-- Application details -->
             <li class="app-task-list__item">
 

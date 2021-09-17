@@ -96,7 +96,7 @@ module.exports = function (router,_myData) {
             if(value == "completed"){
                 req.session.myData.tasklist.completed++
             } else {
-                if(key == "1" || key == "2"){
+                if(key == "1" || key == "2" || key == "4"){
                     cansubmit = false
                 }
             }
@@ -123,11 +123,17 @@ module.exports = function (router,_myData) {
             "year": "2021"
         }
 
+        //Tasklist
+        // 1 = purpose
+        // 2 = application details
+        // 3 = send
+        // 4 = site
         req.session.myData.tasklist = {
             "sections": {
                 "1": "notstarted",
                 "2": "notstarted",
-                "3": "cannotstartyet"
+                "3": "cannotstartyet",
+                "4": "notstarted"
             },
             "completed": 0
         }
@@ -1103,5 +1109,33 @@ module.exports = function (router,_myData) {
         });
     });
      
+
+    //Site boundary
+    router.get('/' + version + '/site-boundary', function (req, res) {
+
+        req.session.myData.tasklist.sections["4"] = "inprogress"
+
+        res.render(version + '/site-boundary', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/site-boundary', function (req, res) {
+        res.redirect(301, '/' + version + '/cya-site');
+    });  
+
+    //CYA Site boundary
+    router.get('/' + version + '/cya-site', function (req, res) {
+        res.render(version + '/cya-site', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/cya-site', function (req, res) {
+
+        req.session.myData.tasklist.sections["4"] = "completed"
+
+        res.redirect(301, '/' + version + '/tasklist-bat');
+    });  
+
+
 
 }
