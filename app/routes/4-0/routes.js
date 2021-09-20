@@ -1118,7 +1118,7 @@ module.exports = function (router,_myData) {
         req.session.myData.findlocationplace = req.query.location
         req.session.myData.findlocationgridref = req.query.gridref
 
-        if(!req.query.location && !req.query.gridref){
+        if((req.session.myData.findlocation == "place" && !req.query.location) || (req.session.myData.findlocation == "gridref" && !req.query.gridref)){
             req.session.myData.findlocation = ""
         }
 
