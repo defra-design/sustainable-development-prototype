@@ -197,6 +197,8 @@ module.exports = function (router,_myData) {
         req.session.myData.roost = req.query.roost || req.session.myData.roost
         setSelectedRoost(req,req.session.myData.roost)
 
+        req.session.myData.findlocation = req.query.findlocation || req.session.myData.findlocation
+
         next()
     });
 
@@ -1112,6 +1114,13 @@ module.exports = function (router,_myData) {
 
     //Site boundary
     router.get('/' + version + '/site-boundary', function (req, res) {
+
+        req.session.myData.findlocationplace = req.query.location
+        req.session.myData.findlocationgridref = req.query.gridref
+
+        if(!req.query.location && !req.query.gridref){
+            req.session.myData.findlocation = ""
+        }
 
         req.session.myData.tasklist.sections["4"] = "inprogress"
 

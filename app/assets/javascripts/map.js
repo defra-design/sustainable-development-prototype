@@ -1,4 +1,4 @@
-function map(){
+function map(_location){
     
     //MAPS
 
@@ -69,14 +69,36 @@ function map(){
 
   // If statement that changes the map layers on the confirm page
   // I need to look at pin location changes next.
+
+    var _lon = -1.464854,
+        _lat = 52.561928,
+        _zoom = 6.6;
+
+  if(_location == "place" || _location == "gridref"){
+    _lon = -1.257677;
+    _lat = 51.752022;
+    _zoom = 12;
+  }
+//   Oxford
+// lon = -1.257677
+// lat = 51.752022
+// zoom = 15
+
+//   England
+// lon = -1.464854
+// lat = 52.561928
+// zoom = 6.6
+
+
+
+
   if(document.getElementById("map").classList.contains("map--confirm")){
     var map = new ol.Map({
       target: 'map',
       layers: [ aerialAndStreetsLayer, polygonLayer ],
       view: new ol.View({
-        // centre point of england = lat = 52.561928, long = -1.464854
-        center: ol.proj.fromLonLat([-1.464854, 52.561928]),
-        zoom: 6.6, //Initial Zoom Level
+        center: ol.proj.fromLonLat([_lon, _lat]),
+        zoom: _zoom, //Initial Zoom Level
         maxZoom: 19
       }),
       interactions: ol.interaction.defaults({
