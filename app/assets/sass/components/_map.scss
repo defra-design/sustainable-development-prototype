@@ -1,3 +1,75 @@
+// open layers elements
+
+// <div class="ol-zoom ol-unselectable ol-control" style="pointer-events: auto;">
+//     <button class="ol-zoom-in" type="button" title="Zoom in">+</button>
+//     <button class="ol-zoom-out" type="button" title="Zoom out">−</button>
+// </div>
+
+.ol-zoom {
+  top: inherit !important;
+  left: inherit !important;
+  bottom: 10px !important;
+  right: 10px !important;
+}
+
+.ol-control {
+  background-color: white !important;
+  border-radius: 0px !important;
+  padding: 0px !important;
+}
+
+.ol-zoom .ol-zoom-in,
+.ol-zoom .ol-zoom-out {
+  border-radius: 0px !important;
+}
+
+.ol-control button {
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: #0b0c0c !important;
+  font-size: 2.14em !important;
+  font-weight: 400 !important;
+  font-family: "GDS Transport", arial, sans-serif !important;
+  // text-decoration: none;
+  // text-align: center;
+  height: 40px !important;
+  width: 40px !important;
+  // line-height: .4em;
+  background-color: white !important;
+  border: none !important;
+  border-radius: 0 !important;
+}
+
+.ol-control button:focus, 
+.ol-control button:hover {
+  text-decoration: none !important;
+  background-color: #dbdad9 !important;
+}
+
+.ol-control button:hover {
+  cursor: pointer !important;
+}
+
+.map-container-2 {
+  position: relative;
+}
+
+.map-delete-area-container {
+  position: absolute;
+  bottom: 10px;
+  right: 60px;
+  pointer-events: auto;
+}
+.map-delete-area {
+  margin: 0;
+  background-color: white;
+  box-shadow: none;
+  line-height: 1.2;
+}
+
+
+
 /* STYLES FOR CUSTOM DETAILS COMPONENT */
 
 .map {

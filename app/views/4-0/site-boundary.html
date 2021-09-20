@@ -186,7 +186,9 @@ TO DO
   
     <div class="govuk-grid-column-full">
 
-        <div id="map" class="map map--confirm govuk-form-group">
+      <div class="map-container-2 govuk-form-group">
+        
+        <div id="map" class="map map--confirm">
 
             <!-- <div class="os-credits">
               <div class="os-credits__logo">
@@ -198,13 +200,21 @@ TO DO
                 </a>
               </div>
             </div> -->
+
+            
     
+          </div>
+          <div class="map-delete-area-container">
+            <button disabled class="govuk-button govuk-button--secondary map-delete-area" data-module="govuk-button" name="delete-shape" value="delete-shape" id="deleteShapeBtn">
+              Delete area
+            </button>
+          </div>
         </div>
 
-        <div class="govuk-form-group markerRadiosContainer">
+        <!-- <div class="govuk-form-group markerRadiosContainer">
           <div class="govuk-form-group">
             <fieldset class="govuk-fieldset" aria-describedby="changed-name-hint">
-              <!-- <div class="govuk-radios govuk-radios--inline govuk-radios--small">
+              <div class="govuk-radios govuk-radios--inline govuk-radios--small">
                 <div class="govuk-radios__item">
                   <input class="govuk-radios__input" id="move-marker" name="marker-or-shape" type="radio" value="move-marker" >
                   <label class="govuk-label govuk-radios__label" for="move-marker">
@@ -217,13 +227,11 @@ TO DO
                     Draw boundary
                   </label>
                 </div>
-              </div> -->
-              <button disabled class="govuk-button govuk-button--secondary" data-module="govuk-button" name="delete-shape" value="delete-shape" id="deleteShapeBtn">
-                Delete area
-              </button>
+              </div>
+              
             </fieldset>
           </div>
-        </div>
+        </div> -->
 
 	</div>
 </div>

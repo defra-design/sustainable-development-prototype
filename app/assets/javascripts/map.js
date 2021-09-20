@@ -27,7 +27,8 @@ function map(){
       color: 'rgba(255, 255, 255, 0.25)'
     }),
     stroke: new ol.style.Stroke({
-        color: 'rgba(29, 112, 184, 1)', //blue
+        //color: 'rgba(29, 112, 184, 1)', //blue
+        color: '#f47738',  //orange
         // color: '#1d70b8', //blue
     //   color: '#d4351c', //red
       width: 3
@@ -245,7 +246,9 @@ function map(){
     //   color: 'rgba(255, 255, 255, 0.2)'
     // }),
     stroke: new ol.style.Stroke({
-        color: 'rgba(29, 112, 184, 1)', //blue
+        // color: '#FFFFFF', //white
+        color: '#f47738',  //orange
+        // color: 'rgba(29, 112, 184, 1)', //blue
       //color: '#1d70b8', //blue
     //   color: '#d4351c', //red
       width: 3
