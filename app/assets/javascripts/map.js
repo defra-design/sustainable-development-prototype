@@ -12,7 +12,6 @@ function map(_location){
       })
   });
 
-  
 
   var mapboxLayer = new ol.layer.MapboxVector ({
     styleUrl: 'mapbox://styles/ant-defra/cknou8uzf5hfw17qzo0076s58',
