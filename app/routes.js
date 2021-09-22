@@ -463,39 +463,39 @@ var _myData = {
     "newtActivities": [
         {
             "id": "_newtActivity-1",
-            "name": "[newt activity 1]"
+            "name": "Disturb by search using a torch"
         },
         {
             "id": "_newtActivity-2",
-            "name": "[newt activity 2]"
+            "name": "Capture by hand, trap or net"
         },
         {
             "id": "_newtActivity-3",
-            "name": "[newt activity 3]"
+            "name": "Capture by refugia"
         },
         {
             "id": "_newtActivity-4",
-            "name": "[newt activity 4]"
+            "name": "Move them"
         },
         {
             "id": "_newtActivity-5",
-            "name": "[newt activity 5]"
+            "name": "Temporarily block access to their resting place"
         },
         {
             "id": "_newtActivity-6",
-            "name": "[newt activity 6]"
+            "name": "Permanently block access to their resting place"
         },
         {
             "id": "_newtActivity-7",
-            "name": "[newt activity 7]"
+            "name": "Drain their ponds"
         },
         {
             "id": "_newtActivity-8",
-            "name": "[newt activity 8]"
+            "name": "Drift fencing"
         },
         {
             "id": "_newtActivity-9",
-            "name": "[newt activity 9]"
+            "name": "Destructive search"
         }
     ],
     "workCategories": [

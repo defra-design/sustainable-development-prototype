@@ -5,7 +5,7 @@
 {% set _inError = myData.validationError == "true" %}
 
 {% block pageTitle %} 
-{% if _inError %}Error: {% endif %}[title?]
+{% if _inError %}Error: {% endif %}How will your activity affect the great crested newts?
 {% endblock %}
 
 {% block beforeContent %}
@@ -44,7 +44,7 @@
                         
                         <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
                             <h1 class="govuk-fieldset__heading">
-                                [title?]
+                                How will your activity affect the great crested newts?
                             </h1>
                         </legend>
 
@@ -53,9 +53,9 @@
                         </div>
 
                         {% if _inError %}
-                        <span id="activitiesNewts-error" class="govuk-error-message">
+                        <span id="newtActivities-error" class="govuk-error-message">
                             <span class="govuk-visually-hidden">Error:</span>
-                            {{myData.validationErrors.activitiesNewts.message}}
+                            {{myData.validationErrors.newtActivities.message}}
                         </span>
                         {% endif %}
 
@@ -63,7 +63,7 @@
                             {% for _newtActivity in myData.newtActivities %}
 
                                 {% set _display = true %}
-                                {% if _newtActivity.id == "_newtActivity-4" and myData.selectedApplication.breedingSites == 0 %}
+                                {% if _newtActivity.id == "_newtActivity-7" and myData.selectedApplication.breedingSites == 0 %}
                                     {% set _display = false %}
                                 {% endif %}
 

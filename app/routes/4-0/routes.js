@@ -195,7 +195,7 @@ module.exports = function (router,_myData) {
         //Service name
         switch(req.session.myData.licenceType) {
             case "a14":
-                req.session.myData.serviceName = "Apply for a licence to do work that will affect newts"
+                req.session.myData.serviceName = "Apply for a licence to do work that will affect great crested newts"
                 break;
             case "a13":
                 req.session.myData.serviceName = "Apply for a licence to do work that will affect bats"
