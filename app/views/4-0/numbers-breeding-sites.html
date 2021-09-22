@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+
+{% set serviceName = myData.serviceName %}
+
+{% set _inError = myData.validationError == "true" %}
+
+{% block pageTitle %} 
+{% if _inError %}Error: {% endif %}[number breeding sites?]
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {% if _inError %}
+        <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+            <h2 class="govuk-error-summary__title" id="error-summary-title">
+                There is a problem
+            </h2>
+            <div class="govuk-error-summary__body">
+                <ul class="govuk-list govuk-error-summary__list">
+                    {% for name, item in myData.validationErrors %}
+                    <li>
+                        <a href="#{{item.anchor}}">{{item.message}}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+
+        <h1 class="govuk-heading-xl">
+            [number breeding sites?]
+        </h1>
+
+		<form method="POST">
+
+
+            <div class="govuk-form-group" >
+
+                <div class="govuk-form-group {% if _inError %}govuk-form-group--error{% endif %}">
+                    <!-- <h1 class="govuk-label-wrapper">
+                        <label class="govuk-label" for="breedingSites">
+                            Enter the maximum number based on the bat surveys.
+                        </label>
+                    </h1> -->
+                    {% if _inError %}
+                    <span id="orgNameAnswer-error" class="govuk-error-message">
+                        <span class="govuk-visually-hidden">Error:</span>
+                        {{myData.validationErrors.breedingSites.message}}
+                    </span>
+                    {% endif %}
+                    <input class="govuk-input govuk-input--width-5" id="breedingSites" name="breedingSites" type="text" spellcheck="false" pattern="[0-9]*" inputmode="numeric" value="{{myData.selectedApplication.breedingSites}}">
+                </div>
+
+            </div>
+		
+            {{govukButton({
+                text: "Continue"
+            })}}
+
+        </form>
+
+	</div>
+</div>
+
+
+{% endblock %}

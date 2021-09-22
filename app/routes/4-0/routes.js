@@ -112,10 +112,11 @@ module.exports = function (router,_myData) {
     function reset(req){
         req.session.myData = JSON.parse(JSON.stringify(_myData))
 
-        req.session.myData.serviceName = "Apply for a licence to do work that will affect bats"
+        // req.session.myData.serviceName = "Apply for a licence to do work that will affect bats"
 
         // Default setup
         req.session.myData.service = "apply"
+        req.session.myData.licenceType = "a13"
         req.session.myData.roostToRemove = "123456789"
         req.session.myData.firstDate = {
             "day": "01",
@@ -189,7 +190,20 @@ module.exports = function (router,_myData) {
 
         //defaults for setup
         // req.session.myData.example =  req.query.eg || req.session.myData.example
+        req.session.myData.licenceType =  req.query.l || req.session.myData.licenceType
 
+        //Service name
+        switch(req.session.myData.licenceType) {
+            case "a14":
+                req.session.myData.serviceName = "Apply for a licence to do work that will affect newts"
+                break;
+            case "a13":
+                req.session.myData.serviceName = "Apply for a licence to do work that will affect bats"
+                break;
+            default:
+                req.session.myData.serviceName = "Apply for a licence to do work that will affect bats"
+        }
+        
         //Constant checks for query
         req.session.myData.testdata = req.query.testdata || req.session.myData.testdata
         setSelectedApplication(req,req.session.myData.application)
@@ -893,6 +907,56 @@ module.exports = function (router,_myData) {
         
     });
 
+    // Breeding sites Numbers
+    router.get('/' + version + '/numbers-breeding-sites', function (req, res) {
+        res.render(version + '/numbers-breeding-sites', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/numbers-breeding-sites', function (req, res) {
+
+        //entered values (set to temp)
+        req.session.myData.breedingSitesTemp = req.body.breedingSites
+
+        //no validation defaults
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.breedingSitesTemp = req.session.myData.breedingSitesTemp || 1
+        }
+
+        //check validation
+        if(!req.session.myData.breedingSitesTemp){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.breedingSites = {
+                "anchor": "breedingSites",
+                "message": "[error message]"
+            }
+        }
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/numbers-breeding-sites', {
+                myData: req.session.myData
+            });
+        } else {
+
+            req.session.myData.selectedApplication.breedingSites = req.session.myData.breedingSitesTemp
+            req.session.myData.breedingSitesTemp = ""
+
+            //Roost query string
+            // var _roostQS = ''
+            // if(!req.session.myData.selectedRoost.new){
+            //     _roostQS = '?roost=' + req.session.myData.roost
+            // }
+
+            if(req.query.cya == "true"){
+                res.redirect(301, '/' + version + '/cya-newt');
+            } else {
+                res.redirect(301, '/' + version + '/activities-newt');
+            }
+
+        }
+        
+    });
+
     // Activities on bats in roost
     router.get('/' + version + '/activities-bat', function (req, res) {
         res.render(version + '/activities-bat', {
@@ -953,57 +1017,60 @@ module.exports = function (router,_myData) {
 
     });
 
-    // Roosts summary
-    // router.get('/' + version + '/roosts-added', function (req, res) {
-    //     res.render(version + '/roosts-added', {
-    //         myData:req.session.myData
-    //     });
-    // });
-    router.post('/' + version + '/roosts-added', function (req, res) {
+   
+    
+    // Activities on newts 
+    router.get('/' + version + '/activities-newt', function (req, res) {
+        res.render(version + '/activities-newt', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/activities-newt', function (req, res) {
 
-        req.session.myData.addRoostAnswer = req.body.addRoost
+        req.session.myData.newtActivitiesTemp = req.body.newtActivities
 
         if(req.session.myData.includeValidation == "false"){
-            req.session.myData.addRoostAnswer = req.session.myData.addRoostAnswer || "no"
+            req.session.myData.newtActivitiesTemp = req.session.myData.newtActivitiesTemp || "_newtActivity-1"
         }
 
-        if(!req.session.myData.addRoostAnswer){
+        //check validation
+        if(req.session.myData.newtActivitiesTemp == "_unchecked"){
             req.session.myData.validationError = "true"
-            req.session.myData.validationErrors.addRoost = {
-                "anchor": "addRoost-1",
-                "message": "[error message for add roost]"
+            req.session.myData.validationErrors.newtActivities = {
+                "anchor": "_newtActivity-1",
+                "message": "[error message]"
             }
-        }
+        } 
 
         if(req.session.myData.validationError == "true") {
-            res.render(version + '/roosts-added', {
-                myData: req.session.myData
+            res.render(version + '/activities-newt', {
+                myData:req.session.myData
             });
         } else {
 
+            req.session.myData.selectedApplication.newtActivities = []
+            //Set selected newt activities
+            req.session.myData.newtActivities.forEach(function(_newtActivity, index) {
+                if(req.session.myData.newtActivitiesTemp.indexOf(_newtActivity.id.toString()) != -1){
+                    req.session.myData.selectedApplication.newtActivities.push(_newtActivity)
+                }
+            });
+            
+            //TODO check if this needs to be set BEFORE changing new to false
+            //Roost query string
+            // var _roostQS = ''
+            // if(!req.session.myData.selectedRoost.new){
+            //     _roostQS = '?roost=' + req.session.myData.roost
+            // }
 
-            if(req.session.myData.addRoostAnswer == 'yes'){
-                startNewRoost(req)
-                res.redirect(301, '/' + version + '/species-bat');
-            } else {
-                res.redirect(301, '/' + version + '/cya-bat');
-            }
+            res.redirect(301, '/' + version + '/cya-newt');
 
         }
+
     });
 
     // Check your answers bat
     router.get('/' + version + '/cya-bat', function (req, res) {
-
-        //Set test data
-        if(req.session.myData.testdata == "true"){
-            //Date
-            req.session.myData.selectedApplication.firstDate = req.session.myData.selectedApplication.firstDate || req.session.myData.firstDate
-            //Surveys
-            req.session.myData.selectedApplication.surveys = req.session.myData.selectedApplication.surveys || "No"
-            req.session.myData.selectedApplication.surveysReason = req.session.myData.selectedApplication.surveysReason || "My reason here"
-        }
-
         res.render(version + '/cya-bat', {
             myData:req.session.myData
         });
@@ -1042,6 +1109,18 @@ module.exports = function (router,_myData) {
 
         }
          
+    });
+
+    // Check your answers newt
+    router.get('/' + version + '/cya-newt', function (req, res) {
+        res.render(version + '/cya-newt', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/cya-newt', function (req, res) {
+        req.session.myData.tasklist.sections["2"] = "completed"
+        updateTasklist(req)
+        res.redirect(301, '/' + version + '/tasklist-bat');
     });
 
 

@@ -460,6 +460,44 @@ var _myData = {
             "name": "Other"
         }
     ],
+    "newtActivities": [
+        {
+            "id": "_newtActivity-1",
+            "name": "[newt activity 1]"
+        },
+        {
+            "id": "_newtActivity-2",
+            "name": "[newt activity 2]"
+        },
+        {
+            "id": "_newtActivity-3",
+            "name": "[newt activity 3]"
+        },
+        {
+            "id": "_newtActivity-4",
+            "name": "[newt activity 4]"
+        },
+        {
+            "id": "_newtActivity-5",
+            "name": "[newt activity 5]"
+        },
+        {
+            "id": "_newtActivity-6",
+            "name": "[newt activity 6]"
+        },
+        {
+            "id": "_newtActivity-7",
+            "name": "[newt activity 7]"
+        },
+        {
+            "id": "_newtActivity-8",
+            "name": "[newt activity 8]"
+        },
+        {
+            "id": "_newtActivity-9",
+            "name": "[newt activity 9]"
+        }
+    ],
     "workCategories": [
         {
             "id": "_categoryWork-1",

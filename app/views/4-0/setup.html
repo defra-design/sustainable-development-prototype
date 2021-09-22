@@ -44,15 +44,16 @@
             </fieldset>
         </div>
 
-        <!-- Prototype version -->
-        <!-- <div class="govuk-form-group">
+        <!-- Licence version -->
+        <div class="govuk-form-group">
             <label class="govuk-label" >
-              Version
+              Licence type
             </label>
-            <select class="govuk-select" style="min-width: 100%" id="ptVersion" name="ptVersion" data-option="ptVersion">
-                <option {% if myData.ptVersion == 'mvs' %}selected{% endif %} value="mvs">MVS</option>
+            <select class="govuk-select" style="min-width: 100%" id="licenceType" name="licenceType" data-option="licenceType">
+                <option {% if myData.licenceType == 'a13' %}selected{% endif %} value="a13">Bat mitigation (A13)</option>
+                <option {% if myData.licenceType == 'a14' %}selected{% endif %} value="a14">Newt mitigation (A14)</option>
             </select>
-        </div> -->
+        </div>
 
         <!-- Start from -->
         <!-- <div class="govuk-form-group">
@@ -190,7 +191,7 @@
                 </tr>
                 <tr class="govuk-table__row">
                     <th class="govuk-table__cell">Check your answers - Site boundary</th>
-                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="cya-site?r=t&testdata=true">/site-boundary</a></td>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="cya-site?r=t&testdata=true">/cya-site</a></td>
                 </tr>
 
                 <tr class="govuk-table__row">
@@ -210,12 +211,24 @@
                     <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="numbers-bat?r=t&testdata=true">/numbers-bat</a></td>
                 </tr>
                 <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Select breeding site numbers</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="numbers-breeding-sites?r=t&testdata=true">/numbers-breeding-sites</a></td>
+                </tr>
+                <tr class="govuk-table__row">
                     <th class="govuk-table__cell">Select bat activities</th>
                     <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="activities-bat?r=t&testdata=true">/activities-bat</a></td>
                 </tr>
                 <tr class="govuk-table__row">
-                    <th class="govuk-table__cell">Check your answers - actions</th>
+                    <th class="govuk-table__cell">Select newt activities</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="activities-newt?r=t&testdata=true">/activities-newt</a></td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Check your answers - actions - bats</th>
                     <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="cya-bat?r=t&testdata=true">/cya-bat</a></td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Check your answers - actions - newts</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="cya-newt?r=t&testdata=true">/cya-newt</a></td>
                 </tr>
                 <tr class="govuk-table__row">
                     <th class="govuk-table__cell">Remove roost</th>
@@ -262,13 +275,13 @@
             //Queries
             var _urlReset = "r=t",
                 _urlService = "&s=" + $('input[name=service]:checked').val(),
-                _urlPage = "tasklist-bat?";
+                _urlPage = "tasklist-bat?",
                 // _urlPage = _options.filter("#start").val() + "?",
                 // _urlStart = "&s=" + _options.filter("#start").val(),
-                // _urlptVersion = "&p=" + _options.filter("#ptVersion").val();
+                _urllicenceType = "&l=" + _options.filter("#licenceType").val();
            
             //Queries combined
-            var _urlPageQueries = _urlPage + _urlReset + _urlService;
+            var _urlPageQueries = _urlPage + _urlReset + _urlService + _urllicenceType;
 
             //URL text
             var _startURLText = _urlBase + _urlPageQueries,

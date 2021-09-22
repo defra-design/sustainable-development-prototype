@@ -89,6 +89,17 @@
 
                 {% set _status2 = myData.tasklist.sections["2"] %}
 
+                {% if myData.licenceType == "a14" %}
+                <span class="app-task-list__task-name">
+                  {% if _status2 == "completed" %}
+                  <a href="cya-newt" class="govuk-link--no-visited-state" >
+                  {% else %}
+                  <a href="numbers-breeding-sites" class="govuk-link--no-visited-state"  >
+                  {% endif %}
+                      [add newts]
+                  </a>
+                </span>
+                {% else %}
                 <span class="app-task-list__task-name">
                     {% if _status2 == "completed" %}
                     <a href="cya-bat" class="govuk-link--no-visited-state" >
@@ -98,6 +109,7 @@
                         Add roosts the work will affect
                     </a>
                 </span>
+                {% endif %}
 
                 {% if _status2 == "notstarted" %}
                 <strong class="govuk-tag govuk-tag--grey app-task-list__tag" >Not started</strong>
