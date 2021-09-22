@@ -227,8 +227,8 @@ module.exports = function (router,_myData) {
 
 
     // Tasklist bat
-    router.get('/' + version + '/tasklist-bat', function (req, res) {
-        res.render(version + '/tasklist-bat', {
+    router.get('/' + version + '/tasklist', function (req, res) {
+        res.render(version + '/tasklist', {
             myData:req.session.myData
         });
     });
@@ -694,7 +694,7 @@ module.exports = function (router,_myData) {
 
         req.session.myData.tasklist.sections["1"] = "completed"
         updateTasklist(req)
-        res.redirect(301, '/' + version + '/tasklist-bat');
+        res.redirect(301, '/' + version + '/tasklist');
         
     });
 
@@ -1104,7 +1104,7 @@ module.exports = function (router,_myData) {
             } else {
                 req.session.myData.tasklist.sections["2"] = "completed"
                 updateTasklist(req)
-                res.redirect(301, '/' + version + '/tasklist-bat');
+                res.redirect(301, '/' + version + '/tasklist');
             }
 
         }
@@ -1120,7 +1120,7 @@ module.exports = function (router,_myData) {
     router.post('/' + version + '/cya-newt', function (req, res) {
         req.session.myData.tasklist.sections["2"] = "completed"
         updateTasklist(req)
-        res.redirect(301, '/' + version + '/tasklist-bat');
+        res.redirect(301, '/' + version + '/tasklist');
     });
 
 
@@ -1221,7 +1221,7 @@ module.exports = function (router,_myData) {
 
         req.session.myData.tasklist.sections["4"] = "completed"
 
-        res.redirect(301, '/' + version + '/tasklist-bat');
+        res.redirect(301, '/' + version + '/tasklist');
     });  
 
 
