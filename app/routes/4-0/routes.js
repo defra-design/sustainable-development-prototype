@@ -1220,6 +1220,7 @@ module.exports = function (router,_myData) {
     router.post('/' + version + '/cya-site', function (req, res) {
 
         req.session.myData.tasklist.sections["4"] = "completed"
+        updateTasklist(req)
 
         res.redirect(301, '/' + version + '/tasklist');
     });  
