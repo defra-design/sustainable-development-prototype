@@ -5,6 +5,10 @@
 //     <button class="ol-zoom-out" type="button" title="Zoom out">−</button>
 // </div>
 
+.ol-attribution {
+  display: none;
+}
+
 .ol-zoom {
   top: inherit !important;
   left: inherit !important;

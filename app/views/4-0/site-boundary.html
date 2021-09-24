@@ -52,139 +52,127 @@ TO DO
 	</div>
 	
 	<div class="govuk-grid-row">
+    <form method="GET">
+      <div class="govuk-grid-column-two-thirds govuk-!-margin-bottom-4" id="filters" >
+        <div class="govuk-radios govuk-radios--small govuk-radios--conditional " data-module="govuk-radios">
+                  
+            <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="findlocation-1" name="findlocation" type="radio" value="place" data-aria-controls="conditional-place" {% if myData.findlocation == 'place' %}checked{% endif %}>
+                <label class="govuk-label govuk-radios__label" for="findlocation-1">
+                  Place or postcode
+                </label>
+            </div>
 
-        <form method="GET">
-
-            <div class="govuk-grid-column-two-thirds govuk-!-margin-bottom-4" id="filters" >
-
-
-              <div class="govuk-radios govuk-radios--small govuk-radios--conditional " data-module="govuk-radios">
-                      
-                <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="findlocation-1" name="findlocation" type="radio" value="place" data-aria-controls="conditional-place" {% if myData.findlocation == 'place' %}checked{% endif %}>
-                    <label class="govuk-label govuk-radios__label" for="findlocation-1">
-                      Place or postcode
-                    </label>
-                </div>
-
-                <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-place">
-                  <div class="govuk-form-group govuk-!-margin-bottom-5" >
-                    <div class="search-wrapper govuk-form-group search-wrapper-das search-wrapper-das-small" >
-                        <!-- <label for="search-location" class="govuk-label" >
-                          For example, Bakewell or WA4 1AB
-                        </label> -->
-                        <span class="govuk-hint">
-                          For example, Bakewell or WA4 1AB
-                        </span>
-                        <div class="search-input-wrapper">
-                            <input type="search" value="{{myData.findlocationplace}}" id="search-location" name="location" title="Search" class="govuk-input ">
-                            <div class="search-input-submit-wrapper">
-                                <button type="submit" class="search-submit" id="search-location-submit">Enter location</button>
-                            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-place">
+              <div class="govuk-form-group govuk-!-margin-bottom-5" >
+                <div class="search-wrapper govuk-form-group search-wrapper-das search-wrapper-das-small" >
+                    <!-- <label for="search-location" class="govuk-label" >
+                      For example, Bakewell or WA4 1AB
+                    </label> -->
+                    <span class="govuk-hint">
+                      For example, Bakewell or WA4 1AB
+                    </span>
+                    <div class="search-input-wrapper">
+                        <input type="search" value="{{myData.findlocationplace}}" id="search-location" name="location" title="Search" class="govuk-input ">
+                        <div class="search-input-submit-wrapper">
+                            <button type="submit" class="search-submit" id="search-location-submit">Enter location</button>
                         </div>
                     </div>
-                  </div>
                 </div>
-
-
-                <div class="govuk-radios__item">
-                    <input class="govuk-radios__input" id="findlocation-2" name="findlocation" type="radio" value="gridref" data-aria-controls="conditional-gridref" {% if myData.findlocation == 'gridref' %}checked{% endif %}>
-                    <label class="govuk-label govuk-radios__label" for="findlocation-2">
-                      National Grid Reference
-                    </label>
-                </div>
-
-                <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-gridref">
-                  <div class="govuk-form-group govuk-!-margin-bottom-5" >
-                    <div class="search-wrapper govuk-form-group search-wrapper-das search-wrapper-das-small" >
-                        <!-- <label for="search-gridref" class="govuk-label" >
-                          For example, NY395557
-                        </label> -->
-                        <span class="govuk-hint">
-                          For example, NY395557
-                        </span>
-                        <div class="search-input-wrapper">
-                            <input type="search" value="{{myData.findlocationgridref}}" id="search-gridref" name="gridref" title="Search" class="govuk-input ">
-                            <div class="search-input-submit-wrapper">
-                                <button type="submit" class="search-submit" id="search-gridref-submit">Enter location</button>
-                            </div>
-                        </div>
-                    </div>
-                  </div>
               </div>
-
             </div>
 
+
+            <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="findlocation-2" name="findlocation" type="radio" value="gridref" data-aria-controls="conditional-gridref" {% if myData.findlocation == 'gridref' %}checked{% endif %}>
+                <label class="govuk-label govuk-radios__label" for="findlocation-2">
+                  National Grid Reference
+                </label>
             </div>
-            
-        </form>
 
-	</div>
-
-</div>
-
-<!-- <div class="govuk-grid-column-two-thirds sdds-panel sdds-panel-blocked govuk-!-margin-bottom-6" >
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-
-        <form method="GET">
-
-          <div class="govuk-form-group ">
-              <fieldset class="govuk-fieldset" >
-
-                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
-                      <h1 class="govuk-fieldset__heading">
-                          [title]
-                      </h1>
-                  </legend>
-
-                  <div class="govuk-radios govuk-radios--small govuk-radios--conditional" data-module="govuk-radios">
-                      
-                      <div class="govuk-radios__item">
-                          <input class="govuk-radios__input" id="findlocation-1" name="findlocation" type="radio" value="place" data-aria-controls="conditional-place">
-                          <label class="govuk-label govuk-radios__label" for="findlocation-1">
-                          [postcode/place]
-                          </label>
-                      </div>
-
-                      <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-place">
-                          <div class="govuk-form-group">
-                            <input class="govuk-input govuk-!-width-one-half" id="place" name="place" type="text" value="">
-                          </div>
-                      </div>
-
-
-                      <div class="govuk-radios__item">
-                          <input class="govuk-radios__input" id="findlocation-2" name="findlocation" type="radio" value="gridref" data-aria-controls="conditional-gridref">
-                          <label class="govuk-label govuk-radios__label" for="findlocation-2">
-                          [os grid]
-                          </label>
-                      </div>
-
-                      <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-gridref">
-                        <div class="govuk-form-group">
-                          <input class="govuk-input govuk-!-width-one-half" id="gridref" name="gridref" type="text" value="">
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-gridref">
+              <div class="govuk-form-group govuk-!-margin-bottom-5" >
+                <div class="search-wrapper govuk-form-group search-wrapper-das search-wrapper-das-small" >
+                    <!-- <label for="search-gridref" class="govuk-label" >
+                      For example, NY395557
+                    </label> -->
+                    <span class="govuk-hint">
+                      For example, NY395557
+                    </span>
+                    <div class="search-input-wrapper">
+                        <input type="search" value="{{myData.findlocationgridref}}" id="search-gridref" name="gridref" title="Search" class="govuk-input ">
+                        <div class="search-input-submit-wrapper">
+                            <button type="submit" class="search-submit" id="search-gridref-submit">Enter location</button>
                         </div>
                     </div>
-
-                  </div>
-
-              </fieldset>
+                </div>
+              </div>
           </div>
 
-          {{govukButton({
-              text: "[search]"
-          })}}
+        </div>
+      </div>
+    </form>
+	</div>
 
-      </form>
+  <!-- <div class="govuk-grid-row">
+		<div class="govuk-grid-column-two-thirds" >
+			<h3 class="govuk-heading-s govuk-!-margin-bottom-2">Toggle view</h3>
+		</div>
+	</div>
 
-  </div>
+  <div class="govuk-grid-row">
+    <form method="GET">
+      <div class="govuk-grid-column-two-thirds" id="toggleView" >
+        <div class="govuk-form-group layerToggleContainer">
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" >
+              <div class="govuk-radios govuk-radios--inline govuk-radios--small">
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="street-view" name="toggleView" type="radio" value="street-view" checked>
+                  <label class="govuk-label govuk-radios__label" for="street-view">
+                    Street view
+                  </label>
+                </div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="satellite-view" name="toggleView" type="radio" value="satellite-view" >
+                  <label class="govuk-label govuk-radios__label govuk-!-font-size-16" for="satellite-view">
+                    Satellite view
+                  </label>
+                </div>
+              </div>
+              
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div> -->
+
 </div>
-</div> -->
+                
 
 <div class="govuk-grid-row">
   
     <div class="govuk-grid-column-full">
+
+      <div class="layerToggleContainer govuk-!-margin-bottom-2">
+          <fieldset class="govuk-fieldset" >
+            <div class="govuk-radios govuk-radios--inline govuk-radios--small">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="street-view" name="toggleView" type="radio" value="street-view" checked>
+                <label class="govuk-label govuk-radios__label" for="street-view">
+                  Street view
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="satellite-view" name="toggleView" type="radio" value="satellite-view" >
+                <label class="govuk-label govuk-radios__label govuk-!-font-size-16" for="satellite-view">
+                  Satellite view
+                </label>
+              </div>
+            </div>
+          </fieldset>
+      </div>
 
       <div class="map-container-2 govuk-form-group">
         
@@ -209,6 +197,7 @@ TO DO
               Delete area
             </button>
           </div>
+          
         </div>
 
         <!-- <div class="govuk-form-group markerRadiosContainer">

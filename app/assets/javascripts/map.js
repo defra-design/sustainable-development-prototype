@@ -6,6 +6,18 @@ function map(_location){
     source: new ol.source.OSM()
   });
 
+  
+
+  // ESRI World Imagery
+  var satelliteLayer = new ol.layer.Tile({
+      ref: 'satellite',
+      source: new ol.source.XYZ({
+        url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
+      })
+    })
+
+    
+
   var aerialAndStreetsLayer = new ol.layer.Tile({
     source: new ol.source.XYZ({
         url: 'https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v10/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYW50LWRlZnJhIiwiYSI6ImNrbmtkaDEyMzA2emQycHFsOW04YjB1eWkifQ.NR7GSXgdwmFKZzLwSti3uA',
@@ -28,9 +40,10 @@ function map(_location){
     stroke: new ol.style.Stroke({
         //color: 'rgba(29, 112, 184, 1)', //blue
         color: '#f47738',  //orange
+        // color: '#000',  //black
         // color: '#1d70b8', //blue
     //   color: '#d4351c', //red
-      width: 3
+      width: 4
     }),
     image: new ol.style.Icon({
       opacity: 1,
@@ -89,12 +102,10 @@ function map(_location){
 // zoom = 6.6
 
 
-
-
   if(document.getElementById("map").classList.contains("map--confirm")){
     var map = new ol.Map({
       target: 'map',
-      layers: [ aerialAndStreetsLayer, polygonLayer ],
+      layers: [ baseMapLayer, polygonLayer ],
       view: new ol.View({
         center: ol.proj.fromLonLat([_lon, _lat]),
         zoom: _zoom, //Initial Zoom Level
@@ -269,10 +280,11 @@ function map(_location){
     stroke: new ol.style.Stroke({
         // color: '#FFFFFF', //white
         color: '#f47738',  //orange
+        // color: '#000',  //black
         // color: 'rgba(29, 112, 184, 1)', //blue
       //color: '#1d70b8', //blue
     //   color: '#d4351c', //red
-      width: 3
+      width: 4
     }),
     image: new ol.style.Icon({
       opacity: 1,
@@ -327,6 +339,9 @@ function map(_location){
   deleteBtn.disabled = false;
   polygonLayer.setVisible(true);
   markerLayer.setVisible(false);
+
+
+  
 
 //   var radios = document.getElementsByName('marker-or-shape');
 //   for (var i = 0, length = radios.length; i < length; i++) {
@@ -383,5 +398,32 @@ function map(_location){
     e.preventDefault();
     $(this).toggleClass('active');
   });
+
+  var streetLayerGroup = new ol.layer.Group({
+    layers: [
+        baseMapLayer,
+        polygonLayer
+    ]
+});
+var satelliteLayerGroup = new ol.layer.Group({
+    layers: [
+        satelliteLayer,
+        polygonLayer
+    ]
+});
+
+    var toggleViewRadios = document.getElementsByName('toggleView');
+  for (var i = 0, length = toggleViewRadios.length; i < length; i++) {
+    toggleViewRadios[i].addEventListener('click', function(event) {
+
+      if (this.value == 'street-view') {
+        //set street view later
+        map.setLayerGroup(streetLayerGroup); 
+      } else if (this.value == 'satellite-view') {
+        //set satellite view layer
+        map.setLayerGroup(satelliteLayerGroup); 
+      }
+    }, false);
+  }
 
   }
