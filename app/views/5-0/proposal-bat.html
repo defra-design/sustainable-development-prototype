@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+
+{% set serviceName = myData.serviceName %}
+
+{% set _inError = myData.validationError == "true" %}
+
+{% block pageTitle %} 
+{% if _inError %}Error: {% endif %}What activity or development work do you plan to do?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+			{% if _inError %}
+            <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+                <h2 class="govuk-error-summary__title" id="error-summary-title">
+                    There is a problem
+                </h2>
+                <div class="govuk-error-summary__body">
+                    <ul class="govuk-list govuk-error-summary__list">
+                        {% for name, item in myData.validationErrors %}
+                        <li>
+                            <a href="#{{item.anchor}}">{{item.message}}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            {% endif %}
+
+	</div>
+</div>
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="POST">
+
+            <div class="govuk-form-group {% if _inError %}govuk-form-group--error{% endif %}">
+                
+                <h1 class="govuk-label-wrapper">
+                    <label class="govuk-label govuk-label--xl" for="proposalBat">
+                        What activity or development work do you plan to do?
+                    </label>
+                </h1>
+
+                {% if _inError %}
+                <span id="proposalBat-error" class="govuk-error-message">
+                    <span class="govuk-visually-hidden">Error:</span>
+                    {{myData.validationErrors.proposalBat.message}}
+                </span>
+                {% endif %}
+
+                {% set _value = myData.selectedApplication.proposalBat %}
+                {% if _inError %}
+                    {% set _value = myData.proposalBatAnswer %}
+                {% endif %}
+
+                <span class="govuk-hint">For example, construction of a new road, maintenance of a bridge, construction of five flats with access road and car parking area.</span>
+
+                <textarea class="govuk-textarea" id="proposalBat" name="proposalBat" rows="5" >{{_value}}</textarea>
+
+            </div>
+
+            {{govukButton({
+                text: "Continue"
+            })}}
+
+        </form>
+
+	</div>
+</div>
+
+{% endblock %}
