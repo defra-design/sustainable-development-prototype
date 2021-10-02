@@ -1189,7 +1189,153 @@ module.exports = function (router,_myData) {
             myData:req.session.myData
         });
     });
-     
+
+    //Site name
+    router.get('/' + version + '/site-name', function (req, res) {
+
+        req.session.myData.tasklist.sections["4"] = "inprogress"
+
+        res.render(version + '/site-name', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/site-name', function (req, res) {
+
+        req.session.myData.siteNameAnswer = req.body.siteName
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.siteNameAnswer = req.session.myData.siteNameAnswer || "Farmland"
+        }
+
+        if(!req.session.myData.siteNameAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.siteName = {
+                "anchor": "siteName",
+                "message": "[error message]"
+            }
+        }
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/site-name', {
+                myData: req.session.myData
+            });
+        } else {
+
+            req.session.myData.selectedApplication.siteName = req.session.myData.siteNameAnswer
+
+            if(req.query.cya == "true"){
+                res.redirect(301, '/' + version + '/cya-site');
+            } else {
+                res.redirect(301, '/' + version + '/site-postcode');
+            }
+
+        }
+        
+    });
+
+    // Site postcode
+    router.get('/' + version + '/site-postcode', function (req, res) {
+        res.render(version + '/site-postcode', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/site-postcode', function (req, res) {
+
+        req.session.myData.hasPostcodeTempAnswer = req.body.hasPostcode
+        req.session.myData.sitePostcodeTempAnswer = req.body.sitePostcode
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.hasPostcodeTempAnswer = req.session.myData.hasPostcodeTempAnswer || "Yes"
+            req.session.myData.sitePostcodeTempAnswer = req.session.myData.sitePostcodeTempAnswer || "B1 3AA"
+        }
+
+        if(!req.session.myData.hasPostcodeTempAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.hasPostcode = {
+                "anchor": "hasPostcode",
+                "message": "[error message 1]"
+            }
+        }
+        if(req.session.myData.hasPostcodeTempAnswer == "Yes" && !req.session.myData.sitePostcodeTempAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.sitePostcode = {
+                "anchor": "sitePostcode",
+                "message": "[error message 2]"
+            }
+        }
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/site-postcode', {
+                myData:req.session.myData
+            });
+        } else {
+
+            req.session.myData.selectedApplication.hasPostcode = req.session.myData.hasPostcodeTempAnswer 
+            req.session.myData.selectedApplication.sitePostcode = req.session.myData.sitePostcodeTempAnswer
+
+            req.session.myData.hasPostcodeTempAnswer = ""
+            req.session.myData.sitePostcodeTempAnswer = ""
+
+            var _cyaQS = ""
+            if(req.query.cya == "true"){
+                _cyaQS = "?cya=true"
+            }
+
+            if (req.session.myData.selectedApplication.hasPostcode == "Yes"){
+                res.redirect(301, '/' + version + '/site-address' + _cyaQS);
+            } else {
+                if(req.query.cya == "true"){
+                    res.redirect(301, '/' + version + '/cya-site');
+                } else {
+                    res.redirect(301, '/' + version + '/site-boundary');
+                }
+            }
+
+        }
+
+    });
+
+    // Site address
+    router.get('/' + version + '/site-address', function (req, res) {
+        res.render(version + '/site-address', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/site-address', function (req, res) {
+
+        req.session.myData.siteAddressTempAnswer = req.body.siteAddress
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.siteAddressTempAnswer = req.session.myData.siteAddressTempAnswer || "address1"
+        }
+        if(req.session.myData.siteAddressTempAnswer == "select"){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.siteAddress = {
+                "anchor": "siteAddress",
+                "message": "[error message]"
+            }
+        }
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/site-address', {
+                myData:req.session.myData
+            });
+        } else {
+
+            req.session.myData.selectedApplication.siteAddress = req.session.myData.siteAddressTempAnswer
+            req.session.myData.siteAddressTempAnswer = ""
+
+            if(req.query.cya == "true"){
+                res.redirect(301, '/' + version + '/cya-site');
+            } else {
+                res.redirect(301, '/' + version + '/site-boundary' + "?findlocation=place&location=" + req.session.myData.selectedApplication.sitePostcode);
+            }
+
+        }
+
+    });
+
+    //TODO add error style to all text boxes (red border on text inputs)
 
     //Site boundary
     router.get('/' + version + '/site-boundary', function (req, res) {
@@ -1200,8 +1346,6 @@ module.exports = function (router,_myData) {
         if((req.session.myData.findlocation == "place" && !req.query.location) || (req.session.myData.findlocation == "gridref" && !req.query.gridref)){
             req.session.myData.findlocation = ""
         }
-
-        req.session.myData.tasklist.sections["4"] = "inprogress"
 
         res.render(version + '/site-boundary', {
             myData:req.session.myData

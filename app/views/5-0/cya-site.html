@@ -22,38 +22,97 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-            <h1 class="govuk-heading-xl" >
-				Confirm the location
-			</h1>
+        <h1 class="govuk-heading-xl">
+            Check your answers
+        </h1>
 
-            <!-- <dl class="govuk-summary-list">
+            <dl class="govuk-summary-list">
+
                 <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key" >
-                        [label]
+                    <dt class="govuk-summary-list__key">
+                        [name]
                     </dt>
                     <dd class="govuk-summary-list__value">
-                        <img src="/public/images/map-example-1.png" class="map-example">
+                        {{myData.selectedApplication.siteName}}
                     </dd>
                     <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link govuk-link--no-visited-state" href="site-boundary?cya=true">
+                        <a class="govuk-link govuk-link--no-visited-state" href="site-name?cya=true">
                             Change<span class="govuk-visually-hidden"></span>
                         </a>
                     </dd>
                 </div>
 
-            </dl> -->
 
-            <img src="/public/images/map-example-1.png" class="map-example govuk-!-margin-bottom-4">
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        [has psotcode?]
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{myData.selectedApplication.hasPostcode}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="site-postcode?cya=true">
+                            Change<span class="govuk-visually-hidden"></span>
+                        </a>
+                    </dd>
+                </div>
+                {% if myData.selectedApplication.hasPostcode == "Yes" %}
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        [postcode]
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{myData.selectedApplication.sitePostcode}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="site-postcode?cya=true">
+                            Change<span class="govuk-visually-hidden"></span>
+                        </a>
+                    </dd>
+                </div>
+                {% endif %}
 
-            <p class="govuk-body">
-                <a class="govuk-link govuk-link--no-visited-state" href="site-boundary?cya=true">
-                    Change
-                </a>
-            </p>
+                {% if myData.selectedApplication.hasPostcode == "Yes" %}
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        [address]
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {% if myData.selectedApplication.siteAddress == "select" %}
+                        [dont have one]
+                        {% else %}
+                        {{myData.selectedApplication.siteAddress}}
+                        {% endif %}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="site-address?cya=true">
+                            Change<span class="govuk-visually-hidden"></span>
+                        </a>
+                    </dd>
+                </div>
+                {% endif %}
 
-            <p class="govuk-body">
-                Check the location is correct before confirming.
-            </p>
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key" style="vertical-align: top;" >
+                        [label]
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <img src="/public/images/map-example-1.png" class="map-example">
+                    </dd>
+                    <dd class="govuk-summary-list__actions" style="vertical-align: top;">
+                        {% if myData.selectedApplication.hasPostcode == "Yes" %}
+                        <a class="govuk-link govuk-link--no-visited-state" href="site-boundary?findlocation=place&location={{myData.selectedApplication.sitePostcode}}&cya=true">
+                            Change<span class="govuk-visually-hidden"></span>
+                        </a>
+                        {% else %}
+                        <a class="govuk-link govuk-link--no-visited-state" href="site-boundary?cya=true">
+                            Change<span class="govuk-visually-hidden"></span>
+                        </a>
+                        {% endif %}
+                        
+                    </dd>
+                </div>
+            </dl>
 
             <form method="POST">
 
