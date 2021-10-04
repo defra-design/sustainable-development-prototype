@@ -5,7 +5,7 @@
 {% set _inError = myData.validationError == "true" %}
 
 {% block pageTitle %} 
-{% if _inError %}Error: {% endif %}[title]
+{% if _inError %}Error: {% endif %}What is the name of the site for planned work activity? 
 {% endblock %}
 
 {% block beforeContent %}
@@ -45,7 +45,7 @@
             <div class="govuk-form-group {% if _inError %}govuk-form-group--error{% endif %}">
                 <h1 class="govuk-label-wrapper">
                     <label class="govuk-label govuk-label--xl" for="siteName">
-                        [title]
+                        What is the name of the site for planned work activity? 
                     </label>
                 </h1>
 

@@ -30,7 +30,7 @@
 
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        [name]
+                        Site name
                     </dt>
                     <dd class="govuk-summary-list__value">
                         {{myData.selectedApplication.siteName}}
@@ -45,7 +45,7 @@
 
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        [has psotcode?]
+                        Does the site have a postcode?
                     </dt>
                     <dd class="govuk-summary-list__value">
                         {{myData.selectedApplication.hasPostcode}}
@@ -59,7 +59,7 @@
                 {% if myData.selectedApplication.hasPostcode == "Yes" %}
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        [postcode]
+                        Postcode
                     </dt>
                     <dd class="govuk-summary-list__value">
                         {{myData.selectedApplication.sitePostcode}}
@@ -75,13 +75,14 @@
                 {% if myData.selectedApplication.hasPostcode == "Yes" %}
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        [address]
+                        Site address
                     </dt>
                     <dd class="govuk-summary-list__value">
                         {% if myData.selectedApplication.siteAddress == "select" %}
-                        [dont have one]
+                        No address listed
                         {% else %}
-                        {{myData.selectedApplication.siteAddress}}
+                        {{myData.selectedApplication.siteAddress}}<br>
+                        OXFORD
                         {% endif %}
                     </dd>
                     <dd class="govuk-summary-list__actions">
@@ -92,9 +93,31 @@
                 </div>
                 {% endif %}
 
+                {% if myData.selectedApplication.hasPostcode == "Yes" %}
+                <!-- <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Site address
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {% if myData.selectedApplication.siteAddress == "select" %}
+                        {{myData.selectedApplication.sitePostcode}}
+                        {% else %}
+                        {{myData.selectedApplication.siteAddress}}<br>
+                        OXFORD<br>
+                        {{myData.selectedApplication.sitePostcode}}
+                        {% endif %}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="site-postcode?cya=true">
+                            Change<span class="govuk-visually-hidden"></span>
+                        </a>
+                    </dd>
+                </div> -->
+                {% endif %}
+
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key" style="vertical-align: top;" >
-                        [label]
+                        Planned activity area
                     </dt>
                     <dd class="govuk-summary-list__value">
                         <img src="/public/images/map-example-1.png" class="map-example">

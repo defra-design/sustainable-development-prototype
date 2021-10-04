@@ -5,7 +5,7 @@
 {% set _inError = myData.validationError == "true" %}
 
 {% block pageTitle %} 
-{% if _inError %}Error: {% endif %}[title]
+{% if _inError %}Error: {% endif %}What is the site address?
 {% endblock %}
 
 {% block beforeContent %}
@@ -43,7 +43,7 @@
 		<form method="POST">
 
             <h1 class="govuk-heading-xl">
-                [title]
+                What is the site address?
             </h1>
 
             <p class="govuk-body govuk-!-margin-bottom-6">
@@ -73,16 +73,17 @@
                 <select class="govuk-select {% if _inError %}govuk-input--error{%endif %}" id="siteAddress" name="siteAddress">
                     <option value="select" selected >{{_numberAddresses}} addresses found</option>
                     {% for i in range(1, _numberAddresses+1) -%}
-                    {% set _address = i + ' High Street, OXFORD ' + myData.selectedApplication.sitePostcode %}
-                    <option value="{{_address}}">{{_address}}</option>
+                        {% set _street = i + ' High Street' %}
+                        {% set _address = i + ' High Street, OXFORD ' + myData.selectedApplication.sitePostcode %}
+                        <option value="{{_street}}" {% if myData.selectedApplication.siteAddress == _street %}selected{% endif %}>{{_address}}</option>
                     {%- endfor %}
                 </select>
 
             </div>
 
             <p class="govuk-body govuk-!-margin-bottom-6">
-                <a class="govuk-link govuk-link--no-visited-state" href="site-boundary?findlocation=place&location={{myData.selectedApplication.sitePostcode}}">
-                    [can't find address]
+                <a class="govuk-link govuk-link--no-visited-state" href="site-boundary?findlocation=place&location={{myData.selectedApplication.sitePostcode}}&address=select">
+                    I can't find the address in the list
                 </a>
             </p>
 

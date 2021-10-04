@@ -5,7 +5,7 @@
 {% set _inError = myData.validationError == "true" %}
 
 {% block pageTitle %} 
-{% if _inError %}Error: {% endif %}[title]
+{% if _inError %}Error: {% endif %}Does the site have a postcode?
 {% endblock %}
 
 {% block beforeContent %}
@@ -46,7 +46,7 @@
                 <fieldset class="govuk-fieldset" >
                   <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
                     <h1 class="govuk-fieldset__heading">
-                      [title]
+                        Does the site have a postcode?
                     </h1>
                   </legend>
 
@@ -75,7 +75,7 @@
                     <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-sitePostcode">
                         <div class="govuk-form-group">
                             <label class="govuk-label" for="sitePostcode">
-                                [postcode]
+                                Postcode
                             </label>
 
                             {% if myData.validationErrors.sitePostcode %}

@@ -1306,7 +1306,7 @@ module.exports = function (router,_myData) {
         req.session.myData.siteAddressTempAnswer = req.body.siteAddress
 
         if(req.session.myData.includeValidation == "false"){
-            req.session.myData.siteAddressTempAnswer = req.session.myData.siteAddressTempAnswer || "address1"
+            req.session.myData.siteAddressTempAnswer = req.session.myData.siteAddressTempAnswer || "1 High Street"
         }
         if(req.session.myData.siteAddressTempAnswer == "select"){
             req.session.myData.validationError = "true"
@@ -1342,6 +1342,10 @@ module.exports = function (router,_myData) {
 
         req.session.myData.findlocationplace = req.query.location
         req.session.myData.findlocationgridref = req.query.gridref
+
+        if (req.query.address == "select"){
+            req.session.myData.selectedApplication.siteAddress = "select"
+        }
 
         if((req.session.myData.findlocation == "place" && !req.query.location) || (req.session.myData.findlocation == "gridref" && !req.query.gridref)){
             req.session.myData.findlocation = ""
