@@ -22,13 +22,77 @@
       </h1>
 
       <h2 class="govuk-heading-s govuk-!-margin-bottom-2">Application incomplete</h2>
-      <p class="govuk-body govuk-!-margin-bottom-7" >You have completed {{myData.tasklist.completed}} of 4 sections.</p>
+      <p class="govuk-body govuk-!-margin-bottom-7" >You have completed {{myData.tasklist.completed}} of 6 sections.</p>
 
       <ol class="app-task-list">
 
         <li>
           <h2 class="app-task-list__section">
-            <span class="app-task-list__section-number">1. </span> Prepare application
+            <span class="app-task-list__section-number">1. </span> Contact details
+          </h2>
+          <ul class="app-task-list__items">
+
+            <!-- Applicant details - section 5 -->
+            <li class="app-task-list__item">
+                {% set _status5 = myData.tasklist.sections["5"] %}
+
+                <span class="app-task-list__task-name">
+                    {% if _status5 == "completed" %}
+                    <a href="cya-applicant" class="govuk-link--no-visited-state" >
+                    {% else %}
+                    <a href="applicant-name" class="govuk-link--no-visited-state" >
+                    {% endif %}
+                      Give licence holder details
+                    </a>
+                </span>
+
+                {% if _status5 == "notstarted" %}
+                <strong class="govuk-tag govuk-tag--grey app-task-list__tag" >Not started</strong>
+                {% elif _status5 == "cannotstartyet" %}
+                <strong class="govuk-tag govuk-tag--grey app-task-list__tag" >Cannot start yet</strong>
+                {% elif _status5 == "inprogress" %}
+                <strong class="govuk-tag govuk-tag--blue app-task-list__tag" >In progress</strong>
+                {% elif _status5 == "completed" %}
+                <strong class="govuk-tag app-task-list__tag" >Completed</strong>
+                {% endif %}
+
+            </li>
+
+
+            <!-- Ecologist details - section 6 -->
+            <li class="app-task-list__item">
+              {% set _status6 = myData.tasklist.sections["6"] %}
+
+              <span class="app-task-list__task-name">
+                  {% if _status6 == "completed" %}
+                  <a href="cya-ecologist" class="govuk-link--no-visited-state" >
+                  {% else %}
+                  <a href="ecologist-name" class="govuk-link--no-visited-state" >
+                  {% endif %}
+                    Give ecologist details
+                  </a>
+              </span>
+
+              {% if _status6 == "notstarted" %}
+              <strong class="govuk-tag govuk-tag--grey app-task-list__tag" >Not started</strong>
+              {% elif _status6 == "cannotstartyet" %}
+              <strong class="govuk-tag govuk-tag--grey app-task-list__tag" >Cannot start yet</strong>
+              {% elif _status6 == "inprogress" %}
+              <strong class="govuk-tag govuk-tag--blue app-task-list__tag" >In progress</strong>
+              {% elif _status6 == "completed" %}
+              <strong class="govuk-tag app-task-list__tag" >Completed</strong>
+              {% endif %}
+
+          </li>
+
+           
+
+          </ul>
+        </li>
+
+        <li>
+          <h2 class="app-task-list__section">
+            <span class="app-task-list__section-number">2. </span> Planned work activity
           </h2>
           <ul class="app-task-list__items">
 
@@ -68,7 +132,7 @@
                   {% else %}
                   <a href="site-name" class="govuk-link--no-visited-state" >
                   {% endif %}
-                  Give site information for planned work activity
+                  Give site information
                   </a>
               </span>
 
@@ -82,7 +146,7 @@
               <strong class="govuk-tag app-task-list__tag" >Completed</strong>
               {% endif %}
 
-          </li>
+            </li>
 
             <!-- Application details -->
             <li class="app-task-list__item">
@@ -96,7 +160,7 @@
                   {% else %}
                   <a href="numbers-breeding-sites" class="govuk-link--no-visited-state"  >
                   {% endif %}
-                    How the work will affect the newts
+                    Say how the work will affect the newts
                   </a>
                 </span>
                 {% else %}
@@ -106,7 +170,7 @@
                     {% else %}
                     <a href="intro-roosts" class="govuk-link--no-visited-state"  >
                     {% endif %}
-                        Add roosts the work will affect
+                      Add roosts the work will affect
                     </a>
                 </span>
                 {% endif %}
@@ -121,14 +185,14 @@
                 <strong class="govuk-tag app-task-list__tag" >Completed</strong>
                 {% endif %}
 
-              </li>
+            </li>
 
           </ul>
         </li>
 
         <li>
           <h2 class="app-task-list__section">
-            <span class="app-task-list__section-number">2. </span> Apply
+            <span class="app-task-list__section-number">3. </span> Apply
           </h2>
           <ul class="app-task-list__items">
             <li class="app-task-list__item">

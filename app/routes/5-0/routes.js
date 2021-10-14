@@ -96,7 +96,7 @@ module.exports = function (router,_myData) {
             if(value == "completed"){
                 req.session.myData.tasklist.completed++
             } else {
-                if(key == "1" || key == "2" || key == "4"){
+                if(key == "1" || key == "2" || key == "4" || key == "5" || key == "6"){
                     cansubmit = false
                 }
             }
@@ -129,12 +129,16 @@ module.exports = function (router,_myData) {
         // 2 = application details
         // 3 = send
         // 4 = site
+        // 5 = applicant
+        // 6 = ecologist
         req.session.myData.tasklist = {
             "sections": {
                 "1": "notstarted",
                 "2": "notstarted",
                 "3": "cannotstartyet",
-                "4": "notstarted"
+                "4": "notstarted",
+                "5": "notstarted",
+                "6": "notstarted"
             },
             "completed": 0
         }
@@ -1372,6 +1376,576 @@ module.exports = function (router,_myData) {
 
         res.redirect(301, '/' + version + '/tasklist');
     });  
+
+    //Applicant name
+    router.get('/' + version + '/applicant-name', function (req, res) {
+
+        req.session.myData.tasklist.sections["5"] = "inprogress"
+
+        res.render(version + '/applicant-name', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/applicant-name', function (req, res) {
+
+        req.session.myData.applicantNameAnswer = req.body.applicantName
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.applicantNameAnswer = req.session.myData.applicantNameAnswer || "John Smith"
+        }
+
+        if(!req.session.myData.applicantNameAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.applicantName = {
+                "anchor": "applicantName",
+                "message": "[error message]"
+            }
+        }
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/applicant-name', {
+                myData: req.session.myData
+            });
+        } else {
+
+            req.session.myData.selectedApplication.applicantName = req.session.myData.applicantNameAnswer
+
+            if(req.query.cya == "true"){
+                res.redirect(301, '/' + version + '/cya-applicant');
+            } else {
+                res.redirect(301, '/' + version + '/applicant-company');
+            }
+
+        }
+        
+    });
+
+    // Applicant company
+    router.get('/' + version + '/applicant-company', function (req, res) {
+        res.render(version + '/applicant-company', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/applicant-company', function (req, res) {
+
+        req.session.myData.applicantHasCompanyTempAnswer = req.body.applicantHasCompany
+        req.session.myData.applicantCompanyTempAnswer = req.body.applicantCompany
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.applicantHasCompanyTempAnswer = req.session.myData.applicantHasCompanyTempAnswer || "Yes"
+            req.session.myData.applicantCompanyTempAnswer = req.session.myData.applicantCompanyTempAnswer || "COMPANY NAME LTD"
+        }
+
+        if(!req.session.myData.applicantHasCompanyTempAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.applicantHasCompany = {
+                "anchor": "applicantHasCompany",
+                "message": "[error message 1]"
+            }
+        }
+        if(req.session.myData.applicantHasCompanyTempAnswer == "Yes" && !req.session.myData.applicantCompanyTempAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.applicantCompany = {
+                "anchor": "applicantCompany",
+                "message": "[error message 2]"
+            }
+        }
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/applicant-company', {
+                myData:req.session.myData
+            });
+        } else {
+
+            req.session.myData.selectedApplication.applicantHasCompany = req.session.myData.applicantHasCompanyTempAnswer 
+            req.session.myData.selectedApplication.applicantCompany = req.session.myData.applicantCompanyTempAnswer
+
+            req.session.myData.applicantHasCompanyTempAnswer = ""
+            req.session.myData.applicantCompanyTempAnswer = ""
+            
+            if(req.query.cya == "true"){
+                res.redirect(301, '/' + version + '/cya-applicant');
+            } else {
+                res.redirect(301, '/' + version + '/applicant-postcode');
+            }
+
+        }
+
+    });
+
+    //Applicant postcode
+    router.get('/' + version + '/applicant-postcode', function (req, res) {
+        res.render(version + '/applicant-postcode', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/applicant-postcode', function (req, res) {
+
+        req.session.myData.applicantPostcodeAnswer = req.body.applicantPostcode
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.applicantPostcodeAnswer = req.session.myData.applicantPostcodeAnswer || "B1 1AA"
+        }
+
+        if(!req.session.myData.applicantPostcodeAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.applicantPostcode = {
+                "anchor": "applicantPostcode",
+                "message": "[error message]"
+            }
+        }
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/applicant-postcode', {
+                myData: req.session.myData
+            });
+        } else {
+
+            //changed postcode? if so - clear address fields
+            if(req.session.myData.applicantPostcodeAnswer != req.session.myData.selectedApplication.applicantPostcode){
+                req.session.myData.selectedApplication.applicantAddress = ""
+                req.session.myData.selectedApplication.applicantAddress1 = ""
+                req.session.myData.selectedApplication.applicantAddress2 = ""
+                req.session.myData.selectedApplication.applicantAddress3 = ""
+                req.session.myData.selectedApplication.applicantAddress4 = ""
+            }
+
+            req.session.myData.selectedApplication.applicantPostcode = req.session.myData.applicantPostcodeAnswer
+            req.session.myData.selectedApplication.applicantHasPostcode = "true"
+
+            res.redirect(301, '/' + version + '/applicant-address');
+
+        }
+        
+    });
+
+    // Applicant address
+    router.get('/' + version + '/applicant-address', function (req, res) {
+        res.render(version + '/applicant-address', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/applicant-address', function (req, res) {
+
+        req.session.myData.applicantAddressTempAnswer = req.body.applicantAddress
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.applicantAddressTempAnswer = req.session.myData.applicantAddressTempAnswer || "1 High Street"
+        }
+        if(req.session.myData.applicantAddressTempAnswer == "select"){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.applicantAddress = {
+                "anchor": "applicantAddress",
+                "message": "[error message]"
+            }
+        }
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/applicant-address', {
+                myData:req.session.myData
+            });
+        } else {
+
+            req.session.myData.selectedApplication.applicantAddress = req.session.myData.applicantAddressTempAnswer
+            req.session.myData.applicantAddressTempAnswer = ""
+
+            req.session.myData.selectedApplication.applicantAddress1 = req.session.myData.selectedApplication.applicantAddress
+            req.session.myData.selectedApplication.applicantAddress2 = ""
+            req.session.myData.selectedApplication.applicantAddress3 = "Oxford"
+            req.session.myData.selectedApplication.applicantAddress4 = "Oxfordshire"
+
+            res.redirect(301, '/' + version + '/cya-applicant');
+
+        }
+
+    });
+
+    // Applicant address
+    router.get('/' + version + '/applicant-address-form', function (req, res) {
+        if(req.query.applicantHasPostcode == "false"){
+            req.session.myData.selectedApplication.applicantHasPostcode = "false"
+        }
+        res.render(version + '/applicant-address-form', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/applicant-address-form', function (req, res) {
+
+        req.session.myData.applicantAddress1TempAnswer = req.body.applicantAddress1
+        req.session.myData.applicantAddress2TempAnswer = req.body.applicantAddress2
+        req.session.myData.applicantAddress3TempAnswer = req.body.applicantAddress3
+        req.session.myData.applicantAddress4TempAnswer = req.body.applicantAddress4
+        if(req.session.myData.selectedApplication.applicantHasPostcode != "false"){
+            req.session.myData.applicantPostcodeTempAnswer = req.body.applicantPostcode
+        } else {
+            req.session.myData.applicantPostcodeTempAnswer = ""
+        }
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.applicantAddress1TempAnswer = req.session.myData.applicantAddress1TempAnswer || "1 High Street"
+            req.session.myData.applicantAddress2TempAnswer = req.session.myData.applicantAddress2TempAnswer || ""
+            req.session.myData.applicantAddress3TempAnswer = req.session.myData.applicantAddress3TempAnswer || "Oxford"
+            req.session.myData.applicantAddress4TempAnswer = req.session.myData.applicantAddress4TempAnswer || "Oxfordshire"
+            if(req.session.myData.selectedApplication.applicantHasPostcode != "false"){
+                req.session.myData.applicantPostcodeTempAnswer = req.session.myData.applicantPostcodeTempAnswer || "B1 1AA"
+            }
+        }
+
+        if(!req.session.myData.applicantAddress1TempAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.applicantAddress1 = {
+                "anchor": "applicantAddress1",
+                "message": "[error message 1]"
+            }
+        }
+        if(!req.session.myData.applicantAddress3TempAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.applicantAddress3 = {
+                "anchor": "applicantAddress3",
+                "message": "[error message 3]"
+            }
+        }
+        if(!req.session.myData.applicantAddress4TempAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.applicantAddress4 = {
+                "anchor": "applicantAddress4",
+                "message": "[error message 4]"
+            }
+        }
+        if(req.session.myData.selectedApplication.applicantHasPostcode != "false"){
+            if(!req.session.myData.applicantPostcodeTempAnswer){
+                req.session.myData.validationError = "true"
+                req.session.myData.validationErrors.applicantPostcode = {
+                    "anchor": "applicantPostcode",
+                    "message": "[error message 5]"
+                }
+            }
+        }
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/applicant-address-form', {
+                myData:req.session.myData
+            });
+        } else {
+
+            req.session.myData.selectedApplication.applicantAddress = req.session.myData.applicantAddress1TempAnswer
+
+            req.session.myData.selectedApplication.applicantAddress1 = req.session.myData.applicantAddress1TempAnswer
+            req.session.myData.selectedApplication.applicantAddress2 = req.session.myData.applicantAddress2TempAnswer
+            req.session.myData.selectedApplication.applicantAddress3 = req.session.myData.applicantAddress3TempAnswer
+            req.session.myData.selectedApplication.applicantAddress4 = req.session.myData.applicantAddress4TempAnswer
+            req.session.myData.selectedApplication.applicantPostcode = req.session.myData.applicantPostcodeTempAnswer
+
+            req.session.myData.applicantAddress1TempAnswer = ""
+            req.session.myData.applicantAddress2TempAnswer = ""
+            req.session.myData.applicantAddress3TempAnswer = ""
+            req.session.myData.applicantAddress4TempAnswer = ""
+            req.session.myData.applicantPostcodeTempAnswer = ""
+
+            res.redirect(301, '/' + version + '/cya-applicant');
+
+        }
+
+    });
+
+    // Check your answers applicant
+    router.get('/' + version + '/cya-applicant', function (req, res) {
+        res.render(version + '/cya-applicant', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/cya-applicant', function (req, res) {
+
+        req.session.myData.tasklist.sections["5"] = "completed"
+        updateTasklist(req)
+        res.redirect(301, '/' + version + '/tasklist');
+        
+    });
+
+    //Ecologist name
+    router.get('/' + version + '/ecologist-name', function (req, res) {
+
+        req.session.myData.tasklist.sections["6"] = "inprogress"
+
+        res.render(version + '/ecologist-name', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/ecologist-name', function (req, res) {
+
+        req.session.myData.ecologistNameAnswer = req.body.ecologistName
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.ecologistNameAnswer = req.session.myData.ecologistNameAnswer || "Jane Doe"
+        }
+
+        if(!req.session.myData.ecologistNameAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.ecologistName = {
+                "anchor": "ecologistName",
+                "message": "[error message]"
+            }
+        }
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/ecologist-name', {
+                myData: req.session.myData
+            });
+        } else {
+
+            req.session.myData.selectedApplication.ecologistName = req.session.myData.ecologistNameAnswer
+
+            if(req.query.cya == "true"){
+                res.redirect(301, '/' + version + '/cya-ecologist');
+            } else {
+                res.redirect(301, '/' + version + '/ecologist-company');
+            }
+
+        }
+        
+    });
+
+    // Ecologist company
+    router.get('/' + version + '/ecologist-company', function (req, res) {
+        res.render(version + '/ecologist-company', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/ecologist-company', function (req, res) {
+
+        req.session.myData.ecologistHasCompanyTempAnswer = req.body.ecologistHasCompany
+        req.session.myData.ecologistCompanyTempAnswer = req.body.ecologistCompany
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.ecologistHasCompanyTempAnswer = req.session.myData.ecologistHasCompanyTempAnswer || "Yes"
+            req.session.myData.ecologistCompanyTempAnswer = req.session.myData.ecologistCompanyTempAnswer || "COMPANY NAME 2 LTD"
+        }
+
+        if(!req.session.myData.ecologistHasCompanyTempAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.ecologistHasCompany = {
+                "anchor": "ecologistHasCompany",
+                "message": "[error message 1]"
+            }
+        }
+        if(req.session.myData.ecologistHasCompanyTempAnswer == "Yes" && !req.session.myData.ecologistCompanyTempAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.ecologistCompany = {
+                "anchor": "ecologistCompany",
+                "message": "[error message 2]"
+            }
+        }
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/ecologist-company', {
+                myData:req.session.myData
+            });
+        } else {
+
+            req.session.myData.selectedApplication.ecologistHasCompany = req.session.myData.ecologistHasCompanyTempAnswer 
+            req.session.myData.selectedApplication.ecologistCompany = req.session.myData.ecologistCompanyTempAnswer
+
+            req.session.myData.ecologistHasCompanyTempAnswer = ""
+            req.session.myData.ecologistCompanyTempAnswer = ""
+            
+            if(req.query.cya == "true"){
+                res.redirect(301, '/' + version + '/cya-ecologist');
+            } else {
+                res.redirect(301, '/' + version + '/ecologist-postcode');
+            }
+
+        }
+
+    });
+
+    //Ecologist postcode
+    router.get('/' + version + '/ecologist-postcode', function (req, res) {
+        res.render(version + '/ecologist-postcode', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/ecologist-postcode', function (req, res) {
+
+        req.session.myData.ecologistPostcodeAnswer = req.body.ecologistPostcode
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.ecologistPostcodeAnswer = req.session.myData.ecologistPostcodeAnswer || "B1 1AA"
+        }
+
+        if(!req.session.myData.ecologistPostcodeAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.ecologistPostcode = {
+                "anchor": "ecologistPostcode",
+                "message": "[error message]"
+            }
+        }
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/ecologist-postcode', {
+                myData: req.session.myData
+            });
+        } else {
+
+            //changed postcode? if so - clear address fields
+            if(req.session.myData.ecologistPostcodeAnswer != req.session.myData.selectedApplication.ecologistPostcode){
+                req.session.myData.selectedApplication.ecologistAddress = ""
+                req.session.myData.selectedApplication.ecologistAddress1 = ""
+                req.session.myData.selectedApplication.ecologistAddress2 = ""
+                req.session.myData.selectedApplication.ecologistAddress3 = ""
+                req.session.myData.selectedApplication.ecologistAddress4 = ""
+            }
+
+            req.session.myData.selectedApplication.ecologistPostcode = req.session.myData.ecologistPostcodeAnswer
+            req.session.myData.selectedApplication.ecologistHasPostcode = "true"
+
+            res.redirect(301, '/' + version + '/ecologist-address');
+
+        }
+        
+    });
+
+    // Ecologist address
+    router.get('/' + version + '/ecologist-address', function (req, res) {
+        res.render(version + '/ecologist-address', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/ecologist-address', function (req, res) {
+
+        req.session.myData.ecologistAddressTempAnswer = req.body.ecologistAddress
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.ecologistAddressTempAnswer = req.session.myData.ecologistAddressTempAnswer || "1 High Street"
+        }
+        if(req.session.myData.ecologistAddressTempAnswer == "select"){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.ecologistAddress = {
+                "anchor": "ecologistAddress",
+                "message": "[error message]"
+            }
+        }
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/ecologist-address', {
+                myData:req.session.myData
+            });
+        } else {
+
+            req.session.myData.selectedApplication.ecologistAddress = req.session.myData.ecologistAddressTempAnswer
+            req.session.myData.ecologistAddressTempAnswer = ""
+
+            req.session.myData.selectedApplication.ecologistAddress1 = req.session.myData.selectedApplication.ecologistAddress
+            req.session.myData.selectedApplication.ecologistAddress2 = ""
+            req.session.myData.selectedApplication.ecologistAddress3 = "Oxford"
+            req.session.myData.selectedApplication.ecologistAddress4 = "Oxfordshire"
+
+            res.redirect(301, '/' + version + '/cya-ecologist');
+
+        }
+
+    });
+
+    // Ecologist address
+    router.get('/' + version + '/ecologist-address-form', function (req, res) {
+        if(req.query.ecologistHasPostcode == "false"){
+            req.session.myData.selectedApplication.ecologistHasPostcode = "false"
+        }
+        res.render(version + '/ecologist-address-form', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/ecologist-address-form', function (req, res) {
+
+        req.session.myData.ecologistAddress1TempAnswer = req.body.ecologistAddress1
+        req.session.myData.ecologistAddress2TempAnswer = req.body.ecologistAddress2
+        req.session.myData.ecologistAddress3TempAnswer = req.body.ecologistAddress3
+        req.session.myData.ecologistAddress4TempAnswer = req.body.ecologistAddress4
+        if(req.session.myData.selectedApplication.ecologistHasPostcode != "false"){
+            req.session.myData.ecologistPostcodeTempAnswer = req.body.ecologistPostcode
+        } else {
+            req.session.myData.ecologistPostcodeTempAnswer = ""
+        }
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.ecologistAddress1TempAnswer = req.session.myData.ecologistAddress1TempAnswer || "1 High Street"
+            req.session.myData.ecologistAddress2TempAnswer = req.session.myData.ecologistAddress2TempAnswer || ""
+            req.session.myData.ecologistAddress3TempAnswer = req.session.myData.ecologistAddress3TempAnswer || "Oxford"
+            req.session.myData.ecologistAddress4TempAnswer = req.session.myData.ecologistAddress4TempAnswer || "Oxfordshire"
+            if(req.session.myData.selectedApplication.ecologistHasPostcode != "false"){
+                req.session.myData.ecologistPostcodeTempAnswer = req.session.myData.ecologistPostcodeTempAnswer || "B1 1AA"
+            }
+        }
+
+        if(!req.session.myData.ecologistAddress1TempAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.ecologistAddress1 = {
+                "anchor": "ecologistAddress1",
+                "message": "[error message 1]"
+            }
+        }
+        if(!req.session.myData.ecologistAddress3TempAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.ecologistAddress3 = {
+                "anchor": "ecologistAddress3",
+                "message": "[error message 3]"
+            }
+        }
+        if(!req.session.myData.ecologistAddress4TempAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.ecologistAddress4 = {
+                "anchor": "ecologistAddress4",
+                "message": "[error message 4]"
+            }
+        }
+        if(req.session.myData.selectedApplication.ecologistHasPostcode != "false"){
+            if(!req.session.myData.ecologistPostcodeTempAnswer){
+                req.session.myData.validationError = "true"
+                req.session.myData.validationErrors.ecologistPostcode = {
+                    "anchor": "ecologistPostcode",
+                    "message": "[error message 5]"
+                }
+            }
+        }
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/ecologist-address-form', {
+                myData:req.session.myData
+            });
+        } else {
+
+            req.session.myData.selectedApplication.ecologistAddress = req.session.myData.ecologistAddress1TempAnswer
+
+            req.session.myData.selectedApplication.ecologistAddress1 = req.session.myData.ecologistAddress1TempAnswer
+            req.session.myData.selectedApplication.ecologistAddress2 = req.session.myData.ecologistAddress2TempAnswer
+            req.session.myData.selectedApplication.ecologistAddress3 = req.session.myData.ecologistAddress3TempAnswer
+            req.session.myData.selectedApplication.ecologistAddress4 = req.session.myData.ecologistAddress4TempAnswer
+            req.session.myData.selectedApplication.ecologistPostcode = req.session.myData.ecologistPostcodeTempAnswer
+
+            req.session.myData.ecologistAddress1TempAnswer = ""
+            req.session.myData.ecologistAddress2TempAnswer = ""
+            req.session.myData.ecologistAddress3TempAnswer = ""
+            req.session.myData.ecologistAddress4TempAnswer = ""
+            req.session.myData.ecologistPostcodeTempAnswer = ""
+
+            res.redirect(301, '/' + version + '/cya-ecologist');
+
+        }
+
+    });
+
+    // Check your answers ecologist
+    router.get('/' + version + '/cya-ecologist', function (req, res) {
+        res.render(version + '/cya-ecologist', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/cya-ecologist', function (req, res) {
+
+        req.session.myData.tasklist.sections["6"] = "completed"
+        updateTasklist(req)
+        res.redirect(301, '/' + version + '/tasklist');
+        
+    });
 
 
 

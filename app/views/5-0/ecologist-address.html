@@ -5,7 +5,7 @@
 {% set _inError = myData.validationError == "true" %}
 
 {% block pageTitle %} 
-{% if _inError %}Error: {% endif %}What is the site address?
+{% if _inError %}Error: {% endif %}TO DO
 {% endblock %}
 
 {% block beforeContent %}
@@ -43,13 +43,13 @@
 		<form method="POST">
 
             <h1 class="govuk-heading-xl">
-                What is the site address?
+                What is {{myData.selectedApplication.ecologistName}}’s contact address?
             </h1>
 
             <p class="govuk-body govuk-!-margin-bottom-6">
                 <span class="govuk-!-font-weight-bold">Postcode</span><br>
-                {{myData.selectedApplication.sitePostcode}}<br>
-                <a class="govuk-link govuk-link--no-visited-state" href="site-postcode">
+                {{myData.selectedApplication.ecologistPostcode}}<br>
+                <a class="govuk-link govuk-link--no-visited-state" href="ecologist-postcode">
                     Change
                 </a>
             </p>
@@ -57,32 +57,32 @@
 
             <div class="govuk-form-group {% if _inError %}govuk-form-group--error{% endif %}">
 
-                <label class="govuk-label govuk-!-font-weight-bold" for="siteAddress">
+                <label class="govuk-label govuk-!-font-weight-bold" for="ecologistAddress">
                     Select an address
                 </label>
 
                 {% if _inError %}
-                <span id="siteName-error" class="govuk-error-message">
+                <span class="govuk-error-message">
                     <span class="govuk-visually-hidden">Error:</span>
-                    {{myData.validationErrors.siteAddress.message}}
+                    {{myData.validationErrors.ecologistAddress.message}}
                 </span>
                 {% endif %}
 
                 {% set _numberAddresses = 19 %}
 
-                <select class="govuk-select {% if _inError %}govuk-input--error{%endif %}" id="siteAddress" name="siteAddress">
+                <select class="govuk-select {% if _inError %}govuk-input--error{%endif %}" id="ecologistAddress" name="ecologistAddress">
                     <option value="select" selected >{{_numberAddresses}} addresses found</option>
                     {% for i in range(1, _numberAddresses+1) -%}
                         {% set _street = i + ' High Street' %}
-                        {% set _address = i + ' High Street, OXFORD ' + myData.selectedApplication.sitePostcode %}
-                        <option value="{{_street}}" {% if myData.selectedApplication.siteAddress == _street %}selected{% endif %}>{{_address}}</option>
+                        {% set _address = i + ' High Street, OXFORD ' + myData.selectedApplication.ecologistPostcode %}
+                        <option value="{{_street}}" {% if myData.selectedApplication.ecologistAddress == _street %}selected{% endif %}>{{_address}}</option>
                     {%- endfor %}
                 </select>
 
             </div>
 
             <p class="govuk-body govuk-!-margin-bottom-6">
-                <a class="govuk-link govuk-link--no-visited-state" href="site-boundary?findlocation=place&location={{myData.selectedApplication.sitePostcode}}&address=select">
+                <a class="govuk-link govuk-link--no-visited-state" href="ecologist-address-form">
                     I can’t find the address in the list
                 </a>
             </p>
