@@ -88,7 +88,8 @@ module.exports = function (router,_myData) {
 
     function updateTasklist(req){ 
 
-        var cansubmit = true
+        var cansubmit = true,
+            canstart = true
 
         // Counts
         req.session.myData.tasklist.completed = 0
@@ -96,7 +97,10 @@ module.exports = function (router,_myData) {
             if(value == "completed"){
                 req.session.myData.tasklist.completed++
             } else {
-                if(key == "1" || key == "2" || key == "4" || key == "5" || key == "6"){
+                if(key == "7"){
+                    canstart = false
+                }
+                if(key == "1" || key == "2" || key == "4" || key == "5" || key == "6" || key == "7"){
                     cansubmit = false
                 }
             }
@@ -105,6 +109,25 @@ module.exports = function (router,_myData) {
         //Set submit to "notstarted" if all others completed
         if(cansubmit && req.session.myData.tasklist.sections["3"] == "cannotstartyet"){
             req.session.myData.tasklist.sections["3"] = "notstarted"
+        }
+
+        //Set others to "notstarted" if permission completed
+        if(canstart){
+            if(req.session.myData.tasklist.sections["1"] == "cannotstartyet"){
+                req.session.myData.tasklist.sections["1"] = "notstarted"
+            }
+            if(req.session.myData.tasklist.sections["2"] == "cannotstartyet"){
+                req.session.myData.tasklist.sections["2"] = "notstarted"
+            }
+            if(req.session.myData.tasklist.sections["4"] == "cannotstartyet"){
+                req.session.myData.tasklist.sections["4"] = "notstarted"
+            }
+            if(req.session.myData.tasklist.sections["5"] == "cannotstartyet"){
+                req.session.myData.tasklist.sections["5"] = "notstarted"
+            }
+            if(req.session.myData.tasklist.sections["6"] == "cannotstartyet"){
+                req.session.myData.tasklist.sections["6"] = "notstarted"
+            }
         }
 
     }
@@ -131,14 +154,16 @@ module.exports = function (router,_myData) {
         // 4 = site
         // 5 = applicant
         // 6 = ecologist
+        // 7 = permission
         req.session.myData.tasklist = {
             "sections": {
-                "1": "notstarted",
-                "2": "notstarted",
+                "1": "cannotstartyet",
+                "2": "cannotstartyet",
                 "3": "cannotstartyet",
-                "4": "notstarted",
-                "5": "notstarted",
-                "6": "notstarted"
+                "4": "cannotstartyet",
+                "5": "cannotstartyet",
+                "6": "cannotstartyet",
+                "7": "notstarted"
             },
             "completed": 0
         }
@@ -236,6 +261,241 @@ module.exports = function (router,_myData) {
             myData:req.session.myData
         });
     });
+
+    // land owner?
+    router.get('/' + version + '/land-owner', function (req, res) {
+        res.render(version + '/land-owner', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/land-owner', function (req, res) {
+
+        req.session.myData.landOwnerAnswer = req.body.landOwner
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.landOwnerAnswer = req.session.myData.landOwnerAnswer || "No"
+        }
+
+        if(!req.session.myData.landOwnerAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.landOwner = {
+                "anchor": "landOwner-1",
+                "message": "[error message]"
+            }
+        }
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/land-owner', {
+                myData: req.session.myData
+            });
+        } else {
+
+            req.session.myData.selectedApplication.landOwner = req.session.myData.landOwnerAnswer
+            if(req.session.myData.selectedApplication.landOwner == "Yes"){
+                req.session.myData.selectedApplication.landOwnerPermission = ""
+            }
+
+            var _cyaQS = ""
+            if(req.query.cya == "true"){
+                _cyaQS = "?cya=true"
+            }
+           
+            if(req.session.myData.selectedApplication.landOwner == "No"){
+                res.redirect(301, '/' + version + '/land-owner-permission' + _cyaQS);
+            } else {
+                if(req.query.cya == "true"){
+                    res.redirect(301, '/' + version + '/cya-permission');
+                } else {
+                    res.redirect(301, '/' + version + '/consent');
+                }
+            }
+
+        }
+        
+    });
+
+    // land owner?
+    router.get('/' + version + '/land-owner-permission', function (req, res) {
+        res.render(version + '/land-owner-permission', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/land-owner-permission', function (req, res) {
+
+        req.session.myData.landOwnerPermissionAnswer = req.body.landOwnerPermission
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.landOwnerPermissionAnswer = req.session.myData.landOwnerPermissionAnswer || "Yes"
+        }
+
+        if(!req.session.myData.landOwnerPermissionAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.landOwnerPermission = {
+                "anchor": "landOwnerPermission-1",
+                "message": "[error message]"
+            }
+        }
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/land-owner-permission', {
+                myData: req.session.myData
+            });
+        } else {
+
+            req.session.myData.selectedApplication.landOwnerPermission = req.session.myData.landOwnerPermissionAnswer
+           
+            if(req.session.myData.selectedApplication.landOwnerPermission == "No"){
+                res.redirect(301, '/' + version + '/dropout-land-owner');
+            } else {
+                if(req.query.cya == "true"){
+                    res.redirect(301, '/' + version + '/cya-permission');
+                } else {
+                    res.redirect(301, '/' + version + '/consent');
+                }
+            }
+
+        }
+        
+    });
+
+    // dropout - land owner permission
+    router.get('/' + version + '/dropout-land-owner', function (req, res) {
+        res.render(version + '/dropout-land-owner', {
+            myData:req.session.myData
+        });
+    });
+
+    // consent?
+    router.get('/' + version + '/consent', function (req, res) {
+        res.render(version + '/consent', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/consent', function (req, res) {
+
+        var _was = req.session.myData.selectedApplication.consent
+
+        req.session.myData.consentAnswer = req.body.consent
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.consentAnswer = req.session.myData.consentAnswer || "No"
+        }
+
+        if(!req.session.myData.consentAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.consent = {
+                "anchor": "consent-1",
+                "message": "[error message]"
+            }
+        }
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/consent', {
+                myData: req.session.myData
+            });
+        } else {
+
+            req.session.myData.selectedApplication.consent = req.session.myData.consentAnswer
+            if(req.session.myData.selectedApplication.consent == "No"){
+                req.session.myData.selectedApplication.consentGranted = ""
+                req.session.myData.selectedApplication.consentNumbers = []
+            }
+           
+            if(req.session.myData.selectedApplication.consent == "No"){
+                res.redirect(301, '/' + version + '/cya-permission');
+            } else {
+
+                if(_was == "No" && req.session.myData.selectedApplication.consent == "Yes"){
+                    res.redirect(301, '/' + version + '/consent-granted');
+                } else {
+                    if(req.query.cya == "true"){
+                        res.redirect(301, '/' + version + '/cya-permission');
+                    } else {
+                        res.redirect(301, '/' + version + '/consent-granted');
+                    }
+                }
+            }
+
+        }
+        
+    });
+
+    // consent granted?
+    router.get('/' + version + '/consent-granted', function (req, res) {
+        res.render(version + '/consent-granted', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/consent-granted', function (req, res) {
+
+        req.session.myData.consentGrantedTempAnswer = req.body.consentGranted
+        req.session.myData.consentReferenceTempAnswer = req.body.consentReference
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.consentGrantedTempAnswer = req.session.myData.consentGrantedTempAnswer || "Yes"
+            req.session.myData.consentReferenceTempAnswer = req.session.myData.consentReferenceTempAnswer || "123456789"
+        }
+
+        if(!req.session.myData.consentGrantedTempAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.consentGranted = {
+                "anchor": "consentGranted",
+                "message": "[error message 1]"
+            }
+        }
+        if(req.session.myData.consentGrantedTempAnswer == "Yes" && !req.session.myData.consentReferenceTempAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.consentReference = {
+                "anchor": "consentReference",
+                "message": "[error message 2]"
+            }
+        }
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/consent-granted', {
+                myData:req.session.myData
+            });
+        } else {
+
+            req.session.myData.selectedApplication.consentGranted = req.session.myData.consentGrantedTempAnswer 
+            req.session.myData.selectedApplication.consentReference = req.session.myData.consentReferenceTempAnswer
+
+            req.session.myData.consentGrantedTempAnswer = ""
+            req.session.myData.consentReferenceTempAnswer = ""
+            
+            if(req.session.myData.selectedApplication.consentGranted == "No"){
+                res.redirect(301, '/' + version + '/dropout-consent');
+            } else {
+                res.redirect(301, '/' + version + '/cya-permission');
+            }
+
+        }
+
+    });
+
+    // dropout - consent granted
+    router.get('/' + version + '/dropout-consent-granted', function (req, res) {
+        res.render(version + '/dropout-consent-granted', {
+            myData:req.session.myData
+        });
+    });
+
+    // Check your answers permission
+    router.get('/' + version + '/cya-permission', function (req, res) {
+        res.render(version + '/cya-permission', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/cya-permission', function (req, res) {
+
+        req.session.myData.tasklist.sections["7"] = "completed"
+        updateTasklist(req)
+        res.redirect(301, '/' + version + '/tasklist');
+        
+    });
+
+
+
 
     // Proposal bat
     router.get('/' + version + '/proposal-bat', function (req, res) {

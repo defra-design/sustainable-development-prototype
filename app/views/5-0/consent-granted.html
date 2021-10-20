@@ -5,7 +5,7 @@
 {% set _inError = myData.validationError == "true" %}
 
 {% block pageTitle %} 
-{% if _inError %}Error: {% endif %}TO DO
+{% if _inError %}Error: {% endif %}Has the project got permission to start?
 {% endblock %}
 
 {% block beforeContent %}
@@ -46,58 +46,58 @@
                 <fieldset class="govuk-fieldset" >
                   <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
                     <h1 class="govuk-fieldset__heading">
-                        Is {{myData.selectedApplication.ecologistName}} part of a company?
+                        Has the project got permission to start?
                     </h1>
                   </legend>
 
-                {% if myData.validationErrors.ecologistHasCompany %}
+                {% if myData.validationErrors.consentGranted %}
                 <span class="govuk-error-message">
                     <span class="govuk-visually-hidden">Error:</span>
-                    {{myData.validationErrors.ecologistHasCompany.message}}
+                    {{myData.validationErrors.consentGranted.message}}
                 </span>
                 {% endif %}
 
                 {% set _selected = "" %}
                 {% if _inError %}
-                    {% set _selected = myData.ecologistHasCompanyTempAnswer %}
+                    {% set _selected = myData.consentGrantedTempAnswer %}
                 {% else %}
-                    {% set _selected = myData.selectedApplication.ecologistHasCompany %}
+                    {% set _selected = myData.selectedApplication.consentGranted %}
                 {% endif %}
 
                 <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
 
                     <div class="govuk-radios__item">
-                        <input class="govuk-radios__input" id="ecologistHasCompany" name="ecologistHasCompany" type="radio" value="Yes" data-aria-controls="conditional-ecologistCompany" {% if _selected == 'Yes' %}checked{% endif %}>
-                        <label class="govuk-label govuk-radios__label" for="ecologistHasCompany">
+                        <input class="govuk-radios__input" id="consentGranted" name="consentGranted" type="radio" value="Yes" data-aria-controls="conditional-consentReference" {% if _selected == 'Yes' %}checked{% endif %}>
+                        <label class="govuk-label govuk-radios__label" for="consentGranted">
                         Yes
                         </label>
                     </div>
-                    <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-ecologistCompany">
+                    <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-consentReference">
                         <div class="govuk-form-group">
-                            <label class="govuk-label" for="ecologistCompany">
-                                Company name
+                            <label class="govuk-label" for="consentReference">
+                                Permission reference
                             </label>
 
-                            {% if myData.validationErrors.ecologistCompany %}
+                            {% if myData.validationErrors.consentReference %}
                             <span class="govuk-error-message">
                                 <span class="govuk-visually-hidden">Error:</span>
-                                {{myData.validationErrors.ecologistCompany.message}}
+                                {{myData.validationErrors.consentReference.message}}
                             </span>
                             {% endif %}
 
-                            {% set _value = myData.selectedApplication.ecologistCompany %}
-                            {% if myData.validationErrors.ecologistCompany %}
-                                {% set _value = myData.ecologistCompanyAnswer %}
+                            {% set _value = myData.selectedApplication.consentReference %}
+                            {% if myData.validationErrors.consentReference %}
+                                {% set _value = myData.consentReferenceAnswer %}
                             {% endif %}
 
-                            <input class="govuk-input govuk-!-width-three-quarters {% if myData.validationErrors.ecologistCompany %}govuk-input--error{%endif %}" id="ecologistCompany" name="ecologistCompany" type="text" value="{{_value}}" >
+                            <input class="govuk-input govuk-!-width-three-quarters {% if myData.validationErrors.consentReference %}govuk-input--error{%endif %}" id="consentReference" name="consentReference" type="text" value="{{_value}}" >
 
                         </div>
                     </div>
 
                     <div class="govuk-radios__item">
-                      <input class="govuk-radios__input" id="ecologistHasCompany-2" name="ecologistHasCompany" type="radio" value="No" {% if _selected == 'No' %}checked{% endif %} >
-                      <label class="govuk-label govuk-radios__label" for="ecologistHasCompany-2">
+                      <input class="govuk-radios__input" id="consentGranted-2" name="consentGranted" type="radio" value="No" {% if _selected == 'No' %}checked{% endif %} >
+                      <label class="govuk-label govuk-radios__label" for="consentGranted-2">
                         No
                       </label>
                     </div>
