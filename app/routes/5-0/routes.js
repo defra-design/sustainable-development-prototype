@@ -41,6 +41,22 @@ module.exports = function (router,_myData) {
         }
     }
 
+    function addConsentToApplication(req,consent){
+        consent.new = false
+        consent.inprogress = false
+
+        var _existingConsent = req.session.myData.selectedApplication.consents.find(obj => {return obj.id.toString() === consent.id.toString()});
+                    
+        if(_existingConsent){
+            //replace existing
+            var _existingIndex = req.session.myData.selectedApplication.consents.map(item => item.id.toString()).indexOf(consent.id.toString());
+            req.session.myData.selectedApplication.consents[_existingIndex] = consent;
+        } else {
+            // add new
+            req.session.myData.selectedApplication.consents.push(consent)
+        }
+    }
+
     function setSelectedApplication(req, _applicationParameter){
         if(_applicationParameter){
             for (var i = 0; i < req.session.myData.applications.length; i++) {
@@ -84,6 +100,39 @@ module.exports = function (router,_myData) {
         req.session.myData.newRoost.id = _randomID
         req.session.myData.newRoost.inprogress = false
         setSelectedRoost(req, _randomID)
+    }
+
+    function setSelectedConsent(req, _consentID){
+
+        if(_consentID){
+
+            var _existingConsent = req.session.myData.selectedApplication.consents.find(obj => {return obj.id.toString() === _consentID.toString()})
+
+            //TODO fix it not thinking the currently added new one is existing
+
+            if(_existingConsent){
+                req.session.myData.selectedConsent = _existingConsent
+            } else {
+                if(req.session.myData.testdata == "true"){
+                    req.session.myData.selectedConsent = req.session.myData.testConsent
+                    addConsentToApplication(req,req.session.myData.selectedConsent)
+                } else {
+                    if(!req.session.myData.newConsent.inprogress){
+                        req.session.myData.newConsent.inprogress = true
+                        req.session.myData.selectedConsent = req.session.myData.newConsent
+                    }
+                }
+            }
+            req.session.myData.consent = req.session.myData.selectedConsent.id
+            
+        }
+    }
+
+    function startNewConsent(req){
+        var _randomID = Math.floor(100000 + Math.random() * 900000)
+        req.session.myData.newConsent.id = _randomID
+        req.session.myData.newConsent.inprogress = false
+        setSelectedConsent(req, _randomID)
     }
 
     function updateTasklist(req){ 
@@ -194,6 +243,9 @@ module.exports = function (router,_myData) {
         req.session.myData.roost = Math.floor(100000 + Math.random() * 900000)
         req.session.myData.newRoost = {"id": req.session.myData.roost,"bats":[],"new":true, "inprogress": false}
 
+        req.session.myData.consent = Math.floor(100000 + Math.random() * 900000)
+        req.session.myData.newConsent = {"id": req.session.myData.consent,"type":{},"new":true, "inprogress": false}
+
         //Set test roost (just for deep links to work) - in pages if testdata == true, we will use the testRoost
         req.session.myData.testdata = 'false'
         req.session.myData.testRoost = {
@@ -216,6 +268,21 @@ module.exports = function (router,_myData) {
             "new": false,
             "inprogress": false
         }
+
+        //Set test consent (just for deep links to work) - in pages if testdata == true, we will use the testConsent
+        req.session.myData.testdata = 'false'
+        req.session.myData.testConsent = {
+            "id": 123456789,
+            "type": 
+            {
+                "id": req.session.myData.consentTypes[0].id,
+                "name": req.session.myData.consentTypes[0].name
+            },
+            "consentReference": "123/45678/9A",
+            "new": false,
+            "inprogress": false
+        }
+
 
     }
 
@@ -260,6 +327,9 @@ module.exports = function (router,_myData) {
 
         req.session.myData.roost = req.query.roost || req.session.myData.roost
         setSelectedRoost(req,req.session.myData.roost)
+
+        req.session.myData.consent = req.query.consent || req.session.myData.consent
+        setSelectedConsent(req,req.session.myData.consent)
 
         req.session.myData.findlocation = req.query.findlocation || req.session.myData.findlocation
 
@@ -978,10 +1048,212 @@ module.exports = function (router,_myData) {
 
 
 
+    // Intro consents
+    router.get('/' + version + '/intro-consent', function (req, res) {
+
+        req.session.myData.tasklist.sections["8"] = "inprogress"
+
+        res.render(version + '/intro-consent', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/intro-consent', function (req, res) {
+        res.redirect(301, '/' + version + '/consent-type');
+    });
 
 
+    // Consent type
+    router.get('/' + version + '/consent-type', function (req, res) {
+        res.render(version + '/consent-type', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/consent-type', function (req, res) {
+
+        var _was = req.session.myData.selectedConsent.type.id
+
+        req.session.myData.consentTypeTempAnswer = req.body.consentType
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.consentTypeTempAnswer = req.session.myData.consentTypeTempAnswer || "_consentType-1"
+        }
+        if(!req.session.myData.consentTypeTempAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.consentTypeAnswer = {
+                "anchor": "_consentType-1",
+                "message": "[error message]"
+            }
+        }
+        
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/consent-type', {
+                myData: req.session.myData
+            });
+        } else {
+
+            req.session.myData.consentTypes.forEach(function(_consentType, index) {
+                if(req.session.myData.consentTypeTempAnswer == _consentType.id){
+                    req.session.myData.selectedConsent.type = clone(_consentType)
+                }
+            });
+            //remove pre-saved reference if type changed duriong cya change answers flow
+            // if(_was != req.session.myData.consentTypeTempAnswer){
+            //     req.session.myData.selectedConsent.consentReference = ""
+            // }
+            req.session.myData.consentTypeTempAnswer = ""
+
+            //Consent query string
+            var _consentQS = ''
+            if(!req.session.myData.selectedConsent.new){
+                _consentQS = '?consent=' + req.session.myData.consent
+            }
+
+            res.redirect(301, '/' + version + '/consent-reference' + _consentQS);
+        }
+    });
+
+    //Consent reference
+    router.get('/' + version + '/consent-reference', function (req, res) {
+        res.render(version + '/consent-reference', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/consent-reference', function (req, res) {
+
+        req.session.myData.consentReferenceAnswer = req.body.consentReference
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.consentReferenceAnswer = req.session.myData.consentReferenceAnswer || "123/45678/9A"
+        }
+
+        if(!req.session.myData.consentReferenceAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.consentReference = {
+                "anchor": "consentReference",
+                "message": "[error message]"
+            }
+        }
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/consent-reference', {
+                myData: req.session.myData
+            });
+        } else {
+
+            req.session.myData.selectedConsent.consentReference = req.session.myData.consentReferenceAnswer
+
+            //ADD CONSENT TO APPLICATION
+            addConsentToApplication(req,req.session.myData.selectedConsent)
+
+            setSelectedConsent(req,req.session.myData.selectedConsent.id.toString())
+
+            res.redirect(301, '/' + version + '/cya-consents');
+
+        }
+        
+    });
+
+    // Check your answers consents
+    router.get('/' + version + '/cya-consents', function (req, res) {
+        res.render(version + '/cya-consents', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/cya-consents', function (req, res) {
+
+        req.session.myData.addConsentAnswer = req.body.addConsent
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.addConsentAnswer = req.session.myData.addConsentAnswer || "No"
+        }
+
+        if(!req.session.myData.addConsentAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.addConsent = {
+                "anchor": "addConsent-1",
+                "message": "[error message for add consent]"
+            }
+        }
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/cya-consents', {
+                myData: req.session.myData
+            });
+        } else {
 
 
+            if(req.session.myData.addConsentAnswer == 'Yes'){
+                startNewConsent(req)
+                res.redirect(301, '/' + version + '/intro-consent');
+            } else {
+                req.session.myData.tasklist.sections["8"] = "completed"
+                updateTasklist(req)
+                res.redirect(301, '/' + version + '/tasklist');
+            }
+
+        }
+         
+    });
+
+    // Roost remove
+    router.get('/' + version + '/consent-remove', function (req, res) {
+
+        req.session.myData.consentToRemove = req.query.consentToRemove
+        
+
+        req.session.myData.selectedConsentToRemove = req.session.myData.selectedApplication.consents.find(obj => {return obj.id.toString() === req.session.myData.consentToRemove})
+
+        res.render(version + '/consent-remove', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/consent-remove', function (req, res) {
+
+        req.session.myData.removeConsentAnswer = req.body.removeConsent
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.removeConsentAnswer = req.session.myData.removeConsentAnswer || "No"
+        }
+
+        if(!req.session.myData.removeConsentAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.removeConsent = {
+                "anchor": "removeConsent-1",
+                "message": "[error message for remove consent]"
+            }
+        }
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/consent-remove', {
+                myData: req.session.myData
+            });
+        } else {
+
+            if(req.session.myData.removeConsentAnswer == 'Yes'){
+
+                var _removeID = req.session.myData.consentToRemove.toString(),
+                    _consent = req.session.myData.selectedApplication.consents.find(obj => {return obj.id.toString() === _removeID})
+                
+                if(_consent){
+                    //remove it
+                    var removeIndex = req.session.myData.selectedApplication.consents.map(item => item.id.toString()).indexOf(_removeID);
+                    (removeIndex >= 0) && req.session.myData.selectedApplication.consents.splice(removeIndex, 1);
+                }
+
+                if(req.session.myData.selectedApplication.consents.length == 0) {
+                    startNewConsent(req)
+                    res.redirect(301, '/' + version + '/intro-consent');
+                } else {
+                    res.redirect(301, '/' + version + '/cya-consents');
+                }
+                
+
+            } else {
+                res.redirect(301, '/' + version + '/cya-consents');
+            }
+
+        }
+    });
 
 
 
@@ -1419,8 +1691,6 @@ module.exports = function (router,_myData) {
     router.get('/' + version + '/roost-remove', function (req, res) {
 
         req.session.myData.roostToRemove = req.query.roostToRemove
-
-        req.session.myData.selectedRoostToRemove = req.session.myData.selectedApplication.roosts.find(obj => {return obj.id.toString() === req.session.myData.roostToRemove})
 
         res.render(version + '/roost-remove', {
             myData:req.session.myData

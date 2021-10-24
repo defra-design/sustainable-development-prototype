@@ -580,10 +580,45 @@ var _myData = {
             "name": "Water supply and treatment / water environment"
         }
     ],
+    "consentTypes": [
+        {
+            "id": "_consentType-1",
+            "name": "Planning permission"
+        },
+        {
+            "id": "_consentType-2",
+            "name": "Demolition consent"
+        },
+        {
+            "id": "_consentType-3",
+            "name": "Listed building consent"
+        },
+        {
+            "id": "_consentType-4",
+            "name": "Highways Act consent"
+        },
+        {
+            "id": "_consentType-5",
+            "name": "Mineral consent"
+        },
+        {
+            "id": "_consentType-6",
+            "name": "Conservation area consent"
+        },
+        {
+            "id": "_consentType-7",
+            "name": "Tree preservation order"
+        },
+        {
+            "id": "_consentType-8",
+            "name": "Utilities consent"
+        },
+    ],
     "applications": [
         {
             "id": 1,
-            "roosts": []
+            "roosts": [],
+            "consents": []
         }
     ]
 }
