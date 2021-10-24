@@ -5,7 +5,7 @@
 {% set _inError = myData.validationError == "true" %}
 
 {% block pageTitle %} 
-{% if _inError %}Error: {% endif %}Does the project need permission to start?
+{% if _inError %}Error: {% endif %}Does the project need any permissions?
 {% endblock %}
 
 {% block beforeContent %}
@@ -42,10 +42,10 @@
 	<div class="govuk-grid-column-two-thirds">
 
         <h1 class="govuk-heading-xl">
-            Does the project need permission to start?
+            Does the project need any permissions?
         </h1>
 
-        <p class="govuk-body">For example, planning permission or approval to work on a listed building.</p>
+        <p class="govuk-body">For example, planning permission or listed building consent.</p>
 
 		<form method="POST">
 
@@ -54,9 +54,9 @@
 
                     <!-- <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
                         <h1 class="govuk-fieldset__heading">
-                            Does the project need permission to start?
+                            Does the project need any permissions?
                         </h1>
-                        <p class="govuk-body">For example, planning permission or approval to work on a listed building.</p>
+                        <p class="govuk-body">For example, planning permission or listed building consent.</p>
                     </legend> -->
 
                     {% if _inError %}

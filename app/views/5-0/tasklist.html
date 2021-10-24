@@ -22,7 +22,7 @@
       </h1>
 
       <h2 class="govuk-heading-s govuk-!-margin-bottom-2">Application incomplete</h2>
-      <p class="govuk-body govuk-!-margin-bottom-7" >You have completed {{myData.tasklist.completed}} of 7 sections.</p>
+      <p class="govuk-body govuk-!-margin-bottom-7" >You have completed {{myData.tasklist.completed}} of {{myData.tasklist.total}} sections.</p>
 
       <ol class="app-task-list">
 
@@ -172,6 +172,39 @@
                 {% endif %}
 
             </li>
+
+            <!-- Permissions data - section 8 -->
+            {% if myData.selectedApplication.consent != "No" %}
+            <li class="app-task-list__item">
+              {% set _status8 = myData.tasklist.sections["8"] %}
+              {% set _label8 = "Give details of permissions to start work" %}
+
+              <span class="app-task-list__task-name">
+                {% if _status8 == "cannotstartyet" %}
+                  {{_label8}}
+                {% else %}
+                  {% if _status8 == "completed" %}
+                  <a href="cya-consents" class="govuk-link--no-visited-state" >
+                  {% else %}
+                  <a href="intro-consent" class="govuk-link--no-visited-state" >
+                  {% endif %}
+                      {{_label8}}
+                  </a>
+                {% endif %}
+              </span>
+
+              {% if _status8 == "notstarted" %}
+              <strong class="govuk-tag govuk-tag--grey app-task-list__tag" >Not started</strong>
+              {% elif _status8 == "cannotstartyet" %}
+              <strong class="govuk-tag govuk-tag--grey app-task-list__tag" >Cannot start yet</strong>
+              {% elif _status8 == "inprogress" %}
+              <strong class="govuk-tag govuk-tag--blue app-task-list__tag" >In progress</strong>
+              {% elif _status8 == "completed" %}
+              <strong class="govuk-tag app-task-list__tag" >Completed</strong>
+              {% endif %}
+
+          </li>
+          {% endif %}
 
             <!-- Site - section 3 -->
             <li class="app-task-list__item">

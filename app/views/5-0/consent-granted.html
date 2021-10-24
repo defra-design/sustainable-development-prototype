@@ -5,7 +5,7 @@
 {% set _inError = myData.validationError == "true" %}
 
 {% block pageTitle %} 
-{% if _inError %}Error: {% endif %}Has the project got permission to start?
+{% if _inError %}Error: {% endif %}Has the project got all permissions for work to start?
 {% endblock %}
 
 {% block beforeContent %}
@@ -40,72 +40,49 @@
 
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
+
+        <!-- <h1 class="govuk-heading-xl">
+            Does the project need permission to start?
+        </h1> -->
+
 		<form method="POST">
 
             <div class="govuk-form-group {% if _inError %}govuk-form-group--error{% endif %}">
                 <fieldset class="govuk-fieldset" >
-                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
-                    <h1 class="govuk-fieldset__heading">
-                        Has the project got permission to start?
-                    </h1>
-                  </legend>
 
-                {% if myData.validationErrors.consentGranted %}
-                <span class="govuk-error-message">
-                    <span class="govuk-visually-hidden">Error:</span>
-                    {{myData.validationErrors.consentGranted.message}}
-                </span>
-                {% endif %}
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+                        <h1 class="govuk-fieldset__heading">
+                            Has the project got all permissions for work to start?
+                        </h1>
+                    </legend>
 
-                {% set _selected = "" %}
-                {% if _inError %}
-                    {% set _selected = myData.consentGrantedTempAnswer %}
-                {% else %}
-                    {% set _selected = myData.selectedApplication.consentGranted %}
-                {% endif %}
+                    {% if _inError %}
+                    <span id="consentGranted-error" class="govuk-error-message">
+                        <span class="govuk-visually-hidden">Error:</span>
+                        {{myData.validationErrors.consentGranted.message}}
+                    </span>
+                    {% endif %}
 
-                <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
-
-                    <div class="govuk-radios__item">
-                        <input class="govuk-radios__input" id="consentGranted" name="consentGranted" type="radio" value="Yes" data-aria-controls="conditional-consentReference" {% if _selected == 'Yes' %}checked{% endif %}>
-                        <label class="govuk-label govuk-radios__label" for="consentGranted">
-                        Yes
-                        </label>
-                    </div>
-                    <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-consentReference">
-                        <div class="govuk-form-group">
-                            <label class="govuk-label" for="consentReference">
-                                Permission reference
+                    <div class="govuk-radios" data-module="govuk-radios">
+                        
+                        <div class="govuk-radios__item">
+                            <input {% if myData.selectedApplication.consentGranted == "Yes" %}checked{% endif %} class="govuk-radios__input" id="consentGranted-1" name="consentGranted" type="radio" value="Yes" >
+                            <label class="govuk-label govuk-radios__label" for="consentGranted-1">
+                            Yes
                             </label>
-
-                            {% if myData.validationErrors.consentReference %}
-                            <span class="govuk-error-message">
-                                <span class="govuk-visually-hidden">Error:</span>
-                                {{myData.validationErrors.consentReference.message}}
-                            </span>
-                            {% endif %}
-
-                            {% set _value = myData.selectedApplication.consentReference %}
-                            {% if myData.validationErrors.consentReference %}
-                                {% set _value = myData.consentReferenceAnswer %}
-                            {% endif %}
-
-                            <input class="govuk-input govuk-!-width-three-quarters {% if myData.validationErrors.consentReference %}govuk-input--error{%endif %}" id="consentReference" name="consentReference" type="text" value="{{_value}}" >
-
                         </div>
+
+                        <div class="govuk-radios__item">
+                            <input {% if myData.selectedApplication.consentGranted == "No" %}checked{% endif %} class="govuk-radios__input" id="consentGranted-2" name="consentGranted" type="radio" value="No" >
+                            <label class="govuk-label govuk-radios__label" for="consentGranted-2">
+                            No
+                            </label>
+                        </div>
+
                     </div>
 
-                    <div class="govuk-radios__item">
-                      <input class="govuk-radios__input" id="consentGranted-2" name="consentGranted" type="radio" value="No" {% if _selected == 'No' %}checked{% endif %} >
-                      <label class="govuk-label govuk-radios__label" for="consentGranted-2">
-                        No
-                      </label>
-                    </div>
-                    
-                  </div>
-              
                 </fieldset>
-              </div>
+            </div>
 
             {{govukButton({
                 text: "Continue"

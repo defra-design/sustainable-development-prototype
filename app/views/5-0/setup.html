@@ -55,6 +55,19 @@
             </select>
         </div>
 
+        <!-- Licence version -->
+        <div class="govuk-form-group">
+            <label class="govuk-label" >
+              Include validation
+            </label>
+            <select class="govuk-select" style="min-width: 100%" id="includeValidation" name="includeValidation" data-option="includeValidation">
+                <option {% if myData.includeValidation == 'true' %}selected{% endif %} value="true">Yes (throw errors)</option>
+                <option {% if myData.includeValidation == 'false' %}selected{% endif %} value="false">No (allow empty fields)</option>
+            </select>
+        </div>
+
+        
+
         <!-- Start from -->
         <!-- <div class="govuk-form-group">
           <label class="govuk-label" >
@@ -393,10 +406,11 @@
                 _urlPage = "tasklist?",
                 // _urlPage = _options.filter("#start").val() + "?",
                 // _urlStart = "&s=" + _options.filter("#start").val(),
-                _urllicenceType = "&l=" + _options.filter("#licenceType").val();
+                _urllicenceType = "&l=" + _options.filter("#licenceType").val(),
+                _urlincludeValidation = "&iv=" + _options.filter("#includeValidation").val();
            
             //Queries combined
-            var _urlPageQueries = _urlPage + _urlReset + _urlService + _urllicenceType;
+            var _urlPageQueries = _urlPage + _urlReset + _urlService + _urllicenceType + _urlincludeValidation;
 
             //URL text
             var _startURLText = _urlBase + _urlPageQueries,

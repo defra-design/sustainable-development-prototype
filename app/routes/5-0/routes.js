@@ -88,6 +88,13 @@ module.exports = function (router,_myData) {
 
     function updateTasklist(req){ 
 
+        //Total sections
+        var _totalSections = Object.keys(req.session.myData.tasklist.sections).length
+        req.session.myData.tasklist.total = _totalSections
+        if(req.session.myData.selectedApplication.consent == "No"){
+            req.session.myData.tasklist.total = _totalSections - 1
+        }
+
         var cansubmit = true,
             canstart = true
 
@@ -97,11 +104,19 @@ module.exports = function (router,_myData) {
             if(value == "completed"){
                 req.session.myData.tasklist.completed++
             } else {
+                //Set if can send application yet
                 if(key == "7"){
                     canstart = false
                 }
-                if(key == "1" || key == "2" || key == "4" || key == "5" || key == "6" || key == "7"){
-                    cansubmit = false
+                //Sections required
+                var _sectionsRequired = ["1","2","4","5","6","7","8"]
+                if(req.session.myData.selectedApplication.consent == "No"){
+                    _sectionsRequired = ["1","2","4","5","6","7"]
+                }
+                for (var i = 0; i < _sectionsRequired.length; i++) {
+                    if(_sectionsRequired[i] == key){
+                        cansubmit = false
+                    }
                 }
             }
         }
@@ -127,6 +142,9 @@ module.exports = function (router,_myData) {
             }
             if(req.session.myData.tasklist.sections["6"] == "cannotstartyet"){
                 req.session.myData.tasklist.sections["6"] = "notstarted"
+            }
+            if(req.session.myData.tasklist.sections["8"] == "cannotstartyet"){
+                req.session.myData.tasklist.sections["8"] = "notstarted"
             }
         }
 
@@ -154,7 +172,8 @@ module.exports = function (router,_myData) {
         // 4 = site
         // 5 = applicant
         // 6 = ecologist
-        // 7 = permission
+        // 7 = permission (eligibility)
+        // 8 = permissions data
         req.session.myData.tasklist = {
             "sections": {
                 "1": "cannotstartyet",
@@ -163,11 +182,12 @@ module.exports = function (router,_myData) {
                 "4": "cannotstartyet",
                 "5": "cannotstartyet",
                 "6": "cannotstartyet",
-                "7": "notstarted"
+                "7": "notstarted",
+                "8": "cannotstartyet"
             },
-            "completed": 0
+            "completed": 0,
+            "total": 0
         }
-        
 
         //Default answers
         req.session.myData.application = 1
@@ -211,7 +231,7 @@ module.exports = function (router,_myData) {
         // Reset page validation to false by default. Will only be set to true, if applicable, on a POST of a page
         req.session.myData.validationErrors = {}
         req.session.myData.validationError = "false"
-        req.session.myData.includeValidation =  req.query.includeValidation || req.session.myData.includeValidation
+        req.session.myData.includeValidation =  req.query.iv || req.session.myData.includeValidation
 
         //Reset page notifications
         req.session.myData.notifications = {}
@@ -220,6 +240,7 @@ module.exports = function (router,_myData) {
         //defaults for setup
         // req.session.myData.example =  req.query.eg || req.session.myData.example
         req.session.myData.licenceType =  req.query.l || req.session.myData.licenceType
+        req.session.myData.includeValidation =  req.query.iv || req.session.myData.includeValidation
 
         //Service name
         switch(req.session.myData.licenceType) {
@@ -241,6 +262,9 @@ module.exports = function (router,_myData) {
         setSelectedRoost(req,req.session.myData.roost)
 
         req.session.myData.findlocation = req.query.findlocation || req.session.myData.findlocation
+
+        //Update tasklist data
+        updateTasklist(req)
 
         next()
     });
@@ -378,7 +402,7 @@ module.exports = function (router,_myData) {
         req.session.myData.consentAnswer = req.body.consent
 
         if(req.session.myData.includeValidation == "false"){
-            req.session.myData.consentAnswer = req.session.myData.consentAnswer || "No"
+            req.session.myData.consentAnswer = req.session.myData.consentAnswer || "Yes"
         }
 
         if(!req.session.myData.consentAnswer){
@@ -428,49 +452,38 @@ module.exports = function (router,_myData) {
     });
     router.post('/' + version + '/consent-granted', function (req, res) {
 
-        req.session.myData.consentGrantedTempAnswer = req.body.consentGranted
-        req.session.myData.consentReferenceTempAnswer = req.body.consentReference
+        req.session.myData.consentGrantedAnswer = req.body.consentGranted
 
         if(req.session.myData.includeValidation == "false"){
-            req.session.myData.consentGrantedTempAnswer = req.session.myData.consentGrantedTempAnswer || "Yes"
-            req.session.myData.consentReferenceTempAnswer = req.session.myData.consentReferenceTempAnswer || "123456789"
+            req.session.myData.consentGrantedAnswer = req.session.myData.consentGrantedAnswer || "Yes"
         }
 
-        if(!req.session.myData.consentGrantedTempAnswer){
+        if(!req.session.myData.consentGrantedAnswer){
             req.session.myData.validationError = "true"
             req.session.myData.validationErrors.consentGranted = {
-                "anchor": "consentGranted",
-                "message": "[error message 1]"
-            }
-        }
-        if(req.session.myData.consentGrantedTempAnswer == "Yes" && !req.session.myData.consentReferenceTempAnswer){
-            req.session.myData.validationError = "true"
-            req.session.myData.validationErrors.consentReference = {
-                "anchor": "consentReference",
-                "message": "[error message 2]"
+                "anchor": "consentGranted-1",
+                "message": "[error message]"
             }
         }
 
         if(req.session.myData.validationError == "true") {
             res.render(version + '/consent-granted', {
-                myData:req.session.myData
+                myData: req.session.myData
             });
         } else {
 
-            req.session.myData.selectedApplication.consentGranted = req.session.myData.consentGrantedTempAnswer 
-            req.session.myData.selectedApplication.consentReference = req.session.myData.consentReferenceTempAnswer
+            req.session.myData.selectedApplication.consentGranted = req.session.myData.consentGrantedAnswer
 
-            req.session.myData.consentGrantedTempAnswer = ""
-            req.session.myData.consentReferenceTempAnswer = ""
+            req.session.myData.consentGrantedAnswer = ""
             
             if(req.session.myData.selectedApplication.consentGranted == "No"){
-                res.redirect(301, '/' + version + '/dropout-consent');
+                res.redirect(301, '/' + version + '/dropout-consent-granted');
             } else {
                 res.redirect(301, '/' + version + '/cya-permission');
             }
 
         }
-
+        
     });
 
     // dropout - consent granted
@@ -635,7 +648,7 @@ module.exports = function (router,_myData) {
         req.session.myData.multiplotBatAnswer = req.body.multiplotBat
 
         if(req.session.myData.includeValidation == "false"){
-            req.session.myData.multiplotBatAnswer = req.session.myData.multiplotBatAnswer || "no"
+            req.session.myData.multiplotBatAnswer = req.session.myData.multiplotBatAnswer || "No"
         }
 
         if(!req.session.myData.multiplotBatAnswer){
@@ -675,7 +688,7 @@ module.exports = function (router,_myData) {
         req.session.myData.workHomeAnswer = req.body.workHome
 
         if(req.session.myData.includeValidation == "false"){
-            req.session.myData.workHomeAnswer = req.session.myData.workHomeAnswer || "no"
+            req.session.myData.workHomeAnswer = req.session.myData.workHomeAnswer || "No"
         }
 
         if(!req.session.myData.workHomeAnswer){
@@ -715,7 +728,7 @@ module.exports = function (router,_myData) {
         req.session.myData.workSmallAnswer = req.body.workSmall
 
         if(req.session.myData.includeValidation == "false"){
-            req.session.myData.workSmallAnswer = req.session.myData.workSmallAnswer || "no"
+            req.session.myData.workSmallAnswer = req.session.myData.workSmallAnswer || "No"
         }
 
         if(!req.session.myData.workSmallAnswer){
@@ -755,7 +768,7 @@ module.exports = function (router,_myData) {
         req.session.myData.workProtectedAnswer = req.body.workProtected
 
         if(req.session.myData.includeValidation == "false"){
-            req.session.myData.workProtectedAnswer = req.session.myData.workProtectedAnswer || "no"
+            req.session.myData.workProtectedAnswer = req.session.myData.workProtectedAnswer || "No"
         }
 
         if(!req.session.myData.workProtectedAnswer){
@@ -795,7 +808,7 @@ module.exports = function (router,_myData) {
         req.session.myData.workPublicAnswer = req.body.workPublic
 
         if(req.session.myData.includeValidation == "false"){
-            req.session.myData.workPublicAnswer = req.session.myData.workPublicAnswer || "no"
+            req.session.myData.workPublicAnswer = req.session.myData.workPublicAnswer || "No"
         }
 
         if(!req.session.myData.workPublicAnswer){
@@ -839,7 +852,7 @@ module.exports = function (router,_myData) {
         req.session.myData.workExtendAnswer = req.body.workExtend
 
         if(req.session.myData.includeValidation == "false"){
-            req.session.myData.workExtendAnswer = req.session.myData.workExtendAnswer || "no"
+            req.session.myData.workExtendAnswer = req.session.myData.workExtendAnswer || "No"
         }
 
         if(!req.session.myData.workExtendAnswer){
@@ -883,7 +896,7 @@ module.exports = function (router,_myData) {
         req.session.myData.workPrivateAnswer = req.body.workPrivate
 
         if(req.session.myData.includeValidation == "false"){
-            req.session.myData.workPrivateAnswer = req.session.myData.workPrivateAnswer || "no"
+            req.session.myData.workPrivateAnswer = req.session.myData.workPrivateAnswer || "No"
         }
 
         if(!req.session.myData.workPrivateAnswer){
@@ -923,7 +936,7 @@ module.exports = function (router,_myData) {
         req.session.myData.importantPopulationsAnswer = req.body.importantPopulations
 
         if(req.session.myData.includeValidation == "false"){
-            req.session.myData.importantPopulationsAnswer = req.session.myData.importantPopulationsAnswer || "no"
+            req.session.myData.importantPopulationsAnswer = req.session.myData.importantPopulationsAnswer || "No"
         }
 
         if(!req.session.myData.importantPopulationsAnswer){
@@ -1063,7 +1076,11 @@ module.exports = function (router,_myData) {
                 req.session.myData.roostUsesAnswersTemp[_bat.id] = req.body[_bat.id]
 
                 if(req.session.myData.includeValidation == "false"){
-                    req.session.myData.roostUsesAnswersTemp[_bat.id] = req.session.myData.roostUsesAnswersTemp[_bat.id] || "_roostUse-1"
+                    if(req.session.myData.roostUsesAnswersTemp[_bat.id] == "_unchecked"){
+                        req.session.myData.roostUsesAnswersTemp[_bat.id] = "_roostUse-1"
+                    } else {
+                        req.session.myData.roostUsesAnswersTemp[_bat.id] = req.session.myData.roostUsesAnswersTemp[_bat.id] || "_roostUse-1"
+                    }
                 }
                 if(req.session.myData.roostUsesAnswersTemp[_bat.id] == "_unchecked"){
                 // for radios = if(!req.session.myData.roostUsesAnswersTemp[_bat.id]){
@@ -1229,32 +1246,27 @@ module.exports = function (router,_myData) {
     });
     router.post('/' + version + '/activities-bat', function (req, res) {
 
+        req.session.myData.activitiesBatAnswersTemp = []
+
         req.session.myData.selectedRoost.bats.forEach(function(_bat, index) {
 
-                var _answer = req.body[_bat.id]
+                req.session.myData.activitiesBatAnswersTemp[_bat.id] = req.body[_bat.id]
 
-                if(_answer == "_unchecked"){
+                if(req.session.myData.includeValidation == "false"){
+                    if(req.session.myData.activitiesBatAnswersTemp[_bat.id] == "_unchecked"){
+                        req.session.myData.activitiesBatAnswersTemp[_bat.id] = "_batActivity-1"
+                    } else {
+                        req.session.myData.activitiesBatAnswersTemp[_bat.id] = req.session.myData.activitiesBatAnswersTemp[_bat.id] || "_batActivity-1"
+                    }
+                }
+                if(req.session.myData.activitiesBatAnswersTemp[_bat.id] == "_unchecked"){
+                // for radios = if(!req.session.myData.activitiesBatAnswersTemp[_bat.id]){
                     req.session.myData.validationError = "true"
                     req.session.myData.validationErrors[_bat.id] = {
                         "anchor": _bat.id + "-1",
                         "message": "[error message]"
                     }
-                } else {
-                    _bat.activities = []
-                    //Set selected bat activities
-                    req.session.myData.batActivities3.forEach(function(_batActivity, index) {
-                        if(_answer.indexOf(_batActivity.id.toString()) != -1){
-                            _bat.activities.push(_batActivity)
-                            // _roostUse.selected = true
-                        } else {
-                            // _roostUse.selected = false
-                        }
-                    });
                 }
-                if(req.session.myData.includeValidation == "false"){
-                    req.session.myData.batActivitiesAnswersTemp[_bat.id] = _answer || "_batActivity-1"
-                }
-
         });
 
         if(req.session.myData.validationError == "true") {
@@ -1262,6 +1274,17 @@ module.exports = function (router,_myData) {
                 myData:req.session.myData
             });
         } else {
+
+            //Set selected bat activties
+            req.session.myData.selectedRoost.bats.forEach(function(_bat, index) {
+                _bat.activities = []
+                req.session.myData.batActivities3.forEach(function(_batActivity, index) {
+                    if(req.session.myData.activitiesBatAnswersTemp[_bat.id].indexOf(_batActivity.id.toString()) != -1){
+                        _bat.activities.push(_batActivity)
+                    }
+                });
+            });
+            req.session.myData.activitiesBatAnswersTemp = []
 
             //ADD ROOST TO APPLICATION
             addRoostToApplication(req,req.session.myData.selectedRoost)
@@ -1294,7 +1317,11 @@ module.exports = function (router,_myData) {
         req.session.myData.newtActivitiesTemp = req.body.newtActivities
 
         if(req.session.myData.includeValidation == "false"){
-            req.session.myData.newtActivitiesTemp = req.session.myData.newtActivitiesTemp || "_newtActivity-1"
+            if(req.session.myData.newtActivitiesTemp == "_unchecked"){
+                req.session.myData.newtActivitiesTemp = "_newtActivity-1"
+            } else {
+                req.session.myData.newtActivitiesTemp = req.session.myData.newtActivitiesTemp || "_newtActivity-1"
+            }
         }
 
         //check validation
@@ -1344,7 +1371,7 @@ module.exports = function (router,_myData) {
         req.session.myData.addRoostAnswer = req.body.addRoost
 
         if(req.session.myData.includeValidation == "false"){
-            req.session.myData.addRoostAnswer = req.session.myData.addRoostAnswer || "no"
+            req.session.myData.addRoostAnswer = req.session.myData.addRoostAnswer || "No"
         }
 
         if(!req.session.myData.addRoostAnswer){
@@ -1404,7 +1431,7 @@ module.exports = function (router,_myData) {
         req.session.myData.removeRoostAnswer = req.body.removeRoost
 
         if(req.session.myData.includeValidation == "false"){
-            req.session.myData.removeRoostAnswer = req.session.myData.removeRoostAnswer || "no"
+            req.session.myData.removeRoostAnswer = req.session.myData.removeRoostAnswer || "No"
         }
 
         if(!req.session.myData.removeRoostAnswer){
@@ -1570,7 +1597,11 @@ module.exports = function (router,_myData) {
         req.session.myData.siteAddressTempAnswer = req.body.siteAddress
 
         if(req.session.myData.includeValidation == "false"){
-            req.session.myData.siteAddressTempAnswer = req.session.myData.siteAddressTempAnswer || "1 High Street"
+            if(req.session.myData.siteAddressTempAnswer == "select"){
+                req.session.myData.siteAddressTempAnswer = "1 High Street"
+            } else {
+                req.session.myData.siteAddressTempAnswer = req.session.myData.siteAddressTempAnswer || "1 High Street"
+            }
         }
         if(req.session.myData.siteAddressTempAnswer == "select"){
             req.session.myData.validationError = "true"
@@ -1790,7 +1821,11 @@ module.exports = function (router,_myData) {
         req.session.myData.applicantAddressTempAnswer = req.body.applicantAddress
 
         if(req.session.myData.includeValidation == "false"){
-            req.session.myData.applicantAddressTempAnswer = req.session.myData.applicantAddressTempAnswer || "1 High Street"
+            if(req.session.myData.applicantAddressTempAnswer == "select"){
+                req.session.myData.applicantAddressTempAnswer = "1 High Street"
+            } else {
+                req.session.myData.applicantAddressTempAnswer = req.session.myData.applicantAddressTempAnswer || "1 High Street"
+            }
         }
         if(req.session.myData.applicantAddressTempAnswer == "select"){
             req.session.myData.validationError = "true"
@@ -2075,7 +2110,11 @@ module.exports = function (router,_myData) {
         req.session.myData.ecologistAddressTempAnswer = req.body.ecologistAddress
 
         if(req.session.myData.includeValidation == "false"){
-            req.session.myData.ecologistAddressTempAnswer = req.session.myData.ecologistAddressTempAnswer || "1 High Street"
+            if(req.session.myData.ecologistAddressTempAnswer == "select"){
+                req.session.myData.ecologistAddressTempAnswer = "1 High Street"
+            } else {
+                req.session.myData.ecologistAddressTempAnswer = req.session.myData.ecologistAddressTempAnswer || "1 High Street"
+            }
         }
         if(req.session.myData.ecologistAddressTempAnswer == "select"){
             req.session.myData.validationError = "true"
