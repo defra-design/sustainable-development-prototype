@@ -61,7 +61,7 @@
 
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        Does the project need permission to start?
+                        Does the project need any permissions?
                     </dt>
                     <dd class="govuk-summary-list__value">
                         {{myData.selectedApplication.consent}}
@@ -77,7 +77,7 @@
                 {% if myData.selectedApplication.consent == "Yes" %}
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        Has the project got permission to start?
+                        Has the project got all permissions for work to start?
                     </dt>
                     <dd class="govuk-summary-list__value">
                         {{myData.selectedApplication.consentGranted}}
