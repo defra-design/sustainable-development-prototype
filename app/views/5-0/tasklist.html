@@ -10,19 +10,28 @@
 
 {% block beforeContent %}
     {% include "includes/alpha-banner.html" %}
-    <!-- {% include "includes/back-link.html" %} -->
+    {% include "includes/back-link.html" %}
 {% endblock %}
+
+{% set _tasklist = myData.selectedApplication.tasklist %}
 
 {% block content %}
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-xl">
-        {{myData.serviceName}}
+        {{myData.serviceName}}<br>
+        ID = {{myData.selectedApplication.id}}
       </h1>
 
       <h2 class="govuk-heading-s govuk-!-margin-bottom-2">Application incomplete</h2>
-      <p class="govuk-body govuk-!-margin-bottom-7" >You have completed {{myData.tasklist.completed}} of {{myData.tasklist.total}} sections.</p>
+      <p class="govuk-body govuk-!-margin-bottom-7" >You have completed {{_tasklist.completed}} of {{_tasklist.total}} sections.</p>
+
+      <p class="govuk-body">
+        <a class="govuk-link govuk-link--no-visited-state" href="applications">
+            [View applications]
+        </a>
+      </p>
 
       <ol class="app-task-list">
 
@@ -34,7 +43,7 @@
 
             <!-- Permission - section 7 -->
             <li class="app-task-list__item">
-                {% set _status7 = myData.tasklist.sections["7"] %}
+                {% set _status7 = _tasklist.sections["7"] %}
 
                 <span class="app-task-list__task-name">
                     {% if _status7 == "completed" %}
@@ -69,7 +78,7 @@
 
             <!-- Applicant details - section 5 -->
             <li class="app-task-list__item">
-                {% set _status5 = myData.tasklist.sections["5"] %}
+                {% set _status5 = _tasklist.sections["5"] %}
                 {% set _label5 = "Give licence holder details" %}
 
                 <span class="app-task-list__task-name">
@@ -102,7 +111,7 @@
 
             <!-- Ecologist details - section 6 -->
             <li class="app-task-list__item">
-              {% set _status6 = myData.tasklist.sections["6"] %}
+              {% set _status6 = _tasklist.sections["6"] %}
               {% set _label6 = "Give ecologist details" %}
 
               <span class="app-task-list__task-name">
@@ -144,7 +153,7 @@
 
             <!-- Purpose - section 1 -->
             <li class="app-task-list__item">
-                {% set _status1 = myData.tasklist.sections["1"] %}
+                {% set _status1 = _tasklist.sections["1"] %}
                 {% set _label1 = "Give work activity details" %}
 
                 <span class="app-task-list__task-name">
@@ -154,7 +163,7 @@
                     {% if _status1 == "completed" %}
                     <a href="cya-purpose" class="govuk-link--no-visited-state" >
                     {% else %}
-                    <a href="proposal-bat" class="govuk-link--no-visited-state" >
+                    <a href="proposal" class="govuk-link--no-visited-state" >
                     {% endif %}
                         {{_label1}}
                     </a>
@@ -176,7 +185,7 @@
             <!-- Permissions data - section 8 -->
             {% if myData.selectedApplication.consent != "No" %}
             <li class="app-task-list__item">
-              {% set _status8 = myData.tasklist.sections["8"] %}
+              {% set _status8 = _tasklist.sections["8"] %}
               {% set _label8 = "Give details of permissions to start work" %}
 
               <span class="app-task-list__task-name">
@@ -208,7 +217,7 @@
 
             <!-- Site - section 3 -->
             <li class="app-task-list__item">
-              {% set _status4 = myData.tasklist.sections["4"] %}
+              {% set _status4 = _tasklist.sections["4"] %}
               {% set _label4 = "Give site information" %}
 
               <span class="app-task-list__task-name">
@@ -239,9 +248,9 @@
 
             <!-- Application details -->
             <li class="app-task-list__item">
-                {% set _status2 = myData.tasklist.sections["2"] %}
+                {% set _status2 = _tasklist.sections["2"] %}
 
-                {% if myData.licenceType == "a14" %}
+                {% if myData.selectedApplication.type == "a14" %}
                 {% set _label2 = "Say how the work will affect the newts" %}
                 <span class="app-task-list__task-name">
                   {% if _status2 == "cannotstartyet" %}
@@ -295,13 +304,13 @@
           <ul class="app-task-list__items">
             <li class="app-task-list__item">
 
-                {% set _status3 = myData.tasklist.sections["3"] %}
+                {% set _status3 = _tasklist.sections["3"] %}
                 <span class="app-task-list__task-name">
 
                 {% if _status3 == "cannotstartyet" %}
                 Send application
                 {% else %}
-                <a href="complete-bat" class="govuk-link--no-visited-state"  >
+                <a href="complete" class="govuk-link--no-visited-state"  >
                     Send application
                 </a>
                 {% endif %}

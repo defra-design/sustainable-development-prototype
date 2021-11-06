@@ -4,25 +4,34 @@ module.exports = function (router,_myData) {
 
     var version = "5-0";
 
-    //For copying objects to other objects
-    function clone(obj) {
-        if (null == obj || "object" != typeof obj) return obj;
-        var copy = obj.constructor();
-        for (var attr in obj) {
-            if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
+    function setServiceName(req){
+        //Service name
+        switch(req.session.myData.selectedApplication.type) {
+            case "a14":
+                req.session.myData.serviceName = "Apply for a licence to do work that will affect great crested newts"
+                break;
+            case "a13":
+                req.session.myData.serviceName = "Apply for a licence to do work that will affect bats"
+                break;
+            default:
+                req.session.myData.serviceName = "Apply for a licence to do work that will affect bats"
         }
-        return copy;
     }
 
-    function sortByName(req,array){
-        array.sort(function(a,b){
-            if (a.name.toUpperCase() < b.name.toUpperCase()){
-                return -1
-            } else if(a.name.toUpperCase() > b.name.toUpperCase()){
-                return 1
-            }
-            return 0;
-        });
+    function addApplicationToSavedApplications(req,_application){
+        _application.new = false
+        _application.status = "inprogress"
+
+        var _existingApplication = req.session.myData.applications.find(obj => {return obj.id.toString() === _application.id.toString()});
+                    
+        if(_existingApplication){
+            //replace existing
+            var _existingIndex = req.session.myData.applications.map(item => item.id.toString()).indexOf(_application.id.toString());
+            req.session.myData.applications[_existingIndex] = _application;
+        } else {
+            // add new
+            req.session.myData.applications.push(_application)
+        }
     }
 
     function addRoostToApplication(req,roost){
@@ -57,16 +66,60 @@ module.exports = function (router,_myData) {
         }
     }
 
-    function setSelectedApplication(req, _applicationParameter){
-        if(_applicationParameter){
-            for (var i = 0; i < req.session.myData.applications.length; i++) {
-                var _thisApplication = req.session.myData.applications[i]
-                if(_thisApplication.id.toString() == _applicationParameter.toString()){
-                    req.session.myData.selectedApplication = _thisApplication
-                    req.session.myData.application = _thisApplication.id
-                }
+    function setSelectedApplication(req, _applicationID){
+
+        if(_applicationID){
+
+            var _existingApplication = req.session.myData.applications.find(obj => {return obj.id.toString() === _applicationID.toString()})
+
+            if(_existingApplication){
+                //Use existing application
+                req.session.myData.selectedApplication = _existingApplication
+            } else {
+                //Start new application
+                // if(!req.session.myData.newApplication.inprogress){
+                //     req.session.myData.newApplication.inprogress = true
+                    // req.session.myData.selectedApplication = req.session.myData.newApplication
+                    // is this used?
+                    req.session.myData.selectedApplication = req.session.myData.tempApplication
+                // }
             }
+            req.session.myData.application = req.session.myData.selectedApplication.id
+
+            // for (var i = 0; i < req.session.myData.applications.length; i++) {
+            //     var _thisApplication = req.session.myData.applications[i]
+            //     if(_thisApplication.id.toString() == _applicationID.toString()){
+            //         req.session.myData.selectedApplication = _thisApplication
+            //         req.session.myData.application = _thisApplication.id
+            //     }
+            // }
         }
+
+        setServiceName(req)
+
+    }
+
+    function startNewApplication(req){
+
+        //Used until user passes eligibility
+        req.session.myData.tempApplication = JSON.parse(JSON.stringify(req.session.myData.newApplication))
+
+        var _randomID = Math.floor(100000 + Math.random() * 900000)
+        req.session.myData.tempApplication.id = _randomID
+        req.session.myData.tempApplication.status = "inprogress"
+        req.session.myData.tempApplication.type = req.session.myData.licenceType
+
+        //Add
+        // req.session.myData.applications.push(JSON.parse(JSON.stringify(req.session.myData.tempApplication)))
+
+        //Set
+        // setSelectedApplication(req, _randomID)
+        req.session.myData.selectedApplication = req.session.myData.tempApplication
+        req.session.myData.application = _randomID
+
+        //Add
+        // req.session.myData.selectedApplication.new = false
+        
     }
 
     function setSelectedRoost(req, _roostID){
@@ -135,23 +188,28 @@ module.exports = function (router,_myData) {
         setSelectedConsent(req, _randomID)
     }
 
-    function updateTasklist(req){ 
+    function updateTasklist(req,_application){ 
+
+        var _thisApplication = req.session.myData.selectedApplication
+        if(_application){
+            _thisApplication = _application
+        }
 
         //Total sections
-        var _totalSections = Object.keys(req.session.myData.tasklist.sections).length
-        req.session.myData.tasklist.total = _totalSections
-        if(req.session.myData.selectedApplication.consent == "No"){
-            req.session.myData.tasklist.total = _totalSections - 1
+        var _totalSections = Object.keys(_thisApplication.tasklist.sections).length
+        _thisApplication.tasklist.total = _totalSections
+        if(_thisApplication.consent == "No"){
+            _thisApplication.tasklist.total = _totalSections - 1
         }
 
         var cansubmit = true,
             canstart = true
 
         // Counts
-        req.session.myData.tasklist.completed = 0
-        for (const [key, value] of Object.entries(req.session.myData.tasklist.sections)) {
+        _thisApplication.tasklist.completed = 0
+        for (const [key, value] of Object.entries(_thisApplication.tasklist.sections)) {
             if(value == "completed"){
-                req.session.myData.tasklist.completed++
+                _thisApplication.tasklist.completed++
             } else {
                 //Set if can send application yet
                 if(key == "7"){
@@ -159,7 +217,7 @@ module.exports = function (router,_myData) {
                 }
                 //Sections required
                 var _sectionsRequired = ["1","2","4","5","6","7","8"]
-                if(req.session.myData.selectedApplication.consent == "No"){
+                if(_thisApplication.consent == "No"){
                     _sectionsRequired = ["1","2","4","5","6","7"]
                 }
                 for (var i = 0; i < _sectionsRequired.length; i++) {
@@ -171,29 +229,29 @@ module.exports = function (router,_myData) {
         }
 
         //Set submit to "notstarted" if all others completed
-        if(cansubmit && req.session.myData.tasklist.sections["3"] == "cannotstartyet"){
-            req.session.myData.tasklist.sections["3"] = "notstarted"
+        if(cansubmit && _thisApplication.tasklist.sections["3"] == "cannotstartyet"){
+            _thisApplication.tasklist.sections["3"] = "notstarted"
         }
 
         //Set others to "notstarted" if permission completed
         if(canstart){
-            if(req.session.myData.tasklist.sections["1"] == "cannotstartyet"){
-                req.session.myData.tasklist.sections["1"] = "notstarted"
+            if(_thisApplication.tasklist.sections["1"] == "cannotstartyet"){
+                _thisApplication.tasklist.sections["1"] = "notstarted"
             }
-            if(req.session.myData.tasklist.sections["2"] == "cannotstartyet"){
-                req.session.myData.tasklist.sections["2"] = "notstarted"
+            if(_thisApplication.tasklist.sections["2"] == "cannotstartyet"){
+                _thisApplication.tasklist.sections["2"] = "notstarted"
             }
-            if(req.session.myData.tasklist.sections["4"] == "cannotstartyet"){
-                req.session.myData.tasklist.sections["4"] = "notstarted"
+            if(_thisApplication.tasklist.sections["4"] == "cannotstartyet"){
+                _thisApplication.tasklist.sections["4"] = "notstarted"
             }
-            if(req.session.myData.tasklist.sections["5"] == "cannotstartyet"){
-                req.session.myData.tasklist.sections["5"] = "notstarted"
+            if(_thisApplication.tasklist.sections["5"] == "cannotstartyet"){
+                _thisApplication.tasklist.sections["5"] = "notstarted"
             }
-            if(req.session.myData.tasklist.sections["6"] == "cannotstartyet"){
-                req.session.myData.tasklist.sections["6"] = "notstarted"
+            if(_thisApplication.tasklist.sections["6"] == "cannotstartyet"){
+                _thisApplication.tasklist.sections["6"] = "notstarted"
             }
-            if(req.session.myData.tasklist.sections["8"] == "cannotstartyet"){
-                req.session.myData.tasklist.sections["8"] = "notstarted"
+            if(_thisApplication.tasklist.sections["8"] == "cannotstartyet"){
+                _thisApplication.tasklist.sections["8"] = "notstarted"
             }
         }
 
@@ -201,18 +259,6 @@ module.exports = function (router,_myData) {
 
     function reset(req){
         req.session.myData = JSON.parse(JSON.stringify(_myData))
-
-        // req.session.myData.serviceName = "Apply for a licence to do work that will affect bats"
-
-        // Default setup
-        req.session.myData.service = "apply"
-        req.session.myData.licenceType = "a13"
-        req.session.myData.roostToRemove = "123456789"
-        req.session.myData.firstDate = {
-            "day": "01",
-            "month": "12",
-            "year": "2021"
-        }
 
         //Tasklist
         // 1 = purpose
@@ -238,13 +284,85 @@ module.exports = function (router,_myData) {
             "total": 0
         }
 
+        req.session.myData.applications = [
+            {
+                "id": 123456, 
+                "type": "a13", 
+                "new": false, 
+                "status": "inprogress", 
+                "tasklist": JSON.parse(JSON.stringify(req.session.myData.tasklist)),
+                "roosts": [], 
+                "consents": [], 
+                // 7 complete
+                "landOwner": "Yes", 
+                "landOwnerPermission": "", 
+                "consent": "Yes", 
+                "consentGranted": "Yes", 
+                "consentNumbers": [], 
+                // 5 complete
+                "applicantName": "John Smith", 
+                "applicantHasCompany": "No", 
+                "applicantCompany": "", 
+                "applicantAddress": "2 High Street", 
+                "applicantAddress1": "2 High Street", 
+                "applicantAddress2": "", 
+                "applicantAddress3": "Oxford", 
+                "applicantAddress4": "Oxfordshire", 
+                "applicantPostcode": "B1 1AA", 
+                "applicantHasPostcode": "true"
+            },
+            {
+                "id": 456789,
+                "type": "a13",
+                "new": false,
+                "status": "submitted",
+                "tasklist": JSON.parse(JSON.stringify(req.session.myData.tasklist)),
+                "roosts": [],
+                "consents": []
+            }
+        ]
+        req.session.myData.applications[0].tasklist.sections["5"] = "completed"
+        req.session.myData.applications[0].tasklist.sections["7"] = "completed"
+        for (const [key, value] of Object.entries(req.session.myData.applications[1].tasklist.sections)) {
+            req.session.myData.applications[1].tasklist.sections[key] = "completed"
+        }
+        
+        req.session.myData.applications.forEach(function(_application, index) {
+            updateTasklist(req,_application)
+        });
+
+        
+        
+        // Default setup
+        req.session.myData.service = "apply"
+        req.session.myData.licenceType = "a13"
+        req.session.myData.roostToRemove = "123456789"
+        req.session.myData.signedIn = "false"
+
         //Default answers
-        req.session.myData.application = 1
+        req.session.myData.application = 123456
+
+        req.session.myData.newApplication = 
+            {
+                "id": Math.floor(100000 + Math.random() * 900000),
+                "type": req.session.myData.licenceType,
+                "new": true,
+                "status": "notstarted",
+                "tasklist": JSON.parse(JSON.stringify(req.session.myData.tasklist)),
+                "roosts": [],
+                "consents": []
+            }
+
         req.session.myData.roost = Math.floor(100000 + Math.random() * 900000)
         req.session.myData.newRoost = {"id": req.session.myData.roost,"bats":[],"new":true, "inprogress": false}
 
         req.session.myData.consent = Math.floor(100000 + Math.random() * 900000)
         req.session.myData.newConsent = {"id": req.session.myData.consent,"type":{},"new":true, "inprogress": false}
+
+
+
+
+
 
         //Set test roost (just for deep links to work) - in pages if testdata == true, we will use the testRoost
         req.session.myData.testdata = 'false'
@@ -256,19 +374,18 @@ module.exports = function (router,_myData) {
                     "name": req.session.myData.batSpecies2[0].name,
                     "numberUsing": "5",
                     "roostUses": [
-                        clone(req.session.myData.roostUses3[0]),
-                        clone(req.session.myData.roostUses3[1])
+                        JSON.parse(JSON.stringify(req.session.myData.roostUses3[0])),
+                        JSON.parse(JSON.stringify(req.session.myData.roostUses3[1]))
                     ],
                     "activities": [
-                        clone(req.session.myData.batActivities3[0]),
-                        clone(req.session.myData.batActivities3[1])
+                        JSON.parse(JSON.stringify(req.session.myData.batActivities3[0])),
+                        JSON.parse(JSON.stringify(req.session.myData.batActivities3[1]))
                     ]
                 }
             ],
             "new": false,
             "inprogress": false
         }
-
         //Set test consent (just for deep links to work) - in pages if testdata == true, we will use the testConsent
         req.session.myData.testdata = 'false'
         req.session.myData.testConsent = {
@@ -292,6 +409,9 @@ module.exports = function (router,_myData) {
             reset(req)
         }
 
+        //Local or live
+        // req.session.myData.local = req.headers.origin == 'http://localhost:3000'
+
         //version
         req.session.myData.version = version
 
@@ -306,32 +426,40 @@ module.exports = function (router,_myData) {
 
         //defaults for setup
         // req.session.myData.example =  req.query.eg || req.session.myData.example
-        req.session.myData.licenceType =  req.query.l || req.session.myData.licenceType
-        req.session.myData.includeValidation =  req.query.iv || req.session.myData.includeValidation
-
-        //Service name
-        switch(req.session.myData.licenceType) {
-            case "a14":
-                req.session.myData.serviceName = "Apply for a licence to do work that will affect great crested newts"
-                break;
-            case "a13":
-                req.session.myData.serviceName = "Apply for a licence to do work that will affect bats"
-                break;
-            default:
-                req.session.myData.serviceName = "Apply for a licence to do work that will affect bats"
-        }
         
         //Constant checks for query
         req.session.myData.testdata = req.query.testdata || req.session.myData.testdata
+
+        //Selected application
+        req.session.myData.application = req.query.application || req.session.myData.application
         setSelectedApplication(req,req.session.myData.application)
 
+        // TODO - add application to saved applications (after eligiblity?)
+
+        // if(req.session.myData.selectedApplication.new){
+        //     req.session.myData.selectedApplication.tasklist = JSON.parse(JSON.stringify(req.session.myData.tasklist))
+        //     req.session.myData.selectedApplication.new = false
+        // }
+
+        //Selected roost
         req.session.myData.roost = req.query.roost || req.session.myData.roost
         setSelectedRoost(req,req.session.myData.roost)
 
+        //Selected consent
         req.session.myData.consent = req.query.consent || req.session.myData.consent
         setSelectedConsent(req,req.session.myData.consent)
 
+        //Site map filter
         req.session.myData.findlocation = req.query.findlocation || req.session.myData.findlocation
+
+        //Licence type
+        req.session.myData.licenceType =  req.query.l || req.session.myData.licenceType
+
+        //Signed in
+        req.session.myData.signedIn =  req.query.si || req.session.myData.signedIn
+
+        //Service name
+        setServiceName(req)
 
         //Update tasklist data
         updateTasklist(req)
@@ -346,11 +474,121 @@ module.exports = function (router,_myData) {
         });
     });
 
+    // Show test data
+    router.get('/' + version + '/_testData', function (req, res) {
+        res.render(version + '/_testData', {
+            myData:req.session.myData
+        });
+    });
+
+    // To handle returns from Defra ID
+    router.get('/' + version + '/*', function (req, res, next) {
+        
+        var _fileName = res.req.params[0]
+
+        if(_fileName.startsWith("defraid")){
+            req.session.myData.signedIn = "true"
+            var _redirectTo = _fileName.split('-')[1];
+            res.redirect(301, '/' + version + '/' + _redirectTo);
+        } else {
+            next()
+        }
+
+    });
+
+    // Signed out
+    router.get('/' + version + '/signout', function (req, res, next) {
+        
+        req.session.myData.signedIn = "false"
+            
+        res.render(version + '/signout', {
+            myData:req.session.myData
+        });
+
+    });
 
 
+    // Start page
+    router.get('/' + version + '/start', function (req, res) {
+        res.render(version + '/start', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/start', function (req, res) {
+
+        //Redirect to href
+        if(req.session.myData.signedIn == "true"){
+            res.redirect(301, '/' + version + '/applications');
+        } else {
+            if(req.headers.origin == 'http://localhost:3000') {
+                // Local
+                res.redirect(301, 'https://whoareyou:menotyou@identity-management-app.herokuapp.com/tasked/gov-gateway/login?returnUrl=http://localhost:3000/' + version + '/defraid-applications');
+            } else {
+                // Live
+                res.redirect(301, 'https://whoareyou:menotyou@identity-management-app.herokuapp.com/tasked/gov-gateway/login?returnUrl=https://defra:wildlife@sustainable-prototype.herokuapp.com/' + version + '/defraid-applications');
+            }
+        }
+
+    });
+
+    // Start - select species
+    router.get('/' + version + '/start-species', function (req, res) {
+        res.render(version + '/start-species', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/start-species', function (req, res) {
+
+        req.session.myData.startSpeciesAnswer = req.body.startSpecies
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.startSpeciesAnswer = req.session.myData.startSpeciesAnswer || "bat"
+        }
+
+        if(!req.session.myData.startSpeciesAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.startSpecies = {
+                "anchor": "startSpecies-1",
+                "message": "[error message]"
+            }
+        }
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/start-species', {
+                myData: req.session.myData
+            });
+        } else {
+
+            req.session.myData.selectedApplication.startSpecies = req.session.myData.startSpeciesAnswer
+
+
+            switch(req.session.myData.selectedApplication.startSpecies) {
+                case "bat":
+                    _licenceType = "a13"
+                    break;
+                case "newt":
+                    _licenceType = "a14"
+                    break;
+                default:
+                    _licenceType = "a13"
+            }
+           
+            res.redirect(301, '/' + version + '/tasklist?new=true&l=' + _licenceType);
+
+        }
+        
+    });
 
     // Tasklist bat
     router.get('/' + version + '/tasklist', function (req, res) {
+        
+        if(req.query.new){
+            // Start new application
+            startNewApplication(req)
+            // addApplicationToSavedApplications(req,req.session.myData.selectedApplication)
+            // setSelectedApplication(req,req.session.myData.selectedApplication.id.toString())
+        }
+
         res.render(version + '/tasklist', {
             myData:req.session.myData
         });
@@ -571,25 +809,57 @@ module.exports = function (router,_myData) {
     });
     router.post('/' + version + '/cya-permission', function (req, res) {
 
-        req.session.myData.tasklist.sections["7"] = "completed"
+        //TODO save the application at this point (well after eligible page but we'll see)
+
+        req.session.myData.selectedApplication.tasklist.sections["7"] = "completed"
         updateTasklist(req)
-        res.redirect(301, '/' + version + '/tasklist');
+        req.session.myData.selectedApplication.status = "inprogress"
+
+        res.redirect(301, '/' + version + '/eligible');
         
     });
+
+    // Eligible
+    router.get('/' + version + '/eligible', function (req, res) {
+        res.render(version + '/eligible', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/eligible', function (req, res) {
+
+        //Save application
+        addApplicationToSavedApplications(req,req.session.myData.selectedApplication)
+        setSelectedApplication(req, req.session.myData.selectedApplication.id)
+
+        //Redirect to href
+        if(req.session.myData.signedIn == "true"){
+            res.redirect(301, '/' + version + '/tasklist');
+        } else {
+            if(req.headers.origin == 'http://localhost:3000') {
+                // Local
+                res.redirect(301, 'https://whoareyou:menotyou@identity-management-app.herokuapp.com/tasked/gov-gateway/login?returnUrl=http://localhost:3000/' + version + '/defraid-tasklist');
+            } else {
+                // Live
+                res.redirect(301, 'https://whoareyou:menotyou@identity-management-app.herokuapp.com/tasked/gov-gateway/login?returnUrl=https://defra:wildlife@sustainable-prototype.herokuapp.com/' + version + '/defraid-tasklist');
+            }
+        }
+
+    });
+  
 
 
 
 
     // Proposal bat
-    router.get('/' + version + '/proposal-bat', function (req, res) {
+    router.get('/' + version + '/proposal', function (req, res) {
 
-        req.session.myData.tasklist.sections["1"] = "inprogress"
+        req.session.myData.selectedApplication.tasklist.sections["1"] = "inprogress"
 
-        res.render(version + '/proposal-bat', {
+        res.render(version + '/proposal', {
             myData:req.session.myData
         });
     });
-    router.post('/' + version + '/proposal-bat', function (req, res) {
+    router.post('/' + version + '/proposal', function (req, res) {
 
         req.session.myData.proposalBatAnswer = req.body.proposalBat
 
@@ -606,7 +876,7 @@ module.exports = function (router,_myData) {
         }
 
         if(req.session.myData.validationError == "true") {
-            res.render(version + '/proposal-bat', {
+            res.render(version + '/proposal', {
                 myData: req.session.myData
             });
         } else {
@@ -616,7 +886,7 @@ module.exports = function (router,_myData) {
             if(req.query.cya == "true"){
                 res.redirect(301, '/' + version + '/cya-purpose');
             } else {
-                res.redirect(301, '/' + version + '/category-bat');
+                res.redirect(301, '/' + version + '/category');
             }
 
         }
@@ -624,12 +894,12 @@ module.exports = function (router,_myData) {
     });
 
     // Category bat
-    router.get('/' + version + '/category-bat', function (req, res) {
-        res.render(version + '/category-bat', {
+    router.get('/' + version + '/category', function (req, res) {
+        res.render(version + '/category', {
             myData:req.session.myData
         });
     });
-    router.post('/' + version + '/category-bat', function (req, res) {
+    router.post('/' + version + '/category', function (req, res) {
 
         req.session.myData.categoryBatAnswer = req.body.categoryBat
 
@@ -646,19 +916,19 @@ module.exports = function (router,_myData) {
         }
 
         if(req.session.myData.validationError == "true") {
-            res.render(version + '/category-bat', {
+            res.render(version + '/category', {
                 myData: req.session.myData
             });
         } else {
 
             var _category = req.session.myData.workCategories.find(obj => {return obj.id.toString() === req.session.myData.categoryBatAnswer.toString()});
 
-            req.session.myData.selectedApplication.categoryBat = clone(_category)
+            req.session.myData.selectedApplication.categoryBat = JSON.parse(JSON.stringify(_category))
 
             if(req.query.cya == "true"){
                 res.redirect(301, '/' + version + '/cya-purpose');
             } else {
-                res.redirect(301, '/' + version + '/reason-bat');
+                res.redirect(301, '/' + version + '/reason');
             }
 
         }
@@ -666,12 +936,12 @@ module.exports = function (router,_myData) {
     });
 
     // Reason bat
-    router.get('/' + version + '/reason-bat', function (req, res) {
-        res.render(version + '/reason-bat', {
+    router.get('/' + version + '/reason', function (req, res) {
+        res.render(version + '/reason', {
             myData:req.session.myData
         });
     });
-    router.post('/' + version + '/reason-bat', function (req, res) {
+    router.post('/' + version + '/reason', function (req, res) {
 
         req.session.myData.reasonBatAnswer = req.body.reasonBat
 
@@ -688,19 +958,19 @@ module.exports = function (router,_myData) {
         }
 
         if(req.session.myData.validationError == "true") {
-            res.render(version + '/reason-bat', {
+            res.render(version + '/reason', {
                 myData: req.session.myData
             });
         } else {
 
             var _reason = req.session.myData.batApplicationReasons.find(obj => {return obj.id.toString() === req.session.myData.reasonBatAnswer.toString()});
 
-            req.session.myData.selectedApplication.reasonBat = clone(_reason)
+            req.session.myData.selectedApplication.reasonBat = JSON.parse(JSON.stringify(_reason))
 
             if(req.query.cya == "true"){
                 res.redirect(301, '/' + version + '/cya-purpose');
             } else {
-                res.redirect(301, '/' + version + '/multiplot-bat');
+                res.redirect(301, '/' + version + '/multiplot');
             }
 
         }
@@ -708,12 +978,12 @@ module.exports = function (router,_myData) {
     });
 
     // Multiplot?
-    router.get('/' + version + '/multiplot-bat', function (req, res) {
-        res.render(version + '/multiplot-bat', {
+    router.get('/' + version + '/multiplot', function (req, res) {
+        res.render(version + '/multiplot', {
             myData:req.session.myData
         });
     });
-    router.post('/' + version + '/multiplot-bat', function (req, res) {
+    router.post('/' + version + '/multiplot', function (req, res) {
 
         req.session.myData.multiplotBatAnswer = req.body.multiplotBat
 
@@ -730,7 +1000,7 @@ module.exports = function (router,_myData) {
         }
 
         if(req.session.myData.validationError == "true") {
-            res.render(version + '/multiplot-bat', {
+            res.render(version + '/multiplot', {
                 myData: req.session.myData
             });
         } else {
@@ -1039,7 +1309,7 @@ module.exports = function (router,_myData) {
     });
     router.post('/' + version + '/cya-purpose', function (req, res) {
 
-        req.session.myData.tasklist.sections["1"] = "completed"
+        req.session.myData.selectedApplication.tasklist.sections["1"] = "completed"
         updateTasklist(req)
         res.redirect(301, '/' + version + '/tasklist');
         
@@ -1051,7 +1321,7 @@ module.exports = function (router,_myData) {
     // Intro consents
     router.get('/' + version + '/intro-consent', function (req, res) {
 
-        req.session.myData.tasklist.sections["8"] = "inprogress"
+        req.session.myData.selectedApplication.tasklist.sections["8"] = "inprogress"
 
         res.render(version + '/intro-consent', {
             myData:req.session.myData
@@ -1093,7 +1363,7 @@ module.exports = function (router,_myData) {
 
             req.session.myData.consentTypes.forEach(function(_consentType, index) {
                 if(req.session.myData.consentTypeTempAnswer == _consentType.id){
-                    req.session.myData.selectedConsent.type = clone(_consentType)
+                    req.session.myData.selectedConsent.type = JSON.parse(JSON.stringify(_consentType))
                 }
             });
             //remove pre-saved reference if type changed duriong cya change answers flow
@@ -1186,7 +1456,7 @@ module.exports = function (router,_myData) {
                 startNewConsent(req)
                 res.redirect(301, '/' + version + '/intro-consent');
             } else {
-                req.session.myData.tasklist.sections["8"] = "completed"
+                req.session.myData.selectedApplication.tasklist.sections["8"] = "completed"
                 updateTasklist(req)
                 res.redirect(301, '/' + version + '/tasklist');
             }
@@ -1263,7 +1533,7 @@ module.exports = function (router,_myData) {
     // Intro roosts
     router.get('/' + version + '/intro-roosts', function (req, res) {
 
-        req.session.myData.tasklist.sections["2"] = "inprogress"
+        req.session.myData.selectedApplication.tasklist.sections["2"] = "inprogress"
 
         res.render(version + '/intro-roosts', {
             myData:req.session.myData
@@ -1318,7 +1588,6 @@ module.exports = function (router,_myData) {
                     }
                 }
             });
-            // sortByName(req,req.session.myData.selectedRoost.bats)
 
             req.session.myData.speciesBatTempAnswer = ""
 
@@ -1665,7 +1934,7 @@ module.exports = function (router,_myData) {
                 startNewRoost(req)
                 res.redirect(301, '/' + version + '/intro-roosts');
             } else {
-                req.session.myData.tasklist.sections["2"] = "completed"
+                req.session.myData.selectedApplication.tasklist.sections["2"] = "completed"
                 updateTasklist(req)
                 res.redirect(301, '/' + version + '/tasklist');
             }
@@ -1681,7 +1950,7 @@ module.exports = function (router,_myData) {
         });
     });
     router.post('/' + version + '/cya-newt', function (req, res) {
-        req.session.myData.tasklist.sections["2"] = "completed"
+        req.session.myData.selectedApplication.tasklist.sections["2"] = "completed"
         updateTasklist(req)
         res.redirect(301, '/' + version + '/tasklist');
     });
@@ -1744,17 +2013,26 @@ module.exports = function (router,_myData) {
         }
     });
 
-    // Complete bat
-    router.get('/' + version + '/complete-bat', function (req, res) {
-        res.render(version + '/complete-bat', {
+    // Complete
+    router.get('/' + version + '/complete', function (req, res) {
+
+        req.session.myData.selectedApplication.tasklist.sections["3"] = "completed"
+        updateTasklist(req)
+
+        req.session.myData.selectedApplication.status = "submitted"
+
+        res.render(version + '/complete', {
             myData:req.session.myData
         });
+    });
+    router.post('/' + version + '/complete', function (req, res) {
+        res.redirect(301, '/' + version + '/applications');
     });
 
     //Site name
     router.get('/' + version + '/site-name', function (req, res) {
 
-        req.session.myData.tasklist.sections["4"] = "inprogress"
+        req.session.myData.selectedApplication.tasklist.sections["4"] = "inprogress"
 
         res.render(version + '/site-name', {
             myData:req.session.myData
@@ -1932,7 +2210,7 @@ module.exports = function (router,_myData) {
     });
     router.post('/' + version + '/cya-site', function (req, res) {
 
-        req.session.myData.tasklist.sections["4"] = "completed"
+        req.session.myData.selectedApplication.tasklist.sections["4"] = "completed"
         updateTasklist(req)
 
         res.redirect(301, '/' + version + '/tasklist');
@@ -1941,7 +2219,7 @@ module.exports = function (router,_myData) {
     //Applicant name
     router.get('/' + version + '/applicant-name', function (req, res) {
 
-        req.session.myData.tasklist.sections["5"] = "inprogress"
+        req.session.myData.selectedApplication.tasklist.sections["5"] = "inprogress"
 
         res.render(version + '/applicant-name', {
             myData:req.session.myData
@@ -2221,7 +2499,7 @@ module.exports = function (router,_myData) {
     });
     router.post('/' + version + '/cya-applicant', function (req, res) {
 
-        req.session.myData.tasklist.sections["5"] = "completed"
+        req.session.myData.selectedApplication.tasklist.sections["5"] = "completed"
         updateTasklist(req)
         res.redirect(301, '/' + version + '/tasklist');
         
@@ -2230,7 +2508,7 @@ module.exports = function (router,_myData) {
     //Ecologist name
     router.get('/' + version + '/ecologist-name', function (req, res) {
 
-        req.session.myData.tasklist.sections["6"] = "inprogress"
+        req.session.myData.selectedApplication.tasklist.sections["6"] = "inprogress"
 
         res.render(version + '/ecologist-name', {
             myData:req.session.myData
@@ -2510,10 +2788,50 @@ module.exports = function (router,_myData) {
     });
     router.post('/' + version + '/cya-ecologist', function (req, res) {
 
-        req.session.myData.tasklist.sections["6"] = "completed"
+        req.session.myData.selectedApplication.tasklist.sections["6"] = "completed"
         updateTasklist(req)
         res.redirect(301, '/' + version + '/tasklist');
         
+    });
+
+    // Applications list
+    router.get('/' + version + '/applications', function (req, res) {
+
+        //Sort applications
+        req.session.myData.applications.sort(function(a,b){
+
+            var returnValue = 0;
+    
+            //Sort on new flag - new first
+            if(a.status == "inprogress" && b.status != "inprogress") {
+              returnValue = -1
+            } else {
+              if(a.status != "inprogress" && b.status == "inprogress") {
+                returnValue = 1
+              } else {
+                //Sort on date if new flag matches
+                if(b.id.toString().toUpperCase() > a.id.toString().toUpperCase()){
+                    // TO DO
+                    returnValue = -1
+                } else {
+                  if(a.id.toString().toUpperCase() > b.id.toString().toUpperCase()){
+                    // TO DO
+                    returnValue = 1
+                  } else {
+                    // TODO then sort on first id value
+                    returnValue = a.id.toString().toUpperCase() > b.id.toString().toUpperCase() ? 1 : b.id.toString().toUpperCase() > a.id.toString().toUpperCase() ? -1 : 0;
+                  }
+                }
+              }
+            }
+    
+            return returnValue;
+    
+        })
+
+        res.render(version + '/applications', {
+            myData:req.session.myData
+        });
     });
 
 

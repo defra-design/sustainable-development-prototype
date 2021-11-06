@@ -41,12 +41,32 @@
 
 {% block header %}
   {# Set serviceName in config.js. #}
-  {{ govukHeader({
-    homepageUrl: "/",
-    serviceName: serviceName,
-    serviceUrl: "/",
-    containerClasses: "govuk-width-container"
-  }) }}
+
+  {% set _signedIn = myData.signedIn == "true" %}
+
+  {% if _signedIn %}
+    {{ govukHeader({
+      homepageUrl: "/",
+      serviceName: serviceName,
+      serviceUrl: "/",
+      containerClasses: "govuk-width-container sustainable-header",
+      navigation: [
+        {
+          href: "signout",
+          text: "Sign out",
+          active: false
+        }
+      ]
+    }) }}
+  {% else %}
+    {{ govukHeader({
+      homepageUrl: "/",
+      serviceName: serviceName,
+      serviceUrl: "/",
+      containerClasses: "govuk-width-container sustainable-header"
+    }) }}
+  {% endif %}
+
 {% endblock %}
 
 {% set mainClasses = mainClasses | default("govuk-main-wrapper--auto-spacing") %}

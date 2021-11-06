@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% set serviceName = myData.serviceName %}
+
+{% set _signedIn = myData.signedIn == "true" %}
+
+{% block pageTitle %} 
+TO DO
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        <form method="POST">
+
+            <h1 class="govuk-heading-xl">
+                [title - you're eligible]
+            </h1>
+
+            {% set _text = "[Sign in / register]" %}
+            {% if _signedIn %}
+                {% set _text = "[Continue - save]" %}
+            {% endif %}
+
+            {{govukButton({
+                text: _text
+            })}}
+
+        </form>
+
+	</div>
+</div>
+
+
+{% endblock %}

@@ -45,7 +45,7 @@
         </div>
 
         <!-- Licence version -->
-        <div class="govuk-form-group">
+        <!-- <div class="govuk-form-group">
             <label class="govuk-label" >
               Licence type
             </label>
@@ -53,9 +53,20 @@
                 <option {% if myData.licenceType == 'a13' %}selected{% endif %} value="a13">Bat mitigation (A13)</option>
                 <option {% if myData.licenceType == 'a14' %}selected{% endif %} value="a14">Newt mitigation (A14)</option>
             </select>
+        </div> -->
+
+        <!-- Signed in state -->
+        <div class="govuk-form-group">
+            <label class="govuk-label" >
+              Signed in user
+            </label>
+            <select class="govuk-select" style="min-width: 100%" id="signedIn" name="signedIn" data-option="signedIn">
+                <option {% if myData.signedIn == 'false' %}selected{% endif %} value="false">Not signed in</option>
+                <option {% if myData.signedIn == 'true' %}selected{% endif %} value="true">Already signed in</option>
+            </select>
         </div>
 
-        <!-- Licence version -->
+        <!-- Include validation checking -->
         <div class="govuk-form-group">
             <label class="govuk-label" >
               Include validation
@@ -129,6 +140,37 @@
                 </tr>
 
                 <tr class="govuk-table__row">
+                    <th class="govuk-table__cell" colspan="2"> <h2 class="govuk-heading-m govuk-!-margin-top-4">Miscellaneous</h2>
+                    </th>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Start</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="start?r=t">/start</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Select species</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="start-species?r=t">/start-species</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Signed out</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="signout?r=t">/signout</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell" colspan="2"> <h2 class="govuk-heading-m govuk-!-margin-top-4">Manage</h2>
+                    </th>
+                </tr>
+                
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Applications list</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="applications?r=t">/applications</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
                     <th class="govuk-table__cell" colspan="2"> <h2 class="govuk-heading-m govuk-!-margin-top-4">Apply</h2>
                     </th>
                 </tr>
@@ -152,7 +194,7 @@
 
                 <tr class="govuk-table__row">
                     <th class="govuk-table__cell">Dropout - Land owner permission</th>
-                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="dropout-land-owner-permission?r=t&testdata=true">/dropout-land-owner-permission</a></td>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="dropout-land-owner?r=t&testdata=true">/dropout-land-owner</a></td>
                 </tr>
 
                 <tr class="govuk-table__row">
@@ -173,6 +215,11 @@
                 <tr class="govuk-table__row">
                     <th class="govuk-table__cell">Check your answers - permission</th>
                     <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="cya-permission?r=t&testdata=true">/cya-permission</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Eligible</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="eligible?r=t">/eligible</a></td>
                 </tr>
 
                 <!-- Applicant details -->
@@ -243,22 +290,22 @@
 
                 <tr class="govuk-table__row">
                     <th class="govuk-table__cell">Proposal</th>
-                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="proposal-bat?r=t">/proposal-bat</a></td>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="proposal?r=t">/proposal</a></td>
                 </tr>
 
                 <tr class="govuk-table__row">
                     <th class="govuk-table__cell">Category of work</th>
-                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="category-bat?r=t">/category-bat</a></td>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="category?r=t">/category</a></td>
                 </tr>
 
                 <tr class="govuk-table__row">
                     <th class="govuk-table__cell">Reason</th>
-                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="reason-bat?r=t">/reason-bat</a></td>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="reason?r=t">/reason</a></td>
                 </tr>
 
                 <tr class="govuk-table__row">
                     <th class="govuk-table__cell">Multi plot?</th>
-                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="multiplot-bat?r=t">/multiplot-bat</a></td>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="multiplot?r=t">/multiplot</a></td>
                 </tr>
 
                 <tr class="govuk-table__row">
@@ -396,7 +443,7 @@
 
                 <tr class="govuk-table__row">
                     <th class="govuk-table__cell">Application complete</th>
-                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="complete-bat?r=t">/complete-bat</a></td>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="complete?r=t">/complete</a></td>
                 </tr>
                 
 
@@ -432,14 +479,16 @@
             //Queries
             var _urlReset = "r=t",
                 _urlService = "&s=" + $('input[name=service]:checked').val(),
-                _urlPage = "tasklist?",
+                _urlPage = "start?",
+                // _urlNewApplication = "&new=true",
                 // _urlPage = _options.filter("#start").val() + "?",
                 // _urlStart = "&s=" + _options.filter("#start").val(),
-                _urllicenceType = "&l=" + _options.filter("#licenceType").val(),
-                _urlincludeValidation = "&iv=" + _options.filter("#includeValidation").val();
+                // _urllicenceType = "&l=" + _options.filter("#licenceType").val(),
+                _urlincludeValidation = "&iv=" + _options.filter("#includeValidation").val(),
+                _urlsignedIn = "&si=" + _options.filter("#signedIn").val();
            
             //Queries combined
-            var _urlPageQueries = _urlPage + _urlReset + _urlService + _urllicenceType + _urlincludeValidation;
+            var _urlPageQueries = _urlPage + _urlReset + _urlService + _urlincludeValidation + _urlsignedIn;
 
             //URL text
             var _startURLText = _urlBase + _urlPageQueries,

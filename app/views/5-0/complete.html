@@ -26,11 +26,19 @@ Application sent
 
         <p class="govuk-body">Natural England will review your application and contact you if they need more information.</p>
 
-        {% if myData.licenceType == "a13" %}
+        {% if myData.selectedApplication.type == "a13" %}
         <h2 class="govuk-heading-m">What you need to do</h2>
 
         <p class="govuk-body">You must send the results of your bat survey and habitat assessment to your local environmental records centre (LERC).</p>
         {% endif %}
+
+        <form method="POST">
+
+            {{govukButton({
+                text: "[View applications]"
+            })}}
+
+        </form>
 
 	</div>
 </div>

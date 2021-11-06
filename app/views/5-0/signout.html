@@ -1,0 +1,39 @@
+
+
+{% extends "layout.html" %}
+
+{% set serviceName = myData.serviceName %}
+
+{% block pageTitle %} 
+TO DO
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    <!-- {% include "includes/back-link.html" %} -->
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        <form method="POST">
+
+            <h1 class="govuk-heading-xl">
+                [title - signed out page]
+            </h1>
+
+            <p class="govuk-body">
+                <a class="govuk-link govuk-link--no-visited-state" href="start">
+                    [Go to start page]
+                </a>
+            </p>
+
+        </form>
+
+	</div>
+</div>
+
+
+{% endblock %}

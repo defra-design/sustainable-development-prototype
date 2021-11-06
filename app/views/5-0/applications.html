@@ -1,0 +1,86 @@
+{% extends "layout.html" %}
+
+{% set serviceName = "TO DO" %}
+
+{% block pageTitle %} 
+TO DO
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-xl">
+            [title TO DO]
+        </h1>
+        <p class="govuk-body">
+            <a class="govuk-button" href="start">
+                [New application]
+            </a>
+        </p>
+        <!-- <p>licence type:<br>
+            {{myData.licenceType|dump}}
+            <br>new application:<br>
+        {{myData.newApplication|dump}}
+        </p> -->
+    </div>
+</div>
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-full">
+		
+        <table class="govuk-table responsive">
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header app-custom-class">Application</th>
+                    <th scope="col" class="govuk-table__header app-custom-class">Reference</th>
+                    <th scope="col" class="govuk-table__header app-custom-class">Status</th>
+                </tr>
+            </thead>
+    
+            <tbody class="govuk-table__body">
+
+                {% for _application in myData.applications %}
+                <tr class="govuk-table__row">
+
+                    <th scope="row" class="govuk-table__header">
+                        <p class="govuk-body">
+                            {% if _application.status == "inprogress" %}
+                                <a href="tasklist?application={{_application.id}}" class="govuk-link govuk-link--no-visited-state">link to application - {{_application.type}}</a>
+                            {% else %}
+                                no link to application - {{_application.type}}
+                            {% endif %}
+                            <br>{{_application.tasklist.completed}} of {{_application.tasklist.total}} sections completed
+                        </p>
+                    </th>
+
+                    <td class="govuk-table__cell" >
+                        Reference:<br>
+                        {{_application.id}}
+                    </td>
+
+                    <td class="govuk-table__cell">
+                        {% if _application.status == "inprogress" %}
+                        <strong class="govuk-tag">
+                            in progress
+                        </strong>
+                        {% endif %}
+                        <!-- test 5 <span class="visually-hidden-desktop" style="color:red">this text shows in mobile</span> -->
+                    </td>
+
+                </tr>
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+	</div>
+</div>
+
+{% endblock %}
