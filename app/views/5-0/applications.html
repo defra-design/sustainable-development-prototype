@@ -3,7 +3,7 @@
 {% set serviceName = "TO DO" %}
 
 {% block pageTitle %} 
-TO DO
+View licence applications
 {% endblock %}
 
 {% block beforeContent %}
@@ -13,37 +13,33 @@ TO DO
 
 {% block content %}
 
+{% if myData.applications.length > 0 %}
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-full">
         <h1 class="govuk-heading-xl">
-            [title TO DO]
+            View licence applications
         </h1>
         <p class="govuk-body">
             <a class="govuk-button" href="start">
-                [New application]
+                New application
             </a>
         </p>
-        <!-- <p>licence type:<br>
-            {{myData.licenceType|dump}}
-            <br>new application:<br>
-        {{myData.newApplication|dump}}
-        </p> -->
     </div>
 </div>
-
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-full">
 		
         <table class="govuk-table responsive">
             <thead class="govuk-table__head">
                 <tr class="govuk-table__row">
-                    <th scope="col" class="govuk-table__header app-custom-class">Application</th>
-                    <th scope="col" class="govuk-table__header app-custom-class">Started</th>
+                    <th scope="col" class="govuk-table__header app-custom-class">Licence type</th>
+                    <th scope="col" class="govuk-table__header app-custom-class">Reference</th>
                     <th scope="col" class="govuk-table__header app-custom-class"></th>
-                    <th scope="col" class="govuk-table__header app-custom-class">Status</th>
+                    <th scope="col" class="govuk-table__header app-custom-class"></th>
                 </tr>
             </thead>
     
+            
             <tbody class="govuk-table__body">
 
                 {% for _application in myData.applications %}
@@ -51,20 +47,30 @@ TO DO
 
                     <th scope="row" class="govuk-table__header">
                         <p class="govuk-body">
-                            {% if _application.status == "inprogress" %}
-                                <a href="tasklist?application={{_application.id}}" class="govuk-link govuk-link--no-visited-state">link to application - {{_application.type}}</a>
-                            {% else %}
-                                no link to application - {{_application.type}}
+
+                            {% set _type = "Bat" %}
+                            {% if _application.type == "a14" %}
+                                {% set _type = "Newt" %}
                             {% endif %}
-                            <br><br>{{_application.tasklist.completed}} of {{_application.tasklist.total}} sections completed
-                            <br><br>Reference:
-                            <br>{{_application.id}}
+
+                            {% if _application.status == "inprogress" %}
+                                <a href="tasklist?application={{_application.id}}" class="govuk-link govuk-link--no-visited-state">{{_type}} mitigation</a>
+                            {% else %}
+                                {{_type}} mitigation
+                            {% endif %}
+
+                            {% if _application.siteName %}
+                                <br><br>
+                                Site name:<br>
+                                {{_application.siteName}}
+                            {% endif %}
+
                         </p>
                     </th>
 
                     <td class="govuk-table__cell" >
-                        Started:<br>
-                        {{_application.starteddatefriendly}}
+                        <span class="visually-hidden-desktop">Reference:<br></span>
+                        {{_application.id}}
                     </td>
 
                     <td class="govuk-table__cell" >
@@ -82,6 +88,10 @@ TO DO
                         <strong class="govuk-tag">
                             in progress
                         </strong>
+                        {% else %}
+                        <strong class="govuk-tag govuk-tag--grey">
+                            submitted
+                        </strong>
                         {% endif %}
                         <!-- test 5 <span class="visually-hidden-desktop" style="color:red">this text shows in mobile</span> -->
                     </td>
@@ -95,5 +105,19 @@ TO DO
 
 	</div>
 </div>
+{% else %}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-xl">
+            You currently have no licence applications
+        </h1>
+        <p class="govuk-body">
+            <a class="govuk-button" href="start">
+                Start an application
+            </a>
+        </p>
+    </div>
+</div>
+{% endif %}
 
 {% endblock %}

@@ -375,7 +375,8 @@ module.exports = function (router,_myData) {
                 "roosts": [],
                 "consents": [],
                 "starteddate": new Date(2021, 10, 03, 11, 05, 0, 0),
-                "lastsaveddate": new Date(2021, 10, 10, 16, 47, 40, 0)
+                "lastsaveddate": new Date(2021, 10, 10, 16, 47, 40, 0),
+                "siteName": "Smiths Farmyard"
             },
             {
                 "id": 456789,
@@ -386,7 +387,8 @@ module.exports = function (router,_myData) {
                 "roosts": [],
                 "consents": [],
                 "starteddate": new Date(2021, 09, 12, 11, 05, 0, 0),
-                "lastsaveddate": new Date(2021, 09, 17, 16, 47, 40, 0)
+                "lastsaveddate": new Date(2021, 09, 17, 16, 47, 40, 0),
+                "siteName": "20 High Street, Oxford"
             }
         ]
         req.session.myData.applications[0].tasklist.sections["5"] = "completed"

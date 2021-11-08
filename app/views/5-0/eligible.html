@@ -5,7 +5,7 @@
 {% set _signedIn = myData.signedIn == "true" %}
 
 {% block pageTitle %} 
-TO DO
+You’re eligible to apply for a licence
 {% endblock %}
 
 {% block beforeContent %}
@@ -21,16 +21,17 @@ TO DO
         <form method="POST">
 
             <h1 class="govuk-heading-xl">
-                [title - you're eligible]
+                You’re eligible to apply for a licence
             </h1>
 
-            {% set _text = "[Sign in / register]" %}
             {% if _signedIn %}
-                {% set _text = "[Continue - save]" %}
+                <!-- no content -->
+            {% else %}
+                <p class="govuk-body">To be able to save your application and return to it later, you need to sign into an existing account or create a new one.</p>
             {% endif %}
 
             {{govukButton({
-                text: _text
+                text: "Continue"
             })}}
 
         </form>

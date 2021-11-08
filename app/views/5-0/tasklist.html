@@ -24,13 +24,20 @@
       </h1>
 
       <h2 class="govuk-heading-s govuk-!-margin-bottom-2">Application incomplete</h2>
-      <p class="govuk-body govuk-!-margin-bottom-7" >You have completed {{_tasklist.completed}} of {{_tasklist.total}} sections.</p>
+      <p class="govuk-body" >You have completed {{_tasklist.completed}} of {{_tasklist.total}} sections.</p>
 
-      <p class="govuk-body">
+      {% if myData.selectedApplication.new == false %}
+      <h2 class="govuk-heading-s govuk-!-margin-bottom-2">Application saved</h2>
+      <p class="govuk-body" >Reference:<br>{{myData.selectedApplication.id}}</p>
+      {% endif %}
+
+      {% if myData.applications.length > 0 %}
+      <p class="govuk-body govuk-!-margin-bottom-7">
         <a class="govuk-link govuk-link--no-visited-state" href="applications">
-            [View applications]
+            View applications
         </a>
       </p>
+      {% endif %}
 
       <ol class="app-task-list">
 
