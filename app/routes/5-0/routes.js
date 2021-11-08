@@ -116,11 +116,15 @@ module.exports = function (router,_myData) {
 
         //Set
         // setSelectedApplication(req, _randomID)
-        req.session.myData.selectedApplication = req.session.myData.tempApplication
-        req.session.myData.application = _randomID
+        setSelectedApplication(req,req.session.myData.tempApplication)
+        // req.session.myData.selectedApplication = req.session.myData.tempApplication
+        // req.session.myData.application = _randomID
 
         //Add
         // req.session.myData.selectedApplication.new = false
+
+        //Update tasklist data
+        updateTasklist(req)
         
     }
 
@@ -537,6 +541,9 @@ module.exports = function (router,_myData) {
 
         //Set friendly dates
         setFriendlyDates(req)
+
+        //Set service name
+        setServiceName(req)
 
         next()
     });
