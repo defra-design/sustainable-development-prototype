@@ -108,6 +108,8 @@ module.exports = function (router,_myData) {
         req.session.myData.tempApplication.id = _randomID
         req.session.myData.tempApplication.status = "inprogress"
         req.session.myData.tempApplication.type = req.session.myData.licenceType
+        req.session.myData.tempApplication.starteddate = new Date()
+        req.session.myData.tempApplication.lastsaveddate = new Date()
 
         //Add
         // req.session.myData.applications.push(JSON.parse(JSON.stringify(req.session.myData.tempApplication)))
@@ -257,6 +259,25 @@ module.exports = function (router,_myData) {
 
     }
 
+    function updateLastSavedDate(req,_application){
+        _application.lastsaveddate = new Date()
+    }
+
+    function setFriendlyDates(req){
+        var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+
+        req.session.myData.applications.forEach(function(_application, index) {
+            //Started date
+            var _started = new Date(_application.starteddate)
+            _application.starteddatefriendly = _started.getDate() + " " + months[_started.getMonth()] + " " + _started.getFullYear()
+
+            //Last saved date
+            var _lastsaved = new Date(_application.lastsaveddate)
+            _application.lastsaveddatefriendly = _lastsaved.getDate() + " " + months[_lastsaved.getMonth()] + " " + _lastsaved.getFullYear()
+        });
+    }
+    
+
     function reset(req){
         req.session.myData = JSON.parse(JSON.stringify(_myData))
 
@@ -293,6 +314,8 @@ module.exports = function (router,_myData) {
                 "tasklist": JSON.parse(JSON.stringify(req.session.myData.tasklist)),
                 "roosts": [], 
                 "consents": [], 
+                "starteddate": new Date(2021, 10, 06, 16, 20, 0, 0),
+                "lastsaveddate": new Date(2021, 10, 06, 17, 01, 30, 0),
                 // 7 complete
                 "landOwner": "Yes", 
                 "landOwnerPermission": "", 
@@ -312,19 +335,65 @@ module.exports = function (router,_myData) {
                 "applicantHasPostcode": "true"
             },
             {
+                "id": 739556, 
+                "type": "a14", 
+                "new": false, 
+                "status": "inprogress", 
+                "tasklist": JSON.parse(JSON.stringify(req.session.myData.tasklist)),
+                "roosts": [], 
+                "consents": [], 
+                "starteddate": new Date(2021, 10, 07, 16, 20, 0, 0),
+                "lastsaveddate": new Date(2021, 10, 07, 17, 01, 30, 0),
+                // 7 complete
+                "landOwner": "Yes", 
+                "landOwnerPermission": "", 
+                "consent": "No", 
+                "consentGranted": "", 
+                "consentNumbers": [], 
+                // 5 complete
+                "applicantName": "Jane Doe", 
+                "applicantHasCompany": "No", 
+                "applicantCompany": "", 
+                "applicantAddress": "10 High Street", 
+                "applicantAddress1": "10 High Street", 
+                "applicantAddress2": "", 
+                "applicantAddress3": "Oxford", 
+                "applicantAddress4": "Oxfordshire", 
+                "applicantPostcode": "D1 9AA", 
+                "applicantHasPostcode": "true"
+            },
+            {
+                "id": 987654,
+                "type": "a14",
+                "new": false,
+                "status": "submitted",
+                "tasklist": JSON.parse(JSON.stringify(req.session.myData.tasklist)),
+                "roosts": [],
+                "consents": [],
+                "starteddate": new Date(2021, 10, 03, 11, 05, 0, 0),
+                "lastsaveddate": new Date(2021, 10, 10, 16, 47, 40, 0)
+            },
+            {
                 "id": 456789,
                 "type": "a13",
                 "new": false,
                 "status": "submitted",
                 "tasklist": JSON.parse(JSON.stringify(req.session.myData.tasklist)),
                 "roosts": [],
-                "consents": []
+                "consents": [],
+                "starteddate": new Date(2021, 09, 12, 11, 05, 0, 0),
+                "lastsaveddate": new Date(2021, 09, 17, 16, 47, 40, 0)
             }
         ]
         req.session.myData.applications[0].tasklist.sections["5"] = "completed"
         req.session.myData.applications[0].tasklist.sections["7"] = "completed"
-        for (const [key, value] of Object.entries(req.session.myData.applications[1].tasklist.sections)) {
-            req.session.myData.applications[1].tasklist.sections[key] = "completed"
+        req.session.myData.applications[1].tasklist.sections["5"] = "completed"
+        req.session.myData.applications[1].tasklist.sections["7"] = "completed"
+        for (const [key, value] of Object.entries(req.session.myData.applications[2].tasklist.sections)) {
+            req.session.myData.applications[2].tasklist.sections[key] = "completed"
+        }
+        for (const [key, value] of Object.entries(req.session.myData.applications[3].tasklist.sections)) {
+            req.session.myData.applications[3].tasklist.sections[key] = "completed"
         }
         
         req.session.myData.applications.forEach(function(_application, index) {
@@ -348,6 +417,8 @@ module.exports = function (router,_myData) {
                 "type": req.session.myData.licenceType,
                 "new": true,
                 "status": "notstarted",
+                "starteddate": new Date(),
+                "lastsaveddate": new Date(),
                 "tasklist": JSON.parse(JSON.stringify(req.session.myData.tasklist)),
                 "roosts": [],
                 "consents": []
@@ -463,6 +534,9 @@ module.exports = function (router,_myData) {
 
         //Update tasklist data
         updateTasklist(req)
+
+        //Set friendly dates
+        setFriendlyDates(req)
 
         next()
     });
@@ -622,6 +696,8 @@ module.exports = function (router,_myData) {
             });
         } else {
 
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
+
             req.session.myData.selectedApplication.landOwner = req.session.myData.landOwnerAnswer
             if(req.session.myData.selectedApplication.landOwner == "Yes"){
                 req.session.myData.selectedApplication.landOwnerPermission = ""
@@ -673,6 +749,8 @@ module.exports = function (router,_myData) {
                 myData: req.session.myData
             });
         } else {
+
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
 
             req.session.myData.selectedApplication.landOwnerPermission = req.session.myData.landOwnerPermissionAnswer
            
@@ -727,6 +805,8 @@ module.exports = function (router,_myData) {
             });
         } else {
 
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
+
             req.session.myData.selectedApplication.consent = req.session.myData.consentAnswer
             if(req.session.myData.selectedApplication.consent == "No"){
                 req.session.myData.selectedApplication.consentGranted = ""
@@ -780,6 +860,8 @@ module.exports = function (router,_myData) {
             });
         } else {
 
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
+
             req.session.myData.selectedApplication.consentGranted = req.session.myData.consentGrantedAnswer
 
             req.session.myData.consentGrantedAnswer = ""
@@ -809,7 +891,7 @@ module.exports = function (router,_myData) {
     });
     router.post('/' + version + '/cya-permission', function (req, res) {
 
-        //TODO save the application at this point (well after eligible page but we'll see)
+        updateLastSavedDate(req,req.session.myData.selectedApplication)
 
         req.session.myData.selectedApplication.tasklist.sections["7"] = "completed"
         updateTasklist(req)
@@ -826,6 +908,8 @@ module.exports = function (router,_myData) {
         });
     });
     router.post('/' + version + '/eligible', function (req, res) {
+
+        updateLastSavedDate(req,req.session.myData.selectedApplication)
 
         //Save application
         addApplicationToSavedApplications(req,req.session.myData.selectedApplication)
@@ -850,7 +934,7 @@ module.exports = function (router,_myData) {
 
 
 
-    // Proposal bat
+    // Proposal
     router.get('/' + version + '/proposal', function (req, res) {
 
         req.session.myData.selectedApplication.tasklist.sections["1"] = "inprogress"
@@ -880,6 +964,8 @@ module.exports = function (router,_myData) {
                 myData: req.session.myData
             });
         } else {
+
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
 
             req.session.myData.selectedApplication.proposalBat = req.session.myData.proposalBatAnswer
 
@@ -921,6 +1007,8 @@ module.exports = function (router,_myData) {
             });
         } else {
 
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
+
             var _category = req.session.myData.workCategories.find(obj => {return obj.id.toString() === req.session.myData.categoryBatAnswer.toString()});
 
             req.session.myData.selectedApplication.categoryBat = JSON.parse(JSON.stringify(_category))
@@ -935,7 +1023,7 @@ module.exports = function (router,_myData) {
         
     });
 
-    // Reason bat
+    // Reason
     router.get('/' + version + '/reason', function (req, res) {
         res.render(version + '/reason', {
             myData:req.session.myData
@@ -962,6 +1050,8 @@ module.exports = function (router,_myData) {
                 myData: req.session.myData
             });
         } else {
+
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
 
             var _reason = req.session.myData.batApplicationReasons.find(obj => {return obj.id.toString() === req.session.myData.reasonBatAnswer.toString()});
 
@@ -1005,6 +1095,8 @@ module.exports = function (router,_myData) {
             });
         } else {
 
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
+
             req.session.myData.selectedApplication.multiplot = req.session.myData.multiplotBatAnswer
            
             if(req.query.cya == "true"){
@@ -1044,6 +1136,8 @@ module.exports = function (router,_myData) {
                 myData: req.session.myData
             });
         } else {
+
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
 
             req.session.myData.selectedApplication.workhome = req.session.myData.workHomeAnswer
            
@@ -1085,6 +1179,8 @@ module.exports = function (router,_myData) {
             });
         } else {
 
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
+
             req.session.myData.selectedApplication.worksmall = req.session.myData.workSmallAnswer
            
             if(req.query.cya == "true"){
@@ -1125,6 +1221,8 @@ module.exports = function (router,_myData) {
             });
         } else {
 
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
+
             req.session.myData.selectedApplication.workprotected = req.session.myData.workProtectedAnswer
            
             if(req.query.cya == "true"){
@@ -1164,6 +1262,8 @@ module.exports = function (router,_myData) {
                 myData: req.session.myData
             });
         } else {
+
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
 
             req.session.myData.selectedApplication.workpublic = req.session.myData.workPublicAnswer
            
@@ -1209,6 +1309,8 @@ module.exports = function (router,_myData) {
             });
         } else {
 
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
+
             req.session.myData.selectedApplication.workextend = req.session.myData.workExtendAnswer
 
             if(req.session.myData.selectedApplication.workextend == "No"){
@@ -1253,6 +1355,8 @@ module.exports = function (router,_myData) {
             });
         } else {
 
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
+
             req.session.myData.selectedApplication.workprivate = req.session.myData.workPrivateAnswer
            
             if(req.query.cya == "true"){
@@ -1293,6 +1397,8 @@ module.exports = function (router,_myData) {
             });
         } else {
 
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
+
             req.session.myData.selectedApplication.importantpopulations = req.session.myData.importantPopulationsAnswer
            
             res.redirect(301, '/' + version + '/cya-purpose');
@@ -1301,13 +1407,15 @@ module.exports = function (router,_myData) {
         
     });
 
-    // Check your answers bat - purpose
+    // Check your answers - purpose
     router.get('/' + version + '/cya-purpose', function (req, res) {
         res.render(version + '/cya-purpose', {
             myData:req.session.myData
         });
     });
     router.post('/' + version + '/cya-purpose', function (req, res) {
+
+        updateLastSavedDate(req,req.session.myData.selectedApplication)
 
         req.session.myData.selectedApplication.tasklist.sections["1"] = "completed"
         updateTasklist(req)
@@ -1328,6 +1436,7 @@ module.exports = function (router,_myData) {
         });
     });
     router.post('/' + version + '/intro-consent', function (req, res) {
+        updateLastSavedDate(req,req.session.myData.selectedApplication)
         res.redirect(301, '/' + version + '/consent-type');
     });
 
@@ -1360,6 +1469,8 @@ module.exports = function (router,_myData) {
                 myData: req.session.myData
             });
         } else {
+
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
 
             req.session.myData.consentTypes.forEach(function(_consentType, index) {
                 if(req.session.myData.consentTypeTempAnswer == _consentType.id){
@@ -1410,6 +1521,8 @@ module.exports = function (router,_myData) {
             });
         } else {
 
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
+
             req.session.myData.selectedConsent.consentReference = req.session.myData.consentReferenceAnswer
 
             //ADD CONSENT TO APPLICATION
@@ -1451,6 +1564,7 @@ module.exports = function (router,_myData) {
             });
         } else {
 
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
 
             if(req.session.myData.addConsentAnswer == 'Yes'){
                 startNewConsent(req)
@@ -1499,6 +1613,8 @@ module.exports = function (router,_myData) {
             });
         } else {
 
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
+
             if(req.session.myData.removeConsentAnswer == 'Yes'){
 
                 var _removeID = req.session.myData.consentToRemove.toString(),
@@ -1540,6 +1656,7 @@ module.exports = function (router,_myData) {
         });
     });
     router.post('/' + version + '/intro-roosts', function (req, res) {
+        updateLastSavedDate(req,req.session.myData.selectedApplication)
         res.redirect(301, '/' + version + '/species-bat');
     });
 
@@ -1570,6 +1687,8 @@ module.exports = function (router,_myData) {
                 myData: req.session.myData
             });
         } else {
+
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
 
             // var _selectedBat = req.session.myData.batSpecies2.find(obj => {return obj.id.toString() === req.session.myData.speciesBatTempAnswer});
 
@@ -1639,6 +1758,8 @@ module.exports = function (router,_myData) {
             });
         } else {
 
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
+
             //Set selected roost uses
             req.session.myData.selectedRoost.bats.forEach(function(_bat, index) {
                 _bat.roostUses = []
@@ -1705,6 +1826,8 @@ module.exports = function (router,_myData) {
             });
         } else {
 
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
+
             req.session.myData.selectedRoost.bats.forEach(function(_bat, index) {
                 req.session.myData["numberUsing" + _bat.id] = req.session.myData["numberUsingTemp" + _bat.id]
 
@@ -1759,6 +1882,8 @@ module.exports = function (router,_myData) {
                 myData: req.session.myData
             });
         } else {
+
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
 
             req.session.myData.selectedApplication.breedingSites = req.session.myData.breedingSitesTemp
             req.session.myData.breedingSitesTemp = ""
@@ -1815,6 +1940,8 @@ module.exports = function (router,_myData) {
                 myData:req.session.myData
             });
         } else {
+
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
 
             //Set selected bat activties
             req.session.myData.selectedRoost.bats.forEach(function(_bat, index) {
@@ -1880,6 +2007,8 @@ module.exports = function (router,_myData) {
             });
         } else {
 
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
+
             req.session.myData.selectedApplication.newtActivities = []
             //Set selected newt activities
             req.session.myData.newtActivities.forEach(function(_newtActivity, index) {
@@ -1929,6 +2058,7 @@ module.exports = function (router,_myData) {
             });
         } else {
 
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
 
             if(req.session.myData.addRoostAnswer == 'yes'){
                 startNewRoost(req)
@@ -1950,6 +2080,7 @@ module.exports = function (router,_myData) {
         });
     });
     router.post('/' + version + '/cya-newt', function (req, res) {
+        updateLastSavedDate(req,req.session.myData.selectedApplication)
         req.session.myData.selectedApplication.tasklist.sections["2"] = "completed"
         updateTasklist(req)
         res.redirect(301, '/' + version + '/tasklist');
@@ -1986,6 +2117,8 @@ module.exports = function (router,_myData) {
                 myData: req.session.myData
             });
         } else {
+
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
 
             if(req.session.myData.removeRoostAnswer == 'yes'){
 
@@ -2026,6 +2159,7 @@ module.exports = function (router,_myData) {
         });
     });
     router.post('/' + version + '/complete', function (req, res) {
+        updateLastSavedDate(req,req.session.myData.selectedApplication)
         res.redirect(301, '/' + version + '/applications');
     });
 
@@ -2059,6 +2193,8 @@ module.exports = function (router,_myData) {
                 myData: req.session.myData
             });
         } else {
+
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
 
             req.session.myData.selectedApplication.siteName = req.session.myData.siteNameAnswer
 
@@ -2108,6 +2244,8 @@ module.exports = function (router,_myData) {
                 myData:req.session.myData
             });
         } else {
+
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
 
             req.session.myData.selectedApplication.hasPostcode = req.session.myData.hasPostcodeTempAnswer 
             req.session.myData.selectedApplication.sitePostcode = req.session.myData.sitePostcodeTempAnswer
@@ -2165,6 +2303,8 @@ module.exports = function (router,_myData) {
             });
         } else {
 
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
+
             req.session.myData.selectedApplication.siteAddress = req.session.myData.siteAddressTempAnswer
             req.session.myData.siteAddressTempAnswer = ""
 
@@ -2199,6 +2339,7 @@ module.exports = function (router,_myData) {
         });
     });
     router.post('/' + version + '/site-boundary', function (req, res) {
+        updateLastSavedDate(req,req.session.myData.selectedApplication)
         res.redirect(301, '/' + version + '/cya-site');
     });  
 
@@ -2209,6 +2350,8 @@ module.exports = function (router,_myData) {
         });
     });
     router.post('/' + version + '/cya-site', function (req, res) {
+
+        updateLastSavedDate(req,req.session.myData.selectedApplication)
 
         req.session.myData.selectedApplication.tasklist.sections["4"] = "completed"
         updateTasklist(req)
@@ -2246,6 +2389,8 @@ module.exports = function (router,_myData) {
                 myData: req.session.myData
             });
         } else {
+
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
 
             req.session.myData.selectedApplication.applicantName = req.session.myData.applicantNameAnswer
 
@@ -2296,6 +2441,8 @@ module.exports = function (router,_myData) {
             });
         } else {
 
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
+
             req.session.myData.selectedApplication.applicantHasCompany = req.session.myData.applicantHasCompanyTempAnswer 
             req.session.myData.selectedApplication.applicantCompany = req.session.myData.applicantCompanyTempAnswer
 
@@ -2339,6 +2486,8 @@ module.exports = function (router,_myData) {
                 myData: req.session.myData
             });
         } else {
+
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
 
             //changed postcode? if so - clear address fields
             if(req.session.myData.applicantPostcodeAnswer != req.session.myData.selectedApplication.applicantPostcode){
@@ -2388,6 +2537,8 @@ module.exports = function (router,_myData) {
                 myData:req.session.myData
             });
         } else {
+
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
 
             req.session.myData.selectedApplication.applicantAddress = req.session.myData.applicantAddressTempAnswer
             req.session.myData.applicantAddressTempAnswer = ""
@@ -2471,6 +2622,8 @@ module.exports = function (router,_myData) {
             });
         } else {
 
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
+
             req.session.myData.selectedApplication.applicantAddress = req.session.myData.applicantAddress1TempAnswer
 
             req.session.myData.selectedApplication.applicantAddress1 = req.session.myData.applicantAddress1TempAnswer
@@ -2498,6 +2651,8 @@ module.exports = function (router,_myData) {
         });
     });
     router.post('/' + version + '/cya-applicant', function (req, res) {
+
+        updateLastSavedDate(req,req.session.myData.selectedApplication)
 
         req.session.myData.selectedApplication.tasklist.sections["5"] = "completed"
         updateTasklist(req)
@@ -2535,6 +2690,8 @@ module.exports = function (router,_myData) {
                 myData: req.session.myData
             });
         } else {
+
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
 
             req.session.myData.selectedApplication.ecologistName = req.session.myData.ecologistNameAnswer
 
@@ -2585,6 +2742,8 @@ module.exports = function (router,_myData) {
             });
         } else {
 
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
+
             req.session.myData.selectedApplication.ecologistHasCompany = req.session.myData.ecologistHasCompanyTempAnswer 
             req.session.myData.selectedApplication.ecologistCompany = req.session.myData.ecologistCompanyTempAnswer
 
@@ -2628,6 +2787,8 @@ module.exports = function (router,_myData) {
                 myData: req.session.myData
             });
         } else {
+
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
 
             //changed postcode? if so - clear address fields
             if(req.session.myData.ecologistPostcodeAnswer != req.session.myData.selectedApplication.ecologistPostcode){
@@ -2677,6 +2838,8 @@ module.exports = function (router,_myData) {
                 myData:req.session.myData
             });
         } else {
+
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
 
             req.session.myData.selectedApplication.ecologistAddress = req.session.myData.ecologistAddressTempAnswer
             req.session.myData.ecologistAddressTempAnswer = ""
@@ -2760,6 +2923,8 @@ module.exports = function (router,_myData) {
             });
         } else {
 
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
+
             req.session.myData.selectedApplication.ecologistAddress = req.session.myData.ecologistAddress1TempAnswer
 
             req.session.myData.selectedApplication.ecologistAddress1 = req.session.myData.ecologistAddress1TempAnswer
@@ -2788,6 +2953,8 @@ module.exports = function (router,_myData) {
     });
     router.post('/' + version + '/cya-ecologist', function (req, res) {
 
+        updateLastSavedDate(req,req.session.myData.selectedApplication)
+
         req.session.myData.selectedApplication.tasklist.sections["6"] = "completed"
         updateTasklist(req)
         res.redirect(301, '/' + version + '/tasklist');
@@ -2802,23 +2969,21 @@ module.exports = function (router,_myData) {
 
             var returnValue = 0;
     
-            //Sort on new flag - new first
+            //Sort on status - inprogress first
             if(a.status == "inprogress" && b.status != "inprogress") {
               returnValue = -1
             } else {
               if(a.status != "inprogress" && b.status == "inprogress") {
                 returnValue = 1
               } else {
-                //Sort on date if new flag matches
-                if(b.id.toString().toUpperCase() > a.id.toString().toUpperCase()){
-                    // TO DO
+                //Sort on last saved date if inprogress flag matches
+                if(a.lastsaveddate > b.lastsaveddate){
                     returnValue = -1
                 } else {
-                  if(a.id.toString().toUpperCase() > b.id.toString().toUpperCase()){
-                    // TO DO
+                  if(b.lastsaveddate > a.lastsaveddate){
                     returnValue = 1
                   } else {
-                    // TODO then sort on first id value
+                    // Then sort on first id value
                     returnValue = a.id.toString().toUpperCase() > b.id.toString().toUpperCase() ? 1 : b.id.toString().toUpperCase() > a.id.toString().toUpperCase() ? -1 : 0;
                   }
                 }
