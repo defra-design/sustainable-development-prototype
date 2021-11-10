@@ -2,6 +2,9 @@
 
 {% set serviceName = myData.serviceName %}
 
+{% set _signedIn = myData.signedIn == "true" %}
+{% set _notSignedIn = myData.signedIn != "true" %}
+
 {% set _inError = myData.validationError == "true" %}
 
 {% block pageTitle %} 
@@ -27,15 +30,15 @@
         {% endif %}
       </h1>
 
-      <h2 class="govuk-heading-s govuk-!-margin-bottom-2">Application incomplete</h2>
-      <p class="govuk-body" >You have completed {{_tasklist.completed}} of {{_tasklist.total}} sections.</p>
+      <h2 class="govuk-heading-s govuk-!-margin-bottom-2 ">Application incomplete</h2>
+      <p class="govuk-body {% if myData.applications.length < 1 or _notSignedIn %}govuk-!-margin-bottom-7{% endif %}" >You have completed {{_tasklist.completed}} of {{_tasklist.total}} sections.</p>
 
       {% if myData.selectedApplication.new == false %}
       <h2 class="govuk-heading-s govuk-!-margin-bottom-2">Application saved</h2>
       <p class="govuk-body" >Reference:<br>{{myData.selectedApplication.id}}</p>
       {% endif %}
 
-      {% if myData.applications.length > 0 %}
+      {% if myData.applications.length > 0 and _signedIn %}
       <p class="govuk-body govuk-!-margin-bottom-7">
         <a class="govuk-link govuk-link--no-visited-state" href="applications">
             View applications
