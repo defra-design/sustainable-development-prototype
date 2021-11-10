@@ -44,28 +44,7 @@
 
   {% set _signedIn = myData.signedIn == "true" %}
 
-  {% if _signedIn %}
-    {{ govukHeader({
-      homepageUrl: "/",
-      serviceName: serviceName,
-      serviceUrl: "/",
-      containerClasses: "govuk-width-container sustainable-header",
-      navigation: [
-        {
-          href: "signout",
-          text: "Sign out",
-          active: false
-        }
-      ]
-    }) }}
-  {% else %}
-    {{ govukHeader({
-      homepageUrl: "/",
-      serviceName: serviceName,
-      serviceUrl: "/",
-      containerClasses: "govuk-width-container sustainable-header"
-    }) }}
-  {% endif %}
+  {% include "includes/govuk-header.html" %}
 
 {% endblock %}
 
