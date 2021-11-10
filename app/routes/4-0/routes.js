@@ -269,7 +269,7 @@ module.exports = function (router,_myData) {
             if(req.query.cya == "true"){
                 res.redirect(301, '/' + version + '/cya-purpose');
             } else {
-                res.redirect(301, '/' + version + '/category-bat');
+                res.redirect(301, '/' + version + '/category');
             }
 
         }
@@ -277,12 +277,12 @@ module.exports = function (router,_myData) {
     });
 
     // Category bat
-    router.get('/' + version + '/category-bat', function (req, res) {
-        res.render(version + '/category-bat', {
+    router.get('/' + version + '/category', function (req, res) {
+        res.render(version + '/category', {
             myData:req.session.myData
         });
     });
-    router.post('/' + version + '/category-bat', function (req, res) {
+    router.post('/' + version + '/category', function (req, res) {
 
         req.session.myData.categoryBatAnswer = req.body.categoryBat
 
@@ -299,7 +299,7 @@ module.exports = function (router,_myData) {
         }
 
         if(req.session.myData.validationError == "true") {
-            res.render(version + '/category-bat', {
+            res.render(version + '/category', {
                 myData: req.session.myData
             });
         } else {
