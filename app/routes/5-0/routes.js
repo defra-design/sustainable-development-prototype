@@ -105,8 +105,9 @@ module.exports = function (router,_myData) {
         //Used until user passes eligibility
         req.session.myData.tempApplication = JSON.parse(JSON.stringify(req.session.myData.newApplication))
 
-        var _randomID = Math.floor(100000 + Math.random() * 900000)
-        req.session.myData.tempApplication.id = _randomID
+        var _randomID = Math.floor(10000 + Math.random() * 90000),
+            _appID = "2021-" + _randomID + "-EPS-MIT"
+        req.session.myData.tempApplication.id = _appID
         req.session.myData.tempApplication.status = "inprogress"
         req.session.myData.tempApplication.type = req.session.myData.licenceType
         req.session.myData.tempApplication.starteddate = new Date()
@@ -312,7 +313,7 @@ module.exports = function (router,_myData) {
 
         req.session.myData.applications = [
             {
-                "id": 123456, 
+                "id": "2021-12345-EPS-MIT", 
                 "type": "a13", 
                 "new": false, 
                 "status": "inprogress", 
@@ -340,7 +341,7 @@ module.exports = function (router,_myData) {
                 "applicantHasPostcode": "true"
             },
             {
-                "id": 739556, 
+                "id": "2021-73955-EPS-MIT", 
                 "type": "a14", 
                 "new": false, 
                 "status": "inprogress", 
@@ -368,7 +369,7 @@ module.exports = function (router,_myData) {
                 "applicantHasPostcode": "true"
             },
             {
-                "id": 987654,
+                "id": "2021-98765-EPS-MIT",
                 "type": "a14",
                 "new": false,
                 "status": "submitted",
@@ -380,7 +381,7 @@ module.exports = function (router,_myData) {
                 "siteName": "Smiths Farmyard"
             },
             {
-                "id": 456789,
+                "id": "2021-45678-EPS-MIT",
                 "type": "a13",
                 "new": false,
                 "status": "submitted",
@@ -416,7 +417,7 @@ module.exports = function (router,_myData) {
         req.session.myData.signedIn = "false"
 
         //Default answers
-        req.session.myData.application = 123456
+        req.session.myData.application = "2021-12345-EPS-MIT"
 
         req.session.myData.newApplication = 
             {
