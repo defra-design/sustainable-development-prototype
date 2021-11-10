@@ -5,17 +5,18 @@ module.exports = function (router,_myData) {
     var version = "5-0";
 
     function setServiceName(req){
+        req.session.myData.serviceName = "Apply for a licence to do work that affects a protected species"
         //Service name
-        switch(req.session.myData.selectedApplication.type) {
-            case "a14":
-                req.session.myData.serviceName = "Apply for a licence to do work that will affect great crested newts"
-                break;
-            case "a13":
-                req.session.myData.serviceName = "Apply for a licence to do work that will affect bats"
-                break;
-            default:
-                req.session.myData.serviceName = "Apply for a licence to do work that will affect bats"
-        }
+        // switch(req.session.myData.selectedApplication.type) {
+        //     case "a14":
+        //         req.session.myData.serviceName = "Apply for a licence to do work that will affect great crested newts"
+        //         break;
+        //     case "a13":
+        //         req.session.myData.serviceName = "Apply for a licence to do work that will affect bats"
+        //         break;
+        //     default:
+        //         req.session.myData.serviceName = "Apply for a licence to do work that will affect bats"
+        // }
     }
 
     function addApplicationToSavedApplications(req,_application){
