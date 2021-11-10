@@ -173,12 +173,12 @@ module.exports = function (router,_myData) {
 
 
     // Proposal bat
-    router.get('/' + version + '/proposal-bat', function (req, res) {
-        res.render(version + '/proposal-bat', {
+    router.get('/' + version + '/proposal', function (req, res) {
+        res.render(version + '/proposal', {
             myData:req.session.myData
         });
     });
-    router.post('/' + version + '/proposal-bat', function (req, res) {
+    router.post('/' + version + '/proposal', function (req, res) {
 
         req.session.myData.proposalBatAnswer = req.body.proposalBat
 
@@ -195,7 +195,7 @@ module.exports = function (router,_myData) {
         }
 
         if(req.session.myData.validationError == "true") {
-            res.render(version + '/proposal-bat', {
+            res.render(version + '/proposal', {
                 myData: req.session.myData
             });
         } else {
@@ -247,7 +247,7 @@ module.exports = function (router,_myData) {
             if(req.query.cya == "true"){
                 res.redirect(301, '/' + version + '/cya-bat');
             } else {
-                res.redirect(301, '/' + version + '/reason-bat');
+                res.redirect(301, '/' + version + '/reason');
             }
 
         }
@@ -255,12 +255,12 @@ module.exports = function (router,_myData) {
     });
 
     // Reason bat
-    router.get('/' + version + '/reason-bat', function (req, res) {
-        res.render(version + '/reason-bat', {
+    router.get('/' + version + '/reason', function (req, res) {
+        res.render(version + '/reason', {
             myData:req.session.myData
         });
     });
-    router.post('/' + version + '/reason-bat', function (req, res) {
+    router.post('/' + version + '/reason', function (req, res) {
 
         req.session.myData.reasonBatAnswer = req.body.reasonBat
 
@@ -277,7 +277,7 @@ module.exports = function (router,_myData) {
         }
 
         if(req.session.myData.validationError == "true") {
-            res.render(version + '/reason-bat', {
+            res.render(version + '/reason', {
                 myData: req.session.myData
             });
         } else {
@@ -883,14 +883,14 @@ module.exports = function (router,_myData) {
             res.redirect(301, '/' + version + '/species-bat');
         // Add application
         } else if(req.body.addApplication == "yes"){
-            res.redirect(301, '/' + version + '/complete-bat');
+            res.redirect(301, '/' + version + '/complete');
         }
          
     });
 
     // Complete bat
-    router.get('/' + version + '/complete-bat', function (req, res) {
-        res.render(version + '/complete-bat', {
+    router.get('/' + version + '/complete', function (req, res) {
+        res.render(version + '/complete', {
             myData:req.session.myData
         });
     });
