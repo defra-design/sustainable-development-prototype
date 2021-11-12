@@ -108,7 +108,7 @@ module.exports = function (router,_myData) {
         var _year = new Date().getFullYear(),
             _randomID = Math.floor(10000 + Math.random() * 90000),
             _appID = _year + "-" + _randomID + "-EPS-MIT"
-            
+
         req.session.myData.tempApplication.id = _appID
         req.session.myData.tempApplication.status = "inprogress"
         req.session.myData.tempApplication.type = req.session.myData.licenceType
@@ -2976,6 +2976,8 @@ module.exports = function (router,_myData) {
 
     // Applications list
     router.get('/' + version + '/applications', function (req, res) {
+
+        req.session.myData.signedIn = "true"
 
         //Sort applications
         req.session.myData.applications.sort(function(a,b){
