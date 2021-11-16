@@ -1,0 +1,88 @@
+{% extends "layout.html" %}
+
+{% set serviceName = myData.serviceName %}
+
+{% set _selectedApplication = myData.selectedApplication %}
+
+{% block pageTitle %} 
+{TODO}
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-xl">
+            [title - application]
+        </h1>
+    </div>
+</div>
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		
+        {% set _type = "Bat" %}
+        {% if _selectedApplication.type == "a14" %}
+            {% set _type = "Newt" %}
+        {% endif %}
+
+        <dl class="govuk-summary-list">
+            <!-- type -->
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Licence type
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{_type}} mitigation
+                </dd>
+            </div>
+            <!-- reference -->
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Reference
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{_selectedApplication.id}}
+                </dd>
+            </div>
+            <!-- site name -->
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Site name
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{_selectedApplication.siteName}}
+                </dd>
+            </div>
+            <!-- site name -->
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    [TODO]
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    <span style="color:red">
+                        what else to show?
+                    </span>
+                </dd>
+            </div>
+           
+        </dl>
+
+        <!-- View licence -->
+        {% if _selectedApplication.status == "granted" %}
+        <p class="govuk-body">
+            <a class="govuk-button" href="licence?application={{_selectedApplication.id}}">
+                [view licence TODO content]
+            </a>
+        </p>
+        {% endif %}
+
+	</div>
+</div>
+
+
+{% endblock %}

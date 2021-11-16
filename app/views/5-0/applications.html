@@ -52,12 +52,13 @@ View licence applications
                             {% set _type = "Newt" %}
                         {% endif %}
 
+                        {% set _link = "application" %}
+                        {% if _application.status == "inprogress" %}
+                            {% set _link = "tasklist" %}
+                        {% endif %}
+
                         <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-2">
-                            {% if _application.status == "inprogress" %}
-                                <a href="tasklist?application={{_application.id}}" class="govuk-link govuk-link--no-visited-state">{{_type}} mitigation</a>
-                            {% else %}
-                                {{_type}} mitigation
-                            {% endif %}
+                            <a href="{{_link}}?application={{_application.id}}" class="govuk-link govuk-link--no-visited-state">{{_type}} mitigation</a>
                         </p>
 
                         {% if _application.siteName %}
@@ -81,9 +82,13 @@ View licence applications
                             {% if _application.status == "inprogress" %}
                                 Last saved:<br>
                                 {{_application.lastsaveddatefriendly}}
-                            {% else %}
+                            {% elif _application.status == "submitted" %}
                                 Submitted:<br>
                                 {{_application.lastsaveddatefriendly}}
+                            {% else %}
+                                <span style="color:red">
+                                [   TODO - granted]
+                                </span>
                             {% endif %}
                         </p>
                     </td>
@@ -93,12 +98,15 @@ View licence applications
                         <strong class="govuk-tag govuk-!-margin-bottom-4" >
                             in progress
                         </strong>
-                        {% else %}
+                        {% elif _application.status == "submitted" %}
                         <strong class="govuk-tag govuk-tag--grey govuk-!-margin-bottom-4" >
                             submitted
                         </strong>
+                        {% else %}
+                        <strong class="govuk-tag govuk-tag--red govuk-!-margin-bottom-4" >
+                            [TODO - granted]
+                        </strong>
                         {% endif %}
-                        <!-- test 5 <span class="visually-hidden-desktop" style="color:red">this text shows in mobile</span> -->
                     </td>
 
                 </tr>

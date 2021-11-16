@@ -393,20 +393,45 @@ module.exports = function (router,_myData) {
                 "starteddate": new Date(2021, 09, 12, 11, 05, 0, 0),
                 "lastsaveddate": new Date(2021, 09, 17, 16, 47, 40, 0),
                 "siteName": "20 High Street, Oxford"
+            },
+            {
+                "id": "2021-83653-EPS-MIT",
+                "type": "a13",
+                "new": false,
+                "status": "granted",
+                "tasklist": JSON.parse(JSON.stringify(req.session.myData.tasklist)),
+                "roosts": [],
+                "consents": [],
+                "starteddate": new Date(2021, 10, 2, 10, 05, 0, 0),
+                "lastsaveddate": new Date(2021, 10, 5, 16, 47, 40, 0),
+                "siteName": "Tomkins Estate"
+            },
+            {
+                "id": "2021-09273-EPS-MIT",
+                "type": "a14",
+                "new": false,
+                "status": "granted",
+                "tasklist": JSON.parse(JSON.stringify(req.session.myData.tasklist)),
+                "roosts": [],
+                "consents": [],
+                "starteddate": new Date(2021, 08, 26, 10, 05, 0, 0),
+                "lastsaveddate": new Date(2021, 09, 2, 16, 47, 40, 0),
+                "siteName": "90 Lower Eastside Farm"
             }
         ]
+        //Preset answers
         req.session.myData.applications[0].tasklist.sections["5"] = "completed"
         req.session.myData.applications[0].tasklist.sections["7"] = "completed"
         req.session.myData.applications[1].tasklist.sections["5"] = "completed"
         req.session.myData.applications[1].tasklist.sections["7"] = "completed"
-        for (const [key, value] of Object.entries(req.session.myData.applications[2].tasklist.sections)) {
-            req.session.myData.applications[2].tasklist.sections[key] = "completed"
-        }
-        for (const [key, value] of Object.entries(req.session.myData.applications[3].tasklist.sections)) {
-            req.session.myData.applications[3].tasklist.sections[key] = "completed"
-        }
-        
         req.session.myData.applications.forEach(function(_application, index) {
+            //Submitted ones
+            if(_application.status == "submitted" || _application.status == "granted"){
+                for (const [key, value] of Object.entries(_application.tasklist.sections)) {
+                    _application.tasklist.sections[key] = "completed"
+                }
+            }
+            //All
             updateTasklist(req,_application)
         });
 
@@ -2984,25 +3009,39 @@ module.exports = function (router,_myData) {
 
             var returnValue = 0;
     
-            //Sort on status - inprogress first
+            //Sort on status - INPROGRESS first
             if(a.status == "inprogress" && b.status != "inprogress") {
               returnValue = -1
             } else {
-              if(a.status != "inprogress" && b.status == "inprogress") {
-                returnValue = 1
-              } else {
-                //Sort on last saved date if inprogress flag matches
-                if(a.lastsaveddate > b.lastsaveddate){
-                    returnValue = -1
-                } else {
-                  if(b.lastsaveddate > a.lastsaveddate){
+                //BOTH INPROGRESS
+                if(a.status != "inprogress" && b.status == "inprogress") {
                     returnValue = 1
-                  } else {
-                    // Then sort on first id value
-                    returnValue = a.id.toString().toUpperCase() > b.id.toString().toUpperCase() ? 1 : b.id.toString().toUpperCase() > a.id.toString().toUpperCase() ? -1 : 0;
-                  }
+                } else {
+
+                    //Sort on status - GRANTED first if INPROGRESS flag matches
+                    if(a.status == "granted" && b.status != "granted") {
+                        returnValue = -1
+                    } else {
+                        //BOTH GRANTED
+                        if(a.status != "granted" && b.status == "granted") {
+                            returnValue = 1
+                        } else {
+
+                            //Sort on last saved date if inprogress flag matches
+                            if(a.lastsaveddate > b.lastsaveddate){
+                                returnValue = -1
+                            } else {
+                                if(b.lastsaveddate > a.lastsaveddate){
+                                    returnValue = 1
+                                } else {
+                                    // Then sort on first id value
+                                    returnValue = a.id.toString().toUpperCase() > b.id.toString().toUpperCase() ? 1 : b.id.toString().toUpperCase() > a.id.toString().toUpperCase() ? -1 : 0;
+                                }
+                            }
+
+                        }
+                    }
                 }
-              }
             }
     
             return returnValue;
@@ -3010,6 +3049,26 @@ module.exports = function (router,_myData) {
         })
 
         res.render(version + '/applications', {
+            myData:req.session.myData
+        });
+    });
+
+    // Application
+    router.get('/' + version + '/application', function (req, res) {
+
+        req.session.myData.signedIn = "true"
+
+        res.render(version + '/application', {
+            myData:req.session.myData
+        });
+    });
+
+    // Licence
+    router.get('/' + version + '/licence', function (req, res) {
+
+        req.session.myData.signedIn = "true"
+
+        res.render(version + '/licence', {
             myData:req.session.myData
         });
     });
