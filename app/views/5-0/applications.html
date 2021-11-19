@@ -63,7 +63,7 @@ View licence applications
 
                         {% if _application.siteName %}
                             <p class="govuk-body govuk-!-margin-bottom-2">
-                            Site name:<br>
+                            Site:<br>
                             {{_application.siteName}}
                             </p>
                         {% endif %}
@@ -86,9 +86,11 @@ View licence applications
                                 Submitted:<br>
                                 {{_application.lastsaveddatefriendly}}
                             {% else %}
-                                <span style="color:red">
-                                [   TODO - granted]
-                                </span>
+                                Valid from:<br>
+                                {{_application.validfromdatefriendly}}
+                                <br><br>
+                                Expires:<br>
+                                {{_application.validtodatefriendly}}
                             {% endif %}
                         </p>
                     </td>
@@ -103,8 +105,8 @@ View licence applications
                             submitted
                         </strong>
                         {% else %}
-                        <strong class="govuk-tag govuk-tag--red govuk-!-margin-bottom-4" >
-                            [TODO - granted]
+                        <strong class="govuk-tag govuk-tag--green govuk-!-margin-bottom-4" >
+                            Granted
                         </strong>
                         {% endif %}
                     </td>

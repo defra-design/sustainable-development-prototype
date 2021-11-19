@@ -282,6 +282,14 @@ module.exports = function (router,_myData) {
             //Last saved date
             var _lastsaved = new Date(_application.lastsaveddate)
             _application.lastsaveddatefriendly = _lastsaved.getDate() + " " + months[_lastsaved.getMonth()] + " " + _lastsaved.getFullYear()
+
+            //valid from
+            var _validFrom = new Date(_application.validfromdate)
+            _application.validfromdatefriendly = _validFrom.getDate() + " " + months[_validFrom.getMonth()] + " " + _validFrom.getFullYear()
+
+             //valid to
+             var _validTo = new Date(_application.validtodate)
+             _application.validtodatefriendly = _validTo.getDate() + " " + months[_validTo.getMonth()] + " " + _validTo.getFullYear()
         });
     }
     
@@ -324,6 +332,8 @@ module.exports = function (router,_myData) {
                 "consents": [], 
                 "starteddate": new Date(2021, 10, 06, 16, 20, 0, 0),
                 "lastsaveddate": new Date(2021, 10, 06, 17, 01, 30, 0),
+                // 4 inprogress
+                "siteName": "12 Parkland Avenue",
                 // 7 complete
                 "landOwner": "Yes", 
                 "landOwnerPermission": "", 
@@ -402,9 +412,12 @@ module.exports = function (router,_myData) {
                 "tasklist": JSON.parse(JSON.stringify(req.session.myData.tasklist)),
                 "roosts": [],
                 "consents": [],
-                "starteddate": new Date(2021, 10, 2, 10, 05, 0, 0),
-                "lastsaveddate": new Date(2021, 10, 5, 16, 47, 40, 0),
-                "siteName": "Tomkins Estate"
+                "starteddate": new Date(2021, 09, 2, 10, 05, 0, 0),
+                "lastsaveddate": new Date(2021, 09, 5, 16, 47, 40, 0),
+                "validfromdate": new Date(2021, 09, 20, 16, 47, 40, 0),
+                "validtodate": new Date(2022, 09, 20, 16, 47, 40, 0),
+                "siteName": "Tomkins Estate",
+                "applicantName": "John Smith"
             },
             {
                 "id": "2021-09273-EPS-MIT",
@@ -416,10 +429,14 @@ module.exports = function (router,_myData) {
                 "consents": [],
                 "starteddate": new Date(2021, 08, 26, 10, 05, 0, 0),
                 "lastsaveddate": new Date(2021, 09, 2, 16, 47, 40, 0),
-                "siteName": "90 Lower Eastside Farm"
+                "validfromdate": new Date(2021, 10, 01, 16, 47, 40, 0),
+                "validtodate": new Date(2024, 10, 01, 16, 47, 40, 0),
+                "siteName": "90 Lower Eastside Farm",
+                "applicantName": "Jane Doe"
             }
         ]
         //Preset answers
+        req.session.myData.applications[0].tasklist.sections["4"] = "inprogress"
         req.session.myData.applications[0].tasklist.sections["5"] = "completed"
         req.session.myData.applications[0].tasklist.sections["7"] = "completed"
         req.session.myData.applications[1].tasklist.sections["5"] = "completed"
@@ -3018,7 +3035,7 @@ module.exports = function (router,_myData) {
                     returnValue = 1
                 } else {
 
-                    //Sort on status - GRANTED first if INPROGRESS flag matches
+                    //Sort on status - GRANTED first
                     if(a.status == "granted" && b.status != "granted") {
                         returnValue = -1
                     } else {
@@ -3027,7 +3044,9 @@ module.exports = function (router,_myData) {
                             returnValue = 1
                         } else {
 
-                            //Sort on last saved date if inprogress flag matches
+                            // TODO - better ordering between 2 granted ones than last saved date? e.g. licence issued date? licence valid from date? licence valid to date? should expired licences be bottom?
+
+                            //Sort on last saved date
                             if(a.lastsaveddate > b.lastsaveddate){
                                 returnValue = -1
                             } else {

@@ -10,7 +10,17 @@
 
 {% block beforeContent %}
     {% include "includes/alpha-banner.html" %}
-    {% include "includes/back-link.html" %}
+
+    <div class="govuk-breadcrumbs">
+        <ol class="govuk-breadcrumbs__list">
+            <li class="govuk-breadcrumbs__list-item">
+                <a class="govuk-breadcrumbs__link" href="applications">[Applications]</a>
+            </li>
+            <li class="govuk-breadcrumbs__list-item">
+                <a class="govuk-breadcrumbs__link" href="application">[Application: {{_selectedApplication.id}}]</a>
+            </li>
+        </ol>
+    </div>
 {% endblock %}
 
 {% block content %}
