@@ -1,0 +1,131 @@
+{% extends "layout.html" %}
+
+{% set serviceName = myData.serviceName %}
+
+{% set _selectedApplication = myData.selectedApplication %}
+
+{% block pageTitle %} 
+Licence information
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+
+    <div class="govuk-breadcrumbs">
+        <ol class="govuk-breadcrumbs__list">
+            <li class="govuk-breadcrumbs__list-item">
+                <a class="govuk-breadcrumbs__link" href="applications">[Applications]</a>
+            </li>
+        </ol>
+    </div>
+{% endblock %}
+
+{% block content %}
+
+{% set _type = "Bat" %}
+{% if _selectedApplication.type == "a14" %}
+    {% set _type = "Newt" %}
+{% endif %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-xl">
+            Licence information
+        </h1>
+        <p class="govuk-body-l">
+            This licence allows you to do work that affects {{_type|lower}}s, as well as mitigation activities.
+        </p>
+    </div>
+</div>
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		
+        
+
+        <dl class="govuk-summary-list">
+
+            <!-- reference -->
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Reference
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{_selectedApplication.id}}
+                </dd>
+            </div>
+
+
+            
+            <!-- Licence holder -->
+            {% if _selectedApplication.applicantName %}
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Licence holder
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{_selectedApplication.applicantName}}
+                </dd>
+            </div>
+            {% endif %}
+
+
+            <!-- type -->
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Type
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{_type}} mitigation
+                </dd>
+            </div>
+
+
+            <!-- site -->
+            {% if _selectedApplication.siteName %}
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Site
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{_selectedApplication.siteName}}
+                </dd>
+            </div>
+            {% endif %}
+
+            {% if _selectedApplication.status == "granted" %}
+            <!-- Valid from -->
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Valid from
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{_selectedApplication.validfromdatefriendly}}
+                </dd>
+            </div>
+            <!-- Expires -->
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Expires
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{_selectedApplication.validtodatefriendly}}
+                </dd>
+            </div>
+            {% endif %}
+
+        </dl>
+
+        <!-- View licence -->
+        {% if _selectedApplication.status == "granted" %}
+        <p class="govuk-body">
+            <a class="govuk-button" href="licence?application={{_selectedApplication.id}}">
+                View licence
+            </a>
+        </p>
+        {% endif %}
+
+	</div>
+</div>
+
+
+{% endblock %}

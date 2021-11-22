@@ -1,0 +1,138 @@
+{% extends "layout.html" %}
+
+{% set serviceName = myData.serviceName %}
+
+{% block pageTitle %} 
+View licence applications
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+{% if myData.applications.length > 0 %}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-xl">
+            View licence applications
+        </h1>
+        <p class="govuk-body">
+            <a class="govuk-button" href="start">
+                New application
+            </a>
+        </p>
+    </div>
+</div>
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-full">
+		
+        <table class="govuk-table responsive">
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header app-custom-class">Licence type</th>
+                    <th scope="col" class="govuk-table__header app-custom-class">Reference</th>
+                    <th scope="col" class="govuk-table__header app-custom-class"></th>
+                    <th scope="col" class="govuk-table__header app-custom-class"></th>
+                </tr>
+            </thead>
+    
+            
+            <tbody class="govuk-table__body">
+
+                {% for _application in myData.applications %}
+                <tr class="govuk-table__row">
+
+                    <th scope="row" class="govuk-table__header">
+
+                        {% set _type = "Bat" %}
+                        {% if _application.type == "a14" %}
+                            {% set _type = "Newt" %}
+                        {% endif %}
+
+                        {% set _link = "application" %}
+                        {% if _application.status == "inprogress" %}
+                            {% set _link = "tasklist" %}
+                        {% endif %}
+
+                        <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-2">
+                            <a href="{{_link}}?application={{_application.id}}" class="govuk-link govuk-link--no-visited-state">{{_type}} mitigation</a>
+                        </p>
+
+                        {% if _application.siteName %}
+                            <p class="govuk-body govuk-!-margin-bottom-2">
+                            Site:<br>
+                            {{_application.siteName}}
+                            </p>
+                        {% endif %}
+
+                    </th>
+
+                    <td class="govuk-table__cell" >
+                        <p class="govuk-body govuk-!-margin-bottom-2">
+                            <span class="visually-hidden-desktop">Reference:<br></span>
+                            {{_application.id}}
+                        </p>
+                    </td>
+
+                    <td class="govuk-table__cell" >
+                        <p class="govuk-body govuk-!-margin-bottom-2">
+                            {% if _application.status == "inprogress" %}
+                                Last saved:<br>
+                                {{_application.lastsaveddatefriendly}}
+                            {% elif _application.status == "submitted" %}
+                                Submitted:<br>
+                                {{_application.lastsaveddatefriendly}}
+                            {% else %}
+                                Valid from:<br>
+                                {{_application.validfromdatefriendly}}
+                                <br><br>
+                                Expires:<br>
+                                {{_application.validtodatefriendly}}
+                            {% endif %}
+                        </p>
+                    </td>
+
+                    <td class="govuk-table__cell" >
+                        {% if _application.status == "inprogress" %}
+                        <strong class="govuk-tag govuk-!-margin-bottom-4" >
+                            in progress
+                        </strong>
+                        {% elif _application.status == "submitted" %}
+                        <strong class="govuk-tag govuk-tag--grey govuk-!-margin-bottom-4" >
+                            submitted
+                        </strong>
+                        {% else %}
+                        <strong class="govuk-tag govuk-tag--green govuk-!-margin-bottom-4" >
+                            Granted
+                        </strong>
+                        {% endif %}
+                    </td>
+
+                </tr>
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+	</div>
+</div>
+{% else %}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-xl">
+            You currently have no licence applications
+        </h1>
+        <p class="govuk-body">
+            <a class="govuk-button" href="start">
+                Start an application
+            </a>
+        </p>
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}

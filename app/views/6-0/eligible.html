@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% set serviceName = myData.serviceName %}
+
+{% set _signedIn = myData.signedIn == "true" %}
+
+{% block pageTitle %} 
+You’re eligible to apply for a licence
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        <form method="POST">
+
+            <h1 class="govuk-heading-xl">
+                You’re eligible to apply for a licence
+            </h1>
+
+            {% if _signedIn %}
+                <!-- no content -->
+            {% else %}
+                <p class="govuk-body">To be able to save your application and return to it later, you need to sign into an existing account or create a new one.</p>
+            {% endif %}
+
+            {{govukButton({
+                text: "Continue"
+            })}}
+
+        </form>
+
+	</div>
+</div>
+
+
+{% endblock %}

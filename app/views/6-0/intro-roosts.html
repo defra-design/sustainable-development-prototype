@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% set serviceName = myData.serviceName %}
+
+{% set _roosts = myData.selectedApplication.roosts %}
+{% set _roostsCount = _roosts.length %}
+
+{% block pageTitle %} 
+Tell us about each bat roost the work will affect
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        <form method="POST">
+
+            <h1 class="govuk-heading-xl">
+                Tell us about each bat roost the work will affect
+            </h1>
+
+            <p class="govuk-body">To be a single roost, the roosting location must be:</p>
+
+            <ul class="govuk-list govuk-list--bullet">
+                <li>used by the same species</li>
+                <li>within the same building</li>
+            </ul>
+
+            <p class="govuk-body">You can add more than one roost.</p>
+
+
+            {% if _roostsCount == 0 %}
+                {% set _buttonText = "Add the first roost" %}
+            {% else %}
+                {% set _buttonText = "Add another roost" %}
+            {% endif %}
+
+            {{govukButton({
+                text: _buttonText
+            })}}
+
+        </form>
+
+	</div>
+</div>
+
+
+{% endblock %}

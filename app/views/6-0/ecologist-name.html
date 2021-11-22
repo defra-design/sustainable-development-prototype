@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+
+{% set serviceName = myData.serviceName %}
+
+{% set _inError = myData.validationError == "true" %}
+
+{% block pageTitle %} 
+{% if _inError %}Error: {% endif %}Who is the ecologist?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+			{% if _inError %}
+            <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+                <h2 class="govuk-error-summary__title" id="error-summary-title">
+                    There is a problem
+                </h2>
+                <div class="govuk-error-summary__body">
+                    <ul class="govuk-list govuk-error-summary__list">
+                        {% for name, item in myData.validationErrors %}
+                        <li>
+                            <a href="#{{item.anchor}}">{{item.message}}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            {% endif %}
+
+	</div>
+</div>
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="POST">
+
+            <h1 class="govuk-heading-xl">
+                Who is the ecologist?
+            </h1>
+
+            <div class="govuk-form-group {% if _inError %}govuk-form-group--error{% endif %}">
+
+                <label class="govuk-label" for="ecologistName">
+                    Full name
+                </label>
+
+                {% if _inError %}
+                <span id="ecologistName-error" class="govuk-error-message">
+                    <span class="govuk-visually-hidden">Error:</span>
+                    {{myData.validationErrors.ecologistName.message}}
+                </span>
+                {% endif %}
+
+                {% set _value = myData.selectedApplication.ecologistName %}
+                {% if _inError %}
+                    {% set _value = myData.ecologistNameAnswer %}
+                {% endif %}
+
+                <input class="govuk-input govuk-!-width-three-quarters {% if _inError %}govuk-input--error{%endif %}" id="ecologistName" name="ecologistName" type="text" value="{{_value}}">
+
+            </div>
+
+            {{govukButton({
+                text: "Continue"
+            })}}
+
+        </form>
+
+	</div>
+</div>
+
+{% endblock %}

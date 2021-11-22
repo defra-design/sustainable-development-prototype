@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% set serviceName = myData.serviceName %}
+
+{% set _consents = myData.selectedApplication.consents %}
+{% set _consentsCount = _consents.length %}
+
+{% block pageTitle %} 
+Tell us about each permission the project has got
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        <form method="POST">
+
+            <h1 class="govuk-heading-xl">
+                Tell us about each permission the project has got
+            </h1>
+
+            <p class="govuk-body">For example, planning permission or listed building consent.</p>
+
+            <p class="govuk-body">You can add more than one permission.</p>
+
+
+            {% if _consentsCount == 0 %}
+                {% set _buttonText = "Add the first permission" %}
+            {% else %}
+                {% set _buttonText = "Add another permission" %}
+            {% endif %}
+
+            {{govukButton({
+                text: _buttonText
+            })}}
+
+        </form>
+
+	</div>
+</div>
+
+
+{% endblock %}
