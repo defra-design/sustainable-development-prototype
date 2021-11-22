@@ -120,7 +120,7 @@ module.exports = function (router,_myData) {
 
         //Set
         // setSelectedApplication(req, _randomID)
-        setSelectedApplication(req,req.session.myData.tempApplication)
+        setSelectedApplication(req,_appID)
         // req.session.myData.selectedApplication = req.session.myData.tempApplication
         // req.session.myData.application = _randomID
 
