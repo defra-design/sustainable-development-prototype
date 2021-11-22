@@ -52,14 +52,15 @@ View licence applications
                             {% set _type = "Newt" %}
                         {% endif %}
 
-                        {% set _link = "application" %}
                         {% if _application.status == "inprogress" %}
-                            {% set _link = "tasklist" %}
-                        {% endif %}
-
                         <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-2">
-                            <a href="{{_link}}?application={{_application.id}}" class="govuk-link govuk-link--no-visited-state">{{_type}} mitigation</a>
+                            <a href="tasklist?application={{_application.id}}" class="govuk-link govuk-link--no-visited-state">{{_type}} mitigation</a>
                         </p>
+                        {% else %}
+                        <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-2">
+                            {{_type}} mitigation
+                        </p>
+                        {% endif %}
 
                         {% if _application.siteName %}
                             <p class="govuk-body govuk-!-margin-bottom-2">
@@ -86,11 +87,7 @@ View licence applications
                                 Submitted:<br>
                                 {{_application.lastsaveddatefriendly}}
                             {% else %}
-                                Valid from:<br>
-                                {{_application.validfromdatefriendly}}
-                                <br><br>
-                                Expires:<br>
-                                {{_application.validtodatefriendly}}
+                                
                             {% endif %}
                         </p>
                     </td>
@@ -105,9 +102,7 @@ View licence applications
                             submitted
                         </strong>
                         {% else %}
-                        <strong class="govuk-tag govuk-tag--green govuk-!-margin-bottom-4" >
-                            Granted
-                        </strong>
+
                         {% endif %}
                     </td>
 
