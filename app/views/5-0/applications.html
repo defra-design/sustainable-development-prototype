@@ -62,6 +62,12 @@ View licence applications
                         </p>
                         {% endif %}
 
+                        {% if _application.status == "inprogress" %}
+                        <p class="govuk-body govuk-!-margin-bottom-2">
+                            {{_application.tasklist.completed}} of {{_application.tasklist.total}} sections completed
+                        </p>
+                        {% endif %}
+
                         {% if _application.siteName %}
                             <p class="govuk-body govuk-!-margin-bottom-2">
                             Site:<br>
@@ -104,6 +110,7 @@ View licence applications
                         {% else %}
 
                         {% endif %}
+                        
                     </td>
 
                 </tr>

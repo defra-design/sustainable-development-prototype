@@ -61,6 +61,12 @@ View licence applications
                             <a href="{{_link}}?application={{_application.id}}" class="govuk-link govuk-link--no-visited-state">{{_type}} mitigation</a>
                         </p>
 
+                        {% if _application.status == "inprogress" %}
+                        <p class="govuk-body govuk-!-margin-bottom-2">
+                            {{_application.tasklist.completed}} of {{_application.tasklist.total}} sections completed
+                        </p>
+                        {% endif %}
+
                         {% if _application.siteName %}
                             <p class="govuk-body govuk-!-margin-bottom-2">
                             Site:<br>
