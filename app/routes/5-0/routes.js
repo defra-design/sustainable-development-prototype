@@ -120,6 +120,8 @@ module.exports = function (router,_myData) {
 
         //Set
         // setSelectedApplication(req, _randomID)
+        req.session.myData.selectedApplication = req.session.myData.tempApplication
+        req.session.myData.application = _appID
         setSelectedApplication(req,_appID)
         // req.session.myData.selectedApplication = req.session.myData.tempApplication
         // req.session.myData.application = _randomID
@@ -325,13 +327,30 @@ module.exports = function (router,_myData) {
             {
                 "id": "2021-12345-EPS-MIT", 
                 "type": "a13", 
-                "new": false, 
+                "new": false,
                 "status": "inprogress", 
                 "tasklist": JSON.parse(JSON.stringify(req.session.myData.tasklist)),
                 "roosts": [], 
                 "consents": [], 
                 "starteddate": new Date(2021, 10, 06, 16, 20, 0, 0),
                 "lastsaveddate": new Date(2021, 10, 06, 17, 01, 30, 0),
+                // 7 complete
+                "landOwner": "Yes", 
+                "landOwnerPermission": "", 
+                "consent": "Yes", 
+                "consentGranted": "Yes", 
+                "consentNumbers": [], 
+            },
+            {
+                "id": "2021-73955-EPS-MIT", 
+                "type": "a14", 
+                "new": false, 
+                "status": "inprogress", 
+                "tasklist": JSON.parse(JSON.stringify(req.session.myData.tasklist)),
+                "roosts": [], 
+                "consents": [], 
+                "starteddate": new Date(2021, 10, 07, 16, 20, 0, 0),
+                "lastsaveddate": new Date(2021, 10, 07, 17, 01, 30, 0),
                 // 4 inprogress
                 "siteName": "12 Parkland Avenue",
                 // 7 complete
@@ -350,34 +369,6 @@ module.exports = function (router,_myData) {
                 "applicantAddress3": "Oxford", 
                 "applicantAddress4": "Oxfordshire", 
                 "applicantPostcode": "B1 1AA", 
-                "applicantHasPostcode": "true"
-            },
-            {
-                "id": "2021-73955-EPS-MIT", 
-                "type": "a14", 
-                "new": false, 
-                "status": "inprogress", 
-                "tasklist": JSON.parse(JSON.stringify(req.session.myData.tasklist)),
-                "roosts": [], 
-                "consents": [], 
-                "starteddate": new Date(2021, 10, 07, 16, 20, 0, 0),
-                "lastsaveddate": new Date(2021, 10, 07, 17, 01, 30, 0),
-                // 7 complete
-                "landOwner": "Yes", 
-                "landOwnerPermission": "", 
-                "consent": "No", 
-                "consentGranted": "", 
-                "consentNumbers": [], 
-                // 5 complete
-                "applicantName": "Jane Doe", 
-                "applicantHasCompany": "No", 
-                "applicantCompany": "", 
-                "applicantAddress": "10 High Street", 
-                "applicantAddress1": "10 High Street", 
-                "applicantAddress2": "", 
-                "applicantAddress3": "Oxford", 
-                "applicantAddress4": "Oxfordshire", 
-                "applicantPostcode": "D1 9AA", 
                 "applicantHasPostcode": "true"
             },
             {
@@ -406,9 +397,8 @@ module.exports = function (router,_myData) {
             }
         ]
         //Preset answers
-        req.session.myData.applications[0].tasklist.sections["4"] = "inprogress"
-        req.session.myData.applications[0].tasklist.sections["5"] = "completed"
         req.session.myData.applications[0].tasklist.sections["7"] = "completed"
+        req.session.myData.applications[1].tasklist.sections["4"] = "inprogress"
         req.session.myData.applications[1].tasklist.sections["5"] = "completed"
         req.session.myData.applications[1].tasklist.sections["7"] = "completed"
         req.session.myData.applications.forEach(function(_application, index) {
