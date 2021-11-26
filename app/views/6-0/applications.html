@@ -32,8 +32,8 @@ View licence applications
         <table class="govuk-table responsive">
             <thead class="govuk-table__head">
                 <tr class="govuk-table__row">
-                    <th scope="col" class="govuk-table__header app-custom-class">Licence type</th>
-                    <th scope="col" class="govuk-table__header app-custom-class">Reference</th>
+                    <th scope="col" class="govuk-table__header app-custom-class">Application</th>
+                    <th scope="col" class="govuk-table__header app-custom-class">Site</th>
                     <th scope="col" class="govuk-table__header app-custom-class"></th>
                     <th scope="col" class="govuk-table__header app-custom-class"></th>
                 </tr>
@@ -60,55 +60,59 @@ View licence applications
                         <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-2">
                             <a href="{{_link}}?application={{_application.id}}" class="govuk-link govuk-link--no-visited-state">{{_type}} mitigation</a>
                         </p>
+                        <p class="govuk-body govuk-!-margin-bottom-2">
+                            <!-- <span class="visually-hidden-desktop">Reference:<br></span> -->
+                            {{_application.id}}
+                        </p>
 
                         {% if _application.status == "inprogress" %}
-                        <p class="govuk-body govuk-!-margin-bottom-2">
+                        <p class="govuk-body govuk-!-margin-bottom-2 govuk-!-margin-top-4">
                             {{_application.tasklist.completed}} of {{_application.tasklist.total}} sections completed
                         </p>
-                        {% endif %}
-
-                        {% if _application.siteName %}
-                            <p class="govuk-body govuk-!-margin-bottom-2">
-                            Site:<br>
-                            {{_application.siteName}}
-                            </p>
                         {% endif %}
 
                     </th>
 
                     <td class="govuk-table__cell" >
-                        <p class="govuk-body govuk-!-margin-bottom-2">
-                            <span class="visually-hidden-desktop">Reference:<br></span>
-                            {{_application.id}}
-                        </p>
+                        {% if _application.siteName %}
+                            <p class="govuk-body govuk-!-margin-bottom-2">
+                            <span class="visually-hidden-desktop">Site:<br></span>
+                            {{_application.siteName}}
+                            </p>
+                        {% endif %}
                     </td>
 
                     <td class="govuk-table__cell" >
-                        <p class="govuk-body govuk-!-margin-bottom-2">
-                            {% if _application.status == "inprogress" %}
+                        {% if _application.status == "inprogress" %}
+                            <p class="govuk-body govuk-!-margin-bottom-2">
                                 Last saved:<br>
                                 {{_application.lastsaveddatefriendly}}
-                            {% elif _application.status == "submitted" %}
+                            </p>
+                        {% elif _application.status == "submitted" %}
+                            <p class="govuk-body govuk-!-margin-bottom-2">
                                 Submitted:<br>
                                 {{_application.lastsaveddatefriendly}}
-                            {% else %}
+                            </p>
+                        {% else %}
+                            <p class="govuk-body govuk-!-margin-bottom-2">
                                 Valid from:<br>
                                 {{_application.validfromdatefriendly}}
-                                <br><br>
+                            </p>
+                            <p class="govuk-body govuk-!-margin-bottom-2">
                                 Expires:<br>
                                 {{_application.validtodatefriendly}}
-                            {% endif %}
-                        </p>
+                            </p>
+                        {% endif %}
                     </td>
 
                     <td class="govuk-table__cell" >
                         {% if _application.status == "inprogress" %}
                         <strong class="govuk-tag govuk-!-margin-bottom-4" >
-                            in progress
+                            In progress
                         </strong>
                         {% elif _application.status == "submitted" %}
                         <strong class="govuk-tag govuk-tag--grey govuk-!-margin-bottom-4" >
-                            submitted
+                            Submitted
                         </strong>
                         {% else %}
                         <strong class="govuk-tag govuk-tag--green govuk-!-margin-bottom-4" >

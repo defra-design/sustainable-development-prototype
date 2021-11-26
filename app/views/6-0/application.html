@@ -5,19 +5,19 @@
 {% set _selectedApplication = myData.selectedApplication %}
 
 {% block pageTitle %} 
-Licence information
+Licence application
 {% endblock %}
 
 {% block beforeContent %}
     {% include "includes/alpha-banner.html" %}
-
-    <div class="govuk-breadcrumbs">
+    {% include "includes/back-link.html" %}
+    <!-- <div class="govuk-breadcrumbs">
         <ol class="govuk-breadcrumbs__list">
             <li class="govuk-breadcrumbs__list-item">
                 <a class="govuk-breadcrumbs__link" href="applications">[Applications]</a>
             </li>
         </ol>
-    </div>
+    </div> -->
 {% endblock %}
 
 {% block content %}
@@ -30,11 +30,8 @@ Licence information
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
         <h1 class="govuk-heading-xl">
-            Licence information
+            Licence application
         </h1>
-        <p class="govuk-body-l">
-            This licence allows you to do work that affects {{_type|lower}}s, as well as mitigation activities.
-        </p>
     </div>
 </div>
 <div class="govuk-grid-row">
@@ -43,31 +40,6 @@ Licence information
         
 
         <dl class="govuk-summary-list">
-
-            <!-- reference -->
-            <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                    Reference
-                </dt>
-                <dd class="govuk-summary-list__value">
-                    {{_selectedApplication.id}}
-                </dd>
-            </div>
-
-
-            
-            <!-- Licence holder -->
-            {% if _selectedApplication.applicantName %}
-            <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                    Licence holder
-                </dt>
-                <dd class="govuk-summary-list__value">
-                    {{_selectedApplication.applicantName}}
-                </dd>
-            </div>
-            {% endif %}
-
 
             <!-- type -->
             <div class="govuk-summary-list__row">
@@ -79,18 +51,63 @@ Licence information
                 </dd>
             </div>
 
+            <!-- reference -->
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Reference
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{_selectedApplication.id}}
+                </dd>
+            </div>
+
+            <!-- status -->
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Status
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {% if _selectedApplication.status == "granted" %}
+                    <strong class="govuk-tag govuk-tag--green" >
+                        Granted
+                    </strong>
+                    {% elif _selectedApplication.status == "submitted" %}
+                    <strong class="govuk-tag govuk-tag--grey" >
+                        Submitted
+                    </strong>
+                    {% endif %}
+                </dd>
+            </div>
+
+            <!-- Licence holder -->
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Licence holder
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{_selectedApplication.applicantName}}
+                </dd>
+            </div>
 
             <!-- site -->
-            {% if _selectedApplication.siteName %}
             <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
                     Site
                 </dt>
                 <dd class="govuk-summary-list__value">
                     {{_selectedApplication.siteName}}
+                    {% if _selectedApplication.hasPostcode == "Yes" %}
+                        <br>
+                        {% if _selectedApplication.siteAddress == "select" %}
+                        <!-- No address listed -->
+                        {% else %}
+                        {{_selectedApplication.siteAddress}}<br>
+                        Oxford<br>
+                        {{_selectedApplication.sitePostcode}}
+                        {% endif %}
+                    {% endif %}
                 </dd>
             </div>
-            {% endif %}
 
             {% if _selectedApplication.status == "granted" %}
             <!-- Valid from -->
@@ -113,12 +130,25 @@ Licence information
             </div>
             {% endif %}
 
+            {% if _selectedApplication.status == "submitted" %}
+            <!-- Submitted date -->
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Submitted
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{_selectedApplication.lastsaveddatefriendly}}
+                </dd>
+            </div>
+            {% endif %}
+
         </dl>
 
         <!-- View licence -->
         {% if _selectedApplication.status == "granted" %}
         <p class="govuk-body">
-            <a class="govuk-button" href="licence?application={{_selectedApplication.id}}">
+            <!-- <a class="govuk-button" href="licence?application={{_selectedApplication.id}}"> -->
+            <a class="govuk-button" href="#">
                 View licence
             </a>
         </p>

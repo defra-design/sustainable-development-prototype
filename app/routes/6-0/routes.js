@@ -381,7 +381,11 @@ module.exports = function (router,_myData) {
                 "consents": [],
                 "starteddate": new Date(2021, 10, 03, 11, 05, 0, 0),
                 "lastsaveddate": new Date(2021, 10, 10, 16, 47, 40, 0),
-                "siteName": "Smiths Farmyard"
+                "siteName": "Smiths Farmyard",
+                "applicantName": "John Smith",
+                "hasPostcode": "Yes", 
+                "sitePostcode": "B1 3AA", 
+                "siteAddress": "5 High Street"
             },
             {
                 "id": "2021-45678-EPS-MIT",
@@ -393,7 +397,11 @@ module.exports = function (router,_myData) {
                 "consents": [],
                 "starteddate": new Date(2021, 09, 12, 11, 05, 0, 0),
                 "lastsaveddate": new Date(2021, 09, 17, 16, 47, 40, 0),
-                "siteName": "20 High Street, Oxford"
+                "siteName": "20 High Street, Oxford",
+                "applicantName": "Jane Doe",
+                "hasPostcode": "Yes", 
+                "sitePostcode": "B1 3AA", 
+                "siteAddress": "5 High Street"
             },
             {
                 "id": "2021-83653-EPS-MIT",
@@ -408,7 +416,10 @@ module.exports = function (router,_myData) {
                 "validfromdate": new Date(2021, 09, 20, 16, 47, 40, 0),
                 "validtodate": new Date(2022, 09, 20, 16, 47, 40, 0),
                 "siteName": "Tomkins Estate",
-                "applicantName": "John Smith"
+                "applicantName": "John Smith",
+                "hasPostcode": "Yes", 
+                "sitePostcode": "B1 3AA", 
+                "siteAddress": "5 High Street"
             },
             {
                 "id": "2021-09273-EPS-MIT",
@@ -423,7 +434,10 @@ module.exports = function (router,_myData) {
                 "validfromdate": new Date(2021, 10, 01, 16, 47, 40, 0),
                 "validtodate": new Date(2024, 10, 01, 16, 47, 40, 0),
                 "siteName": "90 Lower Eastside Farm",
-                "applicantName": "Jane Doe"
+                "applicantName": "Jane Doe",
+                "hasPostcode": "Yes", 
+                "sitePostcode": "B1 3AA", 
+                "siteAddress": "5 High Street"
             }
         ]
         //Preset answers
@@ -3034,18 +3048,28 @@ module.exports = function (router,_myData) {
                             returnValue = 1
                         } else {
 
-                            // TODO - better ordering between 2 granted ones than last saved date? e.g. licence issued date? licence valid from date? licence valid to date? should expired licences be bottom?
-
-                            //Sort on last saved date
-                            if(a.lastsaveddate > b.lastsaveddate){
+                            //Sort on valid to date - expires first (granted)
+                            if(a.validtodate < b.validtodate){
                                 returnValue = -1
                             } else {
-                                if(b.lastsaveddate > a.lastsaveddate){
+                                if(b.validtodate < a.validtodate){
                                     returnValue = 1
                                 } else {
-                                    // Then sort on first id value
-                                    returnValue = a.id.toString().toUpperCase() > b.id.toString().toUpperCase() ? 1 : b.id.toString().toUpperCase() > a.id.toString().toUpperCase() ? -1 : 0;
+
+                                    //Sort on last saved date (inprogress and submitted)
+                                    if(a.lastsaveddate > b.lastsaveddate){
+                                        returnValue = -1
+                                    } else {
+                                        if(b.lastsaveddate > a.lastsaveddate){
+                                            returnValue = 1
+                                        } else {
+                                            // Then sort on first id value
+                                            returnValue = a.id.toString().toUpperCase() > b.id.toString().toUpperCase() ? 1 : b.id.toString().toUpperCase() > a.id.toString().toUpperCase() ? -1 : 0;
+                                        }
+                                    }
+
                                 }
+                                
                             }
 
                         }
