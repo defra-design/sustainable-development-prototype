@@ -41,6 +41,24 @@ Licence application
 
         <dl class="govuk-summary-list">
 
+            <!-- status -->
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Status
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {% if _selectedApplication.status == "granted" %}
+                    <strong class="govuk-tag govuk-tag--green" >
+                        Granted
+                    </strong>
+                    {% elif _selectedApplication.status == "submitted" %}
+                    <strong class="govuk-tag govuk-tag--grey" >
+                        Submitted
+                    </strong>
+                    {% endif %}
+                </dd>
+            </div>
+
             <!-- type -->
             <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
@@ -58,24 +76,6 @@ Licence application
                 </dt>
                 <dd class="govuk-summary-list__value">
                     {{_selectedApplication.id}}
-                </dd>
-            </div>
-
-            <!-- status -->
-            <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                    Status
-                </dt>
-                <dd class="govuk-summary-list__value">
-                    {% if _selectedApplication.status == "granted" %}
-                    <strong class="govuk-tag govuk-tag--green" >
-                        Granted
-                    </strong>
-                    {% elif _selectedApplication.status == "submitted" %}
-                    <strong class="govuk-tag govuk-tag--grey" >
-                        Submitted
-                    </strong>
-                    {% endif %}
                 </dd>
             </div>
 
