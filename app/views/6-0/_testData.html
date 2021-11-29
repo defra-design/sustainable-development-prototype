@@ -17,6 +17,13 @@
     <div class="govuk-grid-column-two-thirds">
 
         <p class="govuk-body" style="word-wrap:break-word">
+            User:<br>{{myData.user|dump(2)}}
+        </p>
+        <p class="govuk-body" style="word-wrap:break-word">
+            Stored ecologists:<br>{{myData.ecologists|dump(2)}}
+        </p>
+
+        <p class="govuk-body" style="word-wrap:break-word">
             Selected Application:<br>{{myData.selectedApplication|dump(2)}}
         </p>
         <p class="govuk-body" style="word-wrap:break-word">

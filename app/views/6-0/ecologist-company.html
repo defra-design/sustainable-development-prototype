@@ -46,7 +46,11 @@
                 <fieldset class="govuk-fieldset" >
                   <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
                     <h1 class="govuk-fieldset__heading">
-                        Is {{myData.selectedApplication.ecologistName}} part of a company?
+                        {% if myData.selectedApplication.userIsEcologist == "Yes" %}
+                            Are you part of a company?
+                        {% else %}
+                            Is {{myData.selectedApplication.ecologistName}} part of a company?
+                        {% endif %}
                     </h1>
                   </legend>
 

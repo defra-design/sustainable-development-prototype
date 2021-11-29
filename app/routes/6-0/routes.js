@@ -1,4 +1,5 @@
 const e = require("express");
+const { of } = require("rxjs/observable/of");
 
 module.exports = function (router,_myData) {
 
@@ -70,30 +71,15 @@ module.exports = function (router,_myData) {
     function setSelectedApplication(req, _applicationID){
 
         if(_applicationID){
-
             var _existingApplication = req.session.myData.applications.find(obj => {return obj.id.toString() === _applicationID.toString()})
-
             if(_existingApplication){
                 //Use existing application
                 req.session.myData.selectedApplication = _existingApplication
             } else {
-                //Start new application
-                // if(!req.session.myData.newApplication.inprogress){
-                //     req.session.myData.newApplication.inprogress = true
-                    // req.session.myData.selectedApplication = req.session.myData.newApplication
-                    // is this used?
-                    req.session.myData.selectedApplication = req.session.myData.tempApplication
-                // }
+                //Set as new application
+                req.session.myData.selectedApplication = req.session.myData.tempApplication
             }
             req.session.myData.application = req.session.myData.selectedApplication.id
-
-            // for (var i = 0; i < req.session.myData.applications.length; i++) {
-            //     var _thisApplication = req.session.myData.applications[i]
-            //     if(_thisApplication.id.toString() == _applicationID.toString()){
-            //         req.session.myData.selectedApplication = _thisApplication
-            //         req.session.myData.application = _thisApplication.id
-            //     }
-            // }
         }
 
         setServiceName(req)
@@ -102,7 +88,7 @@ module.exports = function (router,_myData) {
 
     function startNewApplication(req){
 
-        //Used until user passes eligibility
+        //Used until passes eligibility
         req.session.myData.tempApplication = JSON.parse(JSON.stringify(req.session.myData.newApplication))
 
         var _year = new Date().getFullYear(),
@@ -326,9 +312,9 @@ module.exports = function (router,_myData) {
         req.session.myData.applications = [
             {
                 "id": "2021-12345-EPS-MIT", 
-                "type": "a13", 
+                "type": "a13",
                 "new": false,
-                "status": "inprogress", 
+                "status": "inprogress",
                 "tasklist": JSON.parse(JSON.stringify(req.session.myData.tasklist)),
                 "roosts": [], 
                 "consents": [], 
@@ -338,8 +324,7 @@ module.exports = function (router,_myData) {
                 "landOwner": "Yes", 
                 "landOwnerPermission": "", 
                 "consent": "Yes", 
-                "consentGranted": "Yes", 
-                "consentNumbers": [], 
+                "consentGranted": "Yes"
             },
             {
                 "id": "2021-73955-EPS-MIT", 
@@ -357,8 +342,7 @@ module.exports = function (router,_myData) {
                 "landOwner": "Yes", 
                 "landOwnerPermission": "", 
                 "consent": "Yes", 
-                "consentGranted": "Yes", 
-                "consentNumbers": [], 
+                "consentGranted": "Yes",
                 // 5 complete
                 "applicantName": "John Smith", 
                 "applicantHasCompany": "No", 
@@ -369,7 +353,18 @@ module.exports = function (router,_myData) {
                 "applicantAddress3": "Oxford", 
                 "applicantAddress4": "Oxfordshire", 
                 "applicantPostcode": "B1 1AA", 
-                "applicantHasPostcode": "true"
+                "applicantHasPostcode": "true",
+                // 6 complete
+                "ecologistName": "Margaret Rice", 
+                "ecologistHasCompany": "No", 
+                "ecologistCompany": "", 
+                "ecologistAddress": "9 High Street", 
+                "ecologistAddress1": "9 High Street", 
+                "ecologistAddress2": "", 
+                "ecologistAddress3": "Oxford", 
+                "ecologistAddress4": "Oxfordshire", 
+                "ecologistPostcode": "OX1 1AA", 
+                "ecologistHasPostcode": "true"
             },
             {
                 "id": "2021-98765-EPS-MIT",
@@ -440,10 +435,77 @@ module.exports = function (router,_myData) {
                 "siteAddress": "5 High Street"
             }
         ]
+        req.session.myData.user = {
+            "userName": "David Smith",
+            "userAddress1": "1 London Road",
+            "userAddress2": "Moseley",
+            "userAddress3": "Birmingham",
+            "userAddress4": "West Midlands",
+            "userPostcode": "B32 1AP",
+            "companies": [
+                //For each additional company name added against this user
+                {
+                    "company": "Eco Solutions Limited"
+                }
+            ],
+            addresses: [
+                //For each additional address added against this user
+                {
+                    "address1": "1 London Road",
+                    "address2": "Moseley",
+                    "address3": "Birmingham",
+                    "address4": "West Midlands",
+                    "postcode": "B32 1AP",
+                }
+            ]
+        }
+
+        // //NEW ECOLOGIST
+        // //For each new ecologist added
+        // {
+        //     "name": "",
+        //     "companies": [
+        //         //For each company name added against this ecologist
+        //         {
+        //             "company": ""
+        //         }
+        //     ],
+        //     addresses: [
+        //         //For each address added against this ecologist
+        //         {
+        //             "address1": "",
+        //             "address2": "",
+        //             "address3": "",
+        //             "address4": "",
+        //             "postcode": "",
+        //         }
+        //     ]
+        // }
+        req.session.myData.ecologists = [
+            {
+                "name": "Margaret Rice",
+                "companies": [
+                    {
+                        "company": "Rice Ltd"
+                    }
+                ],
+                addresses: [
+                    {
+                        "address1": "9 High Street",
+                        "address2": "",
+                        "address3": "Oxford",
+                        "address4": "Oxfordshire",
+                        "postcode": "OX1 1AA",
+                    }
+                ]
+            }
+        ]
+
         //Preset answers
         req.session.myData.applications[0].tasklist.sections["7"] = "completed"
         req.session.myData.applications[1].tasklist.sections["4"] = "inprogress"
         req.session.myData.applications[1].tasklist.sections["5"] = "completed"
+        req.session.myData.applications[1].tasklist.sections["6"] = "completed"
         req.session.myData.applications[1].tasklist.sections["7"] = "completed"
         req.session.myData.applications.forEach(function(_application, index) {
             //Submitted ones
@@ -561,8 +623,6 @@ module.exports = function (router,_myData) {
         req.session.myData.application = req.query.application || req.session.myData.application
         setSelectedApplication(req,req.session.myData.application)
 
-        // TODO - add application to saved applications (after eligiblity?)
-
         // if(req.session.myData.selectedApplication.new){
         //     req.session.myData.selectedApplication.tasklist = JSON.parse(JSON.stringify(req.session.myData.tasklist))
         //     req.session.myData.selectedApplication.new = false
@@ -584,9 +644,6 @@ module.exports = function (router,_myData) {
 
         //Signed in
         req.session.myData.signedIn =  req.query.si || req.session.myData.signedIn
-
-        //Service name
-        setServiceName(req)
 
         //Update tasklist data
         updateTasklist(req)
@@ -869,7 +926,6 @@ module.exports = function (router,_myData) {
             req.session.myData.selectedApplication.consent = req.session.myData.consentAnswer
             if(req.session.myData.selectedApplication.consent == "No"){
                 req.session.myData.selectedApplication.consentGranted = ""
-                req.session.myData.selectedApplication.consentNumbers = []
             }
            
             if(req.session.myData.selectedApplication.consent == "No"){
@@ -2719,11 +2775,129 @@ module.exports = function (router,_myData) {
         
     });
 
+    // Ecologist - user
+    router.get('/' + version + '/ecologist-user', function (req, res) {
+        req.session.myData.selectedApplication.tasklist.sections["6"] = "inprogress"
+        res.render(version + '/ecologist-user', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/ecologist-user', function (req, res) {
+
+        req.session.myData.userIsEcologistAnswer = req.body.userIsEcologist
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.userIsEcologistAnswer = req.session.myData.userIsEcologistAnswer || "No"
+        }
+
+        if(!req.session.myData.userIsEcologistAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.userIsEcologist = {
+                "anchor": "userIsEcologist-1",
+                "message": "[error message]"
+            }
+        }
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/ecologist-user', {
+                myData: req.session.myData
+            });
+        } else {
+
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
+
+            req.session.myData.selectedApplication.userIsEcologist = req.session.myData.userIsEcologistAnswer
+
+            if(req.session.myData.selectedApplication.userIsEcologist == "Yes"){
+                req.session.myData.selectedEcologist = req.session.myData.user
+                req.session.myData.selectedApplication.ecologistName = req.session.myData.user.userName
+            } else {
+                req.session.myData.selectedApplication.ecologistName = ""
+            }
+           
+            if(req.session.myData.selectedApplication.userIsEcologist == "No"){
+                if(req.session.myData.ecologists.length > 0){
+                    // go to new ecologist name list is 1 or more saved ecologists
+                    res.redirect(301, '/' + version + '/ecologist-names');
+                } else {
+                    res.redirect(301, '/' + version + '/ecologist-name');
+                }
+            } else {
+                if(req.session.myData.user.companies.length > 0){
+                    // go to new ecologist company list is 1 or more saved companies on this user
+                    res.redirect(301, '/' + version + '/ecologist-companies');
+                } else {
+                    res.redirect(301, '/' + version + '/ecologist-company');
+                }
+            }
+
+        }
+        
+    });
+
+     // Ecologist names
+     router.get('/' + version + '/ecologist-names', function (req, res) {
+        res.render(version + '/ecologist-names', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/ecologist-names', function (req, res) {
+
+        req.session.myData.ecologistNamesTempAnswer = req.body.ecologistNames
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.ecologistNamesTempAnswer = req.body.ecologistNames || "changeName"
+        }
+        if(!req.session.myData.ecologistNamesTempAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.ecologistNamesAnswer = {
+                "anchor": "",
+                "message": "[error message]"
+            }
+        }
+        
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/ecologist-names', {
+                myData: req.session.myData
+            });
+        } else {
+
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
+
+            req.session.myData.ecologistNames = req.session.myData.ecologistNamesTempAnswer
+            req.session.myData.ecologistNamesTempAnswer = ""
+
+            if(req.session.myData.ecologistNames == "changeName"){
+                //Start new one
+                req.session.myData.selectedApplication.ecologistName = ""
+                req.session.myData.selectedApplication.ecologistHasCompany = ""
+                req.session.myData.selectedApplication.ecologistCompany = ""
+                req.session.myData.selectedApplication.ecologistAddress = ""
+                res.redirect(301, '/' + version + '/ecologist-name');
+            } else {
+
+                req.session.myData.selectedApplication.ecologistName = req.session.myData.ecologistNames
+                
+                var _existingEcologist = req.session.myData.ecologists.find(obj => {return obj.name.toString() === req.session.myData.selectedApplication.ecologistName.toString()});
+
+                if(_existingEcologist){
+                    req.session.myData.selectedEcologist = _existingEcologist
+                }
+
+                if(req.session.myData.selectedEcologist.companies.length > 0){
+                    // go to new ecologist company list is 1 or more saved companies on this user
+                    res.redirect(301, '/' + version + '/ecologist-companies');
+                } else {
+                    res.redirect(301, '/' + version + '/ecologist-company');
+                }
+                
+            }
+            
+        }
+    });
+
     //Ecologist name
     router.get('/' + version + '/ecologist-name', function (req, res) {
-
-        req.session.myData.selectedApplication.tasklist.sections["6"] = "inprogress"
-
         res.render(version + '/ecologist-name', {
             myData:req.session.myData
         });
@@ -2763,6 +2937,51 @@ module.exports = function (router,_myData) {
         }
         
     });
+
+    // Ecologist companies
+    router.get('/' + version + '/ecologist-companies', function (req, res) {
+        res.render(version + '/ecologist-companies', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/ecologist-companies', function (req, res) {
+
+        req.session.myData.ecologistCompaniesTempAnswer = req.body.ecologistCompanies
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.ecologistCompaniesTempAnswer = req.body.ecologistCompanies || "changeCompany"
+        }
+        if(!req.session.myData.ecologistCompaniesTempAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.ecologistCompaniesAnswer = {
+                "anchor": "",
+                "message": "[error message]"
+            }
+        }
+        
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/ecologist-companies', {
+                myData: req.session.myData
+            });
+        } else {
+
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
+
+            req.session.myData.ecologistCompanies = req.session.myData.ecologistCompaniesTempAnswer
+            req.session.myData.ecologistCompaniesTempAnswer = ""
+
+            if(req.session.myData.ecologistCompanies == "changeCompany"){
+                res.redirect(301, '/' + version + '/ecologist-company');
+            } else {
+                req.session.myData.selectedApplication.ecologistHasCompany = "Yes" 
+                req.session.myData.selectedApplication.ecologistCompany = req.session.myData.ecologistCompanies
+                res.redirect(301, '/' + version + '/ecologist-addresses');
+            }
+            
+        }
+    });
+
+
 
     // Ecologist company
     router.get('/' + version + '/ecologist-company', function (req, res) {
@@ -2808,15 +3027,93 @@ module.exports = function (router,_myData) {
 
             req.session.myData.ecologistHasCompanyTempAnswer = ""
             req.session.myData.ecologistCompanyTempAnswer = ""
-            
-            if(req.query.cya == "true"){
-                res.redirect(301, '/' + version + '/cya-ecologist');
+
+            // redirect to address list if using an existing ecologist name
+            var _existingEcologist = req.session.myData.ecologists.find(obj => {return obj.name.toString() === req.session.myData.selectedApplication.ecologistName.toString()});
+            if(req.session.myData.selectedApplication.userIsEcologist == "Yes" || _existingEcologist){
+                res.redirect(301, '/' + version + '/ecologist-addresses');
             } else {
                 res.redirect(301, '/' + version + '/ecologist-postcode');
             }
+            
+            // if(req.query.cya == "true"){
+            //     res.redirect(301, '/' + version + '/cya-ecologist');
+            // } else {
+            //     res.redirect(301, '/' + version + '/ecologist-postcode');
+            // }
 
         }
 
+    });
+
+    // Ecologist addresses
+    router.get('/' + version + '/ecologist-addresses', function (req, res) {
+        res.render(version + '/ecologist-addresses', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/ecologist-addresses', function (req, res) {
+
+        req.session.myData.ecologistAddressesTempAnswer = req.body.ecologistAddresses
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.ecologistAddressesTempAnswer = req.body.ecologistAddresses || "changeAddress"
+        }
+        if(!req.session.myData.ecologistAddressesTempAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.ecologistAddressesAnswer = {
+                "anchor": "",
+                "message": "[error message]"
+            }
+        }
+        
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/ecologist-addresses', {
+                myData: req.session.myData
+            });
+        } else {
+
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
+
+            req.session.myData.ecologistAddresses = req.session.myData.ecologistAddressesTempAnswer
+            req.session.myData.ecologistAddressesTempAnswer = ""
+
+            if(req.session.myData.ecologistAddresses == "changeAddress"){
+
+                req.session.myData.selectedApplication.ecologistAddress = ""
+                req.session.myData.selectedApplication.ecologistAddress1 = ""
+                req.session.myData.selectedApplication.ecologistAddress2 = ""
+                req.session.myData.selectedApplication.ecologistAddress3 = ""
+                req.session.myData.selectedApplication.ecologistAddress4 = ""
+                req.session.myData.selectedApplication.ecologistHasPostcode = "false"
+                req.session.myData.selectedApplication.ecologistPostcode = ""
+
+                res.redirect(301, '/' + version + '/ecologist-postcode');
+            } else {
+
+                req.session.myData.selectedApplication.ecologistAddress = req.session.myData.ecologistAddresses
+
+                // find selected address in selectedEcologist addresses
+                var _existingAddress = req.session.myData.selectedEcologist.addresses.find(obj => {return obj.address1.toString() === req.session.myData.selectedApplication.ecologistAddress.toString()});
+
+                if(_existingAddress){
+                    // then set each specific field
+                    req.session.myData.selectedApplication.ecologistAddress1 = req.session.myData.ecologistAddresses
+                    req.session.myData.selectedApplication.ecologistAddress2 = _existingAddress.address2 //optional = address2
+                    req.session.myData.selectedApplication.ecologistAddress3 = _existingAddress.address3 // = address3
+                    req.session.myData.selectedApplication.ecologistAddress4 = _existingAddress.address4 // = address4
+                    if(_existingAddress.postcode == ""){
+                        req.session.myData.selectedApplication.ecologistHasPostcode = "true"
+                    } else {
+                        req.session.myData.selectedApplication.ecologistHasPostcode = "false"
+                    }
+                    req.session.myData.selectedApplication.ecologistPostcode = _existingAddress.postcode //optional "" or postcode
+                }
+
+                res.redirect(301, '/' + version + '/cya-ecologist');
+            }
+            
+        }
     });
 
     //Ecologist postcode
@@ -3013,6 +3310,69 @@ module.exports = function (router,_myData) {
     router.post('/' + version + '/cya-ecologist', function (req, res) {
 
         updateLastSavedDate(req,req.session.myData.selectedApplication)
+
+        var _existingEcologist = req.session.myData.ecologists.find(obj => {return obj.name.toString() === req.session.myData.selectedApplication.ecologistName.toString()});
+
+        var _newAddress = {
+            "address1": req.session.myData.selectedApplication.ecologistAddress1,
+            "address2": req.session.myData.selectedApplication.ecologistAddress2,
+            "address3": req.session.myData.selectedApplication.ecologistAddress3,
+            "address4": req.session.myData.selectedApplication.ecologistAddress4,
+            "postcode": req.session.myData.selectedApplication.ecologistPostcode,
+        },
+        _newCompany = {
+            "company": req.session.myData.selectedApplication.ecologistCompany
+        }
+
+        if(req.session.myData.selectedApplication.userIsEcologist == "Yes"){
+            //user is the ecologist
+            //Add new company
+            if(req.session.myData.selectedApplication.ecologistHasCompany == "Yes" && req.session.myData.ecologistCompanies == "changeCompany"){
+                req.session.myData.user.companies.push(_newCompany)
+                //Sort companies
+                req.session.myData.user.companies.sort(function(a,b){
+                    var returnValue = a.company.toString().toUpperCase() > b.company.toString().toUpperCase() ? 1 : b.company.toString().toUpperCase() > a.company.toString().toUpperCase() ? -1 : 0;
+                    return returnValue;
+                })
+            }
+            //Add new address
+            if(req.session.myData.ecologistAddresses == "changeAddress"){
+                req.session.myData.user.addresses.unshift(_newAddress)
+            }
+        } else if(_existingEcologist){
+            //existing ecologist
+            //Add new company
+            if(req.session.myData.selectedApplication.ecologistHasCompany == "Yes" && req.session.myData.ecologistCompanies == "changeCompany"){
+                _existingEcologist.companies.push(_newCompany)
+                //Sort companies
+                _existingEcologist.companies.sort(function(a,b){
+                    var returnValue = a.company.toString().toUpperCase() > b.company.toString().toUpperCase() ? 1 : b.company.toString().toUpperCase() > a.company.toString().toUpperCase() ? -1 : 0;
+                    return returnValue;
+                })
+            }
+            //Add new address
+            if(req.session.myData.ecologistAddresses == "changeAddress"){
+                _existingEcologist.addresses.unshift(_newAddress)
+            }
+        } else {
+            //add new ecologist
+            var _newEcologist = {
+                "name": req.session.myData.selectedApplication.ecologistName,
+                "companies": [],
+                addresses: [
+                    _newAddress
+                ]
+            }
+            if(req.session.myData.selectedApplication.ecologistHasCompany == "Yes"){
+                _newEcologist.companies.push(_newCompany)
+            }
+            req.session.myData.ecologists.push(_newEcologist)
+            //Sort ecologists
+            req.session.myData.ecologists.sort(function(a,b){
+                var returnValue = a.name.toString().toUpperCase() > b.name.toString().toUpperCase() ? 1 : b.name.toString().toUpperCase() > a.name.toString().toUpperCase() ? -1 : 0;
+                return returnValue;
+            })
+        }
 
         req.session.myData.selectedApplication.tasklist.sections["6"] = "completed"
         updateTasklist(req)

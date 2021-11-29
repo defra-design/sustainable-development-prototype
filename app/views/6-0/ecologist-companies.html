@@ -1,0 +1,101 @@
+{% extends "layout.html" %}
+
+{% set serviceName = myData.serviceName %}
+
+{% set _inError = myData.validationError == "true" %}
+
+{% block pageTitle %} 
+{% if _inError %}Error: {% endif %}TO DO
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        {% if _inError %}
+        <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+            <h2 class="govuk-error-summary__title" id="error-summary-title">
+                There is a problem
+            </h2>
+            <div class="govuk-error-summary__body">
+                <ul class="govuk-list govuk-error-summary__list">
+                    {% for name, item in myData.validationErrors %}
+                    <li>
+                        <a href="#{{item.anchor}}">{{item.message}}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+
+		<form method="POST">
+            <div class="govuk-form-group {% if _inError %}govuk-form-group--error{% endif %}">
+                <fieldset class="govuk-fieldset" >
+                    
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+                        <h1 class="govuk-fieldset__heading">
+                            {% if myData.selectedApplication.userIsEcologist == "Yes" %}
+                                What is the name of your company?
+                            {% else %}
+                                What is the name of {{myData.selectedApplication.ecologistName}}’s company?
+                            {% endif %}
+                        </h1>
+                    </legend>
+
+                    {% if _inError %}
+                    <span class="govuk-error-message">
+                        <span class="govuk-visually-hidden">Error:</span>
+                        {{myData.validationErrors.ecologistCompaniesAnswer.message}}
+                    </span>
+                    {% endif %}
+
+                    <div class="govuk-radios" data-module="govuk-radios">
+
+                        {% for _company in myData.selectedEcologist.companies %}
+
+                            {% set _selected = false %}
+                            {% if _company.company == myData.selectedApplication.ecologistCompany %}
+                                {% set _selected = true %}
+                            {% endif %}
+
+                            <div class="govuk-radios__item">
+                                <input {% if _selected == true %}checked{% endif %} class="govuk-radios__input" id="{{_company.company}}" name="ecologistCompanies" type="radio" value="{{_company.company}}">
+                                <label class="govuk-label govuk-radios__label" for="{{_company.company}}">
+                                    {{_company.company}}
+                                </label>
+                            </div>
+
+                        {% endfor %}
+
+                        <div class="govuk-radios__divider">or</div>
+
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="changeCompany" name="ecologistCompanies" type="radio" value="changeCompany">
+                            <label class="govuk-label govuk-radios__label" for="changeCompany">
+                                [add new or no company]
+                            </label>
+                        </div>
+
+                    </div>
+
+                </fieldset>
+            </div>
+		
+            {{govukButton({
+                text: "Continue"
+            })}}
+
+        </form>
+
+	</div>
+</div>
+
+
+{% endblock %}
