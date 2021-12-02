@@ -2784,6 +2784,8 @@ module.exports = function (router,_myData) {
     });
     router.post('/' + version + '/ecologist-user', function (req, res) {
 
+        var _was = req.session.myData.selectedApplication.userIsEcologist
+
         req.session.myData.userIsEcologistAnswer = req.body.userIsEcologist
 
         if(req.session.myData.includeValidation == "false"){
@@ -2812,22 +2814,29 @@ module.exports = function (router,_myData) {
                 req.session.myData.selectedEcologist = req.session.myData.user
                 req.session.myData.selectedApplication.ecologistName = req.session.myData.user.userName
             } else {
-                req.session.myData.selectedApplication.ecologistName = ""
+                // req.session.myData.selectedApplication.ecologistName = ""
             }
-           
-            if(req.session.myData.selectedApplication.userIsEcologist == "No"){
-                if(req.session.myData.ecologists.length > 0){
-                    // go to new ecologist name list is 1 or more saved ecologists
-                    res.redirect(301, '/' + version + '/ecologist-names');
-                } else {
-                    res.redirect(301, '/' + version + '/ecologist-name');
-                }
+
+            //if came from change yes/no
+            if(_was == req.session.myData.selectedApplication.userIsEcologist && req.query.cya == "true"){
+                res.redirect(301, '/' + version + '/cya-ecologist');
+            
             } else {
-                if(req.session.myData.user.companies.length > 0){
-                    // go to new ecologist company list is 1 or more saved companies on this user
-                    res.redirect(301, '/' + version + '/ecologist-companies');
+
+                if(req.session.myData.selectedApplication.userIsEcologist == "No"){
+                    if(req.session.myData.ecologists.length > 0){
+                        // go to new ecologist name list is 1 or more saved ecologists
+                        res.redirect(301, '/' + version + '/ecologist-names');
+                    } else {
+                        res.redirect(301, '/' + version + '/ecologist-name');
+                    }
                 } else {
-                    res.redirect(301, '/' + version + '/ecologist-company');
+                    if(req.session.myData.user.companies.length > 0){
+                        // go to new ecologist company list is 1 or more saved companies on this user
+                        res.redirect(301, '/' + version + '/ecologist-companies');
+                    } else {
+                        res.redirect(301, '/' + version + '/ecologist-company');
+                    }
                 }
             }
 

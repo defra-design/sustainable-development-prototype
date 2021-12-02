@@ -47,9 +47,9 @@
                   <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
                     <h1 class="govuk-fieldset__heading">
                         {% if myData.selectedApplication.userIsEcologist == "Yes" %}
-                            Are you part of a company?
+                            Are you part of an organisation?
                         {% else %}
-                            Is {{myData.selectedApplication.ecologistName}} part of a company?
+                            Is {{myData.selectedApplication.ecologistName}} part of an organisation?
                         {% endif %}
                     </h1>
                   </legend>
@@ -79,7 +79,7 @@
                     <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-ecologistCompany">
                         <div class="govuk-form-group">
                             <label class="govuk-label" for="ecologistCompany">
-                                Company name
+                                Name of organisation
                             </label>
 
                             {% if myData.validationErrors.ecologistCompany %}

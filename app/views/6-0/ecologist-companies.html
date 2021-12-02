@@ -42,9 +42,9 @@
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
                         <h1 class="govuk-fieldset__heading">
                             {% if myData.selectedApplication.userIsEcologist == "Yes" %}
-                                What is the name of your company?
+                                What is the name of your organisation?
                             {% else %}
-                                What is the name of {{myData.selectedApplication.ecologistName}}’s company?
+                                What is the name of {{myData.selectedApplication.ecologistName}}’s organisation?
                             {% endif %}
                         </h1>
                     </legend>
@@ -79,7 +79,7 @@
                         <div class="govuk-radios__item">
                             <input class="govuk-radios__input" id="changeCompany" name="ecologistCompanies" type="radio" value="changeCompany">
                             <label class="govuk-label govuk-radios__label" for="changeCompany">
-                                [add new or no company]
+                                None of these
                             </label>
                         </div>
 

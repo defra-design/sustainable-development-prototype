@@ -42,16 +42,23 @@
 
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-xl">
+            Are you the ecologist for this application?
+        </h1>
+
+        <p class="govuk-body">You are currently signed in as {{_user}}.</p>
+
 		<form method="POST">
 
             <div class="govuk-form-group {% if _inError %}govuk-form-group--error{% endif %}">
                 <fieldset class="govuk-fieldset" >
 
-                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+                    <!-- <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
                         <h1 class="govuk-fieldset__heading">
                             Are you the ecologist named {{_user}}?
                         </h1>
-                    </legend>
+                    </legend> -->
 
                     {% if _inError %}
                     <span id="userIsEcologist-error" class="govuk-error-message">

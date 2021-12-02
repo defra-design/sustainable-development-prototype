@@ -28,6 +28,23 @@
 
             <dl class="govuk-summary-list">
 
+
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Are you the ecologist for this application?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{myData.selectedApplication.userIsEcologist}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="ecologist-user?cya=true">
+                            Change<span class="govuk-visually-hidden"></span>
+                        </a>
+                    </dd>
+                </div>
+
+                {% if myData.selectedApplication.userIsEcologist == "No" %}
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
                         Who is the ecologist?
@@ -36,36 +53,7 @@
                         {{myData.selectedApplication.ecologistName}}
                     </dd>
                     <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link govuk-link--no-visited-state" href="ecologist-name?cya=true">
-                            Change<span class="govuk-visually-hidden"></span>
-                        </a>
-                    </dd>
-                </div>
-
-
-                <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key">
-                        Is {{myData.selectedApplication.ecologistName}} part of a company?
-                    </dt>
-                    <dd class="govuk-summary-list__value">
-                        {{myData.selectedApplication.ecologistHasCompany}}
-                    </dd>
-                    <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link govuk-link--no-visited-state" href="ecologist-company?cya=true">
-                            Change<span class="govuk-visually-hidden"></span>
-                        </a>
-                    </dd>
-                </div>
-                {% if myData.selectedApplication.ecologistHasCompany == "Yes" %}
-                <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key">
-                        Company name
-                    </dt>
-                    <dd class="govuk-summary-list__value">
-                        {{myData.selectedApplication.ecologistCompany}}
-                    </dd>
-                    <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link govuk-link--no-visited-state" href="ecologist-company?cya=true">
+                        <a class="govuk-link govuk-link--no-visited-state" href="ecologist-user">
                             Change<span class="govuk-visually-hidden"></span>
                         </a>
                     </dd>
@@ -74,7 +62,45 @@
 
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        {{myData.selectedApplication.ecologistName}}’s contact address
+                        {% if myData.selectedApplication.userIsEcologist == "Yes" %}
+                            Are you part of an organisation?
+                        {% else %}
+                            Is {{myData.selectedApplication.ecologistName}} part of an organisation?
+                        {% endif %}
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{myData.selectedApplication.ecologistHasCompany}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="ecologist-companies?cya=true">
+                            Change<span class="govuk-visually-hidden"></span>
+                        </a>
+                    </dd>
+                </div>
+
+                {% if myData.selectedApplication.ecologistHasCompany == "Yes" %}
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Name of organisation
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{myData.selectedApplication.ecologistCompany}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="ecologist-companies?cya=true">
+                            Change<span class="govuk-visually-hidden"></span>
+                        </a>
+                    </dd>
+                </div>
+                {% endif %}
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        {% if myData.selectedApplication.userIsEcologist == "Yes" %}
+                            Your contact address
+                        {% else %}
+                            {{myData.selectedApplication.ecologistName}}’s contact address
+                        {% endif %}
                     </dt>
                     <dd class="govuk-summary-list__value">
 
@@ -93,7 +119,7 @@
 
                     </dd>
                     <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link govuk-link--no-visited-state" href="ecologist-address-form?cya=true">
+                        <a class="govuk-link govuk-link--no-visited-state" href="ecologist-addresses?cya=true">
                             Change<span class="govuk-visually-hidden"></span>
                         </a>
                     </dd>
