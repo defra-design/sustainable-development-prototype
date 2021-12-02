@@ -2818,6 +2818,7 @@ module.exports = function (router,_myData) {
             }
 
             //if came from change yes/no
+
             if(_was == req.session.myData.selectedApplication.userIsEcologist && req.query.cya == "true"){
                 res.redirect(301, '/' + version + '/cya-ecologist');
             
@@ -2979,12 +2980,21 @@ module.exports = function (router,_myData) {
             req.session.myData.ecologistCompanies = req.session.myData.ecologistCompaniesTempAnswer
             req.session.myData.ecologistCompaniesTempAnswer = ""
 
+            var _cyaQS = ""
+            if(req.query.cya == "true"){
+                _cyaQS = "?cya=true"
+            }
+
             if(req.session.myData.ecologistCompanies == "changeCompany"){
-                res.redirect(301, '/' + version + '/ecologist-company');
+                res.redirect(301, '/' + version + '/ecologist-company' + _cyaQS);
             } else {
-                req.session.myData.selectedApplication.ecologistHasCompany = "Yes" 
-                req.session.myData.selectedApplication.ecologistCompany = req.session.myData.ecologistCompanies
-                res.redirect(301, '/' + version + '/ecologist-addresses');
+                if(req.query.cya == "true"){
+                    res.redirect(301, '/' + version + '/cya-ecologist');
+                } else {
+                    req.session.myData.selectedApplication.ecologistHasCompany = "Yes" 
+                    req.session.myData.selectedApplication.ecologistCompany = req.session.myData.ecologistCompanies
+                    res.redirect(301, '/' + version + '/ecologist-addresses');
+                }
             }
             
         }
@@ -3039,17 +3049,16 @@ module.exports = function (router,_myData) {
 
             // redirect to address list if using an existing ecologist name
             var _existingEcologist = req.session.myData.ecologists.find(obj => {return obj.name.toString() === req.session.myData.selectedApplication.ecologistName.toString()});
-            if(req.session.myData.selectedApplication.userIsEcologist == "Yes" || _existingEcologist){
-                res.redirect(301, '/' + version + '/ecologist-addresses');
+
+            if(req.query.cya == "true"){
+                res.redirect(301, '/' + version + '/cya-ecologist');
             } else {
-                res.redirect(301, '/' + version + '/ecologist-postcode');
+                if(req.session.myData.selectedApplication.userIsEcologist == "Yes" || _existingEcologist){
+                    res.redirect(301, '/' + version + '/ecologist-addresses');
+                } else {
+                    res.redirect(301, '/' + version + '/ecologist-postcode');
+                }
             }
-            
-            // if(req.query.cya == "true"){
-            //     res.redirect(301, '/' + version + '/cya-ecologist');
-            // } else {
-            //     res.redirect(301, '/' + version + '/ecologist-postcode');
-            // }
 
         }
 
