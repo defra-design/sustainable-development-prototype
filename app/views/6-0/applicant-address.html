@@ -43,7 +43,11 @@
 		<form method="POST">
 
             <h1 class="govuk-heading-xl">
-                What is {{myData.selectedApplication.applicantName}}’s contact address?
+                {% if myData.selectedApplication.userIsApplicant == "Yes" %}
+                    What is your contact address?
+                {% else %}
+                    What is {{myData.selectedApplication.applicantName}}’s contact address?
+                {% endif %}
             </h1>
 
             <p class="govuk-body govuk-!-margin-bottom-6">

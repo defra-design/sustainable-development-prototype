@@ -460,27 +460,7 @@ module.exports = function (router,_myData) {
             ]
         }
 
-        // //NEW ECOLOGIST
-        // //For each new ecologist added
-        // {
-        //     "name": "",
-        //     "companies": [
-        //         //For each company name added against this ecologist
-        //         {
-        //             "company": ""
-        //         }
-        //     ],
-        //     addresses: [
-        //         //For each address added against this ecologist
-        //         {
-        //             "address1": "",
-        //             "address2": "",
-        //             "address3": "",
-        //             "address4": "",
-        //             "postcode": "",
-        //         }
-        //     ]
-        // }
+        // ECOLOGISTS
         req.session.myData.ecologists = [
             {
                 "name": "Margaret Rice",
@@ -496,6 +476,43 @@ module.exports = function (router,_myData) {
                         "address3": "Oxford",
                         "address4": "Oxfordshire",
                         "postcode": "OX1 1AA",
+                    }
+                ]
+            }
+        ]
+        // APPLICANTS
+        req.session.myData.applicants = [
+            {
+                "name": "Jane Doe",
+                "companies": [
+                    {
+                        "company": "20 Capital Ltd"
+                    }
+                ],
+                addresses: [
+                    {
+                        "address1": "20 High Street",
+                        "address2": "",
+                        "address3": "Oxford",
+                        "address4": "Oxfordshire",
+                        "postcode": "B1 3AA",
+                    }
+                ]
+            },
+            {
+                "name": "John Smith",
+                "companies": [
+                    {
+                        "company": "Smith Developments Limited"
+                    }
+                ],
+                addresses: [
+                    {
+                        "address1": "2 High Street",
+                        "address2": "",
+                        "address3": "Oxford",
+                        "address4": "Oxfordshire",
+                        "postcode": "B1 1AA",
                     }
                 ]
             }
@@ -2472,13 +2489,141 @@ module.exports = function (router,_myData) {
         updateTasklist(req)
 
         res.redirect(301, '/' + version + '/tasklist');
-    });  
+    }); 
+    
+    // Applicant - user
+    router.get('/' + version + '/applicant-user', function (req, res) {
+        req.session.myData.selectedApplication.tasklist.sections["5"] = "inprogress"
+        res.render(version + '/applicant-user', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/applicant-user', function (req, res) {
+
+        var _was = req.session.myData.selectedApplication.userIsApplicant
+
+        req.session.myData.userIsApplicantAnswer = req.body.userIsApplicant
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.userIsApplicantAnswer = req.session.myData.userIsApplicantAnswer || "No"
+        }
+
+        if(!req.session.myData.userIsApplicantAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.userIsApplicant = {
+                "anchor": "userIsApplicant-1",
+                "message": "[error message]"
+            }
+        }
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/applicant-user', {
+                myData: req.session.myData
+            });
+        } else {
+
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
+
+            req.session.myData.selectedApplication.userIsApplicant = req.session.myData.userIsApplicantAnswer
+
+            if(req.session.myData.selectedApplication.userIsApplicant == "Yes"){
+                req.session.myData.selectedApplicant = req.session.myData.user
+                req.session.myData.selectedApplication.applicantName = req.session.myData.user.userName
+            } else {
+                // req.session.myData.selectedApplication.applicantName = ""
+            }
+
+            //if came from change yes/no
+
+            if(_was == req.session.myData.selectedApplication.userIsApplicant && req.query.cya == "true"){
+                res.redirect(301, '/' + version + '/cya-applicant');
+            
+            } else {
+
+                if(req.session.myData.selectedApplication.userIsApplicant == "No"){
+                    if(req.session.myData.applicants.length > 0){
+                        // go to new applicant name list is 1 or more saved applicants
+                        res.redirect(301, '/' + version + '/applicant-names');
+                    } else {
+                        res.redirect(301, '/' + version + '/applicant-name');
+                    }
+                } else {
+                    if(req.session.myData.user.companies.length > 0){
+                        // go to new applicant company list is 1 or more saved companies on this user
+                        res.redirect(301, '/' + version + '/applicant-companies');
+                    } else {
+                        res.redirect(301, '/' + version + '/applicant-company');
+                    }
+                }
+            }
+
+        }
+        
+    });
+
+     // Applicant names
+     router.get('/' + version + '/applicant-names', function (req, res) {
+        res.render(version + '/applicant-names', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/applicant-names', function (req, res) {
+
+        req.session.myData.applicantNamesTempAnswer = req.body.applicantNames
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.applicantNamesTempAnswer = req.body.applicantNames || "changeName"
+        }
+        if(!req.session.myData.applicantNamesTempAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.applicantNamesAnswer = {
+                "anchor": "",
+                "message": "[error message]"
+            }
+        }
+        
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/applicant-names', {
+                myData: req.session.myData
+            });
+        } else {
+
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
+
+            req.session.myData.applicantNames = req.session.myData.applicantNamesTempAnswer
+            req.session.myData.applicantNamesTempAnswer = ""
+
+            if(req.session.myData.applicantNames == "changeName"){
+                //Start new one
+                req.session.myData.selectedApplication.applicantName = ""
+                req.session.myData.selectedApplication.applicantHasCompany = ""
+                req.session.myData.selectedApplication.applicantCompany = ""
+                req.session.myData.selectedApplication.applicantAddress = ""
+                res.redirect(301, '/' + version + '/applicant-name');
+            } else {
+
+                req.session.myData.selectedApplication.applicantName = req.session.myData.applicantNames
+                
+                var _existingApplicant = req.session.myData.applicants.find(obj => {return obj.name.toString() === req.session.myData.selectedApplication.applicantName.toString()});
+
+                if(_existingApplicant){
+                    req.session.myData.selectedApplicant = _existingApplicant
+                }
+
+                if(req.session.myData.selectedApplicant.companies.length > 0){
+                    // go to new applicant company list is 1 or more saved companies on this user
+                    res.redirect(301, '/' + version + '/applicant-companies');
+                } else {
+                    res.redirect(301, '/' + version + '/applicant-company');
+                }
+                
+            }
+            
+        }
+    });
 
     //Applicant name
     router.get('/' + version + '/applicant-name', function (req, res) {
-
-        req.session.myData.selectedApplication.tasklist.sections["5"] = "inprogress"
-
         res.render(version + '/applicant-name', {
             myData:req.session.myData
         });
@@ -2488,7 +2633,7 @@ module.exports = function (router,_myData) {
         req.session.myData.applicantNameAnswer = req.body.applicantName
 
         if(req.session.myData.includeValidation == "false"){
-            req.session.myData.applicantNameAnswer = req.session.myData.applicantNameAnswer || "John Smith"
+            req.session.myData.applicantNameAnswer = req.session.myData.applicantNameAnswer || "Jane Doe"
         }
 
         if(!req.session.myData.applicantNameAnswer){
@@ -2519,6 +2664,58 @@ module.exports = function (router,_myData) {
         
     });
 
+    // Applicant companies
+    router.get('/' + version + '/applicant-companies', function (req, res) {
+        res.render(version + '/applicant-companies', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/applicant-companies', function (req, res) {
+
+        req.session.myData.applicantCompaniesTempAnswer = req.body.applicantCompanies
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.applicantCompaniesTempAnswer = req.body.applicantCompanies || "changeCompany"
+        }
+        if(!req.session.myData.applicantCompaniesTempAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.applicantCompaniesAnswer = {
+                "anchor": "",
+                "message": "[error message]"
+            }
+        }
+        
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/applicant-companies', {
+                myData: req.session.myData
+            });
+        } else {
+
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
+
+            req.session.myData.applicantCompanies = req.session.myData.applicantCompaniesTempAnswer
+            req.session.myData.applicantCompaniesTempAnswer = ""
+
+            var _cyaQS = ""
+            if(req.query.cya == "true"){
+                _cyaQS = "?cya=true"
+            }
+
+            if(req.session.myData.applicantCompanies == "changeCompany"){
+                res.redirect(301, '/' + version + '/applicant-company' + _cyaQS);
+            } else {
+                if(req.query.cya == "true"){
+                    res.redirect(301, '/' + version + '/cya-applicant');
+                } else {
+                    req.session.myData.selectedApplication.applicantHasCompany = "Yes" 
+                    req.session.myData.selectedApplication.applicantCompany = req.session.myData.applicantCompanies
+                    res.redirect(301, '/' + version + '/applicant-addresses');
+                }
+            }
+            
+        }
+    });
+
     // Applicant company
     router.get('/' + version + '/applicant-company', function (req, res) {
         res.render(version + '/applicant-company', {
@@ -2532,7 +2729,7 @@ module.exports = function (router,_myData) {
 
         if(req.session.myData.includeValidation == "false"){
             req.session.myData.applicantHasCompanyTempAnswer = req.session.myData.applicantHasCompanyTempAnswer || "Yes"
-            req.session.myData.applicantCompanyTempAnswer = req.session.myData.applicantCompanyTempAnswer || "COMPANY NAME LTD"
+            req.session.myData.applicantCompanyTempAnswer = req.session.myData.applicantCompanyTempAnswer || "COMPANY NAME 2 LTD"
         }
 
         if(!req.session.myData.applicantHasCompanyTempAnswer){
@@ -2563,11 +2760,18 @@ module.exports = function (router,_myData) {
 
             req.session.myData.applicantHasCompanyTempAnswer = ""
             req.session.myData.applicantCompanyTempAnswer = ""
-            
+
+            // redirect to address list if using an existing applicant name
+            var _existingApplicant = req.session.myData.applicants.find(obj => {return obj.name.toString() === req.session.myData.selectedApplication.applicantName.toString()});
+
             if(req.query.cya == "true"){
                 res.redirect(301, '/' + version + '/cya-applicant');
             } else {
-                res.redirect(301, '/' + version + '/applicant-postcode');
+                if(req.session.myData.selectedApplication.userIsApplicant == "Yes" || _existingApplicant){
+                    res.redirect(301, '/' + version + '/applicant-addresses');
+                } else {
+                    res.redirect(301, '/' + version + '/applicant-postcode');
+                }
             }
 
         }
@@ -2620,6 +2824,76 @@ module.exports = function (router,_myData) {
 
         }
         
+    });
+
+    // Applicant addresses
+    router.get('/' + version + '/applicant-addresses', function (req, res) {
+        res.render(version + '/applicant-addresses', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/applicant-addresses', function (req, res) {
+
+        req.session.myData.applicantAddressesTempAnswer = req.body.applicantAddresses
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.applicantAddressesTempAnswer = req.body.applicantAddresses || "changeAddress"
+        }
+        if(!req.session.myData.applicantAddressesTempAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.applicantAddressesAnswer = {
+                "anchor": "",
+                "message": "[error message]"
+            }
+        }
+        
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/applicant-addresses', {
+                myData: req.session.myData
+            });
+        } else {
+
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
+
+            req.session.myData.applicantAddresses = req.session.myData.applicantAddressesTempAnswer
+            req.session.myData.applicantAddressesTempAnswer = ""
+
+            if(req.session.myData.applicantAddresses == "changeAddress"){
+
+                req.session.myData.selectedApplication.applicantAddress = ""
+                req.session.myData.selectedApplication.applicantAddress1 = ""
+                req.session.myData.selectedApplication.applicantAddress2 = ""
+                req.session.myData.selectedApplication.applicantAddress3 = ""
+                req.session.myData.selectedApplication.applicantAddress4 = ""
+                req.session.myData.selectedApplication.applicantHasPostcode = "false"
+                req.session.myData.selectedApplication.applicantPostcode = ""
+
+                res.redirect(301, '/' + version + '/applicant-postcode');
+            } else {
+
+                req.session.myData.selectedApplication.applicantAddress = req.session.myData.applicantAddresses
+
+                // find selected address in selectedApplicant addresses
+                var _existingAddress = req.session.myData.selectedApplicant.addresses.find(obj => {return obj.address1.toString() === req.session.myData.selectedApplication.applicantAddress.toString()});
+
+                if(_existingAddress){
+                    // then set each specific field
+                    req.session.myData.selectedApplication.applicantAddress1 = req.session.myData.applicantAddresses
+                    req.session.myData.selectedApplication.applicantAddress2 = _existingAddress.address2 //optional = address2
+                    req.session.myData.selectedApplication.applicantAddress3 = _existingAddress.address3 // = address3
+                    req.session.myData.selectedApplication.applicantAddress4 = _existingAddress.address4 // = address4
+                    if(_existingAddress.postcode == ""){
+                        req.session.myData.selectedApplication.applicantHasPostcode = "true"
+                    } else {
+                        req.session.myData.selectedApplication.applicantHasPostcode = "false"
+                    }
+                    req.session.myData.selectedApplication.applicantPostcode = _existingAddress.postcode //optional "" or postcode
+                }
+
+                res.redirect(301, '/' + version + '/cya-applicant');
+            }
+            
+        }
     });
 
     // Applicant address
@@ -2768,6 +3042,69 @@ module.exports = function (router,_myData) {
     router.post('/' + version + '/cya-applicant', function (req, res) {
 
         updateLastSavedDate(req,req.session.myData.selectedApplication)
+
+        var _existingApplicant = req.session.myData.applicants.find(obj => {return obj.name.toString() === req.session.myData.selectedApplication.applicantName.toString()});
+
+        var _newAddress = {
+            "address1": req.session.myData.selectedApplication.applicantAddress1,
+            "address2": req.session.myData.selectedApplication.applicantAddress2,
+            "address3": req.session.myData.selectedApplication.applicantAddress3,
+            "address4": req.session.myData.selectedApplication.applicantAddress4,
+            "postcode": req.session.myData.selectedApplication.applicantPostcode,
+        },
+        _newCompany = {
+            "company": req.session.myData.selectedApplication.applicantCompany
+        }
+
+        if(req.session.myData.selectedApplication.userIsApplicant == "Yes"){
+            //user is the applicant
+            //Add new company
+            if(req.session.myData.selectedApplication.applicantHasCompany == "Yes" && req.session.myData.applicantCompanies == "changeCompany"){
+                req.session.myData.user.companies.push(_newCompany)
+                //Sort companies
+                req.session.myData.user.companies.sort(function(a,b){
+                    var returnValue = a.company.toString().toUpperCase() > b.company.toString().toUpperCase() ? 1 : b.company.toString().toUpperCase() > a.company.toString().toUpperCase() ? -1 : 0;
+                    return returnValue;
+                })
+            }
+            //Add new address
+            if(req.session.myData.applicantAddresses == "changeAddress"){
+                req.session.myData.user.addresses.unshift(_newAddress)
+            }
+        } else if(_existingApplicant){
+            //existing applicant
+            //Add new company
+            if(req.session.myData.selectedApplication.applicantHasCompany == "Yes" && req.session.myData.applicantCompanies == "changeCompany"){
+                _existingApplicant.companies.push(_newCompany)
+                //Sort companies
+                _existingApplicant.companies.sort(function(a,b){
+                    var returnValue = a.company.toString().toUpperCase() > b.company.toString().toUpperCase() ? 1 : b.company.toString().toUpperCase() > a.company.toString().toUpperCase() ? -1 : 0;
+                    return returnValue;
+                })
+            }
+            //Add new address
+            if(req.session.myData.applicantAddresses == "changeAddress"){
+                _existingApplicant.addresses.unshift(_newAddress)
+            }
+        } else {
+            //add new applicant
+            var _newApplicant = {
+                "name": req.session.myData.selectedApplication.applicantName,
+                "companies": [],
+                addresses: [
+                    _newAddress
+                ]
+            }
+            if(req.session.myData.selectedApplication.applicantHasCompany == "Yes"){
+                _newApplicant.companies.push(_newCompany)
+            }
+            req.session.myData.applicants.push(_newApplicant)
+            //Sort applicants
+            req.session.myData.applicants.sort(function(a,b){
+                var returnValue = a.name.toString().toUpperCase() > b.name.toString().toUpperCase() ? 1 : b.name.toString().toUpperCase() > a.name.toString().toUpperCase() ? -1 : 0;
+                return returnValue;
+            })
+        }
 
         req.session.myData.selectedApplication.tasklist.sections["5"] = "completed"
         updateTasklist(req)

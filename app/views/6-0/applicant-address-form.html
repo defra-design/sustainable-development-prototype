@@ -46,7 +46,11 @@
             <fieldset class="govuk-fieldset">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
                   <h1 class="govuk-fieldset__heading">
-                    What is {{myData.selectedApplication.applicantName}}’s contact address?
+                    {% if myData.selectedApplication.userIsApplicant == "Yes" %}
+                        What is your contact address?
+                    {% else %}
+                        What is {{myData.selectedApplication.applicantName}}’s contact address?
+                    {% endif %}
                   </h1>
                 </legend>
               

@@ -13,12 +13,6 @@
 
 {% block content %}
 
-<style>
-    .map-example {
-        width:100%;
-    }
-</style>
-
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
@@ -28,6 +22,23 @@
 
             <dl class="govuk-summary-list">
 
+
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Is the licence for you?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{myData.selectedApplication.userIsApplicant}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="applicant-user?cya=true">
+                            Change<span class="govuk-visually-hidden"></span>
+                        </a>
+                    </dd>
+                </div>
+
+                {% if myData.selectedApplication.userIsApplicant == "No" %}
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
                         Who is the licence for?
@@ -36,36 +47,7 @@
                         {{myData.selectedApplication.applicantName}}
                     </dd>
                     <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link govuk-link--no-visited-state" href="applicant-name?cya=true">
-                            Change<span class="govuk-visually-hidden"></span>
-                        </a>
-                    </dd>
-                </div>
-
-
-                <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key">
-                        Is {{myData.selectedApplication.applicantName}} part of a company?
-                    </dt>
-                    <dd class="govuk-summary-list__value">
-                        {{myData.selectedApplication.applicantHasCompany}}
-                    </dd>
-                    <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link govuk-link--no-visited-state" href="applicant-company?cya=true">
-                            Change<span class="govuk-visually-hidden"></span>
-                        </a>
-                    </dd>
-                </div>
-                {% if myData.selectedApplication.applicantHasCompany == "Yes" %}
-                <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key">
-                        Company name
-                    </dt>
-                    <dd class="govuk-summary-list__value">
-                        {{myData.selectedApplication.applicantCompany}}
-                    </dd>
-                    <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link govuk-link--no-visited-state" href="applicant-company?cya=true">
+                        <a class="govuk-link govuk-link--no-visited-state" href="applicant-user">
                             Change<span class="govuk-visually-hidden"></span>
                         </a>
                     </dd>
@@ -74,7 +56,45 @@
 
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        {{myData.selectedApplication.applicantName}}’s contact address
+                        {% if myData.selectedApplication.userIsApplicant == "Yes" %}
+                            Are you part of an organisation?
+                        {% else %}
+                            Is {{myData.selectedApplication.applicantName}} part of an organisation?
+                        {% endif %}
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{myData.selectedApplication.applicantHasCompany}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="applicant-companies?cya=true">
+                            Change<span class="govuk-visually-hidden"></span>
+                        </a>
+                    </dd>
+                </div>
+
+                {% if myData.selectedApplication.applicantHasCompany == "Yes" %}
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Name of organisation
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{myData.selectedApplication.applicantCompany}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="applicant-companies?cya=true">
+                            Change<span class="govuk-visually-hidden"></span>
+                        </a>
+                    </dd>
+                </div>
+                {% endif %}
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        {% if myData.selectedApplication.userIsApplicant == "Yes" %}
+                            Your contact address
+                        {% else %}
+                            {{myData.selectedApplication.applicantName}}’s contact address
+                        {% endif %}
                     </dt>
                     <dd class="govuk-summary-list__value">
 
@@ -93,7 +113,7 @@
 
                     </dd>
                     <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link govuk-link--no-visited-state" href="applicant-postcode?cya=true">
+                        <a class="govuk-link govuk-link--no-visited-state" href="applicant-addresses?cya=true">
                             Change<span class="govuk-visually-hidden"></span>
                         </a>
                     </dd>

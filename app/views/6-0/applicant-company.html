@@ -46,7 +46,11 @@
                 <fieldset class="govuk-fieldset" >
                   <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
                     <h1 class="govuk-fieldset__heading">
-                        Is {{myData.selectedApplication.applicantName}} part of a company?
+                        {% if myData.selectedApplication.userIsApplicant == "Yes" %}
+                            Are you part of an organisation?
+                        {% else %}
+                            Is {{myData.selectedApplication.applicantName}} part of an organisation?
+                        {% endif %}
                     </h1>
                   </legend>
 
@@ -75,7 +79,7 @@
                     <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-applicantCompany">
                         <div class="govuk-form-group">
                             <label class="govuk-label" for="applicantCompany">
-                                Company name
+                                Name of organisation
                             </label>
 
                             {% if myData.validationErrors.applicantCompany %}
