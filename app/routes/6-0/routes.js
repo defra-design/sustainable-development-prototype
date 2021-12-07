@@ -2333,11 +2333,66 @@ module.exports = function (router,_myData) {
             if(req.query.cya == "true"){
                 res.redirect(301, '/' + version + '/cya-site');
             } else {
-                res.redirect(301, '/' + version + '/site-postcode');
+                if(req.session.myData.selectedApplication.tasklist.sections["5"] == "completed"){
+                    res.redirect(301, '/' + version + '/site-addresses');
+                } else {
+                    res.redirect(301, '/' + version + '/site-postcode');
+                }
             }
 
         }
         
+    });
+
+    // Site addresses
+    router.get('/' + version + '/site-addresses', function (req, res) {
+        res.render(version + '/site-addresses', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/site-addresses', function (req, res) {
+
+        req.session.myData.siteAddressesTempAnswer = req.body.siteAddresses
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.siteAddressesTempAnswer = req.body.siteAddresses || "changeAddress"
+        }
+        if(!req.session.myData.siteAddressesTempAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.siteAddressesAnswer = {
+                "anchor": "",
+                "message": "[error message]"
+            }
+        }
+        
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/site-addresses', {
+                myData: req.session.myData
+            });
+        } else {
+
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
+
+            req.session.myData.siteAddresses = req.session.myData.siteAddressesTempAnswer
+            req.session.myData.siteAddressesTempAnswer = ""
+
+            if(req.session.myData.siteAddresses == "changeAddress"){
+
+                req.session.myData.selectedApplication.siteAddress = ""
+                req.session.myData.selectedApplication.hasPostcode = "No"
+                req.session.myData.selectedApplication.sitePostcode = ""
+
+                res.redirect(301, '/' + version + '/site-postcode');
+            } else {
+
+                req.session.myData.selectedApplication.siteAddress = req.session.myData.siteAddresses
+                req.session.myData.selectedApplication.hasPostcode = "Yes"
+                req.session.myData.selectedApplication.sitePostcode = req.session.myData.selectedApplication.applicantPostcode
+
+                res.redirect(301, '/' + version + '/site-boundary' + "?findlocation=place&location=" + req.session.myData.selectedApplication.sitePostcode);
+            }
+            
+        }
     });
 
     // Site postcode
