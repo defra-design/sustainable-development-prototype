@@ -45,75 +45,33 @@
 
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        Does the site have a postcode?
-                    </dt>
-                    <dd class="govuk-summary-list__value">
-                        {{myData.selectedApplication.hasPostcode}}
-                    </dd>
-                    <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link govuk-link--no-visited-state" href="site-postcode?cya=true">
-                            Change<span class="govuk-visually-hidden"></span>
-                        </a>
-                    </dd>
-                </div>
-                {% if myData.selectedApplication.hasPostcode == "Yes" %}
-                <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key">
-                        Postcode
-                    </dt>
-                    <dd class="govuk-summary-list__value">
-                        {{myData.selectedApplication.sitePostcode}}
-                    </dd>
-                    <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link govuk-link--no-visited-state" href="site-postcode?cya=true">
-                            Change<span class="govuk-visually-hidden"></span>
-                        </a>
-                    </dd>
-                </div>
-                {% endif %}
-
-                {% if myData.selectedApplication.hasPostcode == "Yes" %}
-                <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key">
                         Site address
                     </dt>
                     <dd class="govuk-summary-list__value">
-                        {% if myData.selectedApplication.siteAddress == "select" %}
-                        No address listed
+                        {% if myData.selectedApplication.hasPostcode == "No" %}
+                            No postcode
+                        {% elif myData.selectedApplication.siteAddress == "select" %}
+                            Oxford<br>
+                            Oxfordshire<br>
+                            {{myData.selectedApplication.sitePostcode}}
                         {% else %}
-                        {{myData.selectedApplication.siteAddress}}<br>
-                        Oxford
+                            {{myData.selectedApplication.siteAddress}}<br>
+                            Oxford<br>
+                            Oxfordshire<br>
+                            {{myData.selectedApplication.sitePostcode}}
                         {% endif %}
                     </dd>
                     <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link govuk-link--no-visited-state" href="site-address?cya=true">
+                        {% set _siteAddressLink = "site-postcode?cya=true" %}
+                        {% if myData.selectedApplication.tasklist.sections["5"] == "completed" %}
+                            {% set _siteAddressLink = "site-addresses?cya=true" %}
+                        {% endif %}
+                        <a class="govuk-link govuk-link--no-visited-state" href="{{_siteAddressLink}}">
                             Change<span class="govuk-visually-hidden"></span>
                         </a>
                     </dd>
                 </div>
-                {% endif %}
 
-                {% if myData.selectedApplication.hasPostcode == "Yes" %}
-                <!-- <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key">
-                        Site address
-                    </dt>
-                    <dd class="govuk-summary-list__value">
-                        {% if myData.selectedApplication.siteAddress == "select" %}
-                        {{myData.selectedApplication.sitePostcode}}
-                        {% else %}
-                        {{myData.selectedApplication.siteAddress}}<br>
-                        OXFORD<br>
-                        {{myData.selectedApplication.sitePostcode}}
-                        {% endif %}
-                    </dd>
-                    <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link govuk-link--no-visited-state" href="site-postcode?cya=true">
-                            Change<span class="govuk-visually-hidden"></span>
-                        </a>
-                    </dd>
-                </div> -->
-                {% endif %}
 
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key" style="vertical-align: top;" >
