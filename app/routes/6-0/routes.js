@@ -671,7 +671,16 @@ module.exports = function (router,_myData) {
         //Set service name
         setServiceName(req)
 
-        next()
+        // FOR when returning from Defra ID
+        var _fileName = res.req.params[0]
+        if(_fileName.startsWith("defraid")){
+            req.session.myData.signedIn = "true"
+            var _redirectTo = _fileName.split('-')[1];
+            res.redirect(301, '/' + version + '/' + _redirectTo);
+        } else {
+            next()
+        }
+
     });
 
     // Prototype setup
@@ -689,19 +698,19 @@ module.exports = function (router,_myData) {
     });
 
     // To handle returns from Defra ID
-    router.get('/' + version + '/*', function (req, res, next) {
+    // router.get('/' + version + '/*', function (req, res, next) {
         
-        var _fileName = res.req.params[0]
+    //     var _fileName = res.req.params[0]
 
-        if(_fileName.startsWith("defraid")){
-            req.session.myData.signedIn = "true"
-            var _redirectTo = _fileName.split('-')[1];
-            res.redirect(301, '/' + version + '/' + _redirectTo);
-        } else {
-            next()
-        }
+    //     if(_fileName.startsWith("defraid")){
+    //         req.session.myData.signedIn = "true"
+    //         var _redirectTo = _fileName.split('-')[1];
+    //         res.redirect(301, '/' + version + '/' + _redirectTo);
+    //     } else {
+    //         next()
+    //     }
 
-    });
+    // });
 
     // Signed out
     router.get('/' + version + '/signout', function (req, res, next) {
