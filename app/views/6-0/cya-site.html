@@ -73,26 +73,37 @@
                 </div>
 
 
+                {% if myData.selectedApplication.siteMethod == "upload" %}
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Area of planned activity
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{myData.selectedApplication.siteUpload}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="site-method?cya=true">
+                            Change<span class="govuk-visually-hidden"></span>
+                        </a>
+                    </dd>
+                </div>
+                
+                {% else %}
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key" style="vertical-align: top;" >
-                        Planned activity area
+                        Area of planned activity
                     </dt>
                     <dd class="govuk-summary-list__value">
                         <img src="/public/images/map-example-1.png" class="map-example">
                     </dd>
                     <dd class="govuk-summary-list__actions" style="vertical-align: top;">
-                        {% if myData.selectedApplication.hasPostcode == "Yes" %}
-                        <a class="govuk-link govuk-link--no-visited-state" href="site-boundary?findlocation=place&location={{myData.selectedApplication.sitePostcode}}&cya=true">
+                        <a class="govuk-link govuk-link--no-visited-state" href="site-method?cya=true">
                             Change<span class="govuk-visually-hidden"></span>
                         </a>
-                        {% else %}
-                        <a class="govuk-link govuk-link--no-visited-state" href="site-boundary?cya=true">
-                            Change<span class="govuk-visually-hidden"></span>
-                        </a>
-                        {% endif %}
-                        
                     </dd>
                 </div>
+                {% endif %}
+
             </dl>
 
             <form method="POST">

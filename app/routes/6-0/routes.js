@@ -1,5 +1,4 @@
 const e = require("express");
-const { of } = require("rxjs/observable/of");
 
 module.exports = function (router,_myData) {
 
@@ -2398,7 +2397,7 @@ module.exports = function (router,_myData) {
                 req.session.myData.selectedApplication.hasPostcode = "Yes"
                 req.session.myData.selectedApplication.sitePostcode = req.session.myData.selectedApplication.applicantPostcode
 
-                res.redirect(301, '/' + version + '/site-boundary' + "?findlocation=place&location=" + req.session.myData.selectedApplication.sitePostcode);
+                res.redirect(301, '/' + version + '/site-method');
             }
             
         }
@@ -2460,7 +2459,7 @@ module.exports = function (router,_myData) {
                 if(req.query.cya == "true"){
                     res.redirect(301, '/' + version + '/cya-site');
                 } else {
-                    res.redirect(301, '/' + version + '/site-boundary');
+                    res.redirect(301, '/' + version + '/site-method');
                 }
             }
 
@@ -2507,7 +2506,7 @@ module.exports = function (router,_myData) {
             if(req.query.cya == "true"){
                 res.redirect(301, '/' + version + '/cya-site');
             } else {
-                res.redirect(301, '/' + version + '/site-boundary' + "?findlocation=place&location=" + req.session.myData.selectedApplication.sitePostcode);
+                res.redirect(301, '/' + version + '/site-method');
             }
 
         }
@@ -2515,6 +2514,90 @@ module.exports = function (router,_myData) {
     });
 
     //TODO add error style to all text boxes (red border on text inputs)
+
+    // Site method
+    router.get('/' + version + '/site-method', function (req, res) {
+
+        if (req.query.address == "select"){
+            req.session.myData.selectedApplication.siteAddress = "select"
+        }
+
+        res.render(version + '/site-method', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/site-method', function (req, res) {
+
+        req.session.myData.siteMethodAnswer = req.body.siteMethod
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.siteMethodAnswer = req.session.myData.siteMethodAnswer || "draw"
+        }
+
+        if(!req.session.myData.siteMethodAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.siteMethod = {
+                "anchor": "siteMethod-1",
+                "message": "[error message]"
+            }
+        }
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/site-method', {
+                myData: req.session.myData
+            });
+        } else {
+
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
+
+            req.session.myData.selectedApplication.siteMethod = req.session.myData.siteMethodAnswer
+           
+            if(req.session.myData.selectedApplication.siteMethod == "upload"){
+                res.redirect(301, '/' + version + '/site-upload');
+            } else {
+                res.redirect(301, '/' + version + '/site-boundary' + "?findlocation=place&location=" + req.session.myData.selectedApplication.sitePostcode);
+            }
+
+        }
+        
+    });
+
+    //Site upload
+    router.get('/' + version + '/site-upload', function (req, res) {
+        res.render(version + '/site-upload', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/site-upload', function (req, res) {
+
+        req.session.myData.siteUploadAnswer = req.body.siteUpload
+
+        // if(req.session.myData.includeValidation == "false"){
+            req.session.myData.siteUploadAnswer = req.session.myData.siteUploadAnswer || "file-name.kml"
+        // }
+
+        // if(!req.session.myData.siteUploadAnswer){
+        //     req.session.myData.validationError = "true"
+        //     req.session.myData.validationErrors.siteUpload = {
+        //         "anchor": "siteUpload",
+        //         "message": "[error message]"
+        //     }
+        // }
+
+        // if(req.session.myData.validationError == "true") {
+        //     res.render(version + '/site-upload', {
+        //         myData: req.session.myData
+        //     });
+        // } else {
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
+
+            req.session.myData.selectedApplication.siteUpload = req.session.myData.siteUploadAnswer
+            req.session.myData.siteUploadAnswer = ""
+
+            res.redirect(301, '/' + version + '/cya-site');
+        // }
+        
+    });
 
     //Site boundary
     router.get('/' + version + '/site-boundary', function (req, res) {
