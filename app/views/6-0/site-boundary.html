@@ -66,9 +66,6 @@ Draw the area of planned activity
             <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-place">
               <div class="govuk-form-group govuk-!-margin-bottom-5" >
                 <div class="search-wrapper govuk-form-group search-wrapper-das search-wrapper-das-small" >
-                    <!-- <label for="search-location" class="govuk-label" >
-                      For example, Bakewell or WA4 1AB
-                    </label> -->
                     <span class="govuk-hint">
                       For example, Bakewell or WA4 1AB
                     </span>
@@ -93,9 +90,6 @@ Draw the area of planned activity
             <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-gridref">
               <div class="govuk-form-group govuk-!-margin-bottom-5" >
                 <div class="search-wrapper govuk-form-group search-wrapper-das search-wrapper-das-small" >
-                    <!-- <label for="search-gridref" class="govuk-label" >
-                      For example, NY395557
-                    </label> -->
                     <span class="govuk-hint">
                       For example, NY395557
                     </span>
@@ -113,40 +107,6 @@ Draw the area of planned activity
       </div>
     </form>
 	</div>
-
-  <!-- <div class="govuk-grid-row">
-		<div class="govuk-grid-column-two-thirds" >
-			<h3 class="govuk-heading-s govuk-!-margin-bottom-2">Toggle view</h3>
-		</div>
-	</div>
-
-  <div class="govuk-grid-row">
-    <form method="GET">
-      <div class="govuk-grid-column-two-thirds" id="toggleView" >
-        <div class="govuk-form-group layerToggleContainer">
-          <div class="govuk-form-group">
-            <fieldset class="govuk-fieldset" >
-              <div class="govuk-radios govuk-radios--inline govuk-radios--small">
-                <div class="govuk-radios__item">
-                  <input class="govuk-radios__input" id="street-view" name="toggleView" type="radio" value="street-view" checked>
-                  <label class="govuk-label govuk-radios__label" for="street-view">
-                    Street view
-                  </label>
-                </div>
-                <div class="govuk-radios__item">
-                  <input class="govuk-radios__input" id="satellite-view" name="toggleView" type="radio" value="satellite-view" >
-                  <label class="govuk-label govuk-radios__label govuk-!-font-size-16" for="satellite-view">
-                    Satellite view
-                  </label>
-                </div>
-              </div>
-              
-            </fieldset>
-          </div>
-        </div>
-      </div>
-    </form>
-  </div> -->
 
 </div>
                 
@@ -176,51 +136,16 @@ Draw the area of planned activity
 
       <div class="map-container-2 govuk-form-group">
         
-        <div id="map" class="map map--confirm">
+        <div id="map" class="map">
 
-            <!-- <div class="os-credits">
-              <div class="os-credits__logo">
-                <img src="/public/images/os-logo.png" alt="Ordanance Survey logo">
-              </div>
-              <div class="os-credits__text">
-                <a href="os-terms" class="os-credits__link">
-                  OS data &copy; Crown copyright and database rights 2021
-                </a>
-              </div>
-            </div> -->
-
-            
-    
           </div>
           <div class="map-delete-area-container">
-            <button disabled class="govuk-button govuk-button--secondary map-delete-area" data-module="govuk-button" name="delete-shape" value="delete-shape" id="deleteShapeBtn">
+            <button class="govuk-button govuk-button--secondary map-delete-area" data-module="govuk-button" name="delete-shape" value="delete-shape" id="deleteShapeBtn">
               Delete area
             </button>
           </div>
           
         </div>
-
-        <!-- <div class="govuk-form-group markerRadiosContainer">
-          <div class="govuk-form-group">
-            <fieldset class="govuk-fieldset" aria-describedby="changed-name-hint">
-              <div class="govuk-radios govuk-radios--inline govuk-radios--small">
-                <div class="govuk-radios__item">
-                  <input class="govuk-radios__input" id="move-marker" name="marker-or-shape" type="radio" value="move-marker" >
-                  <label class="govuk-label govuk-radios__label" for="move-marker">
-                    Move marker
-                  </label>
-                </div>
-                <div class="govuk-radios__item">
-                  <input class="govuk-radios__input" id="draw-shape" name="marker-or-shape" type="radio" value="draw-shape" checked>
-                  <label class="govuk-label govuk-radios__label govuk-!-font-size-16" for="draw-shape">
-                    Draw boundary
-                  </label>
-                </div>
-              </div>
-              
-            </fieldset>
-          </div>
-        </div> -->
 
 	</div>
 </div>
@@ -242,7 +167,7 @@ Draw the area of planned activity
 {% block pageScripts %}
 <script>
 
-    map({{myData.findlocation | dump | safe}})
+  mapV2({{myData.findlocation | dump | safe}})
 
 </script>
 {% endblock pageScripts %}
