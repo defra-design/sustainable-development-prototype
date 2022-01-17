@@ -50,6 +50,8 @@ View licence applications
                         {% set _type = "Bat" %}
                         {% if _application.type == "a14" %}
                             {% set _type = "Newt" %}
+                        {% elif _application.type == "a24" %}
+                            {% set _type = "Badger" %}
                         {% endif %}
 
                         {% set _link = "application" %}

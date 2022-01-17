@@ -53,6 +53,7 @@
                 </div>
 
                 <!-- Reason -->
+                {% if myData.requiredQuestions["CD16"] %}
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key" >
                         Why do you need to do the activity or development work?
@@ -66,6 +67,7 @@
                         </a>
                     </dd>
                 </div>
+                {% endif %}
 
                  <!-- Multiplot -->
                  <div class="govuk-summary-list__row">
@@ -98,6 +100,7 @@
                 </div>
 
                 <!-- Work small -->
+                {% if myData.requiredQuestions["CD22"] %}
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key" >
                         Will the work be for a building development of less than one hectare (ha)?
@@ -111,6 +114,7 @@
                         </a>
                     </dd>
                 </div>
+                {% endif %}
 
                 <!-- Work protected -->
                 <div class="govuk-summary-list__row">
@@ -128,6 +132,7 @@
                 </div>
 
                 <!-- Work public -->
+                {% if myData.requiredQuestions["CD24"] %}
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key" >
                         Will the work be for public buildings or public land?
@@ -176,7 +181,10 @@
                 </div>
                 {% endif %}
 
+                {% endif %}
+
                 <!-- important populations -->
+                {% if myData.requiredQuestions["CD27"] %}
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key" >
                         Will the work affect a regionally or nationally important population of a European Protected Species?
@@ -190,6 +198,7 @@
                         </a>
                     </dd>
                 </div>
+                {% endif %}
 
             </dl>
 

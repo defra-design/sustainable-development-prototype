@@ -85,40 +85,6 @@ module.exports = function (router,_myData) {
 
     }
 
-    function startNewApplication(req){
-
-        //Used until passes eligibility
-        req.session.myData.tempApplication = JSON.parse(JSON.stringify(req.session.myData.newApplication))
-
-        var _year = new Date().getFullYear(),
-            _randomID = Math.floor(10000 + Math.random() * 90000),
-            _appID = _year + "-" + _randomID + "-EPS-MIT"
-
-        req.session.myData.tempApplication.id = _appID
-        req.session.myData.tempApplication.status = "inprogress"
-        req.session.myData.tempApplication.type = req.session.myData.licenceType
-        req.session.myData.tempApplication.starteddate = new Date()
-        req.session.myData.tempApplication.lastsaveddate = new Date()
-
-        //Add
-        // req.session.myData.applications.push(JSON.parse(JSON.stringify(req.session.myData.tempApplication)))
-
-        //Set
-        // setSelectedApplication(req, _randomID)
-        req.session.myData.selectedApplication = req.session.myData.tempApplication
-        req.session.myData.application = _appID
-        setSelectedApplication(req,_appID)
-        // req.session.myData.selectedApplication = req.session.myData.tempApplication
-        // req.session.myData.application = _randomID
-
-        //Add
-        // req.session.myData.selectedApplication.new = false
-
-        //Update tasklist data
-        updateTasklist(req)
-        
-    }
-
     function setSelectedRoost(req, _roostID){
 
         if(_roostID){
@@ -196,7 +162,10 @@ module.exports = function (router,_myData) {
         var _totalSections = Object.keys(_thisApplication.tasklist.sections).length
         _thisApplication.tasklist.total = _totalSections
         if(_thisApplication.consent == "No"){
-            _thisApplication.tasklist.total = _totalSections - 1
+            --_thisApplication.tasklist.total
+        }
+        if(_thisApplication.type == "a24"){
+            --_thisApplication.tasklist.total
         }
 
         var cansubmit = true,
@@ -217,6 +186,11 @@ module.exports = function (router,_myData) {
                 if(_thisApplication.consent == "No"){
                     _sectionsRequired = ["1","2","4","5","6","7"]
                 }
+                // Remove section 6 if badger
+                if(_thisApplication.type == "a24"){
+                    _sectionsRequired.splice(_sectionsRequired.indexOf("2"), 1);
+                }
+
                 for (var i = 0; i < _sectionsRequired.length; i++) {
                     if(_sectionsRequired[i] == key){
                         cansubmit = false
@@ -534,7 +508,13 @@ module.exports = function (router,_myData) {
             updateTasklist(req,_application)
         });
 
-        
+        //Default required questions (purpose flow)
+        req.session.myData.requiredQuestions = {
+            "CD16": true, //CD16. Work reason
+            "CD22": true, //CD22. Work small developments
+            "CD24": true, //CD24. Work public buildings (also includes CD25 & CD26)
+            "CD27": true  //CD27. Important populations
+        }
         
         // Default setup
         req.session.myData.service = "apply"
@@ -563,11 +543,6 @@ module.exports = function (router,_myData) {
 
         req.session.myData.consent = Math.floor(100000 + Math.random() * 900000)
         req.session.myData.newConsent = {"id": req.session.myData.consent,"type":{},"new":true, "inprogress": false}
-
-
-
-
-
 
         //Set test roost (just for deep links to work) - in pages if testdata == true, we will use the testRoost
         req.session.myData.testdata = 'false'
@@ -660,6 +635,15 @@ module.exports = function (router,_myData) {
 
         //Signed in
         req.session.myData.signedIn =  req.query.si || req.session.myData.signedIn
+
+        //Default required questions (purpose flow)
+        var _l = req.session.myData.licenceType
+        req.session.myData.requiredQuestions = {
+            "CD16": _l == "a13" || _l == "a14", //CD16. Work reason
+            "CD22": _l == "a13" || _l == "a14", //CD22. Work small developments
+            "CD24": _l == "a13" || _l == "a14", //CD24. Work public buildings (also includes CD25 & CD26)
+            "CD27": _l == "a13" || _l == "a14"  //CD27. Important populations
+        }
 
         //Update tasklist data
         updateTasklist(req)
@@ -784,6 +768,9 @@ module.exports = function (router,_myData) {
                 case "newt":
                     _licenceType = "a14"
                     break;
+                case "badger":
+                    _licenceType = "a24"
+                    break;
                 default:
                     _licenceType = "a13"
             }
@@ -798,10 +785,31 @@ module.exports = function (router,_myData) {
     router.get('/' + version + '/tasklist', function (req, res) {
         
         if(req.query.new){
+
+            //
             // Start new application
-            startNewApplication(req)
-            // addApplicationToSavedApplications(req,req.session.myData.selectedApplication)
-            // setSelectedApplication(req,req.session.myData.selectedApplication.id.toString())
+            //
+            var _year = new Date().getFullYear(),
+            _randomID = Math.floor(10000 + Math.random() * 90000),
+            _appID = _year + "-" + _randomID + "-EPS-MIT"
+
+            //Used until passes eligibility
+            req.session.myData.tempApplication = JSON.parse(JSON.stringify(req.session.myData.newApplication))
+            req.session.myData.tempApplication.id = _appID
+            req.session.myData.tempApplication.status = "inprogress"
+            req.session.myData.tempApplication.type = req.session.myData.licenceType
+            req.session.myData.tempApplication.starteddate = new Date()
+            req.session.myData.tempApplication.lastsaveddate = new Date()
+            
+            req.session.myData.selectedApplication = req.session.myData.tempApplication
+            req.session.myData.application = _appID
+
+            setServiceName(req)
+            updateTasklist(req)
+
+            //
+            // END. Start new application
+            //
         }
 
         res.render(version + '/tasklist', {
@@ -1156,7 +1164,11 @@ module.exports = function (router,_myData) {
             if(req.query.cya == "true"){
                 res.redirect(301, '/' + version + '/cya-purpose');
             } else {
-                res.redirect(301, '/' + version + '/reason');
+                if(req.session.myData.requiredQuestions["CD16"]){
+                    res.redirect(301, '/' + version + '/reason');
+                } else {
+                    res.redirect(301, '/' + version + '/multiplot');
+                }
             }
 
         }
@@ -1284,7 +1296,11 @@ module.exports = function (router,_myData) {
             if(req.query.cya == "true"){
                 res.redirect(301, '/' + version + '/cya-purpose');
             } else {
-                res.redirect(301, '/' + version + '/work-small');
+                if(req.session.myData.requiredQuestions["CD22"]){
+                    res.redirect(301, '/' + version + '/work-small');
+                } else {
+                    res.redirect(301, '/' + version + '/work-protected');
+                }
             }
 
         }
@@ -1368,7 +1384,15 @@ module.exports = function (router,_myData) {
             if(req.query.cya == "true"){
                 res.redirect(301, '/' + version + '/cya-purpose');
             } else {
-                res.redirect(301, '/' + version + '/work-public');
+                if(req.session.myData.requiredQuestions["CD24"]){
+                    res.redirect(301, '/' + version + '/work-public');
+                } else {
+                    if(req.session.myData.requiredQuestions["CD27"]){
+                        res.redirect(301, '/' + version + '/important-populations');
+                    } else {
+                        res.redirect(301, '/' + version + '/cya-purpose');
+                    }
+                }
             }
 
         }
@@ -1413,7 +1437,11 @@ module.exports = function (router,_myData) {
                 if(req.query.cya == "true"){
                     res.redirect(301, '/' + version + '/cya-purpose');
                 } else {
-                    res.redirect(301, '/' + version + '/important-populations');
+                    if(req.session.myData.requiredQuestions["CD27"]){
+                        res.redirect(301, '/' + version + '/important-populations');
+                    } else {
+                        res.redirect(301, '/' + version + '/cya-purpose');
+                    }
                 }
             }
 

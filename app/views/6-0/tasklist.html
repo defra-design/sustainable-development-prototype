@@ -25,6 +25,8 @@
       <h1 class="govuk-heading-xl">
         {% if myData.selectedApplication.type == "a14" %}
           Apply for a licence to do work that affects great crested newts
+        {% elif myData.selectedApplication.type == "a24" %}
+          Apply for a licence to do work that affects badgers
         {% else %}
           Apply for a licence to do work that affects bats
         {% endif %}
@@ -260,9 +262,12 @@
             </li>
 
             <!-- Application details -->
+            {% if myData.selectedApplication.type != "a24" %}
             <li class="app-task-list__item">
+              
                 {% set _status2 = _tasklist.sections["2"] %}
 
+                <!-- NEWTS -->
                 {% if myData.selectedApplication.type == "a14" %}
                 {% set _label2 = "Say how the work will affect the newts" %}
                 <span class="app-task-list__task-name">
@@ -278,6 +283,8 @@
                     </a>
                   {% endif %}
                 </span>
+
+                <!-- BATS -->
                 {% else %}
                 {% set _label2 = "Add roosts the work will affect" %}
                 <span class="app-task-list__task-name">
@@ -306,6 +313,7 @@
                 {% endif %}
 
             </li>
+            {% endif %}
 
           </ul>
         </li>

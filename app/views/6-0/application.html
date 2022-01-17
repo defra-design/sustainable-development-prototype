@@ -25,6 +25,8 @@ Licence application
 {% set _type = "Bat" %}
 {% if _selectedApplication.type == "a14" %}
     {% set _type = "Newt" %}
+{% elif _selectedApplication.type == "a24" %}
+    {% set _type = "Badger" %}
 {% endif %}
 
 <div class="govuk-grid-row">
