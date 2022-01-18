@@ -4,8 +4,15 @@
 
 {% set _inError = myData.validationError == "true"  %}
 
+{% set _habitatType = "roost" %}
+{% set _speciesType = "bat" %}
+{% if myData.selectedApplication.type == "a24" %}
+    {% set _habitatType = "sett" %}
+    {% set _speciesType = "badger" %}
+{% endif %}
+
 {% block pageTitle %} 
-{% if _inError %}Error: {% endif %}Do you want to remove this bat roost?
+{% if _inError %}Error: {% endif %}Do you want to remove this {{_speciesType}} {{_habitatType}}?
 {% endblock %}
 
 {% block beforeContent %}
@@ -35,22 +42,26 @@
         </div>
         {% endif %}
 
-        <h1 class="govuk-heading-xl">Do you want to remove this bat roost?</h1>
+        <h1 class="govuk-heading-xl">Do you want to remove this {{_speciesType}} {{_habitatType}}?</h1>
 
         {% set _index = 1 %}
-        {% set _selectedRoost = "" %}
-        {% for _roost in myData.selectedApplication.habitats %}
-            {% if _roost.id == myData.roostToRemove %}
+        {% set _selectedHabitat = "" %}
+        {% for _habitat in myData.selectedApplication.habitats %}
+            {% if _habitat.id == myData.habitatToRemove %}
                 {% set _index = loop.index %}
-                {% set _selectedRoost = _roost %}
+                {% set _selectedHabitat = _habitat %}
             {% endif %}
         {% endfor %}
 
         <p class="govuk-body govuk-!-margin-bottom-6">
-            <span class="govuk-!-font-weight-bold">Roost {{_index}}</span><br>
-            {% for _bat in _selectedRoost.bats %}
-                {{_bat.name}}<br>
-            {% endfor %}
+            <span class="govuk-!-font-weight-bold">{{_habitatType|capitalize}} {{_index}}</span>
+            
+            {% if myData.selectedApplication.type == "a13" %}
+                {% for _bat in _selectedHabitat.bats %}
+                    <br>{{_bat.name}}<br>
+                {% endfor %}
+            {% endif %}
+
         </p>
 
 		<form method="POST">
@@ -61,20 +72,20 @@
                     {% if _inError %}
                     <span id="speciesBat-error" class="govuk-error-message">
                         <span class="govuk-visually-hidden">Error:</span>
-                        {{myData.validationErrors.removeRoost.message}}
+                        {{myData.validationErrors.removeHabitat.message}}
                     </span>
                     {% endif %}
 
                     <div class="govuk-radios">
                         <div class="govuk-radios__item">
-                            <input class="govuk-radios__input" id="removeRoost-1" name="removeRoost" type="radio" value="yes">
-                            <label class="govuk-label govuk-radios__label" for="removeRoost-1">
+                            <input class="govuk-radios__input" id="removeHabitat-1" name="removeHabitat" type="radio" value="yes">
+                            <label class="govuk-label govuk-radios__label" for="removeHabitat-1">
                             Yes
                             </label>
                         </div>
                         <div class="govuk-radios__item">
-                            <input class="govuk-radios__input" id="removeRoost-2" name="removeRoost" type="radio" value="no">
-                            <label class="govuk-label govuk-radios__label" for="removeRoost-2">
+                            <input class="govuk-radios__input" id="removeHabitat-2" name="removeHabitat" type="radio" value="no">
+                            <label class="govuk-label govuk-radios__label" for="removeHabitat-2">
                             No
                             </label>
                         </div>

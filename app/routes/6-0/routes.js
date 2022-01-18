@@ -519,7 +519,7 @@ module.exports = function (router,_myData) {
         // Default setup
         req.session.myData.service = "apply"
         req.session.myData.licenceType = "a13"
-        req.session.myData.roostToRemove = "123456789"
+        req.session.myData.habitatToRemove = "123456789"
         req.session.myData.signedIn = "false"
 
         //Default answers
@@ -2255,44 +2255,44 @@ module.exports = function (router,_myData) {
 
 
     // Roost remove
-    router.get('/' + version + '/roost-remove', function (req, res) {
+    router.get('/' + version + '/habitat-remove', function (req, res) {
 
-        req.session.myData.roostToRemove = req.query.roostToRemove
+        req.session.myData.habitatToRemove = req.query.habitatToRemove
 
-        res.render(version + '/roost-remove', {
+        res.render(version + '/habitat-remove', {
             myData:req.session.myData
         });
     });
-    router.post('/' + version + '/roost-remove', function (req, res) {
+    router.post('/' + version + '/habitat-remove', function (req, res) {
 
-        req.session.myData.removeRoostAnswer = req.body.removeRoost
+        req.session.myData.removeHabitatAnswer = req.body.removeHabitat
 
         if(req.session.myData.includeValidation == "false"){
-            req.session.myData.removeRoostAnswer = req.session.myData.removeRoostAnswer || "No"
+            req.session.myData.removeHabitatAnswer = req.session.myData.removeHabitatAnswer || "No"
         }
 
-        if(!req.session.myData.removeRoostAnswer){
+        if(!req.session.myData.removeHabitatAnswer){
             req.session.myData.validationError = "true"
-            req.session.myData.validationErrors.removeRoost = {
-                "anchor": "removeRoost-1",
-                "message": "[error message for remove roost]"
+            req.session.myData.validationErrors.removeHabitat = {
+                "anchor": "removeHabitat-1",
+                "message": "[error message for remove habitat]"
             }
         }
 
         if(req.session.myData.validationError == "true") {
-            res.render(version + '/roost-remove', {
+            res.render(version + '/habitat-remove', {
                 myData: req.session.myData
             });
         } else {
 
             updateLastSavedDate(req,req.session.myData.selectedApplication)
 
-            if(req.session.myData.removeRoostAnswer == 'yes'){
+            if(req.session.myData.removeHabitatAnswer == 'yes'){
 
-                var _removeID = req.session.myData.roostToRemove.toString(),
-                    _roost = req.session.myData.selectedApplication.habitats.find(obj => {return obj.id.toString() === _removeID})
+                var _removeID = req.session.myData.habitatToRemove.toString(),
+                    _habitat = req.session.myData.selectedApplication.habitats.find(obj => {return obj.id.toString() === _removeID})
                 
-                if(_roost){
+                if(_habitat){
                     //remove it
                     var removeIndex = req.session.myData.selectedApplication.habitats.map(item => item.id.toString()).indexOf(_removeID);
                     (removeIndex >= 0) && req.session.myData.selectedApplication.habitats.splice(removeIndex, 1);
