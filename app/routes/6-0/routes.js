@@ -39,15 +39,15 @@ module.exports = function (router,_myData) {
         roost.new = false
         roost.inprogress = false
 
-        var _existingRoost = req.session.myData.selectedApplication.roosts.find(obj => {return obj.id.toString() === roost.id.toString()});
+        var _existingRoost = req.session.myData.selectedApplication.habitats.find(obj => {return obj.id.toString() === roost.id.toString()});
                     
         if(_existingRoost){
             //replace existing
-            var _existingIndex = req.session.myData.selectedApplication.roosts.map(item => item.id.toString()).indexOf(roost.id.toString());
-            req.session.myData.selectedApplication.roosts[_existingIndex] = roost;
+            var _existingIndex = req.session.myData.selectedApplication.habitats.map(item => item.id.toString()).indexOf(roost.id.toString());
+            req.session.myData.selectedApplication.habitats[_existingIndex] = roost;
         } else {
             // add new
-            req.session.myData.selectedApplication.roosts.push(roost)
+            req.session.myData.selectedApplication.habitats.push(roost)
         }
     }
 
@@ -89,7 +89,7 @@ module.exports = function (router,_myData) {
 
         if(_roostID){
 
-            var _existingRoost = req.session.myData.selectedApplication.roosts.find(obj => {return obj.id.toString() === _roostID.toString()})
+            var _existingRoost = req.session.myData.selectedApplication.habitats.find(obj => {return obj.id.toString() === _roostID.toString()})
 
             //TODO fix it not thinking the currently added new one is existing
 
@@ -164,9 +164,9 @@ module.exports = function (router,_myData) {
         if(_thisApplication.consent == "No"){
             --_thisApplication.tasklist.total
         }
-        if(_thisApplication.type == "a24"){
-            --_thisApplication.tasklist.total
-        }
+        // if(_thisApplication.type == "a24"){
+        //     --_thisApplication.tasklist.total
+        // }
 
         var cansubmit = true,
             canstart = true
@@ -186,10 +186,10 @@ module.exports = function (router,_myData) {
                 if(_thisApplication.consent == "No"){
                     _sectionsRequired = ["1","2","4","5","6","7"]
                 }
-                // Remove section 6 if badger
-                if(_thisApplication.type == "a24"){
-                    _sectionsRequired.splice(_sectionsRequired.indexOf("2"), 1);
-                }
+                // Remove section 2 if badger
+                // if(_thisApplication.type == "a24"){
+                //     _sectionsRequired.splice(_sectionsRequired.indexOf("2"), 1);
+                // }
 
                 for (var i = 0; i < _sectionsRequired.length; i++) {
                     if(_sectionsRequired[i] == key){
@@ -289,7 +289,7 @@ module.exports = function (router,_myData) {
                 "new": false,
                 "status": "inprogress",
                 "tasklist": JSON.parse(JSON.stringify(req.session.myData.tasklist)),
-                "roosts": [], 
+                "habitats": [], 
                 "consents": [], 
                 "starteddate": new Date(2021, 10, 06, 16, 20, 0, 0),
                 "lastsaveddate": new Date(2021, 10, 06, 17, 01, 30, 0),
@@ -305,7 +305,7 @@ module.exports = function (router,_myData) {
                 "new": false, 
                 "status": "inprogress", 
                 "tasklist": JSON.parse(JSON.stringify(req.session.myData.tasklist)),
-                "roosts": [], 
+                "habitats": [], 
                 "consents": [], 
                 "starteddate": new Date(2021, 10, 07, 16, 20, 0, 0),
                 "lastsaveddate": new Date(2021, 10, 07, 17, 01, 30, 0),
@@ -345,7 +345,7 @@ module.exports = function (router,_myData) {
                 "new": false,
                 "status": "submitted",
                 "tasklist": JSON.parse(JSON.stringify(req.session.myData.tasklist)),
-                "roosts": [],
+                "habitats": [],
                 "consents": [],
                 "starteddate": new Date(2021, 10, 03, 11, 05, 0, 0),
                 "lastsaveddate": new Date(2021, 10, 10, 16, 47, 40, 0),
@@ -361,7 +361,7 @@ module.exports = function (router,_myData) {
                 "new": false,
                 "status": "submitted",
                 "tasklist": JSON.parse(JSON.stringify(req.session.myData.tasklist)),
-                "roosts": [],
+                "habitats": [],
                 "consents": [],
                 "starteddate": new Date(2021, 09, 12, 11, 05, 0, 0),
                 "lastsaveddate": new Date(2021, 09, 17, 16, 47, 40, 0),
@@ -377,7 +377,7 @@ module.exports = function (router,_myData) {
                 "new": false,
                 "status": "granted",
                 "tasklist": JSON.parse(JSON.stringify(req.session.myData.tasklist)),
-                "roosts": [],
+                "habitats": [],
                 "consents": [],
                 "starteddate": new Date(2021, 09, 2, 10, 05, 0, 0),
                 "lastsaveddate": new Date(2021, 09, 5, 16, 47, 40, 0),
@@ -395,7 +395,7 @@ module.exports = function (router,_myData) {
                 "new": false,
                 "status": "granted",
                 "tasklist": JSON.parse(JSON.stringify(req.session.myData.tasklist)),
-                "roosts": [],
+                "habitats": [],
                 "consents": [],
                 "starteddate": new Date(2021, 08, 26, 10, 05, 0, 0),
                 "lastsaveddate": new Date(2021, 09, 2, 16, 47, 40, 0),
@@ -534,7 +534,7 @@ module.exports = function (router,_myData) {
                 "starteddate": new Date(),
                 "lastsaveddate": new Date(),
                 "tasklist": JSON.parse(JSON.stringify(req.session.myData.tasklist)),
-                "roosts": [],
+                "habitats": [],
                 "consents": []
             }
 
@@ -1814,16 +1814,16 @@ module.exports = function (router,_myData) {
 
 
 
-    // Intro roosts
-    router.get('/' + version + '/intro-roosts', function (req, res) {
+    // Intro habitats
+    router.get('/' + version + '/habitat-intro', function (req, res) {
 
         req.session.myData.selectedApplication.tasklist.sections["2"] = "inprogress"
 
-        res.render(version + '/intro-roosts', {
+        res.render(version + '/habitat-intro', {
             myData:req.session.myData
         });
     });
-    router.post('/' + version + '/intro-roosts', function (req, res) {
+    router.post('/' + version + '/habitat-intro', function (req, res) {
         updateLastSavedDate(req,req.session.myData.selectedApplication)
         res.redirect(301, '/' + version + '/species-bat');
     });
@@ -2135,7 +2135,6 @@ module.exports = function (router,_myData) {
             }
 
             res.redirect(301, '/' + version + '/cya-bat');
-            // res.redirect(301, '/' + version + '/roosts-added' + _roostQS);
         }
 
     });
@@ -2230,7 +2229,7 @@ module.exports = function (router,_myData) {
 
             if(req.session.myData.addRoostAnswer == 'yes'){
                 startNewRoost(req)
-                res.redirect(301, '/' + version + '/intro-roosts');
+                res.redirect(301, '/' + version + '/habitat-intro');
             } else {
                 req.session.myData.selectedApplication.tasklist.sections["2"] = "completed"
                 updateTasklist(req)
@@ -2291,17 +2290,17 @@ module.exports = function (router,_myData) {
             if(req.session.myData.removeRoostAnswer == 'yes'){
 
                 var _removeID = req.session.myData.roostToRemove.toString(),
-                    _roost = req.session.myData.selectedApplication.roosts.find(obj => {return obj.id.toString() === _removeID})
+                    _roost = req.session.myData.selectedApplication.habitats.find(obj => {return obj.id.toString() === _removeID})
                 
                 if(_roost){
                     //remove it
-                    var removeIndex = req.session.myData.selectedApplication.roosts.map(item => item.id.toString()).indexOf(_removeID);
-                    (removeIndex >= 0) && req.session.myData.selectedApplication.roosts.splice(removeIndex, 1);
+                    var removeIndex = req.session.myData.selectedApplication.habitats.map(item => item.id.toString()).indexOf(_removeID);
+                    (removeIndex >= 0) && req.session.myData.selectedApplication.habitats.splice(removeIndex, 1);
                 }
 
-                if(req.session.myData.selectedApplication.roosts.length == 0) {
+                if(req.session.myData.selectedApplication.habitats.length == 0) {
                     startNewRoost(req)
-                    res.redirect(301, '/' + version + '/intro-roosts');
+                    res.redirect(301, '/' + version + '/habitat-intro');
                 } else {
                     res.redirect(301, '/' + version + '/cya-bat');
                 }

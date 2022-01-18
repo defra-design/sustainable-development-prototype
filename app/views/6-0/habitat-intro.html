@@ -2,11 +2,17 @@
 
 {% set serviceName = myData.serviceName %}
 
-{% set _roosts = myData.selectedApplication.roosts %}
-{% set _roostsCount = _roosts.length %}
+{% set _habitatsCount = myData.selectedApplication.habitats.length %}
+
+{% set _habitat = "roost" %}
+{% set _species = "bat" %}
+{% if myData.selectedApplication.type == "a24" %}
+    {% set _habitat = "sett" %}
+    {% set _species = "badger" %}
+{% endif %}
 
 {% block pageTitle %} 
-Tell us about each bat roost the work will affect
+Tell us about each {{_species}} {{_habitat}} the work will affect
 {% endblock %}
 
 {% block beforeContent %}
@@ -22,23 +28,24 @@ Tell us about each bat roost the work will affect
         <form method="POST">
 
             <h1 class="govuk-heading-xl">
-                Tell us about each bat roost the work will affect
+                Tell us about each {{_species}} {{_habitat}} the work will affect
             </h1>
 
+            <!-- Bats only -->
+            {% if myData.selectedApplication.type == "a13" %}
             <p class="govuk-body">To be a single roost, the roosting location must be:</p>
-
             <ul class="govuk-list govuk-list--bullet">
                 <li>used by the same species</li>
                 <li>within the same building</li>
             </ul>
+            {% endif %}
 
-            <p class="govuk-body">You can add more than one roost.</p>
+            <p class="govuk-body">You can add more than one {{_habitat}}.</p>
 
-
-            {% if _roostsCount == 0 %}
-                {% set _buttonText = "Add the first roost" %}
+            {% if _habitatsCount == 0 %}
+                {% set _buttonText = "Add the first " + _habitat %}
             {% else %}
-                {% set _buttonText = "Add another roost" %}
+                {% set _buttonText = "Add another " + _habitat %}
             {% endif %}
 
             {{govukButton({

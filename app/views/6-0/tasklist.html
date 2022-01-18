@@ -262,7 +262,6 @@
             </li>
 
             <!-- Application details -->
-            {% if myData.selectedApplication.type != "a24" %}
             <li class="app-task-list__item">
               
                 {% set _status2 = _tasklist.sections["2"] %}
@@ -284,9 +283,13 @@
                   {% endif %}
                 </span>
 
-                <!-- BATS -->
+                <!-- BATS and BADGERS -->
                 {% else %}
-                {% set _label2 = "Add roosts the work will affect" %}
+                {% set _habitat = "roost" %}
+                {% if myData.selectedApplication.type == "a24" %}
+                    {% set _habitat = "sett" %}
+                {% endif %}
+                {% set _label2 = "Add " + _habitat + "s the work will affect" %}
                 <span class="app-task-list__task-name">
                     {% if _status2 == "cannotstartyet" %}
                       {{_label2}}
@@ -294,7 +297,7 @@
                       {% if _status2 == "completed" %}
                       <a href="cya-bat" class="govuk-link--no-visited-state" >
                       {% else %}
-                      <a href="intro-roosts" class="govuk-link--no-visited-state"  >
+                      <a href="habitat-intro" class="govuk-link--no-visited-state"  >
                       {% endif %}
                         {{_label2}}
                       </a>
@@ -313,7 +316,6 @@
                 {% endif %}
 
             </li>
-            {% endif %}
 
           </ul>
         </li>

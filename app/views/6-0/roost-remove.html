@@ -39,7 +39,7 @@
 
         {% set _index = 1 %}
         {% set _selectedRoost = "" %}
-        {% for _roost in myData.selectedApplication.roosts %}
+        {% for _roost in myData.selectedApplication.habitats %}
             {% if _roost.id == myData.roostToRemove %}
                 {% set _index = loop.index %}
                 {% set _selectedRoost = _roost %}
