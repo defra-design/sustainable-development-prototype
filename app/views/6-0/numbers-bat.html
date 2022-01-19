@@ -4,10 +4,16 @@
 
 {% set _inError = myData.validationError == "true" %}
 
-{% set _species = myData.selectedRoost.bats[0] %}
+{% set _habitatType = "roost" %}
+{% set _speciesType = myData.selectedHabitat.speciesName + " bat" %}
+
+{% if myData.selectedApplication.type == "a24" %}
+    {% set _habitatType = "sett" %}
+    {% set _speciesType = "badger" %}
+{% endif %}
 
 {% block pageTitle %} 
-{% if _inError %}Error: {% endif %}How many {{_species.name}} bats are using this roost?
+{% if _inError %}Error: {% endif %}How many {{_speciesType}}s are using this {{_habitatType}}?
 {% endblock %}
 
 {% block beforeContent %}
@@ -38,45 +44,39 @@
         {% endif %}
 
         <h1 class="govuk-heading-xl">
-            How many {{_species.name}} bats are using this roost?
+            How many {{_speciesType}}s are using this {{_habitatType}}?
         </h1>
 
 		<form method="POST">
 
 
             <div class="govuk-form-group" >
-                <!-- <p class="govuk-body">Enter the maximum number based on the bat survey.</p> -->
 
+                {% set _numberUsingTemp = myData.numberUsingTemp %}
+                {% set _valueNumberUsing = myData.selectedHabitat.numberUsing %}
 
+                {% if _inError %}
+                    {% set _valueNumberUsing = _numberUsingTemp %}
+                {% endif %}
 
-                <!--Then all species-->
-                {% for _bat in myData.selectedRoost.bats %}
-                    {% set _batID = _bat.id %}
-                    {% set _numberUsingTemp = myData['numberUsingTemp' + _batID] %}
-                    {% set _numberUsingName = 'numberUsing' + _bat.id %}
-                    {% set _valueNumberUsing = _bat.numberUsing %}
-
-                    {% if _inError %}
-                        {% set _valueNumberUsing = _numberUsingTemp %}
+                <!-- Number using -->
+                <div class="govuk-form-group {% if myData.validationErrors.numberUsing %}govuk-form-group--error{% endif %}">
+                    
+                    <h1 class="govuk-label-wrapper">
+                        <label class="govuk-label" for="numberUsing">
+                            Enter the maximum number based on the bat surveys.
+                        </label>
+                    </h1>
+                    
+                    {% if myData.validationErrors.numberUsing %}
+                    <span id="orgNameAnswer-error" class="govuk-error-message">
+                        <span class="govuk-visually-hidden">Error:</span>
+                        {{myData.validationErrors.numberUsing.message}}
+                    </span>
                     {% endif %}
+                    <input class="govuk-input govuk-input--width-5" id="numberUsing" name="numberUsing" type="text" spellcheck="false" pattern="[0-9]*" inputmode="numeric" value="{{_valueNumberUsing}}">
+                </div>
 
-                    <!-- Number using -->
-                    <div class="govuk-form-group {% if myData.validationErrors[_numberUsingName] %}govuk-form-group--error{% endif %}">
-                        <h1 class="govuk-label-wrapper">
-                            <label class="govuk-label" for="numberUsing{{_batID}}">
-                                Enter the maximum number based on the bat surveys.
-                            </label>
-                        </h1>
-                        {% if myData.validationErrors[_numberUsingName] %}
-                        <span id="orgNameAnswer-error" class="govuk-error-message">
-                            <span class="govuk-visually-hidden">Error:</span>
-                            {{myData.validationErrors[_numberUsingName].message}}
-                        </span>
-                        {% endif %}
-                        <input class="govuk-input govuk-input--width-5" id="{{_numberUsingName}}" name="{{_numberUsingName}}" type="text" spellcheck="false" pattern="[0-9]*" inputmode="numeric" value="{{_valueNumberUsing}}">
-                    </div>
-
-                {% endfor %}
             </div>
 		
             {{govukButton({

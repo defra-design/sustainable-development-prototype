@@ -4,10 +4,16 @@
 
 {% set _inError = myData.validationError == "true" %}
 
-{% set _species = myData.selectedRoost.bats[0] %}
+{% set _habitatType = "roost" %}
+{% set _speciesType = myData.selectedHabitat.speciesName + " bat" %}
+
+{% if myData.selectedApplication.type == "a24" %}
+    {% set _habitatType = "sett" %}
+    {% set _speciesType = "badger" %}
+{% endif %}
 
 {% block pageTitle %} 
-{% if _inError %}Error: {% endif %}What are the {{_species.name}} using this roost for?
+{% if _inError %}Error: {% endif %}What are the {{_speciesType}}s using this {{_habitatType}} for?
 {% endblock %}
 
 {% block beforeContent %}
@@ -40,54 +46,49 @@
 		<form method="POST">
             <div class="govuk-form-group">
 
-                {% for _bat in myData.selectedRoost.bats %}
-                {% set _batID = _bat.id %}
-
-                <div class="govuk-form-group {% if myData.validationErrors[_batID] %}govuk-form-group--error{% endif %} govuk-!-margin-bottom-8">
-                    <fieldset class="govuk-fieldset" aria-describedby="bat-use-hint-{{_batID}}">
+                <div class="govuk-form-group {% if myData.validationErrors.habitatUses %}govuk-form-group--error{% endif %} govuk-!-margin-bottom-8">
+                    <fieldset class="govuk-fieldset" >
 
                         <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
                             <h1 class="govuk-fieldset__heading">
-                                What are the {{_bat.name}} bats using this roost for?
+                                What are the {{_speciesType}}s using this {{_habitatType}} for?
                             </h1>
                         </legend>
 
-                        <div id="bat-use-hint-{{_batID}}" class="govuk-hint">
+                        <div class="govuk-hint">
                             Select all that apply.
                         </div>
 
-                        {% if myData.validationErrors[_batID] %}
-                        <span id="{{_batID}}-error" class="govuk-error-message">
+                        {% if myData.validationErrors.habitatUses %}
+                        <span class="govuk-error-message">
                             <span class="govuk-visually-hidden">Error:</span>
-                            {{myData.validationErrors[_batID].message}}
+                            {{myData.validationErrors.habitatUses.message}}
                         </span>
                         {% endif %}
 
                         <div class="govuk-checkboxes" data-module="govuk-checkboxes">
-                            {% for _roostUse in myData.roostUses3 %}
 
-                                {% set _batID_roostUse = _batID + "-" + loop.index %}
+                            {% set _habitatUses = myData.roostUses3 %}
+                            {% if myData.selectedApplication.type == "a24" %}
+                                {% set _habitatUses = myData.settUses %}
+                            {% endif %}
+
+                            {% for _habitatUse in _habitatUses %}
 
                                 {% set _selected = false %}
-                                {% for _batRoostUse in _bat.roostUses %}
-
-                                    {% if _inError == "true" %}
-                                        {% for _tempRoostUse in myData.roostUsesAnswersTemp[_batID] %}
-                                            {% if _roostUse.id == _tempRoostUse %}
-                                                {% set _selected = true %}
-                                            {% endif %}
-                                        {% endfor %}
-                                    {% elif _roostUse.id == _batRoostUse.id %}
-                                        {% set _selected = true %}
-                                    {% endif %}
-
-                                {% endfor %}
+                                {% if _inError != "true" %}
+                                    {% for _savedHabitatUse in myData.selectedHabitat.habitatUses %}
+                                        {% if _habitatUse.id == _savedHabitatUse.id %}
+                                            {% set _selected = true %}
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
 
                                 <div class="govuk-checkboxes__item">
 
-                                    <input {% if _selected %}checked{% endif %} class="govuk-checkboxes__input" id="{{_batID_roostUse}}" name="{{_batID}}" type="checkbox" value="{{_roostUse.id}}" >
-                                    <label class="govuk-label govuk-checkboxes__label" for="{{_batID_roostUse}}">
-                                    {{_roostUse.name}}
+                                    <input {% if _selected %}checked{% endif %} class="govuk-checkboxes__input" id="habitatUses-{{loop.index}}" name="habitatUses" type="checkbox" value="{{_habitatUse.id}}" >
+                                    <label class="govuk-label govuk-checkboxes__label" for="habitatUses-{{loop.index}}">
+                                    {{_habitatUse.name}}
                                     </label>
 
                                 </div>
@@ -96,8 +97,6 @@
                         </div>
                     </fieldset>
                 </div>
-                {% endfor %}
-
 
             </div>
 		

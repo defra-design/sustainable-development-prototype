@@ -35,19 +35,19 @@ module.exports = function (router,_myData) {
         }
     }
 
-    function addRoostToApplication(req,roost){
-        roost.new = false
-        roost.inprogress = false
+    function addHabitatToApplication(req,habitat){
+        habitat.new = false
+        habitat.inprogress = false
 
-        var _existingRoost = req.session.myData.selectedApplication.habitats.find(obj => {return obj.id.toString() === roost.id.toString()});
+        var _existingHabitat = req.session.myData.selectedApplication.habitats.find(obj => {return obj.id.toString() === habitat.id.toString()});
                     
-        if(_existingRoost){
+        if(_existingHabitat){
             //replace existing
-            var _existingIndex = req.session.myData.selectedApplication.habitats.map(item => item.id.toString()).indexOf(roost.id.toString());
-            req.session.myData.selectedApplication.habitats[_existingIndex] = roost;
+            var _existingIndex = req.session.myData.selectedApplication.habitats.map(item => item.id.toString()).indexOf(habitat.id.toString());
+            req.session.myData.selectedApplication.habitats[_existingIndex] = habitat;
         } else {
             // add new
-            req.session.myData.selectedApplication.habitats.push(roost)
+            req.session.myData.selectedApplication.habitats.push(habitat)
         }
     }
 
@@ -85,37 +85,43 @@ module.exports = function (router,_myData) {
 
     }
 
-    function setSelectedRoost(req, _roostID){
+    function setSelectedHabitat(req, _habitatID){
 
-        if(_roostID){
+        if(_habitatID){
 
-            var _existingRoost = req.session.myData.selectedApplication.habitats.find(obj => {return obj.id.toString() === _roostID.toString()})
+            var _existingHabitat = req.session.myData.selectedApplication.habitats.find(obj => {return obj.id.toString() === _habitatID.toString()})
 
             //TODO fix it not thinking the currently added new one is existing
 
-            if(_existingRoost){
-                req.session.myData.selectedRoost = _existingRoost
+            if(_existingHabitat){
+                req.session.myData.selectedHabitat = _existingHabitat
             } else {
                 if(req.session.myData.testdata == "true"){
-                    req.session.myData.selectedRoost = req.session.myData.testRoost
-                    addRoostToApplication(req,req.session.myData.selectedRoost)
+
+                    var _testHabitatToUse = req.session.myData.testRoost
+                    if(req.session.myData.selectedApplication.type == "a24"){
+                        _testHabitatToUse = req.session.myData.testSett
+                    }
+                    req.session.myData.selectedHabitat = _testHabitatToUse
+
+                    addHabitatToApplication(req,req.session.myData.selectedHabitat)
                 } else {
-                    if(!req.session.myData.newRoost.inprogress){
-                        req.session.myData.newRoost.inprogress = true
-                        req.session.myData.selectedRoost = req.session.myData.newRoost
+                    if(!req.session.myData.newHabitat.inprogress){
+                        req.session.myData.newHabitat.inprogress = true
+                        req.session.myData.selectedHabitat = req.session.myData.newHabitat
                     }
                 }
             }
-            req.session.myData.roost = req.session.myData.selectedRoost.id
+            req.session.myData.habitat = req.session.myData.selectedHabitat.id
             
         }
     }
 
-    function startNewRoost(req){
+    function startNewHabitat(req){
         var _randomID = Math.floor(100000 + Math.random() * 900000)
-        req.session.myData.newRoost.id = _randomID
-        req.session.myData.newRoost.inprogress = false
-        setSelectedRoost(req, _randomID)
+        req.session.myData.newHabitat.id = _randomID
+        req.session.myData.newHabitat.inprogress = false
+        setSelectedHabitat(req, _randomID)
     }
 
     function setSelectedConsent(req, _consentID){
@@ -538,30 +544,41 @@ module.exports = function (router,_myData) {
                 "consents": []
             }
 
-        req.session.myData.roost = Math.floor(100000 + Math.random() * 900000)
-        req.session.myData.newRoost = {"id": req.session.myData.roost,"bats":[],"new":true, "inprogress": false}
+        req.session.myData.habitat = Math.floor(100000 + Math.random() * 900000)
+        req.session.myData.newHabitat = {"id": req.session.myData.habitat,"new":true, "inprogress": false}
 
         req.session.myData.consent = Math.floor(100000 + Math.random() * 900000)
         req.session.myData.newConsent = {"id": req.session.myData.consent,"type":{},"new":true, "inprogress": false}
 
-        //Set test roost (just for deep links to work) - in pages if testdata == true, we will use the testRoost
+        //Set test habitat (just for deep links to work) - in pages if testdata == true, we will use a testHabitat
         req.session.myData.testdata = 'false'
         req.session.myData.testRoost = {
             "id": 123456789,
-            "bats": [
-                {
-                    "id": req.session.myData.batSpecies2[0].id,
-                    "name": req.session.myData.batSpecies2[0].name,
-                    "numberUsing": "5",
-                    "roostUses": [
-                        JSON.parse(JSON.stringify(req.session.myData.roostUses3[0])),
-                        JSON.parse(JSON.stringify(req.session.myData.roostUses3[1]))
-                    ],
-                    "activities": [
-                        JSON.parse(JSON.stringify(req.session.myData.batActivities3[0])),
-                        JSON.parse(JSON.stringify(req.session.myData.batActivities3[1]))
-                    ]
-                }
+            "species": {
+                "id": req.session.myData.batSpecies2[0].id,
+                "name": req.session.myData.batSpecies2[0].name
+            },
+            "numberUsing": "5",
+            "habitatUses": [
+                JSON.parse(JSON.stringify(req.session.myData.roostUses3[0])),
+                JSON.parse(JSON.stringify(req.session.myData.roostUses3[1]))
+            ],
+            "activities": [
+                JSON.parse(JSON.stringify(req.session.myData.batActivities3[0])),
+                JSON.parse(JSON.stringify(req.session.myData.batActivities3[1]))
+            ],
+            "new": false,
+            "inprogress": false
+        }
+        req.session.myData.testSett = {
+            "id": 123456789,
+            "habitatUses": [
+                JSON.parse(JSON.stringify(req.session.myData.settUses[0])),
+                JSON.parse(JSON.stringify(req.session.myData.settUses[1]))
+            ],
+            "activities": [
+                JSON.parse(JSON.stringify(req.session.myData.badgerActivities[0])),
+                JSON.parse(JSON.stringify(req.session.myData.badgerActivities[1]))
             ],
             "new": false,
             "inprogress": false
@@ -614,14 +631,9 @@ module.exports = function (router,_myData) {
         req.session.myData.application = req.query.application || req.session.myData.application
         setSelectedApplication(req,req.session.myData.application)
 
-        // if(req.session.myData.selectedApplication.new){
-        //     req.session.myData.selectedApplication.tasklist = JSON.parse(JSON.stringify(req.session.myData.tasklist))
-        //     req.session.myData.selectedApplication.new = false
-        // }
-
-        //Selected roost
-        req.session.myData.roost = req.query.roost || req.session.myData.roost
-        setSelectedRoost(req,req.session.myData.roost)
+        //Selected habitat
+        req.session.myData.habitat = req.query.habitat || req.session.myData.habitat
+        setSelectedHabitat(req,req.session.myData.habitat)
 
         //Selected consent
         req.session.myData.consent = req.query.consent || req.session.myData.consent
@@ -653,6 +665,27 @@ module.exports = function (router,_myData) {
 
         //Set service name
         setServiceName(req)
+
+        //Start new application
+        if(req.query.new){
+            var _year = new Date().getFullYear(),
+                _randomID = Math.floor(10000 + Math.random() * 90000),
+                _appID = _year + "-" + _randomID + "-EPS-MIT"
+
+            //Used until passes eligibility
+            req.session.myData.tempApplication = JSON.parse(JSON.stringify(req.session.myData.newApplication))
+            req.session.myData.tempApplication.id = _appID
+            req.session.myData.tempApplication.status = "inprogress"
+            req.session.myData.tempApplication.type = req.session.myData.licenceType
+            req.session.myData.tempApplication.starteddate = new Date()
+            req.session.myData.tempApplication.lastsaveddate = new Date()
+            
+            req.session.myData.selectedApplication = req.session.myData.tempApplication
+            req.session.myData.application = _appID
+
+            setServiceName(req)
+            updateTasklist(req)
+        }
 
         // FOR when returning from Defra ID
         var _fileName = res.req.params[0]
@@ -783,35 +816,6 @@ module.exports = function (router,_myData) {
 
     // Tasklist bat
     router.get('/' + version + '/tasklist', function (req, res) {
-        
-        if(req.query.new){
-
-            //
-            // Start new application
-            //
-            var _year = new Date().getFullYear(),
-            _randomID = Math.floor(10000 + Math.random() * 90000),
-            _appID = _year + "-" + _randomID + "-EPS-MIT"
-
-            //Used until passes eligibility
-            req.session.myData.tempApplication = JSON.parse(JSON.stringify(req.session.myData.newApplication))
-            req.session.myData.tempApplication.id = _appID
-            req.session.myData.tempApplication.status = "inprogress"
-            req.session.myData.tempApplication.type = req.session.myData.licenceType
-            req.session.myData.tempApplication.starteddate = new Date()
-            req.session.myData.tempApplication.lastsaveddate = new Date()
-            
-            req.session.myData.selectedApplication = req.session.myData.tempApplication
-            req.session.myData.application = _appID
-
-            setServiceName(req)
-            updateTasklist(req)
-
-            //
-            // END. Start new application
-            //
-        }
-
         res.render(version + '/tasklist', {
             myData:req.session.myData
         });
@@ -1747,7 +1751,7 @@ module.exports = function (router,_myData) {
          
     });
 
-    // Roost remove
+    // Consent remove
     router.get('/' + version + '/consent-remove', function (req, res) {
 
         req.session.myData.consentToRemove = req.query.consentToRemove
@@ -1825,7 +1829,19 @@ module.exports = function (router,_myData) {
     });
     router.post('/' + version + '/habitat-intro', function (req, res) {
         updateLastSavedDate(req,req.session.myData.selectedApplication)
-        res.redirect(301, '/' + version + '/species-bat');
+
+        if(req.session.myData.selectedApplication.type == "a13"){
+            res.redirect(301, '/' + version + '/species-bat');
+        } else {
+            //Habitat query string
+            var _habitatQS = ''
+            if(!req.session.myData.selectedHabitat.new){
+                _habitatQS = '?habitat=' + req.session.myData.habitat
+            }
+
+            res.redirect(301, '/' + version + '/habitat-type' + _habitatQS);
+        }
+
     });
 
 
@@ -1858,97 +1874,86 @@ module.exports = function (router,_myData) {
 
             updateLastSavedDate(req,req.session.myData.selectedApplication)
 
-            // var _selectedBat = req.session.myData.batSpecies2.find(obj => {return obj.id.toString() === req.session.myData.speciesBatTempAnswer});
-
-            // req.session.myData.selectedRoost.bats.push(_selectedBat)
-
             req.session.myData.batSpecies2.forEach(function(_bat, index) {
-                var _alreadyListed = req.session.myData.selectedRoost.bats.find(obj => {return obj.id.toString() === _bat.id.toString()})
-
                 if(req.session.myData.speciesBatTempAnswer == _bat.id){
-                    // TICKED
-                    if(_alreadyListed){
-                        // if already in there leave it (could have other answers on it)
-                    } else {
-                        // else add it
-                        req.session.myData.selectedRoost.bats.push(_bat)
-                    }
+                    req.session.myData.selectedHabitat.speciesID = _bat.id
+                    req.session.myData.selectedHabitat.speciesName = _bat.name
                 }
             });
 
             req.session.myData.speciesBatTempAnswer = ""
 
-            //Roost query string
-            var _roostQS = ''
-            if(!req.session.myData.selectedRoost.new){
-                _roostQS = '?roost=' + req.session.myData.roost
+            //Habitat query string
+            var _habitatQS = ''
+            if(!req.session.myData.selectedHabitat.new){
+                _habitatQS = '?habitat=' + req.session.myData.habitat
             }
 
-            res.redirect(301, '/' + version + '/using-roost' + _roostQS);
+            res.redirect(301, '/' + version + '/habitat-type' + _habitatQS);
         }
     });
 
 
-    // Roost bats using
-    router.get('/' + version + '/using-roost', function (req, res) {
-        res.render(version + '/using-roost', {
+    // Habitat use
+    router.get('/' + version + '/habitat-type', function (req, res) {
+        res.render(version + '/habitat-type', {
             myData:req.session.myData
         });
     });
-    router.post('/' + version + '/using-roost', function (req, res) {
+    router.post('/' + version + '/habitat-type', function (req, res) {
 
-        req.session.myData.roostUsesAnswersTemp = []
+        req.session.myData.habitatUsesAnswersTemp = req.body.habitatUses
 
-        req.session.myData.selectedRoost.bats.forEach(function(_bat, index) {
-
-                req.session.myData.roostUsesAnswersTemp[_bat.id] = req.body[_bat.id]
-
-                if(req.session.myData.includeValidation == "false"){
-                    if(req.session.myData.roostUsesAnswersTemp[_bat.id] == "_unchecked"){
-                        req.session.myData.roostUsesAnswersTemp[_bat.id] = "_roostUse-1"
-                    } else {
-                        req.session.myData.roostUsesAnswersTemp[_bat.id] = req.session.myData.roostUsesAnswersTemp[_bat.id] || "_roostUse-1"
-                    }
-                }
-                if(req.session.myData.roostUsesAnswersTemp[_bat.id] == "_unchecked"){
-                // for radios = if(!req.session.myData.roostUsesAnswersTemp[_bat.id]){
-                    req.session.myData.validationError = "true"
-                    req.session.myData.validationErrors[_bat.id] = {
-                        "anchor": _bat.id + "-1",
-                        "message": "[error message]"
-                    }
-                }
-        });
+        if(req.session.myData.includeValidation == "false"){
+            if(req.session.myData.habitatUsesAnswersTemp == "_unchecked"){
+                req.session.myData.habitatUsesAnswersTemp = "habitatUses-1"
+            } else {
+                req.session.myData.habitatUsesAnswersTemp = req.session.myData.habitatUsesAnswersTemp || "habitatUses-1"
+            }
+        }
+        if(req.session.myData.habitatUsesAnswersTemp == "_unchecked"){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.habitatUses = {
+                "anchor": "habitatUses-1",
+                "message": "[error message]"
+            }
+        }
 
         if(req.session.myData.validationError == "true") {
-            res.render(version + '/using-roost', {
+            res.render(version + '/habitat-type', {
                 myData:req.session.myData
             });
         } else {
 
             updateLastSavedDate(req,req.session.myData.selectedApplication)
 
-            //Set selected roost uses
-            req.session.myData.selectedRoost.bats.forEach(function(_bat, index) {
-                _bat.roostUses = []
-                req.session.myData.roostUses3.forEach(function(_roostUse, index) {
-                    if(req.session.myData.roostUsesAnswersTemp[_bat.id].indexOf(_roostUse.id.toString()) != -1){
-                        _bat.roostUses.push(_roostUse)
-                    }
-                });
+            //Set selected habitat uses
+            req.session.myData.selectedHabitat.habitatUses = []
+            var _habitatUsesToUse = req.session.myData.roostUses3
+            if(req.session.myData.selectedApplication.type == "a24"){
+                _habitatUsesToUse = req.session.myData.settUses
+            }
+            _habitatUsesToUse.forEach(function(_habitatUse, index) {
+                if(req.session.myData.habitatUsesAnswersTemp.indexOf(_habitatUse.id.toString()) != -1){
+                    req.session.myData.selectedHabitat.habitatUses.push(_habitatUse)
+                }
             });
-            req.session.myData.roostUsesAnswersTemp = []
+            req.session.myData.habitatUsesAnswersTemp = []
             
-            //Roost query string
-            var _roostQS = ''
-            if(!req.session.myData.selectedRoost.new){
-                _roostQS = '?roost=' + req.session.myData.roost
+            //Habitat query string
+            var _habitatQS = ''
+            if(!req.session.myData.selectedHabitat.new){
+                _habitatQS = '?habitat=' + req.session.myData.habitat
             }
 
             if(req.query.cya == "true"){
-                res.redirect(301, '/' + version + '/cya-bat');
+                res.redirect(301, '/' + version + '/cya-habitats');
             } else {
-                res.redirect(301, '/' + version + '/numbers-bat' + _roostQS);
+                if(req.session.myData.selectedApplication.type == "a13"){
+                    res.redirect(301, '/' + version + '/numbers-bat' + _habitatQS);
+                } else {
+                    res.redirect(301, '/' + version + '/habitat-activities' + _habitatQS);
+                }
             }
 
         }
@@ -1964,29 +1969,24 @@ module.exports = function (router,_myData) {
     });
     router.post('/' + version + '/numbers-bat', function (req, res) {
 
-        //CHECK ANSWERS
-        req.session.myData.selectedRoost.bats.forEach(function(_bat, index) {
+        //entered values (set to temp)
+        req.session.myData.numberUsingTemp = req.body.numberUsing
 
-            //entered values (set to temp)
-            req.session.myData["numberUsingTemp" + _bat.id] = req.body["numberUsing" + _bat.id]
+        //no validation defaults
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.numberUsingTemp = req.session.myData.numberUsingTemp || 1
+        }
 
-            //no validation defaults
-            if(req.session.myData.includeValidation == "false"){
-                req.session.myData["numberUsingTemp" + _bat.id] = req.session.myData["numberUsingTemp" + _bat.id] || 1
+        // TODO order of errors
+
+        //check validation
+        if(!req.session.myData.numberUsingTemp){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.numberUsing = {
+                "anchor": "numberUsing",
+                "message": "[error message for " + _bat.name + "]"
             }
-
-            // TODO order of errors
-
-            //check validation
-            if(!req.session.myData["numberUsingTemp" + _bat.id]){
-                req.session.myData.validationError = "true"
-                req.session.myData.validationErrors["numberUsing" + _bat.id] = {
-                    "anchor": "numberUsing" + _bat.id,
-                    "message": "[error message for " + _bat.name + "]"
-                }
-            }
-
-        });
+        }
 
         if(req.session.myData.validationError == "true") {
             res.render(version + '/numbers-bat', {
@@ -1996,24 +1996,21 @@ module.exports = function (router,_myData) {
 
             updateLastSavedDate(req,req.session.myData.selectedApplication)
 
-            req.session.myData.selectedRoost.bats.forEach(function(_bat, index) {
-                req.session.myData["numberUsing" + _bat.id] = req.session.myData["numberUsingTemp" + _bat.id]
+            req.session.myData.numberUsing = req.session.myData.numberUsingTemp
+            req.session.myData.selectedHabitat.numberUsing = req.session.myData.numberUsing
 
-                _bat.numberUsing = req.session.myData["numberUsing" + _bat.id]
+            req.session.myData.numberUsingTemp = ""
 
-                req.session.myData["numberUsingTemp" + _bat.id] = ""
-            });
-
-            //Roost query string
-            var _roostQS = ''
-            if(!req.session.myData.selectedRoost.new){
-                _roostQS = '?roost=' + req.session.myData.roost
+            //Habitat query string
+            var _habitatQS = ''
+            if(!req.session.myData.selectedHabitat.new){
+                _habitatQS = '?habitat=' + req.session.myData.habitat
             }
 
             if(req.query.cya == "true"){
-                res.redirect(301, '/' + version + '/cya-bat');
+                res.redirect(301, '/' + version + '/cya-habitats');
             } else {
-                res.redirect(301, '/' + version + '/activities-bat' + _roostQS);
+                res.redirect(301, '/' + version + '/habitat-activities' + _habitatQS);
             }
 
         }
@@ -2056,10 +2053,10 @@ module.exports = function (router,_myData) {
             req.session.myData.selectedApplication.breedingSites = req.session.myData.breedingSitesTemp
             req.session.myData.breedingSitesTemp = ""
 
-            //Roost query string
-            // var _roostQS = ''
-            // if(!req.session.myData.selectedRoost.new){
-            //     _roostQS = '?roost=' + req.session.myData.roost
+            //Habitat query string
+            // var _habitatQS = ''
+            // if(!req.session.myData.selectedHabitat.new){
+            //     _habitatQS = '?habitat=' + req.session.myData.habitat
             // }
 
             if(req.query.cya == "true"){
@@ -2072,39 +2069,33 @@ module.exports = function (router,_myData) {
         
     });
 
-    // Activities on bats in roost
-    router.get('/' + version + '/activities-bat', function (req, res) {
-        res.render(version + '/activities-bat', {
+    // Activities on habitat
+    router.get('/' + version + '/habitat-activities', function (req, res) {
+        res.render(version + '/habitat-activities', {
             myData:req.session.myData
         });
     });
-    router.post('/' + version + '/activities-bat', function (req, res) {
+    router.post('/' + version + '/habitat-activities', function (req, res) {
 
-        req.session.myData.activitiesBatAnswersTemp = []
+        req.session.myData.activitiesAnswersTemp = req.body.habitatActivities
 
-        req.session.myData.selectedRoost.bats.forEach(function(_bat, index) {
-
-                req.session.myData.activitiesBatAnswersTemp[_bat.id] = req.body[_bat.id]
-
-                if(req.session.myData.includeValidation == "false"){
-                    if(req.session.myData.activitiesBatAnswersTemp[_bat.id] == "_unchecked"){
-                        req.session.myData.activitiesBatAnswersTemp[_bat.id] = "_batActivity-1"
-                    } else {
-                        req.session.myData.activitiesBatAnswersTemp[_bat.id] = req.session.myData.activitiesBatAnswersTemp[_bat.id] || "_batActivity-1"
-                    }
-                }
-                if(req.session.myData.activitiesBatAnswersTemp[_bat.id] == "_unchecked"){
-                // for radios = if(!req.session.myData.activitiesBatAnswersTemp[_bat.id]){
-                    req.session.myData.validationError = "true"
-                    req.session.myData.validationErrors[_bat.id] = {
-                        "anchor": _bat.id + "-1",
-                        "message": "[error message]"
-                    }
-                }
-        });
+        if(req.session.myData.includeValidation == "false"){
+            if(req.session.myData.activitiesAnswersTemp == "_unchecked"){
+                req.session.myData.activitiesAnswersTemp = "_batActivity-1"
+            } else {
+                req.session.myData.activitiesAnswersTemp = req.session.myData.activitiesAnswersTemp || "_batActivity-1"
+            }
+        }
+        if(req.session.myData.activitiesAnswersTemp == "_unchecked"){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.habitatActivities = {
+                "anchor": "habitatActivities-1",
+                "message": "[error message]"
+            }
+        }
 
         if(req.session.myData.validationError == "true") {
-            res.render(version + '/activities-bat', {
+            res.render(version + '/habitat-activities', {
                 myData:req.session.myData
             });
         } else {
@@ -2112,29 +2103,31 @@ module.exports = function (router,_myData) {
             updateLastSavedDate(req,req.session.myData.selectedApplication)
 
             //Set selected bat activties
-            req.session.myData.selectedRoost.bats.forEach(function(_bat, index) {
-                _bat.activities = []
-                req.session.myData.batActivities3.forEach(function(_batActivity, index) {
-                    if(req.session.myData.activitiesBatAnswersTemp[_bat.id].indexOf(_batActivity.id.toString()) != -1){
-                        _bat.activities.push(_batActivity)
-                    }
-                });
+            req.session.myData.selectedHabitat.activities = []
+            var _habitatActivitiesToUse = req.session.myData.batActivities3
+            if(req.session.myData.selectedApplication.type == "a24"){
+                _habitatActivitiesToUse = req.session.myData.badgerActivities
+            }
+            _habitatActivitiesToUse.forEach(function(_habitatActivity, index) {
+                if(req.session.myData.activitiesAnswersTemp.indexOf(_habitatActivity.id.toString()) != -1){
+                    req.session.myData.selectedHabitat.activities.push(_habitatActivity)
+                }
             });
-            req.session.myData.activitiesBatAnswersTemp = []
+            req.session.myData.activitiesAnswersTemp = []
 
-            //ADD ROOST TO APPLICATION
-            addRoostToApplication(req,req.session.myData.selectedRoost)
+            //ADD HABITAT TO APPLICATION
+            addHabitatToApplication(req,req.session.myData.selectedHabitat)
 
-            setSelectedRoost(req,req.session.myData.selectedRoost.id.toString())
+            setSelectedHabitat(req,req.session.myData.selectedHabitat.id.toString())
             
             //TODO check if this needs to be set BEFORE changing new to false
-            //Roost query string
-            var _roostQS = ''
-            if(!req.session.myData.selectedRoost.new){
-                _roostQS = '?roost=' + req.session.myData.roost
+            //Habitat query string
+            var _habitatQS = ''
+            if(!req.session.myData.selectedHabitat.new){
+                _habitatQS = '?habitat=' + req.session.myData.habitat
             }
 
-            res.redirect(301, '/' + version + '/cya-bat');
+            res.redirect(301, '/' + version + '/cya-habitats');
         }
 
     });
@@ -2185,10 +2178,10 @@ module.exports = function (router,_myData) {
             });
             
             //TODO check if this needs to be set BEFORE changing new to false
-            //Roost query string
-            // var _roostQS = ''
-            // if(!req.session.myData.selectedRoost.new){
-            //     _roostQS = '?roost=' + req.session.myData.roost
+            //Habitat query string
+            // var _habitatQS = ''
+            // if(!req.session.myData.selectedHabitat.new){
+            //     _habitatQS = '?habitat=' + req.session.myData.habitat
             // }
 
             res.redirect(301, '/' + version + '/cya-newt');
@@ -2198,37 +2191,37 @@ module.exports = function (router,_myData) {
     });
 
     // Check your answers bat
-    router.get('/' + version + '/cya-bat', function (req, res) {
-        res.render(version + '/cya-bat', {
+    router.get('/' + version + '/cya-habitats', function (req, res) {
+        res.render(version + '/cya-habitats', {
             myData:req.session.myData
         });
     });
-    router.post('/' + version + '/cya-bat', function (req, res) {
+    router.post('/' + version + '/cya-habitats', function (req, res) {
 
-        req.session.myData.addRoostAnswer = req.body.addRoost
+        req.session.myData.addHabitatAnswer = req.body.addHabitat
 
         if(req.session.myData.includeValidation == "false"){
-            req.session.myData.addRoostAnswer = req.session.myData.addRoostAnswer || "No"
+            req.session.myData.addHabitatAnswer = req.session.myData.addHabitatAnswer || "No"
         }
 
-        if(!req.session.myData.addRoostAnswer){
+        if(!req.session.myData.addHabitatAnswer){
             req.session.myData.validationError = "true"
-            req.session.myData.validationErrors.addRoost = {
-                "anchor": "addRoost-1",
-                "message": "[error message for add roost]"
+            req.session.myData.validationErrors.addHabitat = {
+                "anchor": "addHabitat-1",
+                "message": "[error message]"
             }
         }
 
         if(req.session.myData.validationError == "true") {
-            res.render(version + '/cya-bat', {
+            res.render(version + '/cya-habitats', {
                 myData: req.session.myData
             });
         } else {
 
             updateLastSavedDate(req,req.session.myData.selectedApplication)
 
-            if(req.session.myData.addRoostAnswer == 'yes'){
-                startNewRoost(req)
+            if(req.session.myData.addHabitatAnswer == 'yes'){
+                startNewHabitat(req)
                 res.redirect(301, '/' + version + '/habitat-intro');
             } else {
                 req.session.myData.selectedApplication.tasklist.sections["2"] = "completed"
@@ -2254,7 +2247,7 @@ module.exports = function (router,_myData) {
     });
 
 
-    // Roost remove
+    // Habitat remove
     router.get('/' + version + '/habitat-remove', function (req, res) {
 
         req.session.myData.habitatToRemove = req.query.habitatToRemove
@@ -2299,15 +2292,15 @@ module.exports = function (router,_myData) {
                 }
 
                 if(req.session.myData.selectedApplication.habitats.length == 0) {
-                    startNewRoost(req)
+                    startNewHabitat(req)
                     res.redirect(301, '/' + version + '/habitat-intro');
                 } else {
-                    res.redirect(301, '/' + version + '/cya-bat');
+                    res.redirect(301, '/' + version + '/cya-habitats');
                 }
                 
 
             } else {
-                res.redirect(301, '/' + version + '/cya-bat');
+                res.redirect(301, '/' + version + '/cya-habitats');
             }
 
         }

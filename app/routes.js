@@ -264,6 +264,46 @@ var _myData = {
             "name": "Mating"
         }
     ],
+    "settUses": [
+        {
+            "id": "_settUse-1",
+            "name": "Main"
+        },
+        {
+            "id": "_settUse-2",
+            "name": "Annexe"
+        },
+        {
+            "id": "_settUse-3",
+            "name": "Outlier"
+        },
+        {
+            "id": "_settUse-4",
+            "name": "Subsidiary"
+        }
+    ],
+    "badgerActivities": [
+        {
+            "id": "_badgerActivity-1",
+            "name": "Obstructing sett entrances by means of one-way badger gates"
+        },
+        {
+            "id": "_badgerActivity-2",
+            "name": "Obstructing access to sett entrances by blocking or proofing"
+        },
+        {
+            "id": "_badgerActivity-3",
+            "name": "Damaging a sett by hand and mechanical means"
+        },
+        {
+            "id": "_badgerActivity-4",
+            "name": "Destruction of the vacant sett by hand and mechanical means"
+        },
+        {
+            "id": "_badgerActivity-5",
+            "name": " Disturbance of badgers"
+        }
+    ],
     "batActivities": [
         {
             "id": "_batActivity-1",

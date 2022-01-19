@@ -4,6 +4,13 @@
 
 {% set _inError = myData.validationError == "true" %}
 
+{% set _habitatType = "roost" %}
+{% set _speciesType = "bat" %}
+{% if myData.selectedApplication.type == "a24" %}
+    {% set _habitatType = "sett" %}
+    {% set _speciesType = "badger" %}
+{% endif %}
+
 {% block pageTitle %} 
 {% if _inError %}Error: {% endif %}Check your answers
 {% endblock %}
@@ -13,8 +20,8 @@
     {% include "includes/back-link.html" %}
 {% endblock %}
 
-{% set _roosts = myData.selectedApplication.habitats %}
-{% set _roostsCount = _roosts.length %}
+{% set _habitats = myData.selectedApplication.habitats %}
+{% set _habitatsCount = _habitats.length %}
 
 {% block content %}
 
@@ -43,95 +50,90 @@
 			</h1>
     
     
-            {% for _roost in _roosts %}
-            <h2 class="govuk-heading-l">Roost {{loop.index}}</h2>
+            {% for _habitat in _habitats %}
+            <h2 class="govuk-heading-l">{{_habitatType|capitalize}} {{loop.index}}</h2>
             <p class="govuk-body">
-                <a class="govuk-link govuk-link--no-visited-state" href="habitat-remove?habitatToRemove={{_roost.id}}">
-                    Remove roost<span class="govuk-visually-hidden"> {{loop.index}}</span>
+                <a class="govuk-link govuk-link--no-visited-state" href="habitat-remove?habitatToRemove={{_habitat.id}}">
+                    Remove {{_habitatType}}<span class="govuk-visually-hidden"> {{loop.index}}</span>
                 </a>
             </p>
             <dl class="govuk-summary-list">
 
-                <!-- Bat species -->
+                <!-- Specific species -->
+                {% if myData.selectedApplication.type == "a13" %}
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        Bat species
+                        {{_speciesType|capitalize}} species
                     </dt>
                     <dd class="govuk-summary-list__value">
-                        {% for _bat in _roost.bats %}
-                            {{_bat.name}}{% if loop.last != true %}<br>{% endif %}
-                        {% endfor %}
+                        {{_habitat.speciesName}}
                     </dd>
                     <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link govuk-link--no-visited-state" href="species-bat?roost={{_roost.id}}&cya=true">
+                        <a class="govuk-link govuk-link--no-visited-state" href="species-bat?habitat={{_habitat.id}}&cya=true">
+                            Change<span class="govuk-visually-hidden"> </span>
+                        </a>
+                    </dd>
+                </div>
+                {% endif %}
+
+                <!-- Habitat use -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        {{_habitatType|capitalize}} type
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {% if _habitat.habitatUses.length == 1 %}
+                            {{_habitat.habitatUses[0].name}}
+                        {% else %}
+                            <ul class="govuk-list govuk-list--bullet">
+                                {% for _habitatUse in _habitat.habitatUses %}
+                                <li>{{_habitatUse.name}}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="habitat-type?habitat={{_habitat.id}}&cya=true">
                             Change<span class="govuk-visually-hidden"> </span>
                         </a>
                     </dd>
                 </div>
 
-                <!-- Roost use -->
+                <!-- Existing number of species -->
+                {% if myData.selectedApplication.type == "a13" %}
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        Roost type
+                        Number of {{_speciesType}}s
                     </dt>
                     <dd class="govuk-summary-list__value">
-                        {% for _bat in _roost.bats %}
-                            {% if _bat.roostUses.length == 1 %}
-                                {{_bat.roostUses[0].name}}
-                            {% else %}
-                                <ul class="govuk-list govuk-list--bullet">
-                                    {% for _batRoostUse in _bat.roostUses %}
-                                    <li>{{_batRoostUse.name}}</li>
-                                    {% endfor %}
-                                </ul>
-                            {% endif %}
-                        {% endfor %}
+                        {{_habitat.numberUsing}}
                     </dd>
                     <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link govuk-link--no-visited-state" href="using-roost?roost={{_roost.id}}&cya=true">
+                        <a class="govuk-link govuk-link--no-visited-state" href="numbers-bat?habitat={{_habitat.id}}&cya=true">
                             Change<span class="govuk-visually-hidden"> </span>
                         </a>
                     </dd>
                 </div>
+                {% endif %}
 
-                <!-- Existing number of bats -->
+                <!-- Species activities -->
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        Number of bats
+                        Affect on {{_speciesType}}s
                     </dt>
                     <dd class="govuk-summary-list__value">
-                        {% for _bat in _roost.bats %}
-                            {{_bat.numberUsing}}
-                        {% endfor %}
+                        {% if _habitat.activities.length == 1 %}
+                            {{_habitat.activities[0].name}}
+                        {% else %}
+                            <ul class="govuk-list govuk-list--bullet">
+                                {% for _habitatUse in _habitat.activities %}
+                                <li>{{_habitatUse.name}}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
                     </dd>
                     <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link govuk-link--no-visited-state" href="numbers-bat?roost={{_roost.id}}&cya=true">
-                            Change<span class="govuk-visually-hidden"> </span>
-                        </a>
-                    </dd>
-                </div>
-
-                <!-- Bat activities -->
-                <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key">
-                        Affect on bats
-                    </dt>
-                    <dd class="govuk-summary-list__value">
-                        {% for _bat in _roost.bats %}
-                            {% if _bat.activities.length == 1 %}
-                                {{_bat.activities[0].name}}
-                            {% else %}
-                                <ul class="govuk-list govuk-list--bullet">
-                                    {% for _batActivity in _bat.activities %}
-                                    <li>{{_batActivity.name}}</li>
-                                    {% endfor %}
-                                </ul>
-                            {% endif %}
-                        {% endfor %}
-
-                    </dd>
-                    <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link govuk-link--no-visited-state" href="activities-bat?roost={{_roost.id}}&cya=true">
+                        <a class="govuk-link govuk-link--no-visited-state" href="habitat-activities?habitat={{_habitat.id}}&cya=true">
                             Change<span class="govuk-visually-hidden"> </span>
                         </a>
                     </dd>
@@ -143,31 +145,31 @@
             <form method="POST">
 
                 <div class="govuk-form-group {% if _inError %}govuk-form-group--error{% endif %}">
-                    <fieldset class="govuk-fieldset" aria-describedby="addRoost-hint">
+                    <fieldset class="govuk-fieldset" >
 
                         <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                             <h1 class="govuk-fieldset__heading">
-                                Do you want to add another bat roost?
+                                Do you want to add another {{_speciesType}} {{_habitatType}}?
                             </h1>
                         </legend>
 
                         {% if _inError %}
-                        <span id="speciesBat-error" class="govuk-error-message">
+                        <span class="govuk-error-message">
                             <span class="govuk-visually-hidden">Error:</span>
-                            {{myData.validationErrors.addRoost.message}}
+                            {{myData.validationErrors.addHabitat.message}}
                         </span>
                         {% endif %}
 
                         <div class="govuk-radios">
                             <div class="govuk-radios__item">
-                                <input class="govuk-radios__input" id="addRoost-1" name="addRoost" type="radio" value="yes">
-                                <label class="govuk-label govuk-radios__label" for="addRoost-1">
+                                <input class="govuk-radios__input" id="addHabitat-1" name="addHabitat" type="radio" value="yes">
+                                <label class="govuk-label govuk-radios__label" for="addHabitat-1">
                                 Yes
                                 </label>
                             </div>
                             <div class="govuk-radios__item">
-                                <input class="govuk-radios__input" id="addRoost-2" name="addRoost" type="radio" value="no">
-                                <label class="govuk-label govuk-radios__label" for="addRoost-2">
+                                <input class="govuk-radios__input" id="addHabitat-2" name="addHabitat" type="radio" value="no">
+                                <label class="govuk-label govuk-radios__label" for="addHabitat-2">
                                 No
                                 </label>
                             </div>

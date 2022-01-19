@@ -57,7 +57,7 @@
                         {% for _bat in myData.batSpecies2 %}
 
                             {% set _selected = false %}
-                            {% for _batInRoost in myData.selectedRoost.bats %}
+                            {% for _batInRoost in myData.selectedHabitat.bats %}
                                 {% if _bat.id == _batInRoost.id %}
                                     {% set _selected = true %}
                                 {% endif %}
