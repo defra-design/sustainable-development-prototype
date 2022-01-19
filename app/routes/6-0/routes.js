@@ -1831,7 +1831,7 @@ module.exports = function (router,_myData) {
         updateLastSavedDate(req,req.session.myData.selectedApplication)
 
         if(req.session.myData.selectedApplication.type == "a13"){
-            res.redirect(301, '/' + version + '/species-bat');
+            res.redirect(301, '/' + version + '/habitat-species');
         } else {
             //Habitat query string
             var _habitatQS = ''
@@ -1846,12 +1846,12 @@ module.exports = function (router,_myData) {
 
 
     // BAT Species
-    router.get('/' + version + '/species-bat', function (req, res) {
-        res.render(version + '/species-bat', {
+    router.get('/' + version + '/habitat-species', function (req, res) {
+        res.render(version + '/habitat-species', {
             myData:req.session.myData
         });
     });
-    router.post('/' + version + '/species-bat', function (req, res) {
+    router.post('/' + version + '/habitat-species', function (req, res) {
 
         req.session.myData.speciesBatTempAnswer = req.body.bat
 
@@ -1867,7 +1867,7 @@ module.exports = function (router,_myData) {
         }
         
         if(req.session.myData.validationError == "true") {
-            res.render(version + '/species-bat', {
+            res.render(version + '/habitat-species', {
                 myData: req.session.myData
             });
         } else {
@@ -1950,7 +1950,7 @@ module.exports = function (router,_myData) {
                 res.redirect(301, '/' + version + '/cya-habitats');
             } else {
                 if(req.session.myData.selectedApplication.type == "a13"){
-                    res.redirect(301, '/' + version + '/numbers-bat' + _habitatQS);
+                    res.redirect(301, '/' + version + '/habitat-numbers' + _habitatQS);
                 } else {
                     res.redirect(301, '/' + version + '/habitat-activities' + _habitatQS);
                 }
@@ -1962,12 +1962,12 @@ module.exports = function (router,_myData) {
 
 
     // BAT Numbers
-    router.get('/' + version + '/numbers-bat', function (req, res) {
-        res.render(version + '/numbers-bat', {
+    router.get('/' + version + '/habitat-numbers', function (req, res) {
+        res.render(version + '/habitat-numbers', {
             myData:req.session.myData
         });
     });
-    router.post('/' + version + '/numbers-bat', function (req, res) {
+    router.post('/' + version + '/habitat-numbers', function (req, res) {
 
         //entered values (set to temp)
         req.session.myData.numberUsingTemp = req.body.numberUsing
@@ -1989,7 +1989,7 @@ module.exports = function (router,_myData) {
         }
 
         if(req.session.myData.validationError == "true") {
-            res.render(version + '/numbers-bat', {
+            res.render(version + '/habitat-numbers', {
                 myData: req.session.myData
             });
         } else {
