@@ -86,8 +86,8 @@
 
                                 <div class="govuk-checkboxes__item">
 
-                                    <input {% if _selected %}checked{% endif %} class="govuk-checkboxes__input" id="habitatUses-{{loop.index}}" name="habitatUses" type="checkbox" value="{{_habitatUse.id}}" >
-                                    <label class="govuk-label govuk-checkboxes__label" for="habitatUses-{{loop.index}}">
+                                    <input {% if _selected %}checked{% endif %} class="govuk-checkboxes__input" id="{{_habitatUse.id}}" name="habitatUses" type="checkbox" value="{{_habitatUse.id}}" >
+                                    <label class="govuk-label govuk-checkboxes__label" for="{{_habitatUse.id}}">
                                     {{_habitatUse.name}}
                                     </label>
 

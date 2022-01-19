@@ -4,8 +4,11 @@
 
 {% set _inError = myData.validationError == "true" %}
 
+{% set _habitatType = "roost" %}
+{% set _speciesType = "bat" %}
+
 {% block pageTitle %} 
-{% if _inError %}Error: {% endif %}Which species of bat is using this roost?
+{% if _inError %}Error: {% endif %}Which species of {{_speciesType}} is using this {{_habitatType}}?
 {% endblock %}
 
 {% block beforeContent %}
@@ -37,36 +40,36 @@
 
 		<form method="POST">
             <div class="govuk-form-group {% if _inError %}govuk-form-group--error{% endif %}">
-                <fieldset class="govuk-fieldset" aria-describedby="bat-species-hint">
+                <fieldset class="govuk-fieldset" >
                     
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
                         <h1 class="govuk-fieldset__heading">
-                            Which species of bat is using this roost?
+                            Which species of {{_speciesType}} is using this {{_habitatType}}?
                         </h1>
                     </legend>
 
                     {% if _inError %}
-                    <span id="speciesBat-error" class="govuk-error-message">
+                    <span class="govuk-error-message">
                         <span class="govuk-visually-hidden">Error:</span>
-                        {{myData.validationErrors.speciesBatAnswer.message}}
+                        {{myData.validationErrors.species.message}}
                     </span>
                     {% endif %}
 
                     <div class="govuk-radios" data-module="govuk-radios">
 
-                        {% for _bat in myData.batSpecies2 %}
+                        {% set _speciesToUse = myData.batSpecies2 %}
+
+                        {% for _species in _speciesToUse %}
 
                             {% set _selected = false %}
-                            {% for _batInRoost in myData.selectedHabitat.bats %}
-                                {% if _bat.id == _batInRoost.id %}
-                                    {% set _selected = true %}
-                                {% endif %}
-                            {% endfor %}
+                            {% if _species.id == myData.selectedHabitat.speciesID %}
+                                {% set _selected = true %}
+                            {% endif %}
 
                             <div class="govuk-radios__item">
-                                <input {% if _selected == true %}checked{% endif %} class="govuk-radios__input" id="{{_bat.id}}" name="bat" type="radio" value="{{_bat.id}}">
-                                <label class="govuk-label govuk-radios__label" for="{{_bat.id}}">
-                                    {{_bat.name}}
+                                <input {% if _selected == true %}checked{% endif %} class="govuk-radios__input" id="{{_species.id}}" name="species" type="radio" value="{{_species.id}}">
+                                <label class="govuk-label govuk-radios__label" for="{{_species.id}">
+                                    {{_species.name}}
                                 </label>
                             </div>
 

@@ -7,11 +7,6 @@
 {% set _habitatType = "roost" %}
 {% set _speciesType = myData.selectedHabitat.speciesName + " bat" %}
 
-{% if myData.selectedApplication.type == "a24" %}
-    {% set _habitatType = "sett" %}
-    {% set _speciesType = "badger" %}
-{% endif %}
-
 {% block pageTitle %} 
 {% if _inError %}Error: {% endif %}How many {{_speciesType}}s are using this {{_habitatType}}?
 {% endblock %}
@@ -62,11 +57,13 @@
                 <!-- Number using -->
                 <div class="govuk-form-group {% if myData.validationErrors.numberUsing %}govuk-form-group--error{% endif %}">
                     
+                    {% if myData.selectedApplication.type == "a13" %}
                     <h1 class="govuk-label-wrapper">
                         <label class="govuk-label" for="numberUsing">
                             Enter the maximum number based on the bat surveys.
                         </label>
                     </h1>
+                    {% endif %}
                     
                     {% if myData.validationErrors.numberUsing %}
                     <span id="orgNameAnswer-error" class="govuk-error-message">

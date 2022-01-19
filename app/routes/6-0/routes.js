@@ -1853,15 +1853,17 @@ module.exports = function (router,_myData) {
     });
     router.post('/' + version + '/habitat-species', function (req, res) {
 
-        req.session.myData.speciesBatTempAnswer = req.body.bat
+        req.session.myData.speciesTempAnswer = req.body.species
+
+        var _speciesToUse = req.session.myData.batSpecies2
 
         if(req.session.myData.includeValidation == "false"){
-            req.session.myData.speciesBatTempAnswer = req.body.bat || "_bat-1"
+            req.session.myData.speciesTempAnswer = req.body.species || _speciesToUse[0].id
         }
-        if(!req.session.myData.speciesBatTempAnswer){
+        if(!req.session.myData.speciesTempAnswer){
             req.session.myData.validationError = "true"
-            req.session.myData.validationErrors.speciesBatAnswer = {
-                "anchor": "_bat-1",
+            req.session.myData.validationErrors.species = {
+                "anchor": _speciesToUse[0].id,
                 "message": "[error message]"
             }
         }
@@ -1874,14 +1876,14 @@ module.exports = function (router,_myData) {
 
             updateLastSavedDate(req,req.session.myData.selectedApplication)
 
-            req.session.myData.batSpecies2.forEach(function(_bat, index) {
-                if(req.session.myData.speciesBatTempAnswer == _bat.id){
-                    req.session.myData.selectedHabitat.speciesID = _bat.id
-                    req.session.myData.selectedHabitat.speciesName = _bat.name
+            _speciesToUse.forEach(function(_species, index) {
+                if(req.session.myData.speciesTempAnswer == _species.id){
+                    req.session.myData.selectedHabitat.speciesID = _species.id
+                    req.session.myData.selectedHabitat.speciesName = _species.name
                 }
             });
 
-            req.session.myData.speciesBatTempAnswer = ""
+            req.session.myData.speciesTempAnswer = ""
 
             //Habitat query string
             var _habitatQS = ''
@@ -1904,17 +1906,22 @@ module.exports = function (router,_myData) {
 
         req.session.myData.habitatUsesAnswersTemp = req.body.habitatUses
 
+        var _habitatUsesToUse = req.session.myData.roostUses3
+        if(req.session.myData.selectedApplication.type == "a24"){
+            _habitatUsesToUse = req.session.myData.settUses
+        }
+
         if(req.session.myData.includeValidation == "false"){
             if(req.session.myData.habitatUsesAnswersTemp == "_unchecked"){
-                req.session.myData.habitatUsesAnswersTemp = "habitatUses-1"
+                req.session.myData.habitatUsesAnswersTemp = _habitatUsesToUse[0].id
             } else {
-                req.session.myData.habitatUsesAnswersTemp = req.session.myData.habitatUsesAnswersTemp || "habitatUses-1"
+                req.session.myData.habitatUsesAnswersTemp = req.session.myData.habitatUsesAnswersTemp || _habitatUsesToUse[0].id
             }
         }
         if(req.session.myData.habitatUsesAnswersTemp == "_unchecked"){
             req.session.myData.validationError = "true"
             req.session.myData.validationErrors.habitatUses = {
-                "anchor": "habitatUses-1",
+                "anchor": _habitatUsesToUse[0].id,
                 "message": "[error message]"
             }
         }
@@ -1929,10 +1936,6 @@ module.exports = function (router,_myData) {
 
             //Set selected habitat uses
             req.session.myData.selectedHabitat.habitatUses = []
-            var _habitatUsesToUse = req.session.myData.roostUses3
-            if(req.session.myData.selectedApplication.type == "a24"){
-                _habitatUsesToUse = req.session.myData.settUses
-            }
             _habitatUsesToUse.forEach(function(_habitatUse, index) {
                 if(req.session.myData.habitatUsesAnswersTemp.indexOf(_habitatUse.id.toString()) != -1){
                     req.session.myData.selectedHabitat.habitatUses.push(_habitatUse)
@@ -1961,7 +1964,7 @@ module.exports = function (router,_myData) {
     });
 
 
-    // BAT Numbers
+    // Species Numbers
     router.get('/' + version + '/habitat-numbers', function (req, res) {
         res.render(version + '/habitat-numbers', {
             myData:req.session.myData
@@ -1984,7 +1987,7 @@ module.exports = function (router,_myData) {
             req.session.myData.validationError = "true"
             req.session.myData.validationErrors.numberUsing = {
                 "anchor": "numberUsing",
-                "message": "[error message for " + _bat.name + "]"
+                "message": "[error message]"
             }
         }
 
@@ -2079,17 +2082,22 @@ module.exports = function (router,_myData) {
 
         req.session.myData.activitiesAnswersTemp = req.body.habitatActivities
 
+        var _habitatActivitiesToUse = req.session.myData.batActivities3
+        if(req.session.myData.selectedApplication.type == "a24"){
+            _habitatActivitiesToUse = req.session.myData.badgerActivities
+        }
+
         if(req.session.myData.includeValidation == "false"){
             if(req.session.myData.activitiesAnswersTemp == "_unchecked"){
-                req.session.myData.activitiesAnswersTemp = "_batActivity-1"
+                req.session.myData.activitiesAnswersTemp = _habitatActivitiesToUse[0].id
             } else {
-                req.session.myData.activitiesAnswersTemp = req.session.myData.activitiesAnswersTemp || "_batActivity-1"
+                req.session.myData.activitiesAnswersTemp = req.session.myData.activitiesAnswersTemp || _habitatActivitiesToUse[0].id
             }
         }
         if(req.session.myData.activitiesAnswersTemp == "_unchecked"){
             req.session.myData.validationError = "true"
             req.session.myData.validationErrors.habitatActivities = {
-                "anchor": "habitatActivities-1",
+                "anchor": _habitatActivitiesToUse[0].id,
                 "message": "[error message]"
             }
         }
@@ -2104,10 +2112,6 @@ module.exports = function (router,_myData) {
 
             //Set selected bat activties
             req.session.myData.selectedHabitat.activities = []
-            var _habitatActivitiesToUse = req.session.myData.batActivities3
-            if(req.session.myData.selectedApplication.type == "a24"){
-                _habitatActivitiesToUse = req.session.myData.badgerActivities
-            }
             _habitatActivitiesToUse.forEach(function(_habitatActivity, index) {
                 if(req.session.myData.activitiesAnswersTemp.indexOf(_habitatActivity.id.toString()) != -1){
                     req.session.myData.selectedHabitat.activities.push(_habitatActivity)
