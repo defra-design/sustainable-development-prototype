@@ -554,10 +554,8 @@ module.exports = function (router,_myData) {
         req.session.myData.testdata = 'false'
         req.session.myData.testRoost = {
             "id": 123456789,
-            "species": {
-                "id": req.session.myData.batSpecies2[0].id,
-                "name": req.session.myData.batSpecies2[0].name
-            },
+            "speciesID": req.session.myData.batSpecies2[0].id,
+            "speciesName": req.session.myData.batSpecies2[0].name,
             "numberUsing": "5",
             "habitatUses": [
                 JSON.parse(JSON.stringify(req.session.myData.roostUses3[0])),
