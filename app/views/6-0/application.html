@@ -102,10 +102,14 @@ Licence application
                         <br>
                         {% if _selectedApplication.siteAddress == "select" %}
                         <!-- No address listed -->
+                            Oxford<br>
+                            Oxfordshire<br>
+                            {{myData.selectedApplication.sitePostcode}}
                         {% else %}
-                        {{_selectedApplication.siteAddress}}<br>
-                        Oxford<br>
-                        {{_selectedApplication.sitePostcode}}
+                            {{_selectedApplication.siteAddress}}<br>
+                            Oxford<br>
+                            Oxfordshire<br>
+                            {{_selectedApplication.sitePostcode}}
                         {% endif %}
                     {% endif %}
                 </dd>
