@@ -66,7 +66,11 @@
                         {{myData.selectedApplication.ecologistHasCompany}}
                     </dd>
                     <dd class="govuk-summary-list__actions">
+                        {% if myData.selectedApplicant.companies.length > 0 %}
                         <a class="govuk-link govuk-link--no-visited-state" href="ecologist-companies?cya=true">
+                        {% else %}
+                        <a class="govuk-link govuk-link--no-visited-state" href="ecologist-company?cya=true">
+                        {% endif %}
                             Change<span class="govuk-visually-hidden"></span>
                         </a>
                     </dd>
@@ -81,12 +85,38 @@
                         {{myData.selectedApplication.ecologistCompany}}
                     </dd>
                     <dd class="govuk-summary-list__actions">
+                        {% if myData.selectedApplicant.companies.length > 0 %}
                         <a class="govuk-link govuk-link--no-visited-state" href="ecologist-companies?cya=true">
+                        {% else %}
+                        <a class="govuk-link govuk-link--no-visited-state" href="ecologist-company?cya=true">
+                        {% endif %}
                             Change<span class="govuk-visually-hidden"></span>
                         </a>
                     </dd>
                 </div>
                 {% endif %}
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        {% if myData.selectedApplication.userIsApplicant == "Yes" %}
+                            Your email address
+                        {% else %}
+                            {{myData.selectedApplication.ecologistName}}’s email address
+                        {% endif %}
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{myData.selectedApplication.ecologistEmail}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        {% if myData.selectedApplicant.emails.length > 0 %}
+                        <a class="govuk-link govuk-link--no-visited-state" href="ecologist-emails?cya=true">
+                        {% else %}
+                        <a class="govuk-link govuk-link--no-visited-state" href="ecologist-email?cya=true">
+                        {% endif %}
+                            Change<span class="govuk-visually-hidden"></span>
+                        </a>
+                    </dd>
+                </div>
 
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">

@@ -69,6 +69,8 @@ module.exports = function (router,_myData) {
 
     function setSelectedApplication(req, _applicationID){
 
+        // console.log("entered setSelectedApplication")
+
         if(_applicationID){
             var _existingApplication = req.session.myData.applications.find(obj => {return obj.id.toString() === _applicationID.toString()})
             if(_existingApplication){
@@ -79,6 +81,7 @@ module.exports = function (router,_myData) {
                 req.session.myData.selectedApplication = req.session.myData.tempApplication
             }
             req.session.myData.application = req.session.myData.selectedApplication.id
+            // console.log("application = " + req.session.myData.application)
         }
 
         setServiceName(req)
@@ -262,9 +265,10 @@ module.exports = function (router,_myData) {
     
 
     function reset(req){
+        // console.log("entered reset")
         req.session.myData = JSON.parse(JSON.stringify(_myData))
 
-        //Tasklist
+        // Tasklist
         // 1 = purpose
         // 2 = application details
         // 3 = send
@@ -326,6 +330,7 @@ module.exports = function (router,_myData) {
                 "applicantName": "John Smith", 
                 "applicantHasCompany": "No", 
                 "applicantCompany": "", 
+                "applicantEmail": "jsmith37@gmail.com", 
                 "applicantAddress": "2 High Street", 
                 "applicantAddress1": "2 High Street", 
                 "applicantAddress2": "", 
@@ -337,6 +342,7 @@ module.exports = function (router,_myData) {
                 "ecologistName": "Margaret Rice", 
                 "ecologistHasCompany": "No", 
                 "ecologistCompany": "", 
+                "ecologistEmail": "contact@riceltd.co.uk", 
                 "ecologistAddress": "9 High Street", 
                 "ecologistAddress1": "9 High Street", 
                 "ecologistAddress2": "", 
@@ -427,7 +433,16 @@ module.exports = function (router,_myData) {
                     "company": "Eco Solutions Limited"
                 }
             ],
-            addresses: [
+            "emails": [
+                //For each additional email added against this user
+                {
+                    "email": "d_smith@gmail.com"
+                },
+                {
+                    "email": "info@ecosolutions.com"
+                }
+            ],
+            "addresses": [
                 //For each additional address added against this user
                 {
                     "address1": "1 London Road",
@@ -448,7 +463,16 @@ module.exports = function (router,_myData) {
                         "company": "Rice Ltd"
                     }
                 ],
-                addresses: [
+                "emails": [
+                    //For each additional email added against this user
+                    {
+                        "email": "marrice@outlook.com"
+                    },
+                    {
+                        "email": "contact@riceltd.co.uk"
+                    }
+                ],
+                "addresses": [
                     {
                         "address1": "9 High Street",
                         "address2": "",
@@ -468,7 +492,16 @@ module.exports = function (router,_myData) {
                         "company": "20 Capital Ltd"
                     }
                 ],
-                addresses: [
+                "emails": [
+                    //For each additional email added against this user
+                    {
+                        "email": "jane_doe@outlook.com"
+                    },
+                    {
+                        "email": "customercare@20capital.co.uk"
+                    }
+                ],
+                "addresses": [
                     {
                         "address1": "20 High Street",
                         "address2": "",
@@ -485,7 +518,13 @@ module.exports = function (router,_myData) {
                         "company": "Smith Developments Limited"
                     }
                 ],
-                addresses: [
+                "emails": [
+                    //For each additional email added against this user
+                    {
+                        "email": "jsmith37@gmail.com"
+                    }
+                ],
+                "addresses": [
                     {
                         "address1": "2 High Street",
                         "address2": "",
@@ -530,6 +569,7 @@ module.exports = function (router,_myData) {
 
         //Default answers
         req.session.myData.application = "2021-12345-EPS-MIT"
+        // console.log("application = " + req.session.myData.application)
 
         req.session.myData.newApplication = 
             {
@@ -600,6 +640,12 @@ module.exports = function (router,_myData) {
 
     // Every GET and POST
     router.all('/' + version + '/*', function (req, res, next) {
+        // console.log("entered all *")
+
+        // console.log(req.session.myData)
+        // console.log("------------------")
+        // console.log("------------------")
+        // console.log("------------------")
         if(!req.session.myData || req.query.r) {
             reset(req)
         }
@@ -627,6 +673,7 @@ module.exports = function (router,_myData) {
 
         //Selected application
         req.session.myData.application = req.query.application || req.session.myData.application
+        // console.log("application = " + req.session.myData.application)
         setSelectedApplication(req,req.session.myData.application)
 
         //Selected habitat
@@ -680,6 +727,7 @@ module.exports = function (router,_myData) {
             
             req.session.myData.selectedApplication = req.session.myData.tempApplication
             req.session.myData.application = _appID
+            // console.log("application = " + req.session.myData.application)
 
             setServiceName(req)
             updateTasklist(req)
@@ -726,6 +774,19 @@ module.exports = function (router,_myData) {
 
     // });
 
+
+    // Defra ID signin
+    router.get('/' + version + '/defra-id-signin', function (req, res, next) {
+        req.session.myData.returnURL = req.query.returnURL || "tasklist"
+        res.render(version + '/defra-id-signin', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/defra-id-signin', function (req, res) {
+        req.session.myData.signedIn = "true"
+        res.redirect(301, '/' + version + '/' + req.session.myData.returnURL);
+    });
+
     // Signed out
     router.get('/' + version + '/signout', function (req, res, next) {
         
@@ -750,13 +811,17 @@ module.exports = function (router,_myData) {
         if(req.session.myData.signedIn == "true"){
             res.redirect(301, '/' + version + '/applications');
         } else {
-            if(req.headers.origin == 'http://localhost:3000') {
-                // Local
-                res.redirect(301, 'https://whoareyou:menotyou@identity-management-app.herokuapp.com/tasked/gov-gateway/login?returnUrl=http://localhost:3000/' + version + '/defraid-applications');
-            } else {
-                // Live
-                res.redirect(301, 'https://whoareyou:menotyou@identity-management-app.herokuapp.com/tasked/gov-gateway/login?returnUrl=https://defra:wildlife@sustainable-prototype.herokuapp.com/' + version + '/defraid-applications');
-            }
+
+            res.redirect(301, '/' + version + '/defra-id-signin?returnURL=applications');
+
+            //FOR LINKING TO ACTUAL DWFRA ID prototype - BUT this causes a bug with clearing myData when returning
+            // if(req.headers.origin == 'http://localhost:3000') {
+            //     // Local
+            //     res.redirect(301, 'https://whoareyou:menotyou@identity-management-app.herokuapp.com/tasked/gov-gateway/login?returnUrl=http://localhost:3000/' + version + '/defraid-applications');
+            // } else {
+            //     // Live
+            //     res.redirect(301, 'https://whoareyou:menotyou@identity-management-app.herokuapp.com/tasked/gov-gateway/login?returnUrl=https://defra:wildlife@sustainable-prototype.herokuapp.com/' + version + '/defraid-applications');
+            // }
         }
 
     });
@@ -1069,13 +1134,17 @@ module.exports = function (router,_myData) {
         if(req.session.myData.signedIn == "true"){
             res.redirect(301, '/' + version + '/tasklist');
         } else {
-            if(req.headers.origin == 'http://localhost:3000') {
-                // Local
-                res.redirect(301, 'https://whoareyou:menotyou@identity-management-app.herokuapp.com/tasked/gov-gateway/login?returnUrl=http://localhost:3000/' + version + '/defraid-tasklist');
-            } else {
-                // Live
-                res.redirect(301, 'https://whoareyou:menotyou@identity-management-app.herokuapp.com/tasked/gov-gateway/login?returnUrl=https://defra:wildlife@sustainable-prototype.herokuapp.com/' + version + '/defraid-tasklist');
-            }
+
+            res.redirect(301, '/' + version + '/defra-id-signin?returnURL=tasklist');
+
+            //FOR LINKING TO ACTUAL DWFRA ID prototype - BUT this causes a bug with clearing myData when returning
+            // if(req.headers.origin == 'http://localhost:3000') {
+            //     // Local
+            //     res.redirect(301, 'https://whoareyou:menotyou@identity-management-app.herokuapp.com/tasked/gov-gateway/login?returnUrl=http://localhost:3000/' + version + '/defraid-tasklist');
+            // } else {
+            //     // Live
+            //     res.redirect(301, 'https://whoareyou:menotyou@identity-management-app.herokuapp.com/tasked/gov-gateway/login?returnUrl=https://defra:wildlife@sustainable-prototype.herokuapp.com/' + version + '/defraid-tasklist');
+            // }
         }
 
     });
@@ -2766,6 +2835,7 @@ module.exports = function (router,_myData) {
                 //Start new one
                 req.session.myData.selectedApplication.applicantName = ""
                 req.session.myData.selectedApplication.applicantHasCompany = ""
+                req.session.myData.selectedApplication.applicantEmail = ""
                 req.session.myData.selectedApplication.applicantCompany = ""
                 req.session.myData.selectedApplication.applicantAddress = ""
                 res.redirect(301, '/' + version + '/applicant-name');
@@ -2873,12 +2943,12 @@ module.exports = function (router,_myData) {
             if(req.session.myData.applicantCompanies == "changeCompany"){
                 res.redirect(301, '/' + version + '/applicant-company' + _cyaQS);
             } else {
+                req.session.myData.selectedApplication.applicantHasCompany = "Yes" 
+                req.session.myData.selectedApplication.applicantCompany = req.session.myData.applicantCompanies
                 if(req.query.cya == "true"){
                     res.redirect(301, '/' + version + '/cya-applicant');
                 } else {
-                    req.session.myData.selectedApplication.applicantHasCompany = "Yes" 
-                    req.session.myData.selectedApplication.applicantCompany = req.session.myData.applicantCompanies
-                    res.redirect(301, '/' + version + '/applicant-addresses');
+                    res.redirect(301, '/' + version + '/applicant-emails');
                 }
             }
             
@@ -2929,6 +2999,108 @@ module.exports = function (router,_myData) {
 
             req.session.myData.applicantHasCompanyTempAnswer = ""
             req.session.myData.applicantCompanyTempAnswer = ""
+
+            // redirect to address list if using an existing applicant name
+            var _existingApplicant = req.session.myData.applicants.find(obj => {return obj.name.toString() === req.session.myData.selectedApplication.applicantName.toString()});
+
+            if(req.query.cya == "true"){
+                res.redirect(301, '/' + version + '/cya-applicant');
+            } else {
+                if(req.session.myData.selectedApplication.userIsApplicant == "Yes" || _existingApplicant){
+                    // go to new applicant email list is 1 or more saved emails on this user
+                    res.redirect(301, '/' + version + '/applicant-emails');
+                } else {
+                    res.redirect(301, '/' + version + '/applicant-email');
+                }
+            }
+
+        }
+
+    });
+
+    // Applicant emails
+    router.get('/' + version + '/applicant-emails', function (req, res) {
+        res.render(version + '/applicant-emails', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/applicant-emails', function (req, res) {
+
+        req.session.myData.applicantEmailsTempAnswer = req.body.applicantEmails
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.applicantEmailsTempAnswer = req.body.applicantEmails || "changeEmail"
+        }
+        if(!req.session.myData.applicantEmailsTempAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.applicantEmailsAnswer = {
+                "anchor": "",
+                "message": "[error message]"
+            }
+        }
+        
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/applicant-emails', {
+                myData: req.session.myData
+            });
+        } else {
+
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
+
+            req.session.myData.applicantEmails = req.session.myData.applicantEmailsTempAnswer
+            req.session.myData.applicantEmailsTempAnswer = ""
+
+            var _cyaQS = ""
+            if(req.query.cya == "true"){
+                _cyaQS = "?cya=true"
+            }
+
+            if(req.session.myData.applicantEmails == "changeEmail"){
+                res.redirect(301, '/' + version + '/applicant-email' + _cyaQS);
+            } else {
+                req.session.myData.selectedApplication.applicantEmail = req.session.myData.applicantEmails
+                if(req.query.cya == "true"){
+                    res.redirect(301, '/' + version + '/cya-applicant');
+                } else {
+                    res.redirect(301, '/' + version + '/applicant-addresses');
+                }
+            }
+            
+        }
+    });
+
+    // Applicant email
+    router.get('/' + version + '/applicant-email', function (req, res) {
+        res.render(version + '/applicant-email', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/applicant-email', function (req, res) {
+
+        req.session.myData.applicantEmailTempAnswer = req.body.applicantEmail
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.applicantEmailTempAnswer = req.session.myData.applicantEmailTempAnswer || "name@email.com"
+        }
+
+        if(!req.session.myData.applicantEmailTempAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.applicantEmail = {
+                "anchor": "applicantEmail",
+                "message": "[error message 2]"
+            }
+        }
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/applicant-email', {
+                myData:req.session.myData
+            });
+        } else {
+
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
+
+            req.session.myData.selectedApplication.applicantEmail = req.session.myData.applicantEmailTempAnswer
+            req.session.myData.applicantEmailTempAnswer = ""
 
             // redirect to address list if using an existing applicant name
             var _existingApplicant = req.session.myData.applicants.find(obj => {return obj.name.toString() === req.session.myData.selectedApplication.applicantName.toString()});
@@ -3388,6 +3560,7 @@ module.exports = function (router,_myData) {
                 req.session.myData.selectedApplication.ecologistName = ""
                 req.session.myData.selectedApplication.ecologistHasCompany = ""
                 req.session.myData.selectedApplication.ecologistCompany = ""
+                req.session.myData.selectedApplication.ecologistEmail = ""
                 req.session.myData.selectedApplication.ecologistAddress = ""
                 res.redirect(301, '/' + version + '/ecologist-name');
             } else {
@@ -3494,19 +3667,17 @@ module.exports = function (router,_myData) {
             if(req.session.myData.ecologistCompanies == "changeCompany"){
                 res.redirect(301, '/' + version + '/ecologist-company' + _cyaQS);
             } else {
+                req.session.myData.selectedApplication.ecologistHasCompany = "Yes" 
+                req.session.myData.selectedApplication.ecologistCompany = req.session.myData.ecologistCompanies
                 if(req.query.cya == "true"){
                     res.redirect(301, '/' + version + '/cya-ecologist');
                 } else {
-                    req.session.myData.selectedApplication.ecologistHasCompany = "Yes" 
-                    req.session.myData.selectedApplication.ecologistCompany = req.session.myData.ecologistCompanies
-                    res.redirect(301, '/' + version + '/ecologist-addresses');
+                    res.redirect(301, '/' + version + '/ecologist-emails');
                 }
             }
             
         }
     });
-
-
 
     // Ecologist company
     router.get('/' + version + '/ecologist-company', function (req, res) {
@@ -3552,6 +3723,108 @@ module.exports = function (router,_myData) {
 
             req.session.myData.ecologistHasCompanyTempAnswer = ""
             req.session.myData.ecologistCompanyTempAnswer = ""
+
+            // redirect to address list if using an existing ecologist name
+            var _existingEcologist = req.session.myData.ecologists.find(obj => {return obj.name.toString() === req.session.myData.selectedApplication.ecologistName.toString()});
+
+            if(req.query.cya == "true"){
+                res.redirect(301, '/' + version + '/cya-ecologist');
+            } else {
+                if(req.session.myData.selectedApplication.userIsEcologist == "Yes" || _existingEcologist){
+                    // go to new ecologist email list is 1 or more saved emails on this user
+                    res.redirect(301, '/' + version + '/ecologist-emails');
+                } else {
+                    res.redirect(301, '/' + version + '/ecologist-email');
+                }
+            }
+
+        }
+
+    });
+
+    // Ecologist emails
+    router.get('/' + version + '/ecologist-emails', function (req, res) {
+        res.render(version + '/ecologist-emails', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/ecologist-emails', function (req, res) {
+
+        req.session.myData.ecologistEmailsTempAnswer = req.body.ecologistEmails
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.ecologistEmailsTempAnswer = req.body.ecologistEmails || "changeEmail"
+        }
+        if(!req.session.myData.ecologistEmailsTempAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.ecologistEmailsAnswer = {
+                "anchor": "",
+                "message": "[error message]"
+            }
+        }
+        
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/ecologist-emails', {
+                myData: req.session.myData
+            });
+        } else {
+
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
+
+            req.session.myData.ecologistEmails = req.session.myData.ecologistEmailsTempAnswer
+            req.session.myData.ecologistEmailsTempAnswer = ""
+
+            var _cyaQS = ""
+            if(req.query.cya == "true"){
+                _cyaQS = "?cya=true"
+            }
+
+            if(req.session.myData.ecologistEmails == "changeEmail"){
+                res.redirect(301, '/' + version + '/ecologist-email' + _cyaQS);
+            } else {
+                req.session.myData.selectedApplication.ecologistEmail = req.session.myData.ecologistEmails
+                if(req.query.cya == "true"){
+                    res.redirect(301, '/' + version + '/cya-ecologist');
+                } else {
+                    res.redirect(301, '/' + version + '/ecologist-addresses');
+                }
+            }
+            
+        }
+    });
+
+    // Ecologist email
+    router.get('/' + version + '/ecologist-email', function (req, res) {
+        res.render(version + '/ecologist-email', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/ecologist-email', function (req, res) {
+
+        req.session.myData.ecologistEmailTempAnswer = req.body.ecologistEmail
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.ecologistEmailTempAnswer = req.session.myData.ecologistEmailTempAnswer || "name@email.com"
+        }
+
+        if(!req.session.myData.ecologistEmailTempAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.ecologistEmail = {
+                "anchor": "ecologistEmail",
+                "message": "[error message]"
+            }
+        }
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/ecologist-email', {
+                myData:req.session.myData
+            });
+        } else {
+
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
+
+            req.session.myData.selectedApplication.ecologistEmail = req.session.myData.ecologistEmailTempAnswer
+            req.session.myData.ecologistEmailTempAnswer = ""
 
             // redirect to address list if using an existing ecologist name
             var _existingEcologist = req.session.myData.ecologists.find(obj => {return obj.name.toString() === req.session.myData.selectedApplication.ecologistName.toString()});
