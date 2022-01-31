@@ -1,5 +1,7 @@
 {% extends "layout.html" %}
 
+{% set _pageID = "CD15 - Work type" %}
+
 {% set serviceName = myData.serviceName %}
 
 {% set _inError = myData.validationError == "true" %}
@@ -57,12 +59,12 @@
 
                     {% set _selected = myData.selectedApplication.categoryBat.id %}
 
-                    {% for _categoryBat in myData.workCategories %}
+                    {% for _category in myData.workCategories %}
 
                         <div class="govuk-radios__item">
-                            <input {% if _selected == _categoryBat.id %}checked{% endif %} class="govuk-radios__input" id="{{_categoryBat.id}}" name="categoryBat" type="radio" value="{{_categoryBat.id}}" >
-                            <label class="govuk-label govuk-radios__label" for="{{_categoryBat.id}}">
-                                {{_categoryBat.name}}
+                            <input {% if _selected == _category.id %}checked{% endif %} class="govuk-radios__input" id="{{_category.id}}" name="categoryBat" type="radio" value="{{_category.id}}" >
+                            <label class="govuk-label govuk-radios__label" for="{{_category.id}}">
+                                {{_category.name}}
                             </label>
                         </div>
 
