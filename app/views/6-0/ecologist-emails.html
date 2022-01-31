@@ -49,6 +49,14 @@
                         </h1>
                     </legend>
 
+                    <div class="govuk-hint">
+                        {% if myData.selectedApplication.userIsEcologist == "Yes" %}
+                            We’ll only use this to contact you about the application.
+                        {% else %}
+                            We’ll only use this to contact {{myData.selectedApplication.ecologistName}} about the application.
+                        {% endif %}
+                    </div>
+
                     {% if _inError %}
                     <span class="govuk-error-message">
                         <span class="govuk-visually-hidden">Error:</span>

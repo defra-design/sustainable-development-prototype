@@ -49,15 +49,25 @@
                 <div class="govuk-form-group {% if myData.validationErrors.habitatUses %}govuk-form-group--error{% endif %} govuk-!-margin-bottom-8">
                     <fieldset class="govuk-fieldset" >
 
+                        {% set _habitatSelectionType = myData.selectedApplication.habitatType %}
+
                         <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
                             <h1 class="govuk-fieldset__heading">
-                                What are the {{_speciesType}}s using this {{_habitatType}} for?
+                                {% if _habitatSelectionType == "single" %}
+                                    What type of {{_habitatType}} is it?
+                                {% else %}
+                                    What are the {{_speciesType}}s using this {{_habitatType}} for?
+                                {% endif %}
                             </h1>
                         </legend>
 
+                        {% if _habitatSelectionType == "single" %}
+                        <!-- nothing -->
+                        {% else %}
                         <div class="govuk-hint">
                             Select all that apply.
                         </div>
+                        {% endif %}
 
                         {% if myData.validationErrors.habitatUses %}
                         <span class="govuk-error-message">
@@ -66,8 +76,12 @@
                         </span>
                         {% endif %}
 
-                        <div class="govuk-checkboxes" data-module="govuk-checkboxes">
-
+                        {% if _habitatSelectionType == "single" %}
+                            <div class="govuk-radios" data-module="govuk-radios">
+                        {% else %}
+                            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                        {% endif %}
+                        
                             {% set _habitatUses = myData.roostUses3 %}
                             {% if myData.selectedApplication.type == "a24" %}
                                 {% set _habitatUses = myData.settUses %}
@@ -84,13 +98,24 @@
                                     {% endfor %}
                                 {% endif %}
 
-                                <div class="govuk-checkboxes__item">
+                                {% if _habitatSelectionType == "single" %}
+                                    <div class="govuk-radios__item">
+                                {% else %}
+                                    <div class="govuk-checkboxes__item">
+                                {% endif %}
 
-                                    <input {% if _selected %}checked{% endif %} class="govuk-checkboxes__input" id="{{_habitatUse.id}}" name="habitatUses" type="checkbox" value="{{_habitatUse.id}}" >
-                                    <label class="govuk-label govuk-checkboxes__label" for="{{_habitatUse.id}}">
-                                    {{_habitatUse.name}}
-                                    </label>
-
+                                    {% if _habitatSelectionType == "single" %}
+                                        <input {% if _selected %}checked{% endif %} class="govuk-radios__input" id="{{_habitatUse.id}}" name="habitatUses" type="radio" value="{{_habitatUse.id}}">
+                                        <label class="govuk-label govuk-radios__label" for="{{_habitatUse.id}}">
+                                            {{_habitatUse.name}}
+                                        </label>
+                                    {% else %}
+                                        <input {% if _selected %}checked{% endif %} class="govuk-checkboxes__input" id="{{_habitatUse.id}}" name="habitatUses" type="checkbox" value="{{_habitatUse.id}}" >
+                                        <label class="govuk-label govuk-checkboxes__label" for="{{_habitatUse.id}}">
+                                            {{_habitatUse.name}}
+                                        </label>
+                                    {% endif %}
+                                    
                                 </div>
 
                             {% endfor %}

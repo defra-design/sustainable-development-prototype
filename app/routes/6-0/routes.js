@@ -296,6 +296,7 @@ module.exports = function (router,_myData) {
             {
                 "id": "2021-12345-EPS-MIT", 
                 "type": "a13",
+                "habitatType": "multple",
                 "new": false,
                 "status": "inprogress",
                 "tasklist": JSON.parse(JSON.stringify(req.session.myData.tasklist)),
@@ -370,6 +371,7 @@ module.exports = function (router,_myData) {
             {
                 "id": "2021-45678-EPS-MIT",
                 "type": "a13",
+                "habitatType": "multple",
                 "new": false,
                 "status": "submitted",
                 "tasklist": JSON.parse(JSON.stringify(req.session.myData.tasklist)),
@@ -386,6 +388,7 @@ module.exports = function (router,_myData) {
             {
                 "id": "2021-83653-EPS-MIT",
                 "type": "a13",
+                "habitatType": "multple",
                 "new": false,
                 "status": "granted",
                 "tasklist": JSON.parse(JSON.stringify(req.session.myData.tasklist)),
@@ -575,6 +578,7 @@ module.exports = function (router,_myData) {
             {
                 "id": Math.floor(100000 + Math.random() * 900000),
                 "type": req.session.myData.licenceType,
+                "habitatType": "multple",
                 "new": true,
                 "status": "notstarted",
                 "starteddate": new Date(),
@@ -713,15 +717,28 @@ module.exports = function (router,_myData) {
 
         //Start new application
         if(req.query.new){
+
+            //Reference number
             var _year = new Date().getFullYear(),
                 _randomID = Math.floor(10000 + Math.random() * 90000),
-                _appID = _year + "-" + _randomID + "-EPS-MIT"
+                _suffix = "-EPS-MIT"
+            if(req.session.myData.licenceType == "a24"){
+                _suffix = "-SPM-WLM"
+            }
+            var _appID = _year + "-" + _randomID + _suffix
+
+            //Habitat type (checkboxes or radios)
+            var _habitatType = "multiple"
+            if(req.session.myData.licenceType == "a24"){
+                _habitatType = "single"
+            }
 
             //Used until passes eligibility
             req.session.myData.tempApplication = JSON.parse(JSON.stringify(req.session.myData.newApplication))
             req.session.myData.tempApplication.id = _appID
             req.session.myData.tempApplication.status = "inprogress"
             req.session.myData.tempApplication.type = req.session.myData.licenceType
+            req.session.myData.tempApplication.habitatType = _habitatType
             req.session.myData.tempApplication.starteddate = new Date()
             req.session.myData.tempApplication.lastsaveddate = new Date()
             
@@ -1973,19 +1990,22 @@ module.exports = function (router,_myData) {
 
         req.session.myData.habitatUsesAnswersTemp = req.body.habitatUses
 
+        // if radios then its undefined
+        // if checkboxes then its _unchecked
+
         var _habitatUsesToUse = req.session.myData.roostUses3
         if(req.session.myData.selectedApplication.type == "a24"){
             _habitatUsesToUse = req.session.myData.settUses
         }
 
         if(req.session.myData.includeValidation == "false"){
-            if(req.session.myData.habitatUsesAnswersTemp == "_unchecked"){
+            if(req.session.myData.habitatUsesAnswersTemp == "_unchecked" || !req.session.myData.habitatUsesAnswersTemp){
                 req.session.myData.habitatUsesAnswersTemp = _habitatUsesToUse[0].id
             } else {
                 req.session.myData.habitatUsesAnswersTemp = req.session.myData.habitatUsesAnswersTemp || _habitatUsesToUse[0].id
             }
         }
-        if(req.session.myData.habitatUsesAnswersTemp == "_unchecked"){
+        if(req.session.myData.habitatUsesAnswersTemp == "_unchecked" || !req.session.myData.habitatUsesAnswersTemp){
             req.session.myData.validationError = "true"
             req.session.myData.validationErrors.habitatUses = {
                 "anchor": _habitatUsesToUse[0].id,
@@ -2004,9 +2024,17 @@ module.exports = function (router,_myData) {
             //Set selected habitat uses
             req.session.myData.selectedHabitat.habitatUses = []
             _habitatUsesToUse.forEach(function(_habitatUse, index) {
-                if(req.session.myData.habitatUsesAnswersTemp.indexOf(_habitatUse.id.toString()) != -1){
-                    req.session.myData.selectedHabitat.habitatUses.push(_habitatUse)
+
+                if(req.session.myData.selectedApplication.habitatType == "multiple"){
+                    if(req.session.myData.habitatUsesAnswersTemp.indexOf(_habitatUse.id.toString()) != -1){
+                        req.session.myData.selectedHabitat.habitatUses.push(_habitatUse)
+                    }
+                } else if(req.session.myData.selectedApplication.habitatType == "single") {
+                    if(req.session.myData.habitatUsesAnswersTemp == _habitatUse.id.toString()){
+                        req.session.myData.selectedHabitat.habitatUses.push(_habitatUse)
+                    }
                 }
+                
             });
             req.session.myData.habitatUsesAnswersTemp = []
             
