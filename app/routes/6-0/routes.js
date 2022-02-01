@@ -602,8 +602,7 @@ module.exports = function (router,_myData) {
             "speciesName": req.session.myData.batSpecies2[0].name,
             "numberUsing": "5",
             "habitatUses": [
-                JSON.parse(JSON.stringify(req.session.myData.roostUses3[0])),
-                JSON.parse(JSON.stringify(req.session.myData.roostUses3[1]))
+                JSON.parse(JSON.stringify(req.session.myData.roostUses3[0]))
             ],
             "activities": [
                 JSON.parse(JSON.stringify(req.session.myData.batActivities3[0])),
@@ -615,8 +614,7 @@ module.exports = function (router,_myData) {
         req.session.myData.testSett = {
             "id": 123456789,
             "habitatUses": [
-                JSON.parse(JSON.stringify(req.session.myData.settUses[0])),
-                JSON.parse(JSON.stringify(req.session.myData.settUses[1]))
+                JSON.parse(JSON.stringify(req.session.myData.settUses[0]))
             ],
             "activities": [
                 JSON.parse(JSON.stringify(req.session.myData.badgerActivities[0])),
@@ -2506,7 +2504,7 @@ module.exports = function (router,_myData) {
             if(req.session.myData.siteAddresses == "changeAddress"){
 
                 req.session.myData.selectedApplication.siteAddress = ""
-                req.session.myData.selectedApplication.hasPostcode = "No"
+                req.session.myData.selectedApplication.hasPostcode = ""
                 req.session.myData.selectedApplication.sitePostcode = ""
 
                 res.redirect(301, '/' + version + '/site-postcode');
