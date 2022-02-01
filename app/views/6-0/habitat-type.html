@@ -6,6 +6,8 @@
 
 {% set _inError = myData.validationError == "true" %}
 
+{% set _habitatSelectionType = myData.selectedApplication.habitatType %}
+
 {% set _habitatType = "roost" %}
 {% set _speciesType = myData.selectedHabitat.speciesName + " bat" %}
 
@@ -15,7 +17,12 @@
 {% endif %}
 
 {% block pageTitle %} 
-{% if _inError %}Error: {% endif %}What are the {{_speciesType}}s using this {{_habitatType}} for?
+{% if _inError %}Error: {% endif %}
+{% if _habitatSelectionType == "single" %}
+    What type of {{_speciesType}} {{_habitatType}} is it?
+{% else %}
+    What are the {{_speciesType}}s using this {{_habitatType}} for?
+{% endif %}
 {% endblock %}
 
 {% block beforeContent %}
@@ -51,12 +58,10 @@
                 <div class="govuk-form-group {% if myData.validationErrors.habitatUses %}govuk-form-group--error{% endif %} govuk-!-margin-bottom-8">
                     <fieldset class="govuk-fieldset" >
 
-                        {% set _habitatSelectionType = myData.selectedApplication.habitatType %}
-
                         <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
                             <h1 class="govuk-fieldset__heading">
                                 {% if _habitatSelectionType == "single" %}
-                                    What type of {{_habitatType}} is it?
+                                    What type of {{_speciesType}} {{_habitatType}} is it?
                                 {% else %}
                                     What are the {{_speciesType}}s using this {{_habitatType}} for?
                                 {% endif %}
