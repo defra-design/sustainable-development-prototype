@@ -4279,16 +4279,4 @@ module.exports = function (router,_myData) {
         });
     });
 
-    // Licence
-    router.get('/' + version + '/licence', function (req, res) {
-
-        req.session.myData.signedIn = "true"
-
-        res.render(version + '/licence', {
-            myData:req.session.myData
-        });
-    });
-
-
-
 }
