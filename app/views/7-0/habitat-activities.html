@@ -1,0 +1,116 @@
+{% extends "layout.html" %}
+
+{% set _pageID = "CD81 - Habitat actions" %}
+
+{% set serviceName = myData.serviceName %}
+
+{% set _inError = myData.validationError == "true" %}
+
+{% set _habitatType = "roost" %}
+{% set _speciesType = myData.selectedHabitat.speciesName + " bat" %}
+
+{% if myData.selectedApplication.type == "a24" %}
+    {% set _habitatType = "sett" %}
+    {% set _speciesType = "badger" %}
+{% endif %}
+
+{% block pageTitle %} 
+{% if _inError %}Error: {% endif %}How will you affect the {{_speciesType}}s in this {{_habitatType}}?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {% if _inError %}
+        <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+            <h2 class="govuk-error-summary__title" id="error-summary-title">
+                There is a problem
+            </h2>
+            <div class="govuk-error-summary__body">
+                <ul class="govuk-list govuk-error-summary__list">
+                    {% for name, item in myData.validationErrors %}
+                    <li>
+                        <a href="#{{item.anchor}}">{{item.message}}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+
+		<form method="POST">
+            <div class="govuk-form-group">
+
+                <div class="govuk-form-group {% if myData.validationErrors.habitatActivities %}govuk-form-group--error{% endif %} govuk-!-margin-bottom-8">
+                    <fieldset class="govuk-fieldset" >
+                        
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+                            <h1 class="govuk-fieldset__heading">
+                                How will you affect the {{_speciesType}}s in this {{_habitatType}}?
+                            </h1>
+                        </legend>
+                        
+
+                        <div class="govuk-hint">
+                            Select all that apply.
+                        </div>
+
+                        {% if myData.validationErrors.habitatActivities %}
+                        <span class="govuk-error-message">
+                            <span class="govuk-visually-hidden">Error:</span>
+                            {{myData.validationErrors.habitatActivities.message}}
+                        </span>
+                        {% endif %}
+
+                        <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                            {% set _habitatActivities = myData.batActivities3 %}
+                            {% if myData.selectedApplication.type == "a24" %}
+                                {% set _habitatActivities = myData.badgerActivities %}
+                            {% endif %}
+
+                            {% for _habitatActivity in _habitatActivities %}
+
+                                {% set _selected = false %}
+                                {% if _inError != "true" %}
+                                    {% for _savedHabitatActivity in myData.selectedHabitat.activities %}
+                                        {% if _habitatActivity.id == _savedHabitatActivity.id %}
+                                            {% set _selected = true %}
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                                    
+                                <div class="govuk-checkboxes__item">
+
+                                    <input {% if _selected %}checked{% endif %} class="govuk-checkboxes__input" id="{{_habitatActivity.id}}" name="habitatActivities" type="checkbox" value="{{_habitatActivity.id}}" >
+                                    <label class="govuk-label govuk-checkboxes__label" for="{{_habitatActivity.id}}">
+                                    {{_habitatActivity.name}}
+                                    </label>
+
+                                </div>
+
+                            {% endfor %}
+                        </div>
+                    </fieldset>
+                </div>
+
+
+            </div>
+		
+            {{govukButton({
+                text: "Continue"
+            })}}
+
+        </form>
+
+	</div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,157 @@
+{% extends "layout.html" %}
+
+{% set _pageID = "CD46 - Ecologist address (manual)" %}
+
+{% set serviceName = myData.serviceName %}
+
+{% set _inError = myData.validationError == "true" %}
+
+{% block pageTitle %} 
+{% if _inError %}Error: {% endif %}TO DO
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+			{% if _inError %}
+            <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+                <h2 class="govuk-error-summary__title" id="error-summary-title">
+                    There is a problem
+                </h2>
+                <div class="govuk-error-summary__body">
+                    <ul class="govuk-list govuk-error-summary__list">
+                        {% for name, item in myData.validationErrors %}
+                        <li>
+                            <a href="#{{item.anchor}}">{{item.message}}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            {% endif %}
+
+	</div>
+</div>
+
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="POST">
+
+            <fieldset class="govuk-fieldset">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+                  <h1 class="govuk-fieldset__heading">
+                    {% if myData.selectedApplication.userIsEcologist == "Yes" %}
+                        What is your contact address?
+                    {% else %}
+                        What is {{myData.selectedApplication.ecologistName}}’s contact address?
+                    {% endif %}
+                  </h1>
+                </legend>
+              
+
+                {% set _valueEcologistAddress1 = myData.selectedApplication.ecologistAddress1 %}
+                {% if myData.validationErrors.ecologistAddress1 %}
+                    {% set _valueEcologistAddress1 = myData.ecologistAddress1TempAnswer %}
+                {% endif %}
+                <div class="govuk-form-group {% if myData.validationErrors.ecologistAddress1 %}govuk-form-group--error{% endif %}">
+                  <label class="govuk-label" for="ecologistAddress1">
+                    Building and street <span class="govuk-visually-hidden">line 1 of 2</span>
+                  </label>
+                    {% if myData.validationErrors.ecologistAddress1 %}
+                    <span class="govuk-error-message">
+                        <span class="govuk-visually-hidden">Error:</span>
+                        {{myData.validationErrors.ecologistAddress1.message}}
+                    </span>
+                    {% endif %}
+                  <input class="govuk-input {% if myData.validationErrors.ecologistAddress1 %}govuk-input--error{% endif %}" id="ecologistAddress1" name="ecologistAddress1" type="text" autocomplete="address-line1" value="{{_valueEcologistAddress1}}">
+                </div>
+              
+                {% set _valueEcologistAddress2 = myData.selectedApplication.ecologistAddress2 %}
+                {% if myData.validationErrors.ecologistAddress2 %}
+                    {% set _valueEcologistAddress2 = myData.ecologistAddress2TempAnswer %}
+                {% endif %}
+                <div class="govuk-form-group {% if myData.validationErrors.ecologistAddress2 %}govuk-form-group--error{% endif %}">
+                  <label class="govuk-label" for="ecologistAddress2">
+                    <span class="govuk-visually-hidden">Building and street line 2 of 2</span>
+                  </label>
+                  {% if myData.validationErrors.ecologistAddress2 %}
+                    <span class="govuk-error-message">
+                        <span class="govuk-visually-hidden">Error:</span>
+                        {{myData.validationErrors.ecologistAddress2.message}}
+                    </span>
+                    {% endif %}
+                  <input class="govuk-input {% if myData.validationErrors.ecologistAddress2 %}govuk-input--error{% endif %}" id="ecologistAddress2" name="ecologistAddress2" type="text" autocomplete="address-line2" value="{{_valueEcologistAddress2}}">
+                </div>
+              
+                {% set _valueEcologistAddress3 = myData.selectedApplication.ecologistAddress3 %}
+                {% if myData.validationErrors.ecologistAddress3 %}
+                    {% set _valueEcologistAddress3 = myData.ecologistAddress3TempAnswer %}
+                {% endif %}
+                <div class="govuk-form-group {% if myData.validationErrors.ecologistAddress3 %}govuk-form-group--error{% endif %}">
+                  <label class="govuk-label" for="ecologistAddress3">
+                    Town or city
+                  </label>
+                  {% if myData.validationErrors.ecologistAddress3 %}
+                    <span class="govuk-error-message">
+                        <span class="govuk-visually-hidden">Error:</span>
+                        {{myData.validationErrors.ecologistAddress3.message}}
+                    </span>
+                    {% endif %}
+                  <input class="govuk-input govuk-!-width-two-thirds {% if myData.validationErrors.ecologistAddress3 %}govuk-input--error{% endif %}" id="ecologistAddress3" name="ecologistAddress3" type="text" autocomplete="address-level2" value="{{_valueEcologistAddress3}}">
+                </div>
+              
+                {% set _valueEcologistAddress4 = myData.selectedApplication.ecologistAddress4 %}
+                {% if myData.validationErrors.ecologistAddress4 %}
+                    {% set _valueEcologistAddress4 = myData.ecologistAddress4TempAnswer %}
+                {% endif %}
+                <div class="govuk-form-group {% if myData.validationErrors.ecologistAddress4 %}govuk-form-group--error{% endif %}">
+                  <label class="govuk-label" for="ecologistAddress4">
+                    County
+                  </label>
+                  {% if myData.validationErrors.ecologistAddress4 %}
+                    <span class="govuk-error-message">
+                        <span class="govuk-visually-hidden">Error:</span>
+                        {{myData.validationErrors.ecologistAddress4.message}}
+                    </span>
+                    {% endif %}
+                  <input class="govuk-input govuk-!-width-two-thirds {% if myData.validationErrors.ecologistAddress4 %}govuk-input--error{% endif %}" id="ecologistAddress4" name="ecologistAddress4" type="text" value="{{_valueEcologistAddress4}}"></div>
+              
+                {% if myData.selectedApplication.ecologistHasPostcode != "false" %}
+                    {% set _valueEcologistPostcode = myData.selectedApplication.ecologistPostcode %}
+                    {% if myData.validationErrors.ecologistPostcode %}
+                        {% set _valueEcologistPostcode = myData.ecologistPostcodeTempAnswer %}
+                    {% endif %}
+                    <div class="govuk-form-group {% if myData.validationErrors.ecologistPostcode %}govuk-form-group--error{% endif %}">
+                    <label class="govuk-label" for="ecologistPostcode">
+                        Postcode
+                    </label>
+                    {% if myData.validationErrors.ecologistPostcode %}
+                        <span class="govuk-error-message">
+                            <span class="govuk-visually-hidden">Error:</span>
+                            {{myData.validationErrors.ecologistPostcode.message}}
+                        </span>
+                        {% endif %}
+                    <input class="govuk-input govuk-input--width-10 {% if myData.validationErrors.ecologistPostcode %}govuk-input--error{% endif %}" id="ecologistPostcode" name="ecologistPostcode" type="text" autocomplete="postal-code" value="{{_valueEcologistPostcode}}">
+                    </div>
+                {% endif %}
+              
+              </fieldset>
+
+            {{govukButton({
+                text: "Continue"
+            })}}
+
+        </form>
+
+	</div>
+</div>
+
+{% endblock %}

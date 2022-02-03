@@ -1,0 +1,124 @@
+{% extends "layout.html" %}
+
+{% set _pageID = "CD69 - Applicant addresses" %}
+
+{% set serviceName = myData.serviceName %}
+
+{% set _inError = myData.validationError == "true" %}
+
+{% block pageTitle %} 
+{% if _inError %}Error: {% endif %}TO DO
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        {% if _inError %}
+        <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+            <h2 class="govuk-error-summary__title" id="error-summary-title">
+                There is a problem
+            </h2>
+            <div class="govuk-error-summary__body">
+                <ul class="govuk-list govuk-error-summary__list">
+                    {% for name, item in myData.validationErrors %}
+                    <li>
+                        <a href="#{{item.anchor}}">{{item.message}}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+
+		<form method="POST">
+            <div class="govuk-form-group {% if _inError %}govuk-form-group--error{% endif %}">
+                <fieldset class="govuk-fieldset" >
+                    
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+                        <h1 class="govuk-fieldset__heading">
+                            {% if myData.selectedApplication.userIsApplicant == "Yes" %}
+                                What is your contact address?
+                            {% else %}
+                                What is {{myData.selectedApplication.applicantName}}’s contact address?
+                            {% endif %}
+                        </h1>
+                    </legend>
+
+                    {% if _inError %}
+                    <span class="govuk-error-message">
+                        <span class="govuk-visually-hidden">Error:</span>
+                        {{myData.validationErrors.applicantAddressesAnswer.message}}
+                    </span>
+                    {% endif %}
+
+                    <div class="govuk-radios" data-module="govuk-radios">
+
+                        <!-- {
+                            "address1": "1 London Road",
+                            "address2": "Moseley", //optional
+                            "address3": "Birmingham",
+                            "address4": "West Midlands",
+                            "postcode": "B32 1AP",
+                        } -->
+
+                        {% for _address in myData.selectedApplicant.addresses %}
+
+                            {% set _selected = false %}
+                            {% if _address.address1 == myData.selectedApplication.applicantAddress %}
+                                {% set _selected = true %}
+                            {% endif %}
+
+                            <div class="govuk-radios__item">
+                                <input {% if _selected == true %}checked{% endif %} class="govuk-radios__input" id="{{_address.address1}}" name="applicantAddresses" type="radio" value="{{_address.address1}}">
+                                <label class="govuk-label govuk-radios__label" for="{{_address.address1}}">
+                                    {{_address.address1}}<br>
+
+                                    {% if _address.address2 != "" %}
+                                    {{_address.address2}}<br>
+                                    {% endif %}
+
+                                    {{_address.address3}}<br>
+
+                                    {{_address.address4}}
+
+                                    {% if _address.postcode != "" %}
+                                    <br>{{_address.postcode}}
+                                    {% endif %}
+
+                                </label>
+                            </div>
+
+                        {% endfor %}
+
+                        <div class="govuk-radios__divider">or</div>
+
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="changeAddress" name="applicantAddresses" type="radio" value="changeAddress">
+                            <label class="govuk-label govuk-radios__label" for="changeAddress">
+                                Add a new address
+                            </label>
+                        </div>
+
+                    </div>
+
+                </fieldset>
+            </div>
+		
+            {{govukButton({
+                text: "Continue"
+            })}}
+
+        </form>
+
+	</div>
+</div>
+
+
+{% endblock %}

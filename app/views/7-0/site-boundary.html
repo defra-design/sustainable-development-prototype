@@ -1,0 +1,175 @@
+{% extends "layout.html" %}
+
+{% set _pageID = "CD28 - Draw boundary" %}
+
+{% set serviceName = myData.serviceName %}
+
+{% block pageTitle %} 
+Draw the area of planned activity
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% if _inError %}
+    <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+        <h2 class="govuk-error-summary__title" id="error-summary-title">
+            There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+            <ul class="govuk-list govuk-error-summary__list">
+                {% for name, item in myData.validationErrors %}
+                <li>
+                    <a href="#{{item.anchor}}">{{item.message}}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% endif %}
+
+    <h1 class="govuk-heading-xl">
+      Draw the area of planned activity
+    </h1>
+
+    <p class="govuk-body">Your drawing should include all areas where you plan to do activity, including mitigation.</p>
+
+  </div>
+</div>
+
+<!-- Filters -->
+<div class="govuk-grid-column-two-thirds sdds-panel sdds-panel-blocked govuk-!-margin-bottom-6" >
+
+	<div class="govuk-grid-row">
+		<div class="govuk-grid-column-two-thirds" >
+			<h3 class="govuk-heading-s govuk-!-margin-bottom-2">Find the location</h3>
+		</div>
+	</div>
+	
+	<div class="govuk-grid-row">
+    <form method="GET">
+      <div class="govuk-grid-column-two-thirds govuk-!-margin-bottom-4" id="filters" >
+        <div class="govuk-radios govuk-radios--small govuk-radios--conditional " data-module="govuk-radios">
+                  
+            <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="findlocation-1" name="findlocation" type="radio" value="place" data-aria-controls="conditional-place" {% if myData.findlocation == 'place' %}checked{% endif %}>
+                <label class="govuk-label govuk-radios__label" for="findlocation-1">
+                  Place or postcode
+                </label>
+            </div>
+
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-place">
+              <div class="govuk-form-group govuk-!-margin-bottom-5" >
+                <div class="search-wrapper govuk-form-group search-wrapper-das search-wrapper-das-small" >
+                    <span class="govuk-hint">
+                      For example, Bakewell or WA4 1AB
+                    </span>
+                    <div class="search-input-wrapper">
+                        <input type="search" value="{{myData.findlocationplace}}" id="search-location" name="location" title="Search" class="govuk-input ">
+                        <div class="search-input-submit-wrapper">
+                            <button type="submit" class="search-submit" id="search-location-submit">Enter location</button>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="findlocation-2" name="findlocation" type="radio" value="gridref" data-aria-controls="conditional-gridref" {% if myData.findlocation == 'gridref' %}checked{% endif %}>
+                <label class="govuk-label govuk-radios__label" for="findlocation-2">
+                  National Grid Reference
+                </label>
+            </div>
+
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-gridref">
+              <div class="govuk-form-group govuk-!-margin-bottom-5" >
+                <div class="search-wrapper govuk-form-group search-wrapper-das search-wrapper-das-small" >
+                    <span class="govuk-hint">
+                      For example, NY395557
+                    </span>
+                    <div class="search-input-wrapper">
+                        <input type="search" value="{{myData.findlocationgridref}}" id="search-gridref" name="gridref" title="Search" class="govuk-input ">
+                        <div class="search-input-submit-wrapper">
+                            <button type="submit" class="search-submit" id="search-gridref-submit">Enter location</button>
+                        </div>
+                    </div>
+                </div>
+              </div>
+          </div>
+
+        </div>
+      </div>
+    </form>
+	</div>
+
+</div>
+                
+
+<div class="govuk-grid-row">
+  
+    <div class="govuk-grid-column-full">
+
+      <div class="layerToggleContainer govuk-!-margin-bottom-2">
+          <fieldset class="govuk-fieldset" >
+            <div class="govuk-radios govuk-radios--inline govuk-radios--small">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="street-view" name="toggleView" type="radio" value="street-view" checked>
+                <label class="govuk-label govuk-radios__label" for="street-view">
+                  Street view
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="satellite-view" name="toggleView" type="radio" value="satellite-view" >
+                <label class="govuk-label govuk-radios__label" for="satellite-view">
+                  Satellite view
+                </label>
+              </div>
+            </div>
+          </fieldset>
+      </div>
+
+      <div class="map-container-2 govuk-form-group">
+        
+        <div id="map" class="map">
+
+          </div>
+          <div class="map-delete-area-container">
+            <button class="govuk-button govuk-button--secondary map-delete-area" data-module="govuk-button" name="delete-shape" value="delete-shape" id="deleteShapeBtn">
+              Delete area
+            </button>
+          </div>
+          
+        </div>
+
+	</div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <form method="POST">
+      <div class="govuk-form-group">
+        {{govukButton({
+            text: "Continue"
+        })}}
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block pageScripts %}
+<script>
+
+  mapV2({{myData.findlocation | dump | safe}})
+
+</script>
+{% endblock pageScripts %}

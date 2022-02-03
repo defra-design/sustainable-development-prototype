@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% set _pageID = "CD13 - Confirmation" %}
+
+{% set serviceName = myData.serviceName %}
+
+{% block pageTitle %} 
+Application sent
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    <!-- {% include "includes/back-link.html" %} -->
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        <div class="govuk-panel govuk-panel--confirmation">
+            <h1 class="govuk-panel__title">
+                Application sent
+            </h1>
+        </div>
+
+        <h2 class="govuk-heading-m">What happens next</h2>
+
+        <p class="govuk-body">Natural England will review your application and contact you if they need more information.</p>
+
+        {% if myData.selectedApplication.type == "a13" %}
+        <h2 class="govuk-heading-m">What you need to do</h2>
+
+        <p class="govuk-body">You must send the results of your bat survey and habitat assessment to your local environmental records centre (LERC).</p>
+        {% endif %}
+
+        <form method="POST">
+
+            {{govukButton({
+                text: "View applications"
+            })}}
+
+        </form>
+
+	</div>
+</div>
+
+{% endblock %}

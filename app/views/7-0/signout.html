@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% set _pageID = "CD64 - Signed out (Applicant)" %}
+
+{% set serviceName = myData.serviceName %}
+
+{% block pageTitle %} 
+You are signed out
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    <!-- {% include "includes/back-link.html" %} -->
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        <form method="POST">
+
+            <h1 class="govuk-heading-xl">
+                You are signed out
+            </h1>
+
+            <p class="govuk-body">
+                <a class="govuk-button govuk-link--no-visited-state" href="start">
+                    Start again
+                </a>
+            </p>
+
+        </form>
+
+	</div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,124 @@
+{% extends "layout.html" %}
+
+{% set _pageID = "CD29 - Check your answers (boundary)" %}
+
+{% set serviceName = myData.serviceName %}
+
+{% block pageTitle %} 
+[TO DO]
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+<style>
+    .map-example {
+        width:100%;
+    }
+</style>
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-xl">
+            Check your answers
+        </h1>
+
+            <dl class="govuk-summary-list">
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Site name
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{myData.selectedApplication.siteName}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="site-name?cya=true">
+                            Change<span class="govuk-visually-hidden"></span>
+                        </a>
+                    </dd>
+                </div>
+
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Site address
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {% if myData.selectedApplication.hasPostcode == "No" %}
+                            No postcode
+                        {% elif myData.selectedApplication.siteAddress == "select" %}
+                            Oxford<br>
+                            Oxfordshire<br>
+                            {{myData.selectedApplication.sitePostcode}}
+                        {% else %}
+                            {{myData.selectedApplication.siteAddress}}<br>
+                            Oxford<br>
+                            Oxfordshire<br>
+                            {{myData.selectedApplication.sitePostcode}}
+                        {% endif %}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        {% set _siteAddressLink = "site-postcode?cya=true" %}
+                        {% if myData.selectedApplication.tasklist.sections["5"] == "completed" %}
+                            {% set _siteAddressLink = "site-addresses?cya=true" %}
+                        {% endif %}
+                        <a class="govuk-link govuk-link--no-visited-state" href="{{_siteAddressLink}}">
+                            Change<span class="govuk-visually-hidden"></span>
+                        </a>
+                    </dd>
+                </div>
+
+
+                {% if myData.selectedApplication.siteMethod == "upload" %}
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Area of planned activity
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{myData.selectedApplication.siteUpload}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="site-method?cya=true">
+                            Change<span class="govuk-visually-hidden"></span>
+                        </a>
+                    </dd>
+                </div>
+                
+                {% else %}
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key" style="vertical-align: top;" >
+                        Area of planned activity
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <img src="/public/images/map-example-2.png" class="map-example">
+                    </dd>
+                    <dd class="govuk-summary-list__actions" style="vertical-align: top;">
+                        <a class="govuk-link govuk-link--no-visited-state" href="site-method?cya=true">
+                            Change<span class="govuk-visually-hidden"></span>
+                        </a>
+                    </dd>
+                </div>
+                {% endif %}
+
+            </dl>
+
+            <form method="POST">
+
+                <div class="govuk-form-group">
+                {{govukButton({
+                    text: "Confirm"
+                })}}
+                </div>
+
+            </form>
+
+	</div>
+</div>
+
+{% endblock %}

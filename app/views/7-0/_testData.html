@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% set serviceName = myData.serviceName %}
+
+{% block pageTitle %} 
+
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <p class="govuk-body" style="word-wrap:break-word">
+            User:<br>{{myData.user|dump(2)}}
+        </p>
+        <p class="govuk-body" style="word-wrap:break-word">
+            Stored ecologists:<br>{{myData.ecologists|dump(2)}}
+        </p>
+
+        <p class="govuk-body" style="word-wrap:break-word">
+            Selected Application:<br>{{myData.selectedApplication|dump(2)}}
+        </p>
+        <p class="govuk-body" style="word-wrap:break-word">
+            All applications:<br>{{myData.applications|dump(2)}}
+        </p>
+        <p class="govuk-body" style="word-wrap:break-word">
+            Base tasklist:<br>
+            {{myData.tasklist|dump}}
+        </p>
+
+        <p class="govuk-body"><a href="tasklist">Continue application</a></p>
+
+	</div>
+</div>
+
+
+{% endblock %}
