@@ -34,7 +34,7 @@
       {% if _showNotification %}
         {% if myData.notifications.type == "saved" %}
         <!-- Just saved -->
-        <!-- <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+        <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
           <div class="govuk-notification-banner__header">
             <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
               Success
@@ -44,9 +44,10 @@
             <h3 class="govuk-notification-banner__heading">
               Application saved
             </h3>
-            <p class="govuk-body" style="color: red">[TODO - explain here that the application will now auto save as you fill it out - and how to get back later].</p>
+            <p class="govuk-body">We will automatically save the details you enter on this application.</p>
+            <p class="govuk-body">Return to an existing application by selecting it from your <a class="govuk-link govuk-link--no-visited-state" href="applications">list of licence applications</a>.</p>
           </div>
-        </div> -->
+        </div>
         {% endif %}
       {% endif %}
 
@@ -64,16 +65,16 @@
       <p class="govuk-body {% if myData.applications.length < 1 or _notSignedIn %}govuk-!-margin-bottom-7{% endif %}" >You have completed {{_tasklist.completed}} of {{_tasklist.total}} sections.</p>
 
       {% if myData.selectedApplication.new == false %}
-      <h2 class="govuk-heading-s govuk-!-margin-bottom-2">Application saved</h2>
-      <p class="govuk-body" >Reference:<br>{{myData.selectedApplication.id}}</p>
+      <!-- <h2 class="govuk-heading-s govuk-!-margin-bottom-2">Application saved</h2> -->
+      <p class="govuk-body govuk-!-margin-bottom-7" >Reference:<br>{{myData.selectedApplication.id}}</p>
       {% endif %}
 
       {% if myData.applications.length > 0 and _signedIn %}
-      <p class="govuk-body govuk-!-margin-bottom-7">
+      <!-- <p class="govuk-body govuk-!-margin-bottom-7">
         <a class="govuk-link govuk-link--no-visited-state" href="applications">
             View applications
         </a>
-      </p>
+      </p> -->
       {% endif %}
 
       <ol class="app-task-list">
