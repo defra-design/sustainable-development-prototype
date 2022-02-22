@@ -15,7 +15,11 @@
 
 {% block beforeContent %}
     {% include "includes/alpha-banner.html" %}
-    {% include "includes/back-link.html" %}
+    {% if myData.selectedApplication.new == false %}
+      {% include "includes/back-save-link.html" %}
+    {% else %}
+      {% include "includes/back-link.html" %}
+    {% endif %}
 {% endblock %}
 
 {% set _tasklist = myData.selectedApplication.tasklist %}
@@ -24,6 +28,28 @@
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
+      {% set _showNotification = myData.showNotification == "true" %}
+
+      {% if _showNotification %}
+        {% if myData.notifications.type == "saved" %}
+        <!-- Just saved -->
+        <!-- <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+          <div class="govuk-notification-banner__header">
+            <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+              Success
+            </h2>
+          </div>
+          <div class="govuk-notification-banner__content">
+            <h3 class="govuk-notification-banner__heading">
+              Application saved
+            </h3>
+            <p class="govuk-body" style="color: red">[TODO - explain here that the application will now auto save as you fill it out - and how to get back later].</p>
+          </div>
+        </div> -->
+        {% endif %}
+      {% endif %}
+
       <h1 class="govuk-heading-xl">
         {% if myData.selectedApplication.type == "a14" %}
           Apply for a licence to do work that affects great crested newts

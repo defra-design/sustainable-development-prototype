@@ -12,7 +12,11 @@
 
 {% block beforeContent %}
     {% include "includes/alpha-banner.html" %}
-    {% include "includes/back-link.html" %}
+    {% if myData.selectedApplication.new == false %}
+      {% include "includes/back-save-link.html" %}
+    {% else %}
+      {% include "includes/back-link.html" %}
+    {% endif %}
 {% endblock %}
 
 {% block content %}

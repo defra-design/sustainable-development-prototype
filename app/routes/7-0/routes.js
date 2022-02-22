@@ -799,7 +799,13 @@ module.exports = function (router,_myData) {
     });
     router.post('/' + version + '/defra-id-signin', function (req, res) {
         req.session.myData.signedIn = "true"
-        res.redirect(301, '/' + version + '/' + req.session.myData.returnURL);
+
+        var _qs = ""
+        if(req.session.myData.returnURL == "tasklist"){
+            _qs = "?justsaved=true"
+        }
+
+        res.redirect(301, '/' + version + '/' + req.session.myData.returnURL + _qs);
     });
 
     // Signed out
@@ -812,7 +818,6 @@ module.exports = function (router,_myData) {
         });
 
     });
-
 
     // Start page
     router.get('/' + version + '/start', function (req, res) {
@@ -894,6 +899,10 @@ module.exports = function (router,_myData) {
 
     // Tasklist bat
     router.get('/' + version + '/tasklist', function (req, res) {
+        if(req.query.justsaved == "true"){
+            req.session.myData.notifications.type = "saved"
+            req.session.myData.showNotification = "true"
+        }
         res.render(version + '/tasklist', {
             myData:req.session.myData
         });
