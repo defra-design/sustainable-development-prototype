@@ -26,14 +26,21 @@ You’re eligible to apply for a licence
                 You’re eligible to apply for a licence
             </h1>
 
+            <h2 class="govuk-heading-m">Save application</h2>
+
             {% if _signedIn %}
-                <!-- no content -->
+                <p class="govuk-body">To be able to return to your application later, you need to save it to your account.</p>
             {% else %}
                 <p class="govuk-body">To be able to save your application and return to it later, you need to sign into an existing account or create a new one.</p>
             {% endif %}
 
+            {% set _ctaText = "Sign in to save" %}
+            {% if _signedIn %}
+                {% set _ctaText = "Save" %}
+            {% endif %}
+
             {{govukButton({
-                text: "Continue"
+                text: _ctaText
             })}}
 
         </form>

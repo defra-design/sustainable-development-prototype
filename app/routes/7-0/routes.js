@@ -1156,7 +1156,7 @@ module.exports = function (router,_myData) {
 
         //Redirect to href
         if(req.session.myData.signedIn == "true"){
-            res.redirect(301, '/' + version + '/tasklist');
+            res.redirect(301, '/' + version + '/tasklist?justsaved=true');
         } else {
 
             res.redirect(301, '/' + version + '/defra-id-signin?returnURL=tasklist');
