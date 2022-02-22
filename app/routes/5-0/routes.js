@@ -614,7 +614,7 @@ module.exports = function (router,_myData) {
                 res.redirect(301, 'https://whoareyou:menotyou@identity-management-app.herokuapp.com/tasked/gov-gateway/login?returnUrl=http://localhost:3000/' + version + '/defraid-applications');
             } else {
                 // Live
-                res.redirect(301, 'https://whoareyou:menotyou@identity-management-app.herokuapp.com/tasked/gov-gateway/login?returnUrl=https://defra:wildlife@sustainable-prototype.herokuapp.com/' + version + '/defraid-applications');
+                res.redirect(301, 'https://whoareyou:menotyou@identity-management-app.herokuapp.com/tasked/gov-gateway/login?returnUrl=https://sustainable-prototype.herokuapp.com/' + version + '/defraid-applications');
             }
         }
 
@@ -939,7 +939,7 @@ module.exports = function (router,_myData) {
                 res.redirect(301, 'https://whoareyou:menotyou@identity-management-app.herokuapp.com/tasked/gov-gateway/login?returnUrl=http://localhost:3000/' + version + '/defraid-tasklist');
             } else {
                 // Live
-                res.redirect(301, 'https://whoareyou:menotyou@identity-management-app.herokuapp.com/tasked/gov-gateway/login?returnUrl=https://defra:wildlife@sustainable-prototype.herokuapp.com/' + version + '/defraid-tasklist');
+                res.redirect(301, 'https://whoareyou:menotyou@identity-management-app.herokuapp.com/tasked/gov-gateway/login?returnUrl=https://sustainable-prototype.herokuapp.com/' + version + '/defraid-tasklist');
             }
         }
 
