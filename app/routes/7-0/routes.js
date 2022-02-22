@@ -4215,6 +4215,11 @@ module.exports = function (router,_myData) {
     // Applications list
     router.get('/' + version + '/applications', function (req, res) {
 
+        if(req.query.justsaved == "true"){
+            req.session.myData.notifications.type = "saved"
+            req.session.myData.showNotification = "true"
+        }
+
         req.session.myData.signedIn = "true"
 
         //Sort applications

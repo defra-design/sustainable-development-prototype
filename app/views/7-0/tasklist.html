@@ -29,9 +29,7 @@
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {% set _showNotification = myData.showNotification == "true" %}
-
-      {% if _showNotification %}
+      {% if myData.showNotification == "true" %}
         {% if myData.notifications.type == "saved" %}
         <!-- Just saved -->
         <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
