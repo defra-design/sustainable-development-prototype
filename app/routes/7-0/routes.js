@@ -191,9 +191,9 @@ module.exports = function (router,_myData) {
                     canstart = false
                 }
                 //Sections required
-                var _sectionsRequired = ["1","2","4","5","6","7","8"]
+                var _sectionsRequired = ["1","2","4","5","6","7","8","9"]
                 if(_thisApplication.consent == "No"){
-                    _sectionsRequired = ["1","2","4","5","6","7"]
+                    _sectionsRequired = ["1","2","4","5","6","7","9"]
                 }
                 // Remove section 2 if badger
                 // if(_thisApplication.type == "a24"){
@@ -232,6 +232,9 @@ module.exports = function (router,_myData) {
             }
             if(_thisApplication.tasklist.sections["8"] == "cannotstartyet"){
                 _thisApplication.tasklist.sections["8"] = "notstarted"
+            }
+            if(_thisApplication.tasklist.sections["9"] == "cannotstartyet"){
+                _thisApplication.tasklist.sections["9"] = "notstarted"
             }
         }
 
@@ -277,6 +280,7 @@ module.exports = function (router,_myData) {
         // 6 = ecologist
         // 7 = permission (eligibility)
         // 8 = permissions data
+        // 9 = work schedule
         req.session.myData.tasklist = {
             "sections": {
                 "1": "cannotstartyet",
@@ -286,7 +290,8 @@ module.exports = function (router,_myData) {
                 "5": "cannotstartyet",
                 "6": "cannotstartyet",
                 "7": "notstarted",
-                "8": "cannotstartyet"
+                "8": "cannotstartyet",
+                "9": "cannotstartyet"
             },
             "completed": 0,
             "total": 0
@@ -694,6 +699,9 @@ module.exports = function (router,_myData) {
 
         //Signed in
         req.session.myData.signedIn =  req.query.si || req.session.myData.signedIn
+
+        //Dev notes
+        req.session.myData.showDevNotes =  req.query.dev || req.session.myData.showDevNotes
 
         //Default required questions (purpose flow)
         var _l = req.session.myData.licenceType
@@ -4211,6 +4219,62 @@ module.exports = function (router,_myData) {
         res.redirect(301, '/' + version + '/tasklist');
         
     });
+
+    //Work schedule upload
+    router.get('/' + version + '/work-schedule-upload', function (req, res) {
+
+        req.session.myData.selectedApplication.tasklist.sections["9"] = "inprogress"
+
+        res.render(version + '/work-schedule-upload', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/work-schedule-upload', function (req, res) {
+
+        req.session.myData.workScheduleUploadAnswer = req.body.workScheduleUpload
+
+        // if(req.session.myData.includeValidation == "false"){
+            req.session.myData.workScheduleUploadAnswer = req.session.myData.workScheduleUploadAnswer || "work-schedule.doc"
+        // }
+
+        // if(!req.session.myData.workScheduleUploadAnswer){
+        //     req.session.myData.validationError = "true"
+        //     req.session.myData.validationErrors.workScheduleUpload = {
+        //         "anchor": "workScheduleUpload",
+        //         "message": "[error message]"
+        //     }
+        // }
+
+        // if(req.session.myData.validationError == "true") {
+        //     res.render(version + '/work-site-upload', {
+        //         myData: req.session.myData
+        //     });
+        // } else {
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
+
+            req.session.myData.selectedApplication.workScheduleUpload = req.session.myData.workScheduleUploadAnswer
+            req.session.myData.workScheduleUploadAnswer = ""
+
+            res.redirect(301, '/' + version + '/cya-work-schedule');
+        // }
+        
+    });
+
+    //CYA Work schedule boundary
+    router.get('/' + version + '/cya-work-schedule', function (req, res) {
+        res.render(version + '/cya-work-schedule', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/cya-work-schedule', function (req, res) {
+
+        updateLastSavedDate(req,req.session.myData.selectedApplication)
+
+        req.session.myData.selectedApplication.tasklist.sections["9"] = "completed"
+        updateTasklist(req)
+
+        res.redirect(301, '/' + version + '/tasklist');
+    }); 
 
     // Applications list
     router.get('/' + version + '/applications', function (req, res) {

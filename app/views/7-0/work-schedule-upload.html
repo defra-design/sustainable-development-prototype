@@ -1,0 +1,110 @@
+{% extends "layout.html" %}
+
+{% set _pageID = "CD87 - Work schedule upload" %}
+
+{% set serviceName = myData.serviceName %}
+
+{% set _inError = myData.validationError == "true" %}
+
+{% set _affectedThing = "bat roost" %}
+{% if myData.selectedApplication.type == "a24" %}
+    {% set _affectedThing = "badger sett" %}
+{% elif myData.selectedApplication.type == "a14" %}
+    {% set _affectedThing = "great crested newt" %}
+{% endif %}
+
+{% block pageTitle %} 
+{% if _inError %}Error: {% endif %}Upload a work schedule
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+			{% if _inError %}
+            <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+                <h2 class="govuk-error-summary__title" id="error-summary-title">
+                    There is a problem
+                </h2>
+                <div class="govuk-error-summary__body">
+                    <ul class="govuk-list govuk-error-summary__list">
+                        {% for name, item in myData.validationErrors %}
+                        <li>
+                            <a href="#{{item.anchor}}">{{item.message}}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            {% endif %}
+
+	</div>
+</div>
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="POST">
+
+            <h1 class="govuk-heading-xl">
+                Upload a work schedule
+            </h1>
+
+            {% if myData.showDevNotes == "true" %}
+            <p class="govuk-body" style="color:red">
+                [explain here what a work schedule is and what it must contain...<br>
+                - list of methods (how) and when each badger sett will be affected<br>
+                - Type of machinery/tools used<br>
+                - Justification for the badger interference<br>
+                - Dates of mitigation work]
+            </p>
+            <p class="govuk-body govuk-!-font-weight-bold" style="color:red">Should this be specific to what a BADGER work schedule should contain? <br><br>Or can we make this content generic so it explains what any kind of work schedule should contain?</p>
+            {% endif %}
+
+            <p class="govuk-body">The work schedule must include:</p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>how and when each {{_affectedThing}} will be affected</li>
+                <li>types of machinery or tools that will be used including the distance from the {{_affectedThing}}s</li>
+                <li>justification for why the {{_affectedThing}}s need to be affected</li>
+                <li>dates of any proposed mitigation work</li>
+            </ul>
+
+            <div class="govuk-form-group {% if _inError %}govuk-form-group--error{% endif %}">
+
+                {% set _value = myData.selectedApplication.workScheduleUpload %}
+                {% if _inError %}
+                    {% set _value = myData.workScheduleUploadAnswer %}
+                {% endif %}
+                <label class="govuk-label govuk-!-font-weight-bold govuk-label--m" for="workScheduleUpload" >
+                    Upload a file
+                </label>
+                <span class="govuk-hint">
+                    30MB maximum file size.
+                </span>
+                <span class="govuk-hint">
+                    DOC, DOCX, or PDF files.
+                </span>
+                {% if _inError %}
+                <p id="workScheduleUpload-error" class="govuk-error-message">
+                    <span class="govuk-visually-hidden">Error:</span> {{myData.validationErrors.workScheduleUpload.message}}
+                </p>
+                {% endif %}
+                <input class="govuk-file-upload govuk-!-width-three-quarters {% if _inError %}govuk-file-upload--error{%endif %}" id="workScheduleUpload" name="workScheduleUpload" type="file" value="{{_value}}">
+
+            </div>
+
+            {{govukButton({
+                text: "Continue"
+            })}}
+
+        </form>
+
+	</div>
+</div>
+
+{% endblock %}

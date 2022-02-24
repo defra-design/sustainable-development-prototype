@@ -346,6 +346,37 @@
 
             </li>
 
+             <!-- Work schedule -->
+            <li class="app-task-list__item">
+                {% set _status9 = _tasklist.sections["9"] %}
+                {% set _label9 = "Upload work schedule" %}
+
+                <span class="app-task-list__task-name">
+                  {% if _status9 == "cannotstartyet" %}
+                    {{_label9}}
+                  {% else %}
+                    {% if _status9 == "completed" %}
+                    <a href="cya-work-schedule" class="govuk-link--no-visited-state" >
+                    {% else %}
+                    <a href="work-schedule-upload" class="govuk-link--no-visited-state" >
+                    {% endif %}
+                        {{_label9}}
+                    </a>
+                  {% endif %}
+                </span>
+
+                {% if _status9 == "notstarted" %}
+                <strong class="govuk-tag govuk-tag--grey app-task-list__tag" >Not started</strong>
+                {% elif _status9 == "cannotstartyet" %}
+                <strong class="govuk-tag govuk-tag--grey app-task-list__tag" >Cannot start yet</strong>
+                {% elif _status9 == "inprogress" %}
+                <strong class="govuk-tag govuk-tag--blue app-task-list__tag" >In progress</strong>
+                {% elif _status9 == "completed" %}
+                <strong class="govuk-tag app-task-list__tag" >Completed</strong>
+                {% endif %}
+
+            </li>
+
           </ul>
         </li>
 

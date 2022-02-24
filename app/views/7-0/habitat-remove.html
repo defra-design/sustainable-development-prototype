@@ -6,13 +6,6 @@
 
 {% set _inError = myData.validationError == "true"  %}
 
-{% set _habitatType = "roost" %}
-{% set _speciesType = "bat" %}
-{% if myData.selectedApplication.type == "a24" %}
-    {% set _habitatType = "sett" %}
-    {% set _speciesType = "badger" %}
-{% endif %}
-
 {% block pageTitle %} 
 {% if _inError %}Error: {% endif %}Do you want to remove this {{_speciesType}} {{_habitatType}}?
 {% endblock %}
