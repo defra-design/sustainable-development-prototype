@@ -69,9 +69,22 @@
             <p class="govuk-body">The work schedule must include:</p>
             <ul class="govuk-list govuk-list--bullet">
                 <li>how and when each {{_affectedThing}} will be affected</li>
-                <li>types of machinery or tools that will be used including the distance from the {{_affectedThing}}s</li>
+                <li>types of machinery or tools that will be used and their distance from the {{_affectedThing}}s</li>
                 <li>justification for why the {{_affectedThing}}s need to be affected</li>
                 <li>dates of any proposed mitigation work</li>
+            </ul>
+
+            <h2 class="govuk-heading-m">
+                <!-- <label class="govuk-label govuk-!-font-weight-bold govuk-label--m" for="workScheduleUpload" > -->
+                    Upload a file
+                <!-- </label> -->
+            </h2>
+            <p class="govuk-body">
+                The file must be:
+            </p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>in Microsoft Word (.DOC or .DOCX) or PDF format</li>
+                <li>smaller than 30MB</li>
             </ul>
 
             <div class="govuk-form-group {% if _inError %}govuk-form-group--error{% endif %}">
@@ -80,15 +93,24 @@
                 {% if _inError %}
                     {% set _value = myData.workScheduleUploadAnswer %}
                 {% endif %}
-                <label class="govuk-label govuk-!-font-weight-bold govuk-label--m" for="workScheduleUpload" >
-                    Upload a file
-                </label>
-                <span class="govuk-hint">
+                <!-- <h2 class="govuk-label-wrapper"> -->
+                    <label class="govuk-label govuk-!-font-weight-bold govuk-label--m govuk-visually-hidden" for="workScheduleUpload" >
+                        Upload a file
+                    </label>
+                <!-- </h2> -->
+                <!-- <p class="govuk-body">
+                    The file must be:
+                </p>
+                <ul class="govuk-list govuk-list--bullet">
+                    <li>in DOC, DOCX, or PDF format</li>
+                    <li>smaller than 30MB</li>
+                </ul> -->
+                <!-- <span class="govuk-hint">
                     30MB maximum file size.
                 </span>
                 <span class="govuk-hint">
                     DOC, DOCX, or PDF files.
-                </span>
+                </span> -->
                 {% if _inError %}
                 <p id="workScheduleUpload-error" class="govuk-error-message">
                     <span class="govuk-visually-hidden">Error:</span> {{myData.validationErrors.workScheduleUpload.message}}
