@@ -621,6 +621,9 @@ module.exports = function (router,_myData) {
             "habitatUses": [
                 JSON.parse(JSON.stringify(req.session.myData.settUses[0]))
             ],
+            "habitatActive": "Yes",
+            "habitatReopen": "Yes",
+            "entranceHoles": "1",
             "activities": [
                 JSON.parse(JSON.stringify(req.session.myData.badgerActivities[0])),
                 JSON.parse(JSON.stringify(req.session.myData.badgerActivities[1]))
@@ -2065,7 +2068,7 @@ module.exports = function (router,_myData) {
                 if(req.session.myData.selectedApplication.type == "a13"){
                     res.redirect(301, '/' + version + '/habitat-numbers' + _habitatQS);
                 } else {
-                    res.redirect(301, '/' + version + '/habitat-activities' + _habitatQS);
+                    res.redirect(301, '/' + version + '/habitat-active' + _habitatQS);
                 }
             }
 
@@ -2246,7 +2249,157 @@ module.exports = function (router,_myData) {
 
     });
 
-   
+    // Habitat active
+    router.get('/' + version + '/habitat-active', function (req, res) {
+        res.render(version + '/habitat-active', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/habitat-active', function (req, res) {
+
+        req.session.myData.habitatActiveAnswer = req.body.habitatActive
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.habitatActiveAnswer = req.session.myData.habitatActiveAnswer || "Yes"
+        }
+
+        if(!req.session.myData.habitatActiveAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.habitatActive = {
+                "anchor": "habitatActive-1",
+                "message": "[error message]"
+            }
+        }
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/habitat-active', {
+                myData: req.session.myData
+            });
+        } else {
+
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
+
+            req.session.myData.selectedHabitat.habitatActive = req.session.myData.habitatActiveAnswer
+
+            //Habitat query string
+            var _habitatQS = ''
+            if(!req.session.myData.selectedHabitat.new){
+                _habitatQS = '?habitat=' + req.session.myData.habitat
+            }
+
+            if(req.query.cya == "true"){
+                res.redirect(301, '/' + version + '/cya-habitats');
+            } else {
+                res.redirect(301, '/' + version + '/habitat-reopen' + _habitatQS);
+            }
+
+        }
+        
+    });
+
+    // Habitat reopening
+    router.get('/' + version + '/habitat-reopen', function (req, res) {
+        res.render(version + '/habitat-reopen', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/habitat-reopen', function (req, res) {
+
+        req.session.myData.habitatReopenAnswer = req.body.habitatReopen
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.habitatReopenAnswer = req.session.myData.habitatReopenAnswer || "Yes"
+        }
+
+        if(!req.session.myData.habitatReopenAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.habitatReopen = {
+                "anchor": "habitatReopen-1",
+                "message": "[error message]"
+            }
+        }
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/habitat-reopen', {
+                myData: req.session.myData
+            });
+        } else {
+
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
+
+            req.session.myData.selectedHabitat.habitatReopen = req.session.myData.habitatReopenAnswer
+
+            //Habitat query string
+            var _habitatQS = ''
+            if(!req.session.myData.selectedHabitat.new){
+                _habitatQS = '?habitat=' + req.session.myData.habitat
+            }
+
+            if(req.query.cya == "true"){
+                res.redirect(301, '/' + version + '/cya-habitats');
+            } else {
+                res.redirect(301, '/' + version + '/habitat-entrances' + _habitatQS);
+            }
+
+        }
+        
+    });
+
+    // Entrance holes
+    router.get('/' + version + '/habitat-entrances', function (req, res) {
+        res.render(version + '/habitat-entrances', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/habitat-entrances', function (req, res) {
+
+        //entered values (set to temp)
+        req.session.myData.entranceHolesTemp = req.body.entranceHoles
+
+        //no validation defaults
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.entranceHolesTemp = req.session.myData.entranceHolesTemp || 1
+        }
+
+        // TODO order of errors
+
+        //check validation
+        if(!req.session.myData.entranceHolesTemp){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.entranceHoles = {
+                "anchor": "entranceHoles",
+                "message": "[error message]"
+            }
+        }
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/habitat-entrances', {
+                myData: req.session.myData
+            });
+        } else {
+
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
+
+            req.session.myData.entranceHoles = req.session.myData.entranceHolesTemp
+            req.session.myData.selectedHabitat.entranceHoles = req.session.myData.entranceHoles
+
+            req.session.myData.entranceHolesTemp = ""
+
+            //Habitat query string
+            var _habitatQS = ''
+            if(!req.session.myData.selectedHabitat.new){
+                _habitatQS = '?habitat=' + req.session.myData.habitat
+            }
+
+            if(req.query.cya == "true"){
+                res.redirect(301, '/' + version + '/cya-habitats');
+            } else {
+                res.redirect(301, '/' + version + '/habitat-activities' + _habitatQS);
+            }
+
+        }
+        
+    });
     
     // Activities on newts 
     router.get('/' + version + '/activities-newt', function (req, res) {

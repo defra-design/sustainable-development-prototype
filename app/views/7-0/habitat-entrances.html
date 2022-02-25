@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% set _pageID = "CD80 - Habitat species numbers" %}
+{% set _pageID = "CD91 - Habitat entrances" %}
 
 {% set serviceName = myData.serviceName %}
 
@@ -9,8 +9,13 @@
 {% set _habitatType = "roost" %}
 {% set _speciesType = myData.selectedHabitat.speciesName + " bat" %}
 
+{% if myData.selectedApplication.type == "a24" %}
+    {% set _habitatType = "sett" %}
+    {% set _speciesType = "badger" %}
+{% endif %}
+
 {% block pageTitle %} 
-{% if _inError %}Error: {% endif %}How many {{_speciesType}}s are using this {{_habitatType}}?
+{% if _inError %}Error: {% endif %}How many entrance holes does the {{_speciesType}} {{_habitatType}} have?
 {% endblock %}
 
 {% block beforeContent %}
@@ -40,41 +45,36 @@
         </div>
         {% endif %}
 
-        <h1 class="govuk-heading-xl">
-            How many {{_speciesType}}s are using this {{_habitatType}}?
-        </h1>
-        {% if myData.selectedApplication.type == "a13" %}
-        <p class="govuk-body">Enter the maximum number based on the bat surveys.</p>
-        {% endif %}
+        <!-- <h1 class="govuk-heading-xl">
+            How many entrance holes does the {{_speciesType}} {{_habitatType}} have?
+        </h1> -->
 
 		<form method="POST">
 
-
             <div class="govuk-form-group" >
 
-                {% set _numberUsingTemp = myData.numberUsingTemp %}
-                {% set _valueNumberUsing = myData.selectedHabitat.numberUsing %}
+                {% set _entranceHolesTemp = myData.entranceHolesTemp %}
+                {% set _valueEntranceHoles = myData.selectedHabitat.entranceHoles %}
 
                 {% if _inError %}
-                    {% set _valueNumberUsing = _numberUsingTemp %}
+                    {% set _valueEntranceHoles = _entranceHolesTemp %}
                 {% endif %}
 
-                <!-- Number using -->
-                <div class="govuk-form-group {% if myData.validationErrors.numberUsing %}govuk-form-group--error{% endif %}">
+                <div class="govuk-form-group {% if myData.validationErrors.entranceHoles %}govuk-form-group--error{% endif %}">
                     
-                    {% if myData.selectedApplication.type == "a13" %}
-                    <label class="govuk-label govuk-visually-hidden" for="numberUsing">
-                        How many {{_speciesType}}s are using this {{_habitatType}}?
-                    </label>
-                    {% endif %}
+                    <h1 class="govuk-label-wrapper">
+                        <label class="govuk-label govuk-label--xl" for="entranceHoles">
+                            How many entrance holes does the {{_speciesType}} {{_habitatType}} have?
+                      </label>
+                    </h1>
                     
-                    {% if myData.validationErrors.numberUsing %}
+                    {% if myData.validationErrors.entranceHoles %}
                     <span id="orgNameAnswer-error" class="govuk-error-message">
                         <span class="govuk-visually-hidden">Error:</span>
-                        {{myData.validationErrors.numberUsing.message}}
+                        {{myData.validationErrors.entranceHoles.message}}
                     </span>
                     {% endif %}
-                    <input class="govuk-input govuk-input--width-5" id="numberUsing" name="numberUsing" type="text" spellcheck="false" pattern="[0-9]*" inputmode="numeric" value="{{_valueNumberUsing}}">
+                    <input class="govuk-input govuk-input--width-5" id="entranceHoles" name="entranceHoles" type="text" spellcheck="false" pattern="[0-9]*" inputmode="numeric" value="{{_valueEntranceHoles}}">
                 </div>
 
             </div>

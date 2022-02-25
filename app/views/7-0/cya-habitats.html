@@ -101,6 +101,53 @@
                     </dd>
                 </div>
 
+                {% if myData.selectedApplication.type == "a24" %}
+                <!-- Habitat active -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Active {{_habitatType}}
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{_habitat.habitatActive|capitalize}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="habitat-active?habitat={{_habitat.id}}&cya=true">
+                            Change<span class="govuk-visually-hidden"> </span>
+                        </a>
+                    </dd>
+                </div>
+
+                <!-- Habitat reopening -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Reopening {{_habitatType}}
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{_habitat.habitatReopen|capitalize}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="habitat-reopen?habitat={{_habitat.id}}&cya=true">
+                            Change<span class="govuk-visually-hidden"> </span>
+                        </a>
+                    </dd>
+                </div>
+
+                <!-- Habitat entrance holes -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Number of entrance holes
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{_habitat.entranceHoles}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="habitat-entrances?habitat={{_habitat.id}}&cya=true">
+                            Change<span class="govuk-visually-hidden"> </span>
+                        </a>
+                    </dd>
+                </div>
+                {% endif %}
+
                 <!-- Existing number of species -->
                 {% if myData.selectedApplication.type == "a13" %}
                 <div class="govuk-summary-list__row">
