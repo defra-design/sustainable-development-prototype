@@ -6,11 +6,14 @@
 
 {% set _inError = myData.validationError == "true" %}
 
-{% set _affectedThing = "bat roost" %}
+{% set _affectedThing = "each bat roost" %}
+{% set _singular = "true" %}
 {% if myData.selectedApplication.type == "a24" %}
-    {% set _affectedThing = "badger sett" %}
+    {% set _affectedThing = "each badger sett" %}
+    {% set _singular = "true" %}
 {% elif myData.selectedApplication.type == "a14" %}
-    {% set _affectedThing = "great crested newt" %}
+    {% set _affectedThing = "the great crested newts and their habitats" %}
+    {% set _singular = "false" %}
 {% endif %}
 
 {% block pageTitle %} 
@@ -55,22 +58,11 @@
                 Upload a work schedule
             </h1>
 
-            {% if myData.showDevNotes == "true" %}
-            <p class="govuk-body" style="color:red">
-                [explain here what a work schedule is and what it must contain...<br>
-                - list of methods (how) and when each badger sett will be affected<br>
-                - Type of machinery/tools used<br>
-                - Justification for the badger interference<br>
-                - Dates of mitigation work]
-            </p>
-            <p class="govuk-body govuk-!-font-weight-bold" style="color:red">Should this be specific to what a BADGER work schedule should contain? <br><br>Or can we make this content generic so it explains what any kind of work schedule should contain?</p>
-            {% endif %}
-
             <p class="govuk-body">The work schedule must include:</p>
             <ul class="govuk-list govuk-list--bullet">
-                <li>how and when each {{_affectedThing}} will be affected</li>
-                <li>types of machinery or tools that will be used and their distance from the {{_affectedThing}}s</li>
-                <li>justification for why the {{_affectedThing}}s need to be affected</li>
+                <li>how and when {{_affectedThing}} will be affected</li>
+                <li>types of machinery or tools that will be used and their distance from {{_affectedThing}}</li>
+                <li>justification for why {{_affectedThing}} {% if _singular == "true" %}needs{% else %}need{% endif %} to be affected</li>
                 <li>dates of any proposed mitigation work</li>
             </ul>
 
@@ -83,7 +75,10 @@
                 The file must be:
             </p>
             <ul class="govuk-list govuk-list--bullet">
-                <li>in Microsoft Word (.DOC or .DOCX) or PDF format</li>
+                <li>text (DOC, DOCX, PDF or ODT)</li>
+                <li>a spreadsheet (XLS, XLSX or ODS)</li>
+                <!-- <li>PDF</li> -->
+                <!-- <li>in Microsoft Word (.DOC or .DOCX) or PDF format</li> -->
                 <li>smaller than 30MB</li>
             </ul>
 
