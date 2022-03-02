@@ -20,18 +20,21 @@
 {% block content %}
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
-        <h1 class="govuk-heading-m">Prototype {{myData.version}} setup</h1>
+
+        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible govuk-!-margin-top-0">
+
+        <h1 class="govuk-heading-l">Prototype {{myData.version}} setup</h1>
 
         <!-- <p class="govuk-body" >
             <a href="setup?r=true" class="govuk-link govuk-link--no-visited-state">Reset setup options</a>
         </p>   -->
 
-        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+        <!-- <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible"> -->
     </div>
 </div>
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-one-half">
-
+<!-- 
         <div class="govuk-form-group">
             <fieldset class="govuk-fieldset">
                 <legend class="govuk-fieldset__legend">Service</legend>
@@ -42,7 +45,7 @@
                     </div>
                 </div>
             </fieldset>
-        </div>
+        </div> -->
 
         <!-- Licence version -->
         <!-- <div class="govuk-form-group">
@@ -55,10 +58,28 @@
             </select>
         </div> -->
 
-        <!-- Signed in state -->
+        <!-- Start from -->
         <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+                <legend class="govuk-fieldset__legend govuk-!-font-weight-bold">Start journey from</legend>
+                <div class="govuk-radios">
+                    <div class="govuk-radios__item">
+                        <input {% if myData.startFrom == 'start' %}checked{% endif %} class="govuk-radios__input" data-option="startFrom-1" id="startFrom-1" name="startFrom" type="radio" value="start">
+                        <label class="govuk-label govuk-radios__label" for="startFrom-1">Start page</label>
+                    </div>
+                    <div class="govuk-radios__item">
+                        <input {% if myData.startFrom == 'email-invite' %}checked{% endif %} class="govuk-radios__input" data-option="startFrom-1" id="startFrom-2" name="startFrom" type="radio" value="email-invite">
+                        <label class="govuk-label govuk-radios__label" for="startFrom-2">Email invite</label>
+
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+        <!-- Signed in state -->
+        <div class="govuk-form-group signedInContainer">
             <label class="govuk-label" >
-              Signed in user
+              User signed in?
             </label>
             <select class="govuk-select" style="min-width: 100%" id="signedIn" name="signedIn" data-option="signedIn">
                 <option {% if myData.signedIn == 'false' %}selected{% endif %} value="false">Not signed in</option>
@@ -79,16 +100,18 @@
 
         
 
+        
+
         <!-- Start from -->
         <!-- <div class="govuk-form-group">
           <label class="govuk-label" >
-            Start from
+            Start journey from
           </label>
-          <select class="govuk-select" style="min-width: 100%" id="start" name="start" data-option="start">
-              <option {% if myData.start == 'start' %}selected{% endif %} value="start">Start page</option>
-              <option {% if myData.start == 'home' %}selected{% endif %} value="home">Home page</option>
+          <select class="govuk-select" style="min-width: 100%" id="startFrom" name="startFrom" data-option="startFrom">
+              <option {% if myData.startFrom == 'start' %}selected{% endif %} value="start">Start page</option>
+              <option {% if myData.startFrom == 'email-invite' %}selected{% endif %} value="email-invite">Email invite</option>
           </select>
-      </div> -->
+        </div> -->
 
     </div>
 
@@ -606,18 +629,24 @@
             //Base URL
             var _urlBase = "https://sustainable-prototype.herokuapp.com/" + {{myData.version|dump|safe}} + "/";
             //Queries
-            var _urlReset = "r=t",
-                _urlService = "&s=" + $('input[name=service]:checked').val(),
-                _urlPage = "start?",
+            var _urlPage = $('input[name=startFrom]:checked').val(),
+                _urlPageQuery = "&sf=" + _urlPage,
+                // _urlService = "&s=" + $('input[name=service]:checked').val(),
                 // _urlNewApplication = "&new=true",
-                // _urlPage = _options.filter("#start").val() + "?",
-                // _urlStart = "&s=" + _options.filter("#start").val(),
                 // _urllicenceType = "&l=" + _options.filter("#licenceType").val(),
                 _urlincludeValidation = "&iv=" + _options.filter("#includeValidation").val(),
                 _urlsignedIn = "&si=" + _options.filter("#signedIn").val();
+
+            //Hide/show signed in option
+            if(_urlPage == "email-invite"){
+                _urlsignedIn = "&si=false"
+                $('.signedInContainer').hide()
+            } else {
+                $('.signedInContainer').show()
+            }
            
             //Queries combined
-            var _urlPageQueries = _urlPage + _urlReset + _urlService + _urlincludeValidation + _urlsignedIn;
+            var _urlPageQueries = _urlPage + "?r=t" + _urlPageQuery + _urlincludeValidation + _urlsignedIn;
 
             //URL text
             var _startURLText = _urlBase + _urlPageQueries,
