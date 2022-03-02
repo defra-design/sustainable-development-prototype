@@ -80,8 +80,11 @@ module.exports = function (router,_myData) {
                 //Set as new application
                 req.session.myData.selectedApplication = req.session.myData.tempApplication
             }
-            req.session.myData.application = req.session.myData.selectedApplication.id
-            // console.log("application = " + req.session.myData.application)
+
+            if(req.session.myData.selectedApplication){
+                req.session.myData.application = req.session.myData.selectedApplication.id
+                // console.log("application = " + req.session.myData.application)
+            }
         }
 
         setServiceName(req)
@@ -90,34 +93,39 @@ module.exports = function (router,_myData) {
 
     function setSelectedHabitat(req, _habitatID){
 
-        if(_habitatID){
+        if(req.session.myData.selectedApplication){
 
-            var _existingHabitat = req.session.myData.selectedApplication.habitats.find(obj => {return obj.id.toString() === _habitatID.toString()})
+            if(_habitatID){
 
-            //TODO fix it not thinking the currently added new one is existing
+                var _existingHabitat = req.session.myData.selectedApplication.habitats.find(obj => {return obj.id.toString() === _habitatID.toString()})
 
-            if(_existingHabitat){
-                req.session.myData.selectedHabitat = _existingHabitat
-            } else {
-                if(req.session.myData.testdata == "true"){
+                //TODO fix it not thinking the currently added new one is existing
 
-                    var _testHabitatToUse = req.session.myData.testRoost
-                    if(req.session.myData.selectedApplication.type == "a24"){
-                        _testHabitatToUse = req.session.myData.testSett
-                    }
-                    req.session.myData.selectedHabitat = _testHabitatToUse
-
-                    addHabitatToApplication(req,req.session.myData.selectedHabitat)
+                if(_existingHabitat){
+                    req.session.myData.selectedHabitat = _existingHabitat
                 } else {
-                    if(!req.session.myData.newHabitat.inprogress){
-                        req.session.myData.newHabitat.inprogress = true
-                        req.session.myData.selectedHabitat = req.session.myData.newHabitat
+                    if(req.session.myData.testdata == "true"){
+
+                        var _testHabitatToUse = req.session.myData.testRoost
+                        if(req.session.myData.selectedApplication.type == "a24"){
+                            _testHabitatToUse = req.session.myData.testSett
+                        }
+                        req.session.myData.selectedHabitat = _testHabitatToUse
+
+                        addHabitatToApplication(req,req.session.myData.selectedHabitat)
+                    } else {
+                        if(!req.session.myData.newHabitat.inprogress){
+                            req.session.myData.newHabitat.inprogress = true
+                            req.session.myData.selectedHabitat = req.session.myData.newHabitat
+                        }
                     }
                 }
+                req.session.myData.habitat = req.session.myData.selectedHabitat.id
+                
             }
-            req.session.myData.habitat = req.session.myData.selectedHabitat.id
-            
+
         }
+
     }
 
     function startNewHabitat(req){
@@ -129,28 +137,33 @@ module.exports = function (router,_myData) {
 
     function setSelectedConsent(req, _consentID){
 
-        if(_consentID){
+        if(req.session.myData.selectedApplication){
 
-            var _existingConsent = req.session.myData.selectedApplication.consents.find(obj => {return obj.id.toString() === _consentID.toString()})
+            if(_consentID){
 
-            //TODO fix it not thinking the currently added new one is existing
+                var _existingConsent = req.session.myData.selectedApplication.consents.find(obj => {return obj.id.toString() === _consentID.toString()})
 
-            if(_existingConsent){
-                req.session.myData.selectedConsent = _existingConsent
-            } else {
-                if(req.session.myData.testdata == "true"){
-                    req.session.myData.selectedConsent = req.session.myData.testConsent
-                    addConsentToApplication(req,req.session.myData.selectedConsent)
+                //TODO fix it not thinking the currently added new one is existing
+
+                if(_existingConsent){
+                    req.session.myData.selectedConsent = _existingConsent
                 } else {
-                    if(!req.session.myData.newConsent.inprogress){
-                        req.session.myData.newConsent.inprogress = true
-                        req.session.myData.selectedConsent = req.session.myData.newConsent
+                    if(req.session.myData.testdata == "true"){
+                        req.session.myData.selectedConsent = req.session.myData.testConsent
+                        addConsentToApplication(req,req.session.myData.selectedConsent)
+                    } else {
+                        if(!req.session.myData.newConsent.inprogress){
+                            req.session.myData.newConsent.inprogress = true
+                            req.session.myData.selectedConsent = req.session.myData.newConsent
+                        }
                     }
                 }
+                req.session.myData.consent = req.session.myData.selectedConsent.id
+                
             }
-            req.session.myData.consent = req.session.myData.selectedConsent.id
-            
+
         }
+
     }
 
     function startNewConsent(req){
@@ -162,80 +175,85 @@ module.exports = function (router,_myData) {
 
     function updateTasklist(req,_application){ 
 
-        var _thisApplication = req.session.myData.selectedApplication
-        if(_application){
-            _thisApplication = _application
-        }
+        if(req.session.myData.selectedApplication || _application){
 
-        //Total sections
-        var _totalSections = Object.keys(_thisApplication.tasklist.sections).length
-        _thisApplication.tasklist.total = _totalSections
-        if(_thisApplication.consent == "No"){
-            --_thisApplication.tasklist.total
-        }
-        // if(_thisApplication.type == "a24"){
-        //     --_thisApplication.tasklist.total
-        // }
+            var _thisApplication = req.session.myData.selectedApplication
 
-        var cansubmit = true,
-            canstart = true
+            if(_application){
+                _thisApplication = _application
+            }
 
-        // Counts
-        _thisApplication.tasklist.completed = 0
-        for (const [key, value] of Object.entries(_thisApplication.tasklist.sections)) {
-            if(value == "completed"){
-                _thisApplication.tasklist.completed++
-            } else {
-                //Set if can send application yet
-                if(key == "7"){
-                    canstart = false
-                }
-                //Sections required
-                var _sectionsRequired = ["1","2","4","5","6","7","8","9"]
-                if(_thisApplication.consent == "No"){
-                    _sectionsRequired = ["1","2","4","5","6","7","9"]
-                }
-                // Remove section 2 if badger
-                // if(_thisApplication.type == "a24"){
-                //     _sectionsRequired.splice(_sectionsRequired.indexOf("2"), 1);
-                // }
+            //Total sections
+            var _totalSections = Object.keys(_thisApplication.tasklist.sections).length
+            _thisApplication.tasklist.total = _totalSections
+            if(_thisApplication.consent == "No"){
+                --_thisApplication.tasklist.total
+            }
+            // if(_thisApplication.type == "a24"){
+            //     --_thisApplication.tasklist.total
+            // }
 
-                for (var i = 0; i < _sectionsRequired.length; i++) {
-                    if(_sectionsRequired[i] == key){
-                        cansubmit = false
+            var cansubmit = true,
+                canstart = true
+
+            // Counts
+            _thisApplication.tasklist.completed = 0
+            for (const [key, value] of Object.entries(_thisApplication.tasklist.sections)) {
+                if(value == "completed"){
+                    _thisApplication.tasklist.completed++
+                } else {
+                    //Set if can send application yet
+                    if(key == "7"){
+                        canstart = false
+                    }
+                    //Sections required
+                    var _sectionsRequired = ["1","2","4","5","6","7","8","9"]
+                    if(_thisApplication.consent == "No"){
+                        _sectionsRequired = ["1","2","4","5","6","7","9"]
+                    }
+                    // Remove section 2 if badger
+                    // if(_thisApplication.type == "a24"){
+                    //     _sectionsRequired.splice(_sectionsRequired.indexOf("2"), 1);
+                    // }
+
+                    for (var i = 0; i < _sectionsRequired.length; i++) {
+                        if(_sectionsRequired[i] == key){
+                            cansubmit = false
+                        }
                     }
                 }
             }
-        }
 
-        //Set submit to "notstarted" if all others completed
-        if(cansubmit && _thisApplication.tasklist.sections["3"] == "cannotstartyet"){
-            _thisApplication.tasklist.sections["3"] = "notstarted"
-        }
+            //Set submit to "notstarted" if all others completed
+            if(cansubmit && _thisApplication.tasklist.sections["3"] == "cannotstartyet"){
+                _thisApplication.tasklist.sections["3"] = "notstarted"
+            }
 
-        //Set others to "notstarted" if permission completed
-        if(canstart){
-            if(_thisApplication.tasklist.sections["1"] == "cannotstartyet"){
-                _thisApplication.tasklist.sections["1"] = "notstarted"
+            //Set others to "notstarted" if permission completed
+            if(canstart){
+                if(_thisApplication.tasklist.sections["1"] == "cannotstartyet"){
+                    _thisApplication.tasklist.sections["1"] = "notstarted"
+                }
+                if(_thisApplication.tasklist.sections["2"] == "cannotstartyet"){
+                    _thisApplication.tasklist.sections["2"] = "notstarted"
+                }
+                if(_thisApplication.tasklist.sections["4"] == "cannotstartyet"){
+                    _thisApplication.tasklist.sections["4"] = "notstarted"
+                }
+                if(_thisApplication.tasklist.sections["5"] == "cannotstartyet"){
+                    _thisApplication.tasklist.sections["5"] = "notstarted"
+                }
+                if(_thisApplication.tasklist.sections["6"] == "cannotstartyet"){
+                    _thisApplication.tasklist.sections["6"] = "notstarted"
+                }
+                if(_thisApplication.tasklist.sections["8"] == "cannotstartyet"){
+                    _thisApplication.tasklist.sections["8"] = "notstarted"
+                }
+                if(_thisApplication.tasklist.sections["9"] == "cannotstartyet"){
+                    _thisApplication.tasklist.sections["9"] = "notstarted"
+                }
             }
-            if(_thisApplication.tasklist.sections["2"] == "cannotstartyet"){
-                _thisApplication.tasklist.sections["2"] = "notstarted"
-            }
-            if(_thisApplication.tasklist.sections["4"] == "cannotstartyet"){
-                _thisApplication.tasklist.sections["4"] = "notstarted"
-            }
-            if(_thisApplication.tasklist.sections["5"] == "cannotstartyet"){
-                _thisApplication.tasklist.sections["5"] = "notstarted"
-            }
-            if(_thisApplication.tasklist.sections["6"] == "cannotstartyet"){
-                _thisApplication.tasklist.sections["6"] = "notstarted"
-            }
-            if(_thisApplication.tasklist.sections["8"] == "cannotstartyet"){
-                _thisApplication.tasklist.sections["8"] = "notstarted"
-            }
-            if(_thisApplication.tasklist.sections["9"] == "cannotstartyet"){
-                _thisApplication.tasklist.sections["9"] = "notstarted"
-            }
+
         }
 
     }
@@ -297,7 +315,32 @@ module.exports = function (router,_myData) {
             "total": 0
         }
 
-        req.session.myData.applications = [
+        //Preset answers
+        function presetTasklists(_application){
+            if(_application.id == "2021-12345-EPS-MIT"){
+                _application.tasklist.sections["7"] = "completed"
+            }
+
+            if(_application.id == "2021-73955-EPS-MIT"){
+                _application.tasklist.sections["4"] = "inprogress"
+                _application.tasklist.sections["5"] = "completed"
+                _application.tasklist.sections["6"] = "completed"
+                _application.tasklist.sections["7"] = "completed"
+            }
+
+            //Submitted ones
+            if(_application.status == "submitted" || _application.status == "granted"){
+                for (const [key, value] of Object.entries(_application.tasklist.sections)) {
+                    _application.tasklist.sections[key] = "completed"
+                }
+            }
+
+            //All
+            updateTasklist(req,_application)
+        }
+
+        //Applications - Existing user
+        req.session.myData.defaultApplications = [
             {
                 "id": "2021-12345-EPS-MIT", 
                 "type": "a13",
@@ -402,7 +445,7 @@ module.exports = function (router,_myData) {
                 "starteddate": new Date(2021, 09, 2, 10, 05, 0, 0),
                 "lastsaveddate": new Date(2021, 09, 5, 16, 47, 40, 0),
                 "validfromdate": new Date(2021, 09, 20, 16, 47, 40, 0),
-                "validtodate": new Date(2022, 09, 20, 16, 47, 40, 0),
+                "validtodate": new Date(2023, 09, 20, 16, 47, 40, 0),
                 "siteName": "Tomkins Estate",
                 "applicantName": "John Smith",
                 "hasPostcode": "Yes", 
@@ -428,6 +471,56 @@ module.exports = function (router,_myData) {
                 "siteAddress": "5 High Street"
             }
         ]
+        req.session.myData.defaultApplications.forEach(function(_application, index) {
+            presetTasklists(_application)
+        });
+
+        //Applications - CWM data
+        req.session.myData.defaultCWMApplications = [
+            {
+                "id": "2021-83653-EPS-MIT",
+                "type": "a13",
+                "habitatType": "multple",
+                "new": false,
+                "status": "granted",
+                "tasklist": JSON.parse(JSON.stringify(req.session.myData.tasklist)),
+                "habitats": [],
+                "consents": [],
+                "starteddate": new Date(2021, 09, 2, 10, 05, 0, 0),
+                "lastsaveddate": new Date(2021, 09, 5, 16, 47, 40, 0),
+                "validfromdate": new Date(2021, 09, 20, 16, 47, 40, 0),
+                "validtodate": new Date(2023, 09, 20, 16, 47, 40, 0),
+                "siteName": "Tomkins Estate",
+                "applicantName": "John Smith",
+                "hasPostcode": "Yes", 
+                "sitePostcode": "B1 3AA", 
+                "siteAddress": "5 High Street"
+            },
+            {
+                "id": "2021-09273-EPS-MIT",
+                "type": "a14",
+                "new": false,
+                "status": "granted",
+                "tasklist": JSON.parse(JSON.stringify(req.session.myData.tasklist)),
+                "habitats": [],
+                "consents": [],
+                "starteddate": new Date(2021, 08, 26, 10, 05, 0, 0),
+                "lastsaveddate": new Date(2021, 09, 2, 16, 47, 40, 0),
+                "validfromdate": new Date(2021, 10, 01, 16, 47, 40, 0),
+                "validtodate": new Date(2024, 10, 01, 16, 47, 40, 0),
+                "siteName": "90 Lower Eastside Farm",
+                "applicantName": "Jane Doe",
+                "hasPostcode": "Yes", 
+                "sitePostcode": "B1 3AA", 
+                "siteAddress": "5 High Street"
+            }
+        ]
+        req.session.myData.defaultCWMApplications.forEach(function(_application, index) {
+            presetTasklists(_application)
+        });
+
+        req.session.myData.applications = req.session.myData.defaultApplications
+
         req.session.myData.user = {
             "userName": "David Smith",
             "userAddress1": "1 London Road",
@@ -543,23 +636,6 @@ module.exports = function (router,_myData) {
                 ]
             }
         ]
-
-        //Preset answers
-        req.session.myData.applications[0].tasklist.sections["7"] = "completed"
-        req.session.myData.applications[1].tasklist.sections["4"] = "inprogress"
-        req.session.myData.applications[1].tasklist.sections["5"] = "completed"
-        req.session.myData.applications[1].tasklist.sections["6"] = "completed"
-        req.session.myData.applications[1].tasklist.sections["7"] = "completed"
-        req.session.myData.applications.forEach(function(_application, index) {
-            //Submitted ones
-            if(_application.status == "submitted" || _application.status == "granted"){
-                for (const [key, value] of Object.entries(_application.tasklist.sections)) {
-                    _application.tasklist.sections[key] = "completed"
-                }
-            }
-            //All
-            updateTasklist(req,_application)
-        });
 
         //Default required questions (purpose flow)
         req.session.myData.requiredQuestions = {
@@ -830,6 +906,72 @@ module.exports = function (router,_myData) {
 
     });
 
+    // CWM check are you sure?
+    router.get('/' + version + '/cwm-check', function (req, res) {
+        res.render(version + '/cwm-check', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/cwm-check', function (req, res) {
+
+        req.session.myData.cwmCheckAnswer = req.body.cwmCheck
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.cwmCheckAnswer = req.session.myData.cwmCheckAnswer || "Yes"
+        }
+
+        if(!req.session.myData.cwmCheckAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.cwmCheck = {
+                "anchor": "cwmCheck-1",
+                "message": "[error message]"
+            }
+        }
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/cwm-check', {
+                myData: req.session.myData
+            });
+        } else {
+
+            req.session.myData.cwmCheck = req.session.myData.cwmCheckAnswer
+           
+            if(req.session.myData.cwmCheck == "Yes"){
+                res.redirect(301, '/' + version + '/cwm-linked');
+            } else {
+                res.redirect(301, '/' + version + '/cwm-not-linked');
+            }
+
+        }
+        
+    });
+
+    // CWM linked
+    router.get('/' + version + '/cwm-linked', function (req, res) {
+        res.render(version + '/cwm-linked', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/cwm-linked', function (req, res) {
+        req.session.myData.applications = req.session.myData.defaultCWMApplications
+        res.redirect(301, '/' + version + '/applications');
+    });
+
+    // CWM not linked
+    router.get('/' + version + '/cwm-not-linked', function (req, res) {
+        res.render(version + '/cwm-not-linked', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/cwm-not-linked', function (req, res) {
+        req.session.myData.applications = []
+        res.redirect(301, '/' + version + '/applications');
+    });
+
+
+
+
+
     // Start page
     router.get('/' + version + '/start', function (req, res) {
         res.render(version + '/start', {
@@ -885,10 +1027,12 @@ module.exports = function (router,_myData) {
             });
         } else {
 
-            req.session.myData.selectedApplication.startSpecies = req.session.myData.startSpeciesAnswer
+            // console.log(req.session.myData.selectedApplication)
 
+            // req.session.myData.selectedApplication.startSpecies = req.session.myData.startSpeciesAnswer
 
-            switch(req.session.myData.selectedApplication.startSpecies) {
+            // switch(req.session.myData.selectedApplication.startSpecies) {
+            switch(req.session.myData.startSpeciesAnswer) {
                 case "bat":
                     _licenceType = "a13"
                     break;

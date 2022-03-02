@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% set _pageID = "CD92 - Email invite to service" %}
+
+{% set _email = true %}
+
+{% set serviceName = "" %}
+{% set serviceUrl = "" %}
+
+
+{% block pageTitle %} 
+{% endblock %}
+
+{% block beforeContent %}
+    <!-- {% include "includes/alpha-banner.html" %} -->
+    <!-- {% include "includes/back-save-link.html" %} -->
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+  
+        <p class="govuk-body govuk-!-font-size-16 govuk-!-margin-bottom-6" style="border-bottom: 1px solid grey; padding-bottom:20px">
+          <span class="govuk-!-font-weight-bold">From:</span> Department for Environment, Food and Rural Affairs &lt;defra@notifications.service.gov.uk&gt;
+          <br><span class="govuk-!-font-weight-bold">Subject:</span> <span style="color:red">[TODO - subject]</span>
+        </p>
+  
+        <h1 class="govuk-heading-l">
+            [TODO - subject]
+        </h1>
+  
+        <p class="govuk-body" >To <span style="color:red">[TODO - name on CWM]</span>,</p>
+  
+        <p class="govuk-body" style="color:red">TODO - content of email - explain that there is a new service and use the link here to create an account<br>-<br>point out which data / history will be associated with the account...<br>-<br>-.</p>
+
+        <p class="govuk-body" style="color:red">[TODO - link to start using service - ] <a href="defra-id-signin?returnURL=cwm-check" target="_blank" class="govuk-link govuk-link--no-visited-state">https://domainhere.gov.uk/page-name?id=1234567890123456789</a></p>
+
+        <!-- <p class="govuk-body" style="color:red">[TODO - link to read about new service on GOV.UK - ] <a href="#" target="_blank" class="govuk-link govuk-link--no-visited-state">https://domainhere.gov.uk/page-name?id=1234567890123456789</a></p> -->
+        
+        <p class="govuk-body">From</p>
+        
+        <p class="govuk-body">Department for Environment, Food & Rural Affairs (Defra)</p>
+
+        <!-- <p class="govuk-body">This is an automated message – do not reply.</p> -->
+        
+        <!-- <p class="govuk-body-s govuk-!-margin-top-9">Department for Environment, Food and Rural Affairs (Defra) This email and any attachments is intended for the named recipient only. If you have received it in error you have no authority to use, disclose, store or copy any of its contents and you should destroy it and inform the sender. Whilst this email and associated attachments will have been checked for known viruses whilst within Defra systems we can accept no responsibility once it has left our systems. Communications on Defra's computer systems may be monitored and/or recorded to secure the effective operation of the system and for other lawful purposes.</p> -->
+  
+      </div>
+  </div>
+
+{% endblock %}

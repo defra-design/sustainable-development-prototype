@@ -50,17 +50,25 @@
 
 {% if useAutoStoreData %}
   {% block footer %}
-    {{ govukFooter({
-      meta: {
-        items: [
-          {
-            href: "",
-            text: ""
-          }
-        ],
-        html: _pageID
-      }
-    }) }}
+    {% if _email != true %}
+      {{ govukFooter({
+        meta: {
+          items: [
+            {
+              href: "",
+              text: ""
+            }
+          ],
+          html: _pageID
+        }
+      }) }}
+    {% else %}
+      {{ govukFooter({
+        meta: {
+          html: _pageID
+        }
+      }) }}
+    {% endif %}
   {% endblock %}
 {% endif %}
 
