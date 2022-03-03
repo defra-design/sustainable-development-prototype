@@ -5,7 +5,7 @@
 {% set serviceName = myData.serviceName %}
 
 {% block pageTitle %} 
-TODO
+Account successfully linked
 {% endblock %}
 
 {% block beforeContent %}
@@ -18,11 +18,15 @@ TODO
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-        <form method="POST">
-
-            <h1 class="govuk-heading-xl">
-                TODO - linked success
+        <div class="govuk-panel govuk-panel--confirmation">
+            <h1 class="govuk-panel__title">
+                Account successfully linked
             </h1>
+        </div>
+
+        <p class="govuk-body govuk-!-margin-top-6">You can now view your existing licences in your new account.</p>
+
+        <form method="POST">
 
             {{govukButton({
                 text: "Continue"

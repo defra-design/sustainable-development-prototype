@@ -6,8 +6,10 @@
 
 {% set _inError = myData.validationError == "true" %}
 
+{% set _user = myData.user.userName %}
+
 {% block pageTitle %} 
-{% if _inError %}Error: {% endif %}TODO
+{% if _inError %}Error: {% endif %}Are you sure you want to link your existing wildlife licences to this account?
 {% endblock %}
 
 {% block beforeContent %}
@@ -44,13 +46,21 @@
 	<div class="govuk-grid-column-two-thirds">
 		<form method="POST">
 
+            <h1 class="govuk-heading-xl">
+                Are you sure you want to link your existing wildlife licences to this account?
+            </h1>
+
+            <p class="govuk-body">You are currently signed in as {{_user}}.</p>
+
+            <p class="govuk-body">You will link existing wildlife licences applied for by {{_user}} to this account.</p>
+
             <div class="govuk-form-group {% if _inError %}govuk-form-group--error{% endif %}">
                 <fieldset class="govuk-fieldset" >
 
-                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
-                        <h1 class="govuk-fieldset__heading">
-                            TODO - sure you want to link?
-                        </h1>
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl govuk-visually-hidden">
+                        <!-- <h1 class="govuk-fieldset__heading"> -->
+                            Are you sure you want to link your existing wildlife licences to this account?
+                        <!-- </h1> -->
                     </legend>
 
                     {% if _inError %}

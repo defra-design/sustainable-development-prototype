@@ -910,6 +910,13 @@ module.exports = function (router,_myData) {
 
     });
 
+    // Email invite
+    router.get('/' + version + '/email-invite', function (req, res) {
+        res.render(version + '/email-invite', {
+            myData:req.session.myData
+        });
+    });
+
     // CWM check are you sure?
     router.get('/' + version + '/cwm-check', function (req, res) {
         res.render(version + '/cwm-check', {
