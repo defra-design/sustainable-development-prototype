@@ -23,7 +23,9 @@
 
         <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible govuk-!-margin-top-0">
 
-        <h1 class="govuk-heading-l">Prototype {{myData.version}} setup</h1>
+        <h1 class="govuk-heading-xl">Prototype {{myData.version}} setup</h1>
+
+        <h1 class="govuk-heading-l">Apply for a wildlife licence</h1>
 
         <!-- <p class="govuk-body" >
             <a href="setup?r=true" class="govuk-link govuk-link--no-visited-state">Reset setup options</a>
@@ -64,12 +66,12 @@
                 <legend class="govuk-fieldset__legend govuk-!-font-weight-bold">Start journey from</legend>
                 <div class="govuk-radios">
                     <div class="govuk-radios__item">
-                        <input {% if myData.startFrom == 'start' %}checked{% endif %} class="govuk-radios__input" data-option="startFrom-1" id="startFrom-1" name="startFrom" type="radio" value="start">
-                        <label class="govuk-label govuk-radios__label" for="startFrom-1">Start page</label>
+                        <input {% if myData.startFrom == 's' %}checked{% endif %} class="govuk-radios__input" data-option="startFrom-1" id="startFrom-1" name="startFrom" type="radio" value="s">
+                        <label class="govuk-label govuk-radios__label" for="startFrom-1">Service start page</label>
                     </div>
                     <div class="govuk-radios__item">
-                        <input {% if myData.startFrom == 'email-invite' %}checked{% endif %} class="govuk-radios__input" data-option="startFrom-1" id="startFrom-2" name="startFrom" type="radio" value="email-invite">
-                        <label class="govuk-label govuk-radios__label" for="startFrom-2">Email invite</label>
+                        <input {% if myData.startFrom == 'e' %}checked{% endif %} class="govuk-radios__input" data-option="startFrom-1" id="startFrom-2" name="startFrom" type="radio" value="e">
+                        <label class="govuk-label govuk-radios__label" for="startFrom-2">Email invite (to legacy users)</label>
 
                     </div>
                 </div>
@@ -128,7 +130,7 @@
         </p>
 
         <p class="govuk-body" >
-            <span class="govuk-!-font-weight-bold">Shareable link:</span><br>
+            <span class="govuk-!-font-weight-bold">Shareable link (uses settings made above):</span><br>
             <span class="govuk-body" id="start-url-label" style="display:none"></span>
         </p>
 
@@ -629,8 +631,19 @@
             //Base URL
             var _urlBase = "https://sustainable-prototype.herokuapp.com/" + {{myData.version|dump|safe}} + "/";
             //Queries
-            var _urlPage = $('input[name=startFrom]:checked').val(),
-                _urlPageQuery = "&sf=" + _urlPage,
+            var _urlStartFrom = $('input[name=startFrom]:checked').val(),
+                _urlPage = "start"
+            switch(_urlStartFrom) {
+                case "s":
+                    _urlPage = "start"
+                    break;
+                case "e":
+                    _urlPage = "email-invite"
+                    break;
+                default:
+                _urlPage = "a13"
+            }
+            var _urlPageQuery = "&sf=" + _urlStartFrom,
                 // _urlService = "&s=" + $('input[name=service]:checked').val(),
                 // _urlNewApplication = "&new=true",
                 // _urllicenceType = "&l=" + _options.filter("#licenceType").val(),

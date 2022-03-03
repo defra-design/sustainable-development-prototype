@@ -650,7 +650,7 @@ module.exports = function (router,_myData) {
         req.session.myData.licenceType = "a13"
         req.session.myData.habitatToRemove = "123456789"
         req.session.myData.signedIn = "false"
-        req.session.myData.startFrom = "start"
+        req.session.myData.startFrom = "s"
 
         //Default answers
         req.session.myData.application = "2021-12345-EPS-MIT"
