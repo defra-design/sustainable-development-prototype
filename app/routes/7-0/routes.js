@@ -1092,7 +1092,7 @@ module.exports = function (router,_myData) {
             req.session.myData.validationError = "true"
             req.session.myData.validationErrors.landOwner = {
                 "anchor": "landOwner-1",
-                "message": "[error message]"
+                "message": "Select yes if the applicant owns the land"
             }
         }
 
@@ -1146,7 +1146,7 @@ module.exports = function (router,_myData) {
             req.session.myData.validationError = "true"
             req.session.myData.validationErrors.landOwnerPermission = {
                 "anchor": "landOwnerPermission-1",
-                "message": "[error message]"
+                "message": "Select yes if the applicant has the landowner’s permission to apply"
             }
         }
 
@@ -1201,7 +1201,7 @@ module.exports = function (router,_myData) {
             req.session.myData.validationError = "true"
             req.session.myData.validationErrors.consent = {
                 "anchor": "consent-1",
-                "message": "[error message]"
+                "message": "Select yes if the project needs any permissions"
             }
         }
 
@@ -1255,7 +1255,7 @@ module.exports = function (router,_myData) {
             req.session.myData.validationError = "true"
             req.session.myData.validationErrors.consentGranted = {
                 "anchor": "consentGranted-1",
-                "message": "[error message]"
+                "message": "Select yes if the project has got all permissions for work to start"
             }
         }
 
