@@ -935,7 +935,7 @@ module.exports = function (router,_myData) {
             req.session.myData.validationError = "true"
             req.session.myData.validationErrors.cwmCheck = {
                 "anchor": "cwmCheck-1",
-                "message": "[error message]"
+                "message": "Select yes if you want to link your existing wildlife licences to this account"
             }
         }
 
