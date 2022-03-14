@@ -1,0 +1,137 @@
+{% extends "layout.html" %}
+
+{% set _pageID = "CD97 - Ecologist memberships saved" %}
+
+{% set serviceName = myData.serviceName %}
+
+{% set _inError = myData.validationError == "true" %}
+
+{% block pageTitle %} 
+{% if _inError %}Error: {% endif %}
+{% if myData.selectedApplication.userIsEcologist == "Yes" %}
+    Confirm your current memberships
+{% else %}
+    {{myData.selectedApplication.ecologistName}}’s current memberships
+{% endif %}
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        {% if _inError %}
+        <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+            <h2 class="govuk-error-summary__title" id="error-summary-title">
+                There is a problem
+            </h2>
+            <div class="govuk-error-summary__body">
+                <ul class="govuk-list govuk-error-summary__list">
+                    {% for name, item in myData.validationErrors %}
+                    <li>
+                        <a href="#{{item.anchor}}">{{item.message}}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+
+        <h1 class="govuk-heading-xl">
+            {% if myData.selectedApplication.userIsEcologist == "Yes" %}
+                Confirm your current memberships
+            {% else %}
+                {{myData.selectedApplication.ecologistName}}’s current memberships
+            {% endif %}
+        </h1>
+
+        <p class="govuk-body">
+            {% if myData.selectedApplication.userIsEcologist == "Yes" %}
+                You are a member of:
+            {% else %}
+                {{myData.selectedApplication.ecologistName}} is a member of:
+            {% endif %}
+        </p>
+        <ul class="govuk-list govuk-list--bullet">
+            {% set _notInList = [] %}
+            {% for _membership in myData.memberships %}
+                {% set _in = false %}
+                {% for _ecologistMembership in myData.selectedEcologist.memberships %}
+                    {% if _membership.id == _ecologistMembership.id %}
+                        {% set _in = true %}
+                        <li>{{_membership.name}} ({{_membership.acronym}})</li>
+                    {% endif %}
+                {% endfor %}
+                {% if _in == false %}
+                    {% set _notInList = (_notInList.push(_membership), _notInList) %}
+                {% endif %}
+            {% endfor %}
+        </ul>
+
+        {% if _notInList.length > 0 %}
+        <p class="govuk-body">
+            {% if myData.selectedApplication.userIsEcologist == "Yes" %}
+                You are not a member of:
+            {% else %}
+                {{myData.selectedApplication.ecologistName}} is not a member of:
+            {% endif %}
+        </p>
+        <ul class="govuk-list govuk-list--bullet">
+            {% for _membership in _notInList %}
+                <li>{{_membership.name}} ({{_membership.acronym}})</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        <form method="POST">
+
+            <div class="govuk-form-group {% if _inError %}govuk-form-group--error{% endif %}">
+                <fieldset class="govuk-fieldset" >
+
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                        <h1 class="govuk-fieldset__heading">
+                            Are these memberships correct?
+                        </h1>
+                    </legend>
+
+                    {% if _inError %}
+                    <span class="govuk-error-message">
+                        <span class="govuk-visually-hidden">Error:</span>
+                        {{myData.validationErrors.changeMemberships.message}}
+                    </span>
+                    {% endif %}
+
+                    <div class="govuk-radios">
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="changeMemberships-1" name="changeMemberships" type="radio" value="yes">
+                            <label class="govuk-label govuk-radios__label" for="changeMemberships-1">
+                            Yes
+                            </label>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="changeMemberships-2" name="changeMemberships" type="radio" value="no">
+                            <label class="govuk-label govuk-radios__label" for="changeMemberships-2">
+                            No
+                            </label>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </div>
+
+            {{govukButton({
+                text: "Continue"
+            })}}
+
+        </form>
+
+	</div>
+</div>
+
+
+{% endblock %}

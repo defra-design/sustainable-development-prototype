@@ -587,7 +587,9 @@ module.exports = function (router,_myData) {
                     }
                 ],
                 "memberships": [
-                    'none'
+                    JSON.parse(JSON.stringify(req.session.myData.memberships[0])),
+                    JSON.parse(JSON.stringify(req.session.myData.memberships[3])),
+                    JSON.parse(JSON.stringify(req.session.myData.memberships[5]))
                 ]
             }
         ]
@@ -4265,11 +4267,24 @@ module.exports = function (router,_myData) {
                     req.session.myData.selectedApplication.ecologistPostcode = _existingAddress.postcode //optional "" or postcode
                 }
 
+
+                var _existingEcologist = req.session.myData.ecologists.find(obj => {return obj.name.toString() === req.session.myData.selectedApplication.ecologistName.toString()});
+
+                if(_existingEcologist){
+                    req.session.myData.selectedEcologist = _existingEcologist
+                }
+
                 if(req.query.cya == "true"){
                     res.redirect(301, '/' + version + '/cya-ecologist');
                 } else {
-                    res.redirect(301, '/' + version + '/ecologist-memberships');
+                    if(req.session.myData.selectedEcologist.memberships.length > 0 && req.session.myData.selectedEcologist.memberships[0] != 'none'){
+                        // go to ecologist stored memberships list if 1 or more saved memberships on this user
+                        res.redirect(301, '/' + version + '/ecologist-memberships-saved');
+                    } else {
+                        res.redirect(301, '/' + version + '/ecologist-memberships');
+                    }
                 }
+
             }
             
         }
@@ -4364,10 +4379,21 @@ module.exports = function (router,_myData) {
             req.session.myData.selectedApplication.ecologistAddress3 = "Oxford"
             req.session.myData.selectedApplication.ecologistAddress4 = "Oxfordshire"
 
+            var _existingEcologist = req.session.myData.ecologists.find(obj => {return obj.name.toString() === req.session.myData.selectedApplication.ecologistName.toString()});
+
+            if(_existingEcologist){
+                req.session.myData.selectedEcologist = _existingEcologist
+            }
+
             if(req.query.cya == "true"){
                 res.redirect(301, '/' + version + '/cya-ecologist');
             } else {
-                res.redirect(301, '/' + version + '/ecologist-memberships');
+                if(req.session.myData.selectedEcologist.memberships.length > 0 && req.session.myData.selectedEcologist.memberships[0] != 'none'){
+                    // go to ecologist stored memberships list if 1 or more saved memberships on this user
+                    res.redirect(301, '/' + version + '/ecologist-memberships-saved');
+                } else {
+                    res.redirect(301, '/' + version + '/ecologist-memberships');
+                }
             }
 
         }
@@ -4458,10 +4484,21 @@ module.exports = function (router,_myData) {
             req.session.myData.ecologistAddress4TempAnswer = ""
             req.session.myData.ecologistPostcodeTempAnswer = ""
 
+            var _existingEcologist = req.session.myData.ecologists.find(obj => {return obj.name.toString() === req.session.myData.selectedApplication.ecologistName.toString()});
+
+            if(_existingEcologist){
+                req.session.myData.selectedEcologist = _existingEcologist
+            }
+
             if(req.query.cya == "true"){
                 res.redirect(301, '/' + version + '/cya-ecologist');
             } else {
-                res.redirect(301, '/' + version + '/ecologist-memberships');
+                if(req.session.myData.selectedEcologist.memberships.length > 0 && req.session.myData.selectedEcologist.memberships[0] != 'none'){
+                    // go to ecologist stored memberships list if 1 or more saved memberships on this user
+                    res.redirect(301, '/' + version + '/ecologist-memberships-saved');
+                } else {
+                    res.redirect(301, '/' + version + '/ecologist-memberships');
+                }
             }
 
         }
@@ -4510,9 +4547,9 @@ module.exports = function (router,_myData) {
             if(req.session.myData.ecologistMembershipsAnswersTemp[0] == "none") {
                 req.session.myData.selectedApplication.ecologistMemberships.push("none")
             } else {
-                req.session.myData.memberships.forEach(function(_habitatUse, index) {
-                    if(req.session.myData.ecologistMembershipsAnswersTemp.indexOf(_habitatUse.id.toString()) != -1){
-                        req.session.myData.selectedApplication.ecologistMemberships.push(_habitatUse)
+                req.session.myData.memberships.forEach(function(_membership, index) {
+                    if(req.session.myData.ecologistMembershipsAnswersTemp.indexOf(_membership.id.toString()) != -1){
+                        req.session.myData.selectedApplication.ecologistMemberships.push(_membership)
                     }
                 });
             }
@@ -4523,6 +4560,53 @@ module.exports = function (router,_myData) {
 
         }
 
+    });
+
+    // Ecologist memberships - stored
+    router.get('/' + version + '/ecologist-memberships-saved', function (req, res) {
+        res.render(version + '/ecologist-memberships-saved', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/ecologist-memberships-saved', function (req, res) {
+
+        req.session.myData.changeMembershipsAnswer = req.body.changeMemberships
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.changeMembershipsAnswer = req.session.myData.changeMembershipsAnswer || "Yes"
+        }
+
+        if(!req.session.myData.changeMembershipsAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.changeMemberships = {
+                "anchor": "changeMemberships-1",
+                "message": "[error message]"
+            }
+        }
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/ecologist-memberships-saved', {
+                myData: req.session.myData
+            });
+        } else {
+
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
+
+            var _existingEcologist = req.session.myData.ecologists.find(obj => {return obj.name.toString() === req.session.myData.selectedApplication.ecologistName.toString()});
+
+            if(_existingEcologist){
+                req.session.myData.selectedEcologist = _existingEcologist
+            }
+
+            if(req.session.myData.changeMembershipsAnswer == 'yes'){
+                req.session.myData.selectedApplication.ecologistMemberships = req.session.myData.selectedEcologist.memberships
+                res.redirect(301, '/' + version + '/cya-ecologist');
+            } else {
+                res.redirect(301, '/' + version + '/ecologist-memberships');
+            }
+
+        }
+         
     });
 
     // Check your answers ecologist
@@ -4564,7 +4648,7 @@ module.exports = function (router,_myData) {
                 req.session.myData.user.addresses.unshift(_newAddress)
             }
             //Add new memberships
-            req.session.myData.user.memberships = req.session.myData.ecologistMemberships
+            req.session.myData.user.memberships = req.session.myData.selectedApplication.ecologistMemberships
         } else if(_existingEcologist){
             //existing ecologist
             //Add new company
@@ -4581,7 +4665,7 @@ module.exports = function (router,_myData) {
                 _existingEcologist.addresses.unshift(_newAddress)
             }
             //Add new memberships
-            _existingEcologist.memberships = req.session.myData.ecologistMemberships
+            _existingEcologist.memberships = req.session.myData.selectedApplication.ecologistMemberships
         } else {
             //add new ecologist
             var _newEcologist = {
