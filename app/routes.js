@@ -660,6 +660,63 @@ var _myData = {
             "roosts": [],
             "consents": []
         }
+    ],
+    "memberships": [
+        {
+            "id": "_membership-1",
+            "name": "Royal Town Planning Institute",
+            "acronym": "TPI"
+        },
+        {
+            "id": "_membership-2",
+            "name": "Central Association for Agricultural Values",
+            "acronym": "CAAV"
+        },
+        {
+            "id": "_membership-3",
+            "name": "Institute of Chartered Foresters",
+            "acronym": "ICF"
+        },
+        {
+            "id": "_membership-4",
+            "name": "Chartered Institute for Ecology and Environmental Management",
+            "acronym": "CIEEM"
+        },
+        {
+            "id": "_membership-5",
+            "name": "Institute of Environmental Management and Assessment",
+            "acronym": "IEMA"
+        },
+        {
+            "id": "_membership-6",
+            "name": "Institution of Environmental Sciences",
+            "acronym": "IES"
+        },
+        {
+            "id": "_membership-7",
+            "name": "Chartered Institute of Water and Environmental Management",
+            "acronym": "CIWEM"
+        },
+        {
+            "id": "_membership-8",
+            "name": "College of Insurance and Financial Management",
+            "acronym": "CIFM"
+        },
+        {
+            "id": "_membership-9",
+            "name": "Institute of Professional Soil Scientists",
+            "acronym": "IPSS"
+        },
+        {
+            "id": "_membership-10",
+            "name": "Institute of Agricultural Management",
+            "acronym": "IAgrM"
+        },
+        {
+            "id": "_membership-11",
+            "name": "Royal Institution of Chartered Surveyors",
+            "acronym": "RICS"
+        }
     ]
 }
 
@@ -782,6 +839,16 @@ _myData.batSpecies2.sort(function(a,b){
 
 //Sort categories
 _myData.workCategories.sort(function(a,b){
+    if (a.name.toUpperCase() < b.name.toUpperCase()){
+        return -1
+    } else if(a.name.toUpperCase() > b.name.toUpperCase()){
+        return 1
+    }
+    return 0;
+});
+
+//Sort memberships
+_myData.memberships.sort(function(a,b){
     if (a.name.toUpperCase() < b.name.toUpperCase()){
         return -1
     } else if(a.name.toUpperCase() > b.name.toUpperCase()){
