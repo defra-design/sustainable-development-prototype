@@ -161,14 +161,14 @@
                     </dt>
                     <dd class="govuk-summary-list__value">
                         {% if myData.selectedApplication.ecologistMemberships[0] == "none" %}
-                        None 
+                        {{_membership.name}} ({{_membership.acronym}}) 
                         {% else %}
                             {% if myData.selectedApplication.ecologistMemberships.length == 1 %}
-                                {{myData.selectedApplication.ecologistMemberships[0].name}}
+                                {{myData.selectedApplication.ecologistMemberships[0].name}} ({{myData.selectedApplication.ecologistMemberships[0].acronym}})
                             {% else %}
                                 <ul class="govuk-list govuk-list--bullet">
                                     {% for _membership in myData.selectedApplication.ecologistMemberships %}
-                                    <li>{{_membership.name}}</li>
+                                    <li>{{_membership.name}} ({{_membership.acronym}})</li>
                                     {% endfor %}
                                 </ul>
                             {% endif %}

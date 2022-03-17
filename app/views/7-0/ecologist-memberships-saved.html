@@ -7,12 +7,7 @@
 {% set _inError = myData.validationError == "true" %}
 
 {% block pageTitle %} 
-{% if _inError %}Error: {% endif %}
-{% if myData.selectedApplication.userIsEcologist == "Yes" %}
-    Confirm your current memberships
-{% else %}
-    {{myData.selectedApplication.ecologistName}}’s current memberships
-{% endif %}
+{% if _inError %}Error: {% endif %}TODO
 {% endblock %}
 
 {% block beforeContent %}
@@ -46,7 +41,7 @@
             {% if myData.selectedApplication.userIsEcologist == "Yes" %}
                 Confirm your current memberships
             {% else %}
-                {{myData.selectedApplication.ecologistName}}’s current memberships
+                Confirm {{myData.selectedApplication.ecologistName}}’s current memberships
             {% endif %}
         </h1>
 
