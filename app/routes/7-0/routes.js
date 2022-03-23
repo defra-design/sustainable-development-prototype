@@ -2982,7 +2982,7 @@ module.exports = function (router,_myData) {
         req.session.myData.siteMethodAnswer = req.body.siteMethod
 
         if(req.session.myData.includeValidation == "false"){
-            req.session.myData.siteMethodAnswer = req.session.myData.siteMethodAnswer || "draw"
+            req.session.myData.siteMethodAnswer = req.session.myData.siteMethodAnswer || "upload"
         }
 
         if(!req.session.myData.siteMethodAnswer){

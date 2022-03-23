@@ -53,6 +53,10 @@
                         </h1>
                     </legend>
 
+                    <!-- <span class="govuk-hint">
+                        If you upload a document or image, your application may take longer to process.
+                    </span> -->
+
                     {% if _inError %}
                     <span class="govuk-error-message">
                         <span class="govuk-visually-hidden">Error:</span>
@@ -61,23 +65,40 @@
                     {% endif %}
 
                     <div class="govuk-radios" data-module="govuk-radios">
+
+                        <div class="govuk-radios__item">
+                            <input {% if myData.selectedApplication.siteMethod == "upload" %}checked{% endif %} class="govuk-radios__input" id="siteMethod-1" name="siteMethod" type="radio" value="upload" >
+                            <label class="govuk-label govuk-radios__label" for="siteMethod-1">
+                                Upload file
+                            </label>
+                            <div class="govuk-hint govuk-radios__hint">
+                                GeoJSON, KML, Shape, PDF, jpg or PNG file
+                            </div>
+                        </div>
                         
                         <div class="govuk-radios__item">
-                            <input {% if myData.selectedApplication.siteMethod == "draw" %}checked{% endif %} class="govuk-radios__input" id="siteMethod-1" name="siteMethod" type="radio" value="draw" >
-                            <label class="govuk-label govuk-radios__label" for="siteMethod-1">
+                            <input {% if myData.selectedApplication.siteMethod == "draw" %}checked{% endif %} class="govuk-radios__input" id="siteMethod-2" name="siteMethod" type="radio" value="draw" >
+                            <label class="govuk-label govuk-radios__label" for="siteMethod-2">
                                 Draw area on a map
                             </label>
                         </div>
 
-                        <div class="govuk-radios__item">
-                            <input {% if myData.selectedApplication.siteMethod == "upload" %}checked{% endif %} class="govuk-radios__input" id="siteMethod-2" name="siteMethod" type="radio" value="upload" >
-                            <label class="govuk-label govuk-radios__label" for="siteMethod-2">
-                                Upload file
+                        
+
+                        <!-- <div class="govuk-radios__item">
+                            <input {% if myData.selectedApplication.siteMethod == "uploadImg" %}checked{% endif %} class="govuk-radios__input" id="siteMethod-3" name="siteMethod" type="radio" value="uploadImg" data-aria-controls="conditional-upload-img">
+                            <label class="govuk-label govuk-radios__label" for="siteMethod-3">
+                                Upload document or image
                             </label>
                             <div class="govuk-hint govuk-radios__hint">
-                                GeoJSON, KML or Shape file
+                                PDF, jpg or PNG file
                             </div>
                         </div>
+                        <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-upload-img">
+                            <p class="govuk-body">If you upload a document or image, your application may take longer to process.</p>
+                        </div> -->
+
+                        
 
                     </div>
 

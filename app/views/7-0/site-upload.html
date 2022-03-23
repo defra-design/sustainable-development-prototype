@@ -48,6 +48,24 @@
                 Upload your file of the area of planned activity
             </h1>
 
+            
+
+            <!-- <h2 class="govuk-heading-m">
+                Upload a file
+            </h2> -->
+            <p class="govuk-body">
+                The file must be smaller than 30MB. It can be:
+            </p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>a geospatial data file (GeoJSON, KML or Shape)</li>
+                <li>a PDF or image (jpg or PNG)</li>
+                <!-- <li>PDF</li> -->
+                <!-- <li>in Microsoft Word (.DOC or .DOCX) or PDF format</li> -->
+                <!-- <li>smaller than 30MB</li> -->
+            </ul>
+
+            <p class="govuk-body">If you upload a PDF or image, your application may take longer to process.</p>
+
             <div class="govuk-form-group {% if _inError %}govuk-form-group--error{% endif %}">
                 <!-- <h1 class="govuk-label-wrapper">
                     <label class="govuk-label govuk-label--xl" for="siteUpload">
@@ -55,13 +73,23 @@
                     </label>
                 </h1> -->
 
+                <!-- <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+                    <h1 class="govuk-fieldset__heading">
+                        Upload your file of the area of planned activity
+                    </h1>
+                </legend> -->
+
+                <!-- <span class="govuk-hint">
+                    If you upload a PDF, jpg or PNG file, your application may take longer to process.
+                </span> -->
+
                 {% set _value = myData.selectedApplication.siteUpload %}
                 {% if _inError %}
                     {% set _value = myData.siteUploadAnswer %}
                 {% endif %}
-                <label class="govuk-label" for="siteUpload">
-                    GeoJSON, KML or Shape file
-                </label>
+                <!-- <label class="govuk-label" for="siteUpload">
+                    GeoJSON, KML, Shape, PDF, jpg or PNG file
+                </label> -->
                 {% if _inError %}
                 <p id="siteUpload-error" class="govuk-error-message">
                     <span class="govuk-visually-hidden">Error:</span> {{myData.validationErrors.siteUpload.message}}
