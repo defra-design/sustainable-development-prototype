@@ -3045,7 +3045,7 @@ module.exports = function (router,_myData) {
             req.session.myData.selectedApplication.siteUpload = req.session.myData.siteUploadAnswer
             req.session.myData.siteUploadAnswer = ""
 
-            res.redirect(301, '/' + version + '/cya-site');
+            res.redirect(301, '/' + version + '/site-grid-ref');
         // }
         
     });
@@ -3070,8 +3070,49 @@ module.exports = function (router,_myData) {
     });
     router.post('/' + version + '/site-boundary', function (req, res) {
         updateLastSavedDate(req,req.session.myData.selectedApplication)
-        res.redirect(301, '/' + version + '/cya-site');
+        res.redirect(301, '/' + version + '/site-grid-ref');
     });  
+
+    //Site grid ref
+    router.get('/' + version + '/site-grid-ref', function (req, res) {
+
+        req.session.myData.selectedApplication.tasklist.sections["4"] = "inprogress"
+
+        res.render(version + '/site-grid-ref', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/site-grid-ref', function (req, res) {
+
+        req.session.myData.siteGridRefAnswer = req.body.siteGridRef
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.siteGridRefAnswer = req.session.myData.siteGridRefAnswer || "Farmland"
+        }
+
+        if(!req.session.myData.siteGridRefAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.siteGridRef = {
+                "anchor": "siteGridRef",
+                "message": "[error message]"
+            }
+        }
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/site-grid-ref', {
+                myData: req.session.myData
+            });
+        } else {
+
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
+
+            req.session.myData.selectedApplication.siteGridRef = req.session.myData.siteGridRefAnswer
+
+            res.redirect(301, '/' + version + '/cya-site');
+
+        }
+        
+    });
 
     //CYA Site boundary
     router.get('/' + version + '/cya-site', function (req, res) {

@@ -75,22 +75,7 @@
                 </div>
 
 
-                {% if myData.selectedApplication.siteMethod == "upload" %}
-                <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key">
-                        Area of planned activity
-                    </dt>
-                    <dd class="govuk-summary-list__value">
-                        {{myData.selectedApplication.siteUpload}}
-                    </dd>
-                    <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link govuk-link--no-visited-state" href="site-method?cya=true">
-                            Change<span class="govuk-visually-hidden"></span>
-                        </a>
-                    </dd>
-                </div>
-                
-                {% else %}
+                {% if myData.selectedApplication.siteMethod == "draw" %}
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key" style="vertical-align: top;" >
                         Area of planned activity
@@ -104,7 +89,35 @@
                         </a>
                     </dd>
                 </div>
+                {% else %}
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Area of planned activity
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{myData.selectedApplication.siteUpload}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="site-method?cya=true">
+                            Change<span class="govuk-visually-hidden"></span>
+                        </a>
+                    </dd>
+                </div>
                 {% endif %}
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Site’s National Grid Reference
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{myData.selectedApplication.siteGridRef}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="site-grid-ref">
+                            Change<span class="govuk-visually-hidden"></span>
+                        </a>
+                    </dd>
+                </div>
 
             </dl>
 
