@@ -789,6 +789,9 @@ module.exports = function (router,_myData) {
         //Signed in
         req.session.myData.signedIn =  req.query.si || req.session.myData.signedIn
 
+        //Site mismatch
+        req.session.myData.siteMismatch =  req.query.smm || req.session.myData.siteMismatch
+
         //Start from
         req.session.myData.startFrom =  req.query.sf || req.session.myData.startFrom
 
@@ -3045,7 +3048,12 @@ module.exports = function (router,_myData) {
             req.session.myData.selectedApplication.siteUpload = req.session.myData.siteUploadAnswer
             req.session.myData.siteUploadAnswer = ""
 
-            res.redirect(301, '/' + version + '/site-grid-ref');
+            if(req.query.cya == "true"){
+                res.redirect(301, '/' + version + '/cya-site');
+            } else {
+                res.redirect(301, '/' + version + '/site-grid-ref');
+            }
+            
         // }
         
     });
@@ -3070,7 +3078,11 @@ module.exports = function (router,_myData) {
     });
     router.post('/' + version + '/site-boundary', function (req, res) {
         updateLastSavedDate(req,req.session.myData.selectedApplication)
-        res.redirect(301, '/' + version + '/site-grid-ref');
+        if(req.query.cya == "true"){
+            res.redirect(301, '/' + version + '/cya-site');
+        } else {
+            res.redirect(301, '/' + version + '/site-grid-ref');
+        }
     });  
 
     //Site grid ref
@@ -3108,10 +3120,66 @@ module.exports = function (router,_myData) {
 
             req.session.myData.selectedApplication.siteGridRef = req.session.myData.siteGridRefAnswer
 
-            res.redirect(301, '/' + version + '/cya-site');
-
+            if(req.query.cya == "true"){
+                res.redirect(301, '/' + version + '/cya-site');
+            } else {
+                if(req.session.myData.siteMismatch == "true"){
+                    res.redirect(301, '/' + version + '/site-check');
+                } else {
+                    res.redirect(301, '/' + version + '/cya-site');
+                }
+            }
+            
         }
         
+    });
+
+    // Site check
+    router.get('/' + version + '/site-check', function (req, res) {
+        res.render(version + '/site-check', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/site-check', function (req, res) {
+
+        req.session.myData.siteCheckAnswer = req.body.siteCheck
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.siteCheckAnswer = req.session.myData.siteCheckAnswer || "correct"
+        }
+
+        if(!req.session.myData.siteCheckAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.siteCheck = {
+                "anchor": "siteCheck-1",
+                "message": "[error message]"
+            }
+        }
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/site-check', {
+                myData: req.session.myData
+            });
+        } else {
+
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
+
+            req.session.myData.selectedApplication.siteCheck = req.session.myData.siteCheckAnswer
+
+            if(req.session.myData.selectedApplication.siteCheck == "address") {
+                if(req.session.myData.selectedApplication.tasklist.sections["5"] == "completed"){
+                    res.redirect(301, '/' + version + '/site-addresses?cya=true');
+                } else {
+                    res.redirect(301, '/' + version + '/site-postcode?cya=true');
+                }
+            } else if(req.session.myData.selectedApplication.siteCheck == "gridref"){
+                res.redirect(301, '/' + version + '/site-grid-ref?cya=true');
+            } else {
+                res.redirect(301, '/' + version + '/cya-site');
+            }
+
+        }
+
     });
 
     //CYA Site boundary

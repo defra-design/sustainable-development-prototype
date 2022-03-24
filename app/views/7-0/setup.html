@@ -92,6 +92,20 @@
         <!-- Include validation checking -->
         <div class="govuk-form-group">
             <label class="govuk-label" >
+              Site mismatch
+            </label>
+            <span class="govuk-hint">
+                Determines if journey displays the site mismatch page. Address and Grid reference do not match.
+            </span>
+            <select class="govuk-select" style="min-width: 100%" id="siteMismatch" name="siteMismatch" data-option="siteMismatch">
+                <option {% if myData.siteMismatch == 'true' %}selected{% endif %} value="false">No</option>
+                <option {% if myData.siteMismatch == 'false' %}selected{% endif %} value="true">Yes, show mismatch page</option>
+            </select>
+        </div>
+
+        <!-- Include validation checking -->
+        <div class="govuk-form-group">
+            <label class="govuk-label" >
               Include validation
             </label>
             <select class="govuk-select" style="min-width: 100%" id="includeValidation" name="includeValidation" data-option="includeValidation">
@@ -538,6 +552,10 @@
                     <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="site-grid-ref?r=t">/site-grid-ref</a></td>
                 </tr>
                 <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Site check</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="site-check?r=t">/site-check</a></td>
+                </tr>
+                <tr class="govuk-table__row">
                     <th class="govuk-table__cell">Check your answers - Site boundary</th>
                     <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="cya-site?r=t&testdata=true">/cya-site</a></td>
                 </tr>
@@ -662,6 +680,7 @@
                 // _urlNewApplication = "&new=true",
                 // _urllicenceType = "&l=" + _options.filter("#licenceType").val(),
                 _urlincludeValidation = "&iv=" + _options.filter("#includeValidation").val(),
+                _urlsiteMismatch = "&smm=" + _options.filter("#siteMismatch").val(),
                 _urlsignedIn = "&si=" + _options.filter("#signedIn").val();
 
             //Hide/show signed in option
@@ -673,7 +692,7 @@
             }
            
             //Queries combined
-            var _urlPageQueries = _urlPage + "?r=t" + _urlPageQuery + _urlincludeValidation + _urlsignedIn;
+            var _urlPageQueries = _urlPage + "?r=t" + _urlPageQuery + _urlincludeValidation + _urlsignedIn + _urlsiteMismatch;
 
             //URL text
             var _startURLText = _urlBase + _urlPageQueries,
