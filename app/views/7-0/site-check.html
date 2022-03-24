@@ -77,16 +77,9 @@
                             <label class="govuk-label govuk-radios__label" for="siteCheck-1">
                                 <span class="govuk-!-font-weight-bold">Address</span>
                                 <br>
-                                {% if myData.selectedApplication.siteAddress == "select" %}
-                                    Oxford<br>
-                                    Oxfordshire<br>
-                                    {{myData.selectedApplication.sitePostcode}}
-                                {% else %}
-                                    {{myData.selectedApplication.siteAddress}}<br>
-                                    Oxford<br>
-                                    Oxfordshire<br>
-                                    {{myData.selectedApplication.sitePostcode}}
-                                {% endif %}
+                                Oxford<br>
+                                Oxfordshire<br>
+                                {{myData.selectedApplication.sitePostcode}}
                             </label>
                         </div>
                         
