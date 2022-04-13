@@ -90,11 +90,21 @@
         </div>
 
         <!-- Signed in user name -->
-        <div class="govuk-form-group">
+        <!-- <div class="govuk-form-group">
             <label class="govuk-label" for="userName">
               Signed in user name
             </label>
             <input class="govuk-input " id="userName" name="userName" data-option="userName" type="text" value="{{myData.user.userName}}">
+        </div> -->
+        <div class="govuk-form-group">
+            <label class="govuk-label" >
+                Signed in user name
+            </label>
+            <select class="govuk-select" style="min-width: 100%" id="userName" name="userName" data-option="userName">
+                <option {% if myData.user.userName == 'David Smith' %}selected{% endif %} value="1">David Smith</option>
+                <option {% if myData.user.userName == 'Dave Haigh' %}selected{% endif %} value="2">Dave Haigh</option>
+                <option {% if myData.user.userName == 'Jane Doe' %}selected{% endif %} value="3">Jane Doe</option>
+            </select>
         </div>
 
         <!-- Include validation checking -->
@@ -670,6 +680,7 @@
             setValues()
         }).trigger("input");
 
+
         //SET VALUES
         function setValues(){
             //Base URL
@@ -696,9 +707,9 @@
                 _urlsiteMismatch = "&smm=" + _options.filter("#siteMismatch").val(),
                 _urlsignedIn = "&si=" + _options.filter("#signedIn").val();
 
-            if(_options.filter("#userName").val() == "David Smith"){
-                _urluserName = ""
-            }
+            // if(_options.filter("#userName").val() == "1"){
+            //     _urluserName = ""
+            // }
 
             //Hide/show signed in option
             if(_urlPage == "email-invite"){
@@ -709,7 +720,7 @@
             }
            
             //Queries combined
-            var _urlPageQueries = _urlPage + "?r=t" + _urlPageQuery + _urlincludeValidation + _urlsignedIn + _urlsiteMismatch + _urluserName;
+            var _urlPageQueries = _urlPage + "?r=t" + _urlPageQuery + _urlincludeValidation + _urluserName + _urlsignedIn + _urlsiteMismatch;
 
             //URL text
             var _startURLText = _urlBase + _urlPageQueries,
