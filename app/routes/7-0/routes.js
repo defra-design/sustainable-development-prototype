@@ -4386,9 +4386,13 @@ module.exports = function (router,_myData) {
                 if(req.query.cya == "true"){
                     res.redirect(301, '/' + version + '/cya-ecologist');
                 } else {
-                    if(req.session.myData.selectedEcologist.memberships.length > 0 && req.session.myData.selectedEcologist.memberships[0] != 'none'){
-                        // go to ecologist stored memberships list if 1 or more saved memberships on this user
-                        res.redirect(301, '/' + version + '/ecologist-memberships-saved');
+                    if(req.session.myData.selectedEcologist){
+                        if(req.session.myData.selectedEcologist.memberships.length > 0 && req.session.myData.selectedEcologist.memberships[0] != 'none'){
+                            // go to ecologist stored memberships list if 1 or more saved memberships on this user
+                            res.redirect(301, '/' + version + '/ecologist-memberships-saved');
+                        } else {
+                            res.redirect(301, '/' + version + '/ecologist-memberships');
+                        }
                     } else {
                         res.redirect(301, '/' + version + '/ecologist-memberships');
                     }
@@ -4497,12 +4501,17 @@ module.exports = function (router,_myData) {
             if(req.query.cya == "true"){
                 res.redirect(301, '/' + version + '/cya-ecologist');
             } else {
-                if(req.session.myData.selectedEcologist.memberships.length > 0 && req.session.myData.selectedEcologist.memberships[0] != 'none'){
-                    // go to ecologist stored memberships list if 1 or more saved memberships on this user
-                    res.redirect(301, '/' + version + '/ecologist-memberships-saved');
+                if(req.session.myData.selectedEcologist){
+                    if(req.session.myData.selectedEcologist.memberships.length > 0 && req.session.myData.selectedEcologist.memberships[0] != 'none'){
+                        // go to ecologist stored memberships list if 1 or more saved memberships on this user
+                        res.redirect(301, '/' + version + '/ecologist-memberships-saved');
+                    } else {
+                        res.redirect(301, '/' + version + '/ecologist-memberships');
+                    }
                 } else {
                     res.redirect(301, '/' + version + '/ecologist-memberships');
                 }
+
             }
 
         }
@@ -4602,9 +4611,13 @@ module.exports = function (router,_myData) {
             if(req.query.cya == "true"){
                 res.redirect(301, '/' + version + '/cya-ecologist');
             } else {
-                if(req.session.myData.selectedEcologist.memberships.length > 0 && req.session.myData.selectedEcologist.memberships[0] != 'none'){
-                    // go to ecologist stored memberships list if 1 or more saved memberships on this user
-                    res.redirect(301, '/' + version + '/ecologist-memberships-saved');
+                if(req.session.myData.selectedEcologist){
+                    if(req.session.myData.selectedEcologist.memberships.length > 0 && req.session.myData.selectedEcologist.memberships[0] != 'none'){
+                        // go to ecologist stored memberships list if 1 or more saved memberships on this user
+                        res.redirect(301, '/' + version + '/ecologist-memberships-saved');
+                    } else {
+                        res.redirect(301, '/' + version + '/ecologist-memberships');
+                    }
                 } else {
                     res.redirect(301, '/' + version + '/ecologist-memberships');
                 }
