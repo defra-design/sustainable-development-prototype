@@ -89,6 +89,14 @@
             </select>
         </div>
 
+        <!-- Signed in user name -->
+        <div class="govuk-form-group">
+            <label class="govuk-label" for="userName">
+              Signed in user name
+            </label>
+            <input class="govuk-input " id="userName" name="userName" data-option="userName" type="text" value="{{myData.user.userName}}">
+        </div>
+
         <!-- Include validation checking -->
         <div class="govuk-form-group">
             <label class="govuk-label" >
@@ -658,6 +666,10 @@
             setValues()
         }).trigger("change");
 
+        _options.on('input', function() {
+            setValues()
+        }).trigger("input");
+
         //SET VALUES
         function setValues(){
             //Base URL
@@ -679,9 +691,14 @@
                 // _urlService = "&s=" + $('input[name=service]:checked').val(),
                 // _urlNewApplication = "&new=true",
                 // _urllicenceType = "&l=" + _options.filter("#licenceType").val(),
+                _urluserName = "&siu=" + _options.filter("#userName").val(),
                 _urlincludeValidation = "&iv=" + _options.filter("#includeValidation").val(),
                 _urlsiteMismatch = "&smm=" + _options.filter("#siteMismatch").val(),
                 _urlsignedIn = "&si=" + _options.filter("#signedIn").val();
+
+            if(_options.filter("#userName").val() == "David Smith"){
+                _urluserName = ""
+            }
 
             //Hide/show signed in option
             if(_urlPage == "email-invite"){
@@ -692,7 +709,7 @@
             }
            
             //Queries combined
-            var _urlPageQueries = _urlPage + "?r=t" + _urlPageQuery + _urlincludeValidation + _urlsignedIn + _urlsiteMismatch;
+            var _urlPageQueries = _urlPage + "?r=t" + _urlPageQuery + _urlincludeValidation + _urlsignedIn + _urlsiteMismatch + _urluserName;
 
             //URL text
             var _startURLText = _urlBase + _urlPageQueries,

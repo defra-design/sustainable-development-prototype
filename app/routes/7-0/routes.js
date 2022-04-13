@@ -789,6 +789,9 @@ module.exports = function (router,_myData) {
         //Signed in
         req.session.myData.signedIn =  req.query.si || req.session.myData.signedIn
 
+        //Signed in user name
+        req.session.myData.user.userName =  req.query.siu || req.session.myData.user.userName
+
         //Site mismatch
         req.session.myData.siteMismatch =  req.query.smm || req.session.myData.siteMismatch
 
