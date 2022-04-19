@@ -791,7 +791,7 @@ module.exports = function (router,_myData) {
 
         //Signed in user name
         req.session.myData.testNames = {
-            "1": "David Smith"
+            "0": "David Smith"
         }
         var _userName
         if(req.query.siu){
