@@ -790,14 +790,12 @@ module.exports = function (router,_myData) {
         req.session.myData.signedIn =  req.query.si || req.session.myData.signedIn
 
         //Signed in user name
-        var _testNames = {
-            "1": "David Smith",
-            "2": "Dave Haigh",
-            "3": "Jane Doe"
+        req.session.myData.testNames = {
+            "1": "David Smith"
         }
         var _userName
         if(req.query.siu){
-            _userName = _testNames[req.query.siu]
+            _userName = req.session.myData.testNames[req.query.siu]
         }
         req.session.myData.user.userName =  _userName || req.session.myData.user.userName
 

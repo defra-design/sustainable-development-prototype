@@ -101,9 +101,9 @@
                 Signed in user name
             </label>
             <select class="govuk-select" style="min-width: 100%" id="userName" name="userName" data-option="userName">
-                <option {% if myData.user.userName == 'David Smith' %}selected{% endif %} value="1">David Smith</option>
-                <option {% if myData.user.userName == 'Dave Haigh' %}selected{% endif %} value="2">Dave Haigh</option>
-                <option {% if myData.user.userName == 'Jane Doe' %}selected{% endif %} value="3">Jane Doe</option>
+                {% for _key, _userName in myData.testNames %}
+                <option {% if myData.user.userName == _userName %}selected{% endif %} value="{{_key}}">{{_userName}}</option>
+                {% endfor %}
             </select>
         </div>
 
