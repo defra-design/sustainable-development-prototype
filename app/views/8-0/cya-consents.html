@@ -1,0 +1,121 @@
+{% extends "layout.html" %}
+
+{% set _pageID = "CD58 - Check your answers (permissions)" %}
+
+{% set serviceName = myData.serviceName %}
+
+{% set _inError = myData.validationError == "true" %}
+
+{% block pageTitle %} 
+{% if _inError %}Error: {% endif %}Check your answers
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% set _consents = myData.selectedApplication.consents %}
+{% set _consentsCount = _consents.length %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+            {% if _inError %}
+            <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+                <h2 class="govuk-error-summary__title" id="error-summary-title">
+                    There is a problem
+                </h2>
+                <div class="govuk-error-summary__body">
+                    <ul class="govuk-list govuk-error-summary__list">
+                        {% for name, item in myData.validationErrors %}
+                        <li>
+                            <a href="#{{item.anchor}}">{{item.message}}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            {% endif %}
+
+            <h1 class="govuk-heading-xl">
+				Check your answers
+			</h1>
+
+            <h2 class="govuk-heading-l">You have added {{_consentsCount}} permission{% if _consentsCount != 1 %}s{% endif %}</h2>
+    
+    
+            {% for _consent in _consents %}
+            <dl class="govuk-summary-list">
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        {{_consent.type.name}}
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        Reference:<br>
+                        {{_consent.consentReference}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="consent-type?consent={{_consent.id}}&cya=true">
+                            Change<span class="govuk-visually-hidden"> </span>
+                        </a>
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="consent-remove?consentToRemove={{_consent.id}}">
+                            Remove<span class="govuk-visually-hidden"> </span>
+                        </a>
+                    </dd>
+                </div>
+            
+            </dl>
+            {% endfor %}
+
+            <form method="POST">
+
+                <div class="govuk-form-group {% if _inError %}govuk-form-group--error{% endif %}">
+                    <fieldset class="govuk-fieldset" >
+
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                            <h1 class="govuk-fieldset__heading">
+                                Do you want to add another permission?
+                            </h1>
+                        </legend>
+
+                        {% if _inError %}
+                        <span class="govuk-error-message">
+                            <span class="govuk-visually-hidden">Error:</span>
+                            {{myData.validationErrors.addConsent.message}}
+                        </span>
+                        {% endif %}
+
+                        <div class="govuk-radios">
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="addConsent-1" name="addConsent" type="radio" value="Yes">
+                                <label class="govuk-label govuk-radios__label" for="addConsent-1">
+                                Yes
+                                </label>
+                            </div>
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="addConsent-2" name="addConsent" type="radio" value="No">
+                                <label class="govuk-label govuk-radios__label" for="addConsent-2">
+                                No
+                                </label>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </div>
+
+                {{govukButton({
+                    text: "Continue"
+                })}}
+
+            </form>
+
+	</div>
+</div>
+
+{% endblock %}

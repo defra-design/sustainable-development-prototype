@@ -1,0 +1,128 @@
+{% extends "layout.html" %}
+
+{% set _pageID = "CD87 - Work schedule upload" %}
+
+{% set serviceName = myData.serviceName %}
+
+{% set _inError = myData.validationError == "true" %}
+
+{% set _affectedThing = "each bat roost" %}
+{% set _singular = "true" %}
+{% if myData.selectedApplication.type == "a24" %}
+    {% set _affectedThing = "each badger sett" %}
+    {% set _singular = "true" %}
+{% elif myData.selectedApplication.type == "a14" %}
+    {% set _affectedThing = "the great crested newts and their habitats" %}
+    {% set _singular = "false" %}
+{% endif %}
+
+{% block pageTitle %} 
+{% if _inError %}Error: {% endif %}Upload a work schedule
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+			{% if _inError %}
+            <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+                <h2 class="govuk-error-summary__title" id="error-summary-title">
+                    There is a problem
+                </h2>
+                <div class="govuk-error-summary__body">
+                    <ul class="govuk-list govuk-error-summary__list">
+                        {% for name, item in myData.validationErrors %}
+                        <li>
+                            <a href="#{{item.anchor}}">{{item.message}}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            {% endif %}
+
+	</div>
+</div>
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="POST">
+
+            <h1 class="govuk-heading-xl">
+                Upload a work schedule
+            </h1>
+
+            <p class="govuk-body">The work schedule must include:</p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>how and when {{_affectedThing}} will be affected</li>
+                <li>types of machinery or tools that will be used and their distance from {{_affectedThing}}</li>
+                <li>justification for why {{_affectedThing}} {% if _singular == "true" %}needs{% else %}need{% endif %} to be affected</li>
+                <li>dates of any proposed mitigation work</li>
+            </ul>
+
+            <h2 class="govuk-heading-m">
+                <!-- <label class="govuk-label govuk-!-font-weight-bold govuk-label--m" for="workScheduleUpload" > -->
+                    Upload a file
+                <!-- </label> -->
+            </h2>
+            <p class="govuk-body">
+                The file must be smaller than 30MB. It can be:
+            </p>
+
+            <ul class="govuk-list govuk-list--bullet">
+                <li>text (DOC, DOCX, PDF or ODT)</li>
+                <li>a spreadsheet (XLS, XLSX or ODS)</li>
+                <!-- <li>PDF</li> -->
+                <!-- <li>in Microsoft Word (.DOC or .DOCX) or PDF format</li> -->
+                <!-- <li>smaller than 30MB</li> -->
+            </ul>
+
+            <div class="govuk-form-group {% if _inError %}govuk-form-group--error{% endif %}">
+
+                {% set _value = myData.selectedApplication.workScheduleUpload %}
+                {% if _inError %}
+                    {% set _value = myData.workScheduleUploadAnswer %}
+                {% endif %}
+                <!-- <h2 class="govuk-label-wrapper"> -->
+                    <label class="govuk-label govuk-!-font-weight-bold govuk-label--m govuk-visually-hidden" for="workScheduleUpload" >
+                        Upload a file
+                    </label>
+                <!-- </h2> -->
+                <!-- <p class="govuk-body">
+                    The file must be:
+                </p>
+                <ul class="govuk-list govuk-list--bullet">
+                    <li>in DOC, DOCX, or PDF format</li>
+                    <li>smaller than 30MB</li>
+                </ul> -->
+                <!-- <span class="govuk-hint">
+                    30MB maximum file size.
+                </span>
+                <span class="govuk-hint">
+                    DOC, DOCX, or PDF files.
+                </span> -->
+                {% if _inError %}
+                <p id="workScheduleUpload-error" class="govuk-error-message">
+                    <span class="govuk-visually-hidden">Error:</span> {{myData.validationErrors.workScheduleUpload.message}}
+                </p>
+                {% endif %}
+                <input class="govuk-file-upload govuk-!-width-three-quarters {% if _inError %}govuk-file-upload--error{%endif %}" id="workScheduleUpload" name="workScheduleUpload" type="file" value="{{_value}}">
+
+            </div>
+
+            {{govukButton({
+                text: "Continue"
+            })}}
+
+        </form>
+
+	</div>
+</div>
+
+{% endblock %}

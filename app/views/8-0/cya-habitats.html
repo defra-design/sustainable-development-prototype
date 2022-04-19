@@ -1,0 +1,239 @@
+{% extends "layout.html" %}
+
+{% set _pageID = "CD19 – Check your answers (actions)" %}
+
+{% set serviceName = myData.serviceName %}
+
+{% set _inError = myData.validationError == "true" %}
+
+{% set _habitatType = "roost" %}
+{% set _speciesType = "bat" %}
+{% if myData.selectedApplication.type == "a24" %}
+    {% set _habitatType = "sett" %}
+    {% set _speciesType = "badger" %}
+{% endif %}
+
+{% block pageTitle %} 
+{% if _inError %}Error: {% endif %}Check your answers
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% set _habitats = myData.selectedApplication.habitats %}
+{% set _habitatsCount = _habitats.length %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+            {% if _inError %}
+            <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+                <h2 class="govuk-error-summary__title" id="error-summary-title">
+                    There is a problem
+                </h2>
+                <div class="govuk-error-summary__body">
+                    <ul class="govuk-list govuk-error-summary__list">
+                        {% for name, item in myData.validationErrors %}
+                        <li>
+                            <a href="#{{item.anchor}}">{{item.message}}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            {% endif %}
+
+            <h1 class="govuk-heading-xl">
+				Check your answers
+			</h1>
+    
+    
+            {% for _habitat in _habitats %}
+            <h2 class="govuk-heading-l">{{_habitatType|capitalize}} {{loop.index}}</h2>
+            <p class="govuk-body">
+                <a class="govuk-link govuk-link--no-visited-state" href="habitat-remove?habitatToRemove={{_habitat.id}}">
+                    Remove {{_habitatType}}<span class="govuk-visually-hidden"> {{loop.index}}</span>
+                </a>
+            </p>
+            <dl class="govuk-summary-list">
+
+                <!-- Specific species -->
+                {% if myData.selectedApplication.type == "a13" %}
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        {{_speciesType|capitalize}} species
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{_habitat.speciesName}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="habitat-species?habitat={{_habitat.id}}&cya=true">
+                            Change<span class="govuk-visually-hidden"> </span>
+                        </a>
+                    </dd>
+                </div>
+                {% endif %}
+
+                <!-- Habitat use -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        {{_habitatType|capitalize}} type
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {% if _habitat.habitatUses.length == 1 %}
+                            {{_habitat.habitatUses[0].name}}
+                        {% else %}
+                            <ul class="govuk-list govuk-list--bullet">
+                                {% for _habitatUse in _habitat.habitatUses %}
+                                <li>{{_habitatUse.name}}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="habitat-type?habitat={{_habitat.id}}&cya=true">
+                            Change<span class="govuk-visually-hidden"> </span>
+                        </a>
+                    </dd>
+                </div>
+
+                {% if myData.selectedApplication.type == "a24" %}
+                <!-- Habitat active -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Active {{_habitatType}}
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{_habitat.habitatActive|capitalize}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="habitat-active?habitat={{_habitat.id}}&cya=true">
+                            Change<span class="govuk-visually-hidden"> </span>
+                        </a>
+                    </dd>
+                </div>
+
+                <!-- Habitat reopening -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Reopening {{_habitatType}}
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{_habitat.habitatReopen|capitalize}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="habitat-reopen?habitat={{_habitat.id}}&cya=true">
+                            Change<span class="govuk-visually-hidden"> </span>
+                        </a>
+                    </dd>
+                </div>
+
+                <!-- Habitat entrance holes -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Number of entrance holes
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{_habitat.entranceHoles}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="habitat-entrances?habitat={{_habitat.id}}&cya=true">
+                            Change<span class="govuk-visually-hidden"> </span>
+                        </a>
+                    </dd>
+                </div>
+                {% endif %}
+
+                <!-- Existing number of species -->
+                {% if myData.selectedApplication.type == "a13" %}
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Number of {{_speciesType}}s
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{_habitat.numberUsing}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="habitat-numbers?habitat={{_habitat.id}}&cya=true">
+                            Change<span class="govuk-visually-hidden"> </span>
+                        </a>
+                    </dd>
+                </div>
+                {% endif %}
+
+                <!-- Species activities -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Affect on {{_speciesType}}s
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {% if _habitat.activities.length == 1 %}
+                            {{_habitat.activities[0].name}}
+                        {% else %}
+                            <ul class="govuk-list govuk-list--bullet">
+                                {% for _habitatUse in _habitat.activities %}
+                                <li>{{_habitatUse.name}}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="habitat-activities?habitat={{_habitat.id}}&cya=true">
+                            Change<span class="govuk-visually-hidden"> </span>
+                        </a>
+                    </dd>
+                </div>
+            
+            </dl>
+            {% endfor %}
+
+            <form method="POST">
+
+                <div class="govuk-form-group {% if _inError %}govuk-form-group--error{% endif %}">
+                    <fieldset class="govuk-fieldset" >
+
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                            <h1 class="govuk-fieldset__heading">
+                                Do you want to add another {{_speciesType}} {{_habitatType}}?
+                            </h1>
+                        </legend>
+
+                        {% if _inError %}
+                        <span class="govuk-error-message">
+                            <span class="govuk-visually-hidden">Error:</span>
+                            {{myData.validationErrors.addHabitat.message}}
+                        </span>
+                        {% endif %}
+
+                        <div class="govuk-radios">
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="addHabitat-1" name="addHabitat" type="radio" value="yes">
+                                <label class="govuk-label govuk-radios__label" for="addHabitat-1">
+                                Yes
+                                </label>
+                            </div>
+                            <div class="govuk-radios__item">
+                                <input class="govuk-radios__input" id="addHabitat-2" name="addHabitat" type="radio" value="no">
+                                <label class="govuk-label govuk-radios__label" for="addHabitat-2">
+                                No
+                                </label>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </div>
+
+                {{govukButton({
+                    text: "Continue"
+                })}}
+
+            </form>
+
+	</div>
+</div>
+
+{% endblock %}

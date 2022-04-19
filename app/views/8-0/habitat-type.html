@@ -1,0 +1,144 @@
+{% extends "layout.html" %}
+
+{% set _pageID = "CD79 - Habitat types" %}
+
+{% set serviceName = myData.serviceName %}
+
+{% set _inError = myData.validationError == "true" %}
+
+{% set _habitatSelectionType = myData.selectedApplication.habitatType %}
+
+{% set _habitatType = "roost" %}
+{% set _speciesType = myData.selectedHabitat.speciesName + " bat" %}
+
+{% if myData.selectedApplication.type == "a24" %}
+    {% set _habitatType = "sett" %}
+    {% set _speciesType = "badger" %}
+{% endif %}
+
+{% block pageTitle %} 
+{% if _inError %}Error: {% endif %}
+{% if _habitatSelectionType == "single" %}
+    What type of {{_speciesType}} {{_habitatType}} is it?
+{% else %}
+    What are the {{_speciesType}}s using this {{_habitatType}} for?
+{% endif %}
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {% if _inError %}
+        <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+            <h2 class="govuk-error-summary__title" id="error-summary-title">
+                There is a problem
+            </h2>
+            <div class="govuk-error-summary__body">
+                <ul class="govuk-list govuk-error-summary__list">
+                    {% for name, item in myData.validationErrors %}
+                    <li>
+                        <a href="#{{item.anchor}}">{{item.message}}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+
+		<form method="POST">
+            <div class="govuk-form-group">
+
+                <div class="govuk-form-group {% if myData.validationErrors.habitatUses %}govuk-form-group--error{% endif %} govuk-!-margin-bottom-8">
+                    <fieldset class="govuk-fieldset" >
+
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+                            <h1 class="govuk-fieldset__heading">
+                                {% if _habitatSelectionType == "single" %}
+                                    What type of {{_speciesType}} {{_habitatType}} is it?
+                                {% else %}
+                                    What are the {{_speciesType}}s using this {{_habitatType}} for?
+                                {% endif %}
+                            </h1>
+                        </legend>
+
+                        {% if _habitatSelectionType == "single" %}
+                        <!-- nothing -->
+                        {% else %}
+                        <div class="govuk-hint">
+                            Select all that apply.
+                        </div>
+                        {% endif %}
+
+                        {% if myData.validationErrors.habitatUses %}
+                        <span class="govuk-error-message">
+                            <span class="govuk-visually-hidden">Error:</span>
+                            {{myData.validationErrors.habitatUses.message}}
+                        </span>
+                        {% endif %}
+
+                        {% if _habitatSelectionType == "single" %}
+                            <div class="govuk-radios" data-module="govuk-radios">
+                        {% else %}
+                            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                        {% endif %}
+                        
+                            {% set _habitatUses = myData.roostUses3 %}
+                            {% if myData.selectedApplication.type == "a24" %}
+                                {% set _habitatUses = myData.settUses %}
+                            {% endif %}
+
+                            {% for _habitatUse in _habitatUses %}
+
+                                {% set _selected = false %}
+                                {% if _inError != "true" %}
+                                    {% for _savedHabitatUse in myData.selectedHabitat.habitatUses %}
+                                        {% if _habitatUse.id == _savedHabitatUse.id %}
+                                            {% set _selected = true %}
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+
+                                {% if _habitatSelectionType == "single" %}
+                                    <div class="govuk-radios__item">
+                                {% else %}
+                                    <div class="govuk-checkboxes__item">
+                                {% endif %}
+
+                                    {% if _habitatSelectionType == "single" %}
+                                        <input {% if _selected %}checked{% endif %} class="govuk-radios__input" id="{{_habitatUse.id}}" name="habitatUses" type="radio" value="{{_habitatUse.id}}">
+                                        <label class="govuk-label govuk-radios__label" for="{{_habitatUse.id}}">
+                                            {{_habitatUse.name}}
+                                        </label>
+                                    {% else %}
+                                        <input {% if _selected %}checked{% endif %} class="govuk-checkboxes__input" id="{{_habitatUse.id}}" name="habitatUses" type="checkbox" value="{{_habitatUse.id}}" >
+                                        <label class="govuk-label govuk-checkboxes__label" for="{{_habitatUse.id}}">
+                                            {{_habitatUse.name}}
+                                        </label>
+                                    {% endif %}
+                                    
+                                </div>
+
+                            {% endfor %}
+                        </div>
+                    </fieldset>
+                </div>
+
+            </div>
+		
+            {{govukButton({
+                text: "Continue"
+            })}}
+
+        </form>
+
+	</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% set _pageID = "CD95 - CWM not linked" %}
+
+{% set serviceName = myData.serviceName %}
+
+{% block pageTitle %} 
+Account has not been linked
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        <form method="POST">
+
+            <h1 class="govuk-heading-xl">
+                Account has not been linked
+            </h1>
+
+            <p class="govuk-body">You can associate your existing licences by using the link in the email you originally received.</p>
+
+            <p class="govuk-body">You can now start using the new wildlife licence service.</p>
+
+            {{govukButton({
+                text: "Continue"
+            })}}
+
+        </form>
+
+	</div>
+</div>
+
+
+{% endblock %}
