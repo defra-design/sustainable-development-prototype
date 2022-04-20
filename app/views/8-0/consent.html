@@ -12,11 +12,7 @@
 
 {% block beforeContent %}
     {% include "includes/alpha-banner.html" %}
-    {% if myData.selectedApplication.new == false %}
-      {% include "includes/back-save-link.html" %}
-    {% else %}
-      {% include "includes/back-link.html" %}
-    {% endif %}
+    {% include "includes/back-link.html" %}
 {% endblock %}
 
 {% block content %}
@@ -78,14 +74,14 @@
                     <div class="govuk-radios" data-module="govuk-radios">
                         
                         <div class="govuk-radios__item">
-                            <input {% if myData.selectedApplication.consent == "Yes" %}checked{% endif %} class="govuk-radios__input" id="consent-1" name="consent" type="radio" value="Yes" >
+                            <input {% if myData.consent == "Yes" %}checked{% endif %} class="govuk-radios__input" id="consent-1" name="consent" type="radio" value="Yes" >
                             <label class="govuk-label govuk-radios__label" for="consent-1">
                             Yes
                             </label>
                         </div>
 
                         <div class="govuk-radios__item">
-                            <input {% if myData.selectedApplication.consent == "No" %}checked{% endif %} class="govuk-radios__input" id="consent-2" name="consent" type="radio" value="No" >
+                            <input {% if myData.consent == "No" %}checked{% endif %} class="govuk-radios__input" id="consent-2" name="consent" type="radio" value="No" >
                             <label class="govuk-label govuk-radios__label" for="consent-2">
                             No
                             </label>

@@ -79,13 +79,13 @@
 
       <ol class="app-task-list">
 
-        <li>
+        <!-- <li>
           <h2 class="app-task-list__section">
             <span class="app-task-list__section-number">1. </span> Check before you start
           </h2>
           <ul class="app-task-list__items">
 
-            <!-- Permission - section 7 -->
+
             <li class="app-task-list__item">
                 {% set _status7 = _tasklist.sections["7"] %}
 
@@ -112,11 +112,11 @@
             </li>
 
           </ul>
-        </li>
+        </li> -->
 
         <li>
           <h2 class="app-task-list__section">
-            <span class="app-task-list__section-number">2. </span> Contact details
+            <span class="app-task-list__section-number">1. </span> Contact details
           </h2>
           <ul class="app-task-list__items">
 
@@ -191,7 +191,7 @@
 
         <li>
           <h2 class="app-task-list__section">
-            <span class="app-task-list__section-number">3. </span> Planned work activity
+            <span class="app-task-list__section-number">2. </span> Planned work activity
           </h2>
           <ul class="app-task-list__items">
 
@@ -239,7 +239,7 @@
                   {% if _status8 == "completed" %}
                   <a href="cya-consents" class="govuk-link--no-visited-state" >
                   {% else %}
-                  <a href="intro-consent" class="govuk-link--no-visited-state" >
+                  <a href="consent-needed" class="govuk-link--no-visited-state" >
                   {% endif %}
                       {{_label8}}
                   </a>
@@ -382,7 +382,7 @@
 
         <li>
           <h2 class="app-task-list__section">
-            <span class="app-task-list__section-number">4. </span> Apply
+            <span class="app-task-list__section-number">3. </span> Apply
           </h2>
           <ul class="app-task-list__items">
             <li class="app-task-list__item">

@@ -44,8 +44,27 @@
 				Check your answers
 			</h1>
 
+            <dl class="govuk-summary-list">
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Does the project need any permissions?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{myData.selectedApplication.consentNeeded}}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link govuk-link--no-visited-state" href="consent-needed?cya=true">
+                            Change<span class="govuk-visually-hidden"> </span>
+                        </a>
+                    </dd>
+                </div>
+            
+            </dl>
+
+            {% if myData.selectedApplication.consentNeeded == "Yes" %}
+
             <h2 class="govuk-heading-l">You have added {{_consentsCount}} permission{% if _consentsCount != 1 %}s{% endif %}</h2>
-    
     
             {% for _consent in _consents %}
             <dl class="govuk-summary-list">
@@ -73,8 +92,11 @@
             </dl>
             {% endfor %}
 
+            {% endif %}
+
             <form method="POST">
 
+                {% if myData.selectedApplication.consentNeeded == "Yes" %}
                 <div class="govuk-form-group {% if _inError %}govuk-form-group--error{% endif %}">
                     <fieldset class="govuk-fieldset" >
 
@@ -108,10 +130,18 @@
 
                     </fieldset>
                 </div>
+                {% endif %}
 
-                {{govukButton({
-                    text: "Continue"
-                })}}
+                {% if myData.selectedApplication.consentNeeded == "Yes" %}
+                    {{govukButton({
+                        text: "Continue"
+                    })}}
+                {% else %}
+                    {{govukButton({
+                        text: "Confirm"
+                    })}}
+                {% endif %}
+                
 
             </form>
 

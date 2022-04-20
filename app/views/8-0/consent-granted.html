@@ -12,11 +12,7 @@
 
 {% block beforeContent %}
     {% include "includes/alpha-banner.html" %}
-    {% if myData.selectedApplication.new == false %}
-      {% include "includes/back-save-link.html" %}
-    {% else %}
-      {% include "includes/back-link.html" %}
-    {% endif %}
+    {% include "includes/back-link.html" %}
 {% endblock %}
 
 {% block content %}
@@ -72,14 +68,14 @@
                     <div class="govuk-radios" data-module="govuk-radios">
                         
                         <div class="govuk-radios__item">
-                            <input {% if myData.selectedApplication.consentGranted == "Yes" %}checked{% endif %} class="govuk-radios__input" id="consentGranted-1" name="consentGranted" type="radio" value="Yes" >
+                            <input {% if myData.consentGranted == "Yes" %}checked{% endif %} class="govuk-radios__input" id="consentGranted-1" name="consentGranted" type="radio" value="Yes" >
                             <label class="govuk-label govuk-radios__label" for="consentGranted-1">
                             Yes
                             </label>
                         </div>
 
                         <div class="govuk-radios__item">
-                            <input {% if myData.selectedApplication.consentGranted == "No" %}checked{% endif %} class="govuk-radios__input" id="consentGranted-2" name="consentGranted" type="radio" value="No" >
+                            <input {% if myData.consentGranted == "No" %}checked{% endif %} class="govuk-radios__input" id="consentGranted-2" name="consentGranted" type="radio" value="No" >
                             <label class="govuk-label govuk-radios__label" for="consentGranted-2">
                             No
                             </label>

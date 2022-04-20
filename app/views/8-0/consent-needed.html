@@ -1,18 +1,18 @@
 {% extends "layout.html" %}
 
-{% set _pageID = "CD49 - Landowner permission" %}
+{% set _pageID = "CD100 - Project permissions needed" %}
 
 {% set serviceName = myData.serviceName %}
 
 {% set _inError = myData.validationError == "true" %}
 
 {% block pageTitle %} 
-{% if _inError %}Error: {% endif %}Does the applicant have the landowner's permission to apply?
+{% if _inError %}Error: {% endif %}Does the project need any permissions?
 {% endblock %}
 
 {% block beforeContent %}
     {% include "includes/alpha-banner.html" %}
-    {% include "includes/back-link.html" %}
+    {% include "includes/back-save-link.html" %}
 {% endblock %}
 
 {% block content %}
@@ -42,6 +42,13 @@
 
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
+
+        <!-- <h1 class="govuk-heading-xl">
+            Does the project need any permissions?
+        </h1>
+
+        <p class="govuk-body">For example, planning permission or listed building consent.</p> -->
+
 		<form method="POST">
 
             <div class="govuk-form-group {% if _inError %}govuk-form-group--error{% endif %}">
@@ -49,29 +56,33 @@
 
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
                         <h1 class="govuk-fieldset__heading">
-                            Does the applicant have the landowner’s permission to apply?
+                            Does the project need any permissions?
                         </h1>
                     </legend>
 
+                    <div id="nationality-hint" class="govuk-hint">
+                        For example, planning permission or listed building consent.
+                    </div>
+
                     {% if _inError %}
-                    <span id="landOwnerPermission-error" class="govuk-error-message">
+                    <span id="consent-error" class="govuk-error-message">
                         <span class="govuk-visually-hidden">Error:</span>
-                        {{myData.validationErrors.landOwnerPermission.message}}
+                        {{myData.validationErrors.consentNeeded.message}}
                     </span>
                     {% endif %}
 
                     <div class="govuk-radios" data-module="govuk-radios">
                         
                         <div class="govuk-radios__item">
-                            <input {% if myData.landOwnerPermission == "Yes" %}checked{% endif %} class="govuk-radios__input" id="landOwnerPermission-1" name="landOwnerPermission" type="radio" value="Yes" >
-                            <label class="govuk-label govuk-radios__label" for="landOwnerPermission-1">
+                            <input {% if myData.selectedApplication.consentNeeded == "Yes" %}checked{% endif %} class="govuk-radios__input" id="consentNeeded-1" name="consentNeeded" type="radio" value="Yes" >
+                            <label class="govuk-label govuk-radios__label" for="consentNeeded-1">
                             Yes
                             </label>
                         </div>
 
                         <div class="govuk-radios__item">
-                            <input {% if myData.landOwnerPermission == "No" %}checked{% endif %} class="govuk-radios__input" id="landOwnerPermission-2" name="landOwnerPermission" type="radio" value="No" >
-                            <label class="govuk-label govuk-radios__label" for="landOwnerPermission-2">
+                            <input {% if myData.selectedApplication.consentNeeded == "No" %}checked{% endif %} class="govuk-radios__input" id="consentNeeded-2" name="consentNeeded" type="radio" value="No" >
+                            <label class="govuk-label govuk-radios__label" for="consentNeeded-2">
                             No
                             </label>
                         </div>

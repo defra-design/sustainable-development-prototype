@@ -12,11 +12,7 @@
 
 {% block beforeContent %}
     {% include "includes/alpha-banner.html" %}
-    {% if myData.selectedApplication.new == false %}
-      {% include "includes/back-save-link.html" %}
-    {% else %}
-      {% include "includes/back-link.html" %}
-    {% endif %}
+    {% include "includes/back-link.html" %}
 {% endblock %}
 
 {% block content %}
@@ -67,14 +63,14 @@
                     <div class="govuk-radios" data-module="govuk-radios">
                         
                         <div class="govuk-radios__item">
-                            <input {% if myData.selectedApplication.landOwner == "Yes" %}checked{% endif %} class="govuk-radios__input" id="landOwner-1" name="landOwner" type="radio" value="Yes" >
+                            <input {% if myData.landOwner == "Yes" %}checked{% endif %} class="govuk-radios__input" id="landOwner-1" name="landOwner" type="radio" value="Yes" >
                             <label class="govuk-label govuk-radios__label" for="landOwner-1">
                             Yes
                             </label>
                         </div>
 
                         <div class="govuk-radios__item">
-                            <input {% if myData.selectedApplication.landOwner == "No" %}checked{% endif %} class="govuk-radios__input" id="landOwner-2" name="landOwner" type="radio" value="No" >
+                            <input {% if myData.landOwner == "No" %}checked{% endif %} class="govuk-radios__input" id="landOwner-2" name="landOwner" type="radio" value="No" >
                             <label class="govuk-label govuk-radios__label" for="landOwner-2">
                             No
                             </label>
