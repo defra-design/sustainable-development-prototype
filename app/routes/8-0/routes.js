@@ -833,6 +833,12 @@ module.exports = function (router,_myData) {
                 _habitatType = "single"
             }
 
+            //reset eligibility answers
+            req.session.myData.landOwner = ""
+            req.session.myData.landOwnerPermission = ""
+            req.session.myData.consentEligibility = ""
+            req.session.myData.consentGranted = ""
+
             //Used until passes eligibility
             req.session.myData.tempApplication = JSON.parse(JSON.stringify(req.session.myData.newApplication))
             req.session.myData.tempApplication.id = _appID
@@ -1177,13 +1183,15 @@ module.exports = function (router,_myData) {
     });
     router.post('/' + version + '/consent', function (req, res) {
 
-        req.session.myData.consent = req.body.consent
+        // TODO fix
+
+        req.session.myData.consentEligibility = req.body.consent
 
         if(req.session.myData.includeValidation == "false"){
-            req.session.myData.consent = req.session.myData.consent || "Yes"
+            req.session.myData.consentEligibility = req.session.myData.consentEligibility || "Yes"
         }
 
-        if(!req.session.myData.consent){
+        if(!req.session.myData.consentEligibility){
             req.session.myData.validationError = "true"
             req.session.myData.validationErrors.consent = {
                 "anchor": "consent-1",
@@ -1197,11 +1205,11 @@ module.exports = function (router,_myData) {
             });
         } else {
 
-            if(req.session.myData.consent == "No"){
+            if(req.session.myData.consentEligibility == "No"){
                 req.session.myData.consentGranted = ""
             }
            
-            if(req.session.myData.consent == "No"){
+            if(req.session.myData.consentEligibility == "No"){
                 res.redirect(301, '/' + version + '/eligible');
             } else {
                 res.redirect(301, '/' + version + '/consent-granted');
@@ -1974,6 +1982,10 @@ module.exports = function (router,_myData) {
     router.post('/' + version + '/cya-consents', function (req, res) {
 
         req.session.myData.addConsentAnswer = req.body.addConsent
+
+        if(req.session.myData.selectedApplication.consentNeeded == "No"){
+            req.session.myData.addConsentAnswer = "No"
+        }
 
         if(req.session.myData.includeValidation == "false"){
             req.session.myData.addConsentAnswer = req.session.myData.addConsentAnswer || "No"
