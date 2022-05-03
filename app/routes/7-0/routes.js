@@ -790,9 +790,14 @@ module.exports = function (router,_myData) {
         req.session.myData.signedIn =  req.query.si || req.session.myData.signedIn
 
         //Signed in user name
+        //DO NOT DELETE THESE KEY/VALUES WHEN NOT NEEDED ANYMORE - change values to "removed" instead
         req.session.myData.testNames = {
             "0": "David Smith",
-            "1": "Adrian Coward"
+            "1": "Adrian Coward",
+            "2": "Caroline Mellor",
+            "3": "Steve Parnwell",
+            "4": "Katy Stiles",
+            "5": "Rachel Hacking"
         }
         var _userName
         if(req.query.siu){
