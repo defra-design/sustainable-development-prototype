@@ -118,8 +118,8 @@
                 Determines if journey displays the site mismatch page. Address and Grid reference do not match.
             </span>
             <select class="govuk-select" style="min-width: 100%" id="siteMismatch" name="siteMismatch" data-option="siteMismatch">
-                <option {% if myData.siteMismatch == 'true' %}selected{% endif %} value="false">No</option>
-                <option {% if myData.siteMismatch == 'false' %}selected{% endif %} value="true">Yes, show mismatch page</option>
+                <option {% if myData.siteMismatch == 'false' %}selected{% endif %} value="false">No</option>
+                <option {% if myData.siteMismatch == 'true' %}selected{% endif %} value="true">Yes, show mismatch page</option>
             </select>
         </div>
 

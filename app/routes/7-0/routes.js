@@ -660,6 +660,7 @@ module.exports = function (router,_myData) {
         req.session.myData.habitatToRemove = "123456789"
         req.session.myData.signedIn = "false"
         req.session.myData.startFrom = "s"
+        req.session.myData.siteMismatch = "true"
 
         //Default answers
         req.session.myData.application = "2021-12345-EPS-MIT"
