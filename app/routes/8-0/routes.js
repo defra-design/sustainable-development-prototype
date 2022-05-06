@@ -635,6 +635,7 @@ module.exports = function (router,_myData) {
         //Default required questions (purpose flow)
         req.session.myData.requiredQuestions = {
             "CD16": true, //CD16. Work reason
+            "CD17": true, //CD17. Multi-plot
             "CD22": true, //CD22. Work small developments
             "CD24": true, //CD24. Work public buildings (also includes CD25 & CD26)
             "CD27": true  //CD27. Important populations
@@ -802,6 +803,7 @@ module.exports = function (router,_myData) {
         var _l = req.session.myData.licenceType
         req.session.myData.requiredQuestions = {
             "CD16": _l == "a13" || _l == "a14", //CD16. Work reason
+            "CD17": _l == "a13" || _l == "a14", //CD17. Multi-plot
             "CD22": _l == "a13" || _l == "a14", //CD22. Work small developments
             "CD24": _l == "a13" || _l == "a14", //CD24. Work public buildings (also includes CD25 & CD26)
             "CD27": _l == "a13" || _l == "a14"  //CD27. Important populations
@@ -1387,7 +1389,11 @@ module.exports = function (router,_myData) {
                 if(req.session.myData.requiredQuestions["CD16"]){
                     res.redirect(301, '/' + version + '/reason');
                 } else {
-                    res.redirect(301, '/' + version + '/multiplot');
+                    if(req.session.myData.requiredQuestions["CD17"]){
+                        res.redirect(301, '/' + version + '/multiplot');
+                    } else {
+                        res.redirect(301, '/' + version + '/work-home');
+                    }
                 }
             }
 
@@ -1432,7 +1438,11 @@ module.exports = function (router,_myData) {
             if(req.query.cya == "true"){
                 res.redirect(301, '/' + version + '/cya-purpose');
             } else {
-                res.redirect(301, '/' + version + '/multiplot');
+                if(req.session.myData.requiredQuestions["CD17"]){
+                    res.redirect(301, '/' + version + '/multiplot');
+                } else {
+                    res.redirect(301, '/' + version + '/work-home');
+                }
             }
 
         }
