@@ -69,8 +69,6 @@ module.exports = function (router,_myData) {
 
     function setSelectedApplication(req, _applicationID){
 
-        // console.log("entered setSelectedApplication")
-
         if(_applicationID){
             var _existingApplication = req.session.myData.applications.find(obj => {return obj.id.toString() === _applicationID.toString()})
             if(_existingApplication){
@@ -83,7 +81,6 @@ module.exports = function (router,_myData) {
 
             if(req.session.myData.selectedApplication){
                 req.session.myData.application = req.session.myData.selectedApplication.id
-                // console.log("application = " + req.session.myData.application)
             }
         }
 
@@ -286,7 +283,6 @@ module.exports = function (router,_myData) {
     
 
     function reset(req){
-        // console.log("entered reset")
         req.session.myData = JSON.parse(JSON.stringify(_myData))
 
         // Tasklist
@@ -338,7 +334,7 @@ module.exports = function (router,_myData) {
         //Applications - Existing user
         req.session.myData.defaultApplications = [
             {
-                "id": "2021-12345-EPS-MIT", 
+                "id": "2021-12345-SPM-WLM", 
                 "type": "a24",
                 "habitatType": "multple",
                 "new": false,
@@ -440,7 +436,7 @@ module.exports = function (router,_myData) {
                 "siteAddress": "5 High Street"
             },
             {
-                "id": "2021-09273-EPS-MIT",
+                "id": "2021-09273-SPM-WLM",
                 "type": "a24",
                 "new": false,
                 "status": "granted",
@@ -650,8 +646,7 @@ module.exports = function (router,_myData) {
         req.session.myData.siteMismatch = "true"
 
         //Default answers
-        req.session.myData.application = "2021-12345-EPS-MIT"
-        // console.log("application = " + req.session.myData.application)
+        req.session.myData.application = "2021-12345-SPM-WLM"
 
         req.session.myData.newApplication = 
             {
@@ -724,12 +719,7 @@ module.exports = function (router,_myData) {
 
     // Every GET and POST
     router.all('/' + version + '/*', function (req, res, next) {
-        // console.log("entered all *")
 
-        // console.log(req.session.myData)
-        // console.log("------------------")
-        // console.log("------------------")
-        // console.log("------------------")
         if(!req.session.myData || req.query.r) {
             reset(req)
         }
@@ -757,7 +747,6 @@ module.exports = function (router,_myData) {
 
         //Selected application
         req.session.myData.application = req.query.application || req.session.myData.application
-        // console.log("application = " + req.session.myData.application)
         setSelectedApplication(req,req.session.myData.application)
 
         //Selected habitat
@@ -800,7 +789,8 @@ module.exports = function (router,_myData) {
         req.session.myData.showDevNotes =  req.query.dev || req.session.myData.showDevNotes
 
         //Default required questions (purpose flow)
-        var _l = req.session.myData.licenceType
+        // var _l = req.session.myData.licenceType
+        var _l = req.session.myData.selectedApplication.type
         req.session.myData.requiredQuestions = {
             "CD16": _l == "a13" || _l == "a14", //CD16. Work reason
             "CD17": _l == "a13" || _l == "a14", //CD17. Multi-plot
@@ -853,7 +843,6 @@ module.exports = function (router,_myData) {
             
             req.session.myData.selectedApplication = req.session.myData.tempApplication
             req.session.myData.application = _appID
-            // console.log("application = " + req.session.myData.application)
 
             setServiceName(req)
             updateTasklist(req)
