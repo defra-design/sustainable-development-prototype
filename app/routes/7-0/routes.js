@@ -799,7 +799,9 @@ module.exports = function (router,_myData) {
             "3": "Steve Parnwell",
             "4": "Katy Stiles",
             "5": "Rachel Hacking",
-            "6": "Dawn Phythian"
+            "6": "Dawn Phythian",
+            "7": "Dave Jones",
+            "8": "Jake Smith"
         }
         var _userName
         if(req.query.siu){

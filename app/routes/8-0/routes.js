@@ -768,7 +768,12 @@ module.exports = function (router,_myData) {
 
         //Signed in user name
         req.session.myData.testNames = {
-            "0": "David Smith"
+            "0": "David Smith",
+            "1": "Suzie Melhuish",
+            "2": "Lindsay Carrington",
+            "3": "Jonathan Spencer",
+            "4": "James Hutchison",
+            "5": "Patrick James"
         }
         var _userName
         if(req.query.siu){
