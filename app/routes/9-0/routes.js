@@ -2,7 +2,7 @@ const e = require("express");
 
 module.exports = function (router,_myData) {
 
-    var version = "7-0";
+    var version = "9-0";
 
     function setServiceName(req){
         req.session.myData.serviceName = "Apply for a licence to do work that affects a protected species"
@@ -69,8 +69,6 @@ module.exports = function (router,_myData) {
 
     function setSelectedApplication(req, _applicationID){
 
-        // console.log("entered setSelectedApplication")
-
         if(_applicationID){
             var _existingApplication = req.session.myData.applications.find(obj => {return obj.id.toString() === _applicationID.toString()})
             if(_existingApplication){
@@ -83,7 +81,6 @@ module.exports = function (router,_myData) {
 
             if(req.session.myData.selectedApplication){
                 req.session.myData.application = req.session.myData.selectedApplication.id
-                // console.log("application = " + req.session.myData.application)
             }
         }
 
@@ -186,15 +183,15 @@ module.exports = function (router,_myData) {
             //Total sections
             var _totalSections = Object.keys(_thisApplication.tasklist.sections).length
             _thisApplication.tasklist.total = _totalSections
-            if(_thisApplication.consent == "No"){
-                --_thisApplication.tasklist.total
-            }
+            // if(_thisApplication.consent == "No"){
+            //     --_thisApplication.tasklist.total
+            // }
             // if(_thisApplication.type == "a24"){
             //     --_thisApplication.tasklist.total
             // }
 
-            var cansubmit = true,
-                canstart = true
+            var cansubmit = true
+                // canstart = true
 
             // Counts
             _thisApplication.tasklist.completed = 0
@@ -203,14 +200,14 @@ module.exports = function (router,_myData) {
                     _thisApplication.tasklist.completed++
                 } else {
                     //Set if can send application yet
-                    if(key == "7"){
-                        canstart = false
-                    }
+                    // if(key == "7"){
+                    //     canstart = false
+                    // }
                     //Sections required
-                    var _sectionsRequired = ["1","2","4","5","6","7","8","9"]
-                    if(_thisApplication.consent == "No"){
-                        _sectionsRequired = ["1","2","4","5","6","7","9"]
-                    }
+                    var _sectionsRequired = ["1","2","4","5","6","8","9"]
+                    // if(_thisApplication.consent == "No"){
+                    //     _sectionsRequired = ["1","2","4","5","6","7","9"]
+                    // }
                     // Remove section 2 if badger
                     // if(_thisApplication.type == "a24"){
                     //     _sectionsRequired.splice(_sectionsRequired.indexOf("2"), 1);
@@ -230,29 +227,29 @@ module.exports = function (router,_myData) {
             }
 
             //Set others to "notstarted" if permission completed
-            if(canstart){
-                if(_thisApplication.tasklist.sections["1"] == "cannotstartyet"){
-                    _thisApplication.tasklist.sections["1"] = "notstarted"
-                }
-                if(_thisApplication.tasklist.sections["2"] == "cannotstartyet"){
-                    _thisApplication.tasklist.sections["2"] = "notstarted"
-                }
-                if(_thisApplication.tasklist.sections["4"] == "cannotstartyet"){
-                    _thisApplication.tasklist.sections["4"] = "notstarted"
-                }
-                if(_thisApplication.tasklist.sections["5"] == "cannotstartyet"){
-                    _thisApplication.tasklist.sections["5"] = "notstarted"
-                }
-                if(_thisApplication.tasklist.sections["6"] == "cannotstartyet"){
-                    _thisApplication.tasklist.sections["6"] = "notstarted"
-                }
-                if(_thisApplication.tasklist.sections["8"] == "cannotstartyet"){
-                    _thisApplication.tasklist.sections["8"] = "notstarted"
-                }
-                if(_thisApplication.tasklist.sections["9"] == "cannotstartyet"){
-                    _thisApplication.tasklist.sections["9"] = "notstarted"
-                }
-            }
+            // if(canstart){
+            //     if(_thisApplication.tasklist.sections["1"] == "cannotstartyet"){
+            //         _thisApplication.tasklist.sections["1"] = "notstarted"
+            //     }
+            //     if(_thisApplication.tasklist.sections["2"] == "cannotstartyet"){
+            //         _thisApplication.tasklist.sections["2"] = "notstarted"
+            //     }
+            //     if(_thisApplication.tasklist.sections["4"] == "cannotstartyet"){
+            //         _thisApplication.tasklist.sections["4"] = "notstarted"
+            //     }
+            //     if(_thisApplication.tasklist.sections["5"] == "cannotstartyet"){
+            //         _thisApplication.tasklist.sections["5"] = "notstarted"
+            //     }
+            //     if(_thisApplication.tasklist.sections["6"] == "cannotstartyet"){
+            //         _thisApplication.tasklist.sections["6"] = "notstarted"
+            //     }
+            //     if(_thisApplication.tasklist.sections["8"] == "cannotstartyet"){
+            //         _thisApplication.tasklist.sections["8"] = "notstarted"
+            //     }
+            //     if(_thisApplication.tasklist.sections["9"] == "cannotstartyet"){
+            //         _thisApplication.tasklist.sections["9"] = "notstarted"
+            //     }
+            // }
 
         }
 
@@ -286,7 +283,6 @@ module.exports = function (router,_myData) {
     
 
     function reset(req){
-        // console.log("entered reset")
         req.session.myData = JSON.parse(JSON.stringify(_myData))
 
         // Tasklist
@@ -296,20 +292,20 @@ module.exports = function (router,_myData) {
         // 4 = site
         // 5 = applicant
         // 6 = ecologist
-        // 7 = permission (eligibility)
+        // 7 = permission (eligibility) - removed as a section - comes before application starts now
         // 8 = permissions data
         // 9 = work schedule
         req.session.myData.tasklist = {
             "sections": {
-                "1": "cannotstartyet",
-                "2": "cannotstartyet",
+                "1": "notstarted",
+                "2": "notstarted",
                 "3": "cannotstartyet",
-                "4": "cannotstartyet",
-                "5": "cannotstartyet",
-                "6": "cannotstartyet",
-                "7": "notstarted",
-                "8": "cannotstartyet",
-                "9": "cannotstartyet"
+                "4": "notstarted",
+                "5": "notstarted",
+                "6": "notstarted",
+                // "7": "notstarted",
+                "8": "notstarted",
+                "9": "notstarted"
             },
             "completed": 0,
             "total": 0
@@ -317,15 +313,11 @@ module.exports = function (router,_myData) {
 
         //Preset answers
         function presetTasklists(_application){
-            if(_application.id == "2021-12345-EPS-MIT"){
-                _application.tasklist.sections["7"] = "completed"
-            }
-
+            
             if(_application.id == "2021-73955-EPS-MIT"){
                 _application.tasklist.sections["4"] = "inprogress"
                 _application.tasklist.sections["5"] = "completed"
                 _application.tasklist.sections["6"] = "completed"
-                _application.tasklist.sections["7"] = "completed"
             }
 
             //Submitted ones
@@ -342,7 +334,7 @@ module.exports = function (router,_myData) {
         //Applications - Existing user
         req.session.myData.defaultApplications = [
             {
-                "id": "2021-12345-EPS-MIT", 
+                "id": "2021-12345-SPM-WLM", 
                 "type": "a24",
                 "habitatType": "multple",
                 "new": false,
@@ -351,12 +343,7 @@ module.exports = function (router,_myData) {
                 "habitats": [], 
                 "consents": [], 
                 "starteddate": new Date(2022, 03, 04, 16, 20, 0, 0),
-                "lastsaveddate": new Date(2022, 03, 06, 17, 01, 30, 0),
-                // 7 complete
-                "landOwner": "Yes", 
-                "landOwnerPermission": "", 
-                "consent": "Yes", 
-                "consentGranted": "Yes"
+                "lastsaveddate": new Date(2022, 03, 06, 17, 01, 30, 0)
             },
             {
                 "id": "2021-73955-EPS-MIT", 
@@ -370,11 +357,6 @@ module.exports = function (router,_myData) {
                 "lastsaveddate": new Date(2022, 03, 01, 17, 01, 30, 0),
                 // 4 inprogress
                 "siteName": "12 Parkland Avenue",
-                // 7 complete
-                "landOwner": "Yes", 
-                "landOwnerPermission": "", 
-                "consent": "Yes", 
-                "consentGranted": "Yes",
                 // 5 complete
                 "applicantName": "John Smith", 
                 "applicantHasCompany": "No", 
@@ -454,7 +436,7 @@ module.exports = function (router,_myData) {
                 "siteAddress": "5 High Street"
             },
             {
-                "id": "2021-09273-EPS-MIT",
+                "id": "2021-09273-SPM-WLM",
                 "type": "a24",
                 "new": false,
                 "status": "granted",
@@ -649,6 +631,7 @@ module.exports = function (router,_myData) {
         //Default required questions (purpose flow)
         req.session.myData.requiredQuestions = {
             "CD16": true, //CD16. Work reason
+            "CD17": true, //CD17. Multi-plot
             "CD22": true, //CD22. Work small developments
             "CD24": true, //CD24. Work public buildings (also includes CD25 & CD26)
             "CD27": true  //CD27. Important populations
@@ -663,8 +646,7 @@ module.exports = function (router,_myData) {
         req.session.myData.siteMismatch = "true"
 
         //Default answers
-        req.session.myData.application = "2021-12345-EPS-MIT"
-        // console.log("application = " + req.session.myData.application)
+        req.session.myData.application = "2021-12345-SPM-WLM"
 
         req.session.myData.newApplication = 
             {
@@ -737,12 +719,7 @@ module.exports = function (router,_myData) {
 
     // Every GET and POST
     router.all('/' + version + '/*', function (req, res, next) {
-        // console.log("entered all *")
 
-        // console.log(req.session.myData)
-        // console.log("------------------")
-        // console.log("------------------")
-        // console.log("------------------")
         if(!req.session.myData || req.query.r) {
             reset(req)
         }
@@ -770,7 +747,6 @@ module.exports = function (router,_myData) {
 
         //Selected application
         req.session.myData.application = req.query.application || req.session.myData.application
-        // console.log("application = " + req.session.myData.application)
         setSelectedApplication(req,req.session.myData.application)
 
         //Selected habitat
@@ -791,17 +767,8 @@ module.exports = function (router,_myData) {
         req.session.myData.signedIn =  req.query.si || req.session.myData.signedIn
 
         //Signed in user name
-        //DO NOT DELETE THESE KEY/VALUES WHEN NOT NEEDED ANYMORE - change values to "removed" instead
         req.session.myData.testNames = {
-            "0": "David Smith",
-            "1": "removed",
-            "2": "removed",
-            "3": "removed",
-            "4": "removed",
-            "5": "removed",
-            "6": "removed",
-            "7": "removed",
-            "8": "removed"
+            "0": "David Smith"
         }
         var _userName
         if(req.query.siu){
@@ -822,9 +789,11 @@ module.exports = function (router,_myData) {
         req.session.myData.showDevNotes =  req.query.dev || req.session.myData.showDevNotes
 
         //Default required questions (purpose flow)
-        var _l = req.session.myData.licenceType
+        // var _l = req.session.myData.licenceType
+        var _l = req.session.myData.selectedApplication.type
         req.session.myData.requiredQuestions = {
             "CD16": _l == "a13" || _l == "a14", //CD16. Work reason
+            "CD17": _l == "a13" || _l == "a14", //CD17. Multi-plot
             "CD22": _l == "a13" || _l == "a14", //CD22. Work small developments
             "CD24": _l == "a13" || _l == "a14", //CD24. Work public buildings (also includes CD25 & CD26)
             "CD27": _l == "a13" || _l == "a14"  //CD27. Important populations
@@ -857,6 +826,12 @@ module.exports = function (router,_myData) {
                 _habitatType = "single"
             }
 
+            //reset eligibility answers
+            req.session.myData.landOwner = ""
+            req.session.myData.landOwnerPermission = ""
+            req.session.myData.consentEligibility = ""
+            req.session.myData.consentGranted = ""
+
             //Used until passes eligibility
             req.session.myData.tempApplication = JSON.parse(JSON.stringify(req.session.myData.newApplication))
             req.session.myData.tempApplication.id = _appID
@@ -868,7 +843,6 @@ module.exports = function (router,_myData) {
             
             req.session.myData.selectedApplication = req.session.myData.tempApplication
             req.session.myData.application = _appID
-            // console.log("application = " + req.session.myData.application)
 
             setServiceName(req)
             updateTasklist(req)
@@ -928,7 +902,7 @@ module.exports = function (router,_myData) {
 
         var _qs = ""
         if(req.session.myData.returnURL == "tasklist"){
-            _qs = "?justsaved=true"
+            _qs = '?justsaved=true'
         }
 
         res.redirect(301, '/' + version + '/' + req.session.myData.returnURL + _qs);
@@ -1072,12 +1046,6 @@ module.exports = function (router,_myData) {
                 myData: req.session.myData
             });
         } else {
-
-            // console.log(req.session.myData.selectedApplication)
-
-            // req.session.myData.selectedApplication.startSpecies = req.session.myData.startSpeciesAnswer
-
-            // switch(req.session.myData.selectedApplication.startSpecies) {
             switch(req.session.myData.startSpeciesAnswer) {
                 case "bat":
                     _licenceType = "a13"
@@ -1091,9 +1059,7 @@ module.exports = function (router,_myData) {
                 default:
                     _licenceType = "a13"
             }
-           
-            res.redirect(301, '/' + version + '/tasklist?new=true&l=' + _licenceType);
-
+            res.redirect(301, '/' + version + '/land-owner?new=true&l=' + _licenceType);
         }
         
     });
@@ -1117,13 +1083,13 @@ module.exports = function (router,_myData) {
     });
     router.post('/' + version + '/land-owner', function (req, res) {
 
-        req.session.myData.landOwnerAnswer = req.body.landOwner
+        req.session.myData.landOwner = req.body.landOwner
 
         if(req.session.myData.includeValidation == "false"){
-            req.session.myData.landOwnerAnswer = req.session.myData.landOwnerAnswer || "No"
+            req.session.myData.landOwner = req.session.myData.landOwner || "No"
         }
 
-        if(!req.session.myData.landOwnerAnswer){
+        if(!req.session.myData.landOwner){
             req.session.myData.validationError = "true"
             req.session.myData.validationErrors.landOwner = {
                 "anchor": "landOwner-1",
@@ -1137,11 +1103,8 @@ module.exports = function (router,_myData) {
             });
         } else {
 
-            updateLastSavedDate(req,req.session.myData.selectedApplication)
-
-            req.session.myData.selectedApplication.landOwner = req.session.myData.landOwnerAnswer
-            if(req.session.myData.selectedApplication.landOwner == "Yes"){
-                req.session.myData.selectedApplication.landOwnerPermission = ""
+            if(req.session.myData.landOwner == "Yes"){
+                req.session.myData.landOwnerPermission = ""
             }
 
             var _cyaQS = ""
@@ -1149,14 +1112,10 @@ module.exports = function (router,_myData) {
                 _cyaQS = "?cya=true"
             }
            
-            if(req.session.myData.selectedApplication.landOwner == "No"){
+            if(req.session.myData.landOwner == "No"){
                 res.redirect(301, '/' + version + '/land-owner-permission' + _cyaQS);
             } else {
-                if(req.query.cya == "true"){
-                    res.redirect(301, '/' + version + '/cya-permission');
-                } else {
-                    res.redirect(301, '/' + version + '/consent');
-                }
+                res.redirect(301, '/' + version + '/consent');
             }
 
         }
@@ -1171,13 +1130,13 @@ module.exports = function (router,_myData) {
     });
     router.post('/' + version + '/land-owner-permission', function (req, res) {
 
-        req.session.myData.landOwnerPermissionAnswer = req.body.landOwnerPermission
+        req.session.myData.landOwnerPermission = req.body.landOwnerPermission
 
         if(req.session.myData.includeValidation == "false"){
-            req.session.myData.landOwnerPermissionAnswer = req.session.myData.landOwnerPermissionAnswer || "Yes"
+            req.session.myData.landOwnerPermission = req.session.myData.landOwnerPermission || "Yes"
         }
 
-        if(!req.session.myData.landOwnerPermissionAnswer){
+        if(!req.session.myData.landOwnerPermission){
             req.session.myData.validationError = "true"
             req.session.myData.validationErrors.landOwnerPermission = {
                 "anchor": "landOwnerPermission-1",
@@ -1190,19 +1149,11 @@ module.exports = function (router,_myData) {
                 myData: req.session.myData
             });
         } else {
-
-            updateLastSavedDate(req,req.session.myData.selectedApplication)
-
-            req.session.myData.selectedApplication.landOwnerPermission = req.session.myData.landOwnerPermissionAnswer
            
-            if(req.session.myData.selectedApplication.landOwnerPermission == "No"){
+            if(req.session.myData.landOwnerPermission == "No"){
                 res.redirect(301, '/' + version + '/dropout-land-owner');
             } else {
-                if(req.query.cya == "true"){
-                    res.redirect(301, '/' + version + '/cya-permission');
-                } else {
-                    res.redirect(301, '/' + version + '/consent');
-                }
+                res.redirect(301, '/' + version + '/consent');
             }
 
         }
@@ -1224,15 +1175,15 @@ module.exports = function (router,_myData) {
     });
     router.post('/' + version + '/consent', function (req, res) {
 
-        var _was = req.session.myData.selectedApplication.consent
+        // TODO fix
 
-        req.session.myData.consentAnswer = req.body.consent
+        req.session.myData.consentEligibility = req.body.consent
 
         if(req.session.myData.includeValidation == "false"){
-            req.session.myData.consentAnswer = req.session.myData.consentAnswer || "Yes"
+            req.session.myData.consentEligibility = req.session.myData.consentEligibility || "Yes"
         }
 
-        if(!req.session.myData.consentAnswer){
+        if(!req.session.myData.consentEligibility){
             req.session.myData.validationError = "true"
             req.session.myData.validationErrors.consent = {
                 "anchor": "consent-1",
@@ -1246,26 +1197,14 @@ module.exports = function (router,_myData) {
             });
         } else {
 
-            updateLastSavedDate(req,req.session.myData.selectedApplication)
-
-            req.session.myData.selectedApplication.consent = req.session.myData.consentAnswer
-            if(req.session.myData.selectedApplication.consent == "No"){
-                req.session.myData.selectedApplication.consentGranted = ""
+            if(req.session.myData.consentEligibility == "No"){
+                req.session.myData.consentGranted = ""
             }
            
-            if(req.session.myData.selectedApplication.consent == "No"){
-                res.redirect(301, '/' + version + '/cya-permission');
+            if(req.session.myData.consentEligibility == "No"){
+                res.redirect(301, '/' + version + '/eligible');
             } else {
-
-                if(_was == "No" && req.session.myData.selectedApplication.consent == "Yes"){
-                    res.redirect(301, '/' + version + '/consent-granted');
-                } else {
-                    if(req.query.cya == "true"){
-                        res.redirect(301, '/' + version + '/cya-permission');
-                    } else {
-                        res.redirect(301, '/' + version + '/consent-granted');
-                    }
-                }
+                res.redirect(301, '/' + version + '/consent-granted');
             }
 
         }
@@ -1280,13 +1219,13 @@ module.exports = function (router,_myData) {
     });
     router.post('/' + version + '/consent-granted', function (req, res) {
 
-        req.session.myData.consentGrantedAnswer = req.body.consentGranted
+        req.session.myData.consentGranted = req.body.consentGranted
 
         if(req.session.myData.includeValidation == "false"){
-            req.session.myData.consentGrantedAnswer = req.session.myData.consentGrantedAnswer || "Yes"
+            req.session.myData.consentGranted = req.session.myData.consentGranted || "Yes"
         }
 
-        if(!req.session.myData.consentGrantedAnswer){
+        if(!req.session.myData.consentGranted){
             req.session.myData.validationError = "true"
             req.session.myData.validationErrors.consentGranted = {
                 "anchor": "consentGranted-1",
@@ -1299,17 +1238,11 @@ module.exports = function (router,_myData) {
                 myData: req.session.myData
             });
         } else {
-
-            updateLastSavedDate(req,req.session.myData.selectedApplication)
-
-            req.session.myData.selectedApplication.consentGranted = req.session.myData.consentGrantedAnswer
-
-            req.session.myData.consentGrantedAnswer = ""
             
-            if(req.session.myData.selectedApplication.consentGranted == "No"){
+            if(req.session.myData.consentGranted == "No"){
                 res.redirect(301, '/' + version + '/dropout-consent-granted');
             } else {
-                res.redirect(301, '/' + version + '/cya-permission');
+                res.redirect(301, '/' + version + '/eligible');
             }
 
         }
@@ -1321,24 +1254,6 @@ module.exports = function (router,_myData) {
         res.render(version + '/dropout-consent-granted', {
             myData:req.session.myData
         });
-    });
-
-    // Check your answers permission
-    router.get('/' + version + '/cya-permission', function (req, res) {
-        res.render(version + '/cya-permission', {
-            myData:req.session.myData
-        });
-    });
-    router.post('/' + version + '/cya-permission', function (req, res) {
-
-        updateLastSavedDate(req,req.session.myData.selectedApplication)
-
-        req.session.myData.selectedApplication.tasklist.sections["7"] = "completed"
-        updateTasklist(req)
-        req.session.myData.selectedApplication.status = "inprogress"
-
-        res.redirect(301, '/' + version + '/eligible');
-        
     });
 
     // Eligible
@@ -1362,7 +1277,7 @@ module.exports = function (router,_myData) {
 
             res.redirect(301, '/' + version + '/defra-id-signin?returnURL=tasklist');
 
-            //FOR LINKING TO ACTUAL DWFRA ID prototype - BUT this causes a bug with clearing myData when returning
+            //FOR LINKING TO ACTUAL DEFRA ID prototype - BUT this causes a bug with clearing myData when returning
             // if(req.headers.origin == 'http://localhost:3000') {
             //     // Local
             //     res.redirect(301, 'https://whoareyou:menotyou@identity-management-app.herokuapp.com/tasked/gov-gateway/login?returnUrl=http://localhost:3000/' + version + '/defraid-tasklist');
@@ -1463,7 +1378,11 @@ module.exports = function (router,_myData) {
                 if(req.session.myData.requiredQuestions["CD16"]){
                     res.redirect(301, '/' + version + '/reason');
                 } else {
-                    res.redirect(301, '/' + version + '/multiplot');
+                    if(req.session.myData.requiredQuestions["CD17"]){
+                        res.redirect(301, '/' + version + '/multiplot');
+                    } else {
+                        res.redirect(301, '/' + version + '/work-home');
+                    }
                 }
             }
 
@@ -1508,7 +1427,11 @@ module.exports = function (router,_myData) {
             if(req.query.cya == "true"){
                 res.redirect(301, '/' + version + '/cya-purpose');
             } else {
-                res.redirect(301, '/' + version + '/multiplot');
+                if(req.session.myData.requiredQuestions["CD17"]){
+                    res.redirect(301, '/' + version + '/multiplot');
+                } else {
+                    res.redirect(301, '/' + version + '/work-home');
+                }
             }
 
         }
@@ -1888,13 +1811,63 @@ module.exports = function (router,_myData) {
     });
 
 
-
-
-    // Intro consents
-    router.get('/' + version + '/intro-consent', function (req, res) {
+    // CD100 consent neede
+    router.get('/' + version + '/consent-needed', function (req, res) {
 
         req.session.myData.selectedApplication.tasklist.sections["8"] = "inprogress"
 
+        res.render(version + '/consent-needed', {
+            myData:req.session.myData
+        });
+    });
+    router.post('/' + version + '/consent-needed', function (req, res) {
+
+        var _was = req.session.myData.selectedApplication.consentNeeded
+
+        req.session.myData.consentNeededAnswer = req.body.consentNeeded
+
+        if(req.session.myData.includeValidation == "false"){
+            req.session.myData.consentNeededAnswer = req.session.myData.consentNeededAnswer || "Yes"
+        }
+
+        if(!req.session.myData.consentNeededAnswer){
+            req.session.myData.validationError = "true"
+            req.session.myData.validationErrors.consentNeededAnswer = {
+                "anchor": "consentNeeded-1",
+                "message": "Select yes if the project needs any permissions"
+            }
+        }
+
+        if(req.session.myData.validationError == "true") {
+            res.render(version + '/consent-needed', {
+                myData: req.session.myData
+            });
+        } else {
+
+            updateLastSavedDate(req,req.session.myData.selectedApplication)
+
+            req.session.myData.selectedApplication.consentNeeded = req.session.myData.consentNeededAnswer
+
+            if(_was == req.session.myData.consentNeededAnswer && req.query.cya == "true") {
+                res.redirect(301, '/' + version + '/cya-consents');
+            } else {
+                if(req.session.myData.selectedApplication.consentNeeded == "Yes"){
+                    if(req.session.myData.selectedApplication.consents.length == 0){
+                        startNewConsent(req)
+                    }
+                    res.redirect(301, '/' + version + '/intro-consent');
+                } else {
+                    req.session.myData.selectedApplication.consents = []
+                    res.redirect(301, '/' + version + '/cya-consents');
+                }
+            }
+
+        }
+        
+    });
+
+    // Intro consents
+    router.get('/' + version + '/intro-consent', function (req, res) {
         res.render(version + '/intro-consent', {
             myData:req.session.myData
         });
@@ -2009,6 +1982,10 @@ module.exports = function (router,_myData) {
     router.post('/' + version + '/cya-consents', function (req, res) {
 
         req.session.myData.addConsentAnswer = req.body.addConsent
+
+        if(req.session.myData.selectedApplication.consentNeeded == "No"){
+            req.session.myData.addConsentAnswer = "No"
+        }
 
         if(req.session.myData.includeValidation == "false"){
             req.session.myData.addConsentAnswer = req.session.myData.addConsentAnswer || "No"

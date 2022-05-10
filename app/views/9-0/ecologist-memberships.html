@@ -1,0 +1,122 @@
+{% extends "layout.html" %}
+
+{% set _pageID = "CD96 - Ecologist memberships" %}
+
+{% set serviceName = myData.serviceName %}
+
+{% set _inError = myData.validationError == "true" %}
+
+{% block pageTitle %} 
+{% if _inError %}Error: {% endif %}
+{% if myData.selectedApplication.userIsEcologist == "Yes" %}
+    Are you currently a member of any of the following organisations?
+{% else %}
+    Is {{myData.selectedApplication.ecologistName}} currently a member of any of the following organisations?
+{% endif %}
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {% if _inError %}
+        <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+            <h2 class="govuk-error-summary__title" id="error-summary-title">
+                There is a problem
+            </h2>
+            <div class="govuk-error-summary__body">
+                <ul class="govuk-list govuk-error-summary__list">
+                    {% for name, item in myData.validationErrors %}
+                    <li>
+                        <a href="#{{item.anchor}}">{{item.message}}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+
+		<form method="POST">
+            <div class="govuk-form-group">
+
+                <div class="govuk-form-group {% if myData.validationErrors.ecologistMemberships %}govuk-form-group--error{% endif %} govuk-!-margin-bottom-8">
+                    <fieldset class="govuk-fieldset" >
+
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+                            <h1 class="govuk-fieldset__heading">
+                                {% if myData.selectedApplication.userIsEcologist == "Yes" %}
+                                    Are you currently a member of any of the following organisations?
+                                {% else %}
+                                    Is {{myData.selectedApplication.ecologistName}} currently a member of any of the following organisations?
+                                {% endif %}
+                            </h1>
+                        </legend>
+
+                        <div class="govuk-hint">
+                            Select all that apply.
+                        </div>
+
+                        {% if myData.validationErrors.ecologistMemberships %}
+                        <span class="govuk-error-message">
+                            <span class="govuk-visually-hidden">Error:</span>
+                            {{myData.validationErrors.ecologistMemberships.message}}
+                        </span>
+                        {% endif %}
+
+                        <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+
+                            {% for _membership in myData.memberships %}
+
+                                {% set _selected = false %}
+                                {% if _inError != "true" %}
+                                    {% for _savedEcologistMembership in myData.selectedApplication.ecologistMemberships %}
+                                        {% if _membership.id == _savedEcologistMembership.id %}
+                                            {% set _selected = true %}
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+
+                                <div class="govuk-checkboxes__item">
+                                    <input {% if _selected %}checked{% endif %} class="govuk-checkboxes__input" id="{{_membership.id}}" name="ecologistMemberships" type="checkbox" value="{{_membership.id}}" >
+                                    <label class="govuk-label govuk-checkboxes__label" for="{{_membership.id}}">
+                                        {{_membership.name}} ({{_membership.acronym}})
+                                    </label>
+                                </div>
+
+                            {% endfor %}
+
+                            <div class="govuk-checkboxes__divider">or</div>
+
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="none" name="ecologistMemberships" type="checkbox" value="none" data-behaviour="exclusive">
+                                <label class="govuk-label govuk-checkboxes__label" for="none">
+                                    {% if myData.selectedApplication.userIsEcologist == "Yes" %}
+                                        No, I am not a member of any of these organisations
+                                    {% else %}
+                                        No, {{myData.selectedApplication.ecologistName}} is not a member of any of these organisations
+                                    {% endif %}
+                                </label>
+                            </div>
+
+                        </div>
+                    </fieldset>
+                </div>
+
+            </div>
+		
+            {{govukButton({
+                text: "Continue"
+            })}}
+
+        </form>
+
+	</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,169 @@
+{% extends "layout.html" %}
+
+{% set _pageID = "CD65 - Application" %}
+
+{% set serviceName = myData.serviceName %}
+
+{% set _selectedApplication = myData.selectedApplication %}
+
+{% block pageTitle %} 
+Licence application
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+    <!-- <div class="govuk-breadcrumbs">
+        <ol class="govuk-breadcrumbs__list">
+            <li class="govuk-breadcrumbs__list-item">
+                <a class="govuk-breadcrumbs__link" href="applications">[Applications]</a>
+            </li>
+        </ol>
+    </div> -->
+{% endblock %}
+
+{% block content %}
+
+{% set _type = "Bat" %}
+{% if _selectedApplication.type == "a14" %}
+    {% set _type = "Newt" %}
+{% elif _selectedApplication.type == "a24" %}
+    {% set _type = "Badger" %}
+{% endif %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-xl">
+            Licence application
+        </h1>
+    </div>
+</div>
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		
+        
+
+        <dl class="govuk-summary-list">
+
+            <!-- status -->
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Status
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {% if _selectedApplication.status == "granted" %}
+                    <strong class="govuk-tag govuk-tag--green" >
+                        Granted
+                    </strong>
+                    {% elif _selectedApplication.status == "submitted" %}
+                    <strong class="govuk-tag govuk-tag--grey" >
+                        Submitted
+                    </strong>
+                    {% endif %}
+                </dd>
+            </div>
+
+            <!-- type -->
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Type
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{_type}} mitigation
+                </dd>
+            </div>
+
+            <!-- reference -->
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Reference
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{_selectedApplication.id}}
+                </dd>
+            </div>
+
+            <!-- Licence holder -->
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Licence holder
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{_selectedApplication.applicantName}}
+                </dd>
+            </div>
+
+            <!-- site -->
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Site
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{_selectedApplication.siteName}}
+                    {% if _selectedApplication.hasPostcode == "Yes" %}
+                        <br>
+                        {% if _selectedApplication.siteAddress == "select" %}
+                        <!-- No address listed -->
+                            Oxford<br>
+                            Oxfordshire<br>
+                            {{myData.selectedApplication.sitePostcode}}
+                        {% else %}
+                            {{_selectedApplication.siteAddress}}<br>
+                            Oxford<br>
+                            Oxfordshire<br>
+                            {{_selectedApplication.sitePostcode}}
+                        {% endif %}
+                    {% endif %}
+                </dd>
+            </div>
+
+            {% if _selectedApplication.status == "granted" %}
+            <!-- Valid from -->
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Valid from
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{_selectedApplication.validfromdatefriendly}}
+                </dd>
+            </div>
+            <!-- Expires -->
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Expires
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{_selectedApplication.validtodatefriendly}}
+                </dd>
+            </div>
+            {% endif %}
+
+            {% if _selectedApplication.status == "submitted" %}
+            <!-- Submitted date -->
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Submitted
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{_selectedApplication.lastsaveddatefriendly}}
+                </dd>
+            </div>
+            {% endif %}
+
+        </dl>
+
+        <!-- View licence -->
+        {% if _selectedApplication.status == "granted" %}
+        <p class="govuk-body">
+            <!-- <a class="govuk-button" href="licence?application={{_selectedApplication.id}}"> -->
+            <a class="govuk-button" href="#">
+                View licence
+            </a>
+        </p>
+        {% endif %}
+
+	</div>
+</div>
+
+
+{% endblock %}

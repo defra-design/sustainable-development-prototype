@@ -1,0 +1,745 @@
+{% extends "layout.html" %}
+
+{% set serviceName = "" %}
+
+{% block beforeContent %}
+
+    <div class="govuk-grid-row">
+		<div class="govuk-grid-column-three-quarters">
+			<div class="govuk-breadcrumbs ">
+				<ol class="govuk-breadcrumbs__list">
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="/">Back to all versions list</a>
+                    </li>
+                </ol>
+			</div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible govuk-!-margin-top-0">
+
+        <h1 class="govuk-heading-xl">Prototype {{myData.version}} setup</h1>
+
+        <h1 class="govuk-heading-l">Apply for a wildlife licence</h1>
+
+        <!-- <p class="govuk-body" >
+            <a href="setup?r=true" class="govuk-link govuk-link--no-visited-state">Reset setup options</a>
+        </p>   -->
+
+        <!-- <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible"> -->
+    </div>
+</div>
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">
+<!-- 
+        <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+                <legend class="govuk-fieldset__legend">Service</legend>
+                <div class="govuk-radios">
+                    <div class="govuk-radios__item">
+                        <input {% if myData.service == 'apply' %}checked{% endif %} class="govuk-radios__input" data-option="service-1" id="service-1" name="service" type="radio" value="apply">
+                        <label class="govuk-label govuk-radios__label" for="service-1">Apply for a wildlife licence</label>
+                    </div>
+                </div>
+            </fieldset>
+        </div> -->
+
+        <!-- Licence version -->
+        <!-- <div class="govuk-form-group">
+            <label class="govuk-label" >
+              Licence type
+            </label>
+            <select class="govuk-select" style="min-width: 100%" id="licenceType" name="licenceType" data-option="licenceType">
+                <option {% if myData.licenceType == 'a13' %}selected{% endif %} value="a13">Bat mitigation (A13)</option>
+                <option {% if myData.licenceType == 'a14' %}selected{% endif %} value="a14">Newt mitigation (A14)</option>
+            </select>
+        </div> -->
+
+        <!-- Start from -->
+        <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+                <legend class="govuk-fieldset__legend govuk-!-font-weight-bold">Start journey from</legend>
+                <div class="govuk-radios">
+                    <div class="govuk-radios__item">
+                        <input {% if myData.startFrom == 's' %}checked{% endif %} class="govuk-radios__input" data-option="startFrom-1" id="startFrom-1" name="startFrom" type="radio" value="s">
+                        <label class="govuk-label govuk-radios__label" for="startFrom-1">Service start page</label>
+                    </div>
+                    <div class="govuk-radios__item">
+                        <input {% if myData.startFrom == 'e' %}checked{% endif %} class="govuk-radios__input" data-option="startFrom-1" id="startFrom-2" name="startFrom" type="radio" value="e">
+                        <label class="govuk-label govuk-radios__label" for="startFrom-2">Email invite (to legacy users)</label>
+
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+        <!-- Signed in state -->
+        <div class="govuk-form-group signedInContainer">
+            <label class="govuk-label" >
+              User signed in?
+            </label>
+            <select class="govuk-select" style="min-width: 100%" id="signedIn" name="signedIn" data-option="signedIn">
+                <option {% if myData.signedIn == 'false' %}selected{% endif %} value="false">Not signed in</option>
+                <option {% if myData.signedIn == 'true' %}selected{% endif %} value="true">Already signed in</option>
+            </select>
+        </div>
+
+        <!-- Signed in user name -->
+        <!-- <div class="govuk-form-group">
+            <label class="govuk-label" for="userName">
+              Signed in user name
+            </label>
+            <input class="govuk-input " id="userName" name="userName" data-option="userName" type="text" value="{{myData.user.userName}}">
+        </div> -->
+        <div class="govuk-form-group">
+            <label class="govuk-label" >
+                Signed in user name
+            </label>
+            <select class="govuk-select" style="min-width: 100%" id="userName" name="userName" data-option="userName">
+                {% for _key, _userName in myData.testNames %}
+                {% if _userName != "removed" %}
+                <option {% if myData.user.userName == _userName %}selected{% endif %} value="{{_key}}">{{_userName}}</option>
+                {% endif %}
+                {% endfor %}
+            </select>
+        </div>
+
+        <!-- Include validation checking -->
+        <div class="govuk-form-group">
+            <label class="govuk-label" >
+              Site mismatch
+            </label>
+            <span class="govuk-hint">
+                Determines if journey displays the site mismatch page. Address and Grid reference do not match.
+            </span>
+            <select class="govuk-select" style="min-width: 100%" id="siteMismatch" name="siteMismatch" data-option="siteMismatch">
+                <option {% if myData.siteMismatch == 'false' %}selected{% endif %} value="false">No</option>
+                <option {% if myData.siteMismatch == 'true' %}selected{% endif %} value="true">Yes, show mismatch page</option>
+            </select>
+        </div>
+
+        <!-- Include validation checking -->
+        <div class="govuk-form-group">
+            <label class="govuk-label" >
+              Include validation
+            </label>
+            <select class="govuk-select" style="min-width: 100%" id="includeValidation" name="includeValidation" data-option="includeValidation">
+                <option {% if myData.includeValidation == 'true' %}selected{% endif %} value="true">Yes (throw errors)</option>
+                <option {% if myData.includeValidation == 'false' %}selected{% endif %} value="false">No (allow empty fields)</option>
+            </select>
+        </div>
+
+        
+
+        
+
+        <!-- Start from -->
+        <!-- <div class="govuk-form-group">
+          <label class="govuk-label" >
+            Start journey from
+          </label>
+          <select class="govuk-select" style="min-width: 100%" id="startFrom" name="startFrom" data-option="startFrom">
+              <option {% if myData.startFrom == 'start' %}selected{% endif %} value="start">Start page</option>
+              <option {% if myData.startFrom == 'email-invite' %}selected{% endif %} value="email-invite">Email invite</option>
+          </select>
+        </div> -->
+
+    </div>
+
+    <div class="govuk-grid-column-one-half" >
+
+
+    </div>
+</div>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <p class="govuk-body" id="start-url" style="display:none">
+            <a href="#" role="button" draggable="false" class="govuk-button">Start prototype</a>
+        </p>
+
+        <p class="govuk-body" >
+            <span class="govuk-!-font-weight-bold">Shareable link (uses settings made above):</span><br>
+            <span class="govuk-body" id="start-url-label" style="display:none"></span>
+        </p>
+
+        <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+
+    </div>
+</div>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+        <h2 class="govuk-heading-m">Full page list</h2>
+
+
+        <table class="govuk-table">
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header">Page</th>
+                <th scope="col" class="govuk-table__header">Link</th>
+                </tr>
+            </thead>
+            <tbody class="govuk-table__body">    
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">_Setup prototype</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="setup">/setup</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell" colspan="2"> 
+                        <p class="govuk-body" style="color:red">NOTE: Deep links currently won't work as expected, work in progress</p>
+                    </th>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell" colspan="2"> <h2 class="govuk-heading-m govuk-!-margin-top-4">Miscellaneous</h2>
+                    </th>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Start</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="start?r=t">/start</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Select species</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="start-species?r=t">/start-species</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Signed out</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="signout?r=t">/signout</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell" colspan="2"> <h2 class="govuk-heading-m govuk-!-margin-top-4">Emails</h2>
+                    </th>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Email - invite to service</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="email-invite?r=t">/email-invite</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell" colspan="2"> <h2 class="govuk-heading-m govuk-!-margin-top-4">CWM account linking</h2>
+                    </th>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">CWM - check you want to link</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="cwm-check?r=t">/cwm-check</a></td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">CWM - linked</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="cwm-linked?r=t">/cwm-linked</a></td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">CWM - not linked</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="cwm-not-linked?r=t">/cwm-not-linked</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell" colspan="2"> <h2 class="govuk-heading-m govuk-!-margin-top-4">Manage</h2>
+                    </th>
+                </tr>
+                
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Applications list</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="applications?r=t">/applications</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Application overview</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="application?r=t&application=2021-09273-EPS-MIT">/application</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell" colspan="2"> <h2 class="govuk-heading-m govuk-!-margin-top-4">Apply</h2>
+                    </th>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Task list</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="tasklist?r=t">/tasklist</a></td>
+                </tr>
+
+                <!-- Checks permission -->
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Land owner</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="land-owner?r=t&testdata=true">/land-owner</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Land owner permission</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="land-owner-permission?r=t&testdata=true">/land-owner-permission</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Dropout - Land owner permission</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="dropout-land-owner?r=t&testdata=true">/dropout-land-owner</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Consent needed</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="consent?r=t&testdata=true">/consent</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Consent granted</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="consent-granted?r=t&testdata=true">/consent-granted</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Dropout - consent granted</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="dropout-consent-granted?r=t&testdata=true">/dropout-consent-granted</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Check your answers - permission</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="cya-permission?r=t&testdata=true">/cya-permission</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Eligible</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="eligible?r=t">/eligible</a></td>
+                </tr>
+
+                <!-- Applicant details -->
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Applicant user</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="applicant-user?r=t&testdata=true">/applicant-user</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Applicant names</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="applicant-names?r=t&testdata=true">/applicant-names</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Applicant name</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="applicant-name?r=t&testdata=true">/applicant-name</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Applicant companies</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="applicant-companies?r=t&testdata=true">/applicant-companies</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Applicant company</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="applicant-company?r=t&testdata=true">/applicant-company</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Applicant emails</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="applicant-emails?r=t&testdata=true">/applicant-emails</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Applicant email</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="applicant-email?r=t&testdata=true">/applicant-email</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Applicant addresses</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="applicant-addresses?r=t&testdata=true">/applicant-addresses</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Applicant postcode</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="applicant-postcode?r=t&testdata=true">/applicant-postcode</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Applicant address</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="applicant-address?r=t&testdata=true">/applicant-address</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Applicant address - form</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="applicant-address-form?r=t&testdata=true">/applicant-address-form</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Check your answers - applicant</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="cya-applicant?r=t&testdata=true">/cya-applicant</a></td>
+                </tr>
+
+                <!-- Ecologist details -->
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Ecologist user</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="ecologist-user?r=t&testdata=true">/ecologist-user</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Ecologist names</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="ecologist-names?r=t&testdata=true">/ecologist-names</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Ecologist name</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="ecologist-name?r=t&testdata=true">/ecologist-name</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Ecologist companies</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="ecologist-companies?r=t&testdata=true">/ecologist-companies</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Ecologist company</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="ecologist-company?r=t&testdata=true">/ecologist-company</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Ecologist emails</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="ecologist-emails?r=t&testdata=true">/ecologist-emails</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Ecologist email</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="ecologist-email?r=t&testdata=true">/ecologist-email</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Ecologist addresses</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="ecologist-addresses?r=t&testdata=true">/ecologist-addresses</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Ecologist postcode</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="ecologist-postcode?r=t&testdata=true">/ecologist-postcode</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Ecologist address</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="ecologist-address?r=t&testdata=true">/ecologist-address</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Ecologist address - form</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="ecologist-address-form?r=t&testdata=true">/ecologist-address-form</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Ecologist memberships</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="ecologist-memberships?r=t&testdata=true">/ecologist-memberships</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Ecologist memberships stored</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="ecologist-memberships-saved?r=t&testdata=true">/ecologist-memberships-saved</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Check your answers - ecologist</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="cya-ecologist?r=t&testdata=true">/cya-ecologist</a></td>
+                </tr>
+
+                <!-- Work info -->
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Proposal</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="proposal?r=t">/proposal</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Category of work</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="category?r=t">/category</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Reason</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="reason?r=t">/reason</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Multi plot?</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="multiplot?r=t">/multiplot</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Work - home improvements</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="work-home?r=t">/work-home</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Work - small developments</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="work-small?r=t">/work-small</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Work - protected buildings</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="work-protected?r=t">/work-protected</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Work - public buildings</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="work-public?r=t">/work-public</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Work - extend boundaries</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="work-extend?r=t">/work-extend</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Work - private use</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="work-private?r=t">/work-private</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Important populations</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="important-populations?r=t">/important-populations</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Check your answers - purpose</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="cya-purpose?r=t&testdata=true">/cya-purpose</a></td>
+                </tr>
+
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Consent needed (permissions section)</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="consent-needed?r=t&testdata=true">/consent-needed</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Adding consents intro</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="intro-consent?r=t&testdata=true">/intro-consent</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Select consents type</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="consent-type?r=t&testdata=true">/consent-type</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Enter consents reference</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="consent-reference?r=t&testdata=true">/consent-reference</a></td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Check your answers - consents</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="cya-consents?r=t&testdata=true">/cya-consents</a></td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Remove consent</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="consent-remove?r=t&testdata=true&consentToRemove=123456789">/consent-remove</a></td>
+                </tr>
+
+
+
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Site name</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="site-name?r=t">/site-name</a></td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Site addresses</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="site-addresses?r=t">/site-addresses</a></td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Site postcode</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="site-postcode?r=t">/site-postcode</a></td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Site address</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="site-address?r=t">/site-address</a></td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Site boundary method</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="site-method?r=t">/site-method</a></td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Site upload</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="site-upload?r=t">/site-upload</a></td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Site boundary</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="site-boundary?r=t">/site-boundary</a></td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Site grid reference</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="site-grid-ref?r=t">/site-grid-ref</a></td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Site check</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="site-check?r=t">/site-check</a></td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Check your answers - Site boundary</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="cya-site?r=t&testdata=true">/cya-site</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Adding habitats intro</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="habitat-intro?r=t&testdata=true">/habitat-intro</a></td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Select specific species</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="habitat-species?r=t&testdata=true">/habitat-species</a></td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Select habitat uses</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="habitat-type?r=t&testdata=true">/habitat-type</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Active habitat</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="habitat-active?r=t&testdata=true">/habitat-active</a></td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Reopening habitat</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="habitat-reopen?r=t&testdata=true">/habitat-reopen</a></td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Entrance holes in habitat</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="habitat-entrances?r=t&testdata=true">/habitat-entrances</a></td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Select species numbers</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="habitat-numbers?r=t&testdata=true">/habitat-numbers</a></td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Select breeding site numbers</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="numbers-breeding-sites?r=t&testdata=true">/numbers-breeding-sites</a></td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Select habitat activities</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="habitat-activities?r=t&testdata=true">/habitat-activities</a></td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Select newt activities</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="activities-newt?r=t&testdata=true">/activities-newt</a></td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Check your answers - actions - bats</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="cya-habitats?r=t&testdata=true">/cya-habitats</a></td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Check your answers - actions - newts</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="cya-newt?r=t&testdata=true">/cya-newt</a></td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Remove habitat</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="habitat-remove?r=t&testdata=true&habitatToRemove=123456789">/habitat-remove</a></td>
+                </tr>
+
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Work schedule upload</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="work-schedule-upload?r=t">/work-schedule-upload</a></td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Check your answers - Work schedule</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="cya-work-schedule?r=t&testdata=true">/cya-work-schedule</a></td>
+                </tr>
+
+
+
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Application complete</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="complete?r=t">/complete</a></td>
+                </tr>
+                
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <p class="govuk-body" >{{myData.apiData|dump|safe}}</p>
+    </div>
+</div> -->
+
+{% endblock %}
+
+{% block pageScripts %}
+<script>
+    $(document).ready(function(){
+
+        var _startURL = $("#start-url a"),
+            _startURLLabel = $("#start-url-label"),
+            _options = $("[data-option]")
+
+        _options.change(function(){
+            setValues()
+        }).trigger("change");
+
+        _options.on('input', function() {
+            setValues()
+        }).trigger("input");
+
+
+        //SET VALUES
+        function setValues(){
+            //Base URL
+            var _urlBase = "https://sustainable-prototype.herokuapp.com/" + {{myData.version|dump|safe}} + "/";
+            //Queries
+            var _urlStartFrom = $('input[name=startFrom]:checked').val(),
+                _urlPage = "start"
+            switch(_urlStartFrom) {
+                case "s":
+                    _urlPage = "start"
+                    break;
+                case "e":
+                    _urlPage = "email-invite"
+                    break;
+                default:
+                _urlPage = "start"
+            }
+            var _urlPageQuery = "&sf=" + _urlStartFrom,
+                // _urlService = "&s=" + $('input[name=service]:checked').val(),
+                // _urlNewApplication = "&new=true",
+                // _urllicenceType = "&l=" + _options.filter("#licenceType").val(),
+                _urluserName = "&siu=" + _options.filter("#userName").val(),
+                _urlincludeValidation = "&iv=" + _options.filter("#includeValidation").val(),
+                _urlsiteMismatch = "&smm=" + _options.filter("#siteMismatch").val(),
+                _urlsignedIn = "&si=" + _options.filter("#signedIn").val();
+
+            // if(_options.filter("#userName").val() == "1"){
+            //     _urluserName = ""
+            // }
+
+            //Hide/show signed in option
+            if(_urlPage == "email-invite"){
+                _urlsignedIn = "&si=false"
+                $('.signedInContainer').hide()
+            } else {
+                $('.signedInContainer').show()
+            }
+           
+            //Queries combined
+            var _urlPageQueries = _urlPage + "?r=t" + _urlPageQuery + _urlincludeValidation + _urluserName + _urlsignedIn + _urlsiteMismatch;
+
+            //URL text
+            var _startURLText = _urlBase + _urlPageQueries,
+                _startURLHREF =  _urlPageQueries;
+            // update label
+            _startURLLabel
+                .text(_startURLText)
+                .show()
+            //update link
+            _startURL
+                .attr("href", _startURLHREF)
+                .parent().show()
+        }
+
+    });
+</script>
+{% endblock %}

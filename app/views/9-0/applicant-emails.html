@@ -1,0 +1,111 @@
+{% extends "layout.html" %}
+
+{% set _pageID = "CD??? - Applicant emails" %}
+
+{% set serviceName = myData.serviceName %}
+
+{% set _inError = myData.validationError == "true" %}
+
+{% block pageTitle %} 
+{% if _inError %}Error: {% endif %}TO DO
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        {% if _inError %}
+        <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="error-summary">
+            <h2 class="govuk-error-summary__title" id="error-summary-title">
+                There is a problem
+            </h2>
+            <div class="govuk-error-summary__body">
+                <ul class="govuk-list govuk-error-summary__list">
+                    {% for name, item in myData.validationErrors %}
+                    <li>
+                        <a href="#{{item.anchor}}">{{item.message}}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+
+		<form method="POST">
+            <div class="govuk-form-group {% if _inError %}govuk-form-group--error{% endif %}">
+                <fieldset class="govuk-fieldset" >
+                    
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+                        <h1 class="govuk-fieldset__heading">
+                            {% if myData.selectedApplication.userIsApplicant == "Yes" %}
+                                What is your email address?
+                            {% else %}
+                                What is {{myData.selectedApplication.applicantName}}’s email address? 
+                            {% endif %}
+                        </h1>
+                    </legend>
+
+                    <div class="govuk-hint">
+                        {% if myData.selectedApplication.userIsApplicant == "Yes" %}
+                            We’ll only use this to contact you about the application.
+                        {% else %}
+                            We’ll only use this to contact {{myData.selectedApplication.applicantName}} about the application.
+                        {% endif %}
+                    </div>
+
+                    {% if _inError %}
+                    <span class="govuk-error-message">
+                        <span class="govuk-visually-hidden">Error:</span>
+                        {{myData.validationErrors.applicantEmailsAnswer.message}}
+                    </span>
+                    {% endif %}
+
+                    <div class="govuk-radios" data-module="govuk-radios">
+
+                        {% for _email in myData.selectedApplicant.emails %}
+
+                            {% set _selected = false %}
+                            {% if _email.email == myData.selectedApplication.applicantEmail %}
+                                {% set _selected = true %}
+                            {% endif %}
+
+                            <div class="govuk-radios__item">
+                                <input {% if _selected == true %}checked{% endif %} class="govuk-radios__input" id="{{_email.email}}" name="applicantEmails" type="radio" value="{{_email.email}}">
+                                <label class="govuk-label govuk-radios__label" for="{{_email.email}}">
+                                    {{_email.email}}
+                                </label>
+                            </div>
+
+                        {% endfor %}
+
+                        <div class="govuk-radios__divider">or</div>
+
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="changeEmail" name="applicantEmails" type="radio" value="changeEmail">
+                            <label class="govuk-label govuk-radios__label" for="changeEmail">
+                                Add a new email address
+                            </label>
+                        </div>
+
+                    </div>
+
+                </fieldset>
+            </div>
+		
+            {{govukButton({
+                text: "Continue"
+            })}}
+
+        </form>
+
+	</div>
+</div>
+
+
+{% endblock %}
