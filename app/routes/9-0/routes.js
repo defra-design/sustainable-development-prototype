@@ -461,6 +461,18 @@ module.exports = function (router,_myData) {
         //Applications - CWM data
         req.session.myData.defaultCWMApplications = [
             {
+                "id": "2021-12345-SPM-WLM", 
+                "type": "a24",
+                "habitatType": "multple",
+                "new": false,
+                "status": "inprogress",
+                "tasklist": JSON.parse(JSON.stringify(req.session.myData.tasklist)),
+                "habitats": [], 
+                "consents": [], 
+                "starteddate": new Date(2022, 03, 04, 16, 20, 0, 0),
+                "lastsaveddate": new Date(2022, 03, 06, 17, 01, 30, 0)
+            },
+            {
                 "id": "2021-83653-EPS-MIT",
                 "type": "a13",
                 "habitatType": "multple",
@@ -790,13 +802,15 @@ module.exports = function (router,_myData) {
 
         //Default required questions (purpose flow)
         // var _l = req.session.myData.licenceType
-        var _l = req.session.myData.selectedApplication.type
-        req.session.myData.requiredQuestions = {
-            "CD16": _l == "a13" || _l == "a14", //CD16. Work reason
-            "CD17": _l == "a13" || _l == "a14", //CD17. Multi-plot
-            "CD22": _l == "a13" || _l == "a14", //CD22. Work small developments
-            "CD24": _l == "a13" || _l == "a14", //CD24. Work public buildings (also includes CD25 & CD26)
-            "CD27": _l == "a13" || _l == "a14"  //CD27. Important populations
+        if(req.session.myData.selectedApplication){
+            var _l = req.session.myData.selectedApplication.type
+            req.session.myData.requiredQuestions = {
+                "CD16": _l == "a13" || _l == "a14", //CD16. Work reason
+                "CD17": _l == "a13" || _l == "a14", //CD17. Multi-plot
+                "CD22": _l == "a13" || _l == "a14", //CD22. Work small developments
+                "CD24": _l == "a13" || _l == "a14", //CD24. Work public buildings (also includes CD25 & CD26)
+                "CD27": _l == "a13" || _l == "a14"  //CD27. Important populations
+            }
         }
 
         //Update tasklist data
