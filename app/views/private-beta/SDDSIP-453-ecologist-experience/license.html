@@ -1,0 +1,98 @@
+{% extends "layout.html" %}
+
+{% set _pageID = "CD502 - Ecologist experience previous badger mitigation licenses" %}
+
+{% set serviceName = myData.serviceName %}
+
+{% set _habitatsCount = myData.selectedApplication.habitats.length %}
+
+{% set _habitat = "roost" %}
+{% set _species = "bat" %}
+{% if myData.selectedApplication.type == "a24" %}
+    {% set _habitat = "sett" %}
+    {% set _species = "badger" %}
+{% endif %}
+
+{% block pageTitle %} 
+Enter the previous badger mitigation license details
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        Previous badger mitigiation licenses
+      </h1>
+
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Badger mitigiation license"
+            },
+            value: {
+              html: data['mitigation-license-details'] 
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Remove",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          }
+          
+        ]
+      }) }}
+
+
+
+
+
+
+
+      <form class="form" action="another-license" method="post">
+
+        {{ govukRadios({
+          idPrefix: "another-license-check",
+          name: "another-license-check",
+          fieldset: {
+            legend: {
+              text: "Do you want to add another previous badger mitigation license?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+        
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

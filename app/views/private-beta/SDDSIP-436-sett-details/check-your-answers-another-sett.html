@@ -1,0 +1,347 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Check your answers
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h2 class="govuk-heading-xl">Check your answers</h2>
+
+
+      <h2 class="govuk-heading-m">Sett: {{ data['sett-name'] }}</h2>
+
+
+      <p><a href="">Remove sett</a></p>
+
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Sett usage"
+            },
+            value: {
+              html: data['sett-usage'] 
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "sett usage"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Reopening sett"
+            },
+            value: {
+              html: data['sett-reopened'] 
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "reopening sett"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Number of entrance holes"
+            },
+            value: {
+              html: data['entrance-holes'] 
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "number of entrance holes"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Number of active entrance holes"
+            },
+            value: {
+              html: data['active-holes'] 
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "number of active entrance holes"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Sett grid reference"
+            },
+            value: {
+              html: data['grid-ref']
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "sett grid reference"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Work start date"
+            },
+            value: {
+              html:  data['work-start-day'] + " " + data['work-start-month'] | toMonth + " " + data['work-start-year'] 
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "work start date"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Work end date"
+            },
+            value: {
+              html: data['work-end-day'] + " " + data['work-end-month'] | toMonth + " " + data['work-end-year'] 
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "work end date"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Affect on badgers"
+            },
+            value: {
+              text: data['affect-on-badgers'] 
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "affect on badgers"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+
+
+      <h2 class="govuk-heading-m">Sett: Example of another sett</h2>
+
+
+      <p><a href="">Remove sett</a></p>
+
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Sett usage"
+            },
+            value: {
+              html: data['sett-usage'] 
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "sett usage"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Reopening sett"
+            },
+            value: {
+              html: data['sett-reopened'] 
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "reopening sett"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Number of entrance holes"
+            },
+            value: {
+              html: data['entrance-holes'] 
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "number of entrance holes"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Number of active entrance holes"
+            },
+            value: {
+              html: data['active-holes'] 
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "number of active entrance holes"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Sett grid reference"
+            },
+            value: {
+              html: data['grid-ref']
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "sett grid reference"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Work start date"
+            },
+            value: {
+              html:  data['work-start-day'] + " " + data['work-start-month'] | toMonth + " " + data['work-start-year'] 
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "work start date"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Work end date"
+            },
+            value: {
+              html: data['work-end-day'] + " " + data['work-end-month'] | toMonth + " " + data['work-end-year'] 
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "work end date"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Affect on badgers"
+            },
+            value: {
+              text: data['affect-on-badgers'] 
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "affect on badgers"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      
+
+
+      {{ govukRadios({
+        idPrefix: "add-another-sett",
+        name: "add-another-sett",
+        fieldset: {
+          legend: {
+            text: "Do you want to add another badger sett?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes"
+          },
+          {
+            value: "no",
+            text: "No"
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue",
+        href: "check-your-answers"
+      }) }}
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

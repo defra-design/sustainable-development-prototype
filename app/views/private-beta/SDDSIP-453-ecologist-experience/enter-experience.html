@@ -1,0 +1,35 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Enter the ecologist's experience of badger ecology and surveying
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/back-link-save-return.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form class="form" action="enter-methods" method="post">
+        {{ govukTextarea({
+          name: "experience",
+          id: "experience",
+          label: {
+            text: "Enter the ecologist's experience of badger ecology and surveying",
+            classes: "govuk-label--xl",
+            isPageHeading: true
+          }
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

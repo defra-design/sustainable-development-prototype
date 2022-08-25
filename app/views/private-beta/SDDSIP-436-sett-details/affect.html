@@ -1,0 +1,68 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+How will you affect the badgers in this sett?
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/back-link-save-return.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form class="form" action="check-your-answers" method="post"> 
+        {{ govukCheckboxes({
+          idPrefix: "affect-on-badgers",
+          name: "affect-on-badgers",
+          fieldset: {
+            legend: {
+              text: "How will you affect the badgers in this sett?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--xl"
+            }
+          },
+          hint: {
+            text: "Select all that apply."
+          },
+          items: [
+            {
+              value: "Obstructing sett entrances by means of one way badger gates",
+              text: "Obstructing sett entrances by means of one way badger gates",
+              checked: checked("affect-on-badgers", "Obstructing sett entrances by means of one way badger gates")
+            },
+            {
+              value: "Obstructing access to sett entrances by blocking or proofing",
+              text: "Obstructing access to sett entrances by blocking or proofing",
+              checked: checked("affect-on-badgers", "Obstructing sett entrances by means of one way badger gates")
+            },
+            {
+              value: "Damaging a sett by hand and mechanical means",
+              text: "Damaging a sett by hand and mechanical means",
+              checked: checked("affect-on-badgers", "Obstructing sett entrances by means of one way badger gates")
+            },
+            {
+              value: "Destruction of the vacant sett by hand and mechanical means",
+              text: "Destruction of the vacant sett by hand and mechanical means",
+              checked: checked("affect-on-badgers", "Obstructing sett entrances by means of one way badger gates")
+            },
+            {
+              value: "Disturbance of badgers",
+              text: "Disturbance of badgers",
+              checked: checked("affect-on-badgers", "Obstructing sett entrances by means of one way badger gates")
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

@@ -866,5 +866,9 @@ require('./routes/6-0/routes.js')(router,JSON.parse(JSON.stringify(_myData)));
 require('./routes/7-0/routes.js')(router,JSON.parse(JSON.stringify(_myData)));
 require('./routes/8-0/routes.js')(router,JSON.parse(JSON.stringify(_myData)));
 require('./routes/9-0/routes.js')(router,JSON.parse(JSON.stringify(_myData)));
+require('./routes/private-beta/routes.js')(router,JSON.parse(JSON.stringify(_myData)));
+
+
+
 
 module.exports = router

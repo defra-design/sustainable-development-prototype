@@ -1,0 +1,40 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+What is the badger sett's grid reference?
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/back-link-save-return.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form class="form" action="work-start" method="post"> 
+        {{ govukInput({
+          label: {
+            text: "What is the badger sett's grid reference?",
+            classes: "govuk-label--xl",
+            isPageHeading: true
+          },
+          hint: {
+            text: "For example, NY395557. Use the grid reference for the central point of the sett if it has more than one entrance."
+          },
+          classes: "govuk-input--width-10",
+          id: "grid-ref",
+          name: "grid-ref"
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

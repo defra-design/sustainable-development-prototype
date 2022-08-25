@@ -1,0 +1,190 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Check your answers
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/back-link-save-return.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">Check your answers</h1>
+      
+      <h2 class="govuk-heading-m">Invoice contact details</h2>
+
+      {% if data['responsible-for-invoice-check'] == 'applicant' %}
+
+        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Name
+            </dt>
+            <dd class="govuk-summary-list__value">
+              John Doe
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Email address
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <p class="govuk-body">johndoe@gmail.com</p>
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Organisation
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <p class="govuk-body">ABC Construction Ltd</p>
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Contact address
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <p>Enterprise House<br>
+                      Wharfe Business Park<br>
+                      Otley<br>
+                      LS21 1TY</p>
+            </dd>
+            <dd class="govuk-summary-list__actions">
+            
+            </dd>
+          </div>
+
+          {% if data['purchase-order-check'] == 'yes' %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Purchase order number/reference
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['purchase-order'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> address</span>
+              </a>
+            </dd>
+          </div>
+          {% endif %}
+          
+        </dl>
+      {% endif %}
+
+
+
+
+      {% if data['responsible-for-invoice-check'] == 'someone-else' %}
+
+        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Name
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['invoice-name'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> name</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Email address
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['invoice-email-address'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> email address</span>
+              </a>
+            </dd>
+          </div>
+
+          {% if data['organisation-check'] == 'yes' %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Organisation
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['organisation-name'] }}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> organisation</span>
+                </a>
+              </dd>
+            </div>
+          {% endif %}
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Contact address
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <p>Enterprise House<br>
+                      Wharfe Business Park<br>
+                      Otley<br>
+                      LS21 1TY</p>
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> address</span>
+              </a>
+            </dd>
+          </div>
+
+          {% if data['purchase-order-check'] == 'yes' %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Purchase order number/reference
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['purchase-order'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> purchase order number/reference</span>
+              </a>
+            </dd>
+          </div>
+          {% endif %}
+          
+        </dl>
+
+
+      {% endif %}
+
+      
+
+      
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+    
+    </div>
+  </div>
+
+{% endblock %}

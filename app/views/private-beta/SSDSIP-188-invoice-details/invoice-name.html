@@ -1,0 +1,37 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  What is the name of the person responsible for the invoice?
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/back-link-save-return.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <form class="form" action="invoice-email-address" method="post">
+        <div class="govuk-form-group">
+          <h1 class="govuk-label-wrapper">
+            <label class="govuk-label govuk-label--xl" for="sett-name">
+              What is the name of the person responsible for the invoice?
+            </label>
+          </h1>
+          <input class="govuk-input" id="invoice-name" name="invoice-name" type="text">
+        </div>
+        
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

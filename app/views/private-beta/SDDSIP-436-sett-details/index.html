@@ -1,0 +1,30 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Tell us about each badger sett the work will affect
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/back-link-save-return.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        Tell us about each badger sett the work will affect
+      </h1>
+      <p>
+        You can add more than one sett.
+      </p>
+
+      {{ govukButton({
+        text: "Tell us about the first sett",
+        href: "sett-name"
+      }) }}
+    </div>
+  </div>
+
+{% endblock %}
