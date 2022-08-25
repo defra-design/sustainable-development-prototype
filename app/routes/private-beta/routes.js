@@ -24,7 +24,7 @@ router.post('/private-beta/SDDSIP-453-ecologist-experience/previous-license', fu
   } 
 });
 
-router.post('/ecologist-experience/another-license', function (req, res) {
+router.post('/private-beta/SDDSIP-453-ecologist-experience/another-license', function (req, res) {
   const editChoice = req.session.data['another-license-check']
 
   if (editChoice === 'yes') {
@@ -34,7 +34,7 @@ router.post('/ecologist-experience/another-license', function (req, res) {
   } 
 });
 
-router.post('/ecologist-experience/another-license-extra', function (req, res) {
+router.post('/private-beta/SDDSIP-453-ecologist-experience/another-license-extra', function (req, res) {
   const editChoice = req.session.data['another-license-extra-check']
 
   if (editChoice === 'yes') {
@@ -46,7 +46,7 @@ router.post('/ecologist-experience/another-license-extra', function (req, res) {
 
 
 
-router.post('/ecologist-experience/class-mitigation-license-check', (req, res) => {
+router.post('/private-beta/SDDSIP-453-ecologist-experience/class-mitigation-license-check', (req, res) => {
   if(req.session.data['class-mitigation-license-check'] == 'Yes'){
       res.redirect('enter-class-mitigation-details')
   } else if(req.session.data['class-mitigation-license-check'] == 'No'){

@@ -1,17 +1,4 @@
-{% extends "layout.html" %}
-
-{% set _pageID = "CD502 - Ecologist experience previous badger mitigation licenses" %}
-
-{% set serviceName = myData.serviceName %}
-
-{% set _habitatsCount = myData.selectedApplication.habitats.length %}
-
-{% set _habitat = "roost" %}
-{% set _species = "bat" %}
-{% if myData.selectedApplication.type == "a24" %}
-    {% set _habitat = "sett" %}
-    {% set _species = "badger" %}
-{% endif %}
+{% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
 Enter the previous badger mitigation license details
