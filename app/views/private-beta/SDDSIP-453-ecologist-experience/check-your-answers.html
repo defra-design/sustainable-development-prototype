@@ -18,8 +18,23 @@ Check your answers
 
       <h2 class="govuk-heading-xl">Check your answers</h2>
 
-
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+
+      {% if data['previous-license-check'] == 'yes' %}
+    
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Previous mitigation license
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Yes
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> previous mitigation license</span>
+            </a>
+          </dd>
+        </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Previous license number
@@ -33,6 +48,23 @@ Check your answers
             </a>
           </dd>
         </div>
+      {% endif %}
+
+      {% if data['previous-license-check'] == 'no' %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Previous license
+          </dt>
+          <dd class="govuk-summary-list__value">
+            No
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> previous license number</span>
+            </a>
+          </dd>
+        </div>
+      {% endif %}
 
         {% if data['another-license-check'] == 'yes' %}
           <div class="govuk-summary-list__row">
@@ -207,7 +239,7 @@ Check your answers
 
       {{ govukButton({
         text: "Continue",
-        href: "check-your-answers"
+        href: "task-list-complete"
       }) }}
 
       

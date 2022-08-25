@@ -55,13 +55,14 @@ router.post('/private-beta/SDDSIP-453-ecologist-experience/class-mitigation-lice
 });
 
 
-router.post('/sett-details/add-another-sett-check', (req, res) => {
+router.post('/private-beta/SDDSIP-436-sett-details/add-another-sett-check', (req, res) => {
   if(req.session.data['add-another-sett-check'] == 'Yes'){
       res.redirect('check-your-answers-another-sett')
   } else if(req.session.data['add-another-sett-check'] == 'No'){
-      res.redirect('check-your-answers')
+      res.redirect('task-list-complete')
   } 
 });
+
 
 
 router.post('/invoice/responsible-for-invoice', function (req, res) {
