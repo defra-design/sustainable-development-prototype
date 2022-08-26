@@ -4,7 +4,7 @@ module.exports = function (router,_myData) {
 
     var version = "private-beta";
 
-router.post('/upload-sup-info/another-file', function (req, res) {
+router.post('/private-beta/SDDSIP-286-supplementary-file-upload/another-file', function (req, res) {
   const editChoice = req.session.data['another-file-check']
 
   if (editChoice === 'yes') {

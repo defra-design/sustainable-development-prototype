@@ -1,12 +1,12 @@
+{% extends "layout-pb.html" %}
 
-{% extends "layout.html" %}
-
-{% block pageTitle %}
-Upload supporting information 
+{% block pageTitle %} 
+Check your answers
 {% endblock %}
 
 {% block beforeContent %}
-  {% include "includes/back-link-save-return.html" %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
 {% endblock %}
 
 {% block content %}
@@ -43,7 +43,7 @@ Upload supporting information
               text: "Uploaded file 2"
             },
             value: {
-              html: "<p>badger-supplementary-information-13-08-22-FINAL.docx</p>
+              html: "<p>badger-supplementary-information-15-08-22-FINAL-2.docx</p>
                      <p class='govuk-body-s'>Uploaded 12 August 2022 10:27am</p>"
             },
             actions: {
@@ -91,7 +91,8 @@ Upload supporting information
         
 
         {{ govukButton({
-          text: "Continue"
+          text: "Continue",
+          href: "task-list-complete"
         }) }}
 
 
