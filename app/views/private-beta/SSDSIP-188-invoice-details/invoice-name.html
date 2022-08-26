@@ -1,12 +1,12 @@
+{% extends "layout-pb.html" %}
 
-{% extends "layout.html" %}
-
-{% block pageTitle %}
-  What is the name of the person responsible for the invoice?
+{% block pageTitle %} 
+What is the name of the person responsible for the invoice?
 {% endblock %}
 
 {% block beforeContent %}
-  {% include "includes/back-link-save-return.html" %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
 {% endblock %}
 
 {% block content %}
@@ -18,7 +18,7 @@
         <div class="govuk-form-group">
           <h1 class="govuk-label-wrapper">
             <label class="govuk-label govuk-label--xl" for="sett-name">
-              What is the name of the person responsible for the invoice?
+              What is the name of the person responsible for the invoice ?
             </label>
           </h1>
           <input class="govuk-input" id="invoice-name" name="invoice-name" type="text">

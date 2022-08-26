@@ -65,7 +65,7 @@ router.post('/private-beta/SDDSIP-436-sett-details/add-another-sett-check', (req
 
 
 
-router.post('/invoice/responsible-for-invoice', function (req, res) {
+router.post('/private-beta/SSDSIP-188-invoice-details/responsible-for-invoice', function (req, res) {
   const editChoice = req.session.data['responsible-for-invoice-check']
 
   if (editChoice === 'applicant') {
@@ -78,7 +78,7 @@ router.post('/invoice/responsible-for-invoice', function (req, res) {
   
 });
 
-router.post('/invoice/invoice-contact-details', (req, res) => {
+router.post('/private-beta/SSDSIP-188-invoice-details/invoice-contact-details', (req, res) => {
   if(req.session.data['invoice-contact-details-check'] == 'Yes'){
       res.redirect('purchase-order')
   } else if(req.session.data['invoice-contact-details-check'] == 'No'){
