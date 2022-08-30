@@ -310,11 +310,11 @@ Check your answers
       }) }}
 
       
-
+      <form class="form" action="add-another-sett-check" method="post">
 
       {{ govukRadios({
-        idPrefix: "add-another-sett",
-        name: "add-another-sett",
+        idPrefix: "add-another-sett-check",
+        name: "add-another-sett-check",
         fieldset: {
           legend: {
             text: "Do you want to add another badger sett?",
@@ -328,18 +328,17 @@ Check your answers
             text: "Yes"
           },
           {
-            value: "no",
+            value: "No",
             text: "No"
           }
         ]
       }) }}
 
       {{ govukButton({
-        text: "Continue",
-        href: "check-your-answers"
+        text: "Continue"
       }) }}
 
-      
+    </form>
     
     </div>
   </div>
