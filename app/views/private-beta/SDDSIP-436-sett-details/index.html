@@ -12,7 +12,8 @@ SDDSIP 436 | Sett details
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
-      <h1 class="govuk-heading-l">SDDSIP 436 | Sett details</h1>
+      <span class="govuk-caption-l">SDDSIP 436</span>
+      <h1 class="govuk-heading-l">Sett details</h1>
 
       {{ govukButton({
         text: "View full flow",
@@ -61,6 +62,40 @@ SDDSIP 436 | Sett details
               <th class="govuk-table__cell">Sett reopened</th>
               <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="sett-reopened">sett-reopened</a></td>
               <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-sett-sett-reopened">If nothing chosen</a></td>
+            </tr>
+
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">Entrance holes</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="entrance-holes">entrance-holes</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-blank-entrance-holes">If blank</a></td>
+            </tr>
+
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">Active holes</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="active-holes">active-holes</a></td>
+              <td class="govuk-table__cell">
+                <a class="govuk-link govuk-link--no-visited-state" href="error-blank-active-holes">If blank</a><br>
+                <a class="govuk-link govuk-link--no-visited-state" href="error-exceeds-active-holes">If exceeds total holes number</a>
+              </td>
+            </tr>
+
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">Grid reference</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="grid-ref">grid-ref</a></td>
+              <td class="govuk-table__cell">
+                <a class="govuk-link govuk-link--no-visited-state" href="error-blank-grid-ref">If blank</a><br>
+                <a class="govuk-link govuk-link--no-visited-state" href="error-wrong-format-grid-ref">If wrong format</a>
+              </td>
+            </tr>
+
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">Work start date</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="work-start">work-start</a></td>
+              <td class="govuk-table__cell">
+                <a class="govuk-link govuk-link--no-visited-state" href="error-blank-work-start">If blank</a><br>
+                <a class="govuk-link govuk-link--no-visited-state" href="error-date-in-past-work-start">If date in past</a><br>
+                <a class="govuk-link govuk-link--no-visited-state" href="error-date-outside-license-period-work-start">If date is outside licensing period</a>
+              </td>
             </tr>
             
           </tbody>

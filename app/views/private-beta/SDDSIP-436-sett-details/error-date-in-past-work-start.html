@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Will the badger sett be reopened once development is complete?
+When will the work start?
 {% endblock %}
 
 {% block beforeContent %}
@@ -18,37 +18,29 @@ Will the badger sett be reopened once development is complete?
         titleText: "There is a problem",
         errorList: [
           {
-            text: "You have not selected an option",
-            href: "#sett-reopened"
+            text: "The start date must be in the future",
+            href: "#work-start"
           }
         ]
       }) }}
 
-
-      <form class="form" action="entrance-holes" method="post"> 
-        {{ govukRadios({
-          idPrefix: "sett-reopened",
-          name: "sett-reopened",
+      <form class="form" action="work-end" method="post"> 
+        {{ govukDateInput({
+          id: "work-start",
+          namePrefix: "work-start",
           fieldset: {
             legend: {
-              text: "Will the badger sett be reopened once development is complete?",
+              text: "When will the work start?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--xl"
             }
           },
-          errorMessage: {
-            text: "Select an option"
+          hint: {
+            text: "The work must start during the license period (From 1 May to 30 November)."
           },
-          items: [
-            {
-              value: "Yes",
-              text: "Yes"
-            },
-            {
-              value: "No",
-              text: "No"
-            }
-          ]
+          errorMessage: {
+            text: "Enter a start date that is in the future"
+          }
         }) }}
 
         {{ govukButton({
