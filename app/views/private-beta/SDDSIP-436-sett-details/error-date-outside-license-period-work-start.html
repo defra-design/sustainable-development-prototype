@@ -18,7 +18,7 @@ When will the work start?
         titleText: "There is a problem",
         errorList: [
           {
-            text: "You have not entered a start date",
+            text: "Licences to manage badger setts are only available from 1 May each year, the start date must be from 1 May 2022 to 29 November 2022",
             href: "#work-start"
           }
         ]
@@ -39,23 +39,26 @@ When will the work start?
             text: "The work must start during the license period (From 1 May to 30 November)."
           },
           errorMessage: {
-            text: "Enter a start date for the licenced work on this sett"
+            text: "The start date must be from 1 May 2022 to 29 November 2022"
           },
           items: [
             {
               classes: "govuk-input--width-2 govuk-input--error",
-              name: "day"
+              name: "day",
+              value: "6"
             },
             {
               classes: "govuk-input--width-2 govuk-input--error",
-              name: "month"
+              name: "month",
+              value: "12"
             },
             {
               classes: "govuk-input--width-4 govuk-input--error",
-              name: "year"
+              name: "year",
+              value: "2022"
             }
           ]
-        }) }}
+          }) }}
 
         {{ govukButton({
           text: "Continue"
