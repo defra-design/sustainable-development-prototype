@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Enter the ecologist's experience of badger ecology and surveying
+Error: Enter the ecologist's experience of badger ecology and surveying
 {% endblock %}
 
 {% block beforeContent %}
@@ -13,11 +13,24 @@ Enter the ecologist's experience of badger ecology and surveying
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "You have not entered the ecologist's experience",
+            href: "#experience"
+          }
+        ]
+      }) }}
+
       <form class="form" action="enter-methods" method="post">
         {{ govukCharacterCount({
           name: "experience",
           id: "experience",
           maxlength: 4000,
+          errorMessage: {
+            text: "Enter details of the ecologist's experience of badger ecology and surveying"
+          },
           label: {
             text: "Enter the ecologist's experience of badger ecology and surveying",
             classes: "govuk-label--xl",

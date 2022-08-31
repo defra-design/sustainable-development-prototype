@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Previous badger mitigiation licenses
+Error: Previous badger mitigiation licenses
 {% endblock %}
 
 {% block beforeContent %}
@@ -14,6 +14,17 @@ Previous badger mitigiation licenses
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "You have not selected an option",
+            href: "#another-license-check"
+          }
+        ]
+      }) }}
+
       <h1 class="govuk-heading-xl">
         Previous badger mitigiation licenses
       </h1>
@@ -59,6 +70,9 @@ Previous badger mitigiation licenses
               isPageHeading: true,
               classes: "govuk-fieldset__legend--m"
             }
+          },
+          errorMessage: {
+            text: "Select an option"
           },
           items: [
             {
