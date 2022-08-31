@@ -1,0 +1,53 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+What is this sett called?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "Give this sett a name",
+            href: "#sett-name"
+          }
+        ]
+      }) }}
+      
+      <form class="form" action="sett-usage" method="post">
+        <div class="govuk-form-group govuk-form-group--error">
+          <h1 class="govuk-label-wrapper">
+            <label class="govuk-label govuk-label--xl" for="sett-name">
+              What is this sett called?
+            </label>
+          </h1>
+          <p>
+            Enter a name for the sett to identify and distinguish it from other setts. You should use the name it has on your maps or within your method statement. You can enter up to 100 characters.
+          </p>
+          <p id="national-insurance-number-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> Enter a name for this sett
+          </p>
+          <input class="govuk-input" id="sett-name" name="sett-name" type="text">
+        </div>
+        
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

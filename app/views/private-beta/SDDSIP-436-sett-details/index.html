@@ -1,0 +1,72 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+SDDSIP 436 | Sett details
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-l">SDDSIP 436 | Sett details</h1>
+
+      {{ govukButton({
+        text: "View full flow",
+        href: "task-list"
+      }) }}
+      
+      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+      <h2 class="govuk-heading-m">Full page list and error states</h2>
+
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Page</th>
+            <th scope="col" class="govuk-table__header">Link</th>
+            <th scope="col" class="govuk-table__header">Error states</th>
+            </tr>
+        </thead>
+        <tbody class="govuk-table__body">    
+            <tr class="govuk-table__row">
+                <th class="govuk-table__cell">Task list</th>
+                <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="setup">task-list</a></td>
+                <td class="govuk-table__cell"> </td>
+            </tr>
+
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">Start</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="start">start</a></td>
+              <td class="govuk-table__cell"> </td>
+            </tr>
+
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">Sett name</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="sett-name">sett-name</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-blank-sett-name">If blank</a></td>
+            </tr>
+
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">Sett usage</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="sett-usage">sett-usage</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-sett-usage">If nothing chosen</a></td>
+            </tr>
+
+
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">Sett reopened</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="sett-reopened">sett-reopened</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-sett-sett-reopened">If nothing chosen</a></td>
+            </tr>
+            
+          </tbody>
+        </table>
+    
+    </div>
+  </div>
+
+{% endblock %}
