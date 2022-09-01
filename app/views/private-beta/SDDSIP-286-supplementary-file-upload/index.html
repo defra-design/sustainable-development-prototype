@@ -1,0 +1,124 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+SDDSIP 286 | Upload supporting information
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <span class="govuk-caption-l">SDDSIP 286</span>
+      <h1 class="govuk-heading-l">Upload supporting information</h1> 
+
+      <div class="govuk-!-margin-bottom-9">
+        <strong class="govuk-tag" style="background: green;" >
+          In progress
+        </strong>
+      </div>
+
+      {{ govukButton({
+        text: "View full flow",
+        href: "task-list"
+      }) }}
+      
+      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+      <h2 class="govuk-heading-m">Full page list and error states</h2>
+
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Page</th>
+            <th scope="col" class="govuk-table__header">Link</th>
+            <th scope="col" class="govuk-table__header">Error states</th>
+            </tr>
+        </thead>
+        <tbody class="govuk-table__body">    
+            <tr class="govuk-table__row">
+                <th class="govuk-table__cell">Task list</th>
+                <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="task-list">task-list</a></td>
+                <td class="govuk-table__cell"> </td>
+            </tr>
+
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">Previous badger mitigation licence</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="previous-license">previous-license</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-previous-license">If nothing chosen</a></td>
+            </tr>
+
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">Enter previous license details</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="enter-license-details">enter-license-details</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-blank-enter-license-details">If blank</a></td>
+            </tr>
+
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">Previous badger mitigiation licenses</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="license">license</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-blank-license">If blank</a></td>
+            </tr>
+
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">Previous badger mitigiation licenses - all removed</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="license-removed">license-removed</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-license-removed">If nothing chosen</a></td>
+            </tr>
+
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">Ecologist's experience</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="enter-experience">enter-experience</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-blank-enter-experience">If blank</a></td>
+            </tr>
+
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">Ecologist's experience of methods</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="enter-methods">enter-methods</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-blank-enter-methods">If blank</a></td>
+            </tr>
+
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">Badger mitigation class license</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="class-mitigation">class-mitigation</a></td>
+              <td class="govuk-table__cell">
+                <a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-class-mitigation">If nothing chosen</a><br>
+              </td>
+            </tr>
+
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">Enter class mitigation license details</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="enter-class-mitigation-details">enter-class-mitigation-details</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-blank-enter-class-mitigation-details">If  blank</a></td>
+            </tr>
+
+
+            
+
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">Check your answers</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="check-your-answers">check-your-answers</a></td>
+              <td class="govuk-table__cell"></td>
+            </tr>
+
+
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">Task list - completed task</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="task-list-complete">task-list-complete</a></td>
+              <td class="govuk-table__cell"> </td>
+          </tr>
+
+
+         
+
+
+          </tbody>
+        </table>
+    
+    </div>
+  </div>
+
+{% endblock %}
