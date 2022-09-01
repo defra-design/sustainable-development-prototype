@@ -14,7 +14,7 @@ Contact details
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h2 class="govuk-heading-xl">Contact details for John Doe</h2>
+      <h2 class="govuk-heading-xl">Individual responsible for paying the invoice</h2>
 
 
       {{ govukSummaryList({
@@ -30,7 +30,9 @@ Contact details
             actions: {
               items: [
                 {
-                  
+                  href: "responsible",
+                  text: "Change",
+                  visuallyHiddenText: "sett usage"
                 }
               ]
             }
