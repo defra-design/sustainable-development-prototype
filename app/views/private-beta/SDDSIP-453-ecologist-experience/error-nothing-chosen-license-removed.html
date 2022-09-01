@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Previous badger mitigiation licenses
+Error: Previous badger mitigiation licenses
 {% endblock %}
 
 {% block beforeContent %}
@@ -12,9 +12,19 @@ Previous badger mitigiation licenses
 {% block content %}
 
 
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "You have not selected an option",
+            href: "#another-license-check"
+          }
+        ]
+      }) }}
+
+
       <h1 class="govuk-heading-xl">
         Previous badger mitigiation licenses
       </h1>
@@ -27,33 +37,10 @@ Previous badger mitigiation licenses
               text: "Badger mitigiation license"
             },
             value: {
-              html: data['mitigation-license-details'] 
+              html: "No license added" 
             },
             actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Remove",
-                  visuallyHiddenText: "name"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Badger mitigiation license"
-            },
-            value: {
-              html: data['mitigation-license-details-2'] 
-            },
-            actions: {
-              items: [
-                {
-                  href: "license",
-                  text: "Remove",
-                  visuallyHiddenText: "name"
-                }
-              ]
+              
             }
           }
           
@@ -66,17 +53,20 @@ Previous badger mitigiation licenses
 
 
 
-      <form class="form" action="another-license-extra" method="post">
+      
 
         {{ govukRadios({
-          idPrefix: "another-license-extra-check",
-          name: "another-license-extra-check",
+          idPrefix: "another-license-check",
+          name: "another-license-check",
           fieldset: {
             legend: {
-              text: "Do you want to add another previous badger mitigation license?",
+              text: "Do you want to add a previous badger mitigation license?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--m"
             }
+          },
+          errorMessage: {
+            text: "Select an option"
           },
           items: [
             {
@@ -92,9 +82,10 @@ Previous badger mitigiation licenses
         
 
         {{ govukButton({
-          text: "Continue"
+          text: "Continue",
+          href: "enter-license-details"
         }) }}
-      </form>
+      
 
 
     </div>
