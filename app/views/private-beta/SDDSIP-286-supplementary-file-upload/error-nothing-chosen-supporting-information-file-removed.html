@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Supporting information
+Error: Supporting information
 {% endblock %}
 
 {% block beforeContent %}
@@ -14,6 +14,18 @@ Supporting information
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "You have not selected an option",
+            href: "#another-license-check"
+          }
+        ]
+      }) }}
+
+
       <h1 class="govuk-heading-xl">
         Supporting information
       </h1>
@@ -28,7 +40,6 @@ Supporting information
             value: {
               html: "No file uploaded"
             }
-            
           }
           
         ]
@@ -51,6 +62,9 @@ Supporting information
               isPageHeading: true,
               classes: "govuk-fieldset__legend--m"
             }
+          },
+          errorMessage: {
+            text: "Select an option"
           },
           items: [
             {

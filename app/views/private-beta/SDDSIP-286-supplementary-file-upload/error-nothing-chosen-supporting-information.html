@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Supporting information
+Error: Supporting information
 {% endblock %}
 
 {% block beforeContent %}
@@ -14,6 +14,18 @@ Supporting information
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "You have not selected an option",
+            href: "#another-license-check"
+          }
+        ]
+      }) }}
+
+
       <h1 class="govuk-heading-xl">
         Supporting information
       </h1>
@@ -26,9 +38,18 @@ Supporting information
               text: "Uploaded file"
             },
             value: {
-              html: "No file uploaded"
+              html: "<p>badger-supplementary-information-13-08-22-FINAL.docx</p>
+                     <p class='govuk-body-s'>Uploaded 12 August 2022 10:27am</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "supporting-information-file-removed",
+                  text: "Remove",
+                  visuallyHiddenText: "name"
+                }
+              ]
             }
-            
           }
           
         ]
@@ -40,17 +61,20 @@ Supporting information
 
 
 
-      <form class="form" action="upload-supp-file" method="post">
+      <form class="form" action="another-file" method="post">
 
         {{ govukRadios({
-          idPrefix: "upload-supp-file-check",
-          name: "upload-supp-file-check",
+          idPrefix: "another-file-check",
+          name: "another-file-check",
           fieldset: {
             legend: {
-              text: "Do you want to upload a supporting information file?",
+              text: "Do you want to upload another file?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--m"
             }
+          },
+          errorMessage: {
+            text: "Select an option"
           },
           items: [
             {
