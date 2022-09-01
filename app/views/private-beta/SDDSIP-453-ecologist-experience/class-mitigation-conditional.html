@@ -15,6 +15,21 @@ Does the ecologist have a badger mitigation class license?
     <div class="govuk-grid-column-two-thirds">
       <form class="form" action="class-mitigation-license-check" method="post">
 
+        {% set classMitigationLicenseHtml %}
+          {{ govukInput({
+            id: "class-mitigation-license-number",
+            name: "class-mitigation-license-number",
+            label: {
+              text: "Enter the class license reference number"
+            },
+            hint: {
+              text: "This can be found on the license document."
+            }
+          }) }}
+
+
+        {% endset -%}
+
         {{ govukRadios({
           idPrefix: "class-mitigation-license-check",
           name: "class-mitigation-license-check",
@@ -28,7 +43,10 @@ Does the ecologist have a badger mitigation class license?
           items: [
             {
               value: "Yes",
-              text: "Yes"
+              text: "Yes",
+              conditional: {
+                html: classMitigationLicenseHtml
+              }
             },
             {
               value: "No",

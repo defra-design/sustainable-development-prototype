@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Does the ecologist have a badger mitigation class license?
+Error: Does the ecologist have a badger mitigation class license?
 {% endblock %}
 
 {% block beforeContent %}
@@ -13,7 +13,36 @@ Does the ecologist have a badger mitigation class license?
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "You have not entered a licence number",
+            href: "#class-mitigation-license-number"
+          }
+        ]
+      }) }}
+
       <form class="form" action="class-mitigation-license-check" method="post">
+
+        {% set classMitigationLicenseHtml %}
+          {{ govukInput({
+            id: "class-mitigation-license-number",
+            name: "class-mitigation-license-number",
+            label: {
+              text: "Enter the class license reference number"
+            },
+            errorMessage: {
+              text: "Enter the reference number of the previously held licence."
+            },
+            hint: {
+              text: "This can be found on the license document."
+            }
+          }) }}
+
+
+        {% endset -%}
 
         {{ govukRadios({
           idPrefix: "class-mitigation-license-check",
@@ -28,7 +57,11 @@ Does the ecologist have a badger mitigation class license?
           items: [
             {
               value: "Yes",
-              text: "Yes"
+              text: "Yes",
+              checked: true,
+              conditional: {
+                html: classMitigationLicenseHtml
+              }
             },
             {
               value: "No",
