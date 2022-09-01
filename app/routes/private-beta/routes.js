@@ -14,6 +14,17 @@ router.post('/private-beta/SDDSIP-286-supplementary-file-upload/another-file', f
   } 
 });
 
+
+router.post('/private-beta/SDDSIP-286-supplementary-file-upload/upload-supp-file', function (req, res) {
+  const editChoice = req.session.data['upload-supp-file-check']
+
+  if (editChoice === 'yes') {
+    res.redirect('upload-file')
+  } else if (editChoice === 'no') {
+    res.redirect('task-list-in-progress')
+  } 
+});
+
 router.post('/private-beta/SDDSIP-453-ecologist-experience/previous-license', function (req, res) {
   const editChoice = req.session.data['previous-license-check']
 
