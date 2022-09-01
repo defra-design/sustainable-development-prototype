@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Check your answers
+Supporting information
 {% endblock %}
 
 {% block beforeContent %}
@@ -11,10 +11,11 @@ Check your answers
 
 {% block content %}
 
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-xl">
-        Check your answers
+        Supporting information
       </h1>
 
       {{ govukSummaryList({
@@ -22,34 +23,15 @@ Check your answers
         rows: [
           {
             key: {
-              text: "Uploaded file 1"
+              text: "Uploaded file"
             },
             value: {
-              html: "<p>badger-supplementary-information-13-08-22-FINAL.docx</p>
-                     <p class='govuk-body-s'>Uploaded 12 August 2022 10:27am</p>"
+              html: "No file uploaded"
             },
             actions: {
               items: [
                 {
-                  href: "#",
-                  text: "Remove",
-                  visuallyHiddenText: "name"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Uploaded file 2"
-            },
-            value: {
-              html: "<p>badger-supplementary-information-15-08-22-FINAL-2.docx</p>
-                     <p class='govuk-body-s'>Uploaded 12 August 2022 10:27am</p>"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
+                  href: "check-answers-",
                   text: "Remove",
                   visuallyHiddenText: "name"
                 }
@@ -66,13 +48,14 @@ Check your answers
 
 
 
+      <form class="form" action="another-file" method="post">
 
         {{ govukRadios({
-          idPrefix: "another-file",
-          name: "another-file",
+          idPrefix: "another-file-check",
+          name: "another-file-check",
           fieldset: {
             legend: {
-              text: "Do you want to upload another supplementary file?",
+              text: "Do you want to upload a supporting information file?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--m"
             }
@@ -91,9 +74,9 @@ Check your answers
         
 
         {{ govukButton({
-          text: "Continue",
-          href: "task-list-complete"
+          text: "Continue"
         }) }}
+      </form>
 
 
     </div>

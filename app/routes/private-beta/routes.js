@@ -10,7 +10,7 @@ router.post('/private-beta/SDDSIP-286-supplementary-file-upload/another-file', f
   if (editChoice === 'yes') {
     res.redirect('upload-another')
   } else if (editChoice === 'no') {
-    res.redirect('task-list')
+    res.redirect('task-list-complete')
   } 
 });
 
