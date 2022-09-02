@@ -93,19 +93,28 @@ SDDSIP 188 | Add invoice details
             <tr class="govuk-table__row">
               <th class="govuk-table__cell">Invoice payer contact address - postcode</th>
               <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="invoice-address">invoice-address</a></td>
-              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell">
+                <a class="govuk-link govuk-link--no-visited-state" href="error-blank-invoice-address">If blank</a><br>
+                <a class="govuk-link govuk-link--no-visited-state" href="error-format-invoice-address">If wrong format</a>
+              </td>
             </tr>
 
             <tr class="govuk-table__row">
               <th class="govuk-table__cell">Invoice payer contact address - no postcode</th>
               <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="invoice-address-no-postcode">invoice-address-no-postcode</a></td>
-              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-blank-invoice-address-no-postcode">If blank</a></td>
             </tr>
 
             <tr class="govuk-table__row">
               <th class="govuk-table__cell">Invoice payer contact address - select address</th>
               <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="select-address">select-address</a></td>
-              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-selected-select-address">If nothing selected</a></td>
+            </tr>
+
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">Invoice payer contact address - address not found in select</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="invoice-address-no-lookup">invoice-address-no-lookup</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-blank-invoice-address-no-lookup">If blank</a></td>
             </tr>
 
             <tr class="govuk-table__row">

@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-  What is {{ data['invoice-name'] }}'s contact address? 
+  Error: What is {{ data['invoice-name'] }}'s contact address? 
 {% endblock %}
 
 {% block beforeContent %}
@@ -13,6 +13,16 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "You have not selected an address",
+            href: "#applicantAddress"
+          }
+        ]
+      }) }}
       
       <form class="form" action="purchase-order" method="post">
         <h1 class="govuk-heading-xl">
@@ -29,13 +39,16 @@
       </p>
       
 
-      <div class="govuk-form-group ">
+      <div class="govuk-form-group govuk-form-group--error">
 
           <label class="govuk-label govuk-!-font-weight-bold" for="applicantAddress">
               Select an address
           </label>
+          <p id="event-name-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> Select an address
+          </p>
 
-          <select class="govuk-select " id="applicantAddress" name="applicantAddress">
+          <select class="govuk-select govuk-input--error" id="applicantAddress" name="applicantAddress">
               <option value="select" selected >12 addresses found</option>
               
                   
@@ -68,7 +81,7 @@
       </div>
 
         <p class="govuk-body govuk-!-margin-bottom-6">
-            <a class="govuk-link govuk-link--no-visited-state" href="invoice-address-no-lookup">
+            <a class="govuk-link govuk-link--no-visited-state" href="invoice-address-no-postcode">
                 I can’t find the address in the list
             </a>
         </p>
