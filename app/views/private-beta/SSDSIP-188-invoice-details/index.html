@@ -54,31 +54,40 @@ SDDSIP 188 | Add invoice details
             <tr class="govuk-table__row">
               <th class="govuk-table__cell">Individual responsible for paying the invoice</th>
               <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="contact-details">contact-details</a></td>
-              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-contact-details">If nothing chosen</a></td>
             </tr>
 
             <tr class="govuk-table__row">
               <th class="govuk-table__cell">Purchase order</th>
               <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="purchase-order">purchase-order</a></td>
-              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell">
+                <a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-purchase-order">If nothing chosen</a><br>
+                <a class="govuk-link govuk-link--no-visited-state" href="error-blank-purchase-order">If blank</a>
+              </td>
             </tr>
 
             <tr class="govuk-table__row">
               <th class="govuk-table__cell">Name of the invoice payer</th>
               <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="invoice-name">invoice-name</a></td>
-              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-blank-invoice-name">If blank</a></td>
             </tr>
 
             <tr class="govuk-table__row">
               <th class="govuk-table__cell">Email address of the invoice payer</th>
               <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="invoice-email-address">invoice-email-address</a></td>
-              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell">
+                <a class="govuk-link govuk-link--no-visited-state" href="error-blank-invoice-email-address">If blank</a><br>
+                <a class="govuk-link govuk-link--no-visited-state" href="error-format-invoice-email-address">If wrong format</a>
+              </td>
             </tr>
 
             <tr class="govuk-table__row">
               <th class="govuk-table__cell">Part of an organisation</th>
               <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="invoice-organisation">invoice-organisation</a></td>
-              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell">
+                <a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-invoice-organisation">If nothing chosen</a><br>
+                <a class="govuk-link govuk-link--no-visited-state" href="error-blank-invoice-organisation">If blank</a>
+              </td>
             </tr>
 
             <tr class="govuk-table__row">

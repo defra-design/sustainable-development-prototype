@@ -1,0 +1,82 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: Does the invoice require a purchase order?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "You have not entered a purchase order number or reference",
+            href: "#purchase-order"
+          }
+        ]
+      }) }}
+      
+      <form class="form" action="check-your-answers" method="post">
+        
+
+
+      {% set purchaseOrderHtml %}
+      {{ govukInput({
+        id: "purchase-order",
+        name: "purchase-order",
+        errorMessage: {
+          text: "Enter a purchase order number or reference"
+        },
+        label: {
+          text: "Purchase order number or reference"
+        }
+      }) }}
+      {% endset -%}
+
+      {{ govukRadios({
+        idPrefix: "purchase-order-check",
+        name: "purchase-order-check",
+        fieldset: {
+          legend: {
+            html: "Does the invoice require a purchase order?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--xl"
+          }
+        },
+        
+        items: [
+          {
+            value: "yes",
+            text: "Yes",
+            checked: true,
+            conditional: {
+              html: purchaseOrderHtml
+            }
+          },
+          {
+            value: "no",
+            text: "No"
+          }
+        ]
+      }) }}
+        
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

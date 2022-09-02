@@ -1,0 +1,50 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: What is {{ data['invoice-name'] }}'s email address?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "You have not entered the email address correctly",
+            href: "#invoice-email-address"
+          }
+        ]
+      }) }}
+      
+      <form class="form" action="invoice-organisation" method="post">
+        <div class="govuk-form-group govuk-form-group--error">
+          <h1 class="govuk-label-wrapper">
+            <label class="govuk-label govuk-label--xl" for="sett-name">
+              What is {{ data['invoice-name'] }}'s email address?
+            </label>
+          </h1>
+          <p id="email-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> Enter an email address in the correct format, like name@example.com
+          </p>
+          <input class="govuk-input govuk-input--error" id="invoice-email-address" name="invoice-email-address" type="text">
+        </div>
+        
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

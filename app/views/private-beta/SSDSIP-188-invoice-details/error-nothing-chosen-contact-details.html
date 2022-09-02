@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Individual responsible for paying the invoice
+Error: Individual responsible for paying the invoice
 {% endblock %}
 
 {% block beforeContent %}
@@ -13,6 +13,16 @@ Individual responsible for paying the invoice
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "You have not selected an option",
+            href: "#invoice-contact-details-check"
+          }
+        ]
+      }) }}
 
       <h2 class="govuk-heading-xl">Individual responsible for paying the invoice</h2>
 
@@ -100,6 +110,9 @@ Individual responsible for paying the invoice
               isPageHeading: true,
               classes: "govuk-fieldset__legend--m"
             }
+          },
+          errorMessage: {
+            text: "Select an option"
           },
           items: [
             {

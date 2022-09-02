@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Who is responsible for paying the invoice?
+Error: Who is responsible for paying the invoice?
 {% endblock %}
 
 {% block beforeContent %}
@@ -13,6 +13,16 @@ Who is responsible for paying the invoice?
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "You have not entered a name",
+            href: "#responsible-for-invoice-check"
+          }
+        ]
+      }) }}
       
       <form class="form" action="invoice-email-address" method="post">
 
@@ -22,6 +32,9 @@ Who is responsible for paying the invoice?
           {{ govukInput({
             label: {
               text: "Full name"
+            },
+            errorMessage: {
+              text: "Enter a name"
             },
             id: "invoice-name",
             name: "invoice-name"
