@@ -16,298 +16,234 @@ Check your answers
       <h2 class="govuk-heading-m">Sett: {{ data['sett-name'] }}</h2>
 
 
-      <p><a href="">Remove sett</a></p>
+      <p><a href="remove-sett">Remove sett</a></p>
 
-      {{ govukSummaryList({
-        classes: 'govuk-!-margin-bottom-9',
-        rows: [
-          {
-            key: {
-              text: "Sett usage"
-            },
-            value: {
-              html: data['sett-usage'] 
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "sett usage"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Reopening sett"
-            },
-            value: {
-              html: data['sett-reopened'] 
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "reopening sett"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Number of entrance holes"
-            },
-            value: {
-              html: data['entrance-holes'] 
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "number of entrance holes"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Number of active entrance holes"
-            },
-            value: {
-              html: data['active-holes'] 
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "number of active entrance holes"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Sett grid reference"
-            },
-            value: {
-              html: data['grid-ref']
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "sett grid reference"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Work start date"
-            },
-            value: {
-              html:  data['work-start-day'] + " " + data['work-start-month'] | toMonth + " " + data['work-start-year'] 
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "work start date"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Work end date"
-            },
-            value: {
-              html: data['work-end-day'] + " " + data['work-end-month'] | toMonth + " " + data['work-end-year'] 
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "work end date"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Affect on badgers"
-            },
-            value: {
-              text: data['affect-on-badgers'] 
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "affect on badgers"
-                }
-              ]
-            }
-          }
-        ]
-      }) }}
-
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Sett usage
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['sett-usage'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> sett usage</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Reopening sett
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['sett-reopened'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> reopening sett</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Number of entrance holes
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['entrance-holes'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> number of entrance holes</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Number of active entrance holes
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['active-holes'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> number of active entrance holes</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Sett grid reference
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['grid-ref'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> sett grid reference</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Work start date
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['work-start-day'] + " " + data['work-start-month'] | toMonth + " " + data['work-start-year'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> work start date</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Work end date
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['work-end-day'] + " " + data['work-end-month'] | toMonth + " " + data['work-end-year'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> work end date</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Affect on badgers
+          </dt>
+          <dd class="govuk-summary-list__value">
+            
+            {% for affect in data['affect-on-badgers'] %}
+              <p>{{ affect }}</p>
+            {% endfor %}
+            
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> affect on badgers</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
 
 
       <h2 class="govuk-heading-m">Sett: Example of another sett</h2>
 
+      <p><a href="remove-sett">Remove sett</a></p>
 
-      <p><a href="">Remove sett</a></p>
-
-      {{ govukSummaryList({
-        classes: 'govuk-!-margin-bottom-9',
-        rows: [
-          {
-            key: {
-              text: "Sett usage"
-            },
-            value: {
-              html: data['sett-usage'] 
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "sett usage"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Reopening sett"
-            },
-            value: {
-              html: data['sett-reopened'] 
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "reopening sett"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Number of entrance holes"
-            },
-            value: {
-              html: data['entrance-holes'] 
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "number of entrance holes"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Number of active entrance holes"
-            },
-            value: {
-              html: data['active-holes'] 
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "number of active entrance holes"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Sett grid reference"
-            },
-            value: {
-              html: data['grid-ref']
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "sett grid reference"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Work start date"
-            },
-            value: {
-              html:  data['work-start-day'] + " " + data['work-start-month'] | toMonth + " " + data['work-start-year'] 
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "work start date"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Work end date"
-            },
-            value: {
-              html: data['work-end-day'] + " " + data['work-end-month'] | toMonth + " " + data['work-end-year'] 
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "work end date"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Affect on badgers"
-            },
-            value: {
-              text: data['affect-on-badgers'] 
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "affect on badgers"
-                }
-              ]
-            }
-          }
-        ]
-      }) }}
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Sett usage
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['sett-usage'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> sett usage</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Reopening sett
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['sett-reopened'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> reopening sett</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Number of entrance holes
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['entrance-holes'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> number of entrance holes</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Number of active entrance holes
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['active-holes'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> number of active entrance holes</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Sett grid reference
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['grid-ref'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> sett grid reference</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Work start date
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['work-start-day'] + " " + data['work-start-month'] | toMonth + " " + data['work-start-year'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> work start date</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Work end date
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['work-end-day'] + " " + data['work-end-month'] | toMonth + " " + data['work-end-year'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> work end date</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Affect on badgers
+          </dt>
+          <dd class="govuk-summary-list__value">
+            
+            {% for affect in data['affect-on-badgers'] %}
+              <p>{{ affect }}</p>
+            {% endfor %}
+            
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> affect on badgers</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
 
       
       <form class="form" action="add-another-sett-check" method="post">

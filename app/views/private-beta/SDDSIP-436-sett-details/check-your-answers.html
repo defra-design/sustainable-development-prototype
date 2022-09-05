@@ -22,7 +22,121 @@ Check your answers
 
       <p><a href="remove-sett">Remove sett</a></p>
 
-      {{ govukSummaryList({
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Sett usage
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['sett-usage'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> sett usage</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Reopening sett
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['sett-reopened'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> reopening sett</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Number of entrance holes
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['entrance-holes'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> number of entrance holes</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Number of active entrance holes
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['active-holes'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> number of active entrance holes</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Sett grid reference
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['grid-ref'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> sett grid reference</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Work start date
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['work-start-day'] + " " + data['work-start-month'] | toMonth + " " + data['work-start-year'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> work start date</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Work end date
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['work-end-day'] + " " + data['work-end-month'] | toMonth + " " + data['work-end-year'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> work end date</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Affect on badgers
+          </dt>
+          <dd class="govuk-summary-list__value">
+            
+            {% for affect in data['affect-on-badgers'] %}
+              <p>{{ affect }}</p>
+            {% endfor %}
+            
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> affect on badgers</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+
+
+      <!--
+        {{ govukSummaryList({
         classes: 'govuk-!-margin-bottom-9',
         rows: [
           {
@@ -149,7 +263,14 @@ Check your answers
               text: "Affect on badgers"
             },
             value: {
-              text: data['affect-on-badgers'] 
+              html: "
+
+              {% for affect in data['affect-on-badgers'] %}
+                <p>{{ affect }}</p>
+              {% endfor %}
+
+              "
+                
             },
             actions: {
               items: [
@@ -164,6 +285,7 @@ Check your answers
         ]
       }) }}
 
+    -->
       
       <form class="form" action="add-another-sett-check" method="post">
 
