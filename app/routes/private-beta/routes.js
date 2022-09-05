@@ -97,4 +97,21 @@ router.post('/private-beta/SSDSIP-188-invoice-details/invoice-contact-details', 
   } 
 });
 
+router.post('/private-beta/SDDSIP-285-authorised-person/add-person', (req, res) => {
+  if(req.session.data['add-person-check'] == 'yes'){
+      res.redirect('name')
+  } else if(req.session.data['add-person-check'] == 'no'){
+      res.redirect('task-list-complete')
+  } 
+});
+
+router.post('/private-beta/SDDSIP-285-authorised-person/another-person', (req, res) => {
+  if(req.session.data['another-person-check'] == 'yes'){
+      res.redirect('another-name')
+  } else if(req.session.data['another-person-check'] == 'no'){
+      res.redirect('task-list-complete')
+  } 
+});
+
+
 }

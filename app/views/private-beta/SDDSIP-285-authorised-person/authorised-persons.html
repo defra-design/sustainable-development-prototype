@@ -1,0 +1,85 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Authorised people
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        Authorised people
+      </h1>
+
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Authorised person"
+            },
+            value: {
+              html: data['authorised-name'] + "<br>" + data['authorised-email-address']
+            },
+            actions: {
+              items: [
+                {
+                  href: "authorised-persons-removed",
+                  text: "Remove",
+                  visuallyHiddenText: "authorised person"
+                }
+              ]
+            }
+          }
+          
+        ]
+      }) }}
+
+
+
+
+
+
+
+      <form class="form" action="another-person" method="post">
+
+        {{ govukRadios({
+          idPrefix: "another-person-check",
+          name: "another-person-check",
+          fieldset: {
+            legend: {
+              text: "Do you want to add another authorised person?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+        
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-What is {{ data['invoice-name'] }}'s email address?
+What is {{ data['authorised-name-2'] }}'s email address?
 {% endblock %}
 
 {% block beforeContent %}
@@ -14,14 +14,14 @@ What is {{ data['invoice-name'] }}'s email address?
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       
-      <form class="form" action="invoice-organisation" method="post">
+      <form class="form" action="authorised-persons-2" method="post">
         <div class="govuk-form-group">
           <h1 class="govuk-label-wrapper">
             <label class="govuk-label govuk-label--xl" for="sett-name">
-              What is {{ data['invoice-name'] }}'s email address?
+              What is {{ data['authorised-name-2'] }}'s email address?
             </label>
           </h1>
-          <input class="govuk-input" id="invoice-email-address" name="invoice-email-address" type="email" spellcheck="false" aria-describedby="email-hint" autocomplete="email">
+          <input class="govuk-input" id="authorised-email-address-2" name="authorised-email-address-2" type="email" spellcheck="false" aria-describedby="email-hint" autocomplete="email">
         </div>
         
           {{ govukButton({
