@@ -13,12 +13,12 @@ Authorised people
 
 
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-full">
       <h1 class="govuk-heading-xl">
         Authorised people
       </h1>
 
-      {{ govukSummaryList({
+      <!--{{ govukSummaryList({
         classes: 'govuk-!-margin-bottom-9',
         rows: [
           {
@@ -40,9 +40,63 @@ Authorised people
           }
           
         ]
-      }) }}
+      }) }}-->
 
 
+
+      <!--<dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dd class="govuk-summary-list__value">
+            <p>{{ data['authorised-name'] }}</p> <p>{{ data['authorised-email-address'] }}</p>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Remove<span class="govuk-visually-hidden"> authorised person</span>
+            </a>
+          </dd>
+        </div>
+      </dl>-->
+
+
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Name</th>
+            <th scope="col" class="govuk-table__header">Email address</th>
+            <th scope="col" class="govuk-table__header"> </th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">
+              {{ data['authorised-name'] }}
+            </th>
+            <td class="govuk-table__cell" >
+              <p style="word-wrap: break-word; overflow-wrap: break-word;">{{ data['authorised-email-address'] }}</p>
+            </th>
+            <td class="govuk-table__cell">
+              <a class="govuk-link" href="#">
+                Remove<span class="govuk-visually-hidden"> authorised person</span>
+              </a>
+            </td>
+          </tr>
+
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">
+              {{ data['authorised-name'] }}
+            </th>
+            <td class="govuk-table__cell" >
+              <p style="word-wrap: break-word; overflow-wrap: break-word;">{{ data['authorised-email-address'] }}</p>
+            </th>
+            <td class="govuk-table__cell">
+              <a class="govuk-link" href="#">
+                Remove<span class="govuk-visually-hidden"> authorised person</span>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
 
 

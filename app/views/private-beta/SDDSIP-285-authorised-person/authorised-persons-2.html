@@ -18,7 +18,7 @@ Authorised people
         Authorised people
       </h1>
 
-      {{ govukSummaryList({
+     <!--{{ govukSummaryList({
         classes: 'govuk-!-margin-bottom-9',
         rows: [
           {
@@ -57,7 +57,30 @@ Authorised people
           }
           
         ]
-      }) }}
+      }) }}-->
+
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dd class="govuk-summary-list__value">
+            <p><strong>{{ data['authorised-name'] }}</strong></p> <p>{{ data['authorised-email-address'] }}</p>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Remove<span class="govuk-visually-hidden"> authorised person</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dd class="govuk-summary-list__value">
+            <p><strong>{{ data['authorised-name-2'] }}</strong></p> <p>{{ data['authorised-email-address-2'] }}</p>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Remove<span class="govuk-visually-hidden"> authorised person</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
 
 
 
