@@ -1,0 +1,37 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+What is {{ data['additonal-name'] }}'s email address?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <form class="form" action="check-your-answers" method="post">
+        <div class="govuk-form-group">
+          <h1 class="govuk-label-wrapper">
+            <label class="govuk-label govuk-label--xl" for="sett-name">
+              What is {{ data['additonal-name'] }}'s email address?
+            </label>
+          </h1>
+          <input class="govuk-input" id="additional-email-address" name="additional-email-address" type="email" spellcheck="false" aria-describedby="email-hint" autocomplete="email">
+        </div>
+        
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}
