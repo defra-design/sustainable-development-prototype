@@ -18,7 +18,7 @@ Authorised people
         Authorised people
       </h1>
 
-     <!--{{ govukSummaryList({
+    {{ govukSummaryList({
         classes: 'govuk-!-margin-bottom-9',
         rows: [
           {
@@ -26,7 +26,7 @@ Authorised people
               text: "Authorised person"
             },
             value: {
-              html: data['authorised-name'] + "<br>" + data['authorised-email-address']
+              html: "<p>" + data['authorised-name'] + "</p>" +  "<p>" + data['authorised-email-address'] + "</p>"
             },
             actions: {
               items: [
@@ -43,7 +43,7 @@ Authorised people
               text: "Authorised person 2"
             },
             value: {
-              html: data['authorised-name-2'] + "<br>" + data['authorised-email-address-2']
+              html: "<p>" + data['authorised-name-2'] + "</p>" +  "<p>" + data['authorised-email-address-2'] + "</p>"
             },
             actions: {
               items: [
@@ -57,9 +57,11 @@ Authorised people
           }
           
         ]
-      }) }}-->
+      }) }}
 
-      <dl class="govuk-summary-list">
+     
+
+     <!--<dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
           <dd class="govuk-summary-list__value">
             <p><strong>{{ data['authorised-name'] }}</strong></p> <p>{{ data['authorised-email-address'] }}</p>
@@ -80,7 +82,51 @@ Authorised people
             </a>
           </dd>
         </div>
-      </dl>
+      </dl>-->
+
+
+      <!--<table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header ">Name</th>
+            <th scope="col" class="govuk-table__header">Email address</th>
+            <th scope="col" class="govuk-table__header "> </th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">
+              {{ data['authorised-name'] }}
+            </th>
+            <td class="govuk-table__cell">
+              <p>{{ data['authorised-email-address'] }}</p>
+            </th>
+            <td class="govuk-table__cell">
+              <a class="govuk-link" href="#">
+                Remove<span class="govuk-visually-hidden"> authorised person</span>
+              </a>
+            </td>
+          </tr>
+
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">
+              {{ data['authorised-name-2'] }}
+            </th>
+            <td class="govuk-table__cell" >
+              <p>{{ data['authorised-email-address-2'] }}</p>
+            </th>
+            <td class="govuk-table__cell">
+              <a class="govuk-link" href="#">
+                Remove<span class="govuk-visually-hidden"> authorised person</span>
+              </a>
+            </td>
+          </tr>
+
+        
+        </tbody>
+      </table>-->
+
 
 
 

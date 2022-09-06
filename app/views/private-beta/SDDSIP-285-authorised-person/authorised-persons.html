@@ -13,12 +13,12 @@ Authorised people
 
 
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
+    <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-xl">
         Authorised people
       </h1>
 
-      <!--{{ govukSummaryList({
+      {{ govukSummaryList({
         classes: 'govuk-!-margin-bottom-9',
         rows: [
           {
@@ -26,7 +26,7 @@ Authorised people
               text: "Authorised person"
             },
             value: {
-              html: data['authorised-name'] + "<br>" + data['authorised-email-address']
+              html: "<p>" + data['authorised-name'] + "</p>" +  "<p>" + data['authorised-email-address'] + "</p>"
             },
             actions: {
               items: [
@@ -40,14 +40,14 @@ Authorised people
           }
           
         ]
-      }) }}-->
+      }) }}
 
 
 
       <!--<dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
           <dd class="govuk-summary-list__value">
-            <p>{{ data['authorised-name'] }}</p> <p>{{ data['authorised-email-address'] }}</p>
+            <p><strong>{{ data['authorised-name'] }}</strong></p> <p>{{ data['authorised-email-address'] }}</p>
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="#">
@@ -55,8 +55,7 @@ Authorised people
             </a>
           </dd>
         </div>
-      </dl>-->
-
+      </dl>
 
       <table class="govuk-table">
         <thead class="govuk-table__head">
@@ -82,21 +81,9 @@ Authorised people
             </td>
           </tr>
 
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">
-              {{ data['authorised-name'] }}
-            </th>
-            <td class="govuk-table__cell" >
-              <p style="word-wrap: break-word; overflow-wrap: break-word;">{{ data['authorised-email-address'] }}</p>
-            </th>
-            <td class="govuk-table__cell">
-              <a class="govuk-link" href="#">
-                Remove<span class="govuk-visually-hidden"> authorised person</span>
-              </a>
-            </td>
-          </tr>
+        
         </tbody>
-      </table>
+      </table>-->
 
 
 
