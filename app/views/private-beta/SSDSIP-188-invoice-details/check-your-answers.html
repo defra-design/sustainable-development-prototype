@@ -96,6 +96,80 @@ Check your answers
 
 
 
+      {% if data['responsible-for-invoice-check'] == 'ecologist' %}
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Individual responsible for paying the invoice
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Jane Doe
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> individual responsible for paying the invoice</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row govuk-summary-list__row--no-actions">
+          <dt class="govuk-summary-list__key">
+            Email address
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <p class="govuk-body">janedoe@gmail.com</p>
+          </dd>
+          <dd class="govuk-summary-list__value">
+            
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row govuk-summary-list__row--no-actions">
+          <dt class="govuk-summary-list__key">
+            Organisation
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <p class="govuk-body">ABC Ecologists Ltd</p>
+          </dd>
+          <dd class="govuk-summary-list__value">
+            
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row govuk-summary-list__row--no-actions">
+          <dt class="govuk-summary-list__key">
+            Contact address
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <p>Ecology Hous<br>
+                    Wharfe Business Park<br>
+                    Otley<br>
+                    LS21 1TY</p>
+          </dd>
+          <dd class="govuk-summary-list__value">
+            
+          </dd>
+        </div>
+
+        {% if data['purchase-order-check'] == 'yes' %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Purchase order number/reference
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['purchase-order'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> address</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+        
+      </dl>
+    {% endif %}
+
+
+
 
       {% if data['responsible-for-invoice-check'] == 'someone-else' %}
 

@@ -14,7 +14,7 @@ Who is responsible for paying the invoice?
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       
-      <form class="form" action="invoice-email-address" method="post">
+      <!--<form class="form" action="invoice-email-address" method="post">
 
         <h1 class="govuk-heading-xl">Who is responsible for paying the invoice?</h1>
        
@@ -30,7 +30,28 @@ Who is responsible for paying the invoice?
           {{ govukButton({
             text: "Continue"
           }) }}
+      </form>-->
+
+      <form class="form" action="invoice-email-address" method="post">       
+
+        {{ govukInput({
+          label: {
+            text: "Who is responsible for paying the invoice?",
+            classes: "govuk-label--xl",
+            isPageHeading: true
+          },
+          hint: {
+            text: "Enter the full name"
+          },
+          id: "invoice-name",
+          name: "invoice-name"
+        }) }}
+        
+          {{ govukButton({
+            text: "Continue"
+          }) }}
       </form>
+
 
       
     

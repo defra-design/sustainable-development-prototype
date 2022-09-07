@@ -19,14 +19,14 @@ Error: Who is responsible for paying the invoice?
         errorList: [
           {
             text: "You have not entered a name",
-            href: "#responsible-for-invoice-check"
+            href: "#invoice-name"
           }
         ]
       }) }}
       
       <form class="form" action="invoice-email-address" method="post">
 
-        <h1 class="govuk-heading-xl">Who is responsible for paying the invoice?</h1>
+       <!--<h1 class="govuk-heading-xl">Who is responsible for paying the invoice?</h1>
        
 
           {{ govukInput({
@@ -43,8 +43,30 @@ Error: Who is responsible for paying the invoice?
           {{ govukButton({
             text: "Continue"
           }) }}
-      </form>
+      </form>-->
 
+      <form class="form" action="invoice-email-address" method="post">       
+
+        {{ govukInput({
+          label: {
+            text: "Who is responsible for paying the invoice?",
+            classes: "govuk-label--xl",
+            isPageHeading: true
+          },
+          hint: {
+            text: "Enter the full name"
+          },
+          errorMessage: {
+            text: "Enter a name"
+          },
+          id: "invoice-name",
+          name: "invoice-name"
+        }) }}
+        
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+      </form>
       
     
     </div>
