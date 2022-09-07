@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Error: Supporting information
+Supporting information
 {% endblock %}
 
 {% block beforeContent %}
@@ -11,20 +11,18 @@ Error: Supporting information
 
 {% block content %}
 
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {{ govukErrorSummary({
-        titleText: "There is a problem",
-        errorList: [
-          {
-            text: "You have not selected an option",
-            href: "#another-file-check"
-          }
-        ]
-      }) }}
-
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not selected an option",
+                href: "#another-file"
+              }
+            ]
+          }) }}
 
       <h1 class="govuk-heading-xl">
         Supporting information
@@ -44,7 +42,25 @@ Error: Supporting information
             actions: {
               items: [
                 {
-                  href: "supporting-information-file-removed",
+                  href: "#",
+                  text: "Remove",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Uploaded file 2"
+            },
+            value: {
+              html: "<p>badger-supplementary-information-15-08-22-FINAL-2.docx</p>
+                     <p class='govuk-body-s'>Uploaded 12 August 2022 10:28am</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "supporting-information",
                   text: "Remove",
                   visuallyHiddenText: "name"
                 }
@@ -61,11 +77,10 @@ Error: Supporting information
 
 
 
-      <form class="form" action="another-file" method="post">
 
         {{ govukRadios({
-          idPrefix: "another-file-check",
-          name: "another-file-check",
+          idPrefix: "another-file",
+          name: "another-file",
           fieldset: {
             legend: {
               text: "Do you want to upload another file?",
@@ -90,9 +105,9 @@ Error: Supporting information
         
 
         {{ govukButton({
-          text: "Continue"
+          text: "Continue",
+          href: "task-list-complete"
         }) }}
-      </form>
 
 
     </div>
