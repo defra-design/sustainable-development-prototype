@@ -1,0 +1,141 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: Authorised people
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not selected an option",
+                href: "#another-person-check"
+              }
+            ]
+          }) }}
+
+
+      <h1 class="govuk-heading-xl">
+        Authorised people
+      </h1>
+
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Authorised person"
+            },
+            value: {
+              html: "<p>Andy Smith</p><p>andysmith@gmail.com</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "authorised-persons-removed",
+                  text: "Remove",
+                  visuallyHiddenText: "authorised person"
+                }
+              ]
+            }
+          }
+          
+        ]
+      }) }}
+
+
+
+      <!--<dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dd class="govuk-summary-list__value">
+            <p><strong>{{ data['authorised-name'] }}</strong></p> <p>{{ data['authorised-email-address'] }}</p>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Remove<span class="govuk-visually-hidden"> authorised person</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Name</th>
+            <th scope="col" class="govuk-table__header">Email address</th>
+            <th scope="col" class="govuk-table__header"> </th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">
+              {{ data['authorised-name'] }}
+            </th>
+            <td class="govuk-table__cell" >
+              <p style="word-wrap: break-word; overflow-wrap: break-word;">{{ data['authorised-email-address'] }}</p>
+            </th>
+            <td class="govuk-table__cell">
+              <a class="govuk-link" href="#">
+                Remove<span class="govuk-visually-hidden"> authorised person</span>
+              </a>
+            </td>
+          </tr>
+
+        
+        </tbody>
+      </table>-->
+
+
+
+
+
+      <form class="form" action="another-person" method="post">
+
+        {{ govukRadios({
+          idPrefix: "another-person-check",
+          name: "another-person-check",
+          fieldset: {
+            legend: {
+              text: "Do you want to add another authorised person?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          errorMessage: {
+            text: "Select an option"
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+        
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}
