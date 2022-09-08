@@ -1,0 +1,66 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Add an authorised person
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-xl">Add an authorised person</h1>
+      
+        <div data-module="moj-add-another">
+          
+            <form method="post">
+          
+              <fieldset class="govuk-fieldset moj-add-another__item">
+          
+                <legend class="govuk-fieldset__legend moj-add-another__title govuk-fieldset__legend--m">
+                  Authorised person
+                </legend>
+          
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="person[0][first_name]">
+                    Full name
+                  </label>
+                  <input class="govuk-input" id="person[0][first_name]" name="person[0][first_name]" type="text" data-name="person[%index%][first_name]" data-id="person[%index%][first_name]">
+                </div>
+          
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="person[0][last_name]">
+                    Email address
+                  </label>
+                  <input class="govuk-input" id="person[0][last_name]" name="person[0][last_name]" type="text" data-name="person[%index%][last_name]" data-id="person[%index%][last_name]">
+                </div>
+            </fieldset>
+          
+              <div class="moj-button-action">
+                <button class="govuk-button govuk-button--secondary moj-add-another__add-button govuk-!-margin-bottom-4" data-module="govuk-button">
+                  Add another person
+                </button>
+              </div>
+          
+              <div class="moj-button-action">
+                <button class="govuk-button" data-module="govuk-button">
+                  Submit
+                </button>
+              </div>
+          
+            </form>
+          
+          </div>
+          
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}
