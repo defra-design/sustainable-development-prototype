@@ -46,7 +46,7 @@ SDDSIP 255 | Authorised person
             </tr>
 
             <tr class="govuk-table__row">
-              <th class="govuk-table__cell">Add an authorised person</th>
+              <th class="govuk-table__cell">Do you want to add an authorised person</th>
               <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="add-person">add-person</a></td>
               <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-add-person">If nothing chosen</a></td>
             </tr>
@@ -93,11 +93,67 @@ SDDSIP 255 | Authorised person
           </tr>
 
 
+          <tr class="govuk-table__row">
+            <th class="govuk-table__cell">Add another - based on MOJ Design System pattern</th>
+            <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="add-person-fields">add-person-fields</a></td>
+            <td class="govuk-table__cell"> </td>
+        </tr>
          
 
 
           </tbody>
         </table>
+
+        <h2 class="govuk-heading-m" class="govuk-!-margin-top-9">Alternate version</h2>
+        <p>Based on Ministry of Justice Design System - Add another pattern</p> 
+        <p><a href="https://design-patterns.service.justice.gov.uk/components/add-another/">https://design-patterns.service.justice.gov.uk/components/add-another/</a></p>
+
+        {{ govukButton({
+          text: "View full flow",
+          href: "task-list-alt"
+        }) }}
+
+        <table class="govuk-table">
+          <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Page</th>
+              <th scope="col" class="govuk-table__header">Link</th>
+              <th scope="col" class="govuk-table__header">Error states</th>
+              </tr>
+          </thead>
+          <tbody class="govuk-table__body">    
+              <tr class="govuk-table__row">
+                  <th class="govuk-table__cell">Task list</th>
+                  <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="task-list-alt">task-list-alt</a></td>
+                  <td class="govuk-table__cell"> </td>
+              </tr>
+
+              <tr class="govuk-table__row">
+                <th class="govuk-table__cell">Do you want to add an authorised person</th>
+                <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="add-person-alt">add-person-alt</a></td>
+                <td class="govuk-table__cell"></td>
+              </tr>
+  
+              <tr class="govuk-table__row">
+                <th class="govuk-table__cell">Add an authorised person</th>
+                <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="add-person-fields">add-person-fields</a></td>
+                <td class="govuk-table__cell"> </td>
+              </tr>
+  
+  
+              <tr class="govuk-table__row">
+                <th class="govuk-table__cell">Task list - completed task</th>
+                <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="task-list-complete">task-list-complete</a></td>
+                <td class="govuk-table__cell"> </td>
+              </tr>
+  
+  
+            
+           
+  
+  
+            </tbody>
+          </table>
     
     </div>
   </div>

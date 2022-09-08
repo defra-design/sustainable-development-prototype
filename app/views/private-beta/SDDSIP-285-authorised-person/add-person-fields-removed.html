@@ -24,12 +24,12 @@ Add an authorised person
           
                 <div class="govuk-grid-row">
                   <div class="govuk-grid-column-one-half">
-                    <legend class="govuk-fieldset__legend moj-add-another__title govuk-fieldset__legend--m govuk-!-margin-bottom-7">
+                    <legend class="govuk-fieldset__legend moj-add-another__title govuk-fieldset__legend--m">
                       Authorised person
                     </legend>
                   </div>
                   <div class="govuk-grid-column-one-half">
-                    
+                    &nbsp;
                   </div>
                 </div>
           
@@ -37,14 +37,14 @@ Add an authorised person
                   <label class="govuk-label" for="authorised-person-name">
                     Full name
                   </label>
-                  <input class="govuk-input" id="authorised-person-name" name="authorised-person-name" type="text" value="{{ data['authorised-person-name'] }}">
+                  <input class="govuk-input" id="authorised-person-name" name="authorised-person-name" type="text">
                 </div>
           
                 <div class="govuk-form-group">
                   <label class="govuk-label" for="authorised-person-email-address">
                     Email address
                   </label>
-                  <input class="govuk-input" id="authorised-person-email-address" name="authorised-person-email-address" value="{{ data['authorised-person-email-address'] }}">
+                  <input class="govuk-input" id="authorised-person-email-address" name="authorised-person-email-address">
                 </div>
             </fieldset>
           
@@ -54,11 +54,10 @@ Add an authorised person
 
             </form>
 
-            <div class="moj-button-action">
-              <button class="govuk-button" data-module="govuk-button">
-                Submit
-              </button>
-            </div>
+            {{ govukButton({
+                text: "Continue",
+                href: "task-list-complete"
+              }) }}
           
           </div>
           

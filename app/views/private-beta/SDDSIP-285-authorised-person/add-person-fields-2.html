@@ -1,0 +1,117 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Add an authorised person
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-xl">Add an authorised person</h1>
+      
+        <div class="govuk-!-margin-bottom-5">
+          
+        
+          
+              <fieldset class="govuk-fieldset moj-add-another__item">
+          
+                <div class=""govuk-grid-row>
+                  <div class="govuk-grid-column-one-half govuk-!-padding-left-0">
+                    <legend class="govuk-fieldset__legend moj-add-another__title govuk-fieldset__legend--m">
+                      Authorised person
+                    </legend>
+                  </div>
+                  <div class="govuk-grid-column-one-half govuk-!-padding-right-0">
+                    <form class="form" action="add-person-fields-removed" method="post"> 
+                        <button class="govuk-button govuk-button--secondary moj-add-another__add-button" data-module="govuk-button" style="float:right">
+                        Remove
+                        </button>
+                    </form>
+                  </div>
+                </div>
+          
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="authorised-person-name">
+                    Full name
+                  </label>
+                  <input class="govuk-input" id="authorised-person-name" name="authorised-person-name" type="text" value="{{ data['authorised-person-name'] }}">
+                </div>
+          
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="authorised-person-email-address">
+                    Email address
+                  </label>
+                  <input class="govuk-input" id="authorised-person-email-address" name="authorised-person-email-address" type="email" value="{{ data['authorised-person-email-address'] }}">
+                </div>
+            </fieldset>
+          
+
+            </div>
+
+            <div class="govuk-!-margin-bottom-5"></div>
+
+              <fieldset class="govuk-fieldset moj-add-another__item">
+          
+                <div class=""govuk-grid-row>
+                  <div class="govuk-grid-column-one-half govuk-!-padding-left-0">
+                    <legend class="govuk-fieldset__legend moj-add-another__title govuk-fieldset__legend--m">
+                      Authorised person
+                    </legend>
+                  </div>
+                  <div class="govuk-grid-column-one-half govuk-!-padding-right-0">
+                    <form class="form" action="add-person-fields" method="post"> 
+                        <button class="govuk-button govuk-button--secondary moj-add-another__add-button" data-module="govuk-button" style="float:right">
+                        Remove
+                        </button>
+                    </form>
+                  </div>
+                </div>
+          
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="authorised-person-name">
+                    Full name
+                  </label>
+                  <input class="govuk-input" id="authorised-person-name-2" name="authorised-person-name-2" type="text">
+                </div>
+          
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="authorised-person-email-address">
+                    Email address
+                  </label>
+                  <input class="govuk-input" id="authorised-person-email-address-2" name="authorised-person-email-address-2" type="email">
+                </div>
+            </fieldset>
+          
+              <div class="moj-button-action">
+                {{ govukButton({
+                  text: "Add another person",
+                  classes: "govuk-button--secondary",
+                  href: "add-person-fields-2"
+                }) }}                  
+              </div>
+
+
+          
+              {{ govukButton({
+                text: "Continue",
+                href: "task-list-complete"
+              }) }}
+          
+            
+          
+          </div>
+          
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

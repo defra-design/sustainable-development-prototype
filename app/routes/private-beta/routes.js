@@ -105,6 +105,14 @@ router.post('/private-beta/SDDSIP-285-authorised-person/add-person', (req, res) 
   } 
 });
 
+router.post('/private-beta/SDDSIP-285-authorised-person/add-person-alt', (req, res) => {
+  if(req.session.data['add-person-alt-check'] == 'yes'){
+      res.redirect('add-person-fields')
+  } else if(req.session.data['add-person-alt-check'] == 'no'){
+      res.redirect('task-list-complete')
+  } 
+});
+
 router.post('/private-beta/SDDSIP-285-authorised-person/authorised-persons-removed', (req, res) => {
   if(req.session.data['add-person-check'] == 'yes'){
       res.redirect('name')
