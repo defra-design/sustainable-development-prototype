@@ -1,0 +1,42 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+What is the authorised person's name?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <form class="form" action="email-address" method="post">       
+
+        {{ govukInput({
+          label: {
+            text: "What is the authorised person's name?",
+            classes: "govuk-label--xl",
+            isPageHeading: true
+          },
+          hint: {
+            text: "Enter the full name"
+          },
+          id: "authorised-name",
+          name: "authorised-name"
+        }) }}
+        
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

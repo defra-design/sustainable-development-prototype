@@ -23,141 +23,227 @@ SDDSIP 255 | Authorised person
 
       {{ govukButton({
         text: "View full flow",
-        href: "task-list"
+        href: "v2/task-list"
       }) }}
       
       <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-      <h2 class="govuk-heading-m">Full page list and error states</h2>
+      <h2 class="govuk-heading-m">Full page list and error states - v2</h2>
 
-      <table class="govuk-table">
-        <thead class="govuk-table__head">
-            <tr class="govuk-table__row">
-            <th scope="col" class="govuk-table__header">Page</th>
-            <th scope="col" class="govuk-table__header">Link</th>
-            <th scope="col" class="govuk-table__header">Error states</th>
-            </tr>
-        </thead>
-        <tbody class="govuk-table__body">    
-            <tr class="govuk-table__row">
-                <th class="govuk-table__cell">Task list</th>
-                <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="task-list">task-list</a></td>
-                <td class="govuk-table__cell"> </td>
-            </tr>
-
-            <tr class="govuk-table__row">
-              <th class="govuk-table__cell">Do you want to add an authorised person</th>
-              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="add-person">add-person</a></td>
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-add-person">If nothing chosen</a></td>
-            </tr>
-
-          
-            <tr class="govuk-table__row">
-              <th class="govuk-table__cell">Authorised person's name</th>
-              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="name">name</a></td>
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-blank-name">If blank</a></td>
-            </tr>
-            
-            <tr class="govuk-table__row">
-              <th class="govuk-table__cell">Authorised person's email</th>
-              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="email-address">email-address</a></td>
-              <td class="govuk-table__cell">
-                <a class="govuk-link govuk-link--no-visited-state" href="error-blank-email-address">If blank</a><br>
-                <a class="govuk-link govuk-link--no-visited-state" href="error-format-email-address">If wrong format</a>
-              </td>
-            </tr>
-            
-            <tr class="govuk-table__row">
-              <th class="govuk-table__cell">Review / add another</th>
-              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="authorised-persons">authorised-persons</a></td>
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-blank-authorised-persons">If blank</a></td>
-            </tr>
-
-            <tr class="govuk-table__row">
-              <th class="govuk-table__cell">Additional person added</th>
-              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="authorised-persons-2">authorised-persons-2</a></td>
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-blank-authorised-persons-2">If blank</a></td>
-            </tr>
-
-            <tr class="govuk-table__row">
-              <th class="govuk-table__cell">Person removed</th>
-              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="authorised-persons-removed">authorised-persons-removed</a></td>
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-blank-authorised-persons-removed">If blank</a></td>
-            </tr>
-
-
-            <tr class="govuk-table__row">
-              <th class="govuk-table__cell">Task list - completed task</th>
-              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="task-list-complete">task-list-complete</a></td>
-              <td class="govuk-table__cell"> </td>
-          </tr>
-
-
-          <tr class="govuk-table__row">
-            <th class="govuk-table__cell">Add another - based on MOJ Design System pattern</th>
-            <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="add-person-fields">add-person-fields</a></td>
-            <td class="govuk-table__cell"> </td>
-        </tr>
-         
-
-
-          </tbody>
-        </table>
-
-        <h2 class="govuk-heading-m" class="govuk-!-margin-top-9">Alternate version</h2>
-        <p>Based on Ministry of Justice Design System - Add another pattern:<br> 
-        <a href="https://design-patterns.service.justice.gov.uk/components/add-another/">https://design-patterns.service.justice.gov.uk/components/add-another/</a></p>
-        <p><strong>Note:</strong> Layout is hacked together, not to be used in production!</p>
-
-        {{ govukButton({
-          text: "View full flow",
-          href: "task-list-alt"
-        }) }}
-
-        <table class="govuk-table">
-          <thead class="govuk-table__head">
-              <tr class="govuk-table__row">
-              <th scope="col" class="govuk-table__header">Page</th>
-              <th scope="col" class="govuk-table__header">Link</th>
-              <th scope="col" class="govuk-table__header">Error states</th>
-              </tr>
-          </thead>
-          <tbody class="govuk-table__body">    
-              <tr class="govuk-table__row">
-                  <th class="govuk-table__cell">Task list</th>
-                  <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="task-list-alt">task-list-alt</a></td>
+          <table class="govuk-table">
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header">Page</th>
+                <th scope="col" class="govuk-table__header">Link</th>
+                <th scope="col" class="govuk-table__header">Error states</th>
+                </tr>
+            </thead>
+            <tbody class="govuk-table__body">    
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Task list</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/task-list">task-list</a></td>
+                    <td class="govuk-table__cell"> </td>
+                </tr>
+    
+                <tr class="govuk-table__row">
+                  <th class="govuk-table__cell">Do you want to add an authorised person</th>
+                  <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="add-person">add-person</a></td>
+                  <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-add-person">If nothing chosen</a></td>
+                </tr>
+    
+              
+                <tr class="govuk-table__row">
+                  <th class="govuk-table__cell">Authorised person's name</th>
+                  <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="name">name</a></td>
+                  <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-blank-name">If blank</a></td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                  <th class="govuk-table__cell">Authorised person's email</th>
+                  <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="email-address">email-address</a></td>
+                  <td class="govuk-table__cell">
+                    <a class="govuk-link govuk-link--no-visited-state" href="error-blank-email-address">If blank</a><br>
+                    <a class="govuk-link govuk-link--no-visited-state" href="error-format-email-address">If wrong format</a>
+                  </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                  <th class="govuk-table__cell">Review / add another</th>
+                  <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="authorised-persons">authorised-persons</a></td>
+                  <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-blank-authorised-persons">If blank</a></td>
+                </tr>
+    
+                <tr class="govuk-table__row">
+                  <th class="govuk-table__cell">Additional person added</th>
+                  <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="authorised-persons-2">authorised-persons-2</a></td>
+                  <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-blank-authorised-persons-2">If blank</a></td>
+                </tr>
+    
+                <tr class="govuk-table__row">
+                  <th class="govuk-table__cell">Person removed</th>
+                  <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="authorised-persons-removed">authorised-persons-removed</a></td>
+                  <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-blank-authorised-persons-removed">If blank</a></td>
+                </tr>
+    
+    
+                <tr class="govuk-table__row">
+                  <th class="govuk-table__cell">Task list - completed task</th>
+                  <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="task-list-complete">task-list-complete</a></td>
                   <td class="govuk-table__cell"> </td>
               </tr>
-
+    
+    
               <tr class="govuk-table__row">
-                <th class="govuk-table__cell">Do you want to add an authorised person</th>
-                <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="add-person-alt">add-person-alt</a></td>
-                <td class="govuk-table__cell"></td>
-              </tr>
-  
-              <tr class="govuk-table__row">
-                <th class="govuk-table__cell">Add an authorised person</th>
+                <th class="govuk-table__cell">Add another - based on MOJ Design System pattern</th>
                 <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="add-person-fields">add-person-fields</a></td>
-                <td class="govuk-table__cell">
-                  <a class="govuk-link govuk-link--no-visited-state" href="error-blank-add-person-fields">If blank</a><br>
-                  <a class="govuk-link govuk-link--no-visited-state" href="error-format-add-person-fields">If wrong format</a>
-                </td>
-              </tr>
-  
-  
-              <tr class="govuk-table__row">
-                <th class="govuk-table__cell">Task list - completed task</th>
-                <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="task-list-complete-alt">task-list-complete-alt</a></td>
                 <td class="govuk-table__cell"> </td>
+            </tr>
+             
+    
+    
+              </tbody>
+            </table>
+
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Version 1 and MOJ add another alternative
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+         
+
+          <h2 class="govuk-heading-m">Full page list and error states - v1</h2>
+
+          <table class="govuk-table">
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header">Page</th>
+                <th scope="col" class="govuk-table__header">Link</th>
+                <th scope="col" class="govuk-table__header">Error states</th>
+                </tr>
+            </thead>
+            <tbody class="govuk-table__body">    
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Task list</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="task-list">task-list</a></td>
+                    <td class="govuk-table__cell"> </td>
+                </tr>
+    
+                <tr class="govuk-table__row">
+                  <th class="govuk-table__cell">Do you want to add an authorised person</th>
+                  <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="add-person">add-person</a></td>
+                  <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-add-person">If nothing chosen</a></td>
+                </tr>
+    
+              
+                <tr class="govuk-table__row">
+                  <th class="govuk-table__cell">Authorised person's name</th>
+                  <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="name">name</a></td>
+                  <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-blank-name">If blank</a></td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                  <th class="govuk-table__cell">Authorised person's email</th>
+                  <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="email-address">email-address</a></td>
+                  <td class="govuk-table__cell">
+                    <a class="govuk-link govuk-link--no-visited-state" href="error-blank-email-address">If blank</a><br>
+                    <a class="govuk-link govuk-link--no-visited-state" href="error-format-email-address">If wrong format</a>
+                  </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                  <th class="govuk-table__cell">Review / add another</th>
+                  <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="authorised-persons">authorised-persons</a></td>
+                  <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-blank-authorised-persons">If blank</a></td>
+                </tr>
+    
+                <tr class="govuk-table__row">
+                  <th class="govuk-table__cell">Additional person added</th>
+                  <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="authorised-persons-2">authorised-persons-2</a></td>
+                  <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-blank-authorised-persons-2">If blank</a></td>
+                </tr>
+    
+                <tr class="govuk-table__row">
+                  <th class="govuk-table__cell">Person removed</th>
+                  <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="authorised-persons-removed">authorised-persons-removed</a></td>
+                  <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-blank-authorised-persons-removed">If blank</a></td>
+                </tr>
+    
+    
+                <tr class="govuk-table__row">
+                  <th class="govuk-table__cell">Task list - completed task</th>
+                  <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="task-list-complete">task-list-complete</a></td>
+                  <td class="govuk-table__cell"> </td>
               </tr>
-  
-  
-            
-           
-  
-  
-            </tbody>
-          </table>
+    
+    
+              <tr class="govuk-table__row">
+                <th class="govuk-table__cell">Add another - based on MOJ Design System pattern</th>
+                <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="add-person-fields">add-person-fields</a></td>
+                <td class="govuk-table__cell"> </td>
+            </tr>
+             
+    
+    
+              </tbody>
+            </table>
+    
+            <h2 class="govuk-heading-m" class="govuk-!-margin-top-9">Alternate version</h2>
+            <p>Based on Ministry of Justice Design System - Add another pattern:<br> 
+            <a href="https://design-patterns.service.justice.gov.uk/components/add-another/">https://design-patterns.service.justice.gov.uk/components/add-another/</a></p>
+            <p><strong>Note:</strong> Layout is hacked together, not to be used in production!</p>
+    
+            {{ govukButton({
+              text: "View full flow",
+              href: "task-list-alt"
+            }) }}
+    
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                  <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header">Page</th>
+                  <th scope="col" class="govuk-table__header">Link</th>
+                  <th scope="col" class="govuk-table__header">Error states</th>
+                  </tr>
+              </thead>
+              <tbody class="govuk-table__body">    
+                  <tr class="govuk-table__row">
+                      <th class="govuk-table__cell">Task list</th>
+                      <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="task-list-alt">task-list-alt</a></td>
+                      <td class="govuk-table__cell"> </td>
+                  </tr>
+    
+                  <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Do you want to add an authorised person</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="add-person-alt">add-person-alt</a></td>
+                    <td class="govuk-table__cell"></td>
+                  </tr>
+      
+                  <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Add an authorised person</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="add-person-fields">add-person-fields</a></td>
+                    <td class="govuk-table__cell">
+                      <a class="govuk-link govuk-link--no-visited-state" href="error-blank-add-person-fields">If blank</a><br>
+                      <a class="govuk-link govuk-link--no-visited-state" href="error-format-add-person-fields">If wrong format</a>
+                    </td>
+                  </tr>
+      
+      
+                  <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Task list - completed task</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="task-list-complete-alt">task-list-complete-alt</a></td>
+                    <td class="govuk-table__cell"> </td>
+                  </tr>
+      
+                </tbody>
+              </table>
+
+
+        </div>
+      </details>
+
+      
     
     </div>
   </div>
