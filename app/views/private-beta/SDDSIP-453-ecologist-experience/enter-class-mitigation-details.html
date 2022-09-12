@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Enter the class license reference number
+Enter the class licence reference number
 {% endblock %}
 
 {% block beforeContent %}
@@ -16,12 +16,12 @@ Enter the class license reference number
       <form class="form" action="check-your-answers" method="post">
         {{ govukInput({
           label: {
-            text: "Enter the class license reference number",
+            text: "Enter the class licence reference number",
             classes: "govuk-label--xl",
             isPageHeading: true
           },
           hint: {
-            text: "This can be found on the license document."
+            text: "This can be found on the licence document."
           },
           classes: "govuk-input--width-20",
           id: "class-mitigation-license-number",

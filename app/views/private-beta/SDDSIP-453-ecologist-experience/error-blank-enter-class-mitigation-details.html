@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Error: Enter the class license reference number
+Error: Enter the class licence reference number
 {% endblock %}
 
 {% block beforeContent %}
@@ -28,12 +28,12 @@ Error: Enter the class license reference number
       <form class="form" action="check-your-answers" method="post">
         {{ govukInput({
           label: {
-            text: "Enter the class license reference number",
+            text: "Enter the class licence reference number",
             classes: "govuk-label--xl",
             isPageHeading: true
           },
           hint: {
-            text: "This can be found on the license document."
+            text: "This can be found on the licence document."
           },
           errorMessage: {
             text: "Enter the reference number of the previously held licence"
