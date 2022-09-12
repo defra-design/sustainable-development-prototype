@@ -101,7 +101,7 @@ router.post('/private-beta/SDDSIP-285-authorised-person/add-person', (req, res) 
   if(req.session.data['add-person-check'] == 'yes'){
       res.redirect('name')
   } else if(req.session.data['add-person-check'] == 'no'){
-      res.redirect('task-list-complete')
+      res.redirect('task-list-complete-not-added')
   } 
 });
 
