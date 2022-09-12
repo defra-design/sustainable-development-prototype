@@ -33,6 +33,10 @@ $govuk-assets-path: '/govuk/assets/';
 }
 
 // Authorised persons summary list action links
+
+.govuk-summary-list__actions {
+    width: 35%;
+}
 .govuk-summary-list__actions-list {
     width: 100%;
     margin: 0;
