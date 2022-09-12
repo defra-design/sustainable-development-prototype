@@ -54,11 +54,10 @@ Add an authorised person
 
             </form>
 
-            <div class="moj-button-action">
-              <button class="govuk-button" data-module="govuk-button">
-                Submit
-              </button>
-            </div>
+            {{ govukButton({
+              text: "Continue",
+              href: "task-list-complete-alt"
+            }) }}
           
           </div>
           
