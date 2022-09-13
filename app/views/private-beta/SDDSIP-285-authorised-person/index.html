@@ -22,7 +22,7 @@ SDDSIP 255 | Authorised person
       </div>
 
       {{ govukButton({
-        text: "View full flow",
+        text: "View v2 full flow",
         href: "v2/task-list"
       }) }}
       
@@ -67,23 +67,8 @@ SDDSIP 255 | Authorised person
                   </td>
                 </tr>
                 
-                <tr class="govuk-table__row">
-                  <th class="govuk-table__cell">Review / add another</th>
-                  <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="authorised-persons">authorised-persons</a></td>
-                  <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-blank-authorised-persons">If blank</a></td>
-                </tr>
+               
     
-                <tr class="govuk-table__row">
-                  <th class="govuk-table__cell">Additional person added</th>
-                  <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="authorised-persons-2">authorised-persons-2</a></td>
-                  <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-blank-authorised-persons-2">If blank</a></td>
-                </tr>
-    
-                <tr class="govuk-table__row">
-                  <th class="govuk-table__cell">Person removed</th>
-                  <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="authorised-persons-removed">authorised-persons-removed</a></td>
-                  <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-blank-authorised-persons-removed">If blank</a></td>
-                </tr>
     
     
                 <tr class="govuk-table__row">
@@ -92,12 +77,6 @@ SDDSIP 255 | Authorised person
                   <td class="govuk-table__cell"> </td>
               </tr>
     
-    
-              <tr class="govuk-table__row">
-                <th class="govuk-table__cell">Add another - based on MOJ Design System pattern</th>
-                <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="add-person-fields">add-person-fields</a></td>
-                <td class="govuk-table__cell"> </td>
-            </tr>
              
     
     
@@ -111,9 +90,16 @@ SDDSIP 255 | Authorised person
           </span>
         </summary>
         <div class="govuk-details__text">
+
+          {{ govukButton({
+            text: "View v1 full flow",
+            href: "task-list"
+          }) }}
          
 
           <h2 class="govuk-heading-m">Full page list and error states - v1</h2>
+
+
 
           <table class="govuk-table">
             <thead class="govuk-table__head">
@@ -195,7 +181,7 @@ SDDSIP 255 | Authorised person
             <p><strong>Note:</strong> Layout is hacked together, not to be used in production!</p>
     
             {{ govukButton({
-              text: "View full flow",
+              text: "View alt version full flow",
               href: "task-list-alt"
             }) }}
     

@@ -109,7 +109,7 @@ router.post('/private-beta/SDDSIP-285-authorised-person/v2/add-person', (req, re
   if(req.session.data['add-person-check'] == 'yes'){
       res.redirect('name')
   } else if(req.session.data['add-person-check'] == 'no'){
-      res.redirect('task-list-complete-not-added')
+      res.redirect('check-your-answers-not-added')
   } 
 });
 
@@ -142,6 +142,22 @@ router.post('/private-beta/SDDSIP-432-additional-contact/who-to-contact', (req, 
       res.redirect('task-list-complete')
   } else if(req.session.data['who-to-contact-check'] == 'someone-else'){
       res.redirect('name')
+  } 
+});
+
+router.post('/private-beta/SDDSIP-285-authorised-person/v2/are-you-sure', (req, res) => {
+  if(req.session.data['remove-person-check'] == 'yes'){
+      res.redirect('authorised-people-summary-all-removed')
+  } else if(req.session.data['remove-person-check'] == 'no'){
+      res.redirect('authorised-people-summary')
+  } 
+});
+
+router.post('/private-beta/SDDSIP-285-authorised-person/v2/are-you-sure-2', (req, res) => {
+  if(req.session.data['remove-person-check'] == 'yes'){
+      res.redirect('authorised-people-summary')
+  } else if(req.session.data['remove-person-check'] == 'no'){
+      res.redirect('authorised-people-summary-2')
   } 
 });
 
