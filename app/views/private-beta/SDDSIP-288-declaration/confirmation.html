@@ -1,0 +1,34 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+  Application sent
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        {{ govukPanel({
+            titleText: "Application sent",
+            html: "Your reference number<br><strong>??????</strong>"
+          }) }}
+      
+        <h2 class="govuk-heading-m">What happens next</h2>
+
+        <p class="govuk-body">
+            Natural England will review your application and contact you if they need more information.
+        </p>
+
+      {{ govukButton({
+        text: "View applications",
+        href: "applications"
+      }) }}
+    </div>
+  </div>
+
+{% endblock %}

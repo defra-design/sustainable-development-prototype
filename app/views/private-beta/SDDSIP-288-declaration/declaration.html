@@ -1,0 +1,47 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+  Agree to terms and send application
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        Agree to terms and send application
+      </h1>
+
+      <p>
+        By sending the application you agree that you:
+      </p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>have given complete and correct information</li>
+        <li>will uphold any conditions applied to my licence if granted</li>
+        <li>will abide by the terms and conditions of this service</li>
+      </ul>
+
+      <p>
+        By sending the application you confirm that:
+      </p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>an ecologist has been involved in the design of any mitigation</li>
+        <li>the proposed methods, actions and mitigation are appropriate to cover the findings of the ecologist's site assessment</li>
+        <li>the licence holder and ecologist agree to the licence application</li>
+        <li>you will report any actions you took using this licence within 2 weeks of your licence expriring, even if you've taken no action</li>
+      </ul>
+
+      {{ govukButton({
+        text: "I agree - send my application",
+        href: "confirmation"
+      }) }}
+    </div>
+  </div>
+
+{% endblock %}
