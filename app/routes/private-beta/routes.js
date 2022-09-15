@@ -161,5 +161,13 @@ router.post('/private-beta/SDDSIP-285-authorised-person/v2/are-you-sure-2', (req
   } 
 });
 
+router.post('/private-beta/SDDSIP-214-site-map-upload/site-postcode-check', (req, res) => {
+  if(req.session.data['site-postcode-check'] == 'yes'){
+      res.redirect('select-address')
+  } else if(req.session.data['site-postcode-check'] == 'no'){
+      res.redirect('site-maps')
+  } 
+});
+
 
 }
