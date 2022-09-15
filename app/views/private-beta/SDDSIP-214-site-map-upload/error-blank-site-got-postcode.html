@@ -1,0 +1,78 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: Does the site have a postcode?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not entered a postcode",
+                href: "#site-postcode"
+              }
+            ]
+          }) }}
+      <form class="form" action="site-postcode-check" method="post"> 
+
+        {% set postcodeHtml %}
+          {{ govukInput({
+            id: "site-postcode",
+            name: "site-postcode",
+            classes: "govuk-input--width-10",
+            errorMessage: {
+                text: "Enter a postcode"
+              },
+            label: {
+              text: "Postcode"
+            }
+          }) }}
+        {% endset -%}
+
+        {{ govukRadios({
+          idPrefix: "site-postcode-check",
+          name: "site-postcode-check",
+          fieldset: {
+            legend: {
+              text: "Does the site have a postcode?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--xl"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes",
+              checked: true,
+              conditional: {
+                html: postcodeHtml
+              }
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+      
+    
+    </div>
+  </div>
+
+{% endblock %}
