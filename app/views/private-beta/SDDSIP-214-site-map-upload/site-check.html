@@ -12,8 +12,18 @@ What is the name of the site for planned work activity?
 {% block content %}
 
 
+
+{% if data['site-postcode-check'] == 'no' %}
+<script>
+    window.location.href = 'check-your-answers'
+</script>
+{% endif %}
+
+        
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
+
+       
 
             <h1 class="govuk-heading-xl">
                 Site address and National Grid Reference do not match

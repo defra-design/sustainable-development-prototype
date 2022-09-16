@@ -30,21 +30,27 @@ Check your answers
             </a>
           </dd>
         </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Site address
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['siteAddress'] }}<br>
-            Leeds<br>
-            {{ data['site-postcode'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="#">
-              Change<span class="govuk-visually-hidden"> site address</span>
-            </a>
-          </dd>
-        </div>
+
+        {% if data['site-postcode-check'] == 'yes' %}
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Site address
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['siteAddress'] }}<br>
+              Leeds<br>
+              {{ data['site-postcode'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> site address</span>
+              </a>
+            </dd>
+          </div>
+
+        {% endif %}
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Current site map
