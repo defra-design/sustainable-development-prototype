@@ -165,7 +165,15 @@ router.post('/private-beta/SDDSIP-214-site-map-upload/site-postcode-check', (req
   if(req.session.data['site-postcode-check'] == 'yes'){
       res.redirect('select-address')
   } else if(req.session.data['site-postcode-check'] == 'no'){
-      res.redirect('site-maps')
+      res.redirect('upload-map')
+  } 
+});
+
+router.post('/private-beta/SDDSIP-214-site-map-upload/v2/site-postcode-check', (req, res) => {
+  if(req.session.data['site-postcode-check'] == 'yes'){
+      res.redirect('select-address')
+  } else if(req.session.data['site-postcode-check'] == 'no'){
+      res.redirect('upload-map')
   } 
 });
 
