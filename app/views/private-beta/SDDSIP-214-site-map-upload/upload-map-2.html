@@ -1,0 +1,65 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Do you want to add a map of the site showing the mitigations during development?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        Map of the site showing the mitigations during development
+      </h1>
+
+      <p>
+        You must also send a survey map showing the mitigation on the site during development.
+      </p>
+
+      <p>
+        You can upload:
+      </p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          GeoJSON files
+        </li>
+        <li>
+          KML files
+        </li>
+        <li>
+          Shape files
+        </li>
+        <li>
+          PDF, jpg or PNG files (if these are used, your application may take longer to process)
+        </li>
+      </ul>
+
+      <p>The file must be smaller than 30MB.</p>
+
+      <form class="form" action="upload-map-3" method="post">
+        {{ govukFileUpload({
+          id: "file-upload-2",
+          name: "file-upload-2",
+          label: {
+            text: "Upload a file",
+            classes: "govuk-label--s"
+          }
+        }) }}
+
+        {{ govukButton({
+          text: "Upload and continue"
+        }) }}
+      </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}
