@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-What is the site's National Grid Reference?
+Error: What is the site's National Grid Reference?
 {% endblock %}
 
 {% block beforeContent %}
@@ -13,7 +13,19 @@ What is the site's National Grid Reference?
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <form class="form" action="site-check" method="post"> 
+      <form class="form" action="work-start" method="post"> 
+
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: [
+            {
+              text: "You have not entered a grid reference",
+              href: "#site-grid-ref"
+            }
+          ]
+        }) }}
+
+
         {{ govukInput({
           label: {
             text: "What is the site's National Grid Reference?",
@@ -22,6 +34,9 @@ What is the site's National Grid Reference?
           },
           hint: {
             text: "For example, NY395557"
+          },
+          errorMessage: {
+            text: "Enter a national grid reference for the site"
           },
           classes: "govuk-input--width-10",
           id: "site-grid-ref",
