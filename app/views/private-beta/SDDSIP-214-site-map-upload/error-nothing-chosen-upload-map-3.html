@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Add a map of the site showing the mitigations after development
+Error: Add a map of the site showing the mitigations after development
 {% endblock %}
 
 {% block beforeContent %}
@@ -14,12 +14,23 @@ Add a map of the site showing the mitigations after development
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not selected a file to upload",
+                href: "#file-upload-3"
+              }
+            ]
+          }) }}
+
       <h1 class="govuk-heading-xl">
         Add a map of the site showing the mitigations after development
       </h1>
 
       <p>
-        You can skip this if the information is in your main map.
+        You must also send a survey map showing the mitigation on the site after development.
       </p>
 
       <p>
@@ -50,6 +61,9 @@ Add a map of the site showing the mitigations after development
           label: {
             text: "Upload a file",
             classes: "govuk-label--s"
+          },
+          errorMessage: {
+            text: "Select a file to upload"
           }
         }) }}
 
@@ -58,7 +72,6 @@ Add a map of the site showing the mitigations after development
         }) }}
       </form>
 
-      <p><a href="site-grid-ref">Skip this step</a></p>
 
     </div>
   </div>
