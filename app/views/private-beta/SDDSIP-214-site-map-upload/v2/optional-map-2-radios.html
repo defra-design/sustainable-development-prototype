@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Do you want to add a map of the site showing the mitigations during development?
+Do you want to add a map of the site showing the mitigations after development?
 {% endblock %}
 
 {% block beforeContent %}
@@ -15,12 +15,11 @@ Do you want to add a map of the site showing the mitigations during development?
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-xl">
-        Map of the site showing the mitigations during development
+        Map of the site showing the mitigations after development
       </h1>
 
-      <p>
-       You can add a map of the site showing the mitigations during development.</p>
-       <p>You can skip this if the information is in your main map.</p>
+      <p>You can add a map of the site showing the mitigations after development.</p> 
+      <p>You can skip this if the information is in your main map. </p>
 
       <p>
         You can upload:
@@ -43,12 +42,12 @@ Do you want to add a map of the site showing the mitigations during development?
 
       <p>The file must be smaller than 30MB.</p>
 
-      <form class="form" action="optional-map-2" method="post">
+      <form class="form" action="site-grid-ref" method="post">
 
         {% set uploadHtml %}
             {{ govukFileUpload({
-                id: "file-upload-2",
-                name: "file-upload-2",
+                id: "file-upload-3",
+                name: "file-upload-3",
                 label: {
                 text: "Upload a file"
                 }
@@ -61,7 +60,7 @@ Do you want to add a map of the site showing the mitigations during development?
         name: "contact",
         fieldset: {
             legend: {
-            text: "Do you want to add a map of the site showing the mitigations during development?",
+            text: "Do you want to add a map of the site showing the mitigations after development?",
             isPageHeading: true,
             classes: "govuk-fieldset__legend--m"
             }
@@ -86,7 +85,6 @@ Do you want to add a map of the site showing the mitigations during development?
             text: "Continue"
           }) }}
         </form>
-
 
     </div>
   </div>
