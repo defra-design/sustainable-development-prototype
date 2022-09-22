@@ -177,5 +177,13 @@ router.post('/private-beta/SDDSIP-214-site-map-upload/v2/site-postcode-check', (
   } 
 });
 
+router.post('/private-beta/SDDSIP-566-application-category/paying-for-your-license', (req, res) => {
+  if(req.session.data['sites-check'] == 'yes'){
+      res.redirect('reason')
+  } else if(req.session.data['sites-check'] == 'no'){
+      res.redirect('upload-map')
+  } 
+});
+
 
 }
