@@ -1,0 +1,65 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Paying for your wildlife licence
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        Paying for your wildlife licence
+      </h1>
+
+      <p>You may not have to pay for a wildlife licence if your development is on certain kinds of sites, including:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>registered places of worship</li>
+        <li>scheduled monuments</li>
+        <li>listed buildings</li>
+        <li>traditional farm buildings in a countryside stewardship agreement</li>
+        <li>homes being improved through planning permission or permitted development</li>
+      </ul>
+
+      <form class="form" action="reason" method="post">
+
+        {{ govukRadios({
+        idPrefix: "sites-check",
+        name: "sites-check",
+        fieldset: {
+            legend: {
+            text: "Is your development project on one of these sites that are exempt from payment for wildlife licences?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--m"
+            }
+        },
+        items: [
+            {
+            value: "yes",
+            text: "Yes"
+            },
+            {
+            value: "no",
+            text: "No"
+            }
+        ]
+        }) }}
+
+
+        {{ govukButton({
+            text: "Continue"
+          }) }}
+        </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}
