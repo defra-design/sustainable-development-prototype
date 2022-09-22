@@ -1,0 +1,144 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Which type of development work or activity do you plan to do?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form class="form" action="paying-for-your-license" method="post">
+
+
+            {{ govukRadios({
+                name: "category",
+                fieldset: {
+                  legend: {
+                    text: "Which type of development work or activity do you plan to do?",
+                    isPageHeading: true,
+                    classes: "govuk-fieldset__legend--xl"
+                  }
+                },
+                items: [
+                  {
+                    value: "Agriculture / Farming / Fishing / Forestry / Nature Conservation",
+                    text: "Agriculture / Farming / Fishing / Forestry / Nature Conservation"
+                  },
+                  {
+                    value: "Archaeological investigation",
+                    text: "Archaeological investigation"
+                  },
+                  {
+                    value: "Barn conversion",
+                    text: "Barn conversion"
+                  },
+                  {
+                    value: "Commercial",
+                    text: "Commercial"
+                  },
+                  {
+                    value: "Communications",
+                    text: "Communications"
+                  },
+                  {
+                    value: "Energy generation / Energy supply",
+                    text: "Energy generation / Energy supply"
+                  },
+                  {
+                    value: "Flood and coastal defences",
+                    text: "Flood and coastal defences"
+                  },
+                  {
+                    value: "Health & safety",
+                    text: "Health & safety"
+                  },
+                  {
+                    value: "Heritage / Historical",
+                    text: "Heritage / Historical"
+                  },
+                  {
+                    value: "Householder home improvements",
+                    text: "Householder home improvements"
+                  },
+                  {
+                    value: "Housing (non-householder)",
+                    text: "Housing (non-householder)"
+                  },
+                  {
+                    value: "Industrial / Manufacturing",
+                    text: "Industrial / Manufacturing"
+                  },
+                  {
+                    value: "Mineral extraction / Quarrying",
+                    text: "Mineral extraction / Quarrying"
+                  },
+                  {
+                    value: "Nationally Significant Infrastructure Projects",
+                    text: "Nationally Significant Infrastructure Projects"
+                  },
+                  {
+                    value: "Places of worship",
+                    text: "Places of worship"
+                  },
+                  {
+                    value: "Public buildings and land",
+                    text: "Public buildings and land"
+                  },
+                  {
+                    value: "Tourism / Leisure",
+                    text: "Tourism / Leisure"
+                  },
+                  {
+                    value: "Transport / Highways",
+                    text: "Transport / Highways"
+                  },
+                  {
+                    value: "Waste management",
+                    text: "Waste management"
+                  },
+                  {
+                    value: "Water supply and treatment / water environment",
+                    text: "Water supply and treatment / water environment"
+                  }
+                ]
+              }) }}
+
+
+
+            {{govukButton({
+                text: "Continue"
+            })}}
+
+        </form>
+
+	</div>
+</div>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

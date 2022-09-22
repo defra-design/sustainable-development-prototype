@@ -1,0 +1,254 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Check your answers
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h2 class="govuk-heading-xl">Check your answers</h2>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+
+     <!-- {% if data['previous-license-check'] == 'yes' %}
+    
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Previous mitigation licence
+          </dt>
+          <dd class="govuk-summary-list__value govuk-!-width-three-quarters">
+            Yes
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> previous mitigation licence</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Previous licence number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['mitigation-license-details'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> previous license number</span>
+            </a>
+          </dd>
+        </div>
+      {% endif %}
+
+      {% if data['previous-license-check'] == 'no' %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Previous licence
+          </dt>
+          <dd class="govuk-summary-list__value">
+            No
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> previous licence number</span>
+            </a>
+          </dd>
+        </div>
+      {% endif %}
+
+        {% if data['another-license-check'] == 'yes' %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Previous licence number 2
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['mitigation-license-details-2'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> previous licence number</span>
+              </a>
+            </dd>
+          </div>
+        {% endif %}-->
+
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            What activity or development work do you plan to do?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['proposal'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> what activity or development work do you plan to do?</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Is your development project on one of these sites that are exempt from payment for wildlife licences?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['sites-check'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> Is your development project on one of these sites that are exempt from payment for wildlife licences?</span>
+            </a>
+          </dd>
+        </div>
+
+        {% if data['sites-check'] == 'Yes' %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              What reason do you think your development is exempt from licence payments?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['reason'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> What reason do you think your development is exempt from licence payments?</span>
+              </a>
+            </dd>
+          </div>
+        {% endif %}
+
+
+        {% if data['other-reason'] %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+           Other reason
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['other-reason'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> other reason</span>
+            </a>
+          </dd>
+        </div>
+      {% endif %}
+
+      </dl>
+
+
+      <!--
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Previous license number"
+            },
+            value: {
+              html: data['mitigation-license-details'] 
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "previous license number"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Previous experience of badger ecology and surveying"
+            },
+            value: {
+              html: data['experience']
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "previous experience of badger ecology and surveying"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Previous experience of methods to be licensed"
+            },
+            value: {
+              html: data['methods']
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "previous experience of methods to be licensed"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Class license held"
+            },
+            value: {
+              html: data['class-mitigation-license-check'] 
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "class license held"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Class license number"
+            },
+            value: {
+              html: data['class-mitigation-license-number']  
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "class license number"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+      -->
+      
+
+
+      {{ govukButton({
+        text: "Continue",
+        href: "task-list-complete"
+      }) }}
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

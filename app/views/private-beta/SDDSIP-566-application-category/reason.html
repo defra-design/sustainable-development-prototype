@@ -16,7 +16,7 @@ What reason do you think your development is exempt from licence payments?
     <div class="govuk-grid-column-two-thirds">
  
 
-      <form class="form" action="reason" method="post">
+      <form class="form" action="check-your-answers" method="post">
 
 
           {% set otherHtml %}
@@ -24,14 +24,14 @@ What reason do you think your development is exempt from licence payments?
             name: "other-reason",
             id: "other-reason",
             label: {
-              text: "Provide more detail on the reason you think your development is exempt from license payments"
+              text: "Provide more detail on the reason you think your development is exempt from license payments."
             }
           }) }}
         {% endset -%}
 
 
             {{ govukRadios({
-            name: "contact",
+            name: "reason",
             fieldset: {
                 legend: {
                 text: "What reason do you think your development is exempt from licence payments?",
@@ -67,7 +67,7 @@ What reason do you think your development is exempt from licence payments?
                     divider: "or"
                 },
                 {
-                value: "other",
+                value: "Other reason",
                 text: "Other",
                 conditional: {
                     html: otherHtml
