@@ -1,0 +1,102 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+What reason do you think your development is exempt from licence payments?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+ 
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not provided more detail on why your development is exempt",
+                href: "#other-reason"
+              }
+            ]
+          }) }}
+
+      <form class="form" action="check-your-answers" method="post">
+
+
+          {% set otherHtml %}
+          {{ govukTextarea({
+            name: "other-reason",
+            id: "other-reason",
+            errorMessage: {
+                text: "Provide more detail on why your development is exempt"
+              },
+            label: {
+              text: "Provide more detail on the reason you think your development is exempt from license payments."
+            }
+          }) }}
+        {% endset -%}
+
+
+            {{ govukRadios({
+            name: "reason",
+            fieldset: {
+                legend: {
+                text: "What reason do you think your development is exempt from licence payments?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--xl"
+                }
+            },
+            hint: {
+                text: "Select one option."
+            },
+            items: [
+                {
+                    value: "Registered places of worship",
+                    text: "Registered places of worship"
+                },
+                {
+                    value: "Scheduled monuments",
+                    text: "Scheduled monuments"
+                },
+                {
+                    value: "Listed buildings",
+                    text: "Listed buildings"
+                },
+                {
+                    value: "Traditional farm buildings in a countryside stewardship agreement",
+                    text: "Traditional farm buildings in a countryside stewardship agreement"
+                },
+                {
+                    value: "Homes being improved through planning permission or permitted development",
+                    text: "Homes being improved through planning permission or permitted development"
+                },
+                {
+                    divider: "or"
+                },
+                {
+                value: "Other reason",
+                text: "Other",
+                checked: true,
+                conditional: {
+                    html: otherHtml
+                }
+                }
+            ]
+            }) }}
+
+
+        {{ govukButton({
+            text: "Continue"
+          }) }}
+        </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}
