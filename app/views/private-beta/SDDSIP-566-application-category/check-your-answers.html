@@ -116,7 +116,15 @@ Check your answers
               What reason do you think your development is exempt from licence payments?
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['reason'] }}
+              {% if data['other-reason'] %}
+
+                {{ data['other-reason'] }}
+
+              {% else %}
+
+                {{ data['reason'] }}
+
+              {% endif %}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="#">
@@ -127,21 +135,7 @@ Check your answers
         {% endif %}
 
 
-        {% if data['other-reason'] %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-           Other reason
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['other-reason'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="#">
-              Change<span class="govuk-visually-hidden"> other reason</span>
-            </a>
-          </dd>
-        </div>
-      {% endif %}
+        
 
       </dl>
 
