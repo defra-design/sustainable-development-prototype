@@ -23,108 +23,14 @@ SDDSIP 214 | Current, during and future site map upload
 
      
       
-      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-
-      <h2 class="govuk-heading-m">v2 - Optional file uploads - Full page list and error states</h2>
-
-      {{ govukButton({
-        text: "View v2 full flow",
-        href: "v2/task-list"
-      }) }}
-
-      <table class="govuk-table">
-        <thead class="govuk-table__head">
-            <tr class="govuk-table__row">
-            <th scope="col" class="govuk-table__header">Page</th>
-            <th scope="col" class="govuk-table__header">Link</th>
-            <th scope="col" class="govuk-table__header">Error states</th>
-            </tr>
-        </thead>
-        <tbody class="govuk-table__body">    
-            <tr class="govuk-table__row">
-                <th class="govuk-table__cell">Task list</th>
-                <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/task-list">task-list</a></td>
-                <td class="govuk-table__cell"></td>
-            </tr>
-            <tr class="govuk-table__row">
-              <th class="govuk-table__cell">Site name</th>
-              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/site-name">site-name</a></td>
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-blank-site-name">If blank</a></td>
-            </tr>
-            <tr class="govuk-table__row">
-              <th class="govuk-table__cell">Site postcode</th>
-              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/site-got-postcode">site-got-postcode</a></td>
-              <td class="govuk-table__cell">
-                <a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-site-got-postcode">If nothing chosen</a><br>
-                <a class="govuk-link govuk-link--no-visited-state" href="v2/error-blank-site-got-postcode">If blank</a><br>
-                <a class="govuk-link govuk-link--no-visited-state" href="v2/error-format-site-got-postcode">If wrong format</a>
-              </td>
-            </tr>
-            <tr class="govuk-table__row">
-              <th class="govuk-table__cell">Select site address</th>
-              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/select-address">select-address</a></td>
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-selected-select-address">If nothing selected</a></td>
-            </tr>
-            <tr class="govuk-table__row">
-              <th class="govuk-table__cell">Site address - no address found in postcode lookup</th>
-              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/site-address-no-lookup">site-address-no-lookup</a></td>
-              <td class="govuk-table__cell">
-                <a class="govuk-link govuk-link--no-visited-state" href="v2/error-blank-site-address-no-lookup">If blank</a><br>
-                <a class="govuk-link govuk-link--no-visited-state" href="v2/error-format-site-address-no-lookup">If wrong format</a>
-              </td>
-            </tr>
-            <tr class="govuk-table__row">
-              <th class="govuk-table__cell">Upload map of activity at the development site</th>
-              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/upload-map">upload-map</a></td>
-              <td class="govuk-table__cell">
-                <a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-upload-map">If nothing chosen</a>
-              </td>
-            </tr>
-            <tr class="govuk-table__row">
-              <th class="govuk-table__cell">Optional upload map of mitigations during</th>
-              <td class="govuk-table__cell" >
-                <a class="govuk-link govuk-link--no-visited-state" href="v2/optional-map-1">optional-map-1</a><br>
-                <a class="govuk-link govuk-link--no-visited-state" href="v2/optional-map-1-radios">optional-map-1-radios</a>
-              </td>
-              <td class="govuk-table__cell">
-                <a class="govuk-link govuk-link--no-visited-state" href="#">If nothing chosen</a>
-              </td>
-            </tr>
-            <tr class="govuk-table__row">
-              <th class="govuk-table__cell">Optional upload map of mitigations after</th>
-              <td class="govuk-table__cell" >
-                <a class="govuk-link govuk-link--no-visited-state" href="v2/optional-map-2">optional-map-2</a><br>
-                <a class="govuk-link govuk-link--no-visited-state" href="v2/optional-map-2-radios">optional-map-2-radios</a>
-              </td>
-              <td class="govuk-table__cell">
-                <a class="govuk-link govuk-link--no-visited-state" href="#">If nothing chosen</a>
-              </td>
-            </tr>
-            <tr class="govuk-table__row">
-              <th class="govuk-table__cell">Site grid reference</th>
-              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/site-grid-ref">site-grid-ref</a></td>
-              <td class="govuk-table__cell">
-                <a class="govuk-link govuk-link--no-visited-state" href="v2/error-blank-site-grid-ref">If blank</a><br>
-              </td>
-            </tr>
-            <tr class="govuk-table__row">
-              <th class="govuk-table__cell">Address and grid reference mismatch</th>
-              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/site-check">site-check</a></td>
-              <td class="govuk-table__cell">
-                <a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-site-check">If nothing chosen</a><br>
-              </td>
-            </tr>
-            <tr class="govuk-table__row">
-              <th class="govuk-table__cell">Check your answers</th>
-              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/check-your-answers">check-your-answers</a></td>
-              <td class="govuk-table__cell">
-              </td>
-            </tr>
-          </tbody>
-        </table>
+      
 
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-9">v1 - Mandatory file uploads - Full page list and error states</h2>
+
+
+      <h2 class="govuk-heading-m ">v1 - Mandatory file uploads - Full page list and error states</h2>
+
+
 
       {{ govukButton({
         text: "View v1 full flow",
@@ -216,6 +122,105 @@ SDDSIP 214 | Current, during and future site map upload
             </tr>
           </tbody>
         </table>
+
+
+        <h2 class="govuk-heading-m govuk-!-margin-top-9">v2 - Optional file uploads - Full page list and error states</h2>
+
+        {{ govukButton({
+          text: "View v2 full flow",
+          href: "v2/task-list"
+        }) }}
+  
+        <table class="govuk-table">
+          <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Page</th>
+              <th scope="col" class="govuk-table__header">Link</th>
+              <th scope="col" class="govuk-table__header">Error states</th>
+              </tr>
+          </thead>
+          <tbody class="govuk-table__body">    
+              <tr class="govuk-table__row">
+                  <th class="govuk-table__cell">Task list</th>
+                  <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/task-list">task-list</a></td>
+                  <td class="govuk-table__cell"></td>
+              </tr>
+              <tr class="govuk-table__row">
+                <th class="govuk-table__cell">Site name</th>
+                <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/site-name">site-name</a></td>
+                <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-blank-site-name">If blank</a></td>
+              </tr>
+              <tr class="govuk-table__row">
+                <th class="govuk-table__cell">Site postcode</th>
+                <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/site-got-postcode">site-got-postcode</a></td>
+                <td class="govuk-table__cell">
+                  <a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-site-got-postcode">If nothing chosen</a><br>
+                  <a class="govuk-link govuk-link--no-visited-state" href="v2/error-blank-site-got-postcode">If blank</a><br>
+                  <a class="govuk-link govuk-link--no-visited-state" href="v2/error-format-site-got-postcode">If wrong format</a>
+                </td>
+              </tr>
+              <tr class="govuk-table__row">
+                <th class="govuk-table__cell">Select site address</th>
+                <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/select-address">select-address</a></td>
+                <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-selected-select-address">If nothing selected</a></td>
+              </tr>
+              <tr class="govuk-table__row">
+                <th class="govuk-table__cell">Site address - no address found in postcode lookup</th>
+                <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/site-address-no-lookup">site-address-no-lookup</a></td>
+                <td class="govuk-table__cell">
+                  <a class="govuk-link govuk-link--no-visited-state" href="v2/error-blank-site-address-no-lookup">If blank</a><br>
+                  <a class="govuk-link govuk-link--no-visited-state" href="v2/error-format-site-address-no-lookup">If wrong format</a>
+                </td>
+              </tr>
+              <tr class="govuk-table__row">
+                <th class="govuk-table__cell">Upload map of activity at the development site</th>
+                <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/upload-map">upload-map</a></td>
+                <td class="govuk-table__cell">
+                  <a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-upload-map">If nothing chosen</a>
+                </td>
+              </tr>
+              <tr class="govuk-table__row">
+                <th class="govuk-table__cell">Optional upload map of mitigations during</th>
+                <td class="govuk-table__cell" >
+                  <a class="govuk-link govuk-link--no-visited-state" href="v2/optional-map-1">optional-map-1</a><br>
+                  <a class="govuk-link govuk-link--no-visited-state" href="v2/optional-map-1-radios">optional-map-1-radios</a>
+                </td>
+                <td class="govuk-table__cell">
+                  <a class="govuk-link govuk-link--no-visited-state" href="#">If nothing chosen</a>
+                </td>
+              </tr>
+              <tr class="govuk-table__row">
+                <th class="govuk-table__cell">Optional upload map of mitigations after</th>
+                <td class="govuk-table__cell" >
+                  <a class="govuk-link govuk-link--no-visited-state" href="v2/optional-map-2">optional-map-2</a><br>
+                  <a class="govuk-link govuk-link--no-visited-state" href="v2/optional-map-2-radios">optional-map-2-radios</a>
+                </td>
+                <td class="govuk-table__cell">
+                  <a class="govuk-link govuk-link--no-visited-state" href="#">If nothing chosen</a>
+                </td>
+              </tr>
+              <tr class="govuk-table__row">
+                <th class="govuk-table__cell">Site grid reference</th>
+                <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/site-grid-ref">site-grid-ref</a></td>
+                <td class="govuk-table__cell">
+                  <a class="govuk-link govuk-link--no-visited-state" href="v2/error-blank-site-grid-ref">If blank</a><br>
+                </td>
+              </tr>
+              <tr class="govuk-table__row">
+                <th class="govuk-table__cell">Address and grid reference mismatch</th>
+                <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/site-check">site-check</a></td>
+                <td class="govuk-table__cell">
+                  <a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-site-check">If nothing chosen</a><br>
+                </td>
+              </tr>
+              <tr class="govuk-table__row">
+                <th class="govuk-table__cell">Check your answers</th>
+                <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/check-your-answers">check-your-answers</a></td>
+                <td class="govuk-table__cell">
+                </td>
+              </tr>
+            </tbody>
+          </table>
     
     </div>
   </div>
