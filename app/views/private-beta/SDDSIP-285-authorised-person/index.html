@@ -22,13 +22,139 @@ SDDSIP 255 | Authorised person
       </div>
 
       {{ govukButton({
-        text: "View v2 full flow",
-        href: "v2/task-list"
+        text: "View v3 full flow",
+        href: "v3/task-list"
       }) }}
       
       <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-      <h2 class="govuk-heading-m">Full page list and error states - v2</h2>
+      <h2 class="govuk-heading-m">Full page list and error states - v3</h2>
+
+          <table class="govuk-table">
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header">Page</th>
+                <th scope="col" class="govuk-table__header">Link</th>
+                <th scope="col" class="govuk-table__header">Error states</th>
+                </tr>
+            </thead>
+            <tbody class="govuk-table__body">    
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Task list</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v3/task-list">task-list</a></td>
+                    <td class="govuk-table__cell"> </td>
+                </tr>
+    
+                <tr class="govuk-table__row">
+                  <th class="govuk-table__cell">Do you want to add an authorised person</th>
+                  <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v3/add-person">add-person</a></td>
+                  <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/error-nothing-chosen-add-person">If nothing chosen</a></td>
+                </tr>
+    
+              
+                <tr class="govuk-table__row">
+                  <th class="govuk-table__cell">Authorised person's name</th>
+                  <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v3/name">name</a></td>
+                  <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/error-blank-name">If blank</a></td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                  <th class="govuk-table__cell">Authorised person's email</th>
+                  <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v3/email-address">email-address</a></td>
+                  <td class="govuk-table__cell">
+                    <a class="govuk-link govuk-link--no-visited-state" href="v3/error-blank-email-address">If blank</a><br>
+                    <a class="govuk-link govuk-link--no-visited-state" href="v3/error-format-email-address">If wrong format</a>
+                  </td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                  <th class="govuk-table__cell">Authorised person's address - postcode lookup</th>
+                  <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v3/address">address</a></td>
+                  <td class="govuk-table__cell">
+                    <a class="govuk-link govuk-link--no-visited-state" href="v3/error-blank-address">If blank</a><br>
+                    <a class="govuk-link govuk-link--no-visited-state" href="v3/error-format-address">If wrong format</a>
+                  </td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                  <th class="govuk-table__cell">Authorised person's address - no postcode</th>
+                  <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v3/address-no-postcode">address-no-postcode</a></td>
+                  <td class="govuk-table__cell">
+                    <a class="govuk-link govuk-link--no-visited-state" href="v3/error-blank-address-no-postcode">If blank</a><br>
+                  </td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                  <th class="govuk-table__cell">Authorised person's address - select address</th>
+                  <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v3/select-address">select-address</a></td>
+                  <td class="govuk-table__cell">
+                    <a class="govuk-link govuk-link--no-visited-state" href="v3/error-nothing-selected-select-address">If nothing selected</a><br>
+                  </td>
+                </tr>
+
+
+                <tr class="govuk-table__row">
+                  <th class="govuk-table__cell">Authorised person's address - no address in select menu</th>
+                  <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v3/address-no-lookup">address-no-lookup</a></td>
+                  <td class="govuk-table__cell">
+                    <a class="govuk-link govuk-link--no-visited-state" href="v3/error-blank-address-no-lookup">If blank</a><br>
+                  </td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                  <th class="govuk-table__cell">Check your answers</th>
+                  <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v3/check-your-answers">check-your-answers</a></td>
+                  <td class="govuk-table__cell">
+                  </td>
+                </tr>
+
+
+                <tr class="govuk-table__row">
+                  <th class="govuk-table__cell">Remove person - are you sure?</th>
+                  <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v3/are-you-sure">are-you-sure</a></td>
+                  <td class="govuk-table__cell">
+                    <a class="govuk-link govuk-link--no-visited-state" href="v3/error-nothing-chosen-are-you-sure">If nothing chosen</a>
+                  </td>
+                </tr>
+
+
+                <tr class="govuk-table__row">
+                  <th class="govuk-table__cell">Task list - completed task</th>
+                  <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v3/task-list-complete">task-list-complete</a></td>
+                  <td class="govuk-table__cell"> </td>
+              </tr>
+
+              </tbody>
+            </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Version 1, Version 2 and MOJ add another alternative
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+
+         
+
+          <h2 class="govuk-heading-m">Full page list and error states - v2</h2>
+          {{ govukButton({
+            text: "View v2 full flow",
+            href: "v2/task-list"
+          }) }}
 
           <table class="govuk-table">
             <thead class="govuk-table__head">
@@ -132,44 +258,25 @@ SDDSIP 255 | Authorised person
                    
                   </td>
                 </tr>
-                
-                
-                
 
-                
-               
-    
-    
-    
                 <tr class="govuk-table__row">
                   <th class="govuk-table__cell">Task list - completed task</th>
                   <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="task-list-complete">task-list-complete</a></td>
                   <td class="govuk-table__cell"> </td>
               </tr>
     
-             
-    
-    
               </tbody>
             </table>
 
-      <details class="govuk-details" data-module="govuk-details">
-        <summary class="govuk-details__summary">
-          <span class="govuk-details__summary-text">
-            Version 1 and MOJ add another alternative
-          </span>
-        </summary>
-        <div class="govuk-details__text">
+         
+
+          <h2 class="govuk-heading-m">Full page list and error states - v1</h2>
 
           {{ govukButton({
             text: "View v1 full flow",
             href: "task-list"
           }) }}
          
-
-          <h2 class="govuk-heading-m">Full page list and error states - v1</h2>
-
-
 
           <table class="govuk-table">
             <thead class="govuk-table__head">

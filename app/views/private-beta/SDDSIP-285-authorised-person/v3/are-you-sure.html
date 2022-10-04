@@ -1,0 +1,53 @@
+{% extends "layout-pb.html" %}
+
+
+
+{% block pageTitle %} 
+Do you want to add an authorised person?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form class="form" action="are-you-sure" method="post">
+        {{ govukRadios({
+          idPrefix: "remove-person-check",
+          name: "remove-person-check",
+          fieldset: {
+            legend: {
+              html: "Are you sure you want to remove " + data['authorised-name'] + "?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--xl"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}
