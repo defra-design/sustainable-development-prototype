@@ -147,8 +147,8 @@ router.post('/private-beta/SDDSIP-285-authorised-person/another-person', (req, r
 
 router.post('/private-beta/SDDSIP-432-additional-contact/who-to-contact', (req, res) => {
   if(req.session.data['who-to-contact-check'] == 'you'){
-      res.redirect('task-list-complete')
-  } else if(req.session.data['who-to-contact-check'] == 'someone-else'){
+      res.redirect('check-your-answers')
+  } else if(req.session.data['who-to-contact-check'] == 'Someone else'){
       res.redirect('name')
   } 
 });
