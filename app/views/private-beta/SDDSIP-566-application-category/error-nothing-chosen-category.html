@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-  What kind of development is happening at the site?
+  Error: What kind of development is happening at the site?
 {% endblock %}
 
 {% block beforeContent %}
@@ -16,6 +16,16 @@
 	<div class="govuk-grid-column-two-thirds">
 		<form class="form" action="check-your-answers" method="post">
 
+            {{ govukErrorSummary({
+                titleText: "There is a problem",
+                errorList: [
+                  {
+                    text: "You have not selected an option",
+                    href: "#category"
+                  }
+                ]
+              }) }}
+
 
             {{ govukRadios({
                 name: "category",
@@ -26,6 +36,9 @@
                     classes: "govuk-fieldset__legend--xl"
                   }
                 },
+                errorMessage: {
+                    text: "Select an option"
+                  },
                 items: [
                   {
                     value: "Agriculture, fishing, forestry or nature conservation",
