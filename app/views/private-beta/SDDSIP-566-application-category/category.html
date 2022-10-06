@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Which type of development work or activity do you plan to do?
+  What kind of development is happening at the site?
 {% endblock %}
 
 {% block beforeContent %}
@@ -14,14 +14,14 @@ Which type of development work or activity do you plan to do?
 
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
-		<form class="form" action="paying-for-your-license" method="post">
+		<form class="form" action="check-your-answers" method="post">
 
 
             {{ govukRadios({
                 name: "category",
                 fieldset: {
                   legend: {
-                    text: "Which type of development work or activity do you plan to do?",
+                    text: "What kind of development is happening at the site?",
                     isPageHeading: true,
                     classes: "govuk-fieldset__legend--xl"
                   }
