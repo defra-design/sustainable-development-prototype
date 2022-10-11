@@ -179,7 +179,38 @@ Check your answers
             </a>
           </dd>
         </div>
+
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Is the location covered by a Natural England agri-environment agreement?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['agreement-check'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="add-person">
+              Change<span class="govuk-visually-hidden"> is the location covered by a Natural England agri-environment agreement??</span>
+            </a>
+          </dd>
+        </div>
         
+
+        {% if data['agreement-check'] == 'Yes' %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                What is the reference number of the agri-environment agreement?
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['agri-ref'] }}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="add-person">
+                  Change<span class="govuk-visually-hidden"> what is the reference number of the agri-environment agreement?</span>
+                </a>
+              </dd>
+            </div>
+        {% endif %}
     
         
         
