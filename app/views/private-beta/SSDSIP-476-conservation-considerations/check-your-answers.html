@@ -23,7 +23,10 @@ Check your answers
             Will the activity take place on or within 50m of any of the following designated sites?
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['designated-sites'] }}
+
+            {% for site in data['designated-sites'] %}
+              <p>{{ site }}</p>
+            {% endfor %}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="add-person">
