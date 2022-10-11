@@ -1,0 +1,65 @@
+{% extends "layout-pb-no-service-name.html" %}
+
+{% block pageTitle %} 
+SDDSIP 476 | Conservation considerations
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <span class="govuk-caption-l">SDDSIP 476</span>
+      <h1 class="govuk-heading-l">Conservation considerations</h1> 
+
+      <div class="govuk-!-margin-bottom-9">
+        <strong class="govuk-tag" style="background: green;" >
+          IN PROGRESS
+        </strong>
+      </div>
+
+
+      <h2 class="govuk-heading-m ">Full page list and error states</h2>
+
+      {{ govukButton({
+        text: "View v1 full flow",
+        href: "task-list"
+      }) }}
+
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Page</th>
+            <th scope="col" class="govuk-table__header">Link</th>
+            <th scope="col" class="govuk-table__header">Error states</th>
+            </tr>
+        </thead>
+        <tbody class="govuk-table__body">    
+            <tr class="govuk-table__row">
+                <th class="govuk-table__cell">Task list</th>
+                <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="task-list">task-list</a></td>
+                <td class="govuk-table__cell"></td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">On or within designated site</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="on-or-within">on-or-within</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-on-or-within">If nothing chosen</a></td>
+            </tr>
+            
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">Check your answers</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="check-your-answers">check-your-answers</a></td>
+              <td class="govuk-table__cell">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+    
+    </div>
+  </div>
+
+{% endblock %}

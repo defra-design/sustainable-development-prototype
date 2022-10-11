@@ -1,0 +1,40 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+How many years will the activity continue for?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <form class="form" action="wider-project" method="post">       
+
+        {{ govukInput({
+          label: {
+            text: "How many years will the activity continue for?",
+            classes: "govuk-label--xl",
+            isPageHeading: true
+          },
+          id: "how-many-years",
+          name: "how-many-years",
+          classes: "govuk-input--width-4"
+        }) }}
+        
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

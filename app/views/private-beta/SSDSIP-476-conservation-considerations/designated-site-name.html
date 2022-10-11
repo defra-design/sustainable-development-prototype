@@ -1,0 +1,39 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+What is the name of the designated site?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <form class="form" action="activity-on-site" method="post">       
+
+        {{ govukInput({
+          label: {
+            text: "What is the name of the designated site?",
+            classes: "govuk-label--xl",
+            isPageHeading: true
+          },
+          id: "designated-site-name",
+          name: "designated-site-name"
+        }) }}
+        
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

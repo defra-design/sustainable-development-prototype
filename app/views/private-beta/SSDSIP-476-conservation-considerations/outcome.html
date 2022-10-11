@@ -1,0 +1,39 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Describe the outcome of this advice, including who you received advice from
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <form class="form" action="development-continue" method="post">       
+
+        {{ govukTextarea({
+            name: "advice-outcome",
+            id: "advice-outcome",
+            label: {
+              text: "Describe the outcome of this advice, including who you received advice from",
+              classes: "govuk-label--xl",
+              isPageHeading: true
+            }
+          }) }}
+
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

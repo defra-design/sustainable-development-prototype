@@ -1,0 +1,101 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+  Error: Will the activity take place on or within 50m of any of the following designated sites?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not selected an option",
+                href: "#designated-sites"
+              }
+            ]
+          }) }}
+    
+      
+      <form class="form" action="invoice-email-address" method="post">       
+
+        {{ govukCheckboxes({
+          name: "designated-sites",
+          fieldset: {
+            legend: {
+              text: "Will the activity take place on or within 50m of any of the following designated sites?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--xl"
+            }
+          },
+          hint: {
+            text: "Select all that apply."
+          },
+          errorMessage: {
+            text: "Select one or more options"
+          },
+          items: [
+            {
+              value: "National Nature Reserve",
+              text: "National Nature Reserve"
+            },
+            {
+              value: "Site of Special Scientific Interest",
+              text: "Site of Special Scientific Interest"
+            },
+            {
+              value: "Special Protection Area",
+              text: "Special Protection Area"
+            },
+            {
+              value: "Special Area of Conservation",
+              text: "Special Area of Conservation"
+            },
+            {
+              value: "Ramsar Site",
+              text: "Ramsar Site"
+            },
+            {
+              value: "Ancient monument",
+              text: "Ancient monument"
+            },
+            {
+              value: "Marine Protection Area",
+              text: "Marine Protection Area"
+            },
+            {
+              value: "Area of Outstanding Natural Beauty",
+              text: "Area of Outstanding Natural Beauty"
+            },
+            {
+              divider: "or"
+            },
+            {
+              value: "none",
+              text: "None of these",
+              behaviour: "exclusive"
+            }
+
+          ]
+        }) }}
+
+        {{ govukButton({
+            text: "Continue"
+          }) }}
+      </form>
+
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

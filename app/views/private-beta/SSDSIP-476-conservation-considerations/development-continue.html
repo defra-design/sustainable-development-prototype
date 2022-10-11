@@ -1,0 +1,53 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Will the development activity continue in future years?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <form class="form" action="development-continue-check" method="post">       
+
+        {{ govukRadios({
+            name: "development-continue-check",
+            fieldset: {
+              legend: {
+                text: "Will the development activity continue in future years?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--xl"
+              }
+            },
+            hint: {
+                text: "Select one."
+              },
+            items: [
+              {
+                value: "Yes",
+                text: "Yes"
+              },
+              {
+                value: "No",
+                text: "No"
+              }
+            ]
+          }) }}
+        
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

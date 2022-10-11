@@ -217,5 +217,42 @@ router.post('/private-beta/SDDSIP-566-application-category/paying-for-your-licen
   } 
 });
 
+router.post('/private-beta/SSDSIP-476-conservation-considerations/permission-check', (req, res) => {
+  if(req.session.data['permission-check'] == 'Yes'){
+      res.redirect('advice')
+  } else if(req.session.data['permission-check'] == 'No'){
+      res.redirect('permission-no')
+  } 
+});
+
+router.post('/private-beta/SSDSIP-476-conservation-considerations/advice', (req, res) => {
+  if(req.session.data['advice-check'] == 'Yes'){
+      res.redirect('outcome')
+  } else if(req.session.data['advice-check'] == 'No'){
+      res.redirect('advice-no')
+  } 
+});
+
+router.post('/private-beta/SSDSIP-476-conservation-considerations/development-continue-check', (req, res) => {
+  if(req.session.data['development-continue-check'] == 'Yes'){
+      res.redirect('how-many-years')
+  } else if(req.session.data['development-continue-check'] == 'No'){
+      res.redirect('wider-project')
+  } 
+});
+
+
+router.post('/private-beta/SSDSIP-476-conservation-considerations/agreement-check', (req, res) => {
+  if(req.session.data['agreement-check'] == 'Yes'){
+      res.redirect('reference')
+  } else if(req.session.data['agreement-check'] == 'No'){
+      res.redirect('check-your-answers')
+  } 
+});
+
+
+
+
+
 
 }

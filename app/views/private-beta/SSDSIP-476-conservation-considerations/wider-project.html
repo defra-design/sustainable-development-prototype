@@ -1,0 +1,53 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Is your activity part of a wider project?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <form class="form" action="biodiversity-plan" method="post">       
+
+        {{ govukRadios({
+            name: "wider-project-check",
+            fieldset: {
+              legend: {
+                text: "Is your activity part of a wider project?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--xl"
+              }
+            },
+            hint: {
+                text: "Select one."
+              },
+            items: [
+              {
+                value: "Yes",
+                text: "Yes"
+              },
+              {
+                value: "No",
+                text: "No"
+              }
+            ]
+          }) }}
+        
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}
