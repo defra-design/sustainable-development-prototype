@@ -16,7 +16,7 @@ Describe the outcome of this advice, including who you received advice from
       
       <form class="form" action="development-continue" method="post">       
 
-        {{ govukTextarea({
+        <!--{{ govukTextarea({
             name: "advice-outcome",
             id: "advice-outcome",
             label: {
@@ -28,7 +28,41 @@ Describe the outcome of this advice, including who you received advice from
 
           {{ govukButton({
             text: "Continue"
-          }) }}
+          }) }}-->
+
+
+          <h1 class="govuk-heading-xl">Advice about the activity</h1>
+
+      <form action="/form-handler" method="post" novalidate>
+
+        {{ govukInput({
+          label: {
+            text: "Who did you receive the advice from?",
+            classes: "govuk-label--m"
+          },
+          hint: {
+            text: "Enter the full name"
+          },
+          id: "passport-number",
+          name: "passport-number"
+        }) }}
+
+        {{ govukTextarea({
+          name: "more-detail",
+          id: "more-detail",
+          label: {
+            text: "Describe the outcome of the advice",
+            classes: "govuk-label--m"
+          }
+        }) }}
+
+        
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
       </form>
 
       
