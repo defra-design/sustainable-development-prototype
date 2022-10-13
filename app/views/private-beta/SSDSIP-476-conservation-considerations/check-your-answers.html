@@ -90,14 +90,27 @@ Check your answers
         {% if data['advice-check'] == 'Yes' %}
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Describe the outcome of this advice, including who you received advice from
+                Who did you receive the advice from?
               </dt>
               <dd class="govuk-summary-list__value">
-                {{ data['advice-outcome'] }}
+                {{ data['advice-giver'] }}
               </dd>
               <dd class="govuk-summary-list__actions">
                 <a class="govuk-link" href="add-person">
-                  Change<span class="govuk-visually-hidden"> describe the outcome of this advice, including who you received advice from</span>
+                  Change<span class="govuk-visually-hidden"> who did you receive the advice from?</span>
+                </a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Describe the outcome of the advice
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['advice-given'] }}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="add-person">
+                  Change<span class="govuk-visually-hidden"> describe the outcome of the advice</span>
                 </a>
               </dd>
             </div>
@@ -107,14 +120,14 @@ Check your answers
         {% if data['advice-check'] == 'No' %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Describe why you did not get advice from Natural England or a designated site manager
+              Why did you not get advice from Natural England or a designated site manager?
             </dt>
             <dd class="govuk-summary-list__value">
               {{ data['why-no-advice'] }}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="add-person">
-                Change<span class="govuk-visually-hidden"> describe why you did not get advice from Natural England or a designated site manager</span>
+                Change<span class="govuk-visually-hidden"> why did you not get advice from Natural England or a designated site manager?</span>
               </a>
             </dd>
           </div>

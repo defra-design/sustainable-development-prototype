@@ -1,0 +1,66 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: Is your activity part of a wider project?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not selected an option",
+                href: "#wider-project-check"
+              }
+            ]
+          }) }}
+      
+      <form class="form" action="biodiversity-plan" method="post">       
+
+        {{ govukRadios({
+            name: "wider-project-check",
+            fieldset: {
+              legend: {
+                text: "Is your activity part of a wider project?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--xl"
+              }
+            },
+            hint: {
+                text: "Select one."
+              },
+            errorMessage: {
+                text: "Select an option"
+            },
+            items: [
+              {
+                value: "Yes",
+                text: "Yes"
+              },
+              {
+                value: "No",
+                text: "No"
+              }
+            ]
+          }) }}
+        
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

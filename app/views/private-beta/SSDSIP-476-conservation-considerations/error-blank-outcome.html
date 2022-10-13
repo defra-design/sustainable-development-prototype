@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Advice about the activity
+Error: Advice about the activity
 {% endblock %}
 
 {% block beforeContent %}
@@ -16,22 +16,23 @@ Advice about the activity
       
       <form class="form" action="development-continue" method="post">       
 
-        <!--{{ govukTextarea({
-            name: "advice-outcome",
-            id: "advice-outcome",
-            label: {
-              text: "Describe the outcome of this advice, including who you received advice from",
-              classes: "govuk-label--xl",
-              isPageHeading: true
-            }
-          }) }}
-
-          {{ govukButton({
-            text: "Continue"
-          }) }}-->
-
+       
 
           <h1 class="govuk-heading-xl">Advice about the activity</h1>
+
+          {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not entered who gave you the advice",
+                href: "#advice-giver"
+              },
+              {
+                text: "You have not entered a description of the advice",
+                href: "#advice-given"
+              }
+            ]
+          }) }}
 
       <form action="/form-handler" method="post" novalidate>
 
@@ -43,6 +44,9 @@ Advice about the activity
           hint: {
             text: "Enter the full name"
           },
+          errorMessage: {
+            text: "Enter the name of who gave you the advice"
+          },
           id: "advice-giver",
           name: "advice-giver"
         }) }}
@@ -50,6 +54,9 @@ Advice about the activity
         {{ govukTextarea({
           name: "advice-given",
           id: "advice-given",
+          errorMessage: {
+            text: "Enter a description of the advice given"
+          },
           label: {
             text: "Describe the outcome of the advice",
             classes: "govuk-label--m"
