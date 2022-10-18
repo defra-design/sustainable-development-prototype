@@ -1,0 +1,39 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Which Local Planning Authority granted the consents for this development?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <form class="form" action="permissions" method="post">
+        {{ govukInput({
+          label: {
+            text: "Which Local Planning Authority granted the consents for this development?",
+            classes: "govuk-label--xl",
+            isPageHeading: true
+          },
+          id: "which-lpa",
+          name: "which-lpa"
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

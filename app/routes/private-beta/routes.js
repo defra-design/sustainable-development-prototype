@@ -251,6 +251,13 @@ router.post('/private-beta/SSDSIP-476-conservation-considerations/agreement-chec
 });
 
 
+router.post('/private-beta/SDDSIP-585-amend-permissions-flow/permissions-check', (req, res) => {
+  if(req.session.data['permissions-check'] == 'Yes'){
+      res.redirect('add-permission-start')
+  } else if(req.session.data['permissions-check'] == 'No'){
+      res.redirect('commitment')
+  } 
+});
 
 
 
