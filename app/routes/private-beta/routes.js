@@ -261,7 +261,7 @@ router.post('/private-beta/SDDSIP-585-amend-permissions-flow/permissions-check',
 
 router.post('/private-beta/SDDSIP-585-amend-permissions-flow/add-another-permission-check', (req, res) => {
   if(req.session.data['add-another-permission-check'] == 'Yes'){
-      res.redirect('consent-type')
+      res.redirect('consent-type-another')
   } else if(req.session.data['add-another-permission-check'] == 'No'){
       res.redirect('redirect')
   } 

@@ -1,0 +1,39 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+What is the {{ data['consent-type-check-another'] }} reference?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">What is the {{ data['consent-type-check-another'] }} reference?</h1>
+      
+      <form class="form" action="cya-consents-another" method="post">
+        {{ govukInput({
+          label: {
+            html: data['consent-type-check-another'] + " reference"
+          },
+          id: "reference",
+          name: "reference"
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}
