@@ -283,6 +283,13 @@ router.post('/private-beta/SDDSIP-585-amend-permissions-flow/commitment-check', 
   } 
 });
 
+router.post('/private-beta/SDDSIP-585-amend-permissions-flow/commitment-eps-check', (req, res) => {
+  if(req.session.data['commitment-eps-check'] == 'Yes'){
+      res.redirect('commitment-eps-met')
+  } else if(req.session.data['commitment-eps-check'] == 'No'){
+      res.redirect('check-your-answers')
+  } 
+});
 
 
 

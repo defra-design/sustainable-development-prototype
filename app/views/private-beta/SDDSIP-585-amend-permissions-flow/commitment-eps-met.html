@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Is the site subject to any commitment that affects other European Protected Species or other protected species?
+Has the commitment been met?
 {% endblock %}
 
 {% block beforeContent %}
@@ -14,13 +14,25 @@ Is the site subject to any commitment that affects other European Protected Spec
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       
-      <form class="form" action="commitment-eps-check" method="post">       
+      <form class="form" action="check-your-answers" method="post">       
+
+        
+
+        {% set commitmentHtml %}
+          {{ govukTextarea({
+            name: "commitment-met-detail",
+            id: "commitment-met-detail",
+            label: {
+              text: "When will it be complete?"
+            }
+          }) }}
+        {% endset -%}
 
         {{ govukRadios({
-            name: "commitment-eps-check",
+            name: "commitment-check",
             fieldset: {
               legend: {
-                text: "Is the site subject to any commitment that affects other European Protected Species or other protected species?",
+                text: "Has the commitment been met?",
                 isPageHeading: true,
                 classes: "govuk-fieldset__legend--xl"
               }
@@ -28,7 +40,10 @@ Is the site subject to any commitment that affects other European Protected Spec
             items: [
               {
                 value: "Yes",
-                text: "Yes"
+                text: "Yes",
+                conditional: {
+                  html: commitmentHtml
+                }
               },
               {
                 value: "No",
