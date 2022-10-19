@@ -253,9 +253,9 @@ router.post('/private-beta/SSDSIP-476-conservation-considerations/agreement-chec
 
 router.post('/private-beta/SDDSIP-585-amend-permissions-flow/permissions-check', (req, res) => {
   if(req.session.data['permissions-check'] == 'Yes'){
-      res.redirect('add-permission-start')
+      res.redirect('lpa')
   } else if(req.session.data['permissions-check'] == 'No'){
-      res.redirect('commitment')
+      res.redirect('commitment-subject')
   } 
 });
 
@@ -264,6 +264,22 @@ router.post('/private-beta/SDDSIP-585-amend-permissions-flow/add-another-permiss
       res.redirect('consent-type')
   } else if(req.session.data['add-another-permission-check'] == 'No'){
       res.redirect('redirect')
+  } 
+});
+
+router.post('/private-beta/SDDSIP-585-amend-permissions-flow/conditions-reserved-matters-check', (req, res) => {
+  if(req.session.data['conditions-reserved-matters-check'] == 'Yes'){
+      res.redirect('commitment-subject')
+  } else if(req.session.data['conditions-reserved-matters-check'] == 'No'){
+      res.redirect('which-not-completed')
+  } 
+});
+
+router.post('/private-beta/SDDSIP-585-amend-permissions-flow/commitment-check', (req, res) => {
+  if(req.session.data['commitment-check'] == 'Yes'){
+      res.redirect('commitment-met')
+  } else if(req.session.data['commitment-check'] == 'No'){
+      res.redirect('commitment-subject-eps')
   } 
 });
 

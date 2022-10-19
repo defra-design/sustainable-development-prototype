@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Is the site subject to any commitment that affects badgers?
+Is the site subject to any commitment that affects other European Protected Species or other protected species?
 {% endblock %}
 
 {% block beforeContent %}
@@ -14,13 +14,13 @@ Is the site subject to any commitment that affects badgers?
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       
-      <form class="form" action="commitment-check" method="post">       
+      <form class="form" action="lpa" method="post">       
 
         {{ govukRadios({
-            name: "commitment-check",
+            name: "commitment-eps-check",
             fieldset: {
               legend: {
-                text: "Is the site subject to any commitment that affects badgers?",
+                text: "Is the site subject to any commitment that affects other European Protected Species or other protected species?",
                 isPageHeading: true,
                 classes: "govuk-fieldset__legend--xl"
               }
