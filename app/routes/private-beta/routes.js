@@ -291,6 +291,22 @@ router.post('/private-beta/SDDSIP-585-amend-permissions-flow/commitment-eps-chec
   } 
 });
 
+router.post('/private-beta/SDDSIP-585-amend-permissions-flow/consent-remove-another-check', (req, res) => {
+  if(req.session.data['consent-remove-another-check'] == 'Yes'){
+      res.redirect('cya-consents')
+  } else if(req.session.data['consent-remove-another-check'] == 'No'){
+      res.redirect('cya-consents-another')
+  } 
+});
+
+
+router.post('/private-beta/SDDSIP-585-amend-permissions-flow/consent-remove-check', (req, res) => {
+  if(req.session.data['consent-remove-check'] == 'Yes'){
+      res.redirect('add-permission-start')
+  } else if(req.session.data['consent-remove-check'] == 'No'){
+      res.redirect('cya-consents')
+  } 
+});
 
 
 }

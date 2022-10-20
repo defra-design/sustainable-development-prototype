@@ -15,7 +15,7 @@ You have added 1 permission
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-xl">
-        You have added 1 permission
+        You have added 2 permissions
       </h1>
       
       {{ govukSummaryList({
@@ -48,12 +48,12 @@ You have added 1 permission
               text: data['consent-type-check-another']
             },
             value: {
-              html: "Reference:<br>" + data['reference']
+              html: "Reference:<br>" + data['reference-another']
             },
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "consent-remove-another",
                   text: "Remove",
                   visuallyHiddenText: data['consent-type-check-another']
                 },
