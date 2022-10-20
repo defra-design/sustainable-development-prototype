@@ -18,72 +18,60 @@ Check your answers
 
       <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Does the project need any permissions?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data['permissions-check'] }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="#">
+            Change<span class="govuk-visually-hidden"> does the project need any permissions?</span>
+          </a>
+        </dd>
+      </div>
+
+      {% if data['permissions-check'] == 'Yes' %}
+
+      
+        <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Which Local Planning Authority granted the consents for this development?
           </dt>
           <dd class="govuk-summary-list__value">
-            Leeds City Council
+            {{ data['which-lpa'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="#">
-              Change<span class="govuk-visually-hidden"> site name</span>
+              Change<span class="govuk-visually-hidden"> which Local Planning Authority granted the consents for this development?</span>
             </a>
           </dd>
         </div>
-
-      
-
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Does the project need any permissions?
-            </dt>
-            <dd class="govuk-summary-list__value">
-              Yes
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="#">
-                Change<span class="govuk-visually-hidden"> site address</span>
-              </a>
-            </dd>
-          </div>
-
         
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            {{ data['consent-type-check'] }}
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Reference:<br>
+            {{ data['reference'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">
+                  Remove<span class="govuk-visually-hidden"> permission</span>
+                  </a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> permission</span>
+                </a>
+              </li>
+            </ul>
+          </dd>
+        </div>
 
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Demolition consent
-          </dt>
-          <dd class="govuk-summary-list__value">
-            Reference:<br>
-            ABC123
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="#">
-              Change<span class="govuk-visually-hidden"> current site map</span>
-            </a>  
-            <a class="govuk-link" href="#">
-              Remove<span class="govuk-visually-hidden"> current site map</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Listed building consent
-          </dt>
-          <dd class="govuk-summary-list__value">
-            Reference:<br>
-            ABC246
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="#">
-              Change<span class="govuk-visually-hidden"> current site map</span>
-            </a>
-            <a class="govuk-link" href="#">
-              Remove<span class="govuk-visually-hidden"> current site map</span>
-            </a>
-          </dd>
-        </div>
-  
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Do you want to add another permission?
@@ -93,42 +81,114 @@ Check your answers
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="#">
-              Change<span class="govuk-visually-hidden"> sett grid reference</span>
+              Change<span class="govuk-visually-hidden"> do you want to add another permission?</span>
             </a>
           </dd>
         </div>
+
+
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Have all relevant conditions been completed?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['conditions-reserved-matters-check'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> have all relevant conditions been completed?</span>
+                  </a>
+                </dd>
+              </div>
+
+
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Which conditions have not been completed?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['which-conditions-not-completed'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> which conditions have not been completed?</span>
+                  </a>
+                </dd>
+              </div>
+
+
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Why have they not been completed?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['why-conditions-not-completed'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> why have they not been completed?</span>
+                  </a>
+                </dd>
+              </div>
+
+        {% endif %}
+  
+        
+        
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Have all conditions or reserved matters relating to wildlife species and habitat issues been discharged?
-
+            Is the site subject to any commitment that affects badgers?
           </dt>
           <dd class="govuk-summary-list__value">
-            Yes
+            {{ data['commitment-check'] }} 
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="#">
-              Change<span class="govuk-visually-hidden"> work start date</span>
+              Change<span class="govuk-visually-hidden"> is the site subject to any commitment that affects badgers?</span>
             </a>
           </dd>
         </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Is the site subject to any commitment that affects the protected species named in this application?
 
-          </dt>
-          <dd class="govuk-summary-list__value">
-            No
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="#">
-              Change<span class="govuk-visually-hidden"> work start date</span>
-            </a>
-          </dd>
-        </div>
+        {% if data['commitment-check'] == 'Yes' %}
+
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Has the commitment been met?
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['commitment-check'] }} 
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> has the commitment been met?</span>
+                </a>
+              </dd>
+            </div>
+
+        {% endif %}
+
+        {% if data['commitment-met-check'] == 'Yes' %}
+
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Describe how the commitment has been met
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['commitment-met-detail'] }} 
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> describe how the commitment has been met</span>
+                </a>
+              </dd>
+            </div>
+
+        {% endif %}
+
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Is the site subject to any commitment that affects other European Protected Species or other protected species? 
-
           </dt>
           <dd class="govuk-summary-list__value">
             Yes
