@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Has the commitment been met?
+Error: Has the commitment been met?
 {% endblock %}
 
 {% block beforeContent %}
@@ -13,6 +13,16 @@ Has the commitment been met?
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "You have not selected an option",
+            href: "#commitment-eps-met-check"
+          }
+        ]
+      }) }}
       
       <form class="form" action="check-your-answers" method="post">       
 
@@ -23,7 +33,7 @@ Has the commitment been met?
             name: "commitment-eps-met-detail",
             id: "commitment-eps-met-detail",
             label: {
-              text: "When will the commitment be complete?"
+              text: "When will it be complete?"
             }
           }) }}
         {% endset -%}
@@ -36,6 +46,9 @@ Has the commitment been met?
                 isPageHeading: true,
                 classes: "govuk-fieldset__legend--xl"
               }
+            },
+            errorMessage: {
+              text: "Select an option"
             },
             items: [
               {

@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-What is the {{ data['consent-type-check'] | lower }} reference?
+Error: What is the planning permission reference?
 {% endblock %}
 
 {% block beforeContent %}
@@ -13,6 +13,16 @@ What is the {{ data['consent-type-check'] | lower }} reference?
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "You have not entered a planning permission reference",
+            href: "#reference"
+          }
+        ]
+      }) }}
       
       <form class="form" action="cya-consents" method="post">
         {{ govukInput({
@@ -20,6 +30,9 @@ What is the {{ data['consent-type-check'] | lower }} reference?
             text: "What is the " + data['consent-type-check'] | lower + " reference?",
             classes: "govuk-label--xl",
             isPageHeading: true
+          },
+          errorMessage: {
+            text: "Enter a planning permission reference"
           },
           id: "reference",
           name: "reference"

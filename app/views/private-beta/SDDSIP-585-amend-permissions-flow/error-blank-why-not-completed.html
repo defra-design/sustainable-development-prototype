@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Why have the conditions not been completed?
+Error: Why have the conditions not been completed?
 {% endblock %}
 
 {% block beforeContent %}
@@ -13,12 +13,25 @@ Why have the conditions not been completed?
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "You have not entered why the conditions have not been completed",
+            href: "#why-conditions-not-completed"
+          }
+        ]
+      }) }}
       
       <form class="form" action="commitment-subject" method="post">
 
         {{ govukTextarea({
           name: "why-conditions-not-completed",
           id: "why-conditions-not-completed",
+          errorMessage: {
+            text: "Enter why the conditions have not been completed"
+          },
           label: {
             text: "Why have the conditions not been completed?",
             classes: "govuk-label--xl",

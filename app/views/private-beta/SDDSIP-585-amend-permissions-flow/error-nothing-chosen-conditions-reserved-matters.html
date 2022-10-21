@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Relevant consent conditions
+Error: Relevant consent conditions
 {% endblock %}
 
 {% block beforeContent %}
@@ -14,6 +14,16 @@ Relevant consent conditions
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "You have not selected an option",
+            href: "#conditions-reserved-matters-check"
+          }
+        ]
+      }) }}
+
       <form class="form" action="conditions-reserved-matters-check" method="post">       
 
         <h1 class="govuk-heading-xl">Relevant consent conditions</h1>
@@ -34,6 +44,9 @@ Relevant consent conditions
                 isPageHeading: true,
                 classes: "govuk-fieldset__legend--m"
               }
+            },
+            errorMessage: {
+              text: "Select an option"
             },
             hint: {
                 html: "Select one. "

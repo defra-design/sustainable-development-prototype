@@ -1,0 +1,97 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: Do you want to add another permission?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "You have not selected an option",
+            href: "#add-another-permission-check"
+          }
+        ]
+      }) }}
+
+
+      <h1 class="govuk-heading-xl">
+        You have added 1 permission
+      </h1>
+      
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: data['consent-type-check']
+            },
+            value: {
+              html: "Reference:<br>" + data['reference']
+            },
+            actions: {
+              items: [
+                {
+                  href: "consent-remove",
+                  text: "Remove",
+                  visuallyHiddenText: data['consent-type-check']
+                },
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: data['consent-type-check']
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+
+      <form class="form" action="add-another-permission-check" method="post">
+
+        {{ govukRadios({
+          idPrefix: "add-another-permission-check",
+          name: "add-another-permission-check",
+          fieldset: {
+            legend: {
+              text: "Do you want to add another permission?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          errorMessage: {
+            text: "Select an option"
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

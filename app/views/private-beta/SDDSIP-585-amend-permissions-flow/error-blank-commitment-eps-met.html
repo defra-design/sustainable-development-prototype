@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Has the commitment been met?
+Error: Has the commitment been met?
 {% endblock %}
 
 {% block beforeContent %}
@@ -13,6 +13,16 @@ Has the commitment been met?
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "You have not entered when the commitment will be complete",
+            href: "#commitment-eps-met-detail"
+          }
+        ]
+      }) }}
       
       <form class="form" action="check-your-answers" method="post">       
 
@@ -22,6 +32,9 @@ Has the commitment been met?
           {{ govukTextarea({
             name: "commitment-eps-met-detail",
             id: "commitment-eps-met-detail",
+            errorMessage: {
+              text: "Enter when the commitment will be complete"
+            },
             label: {
               text: "When will the commitment be complete?"
             }
@@ -41,6 +54,7 @@ Has the commitment been met?
               {
                 value: "Yes",
                 text: "Yes",
+                checked: true,
                 conditional: {
                   html: commitmentHtml
                 }
