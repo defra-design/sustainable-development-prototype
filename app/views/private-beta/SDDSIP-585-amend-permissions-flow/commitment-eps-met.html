@@ -20,8 +20,8 @@ Has the commitment been met?
 
         {% set commitmentHtml %}
           {{ govukTextarea({
-            name: "commitment-met-detail",
-            id: "commitment-met-detail",
+            name: "commitment-eps-met-detail",
+            id: "commitment-eps-met-detail",
             label: {
               text: "When will it be complete?"
             }
@@ -29,7 +29,7 @@ Has the commitment been met?
         {% endset -%}
 
         {{ govukRadios({
-            name: "commitment-check",
+            name: "commitment-eps-met-check",
             fieldset: {
               legend: {
                 text: "Has the commitment been met?",

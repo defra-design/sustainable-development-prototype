@@ -188,45 +188,58 @@ Check your answers
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Is the site subject to any commitment that affects other European Protected Species or other protected species? 
+            Is the site subject to any commitment that affects other European Protected Species or other protected species?
           </dt>
           <dd class="govuk-summary-list__value">
-            Yes
+            {{ data['commitment-eps-check'] }} 
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="#">
-              Change<span class="govuk-visually-hidden"> work start date</span>
+              Change<span class="govuk-visually-hidden"> is the site subject to any commitment that affects other European Protected Species or other protected species?</span>
             </a>
           </dd>
         </div>
+
+
+
+
+        {% if data['commitment-eps-check'] == 'Yes' %}
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Has the commitment been met?
-
           </dt>
           <dd class="govuk-summary-list__value">
-            No
+            {{ data['commitment-eps-met-check'] }}  
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="#">
-              Change<span class="govuk-visually-hidden"> work start date</span>
+              Change<span class="govuk-visually-hidden"> has the commitment been met?</span>
             </a>
           </dd>
         </div>
+
+        {% endif %}
+
+
+        {% if data['commitment-eps-met-check'] == 'Yes' %}
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            When will it be complete
-
+            When will it be complete?
           </dt>
           <dd class="govuk-summary-list__value">
-            December 
+            {{ data['commitment-eps-met-detail'] }}   
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="#">
-              Change<span class="govuk-visually-hidden"> work start date</span>
+              Change<span class="govuk-visually-hidden"> when will it be complete?</span>
             </a>
           </dd>
         </div>
+
+        {% endif %}
+
       </dl>
 
 
