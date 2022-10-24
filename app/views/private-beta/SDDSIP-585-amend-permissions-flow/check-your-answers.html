@@ -74,6 +74,30 @@ Check your answers
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
+            {{ data['consent-type-check-another'] }}
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Reference:<br>
+            {{ data['reference-another'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">
+                  Remove<span class="govuk-visually-hidden"> permission</span>
+                  </a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> permission</span>
+                </a>
+              </li>
+            </ul>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
             Do you want to add another permission?
           </dt>
           <dd class="govuk-summary-list__value">
