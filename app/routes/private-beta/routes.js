@@ -213,7 +213,7 @@ router.post('/private-beta/SDDSIP-566-application-category/paying-for-your-licen
   if(req.session.data['sites-check'] == 'Yes'){
       res.redirect('reason')
   } else if(req.session.data['sites-check'] == 'No'){
-      res.redirect('category')
+      res.redirect('check-your-answers')
   } 
 });
 
