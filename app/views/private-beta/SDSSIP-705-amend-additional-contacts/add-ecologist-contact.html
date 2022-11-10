@@ -1,0 +1,55 @@
+{% extends "layout-pb.html" %}
+
+
+{% block pageTitle %} 
+Do you want to add an alternative ecologist contact?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form class="form" action="add-ecologist-contact-check" method="post">
+        {{ govukRadios({
+          idPrefix: "add-ecologist-contact-check",
+          name: "add-ecologist-contact-check",
+          fieldset: {
+            legend: {
+              text: "Do you want to add an alternative ecologist contact?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "This alternative contact must be someone who is authorised to deal with this application on behalf of the lead ecologist."
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              text: "No, Andy Jones is the only ecologist contact for this application"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

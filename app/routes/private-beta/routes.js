@@ -309,4 +309,23 @@ router.post('/private-beta/SDDSIP-585-amend-permissions-flow/consent-remove-chec
 });
 
 
+router.post('/private-beta/SDSSIP-705-amend-additional-contacts/add-contact', (req, res) => {
+  if(req.session.data['add-contact-check'] == 'Yes'){
+      res.redirect('name')
+  } else if(req.session.data['add-contact-check'] == 'No'){
+      res.redirect('add-ecologist-contact')
+  } 
+});
+
+
+router.post('/private-beta/SDSSIP-705-amend-additional-contacts/add-ecologist-contact-check', (req, res) => {
+  if(req.session.data['add-ecologist-contact-check'] == 'Yes'){
+      res.redirect('ecologist-name')
+  } else if(req.session.data['add-ecologist-contact-check'] == 'No'){
+      res.redirect('check-your-answers')
+  } 
+});
+
+
+
 }

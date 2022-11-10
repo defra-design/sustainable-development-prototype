@@ -1,0 +1,56 @@
+{% extends "layout-pb.html" %}
+
+
+
+{% block pageTitle %} 
+Who should we contact with questions about this application?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form class="form" action="who-to-contact" method="post">
+        {{ govukRadios({
+          idPrefix: "who-to-contact-check",
+          name: "who-to-contact-check",
+          fieldset: {
+            legend: {
+              text: "Who should we contact with questions about this application?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "you",
+              text: "You",
+              hint: {
+                text: "You are currently signed is as Dave Smith"
+              }
+            },
+            {
+              value: "Someone else",
+              text: "Someone else"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

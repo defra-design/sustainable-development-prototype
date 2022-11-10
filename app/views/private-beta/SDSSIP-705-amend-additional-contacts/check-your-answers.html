@@ -1,0 +1,127 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Check your answers
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">
+        Check your answers
+      </h1>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Do you want to add an alternative contact?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['add-contact-check'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> do you want to add an alternative contact?</span>
+            </a>
+          </dd>
+        </div>
+
+        {% if data['add-contact-check'] == 'Yes' %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Alternative contact name
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['additional-name'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> alternative contact name</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Alternative contact email address
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['additional-email-address'] }} 
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> alternative contact email address</span>
+              </a>
+            </dd>
+          </div>
+        {% endif %}
+
+
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Do you want to add an alternative ecologist contact?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['add-ecologist-contact-check'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> do you want to add an alternative ecologist contact?</span>
+            </a>
+          </dd>
+        </div>
+
+        {% if data['add-ecologist-contact-check'] == 'Yes' %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Alternative ecologist contact name
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['additional-ecologist-name'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> alternative ecologist contact name</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Alternative ecologist contact email address
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['additional-ecologist-email-address'] }} 
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> alternative ecologist contact email address</span>
+              </a>
+            </dd>
+          </div>
+        {% endif %}
+
+      </dl>
+
+
+
+
+
+
+        {{ govukButton({
+          text: "Continue",
+          href: "task-list-complete"
+        }) }}
+
+
+
+    </div>
+  </div>
+
+{% endblock %}

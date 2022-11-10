@@ -1,0 +1,99 @@
+{% extends "layout-pb-no-service-name.html" %}
+
+{% block pageTitle %} 
+SDDSIP 705 | Amend additional contacts flow
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <span class="govuk-caption-l">SDDSIP 705</span>
+      <h1 class="govuk-heading-l">Amend additional contacts flow</h1> 
+
+      <div class="govuk-!-margin-bottom-9">
+        <strong class="govuk-tag govuk-tag--green" >
+          In Progress
+        </strong>
+      </div>
+
+      {{ govukButton({
+        text: "View full flow",
+        href: "task-list"
+      }) }}
+      
+      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+      <h2 class="govuk-heading-m">Full page list and error states</h2>
+
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Page</th>
+            <th scope="col" class="govuk-table__header">Link</th>
+            <th scope="col" class="govuk-table__header">Error states</th>
+            </tr>
+        </thead>
+        <tbody class="govuk-table__body">    
+            <tr class="govuk-table__row">
+                <th class="govuk-table__cell">Task list</th>
+                <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="task-list">task-list</a></td>
+                <td class="govuk-table__cell"></td>
+            </tr>
+
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">Who to contact</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="who-to-contact">who-to-contact</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-who-to-contact">If nothing chosen</a></td>
+            </tr>
+
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">Additional contact name</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="name">name</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-blank-name">If blank</a></td>
+            </tr>
+
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">Additional contact email address</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="email-address">email-address</a></td>
+              <td class="govuk-table__cell">
+                <a class="govuk-link govuk-link--no-visited-state" href="error-blank-email-address">If blank</a><br>
+                <a class="govuk-link govuk-link--no-visited-state" href="error-format-email-address">If wrong format</a>
+              </td>
+            </tr>
+
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">Additional contact ecologist check</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="ecologist">ecologist</a></td>
+              <td class="govuk-table__cell">
+                
+              </td>
+            </tr>
+
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">Additional contact check your answers</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="check-your-answers">check-your-answers</a></td>
+              <td class="govuk-table__cell"></td>
+            </tr>
+
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">Task list - completed task</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="task-list-complete">task-list-complete</a></td>
+              <td class="govuk-table__cell"> </td>
+          </tr>
+
+
+         
+
+
+          </tbody>
+        </table>
+    
+    </div>
+  </div>
+
+{% endblock %}
