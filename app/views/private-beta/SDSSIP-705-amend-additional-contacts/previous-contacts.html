@@ -1,0 +1,65 @@
+{% extends "layout-pb.html" %}
+
+
+{% block pageTitle %} 
+Which of your previous contacts do you want to use?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form class="form" action="previous-contacts-check" method="post">
+        {{ govukRadios({
+          idPrefix: "previous-contacts-check",
+          name: "previous-contacts-check",
+          fieldset: {
+            legend: {
+              text: "Which of your previous contacts do you want to use?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Dave Smith",
+              text: "Dave Smith",
+              hint: {
+                text: "d.smith@abcdevelopments.co.uk"
+              }
+            },
+            {
+                value: "Sally Hughes",
+                text: "Sally Hughes",
+                hint: {
+                  text: "s.hughes@abcdevelopments.co.uk"
+                }
+            },
+            {
+                divider: "or"
+            },
+            {
+                value: "I want to add someone else",
+                text: "I want to add someone else"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

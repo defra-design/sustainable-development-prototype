@@ -1,0 +1,65 @@
+{% extends "layout-pb.html" %}
+
+
+{% block pageTitle %} 
+Which of your previous ecologist contacts do you want to use?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form class="form" action="previous-ecologist-contacts-check" method="post">
+        {{ govukRadios({
+          idPrefix: "previous-ecologist-contacts-check",
+          name: "previous-ecologist-contacts-check",
+          fieldset: {
+            legend: {
+              text: "Which of your previous ecologist contacts do you want to use?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Richard Henderson",
+              text: "Richard Henderson",
+              hint: {
+                text: "richard.henderson@ecolcom.co.uk"
+              }
+            },
+            {
+                value: "Amy Jones",
+                text: "Amy Jones",
+                hint: {
+                    text: "amy.jones@ecolcom.co.uk"
+                }
+            },
+            {
+                divider: "or"
+            },
+            {
+                value: "I want to add someone else",
+                text: "I want to add someone else"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

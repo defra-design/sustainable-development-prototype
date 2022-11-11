@@ -34,6 +34,22 @@ Check your answers
         </div>
 
         {% if data['add-contact-check'] == 'Yes' %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Which of your previous contacts do you want to use?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['previous-contacts-check'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> which of your previous contacts do you want to use?</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+
+        {% if data['previous-contacts-check'] == 'I want to add someone else' %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Alternative contact name
@@ -64,6 +80,8 @@ Check your answers
 
 
 
+
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Do you want to add an alternative ecologist contact?
@@ -79,6 +97,22 @@ Check your answers
         </div>
 
         {% if data['add-ecologist-contact-check'] == 'Yes' %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Which of your previous ecologist contacts do you want to use?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['previous-ecologist-contacts-check'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> which of your previous ecologist contacts do you want to use?</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+
+        {% if data['previous-ecologist-contacts-check'] == 'I want to add someone else' %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Alternative ecologist contact name
