@@ -1,0 +1,72 @@
+{% extends "layout-pb.html" %}
+
+
+{% block pageTitle %} 
+Error: Do you want to add an alternative contact?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not selected an option",
+                href: "#add-contact-check"
+              }
+            ]
+          }) }}
+
+      <form class="form" action="add-contact" method="post">
+        {{ govukRadios({
+          idPrefix: "add-contact-check",
+          name: "add-contact-check",
+          fieldset: {
+            legend: {
+              text: "Do you want to add an alternative contact?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "This alternative contact must be someone who is authorised to deal with this application on behalf of the intended licence-holder."
+          },
+          errorMessage: {
+            text: "Select an option"
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              text: "No, I am the only contact for this application",
+              hint: {
+                text: "You are currently signed is as Dave Smith"
+              }
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}
