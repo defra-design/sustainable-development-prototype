@@ -1,0 +1,69 @@
+{% extends "layout-pb-no-service-name.html" %}
+
+{% block pageTitle %} 
+SDDSIP 704 | Error pages
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <span class="govuk-caption-l">SDDSIP 704</span>
+      <h1 class="govuk-heading-l">Error pages</h1> 
+
+      <div class="govuk-!-margin-bottom-9">
+        <strong class="govuk-tag govuk-tag--green" >
+          In Progress
+        </strong>
+      </div>
+
+
+      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+      <h2 class="govuk-heading-m">Full page list</h2>
+
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Page</th>
+            <th scope="col" class="govuk-table__header">Link</th>
+            <th scope="col" class="govuk-table__header"> </th>
+            </tr>
+        </thead>
+        <tbody class="govuk-table__body">    
+            
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">Page not found</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="page-not-found">page-not-found</a></td>
+              <td class="govuk-table__cell"> </td>
+            </tr>
+
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">There is a problem with the service</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="problem-with-service">problem-with-service</a></td>
+              <td class="govuk-table__cell"> </td>
+            </tr>
+
+            
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">Service unavailable</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="service-unavailable">service-unavailable</a></td>
+              <td class="govuk-table__cell"></td>
+            </tr>
+
+
+
+         
+
+
+          </tbody>
+        </table>
+    
+    </div>
+  </div>
+
+{% endblock %}

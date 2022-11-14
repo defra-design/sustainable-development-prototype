@@ -1,0 +1,27 @@
+{% extends "layout-pb-signed-out.html" %}
+
+{% block pageTitle %} 
+Sorry, the service is unavailable
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">Sorry, the service is unavailable</h1>
+        <p class="govuk-body">
+          You will be able to use the service from 9am on Monday 19&nbsp;November&nbsp;2018.
+        </p>
+        <p class="govuk-body">
+            <a href="#" class="govuk-link">Contact Natural England</a> if you need to speak to someone about your application.
+          </p>
+        
+	</div>
+</div>
+
+{% endblock %}
