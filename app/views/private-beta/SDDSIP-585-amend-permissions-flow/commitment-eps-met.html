@@ -16,11 +16,19 @@ Has the commitment been met?
       
       <form class="form" action="check-your-answers" method="post">       
 
-        
-
         {% set commitmentHtml %}
           {{ govukTextarea({
             name: "commitment-eps-met-detail",
+            id: "commitment-eps-met-detail",
+            label: {
+              text: "Describe how the commitment has been met"
+            }
+          }) }}
+        {% endset -%}
+
+        {% set commitmentNotMetHtml %}
+          {{ govukTextarea({
+            name: "commitment-eps-not-met-detail",
             id: "commitment-eps-met-detail",
             label: {
               text: "When will the commitment be complete?"
@@ -40,13 +48,16 @@ Has the commitment been met?
             items: [
               {
                 value: "Yes",
-                text: "Yes"
+                text: "Yes",
+                conditional: {
+                  html: commitmentHtml
+                }
               },
               {
                 value: "No",
                 text: "No",
                 conditional: {
-                  html: commitmentHtml
+                  html: commitmentNotMetHtml
                 }
               }
             ]
