@@ -210,16 +210,35 @@ Check your answers
         {% endif %}
 
 
+        {% if data['commitment-met-check'] == 'No' %}
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              When will the commitment be complete?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['commitment-not-met-detail'] }} 
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> when will the commitment be complete?</span>
+              </a>
+            </dd>
+          </div>
+
+        {% endif %}
+
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Is the site subject to any commitment that affects other European Protected Species or other protected species?
+            Are there other protected species covered by commitments on the site?
           </dt>
           <dd class="govuk-summary-list__value">
             {{ data['commitment-eps-check'] }} 
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="#">
-              Change<span class="govuk-visually-hidden"> is the site subject to any commitment that affects other European Protected Species or other protected species?</span>
+              Change<span class="govuk-visually-hidden"> are there other protected species covered by commitments on the site??</span>
             </a>
           </dd>
         </div>
@@ -231,14 +250,14 @@ Check your answers
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Has the commitment been met?
+            Have the commitments been met?
           </dt>
           <dd class="govuk-summary-list__value">
             {{ data['commitment-eps-met-check'] }}  
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="#">
-              Change<span class="govuk-visually-hidden"> has the commitment been met?</span>
+              Change<span class="govuk-visually-hidden"> have the commitments been met?</span>
             </a>
           </dd>
         </div>
@@ -250,14 +269,33 @@ Check your answers
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            When will it be complete?
+            Describe how the commitments have been met
           </dt>
           <dd class="govuk-summary-list__value">
             {{ data['commitment-eps-met-detail'] }}   
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="#">
-              Change<span class="govuk-visually-hidden"> when will it be complete?</span>
+              Change<span class="govuk-visually-hidden"> describe how the commitments have been met?</span>
+            </a>
+          </dd>
+        </div>
+
+        {% endif %}
+
+
+        {% if data['commitment-eps-met-check'] == 'No' %}
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            When will the commitments be complete?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['commitment-eps-not-met-detail'] }}   
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> when will the commitments be complete?</span>
             </a>
           </dd>
         </div>
