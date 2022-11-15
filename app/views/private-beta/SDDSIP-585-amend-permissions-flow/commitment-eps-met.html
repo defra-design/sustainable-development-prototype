@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Has the commitment been met?
+Have the commitments been met?
 {% endblock %}
 
 {% block beforeContent %}
@@ -21,7 +21,7 @@ Has the commitment been met?
             name: "commitment-eps-met-detail",
             id: "commitment-eps-met-detail",
             label: {
-              text: "Describe how the commitment has been met"
+              text: "Describe how the commitments have been met"
             }
           }) }}
         {% endset -%}
@@ -29,9 +29,9 @@ Has the commitment been met?
         {% set commitmentNotMetHtml %}
           {{ govukTextarea({
             name: "commitment-eps-not-met-detail",
-            id: "commitment-eps-met-detail",
+            id: "commitment-eps-not-met-detail",
             label: {
-              text: "When will the commitment be complete?"
+              text: "When will the commitments be complete?"
             }
           }) }}
         {% endset -%}
@@ -40,7 +40,7 @@ Has the commitment been met?
             name: "commitment-eps-met-check",
             fieldset: {
               legend: {
-                text: "Has the commitment been met?",
+                text: "Have the commitments been met?",
                 isPageHeading: true,
                 classes: "govuk-fieldset__legend--l"
               }

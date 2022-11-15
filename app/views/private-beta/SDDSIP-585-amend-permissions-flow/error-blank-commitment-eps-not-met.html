@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Error: Has the commitment been met?
+Error: Have the commitments been met?
 {% endblock %}
 
 {% block beforeContent %}
@@ -18,7 +18,7 @@ Error: Has the commitment been met?
         titleText: "There is a problem",
         errorList: [
           {
-            text: "You have not described how the commitment has been met",
+            text: "You have not entered when the commitments will be complete",
             href: "#commitment-eps-not-met-detail"
           }
         ]
@@ -27,36 +27,36 @@ Error: Has the commitment been met?
       <form class="form" action="check-your-answers" method="post">  
         
         
-        {% set commitmentNotMetHtml %}
-          {{ govukTextarea({
-            name: "commitment-eps-not-met-detail",
-            id: "commitment-eps-not-met-detail",
-            errorMessage: {
-                text: "Describe how the commitment has been met"
-              },
-            label: {
-              text: "Describe how the commitment has been met"
-            }
-          }) }}
-        {% endset -%}
-
-        
-
         {% set commitmentHtml %}
           {{ govukTextarea({
             name: "commitment-eps-met-detail",
             id: "commitment-eps-met-detail",
             label: {
-              text: "When will the commitment be complete?"
+              text: "Describe how the commitments have been met"
             }
           }) }}
         {% endset -%}
 
-        {{ govukRadios({
+        {% set commitmentNotMetHtml %}
+          {{ govukTextarea({
+            name: "commitment-eps-not-met-detail",
+            id: "commitment-eps-not-met-detail",
+            errorMessage: {
+              text: "Enter when the commitments will be complete"
+            },
+            label: {
+              text: "When will the commitments be complete?"
+            }
+          }) }}
+        {% endset -%}
+
+
+
+          {{ govukRadios({
             name: "commitment-eps-met-check",
             fieldset: {
               legend: {
-                text: "Has the commitment been met?",
+                text: "Have the commitments been met?",
                 isPageHeading: true,
                 classes: "govuk-fieldset__legend--l"
               }
@@ -65,17 +65,22 @@ Error: Has the commitment been met?
               {
                 value: "Yes",
                 text: "Yes",
-                checked: true,
                 conditional: {
-                  html: commitmentNotMetHtml
+                  html: commitmentHtml
                 }
               },
               {
                 value: "No",
-                text: "No"
+                text: "No",
+                checked: true,
+                conditional: {
+                  html: commitmentNotMetHtml
+                }
               }
             ]
           }) }}
+
+
         
           {{ govukButton({
             text: "Continue"

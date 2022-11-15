@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Error: Has the commitment been met?
+Error: Have the commitments been met?
 {% endblock %}
 
 {% block beforeContent %}
@@ -33,16 +33,27 @@ Error: Has the commitment been met?
             name: "commitment-eps-met-detail",
             id: "commitment-eps-met-detail",
             label: {
-              text: "When will it be complete?"
+              text: "Describe how the commitments have been met"
             }
           }) }}
         {% endset -%}
+
+        {% set commitmentNotMetHtml %}
+          {{ govukTextarea({
+            name: "commitment-eps-not-met-detail",
+            id: "commitment-eps-not-met-detail",
+            label: {
+              text: "When will the commitments be complete?"
+            }
+          }) }}
+        {% endset -%}
+
 
         {{ govukRadios({
             name: "commitment-eps-met-check",
             fieldset: {
               legend: {
-                text: "Has the commitment been met?",
+                text: "Have the commitments been met?",
                 isPageHeading: true,
                 classes: "govuk-fieldset__legend--l"
               }
@@ -53,13 +64,16 @@ Error: Has the commitment been met?
             items: [
               {
                 value: "Yes",
-                text: "Yes"
+                text: "Yes",
+                conditional: {
+                  html: commitmentHtml
+                }
               },
               {
                 value: "No",
                 text: "No",
                 conditional: {
-                  html: commitmentHtml
+                  html: commitmentNotMetHtml
                 }
               }
             ]
