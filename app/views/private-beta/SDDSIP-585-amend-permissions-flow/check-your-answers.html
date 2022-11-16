@@ -124,7 +124,12 @@ Check your answers
                   </a>
                 </dd>
               </div>
+        {% endif %}
 
+
+
+
+              {% if data['conditions-reserved-matters-check'] == 'No' %}
 
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
@@ -155,8 +160,8 @@ Check your answers
                 </dd>
               </div>
 
-        {% endif %}
-  
+        
+              {% endif %}   
         
         
         <div class="govuk-summary-list__row">
