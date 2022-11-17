@@ -1,0 +1,52 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Check your answers
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">Check your answers</h1>
+
+  
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Will the activity take place on or within 50m of any of the following designated sites?
+          </dt>
+          <dd class="govuk-summary-list__value">
+
+            {% for site in data['designated-sites'] %}
+              <p>{{ site }}</p>
+            {% endfor %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="add-person">
+              Change<span class="govuk-visually-hidden"> will the activity take place on or within 50m of any of the following designated sites?</span>
+            </a>
+          </dd>
+        </div>
+        
+      </dl>
+
+
+     
+
+        {{ govukButton({
+          text: "Continue",
+          href: "task-list-complete"
+        }) }}
+
+
+    </div>
+  </div>
+
+{% endblock %}

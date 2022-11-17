@@ -11,11 +11,17 @@ What is the name of the designated site?
 
 {% block content %}
 
-  {% if data['designated-sites'] == 'None' %}
+  <!--{% if data['designated-sites'] == 'None' %}
     <script>
         window.location.href = 'development-continue'
     </script>
-  {% endif %}
+  {% endif %}-->
+
+  {% if data['designated-sites'] == 'None of these' %}
+  <script>
+      window.location.href = 'check-your-answers-none'
+  </script>
+{% endif %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
