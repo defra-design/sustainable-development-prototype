@@ -1,0 +1,66 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+  Will the activity take place on or within 50m of any of the following designated sites?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <form class="form" action="on-or-within" method="post">       
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-fieldset__heading">
+                Will the activity take place on or within 50m of any of the following designated sites?
+              </h1>
+            </legend>
+            <ul class="govuk-list govuk-list--bullet">
+              <li>National Nature Reserve</li>
+              <li>Site of Special Scientific Interest</li>
+              <li>Special Protection Area</li>
+              <li>Special Area of Conservation</li>
+              <li>Ramsar Site</li>
+              <li>Ancient monument</li>
+              <li>Marine Protection Area</li>
+              <li>Area of Outstanding Natural Beauty</li>
+            </ul>
+            <div class="govuk-radios" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="on-or-within-designated-site" name="on-or-within-designated-site" type="radio" value="Yes">
+                <label class="govuk-label govuk-radios__label" for="on-or-within-designated-site">
+                  Yes
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="on-or-within-designated-site-2" name="on-or-within-designated-site" type="radio" value="No">
+                <label class="govuk-label govuk-radios__label" for="on-or-within-designated-site-2">
+                  No
+                </label>
+              </div>
+            </div>
+        
+          </fieldset>
+        </div>
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

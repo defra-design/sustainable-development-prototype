@@ -22,13 +22,14 @@ SDDSIP 476 | Conservation considerations
       </div>
 
 
-      <h2 class="govuk-heading-m ">Full page list and error states</h2>
+      <h2 class="govuk-heading-m ">Full page list and error states - v2</h2>
 
       {{ govukButton({
-        text: "View v1 full flow",
-        href: "task-list"
+        text: "View v2 full flow",
+        href: "v2/task-list"
       }) }}
 
+      
       <table class="govuk-table">
         <thead class="govuk-table__head">
             <tr class="govuk-table__row">
@@ -40,12 +41,12 @@ SDDSIP 476 | Conservation considerations
         <tbody class="govuk-table__body">    
             <tr class="govuk-table__row">
                 <th class="govuk-table__cell">Task list</th>
-                <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="task-list">task-list</a></td>
+                <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/task-list">task-list</a></td>
                 <td class="govuk-table__cell"></td>
             </tr>
             <tr class="govuk-table__row">
               <th class="govuk-table__cell">On or within designated site</th>
-              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="on-or-within">on-or-within</a></td>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/on-or-within">on-or-within</a></td>
               <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-on-or-within">If nothing chosen</a></td>
             </tr>
             <tr class="govuk-table__row">
@@ -128,6 +129,131 @@ SDDSIP 476 | Conservation considerations
         </table>
 
         <p>GDS Accessible Autocomplete - <a href="https://github.com/alphagov/accessible-autocomplete">https://github.com/alphagov/accessible-autocomplete</a></p>
+
+
+    
+
+
+
+
+
+
+        <details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              Full page list and error states - v1
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+            
+            <h2 class="govuk-heading-m ">Full page list and error states - v1</h2>
+
+            {{ govukButton({
+              text: "View v1 full flow",
+              href: "task-list"
+            }) }}
+
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                  <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header">Page</th>
+                  <th scope="col" class="govuk-table__header">Link</th>
+                  <th scope="col" class="govuk-table__header">Error states</th>
+                  </tr>
+              </thead>
+              <tbody class="govuk-table__body">    
+                  <tr class="govuk-table__row">
+                      <th class="govuk-table__cell">Task list</th>
+                      <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="task-list">task-list</a></td>
+                      <td class="govuk-table__cell"></td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">On or within designated site</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="on-or-within">on-or-within</a></td>
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-on-or-within">If nothing chosen</a></td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Name of designated site - Autocomplete</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="designated-site-name">designated-site-name</a></td>
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-designated-site-name">If nothing chosen</a></td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Will activity take place on designated site</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="activity-on-site">activity-on-site</a></td>
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-activity-on-site">If nothing chosen</a></td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Permission from the designated site's manager</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="permission">permission</a></td>
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-permission">If nothing chosen</a></td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">No permission - dropout - !!content/path required!!</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="permission-no">permission-no</a></td>
+                    <td class="govuk-table__cell"></td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Advice from Natural England or the designated site manager</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="advice">advice</a></td>
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-advice">If nothing chosen</a></td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Describe outcome of advice</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="outcome">outcome</a></td>
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-blank-outcome">If blank</a></td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Why did you not get advice?</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="advice-no">advice-no</a></td>
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-blank-advice-no">If blank</a></td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Will the development activity continue</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="development-continue">development-continue</a></td>
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-development-continue">If blank</a></td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">How many years</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="how-many-years">how-many-years</a></td>
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-blank-how-many-years">If blank</a></td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Is activity part of a wider project</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="wider-project">wider-project</a></td>
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-wider-project">If nothing chosen</a></td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Is activity contributing to local biodiversity action plan</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="biodiversity-plan">biodiversity-plan</a></td>
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-biodiversity-plan">If nothing chosen</a></td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Is location covered by agri-environment agreement</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="agreement">agreement</a></td>
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-agreement">If nothing chosen</a></td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Reference number of the agri-environment agreement</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="reference">reference</a></td>
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-blank-reference">If blank</a></td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Check your answers</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="check-your-answers">check-your-answers</a></td>
+                    <td class="govuk-table__cell">
+                    </td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Task list - completed task</th>
+                    <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="task-list-complete">task-list-complete</a></td>
+                    <td class="govuk-table__cell"></td>
+                </tr>
+                </tbody>
+              </table>
+
+              <p>GDS Accessible Autocomplete - <a href="https://github.com/alphagov/accessible-autocomplete">https://github.com/alphagov/accessible-autocomplete</a></p>
+          </div>
+        </details>
     
     </div>
   </div>

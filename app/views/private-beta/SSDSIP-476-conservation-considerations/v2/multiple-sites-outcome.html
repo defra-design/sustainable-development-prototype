@@ -1,0 +1,72 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Advice about the activity
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <form class="form" action="multiple-sites-review-add-another" method="post">       
+
+        <!--{{ govukTextarea({
+            name: "advice-outcome",
+            id: "advice-outcome",
+            label: {
+              text: "Describe the outcome of this advice, including who you received advice from",
+              classes: "govuk-label--xl",
+              isPageHeading: true
+            }
+          }) }}
+
+          {{ govukButton({
+            text: "Continue"
+          }) }}-->
+
+
+          <h1 class="govuk-heading-l">Advice about the activity</h1>
+
+
+        {{ govukInput({
+          label: {
+            text: "Who did you receive the advice from?",
+            classes: "govuk-label--m"
+          },
+          hint: {
+            text: "Enter the full name"
+          },
+          id: "advice-giver",
+          name: "advice-giver"
+        }) }}
+
+        {{ govukTextarea({
+          name: "advice-given",
+          id: "advice-given",
+          label: {
+            text: "Describe the outcome of the advice",
+            classes: "govuk-label--m"
+          }
+        }) }}
+
+        
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

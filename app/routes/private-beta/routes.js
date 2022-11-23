@@ -197,7 +197,7 @@ router.post('/private-beta/SDDSIP-214-site-map-upload/site-postcode-check', (req
   if(req.session.data['site-postcode-check'] == 'yes'){
       res.redirect('select-address')
   } else if(req.session.data['site-postcode-check'] == 'no'){
-      res.redirect('upload-map')
+      res.redirect('site-address-no-postcode')
   } 
 });
 
@@ -345,6 +345,41 @@ router.post('/private-beta/SDSSIP-705-amend-additional-contacts/previous-ecologi
   } else if(req.session.data['previous-ecologist-contacts-check'] == 'Amy Jones'){
       res.redirect('check-your-answers')
   }  
+});
+
+
+router.post('/private-beta/SSDSIP-476-conservation-considerations/v2/on-or-within', (req, res) => {
+  if(req.session.data['on-or-within-designated-site'] == 'Yes'){
+      res.redirect('more-than-one-site')
+  } else if(req.session.data['on-or-within-designated-site'] == 'No'){
+      res.redirect('check-your-answers-none')
+  } 
+});
+
+
+router.post('/private-beta/SSDSIP-476-conservation-considerations/v2/more-than-one-site-check', (req, res) => {
+  if(req.session.data['more-than-one-site-check'] == 'Yes'){
+      res.redirect('multiple-sites-start')
+  } else if(req.session.data['more-than-one-site-check'] == 'No'){
+      res.redirect('designated-site-name')
+  } 
+});
+
+router.post('/private-beta/SSDSIP-476-conservation-considerations/v2/mutiple-sites-permission-check', (req, res) => {
+  if(req.session.data['mutiple-sites-permission-check'] == 'Yes'){
+      res.redirect('multiple-sites-advice')
+  } else if(req.session.data['mutiple-sites-permission-check'] == 'No'){
+      res.redirect('multiple-sites-permission-no')
+  } 
+});
+
+
+router.post('/private-beta/SSDSIP-476-conservation-considerations/v2/multiple-sites-advice-check', (req, res) => {
+  if(req.session.data['multiple-sites-advice-check'] == 'Yes'){
+      res.redirect('multiple-sites-outcome')
+  } else if(req.session.data['multiple-sites-advice-check'] == 'No'){
+      res.redirect('multiple-sites-advice-no')
+  } 
 });
 
 
