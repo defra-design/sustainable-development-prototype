@@ -118,13 +118,13 @@ Designated sites
             </div>
         {% endif %}
 
-        {% if data['advice-check'] == 'No' %}
+        {% if data['multiple-sites-advice-check'] == 'No' %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Why did you not get advice from Natural England or a designated site manager?
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['why-no-advice'] }}
+              {{ data['multiple-sites-why-no-advice'] }}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="add-person">
@@ -224,13 +224,13 @@ Designated sites
             </div>
         {% endif %}
 
-        {% if data['advice-check'] == 'No' %}
+        {% if data['multiple-sites-another-advice-check'] == 'No' %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Why did you not get advice from Natural England or a designated site manager?
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['why-no-advice'] }}
+              {{ data['multiple-sites-another-why-no-advice'] }}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="add-person">
