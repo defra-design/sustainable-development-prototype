@@ -11,6 +11,12 @@ Check your answers
 
 {% block content %}
 
+{% if data['more-than-one-site-check'] == 'Yes' %}
+  <script>
+      window.location.href = 'check-your-answers-multiple'
+  </script>
+{% endif %}
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
@@ -23,10 +29,7 @@ Check your answers
             Will the activity take place on or within 50m of any of the following designated sites?
           </dt>
           <dd class="govuk-summary-list__value">
-
-            {% for site in data['designated-sites'] %}
-              <p>{{ site }}</p>
-            {% endfor %}
+            {{ data['on-or-within-designated-site'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="add-person">
@@ -34,6 +37,21 @@ Check your answers
             </a>
           </dd>
         </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Will the activity take place on or within 50m of more than one designated site?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['more-than-one-site-check'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="add-person">
+              Change<span class="govuk-visually-hidden"> will the activity take place on or within 50m of more than one designated site?</span>
+            </a>
+          </dd>
+        </div>
+        
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Name of the designated site

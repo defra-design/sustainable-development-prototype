@@ -360,7 +360,7 @@ router.post('/private-beta/SSDSIP-476-conservation-considerations/v2/on-or-withi
 router.post('/private-beta/SSDSIP-476-conservation-considerations/v2/more-than-one-site-check', (req, res) => {
   if(req.session.data['more-than-one-site-check'] == 'Yes'){
       res.redirect('multiple-sites-start')
-  } else if(req.session.data['more-than-one-site-check'] == 'No'){
+  } else if(req.session.data['more-than-one-site-check'] == 'No, it will only take place on or within 50m of one designated site'){
       res.redirect('designated-site-name')
   } 
 });
@@ -417,5 +417,37 @@ router.post('/private-beta/SSDSIP-476-conservation-considerations/v2/multiple-si
   } 
 });
 
+router.post('/private-beta/SSDSIP-476-conservation-considerations/v2/permission-check', (req, res) => {
+  if(req.session.data['permission-check'] == 'Yes'){
+      res.redirect('advice')
+  } else if(req.session.data['permission-check'] == 'No'){
+      res.redirect('permission-no')
+  } 
+});
+
+router.post('/private-beta/SSDSIP-476-conservation-considerations/v2/advice', (req, res) => {
+  if(req.session.data['advice-check'] == 'Yes'){
+      res.redirect('outcome')
+  } else if(req.session.data['advice-check'] == 'No'){
+      res.redirect('advice-no')
+  } 
+});
+
+
+router.post('/private-beta/SSDSIP-476-conservation-considerations/v2/development-continue-check', (req, res) => {
+  if(req.session.data['development-continue-check'] == 'Yes'){
+      res.redirect('how-many-years')
+  } else if(req.session.data['development-continue-check'] == 'No'){
+      res.redirect('wider-project')
+  } 
+});
+
+router.post('/private-beta/SSDSIP-476-conservation-considerations/v2/agreement-check', (req, res) => {
+  if(req.session.data['agreement-check'] == 'Yes'){
+      res.redirect('reference')
+  } else if(req.session.data['agreement-check'] == 'No'){
+      res.redirect('check-your-answers')
+  } 
+});
 
 }
