@@ -383,4 +383,39 @@ router.post('/private-beta/SSDSIP-476-conservation-considerations/v2/multiple-si
 });
 
 
+router.post('/private-beta/SSDSIP-476-conservation-considerations/v2/add-another-site-check', (req, res) => {
+  if(req.session.data['add-another-site-check'] == 'Yes'){
+      res.redirect('multiple-sites-another-designated-site-name')
+  } else if(req.session.data['add-another-site-check'] == 'No'){
+      res.redirect('development-continue')
+  } 
+});
+
+
+router.post('/private-beta/SSDSIP-476-conservation-considerations/v2/add-another-site-check', (req, res) => {
+  if(req.session.data['add-another-site-check'] == 'Yes'){
+      res.redirect('multiple-sites-another-designated-site-name')
+  } else if(req.session.data['add-another-site-check'] == 'No'){
+      res.redirect('development-continue')
+  } 
+});
+
+
+router.post('/private-beta/SSDSIP-476-conservation-considerations/v2/mutiple-sites-another-permission-check', (req, res) => {
+  if(req.session.data['mutiple-sites-another-permission-check'] == 'Yes'){
+      res.redirect('multiple-sites-another-advice')
+  } else if(req.session.data['mutiple-sites-another-permission-check'] == 'No'){
+      res.redirect('multiple-sites-another-permission-no')
+  } 
+});
+
+router.post('/private-beta/SSDSIP-476-conservation-considerations/v2/multiple-sites-another-advice-check', (req, res) => {
+  if(req.session.data['multiple-sites-another-advice-check'] == 'Yes'){
+      res.redirect('multiple-sites-another-outcome')
+  } else if(req.session.data['multiple-sites-another-advice-check'] == 'No'){
+      res.redirect('multiple-sites-another-advice-no')
+  } 
+});
+
+
 }

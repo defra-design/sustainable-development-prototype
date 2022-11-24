@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Will the activity take place on the designated site?
+Have you had advice about the activity from Natural England or the manager of the designated site?
 {% endblock %}
 
 {% block beforeContent %}
@@ -14,13 +14,13 @@ Will the activity take place on the designated site?
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       
-      <form class="form" action="multiple-sites-permission" method="post">       
+      <form class="form" action="multiple-sites-another-advice-check" method="post">       
 
         {{ govukRadios({
-            name: "multiple-sites-activity-on-site-check",
+            name: "multiple-sites-another-advice-check",
             fieldset: {
               legend: {
-                text: "Will the activity take place on the designated site?",
+                text: "Have you had advice about the activity from Natural England or the manager of the designated site?",
                 isPageHeading: true,
                 classes: "govuk-fieldset__legend--l"
               }
@@ -34,8 +34,8 @@ Will the activity take place on the designated site?
                 text: "Yes"
               },
               {
-                value: "No, it will take place within 50m of the site",
-                text: "No, it will take place within 50m of the site"
+                value: "No",
+                text: "No"
               }
             ]
           }) }}

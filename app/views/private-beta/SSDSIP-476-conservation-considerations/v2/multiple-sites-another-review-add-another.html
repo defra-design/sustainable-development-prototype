@@ -16,11 +16,12 @@ Designated sites
 
       <h1 class="govuk-heading-l">Designated sites</h1>
 
+
+
       <h2 class="govuk-heading-m">Site name: {{ data['multiple-sites-designated-site-name-1'] }}</h2>
 
       <p><a href="remove-site">Remove designated site</a></p>
 
-  
       <dl class="govuk-summary-list">
         <!--<div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
@@ -37,10 +38,23 @@ Designated sites
         </div>-->
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
+            What type of designated site?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['multiple-sites-what-type'] }} 
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="add-person">
+              Change<span class="govuk-visually-hidden"> what type of designated site?</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
             Will the activity take place on the designated site?
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['activity-on-site-check'] }} 
+            {{ data['multiple-sites-activity-on-site-check'] }} 
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="add-person">
@@ -104,6 +118,111 @@ Designated sites
             </div>
         {% endif %}
 
+        {% if data['advice-check'] == 'No' %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Why did you not get advice from Natural England or a designated site manager?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['why-no-advice'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="add-person">
+                Change<span class="govuk-visually-hidden"> why did you not get advice from Natural England or a designated site manager?</span>
+              </a>
+            </dd>
+          </div>
+        {% endif %}
+      
+      </dl>
+
+
+      <h2 class="govuk-heading-m">Site name: {{ data['multiple-sites-designated-site-name-2'] }}</h2>
+
+      <p><a href="remove-site">Remove designated site</a></p>
+  
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            What type of designated site?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['multiple-sites-another-what-type'] }} 
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="add-person">
+              Change<span class="govuk-visually-hidden"> what type of designated site?</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Will the activity take place on the designated site?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['multiple-sites-another-activity-on-site-check'] }} 
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="add-person">
+              Change<span class="govuk-visually-hidden"> will the activity take place on the designated site?</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Permission for the activity from the designated site's manager
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['mutiple-sites-another-permission-check'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="add-person">
+              Change<span class="govuk-visually-hidden"> permission for the activity from the designated site's manager</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Had advice about the activity from Natural England or the manager of the designated site?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['multiple-sites-another-advice-check'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="add-person">
+              Change<span class="govuk-visually-hidden"> had advice about the activity from Natural England or the manager of the designated site?</span>
+            </a>
+          </dd>
+        </div>
+        
+        {% if data['multiple-sites-another-advice-check'] == 'Yes' %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Who did you receive the advice from?
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['multiple-sites-another-advice-giver'] }}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="add-person">
+                  Change<span class="govuk-visually-hidden"> who did you receive the advice from?</span>
+                </a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Describe the outcome of the advice
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['multiple-sites-another-advice-given'] }}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="add-person">
+                  Change<span class="govuk-visually-hidden"> describe the outcome of the advice</span>
+                </a>
+              </dd>
+            </div>
+        {% endif %}
 
         {% if data['advice-check'] == 'No' %}
           <div class="govuk-summary-list__row">
@@ -121,8 +240,13 @@ Designated sites
           </div>
         {% endif %}
         
-        
       </dl>
+
+
+
+
+
+
 
 
       <form class="form" action="add-another-site-check" method="post">
