@@ -450,4 +450,20 @@ router.post('/private-beta/SSDSIP-476-conservation-considerations/v2/agreement-c
   } 
 });
 
+router.post('/private-beta/SSDSIP-476-conservation-considerations/v2/remove-site-check', (req, res) => {
+  if(req.session.data['remove-site-check'] == 'Yes'){
+      res.redirect('multiple-sites-start')
+  } else if(req.session.data['remove-site-check'] == 'No'){
+      res.redirect('multiple-sites-review-add-another')
+  } 
+});
+
+router.post('/private-beta/SSDSIP-476-conservation-considerations/v2/remove-site-another-check', (req, res) => {
+  if(req.session.data['remove-site-another-check'] == 'Yes'){
+      res.redirect('multiple-sites-review-add-another')
+  } else if(req.session.data['remove-site-another-check'] == 'No'){
+      res.redirect('multiple-sites-another-review-add-another')
+  } 
+});
+
 }
