@@ -14,82 +14,61 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-        {{ govukErrorSummary({
-            titleText: "There is a problem",
-            errorList: [
-              {
-                text: "You have not selected an option",
-                href: "#designated-sites"
-              }
-            ]
-          }) }}
-    
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "You have not selected an option",
+            href: "#on-or-within-designated-site"
+          }
+        ]
+      }) }}
       
-      <form class="form" action="invoice-email-address" method="post">       
+      <form class="form" action="on-or-within" method="post">       
 
-        {{ govukCheckboxes({
-          name: "designated-sites",
-          fieldset: {
-            legend: {
-              text: "Will the activity take place on or within 50m of any of the following designated sites?",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
-            }
-          },
-          hint: {
-            text: "Select all that apply."
-          },
-          errorMessage: {
-            text: "Select one or more options"
-          },
-          items: [
-            {
-              value: "National Nature Reserve",
-              text: "National Nature Reserve"
-            },
-            {
-              value: "Site of Special Scientific Interest",
-              text: "Site of Special Scientific Interest"
-            },
-            {
-              value: "Special Protection Area",
-              text: "Special Protection Area"
-            },
-            {
-              value: "Special Area of Conservation",
-              text: "Special Area of Conservation"
-            },
-            {
-              value: "Ramsar Site",
-              text: "Ramsar Site"
-            },
-            {
-              value: "Ancient monument",
-              text: "Ancient monument"
-            },
-            {
-              value: "Marine Protection Area",
-              text: "Marine Protection Area"
-            },
-            {
-              value: "Area of Outstanding Natural Beauty",
-              text: "Area of Outstanding Natural Beauty"
-            },
-            {
-              divider: "or"
-            },
-            {
-              value: "none",
-              text: "None of these",
-              behaviour: "exclusive"
-            }
+        <div class="govuk-form-group govuk-form-group--error">
+          <fieldset class="govuk-fieldset" aria-describedby="on-or-within-designated-site-error">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-fieldset__heading">
+                Will the activity take place on or within 50m of any of the following designated sites?
+              </h1>
+            </legend>
+            
+            <ul class="govuk-list govuk-list--bullet">
+              <li>National Nature Reserve</li>
+              <li>Site of Special Scientific Interest</li>
+              <li>Special Protection Area</li>
+              <li>Special Area of Conservation</li>
+              <li>Ramsar Site</li>
+              <li>Ancient monument</li>
+              <li>Marine Protection Area</li>
+              <li>Area of Outstanding Natural Beauty</li>
+            </ul>
+            <p id="where-do-you-live-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> Select an option
+            </p>
+            <div class="govuk-radios" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="on-or-within-designated-site" name="on-or-within-designated-site" type="radio" value="Yes">
+                <label class="govuk-label govuk-radios__label" for="on-or-within-designated-site">
+                  Yes
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="on-or-within-designated-site-2" name="on-or-within-designated-site" type="radio" value="No">
+                <label class="govuk-label govuk-radios__label" for="on-or-within-designated-site-2">
+                  No
+                </label>
+              </div>
+            </div>
+        
+          </fieldset>
+        </div>
 
-          ]
-        }) }}
 
         {{ govukButton({
-            text: "Continue"
-          }) }}
+          text: "Continue"
+        }) }}
       </form>
 
 

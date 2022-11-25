@@ -1,0 +1,187 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: Designated sites
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not selected an option",
+                href: "#add-another-site-check"
+              }
+            ]
+          }) }}
+
+      <h1 class="govuk-heading-l">Designated sites</h1>
+
+      <h2 class="govuk-heading-m">Site name: {{ data['multiple-sites-designated-site-name-1'] }}</h2>
+
+      <p><a href="remove-site">Remove designated site</a></p>
+
+  
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Name of the designated site
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['multiple-sites-designated-site-name-1'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="add-person">
+              Change<span class="govuk-visually-hidden"> name of the designated site</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            What type of designated site?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['multiple-sites-what-type'] }} 
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="add-person">
+              Change<span class="govuk-visually-hidden"> what type of designated site?</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Will the activity take place on the designated site?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['multiple-sites-activity-on-site-check'] }} 
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="add-person">
+              Change<span class="govuk-visually-hidden"> will the activity take place on the designated site?</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Permission for the activity from the designated site's manager
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['mutiple-sites-permission-check'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="add-person">
+              Change<span class="govuk-visually-hidden"> permission for the activity from the designated site's manager</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Had advice about the activity from Natural England or the manager of the designated site?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['multiple-sites-advice-check'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="add-person">
+              Change<span class="govuk-visually-hidden"> had advice about the activity from Natural England or the manager of the designated site?</span>
+            </a>
+          </dd>
+        </div>
+        
+        {% if data['multiple-sites-advice-check'] == 'Yes' %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Who did you receive the advice from?
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['multiple-sites-advice-giver'] }}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="add-person">
+                  Change<span class="govuk-visually-hidden"> who did you receive the advice from?</span>
+                </a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Describe the outcome of the advice
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['multiple-sites-advice-given'] }}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="add-person">
+                  Change<span class="govuk-visually-hidden"> describe the outcome of the advice</span>
+                </a>
+              </dd>
+            </div>
+        {% endif %}
+
+
+        {% if data['advice-check'] == 'No' %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Why did you not get advice from Natural England or a designated site manager?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['why-no-advice'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="add-person">
+                Change<span class="govuk-visually-hidden"> why did you not get advice from Natural England or a designated site manager?</span>
+              </a>
+            </dd>
+          </div>
+        {% endif %}
+        
+        
+      </dl>
+
+
+      <form class="form" action="add-another-site-check" method="post">
+
+        {{ govukRadios({
+          idPrefix: "add-another-site-check",
+          name: "add-another-site-check",
+          fieldset: {
+            legend: {
+              text: "Do you want to add another designated site?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              text: "No"
+            }
+          ],
+          errorMessage: {
+            text: "Select an option"
+          }
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

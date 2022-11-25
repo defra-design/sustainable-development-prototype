@@ -23,6 +23,7 @@ SDDSIP 476 | Conservation considerations
 
 
       <h2 class="govuk-heading-m ">Full page list and error states - v2</h2>
+      <p>User can add more than one designated site</p>
 
       {{ govukButton({
         text: "View v2 full flow",
@@ -47,76 +48,103 @@ SDDSIP 476 | Conservation considerations
             <tr class="govuk-table__row">
               <th class="govuk-table__cell">On or within designated site</th>
               <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/on-or-within">on-or-within</a></td>
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-on-or-within">If nothing chosen</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-on-or-within">If nothing chosen</a></td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">More than one designated site</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/more-than-one-site">more-than-one-site</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-more-than-one-site">If nothing chosen</a></td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">Tell us about each designated site</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/multiple-sites-start">multiple-sites-start</a></td>
+              <td class="govuk-table__cell"></td>
             </tr>
             <tr class="govuk-table__row">
               <th class="govuk-table__cell">Name of designated site - Autocomplete</th>
-              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="designated-site-name">designated-site-name</a></td>
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-designated-site-name">If nothing chosen</a></td>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/designated-site-name">designated-site-name</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-designated-site-name">If nothing chosen</a></td>
             </tr>
             <tr class="govuk-table__row">
               <th class="govuk-table__cell">Will activity take place on designated site</th>
-              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="activity-on-site">activity-on-site</a></td>
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-activity-on-site">If nothing chosen</a></td>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/activity-on-site">activity-on-site</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-activity-on-site">If nothing chosen</a></td>
             </tr>
             <tr class="govuk-table__row">
               <th class="govuk-table__cell">Permission from the designated site's manager</th>
-              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="permission">permission</a></td>
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-permission">If nothing chosen</a></td>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/permission">permission</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-permission">If nothing chosen</a></td>
             </tr>
             <tr class="govuk-table__row">
-              <th class="govuk-table__cell">No permission - dropout - !!content/path required!!</th>
-              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="permission-no">permission-no</a></td>
+              <th class="govuk-table__cell">No permission</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/permission-no">permission-no</a></td>
               <td class="govuk-table__cell"></td>
             </tr>
             <tr class="govuk-table__row">
               <th class="govuk-table__cell">Advice from Natural England or the designated site manager</th>
-              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="advice">advice</a></td>
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-advice">If nothing chosen</a></td>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/advice">advice</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-advice">If nothing chosen</a></td>
             </tr>
             <tr class="govuk-table__row">
               <th class="govuk-table__cell">Describe outcome of advice</th>
-              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="outcome">outcome</a></td>
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-blank-outcome">If blank</a></td>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/outcome">outcome</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-blank-outcome">If blank</a></td>
             </tr>
             <tr class="govuk-table__row">
               <th class="govuk-table__cell">Why did you not get advice?</th>
-              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="advice-no">advice-no</a></td>
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-blank-advice-no">If blank</a></td>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/advice-no">advice-no</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-blank-advice-no">If blank</a></td>
             </tr>
             <tr class="govuk-table__row">
+              <th class="govuk-table__cell">Review site / add another</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/multiple-sites-review-add-another">multiple-sites-review-add-another</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-multiple-sites-review-add-another">If nothing chosen</a></td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">Remove designated site</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/remove-site">remove-site</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-remove-site">If nothing chosen</a></td>
+            </tr>
+            
+            <tr class="govuk-table__row">
               <th class="govuk-table__cell">Will the development activity continue</th>
-              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="development-continue">development-continue</a></td>
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-development-continue">If blank</a></td>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/development-continue">development-continue</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-development-continue">If blank</a></td>
             </tr>
             <tr class="govuk-table__row">
               <th class="govuk-table__cell">How many years</th>
-              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="how-many-years">how-many-years</a></td>
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-blank-how-many-years">If blank</a></td>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/how-many-years">how-many-years</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-blank-how-many-years">If blank</a></td>
             </tr>
             <tr class="govuk-table__row">
               <th class="govuk-table__cell">Is activity part of a wider project</th>
-              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="wider-project">wider-project</a></td>
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-wider-project">If nothing chosen</a></td>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/wider-project">wider-project</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-wider-project">If nothing chosen</a></td>
             </tr>
             <tr class="govuk-table__row">
               <th class="govuk-table__cell">Is activity contributing to local biodiversity action plan</th>
-              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="biodiversity-plan">biodiversity-plan</a></td>
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-biodiversity-plan">If nothing chosen</a></td>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/biodiversity-plan">biodiversity-plan</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-biodiversity-plan">If nothing chosen</a></td>
             </tr>
             <tr class="govuk-table__row">
               <th class="govuk-table__cell">Is location covered by agri-environment agreement</th>
-              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="agreement">agreement</a></td>
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-agreement">If nothing chosen</a></td>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/agreement">agreement</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-agreement">If nothing chosen</a></td>
             </tr>
             <tr class="govuk-table__row">
               <th class="govuk-table__cell">Reference number of the agri-environment agreement</th>
-              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="reference">reference</a></td>
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-blank-reference">If blank</a></td>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/reference">reference</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-blank-reference">If blank</a></td>
             </tr>
             <tr class="govuk-table__row">
               <th class="govuk-table__cell">Check your answers</th>
-              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="check-your-answers">check-your-answers</a></td>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/check-your-answers">check-your-answers</a></td>
+              <td class="govuk-table__cell">
+              </td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">Check your answers - mutliple sites</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/check-your-answers-multiple">check-your-answers-multiple</a></td>
               <td class="govuk-table__cell">
               </td>
             </tr>
