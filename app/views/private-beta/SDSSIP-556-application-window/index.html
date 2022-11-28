@@ -1,0 +1,117 @@
+{% extends "layout-pb-no-service-name.html" %}
+
+{% block pageTitle %} 
+SDDSIP 556 | Prevent users from submitting an application outside of the application window
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <span class="govuk-caption-l">SDDSIP 556</span>
+      <h1 class="govuk-heading-l">Prevent users from submitting an application outside of the application window</h1> 
+
+      <div class="govuk-!-margin-bottom-9">
+        <strong class="govuk-tag govuk-tag--green" >
+          In Progress
+        </strong>
+      </div>
+
+      
+
+      <h2 class="govuk-heading-m ">Full page list and error states</h2>
+
+      {{ govukButton({
+        text: "View full flow",
+        href: "start"
+      }) }}
+
+      <div class="govuk-inset-text">
+        <p><strong>NB.</strong> The application window for badgers is closed from 1st November to 31st March.</p>
+        <p>This flow will only applies between those dates.</p> 
+      </div>
+
+      
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Page</th>
+            <th scope="col" class="govuk-table__header">Link</th>
+            <th scope="col" class="govuk-table__header">Error states</th>
+            </tr>
+        </thead>
+        <tbody class="govuk-table__body">    
+            <tr class="govuk-table__row">
+                <th class="govuk-table__cell">Start page</th>
+                <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="start">start</a></td>
+                <td class="govuk-table__cell"></td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">Which species will the work affect?</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="which-species">which-species</a></td>
+              <td class="govuk-table__cell"></td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">Is the development a Nationally Significant Infrastucture Project?</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="nsip">nsip</a></td>
+              <td class="govuk-table__cell"></td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">The application window for badgers is closed</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="window-not-open">window-not-open</a></td>
+              <td class="govuk-table__cell"></td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">Does the applicant own the land?</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="land-owner">land-owner</a></td>
+              <td class="govuk-table__cell"></td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">Does the applicant have the landowner’s permission to apply?</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="land-owner-permission">land-owner-permission</a></td>
+              <td class="govuk-table__cell"></td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">No landowner permission dropout</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="dropout-land-owner">dropout-land-owner</a></td>
+              <td class="govuk-table__cell"></td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">Does the project need any permissions?</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="consent">consent</a></td>
+              <td class="govuk-table__cell"></td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">Has the project got all permissions for work to start?</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="consent-granted">consent-granted</a></td>
+              <td class="govuk-table__cell"></td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">No consent permissions dropout</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="dropout-consent-granted">dropout-consent-granted</a></td>
+              <td class="govuk-table__cell"></td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">You’re eligible to apply for a licence</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="eligible">eligible</a></td>
+              <td class="govuk-table__cell"></td>
+            </tr>
+            
+
+          </tbody>
+        </table>
+
+
+
+
+
+
+
+    </div>
+  </div>
+
+{% endblock %}

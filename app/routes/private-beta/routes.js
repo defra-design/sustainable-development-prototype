@@ -466,4 +466,50 @@ router.post('/private-beta/SSDSIP-476-conservation-considerations/v2/remove-site
   } 
 });
 
+router.post('/private-beta/SDSSIP-556-application-window/which-species-check', (req, res) => {
+  if(req.session.data['which-species-check'] == 'Badgers'){
+      res.redirect('nsip')
+  }  
+});
+
+router.post('/private-beta/SDSSIP-556-application-window/nsip-check', (req, res) => {
+  if(req.session.data['nsip-check'] == 'Yes'){
+      res.redirect('land-owner')
+  } else if(req.session.data['nsip-check'] == 'No'){
+      res.redirect('window-not-open')
+  } 
+});
+
+router.post('/private-beta/SDSSIP-556-application-window/land-owner-check', (req, res) => {
+  if(req.session.data['land-owner-check'] == 'Yes'){
+      res.redirect('consent')
+  } else if(req.session.data['land-owner-check'] == 'No'){
+      res.redirect('land-owner-permission')
+  } 
+});
+
+router.post('/private-beta/SDSSIP-556-application-window/land-owner-permission-check', (req, res) => {
+  if(req.session.data['land-owner-permission-check'] == 'Yes'){
+      res.redirect('consent')
+  } else if(req.session.data['land-owner-permission-check'] == 'No'){
+      res.redirect('dropout-land-owner')
+  } 
+});
+
+router.post('/private-beta/SDSSIP-556-application-window/consent-check', (req, res) => {
+  if(req.session.data['consent-check'] == 'Yes'){
+      res.redirect('consent-granted')
+  } else if(req.session.data['consent-check'] == 'No'){
+      res.redirect('eligible')
+  } 
+});
+
+router.post('/private-beta/SDSSIP-556-application-window/consent-granted-check', (req, res) => {
+  if(req.session.data['consent-granted-check'] == 'Yes'){
+      res.redirect('eligible')
+  } else if(req.session.data['consent-granted-check'] == 'No'){
+      res.redirect('dropout-consent-granted')
+  } 
+});
+
 }

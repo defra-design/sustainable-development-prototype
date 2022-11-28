@@ -1,0 +1,36 @@
+{% extends "layout-pb-signed-out.html" %}
+
+{% block pageTitle %} 
+You’re eligible to apply for a licence
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+        <h1 class="govuk-heading-l">
+            You’re eligible to apply for a licence
+        </h1>
+
+        <h2 class="govuk-heading-m">
+            Save application
+        </h2>
+
+        <p class="govuk-body">To be able to save your application and return to it later, you need to sign into an existing account or create a new one.</p>
+
+        {{ govukButton({
+            text: "Sign in to save"
+          }) }}
+
+
+    </div>
+  </div>
+
+{% endblock %}
