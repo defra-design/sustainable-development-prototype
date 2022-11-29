@@ -1,0 +1,75 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+What type of designated site is Malham Tarn?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <form class="form" action="activity-on-site" method="post">       
+
+        {{ govukRadios({
+          name: "multiple-sites-what-type",
+          fieldset: {
+            legend: {
+              html: "What type of designated site is " + data['designated-site-name'] + "?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "National Nature Reserve",
+              text: "National Nature Reserve"
+            },
+            {
+              value: "Site of Special Scientific Interest",
+              text: "Site of Special Scientific Interest"
+            },
+            {
+              value: "Special Protection Area",
+              text: "Special Protection Area"
+            },
+            {
+              value: "Special Area of Conservation",
+              text: "Special Area of Conservation"
+            },
+            {
+              value: "Ramsar Site",
+              text: "Ramsar Site"
+            },
+            {
+              value: "Ancient monument",
+              text: "Ancient monument"
+            },
+            {
+              value: "Marine Protection Area",
+              text: "Marine Protection Area"
+            },
+            {
+              value: "Area of Outstanding Natural Beauty",
+              text: "Area of Outstanding Natural Beauty"
+            }
+          ]
+        }) }}
+        
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+      </form>
+
+      
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

@@ -405,7 +405,7 @@ router.post('/private-beta/SSDSIP-476-conservation-considerations/v2/mutiple-sit
   if(req.session.data['mutiple-sites-another-permission-check'] == 'Yes'){
       res.redirect('multiple-sites-another-advice')
   } else if(req.session.data['mutiple-sites-another-permission-check'] == 'No'){
-      res.redirect('multiple-sites-another-permission-no')
+      res.redirect('multiple-sites-another-advice')
   } 
 });
 
@@ -421,7 +421,7 @@ router.post('/private-beta/SSDSIP-476-conservation-considerations/v2/permission-
   if(req.session.data['permission-check'] == 'Yes'){
       res.redirect('advice')
   } else if(req.session.data['permission-check'] == 'No'){
-      res.redirect('permission-no')
+      res.redirect('advice')
   } 
 });
 

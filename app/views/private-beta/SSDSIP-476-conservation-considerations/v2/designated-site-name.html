@@ -11,22 +11,10 @@ What is the name of the designated site?
 
 {% block content %}
 
-  <!--{% if data['designated-sites'] == 'None' %}
-    <script>
-        window.location.href = 'development-continue'
-    </script>
-  {% endif %}-->
-
-  {% if data['designated-sites'] == 'None of these' %}
-  <script>
-      window.location.href = 'check-your-answers-none'
-  </script>
-{% endif %}
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       
-      <form class="form" action="activity-on-site" method="post">       
+      <form class="form" action="what-type" method="post">       
 
         {{ govukInput({
           label: {
