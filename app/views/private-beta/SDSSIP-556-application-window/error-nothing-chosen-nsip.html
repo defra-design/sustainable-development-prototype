@@ -1,0 +1,66 @@
+{% extends "layout-pb-signed-out.html" %}
+
+{% block pageTitle %} 
+Error: Is the development a Nationally Significant Infrastucture Project?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not selected an option",
+                href: "#nsip-check"
+              }
+            ]
+          }) }}
+      
+        <form class="form" action="nsip-check" method="post">
+            {{ govukRadios({
+                name: "nsip-check",
+                fieldset: {
+                legend: {
+                    text: "Is the development a Nationally Significant Infrastucture Project?",
+                    isPageHeading: true,
+                    classes: "govuk-fieldset__legend--l"
+                    }
+                },
+                hint: {
+                    text: "Nationally Significant Infrastructure Projects (NSIPs) are large scale projects falling into five general categories: Energy, Transport, Water, Waste Water and Waste."
+                  },
+                  errorMessage: {
+                    text: "Select an option"
+                  },
+                items: [
+                {
+                    value: "Yes",
+                    text: "Yes"
+                },
+                {
+                    value: "No",
+                    text: "No"
+                }
+                ]
+            }) }}
+
+            
+            {{ govukButton({
+                text: "Continue"
+            }) }}
+          </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}
