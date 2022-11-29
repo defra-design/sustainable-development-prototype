@@ -1,0 +1,63 @@
+{% extends "layout-pb-signed-out.html" %}
+
+{% block pageTitle %} 
+Error: Has the project got all permissions for work to start?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not selected an option",
+                href: "#consent-granted-check"
+              }
+            ]
+          }) }}
+      
+        <form class="form" action="consent-granted-check" method="post">
+            {{ govukRadios({
+                name: "consent-granted-check",
+                fieldset: {
+                legend: {
+                    text: "Has the project got all permissions for work to start?",
+                    isPageHeading: true,
+                    classes: "govuk-fieldset__legend--l"
+                    }
+                },
+                errorMessage: {
+                    text: "Select an option"
+                  },
+                items: [
+                {
+                    value: "Yes",
+                    text: "Yes"
+                },
+                {
+                    value: "No",
+                    text: "No"
+                }
+                ]
+            }) }}
+
+            
+            {{ govukButton({
+                text: "Continue"
+            }) }}
+          </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}
