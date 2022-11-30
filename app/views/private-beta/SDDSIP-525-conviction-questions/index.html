@@ -1,0 +1,63 @@
+{% extends "layout-pb-no-service-name.html" %}
+
+{% block pageTitle %} 
+SDDSIP 525 | Add conviction questions to flow
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <span class="govuk-caption-l">SDDSIP 525</span>
+      <h1 class="govuk-heading-l">Add conviction questions to flow</h1> 
+
+      <div class="govuk-!-margin-bottom-9">
+        <strong class="govuk-tag govuk-tag--green" >
+          In Progress
+        </strong>
+      </div>
+
+      
+
+      <h2 class="govuk-heading-m ">Full page list and error states</h2>
+
+      {{ govukButton({
+        text: "View full flow",
+        href: "task-list"
+      }) }}
+
+
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Page</th>
+            <th scope="col" class="govuk-table__header">Link</th>
+            <th scope="col" class="govuk-table__header">Error states</th>
+            </tr>
+        </thead>
+        <tbody class="govuk-table__body">    
+            <tr class="govuk-table__row">
+                <th class="govuk-table__cell">Task list</th>
+                <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="task-list">task-list</a></td>
+                <td class="govuk-table__cell"></td>
+            </tr>
+           
+            
+
+          </tbody>
+        </table>
+
+
+
+
+
+
+
+    </div>
+  </div>
+
+{% endblock %}
