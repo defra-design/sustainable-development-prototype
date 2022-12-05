@@ -16,7 +16,7 @@ Is the development a Nationally Significant Infrastucture Project?
     <div class="govuk-grid-column-two-thirds">
       
         <form class="form" action="nsip-check" method="post">
-            {{ govukRadios({
+            <!--{{ govukRadios({
                 name: "nsip-check",
                 fieldset: {
                 legend: {
@@ -26,6 +26,8 @@ Is the development a Nationally Significant Infrastucture Project?
                     }
                 },
                 
+                
+
                 items: [
                 {
                     value: "Yes",
@@ -41,10 +43,40 @@ Is the development a Nationally Significant Infrastucture Project?
             
             {{ govukButton({
                 text: "Continue"
-            }) }}
-          </form>
+            }) }}-->
 
-          <p><a href='https://infrastructure.planninginspectorate.gov.uk/projects/register-of-applications/'>Check if your development is listed as an Nationally Significant Infrastructure Project</a>.</p>
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset">
+                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                    <h1 class="govuk-fieldset__heading">
+                        Is the development a Nationally Significant Infrastucture Project?
+                    </h1>
+                  </legend>
+                  <p><a href='https://infrastructure.planninginspectorate.gov.uk/projects/register-of-applications/' target="_blank">Check if your development is listed as an Nationally Significant Infrastructure Project</a></p>
+                  <div class="govuk-radios" data-module="govuk-radios">
+                    <div class="govuk-radios__item">
+                      <input class="govuk-radios__input" id="nsip-check" name="nsip-check" type="radio" value="Yes">
+                      <label class="govuk-label govuk-radios__label" for="nsip-check">
+                        Yes
+                      </label>
+                    </div>
+                    <div class="govuk-radios__item">
+                      <input class="govuk-radios__input" id="nsip-check-2" name="nsip-check" type="radio" value="No">
+                      <label class="govuk-label govuk-radios__label" for="nsip-check-2">
+                        No
+                      </label>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+          
+
+          {{ govukButton({
+            text: "Continue"
+         }) }}
+
+        </form>
+          
     </div>
   </div>
 
