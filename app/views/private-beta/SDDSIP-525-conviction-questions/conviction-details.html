@@ -1,0 +1,39 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Describe the details of the convictions including the dates
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <form class="form" action="check-your-answers" method="post">       
+
+        {{ govukTextarea({
+            name: "conviction-details",
+            id: "conviction-details",
+            label: {
+              text: "Describe the details of the convictions including the dates",
+              classes: "govuk-label--l",
+              isPageHeading: true
+            }
+          }) }}
+
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

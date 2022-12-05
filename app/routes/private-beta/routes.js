@@ -512,4 +512,12 @@ router.post('/private-beta/SDSSIP-556-application-window/consent-granted-check',
   } 
 });
 
+router.post('/private-beta/SDDSIP-525-conviction-questions/any-convictions-check', (req, res) => {
+  if(req.session.data['any-convictions-check'] == 'Yes'){
+      res.redirect('conviction-details')
+  } else if(req.session.data['any-convictions-check'] == 'No'){
+      res.redirect('check-your-answers')
+  } 
+});
+
 }
