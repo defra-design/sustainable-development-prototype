@@ -14,15 +14,19 @@ Describe the details of the convictions including the dates
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       
-      <form class="form" action="check-your-answers" method="post">       
+      <form class="form" action="check-your-answers" method="post">  
+        
+        <h1 class="govuk-heading-l">Applying for a license with a previous conviction for wildlife offences</h1>
+
+        <p class="govuk-body govuk-!-margin-bottom-7">Your licence, if granted will likely involve more compliance checks, including site visits etc. You may also be asked to submit further information at the request of Natural England during your application.
+        </p>
 
         {{ govukTextarea({
             name: "conviction-details",
             id: "conviction-details",
             label: {
               text: "Describe the details of the wildlife convictions including the dates",
-              classes: "govuk-label--l",
-              isPageHeading: true
+              classes: "govuk-label--m"
             }
           }) }}
 
