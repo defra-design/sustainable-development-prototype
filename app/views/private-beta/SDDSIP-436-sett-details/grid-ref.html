@@ -11,6 +11,12 @@ What is the badger sett's grid reference?
 
 {% block content %}
 
+{% if data['active-holes'] == '0' %}
+<script>
+    window.location.href = 'active-sett-dropout'
+</script>
+{% endif %}
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <form class="form" action="work-start" method="post"> 

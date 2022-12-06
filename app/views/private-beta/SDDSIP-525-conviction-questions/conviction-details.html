@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Describe the details of the convictions including the dates
+Convictions for animal or wildlife offences
 {% endblock %}
 
 {% block beforeContent %}
@@ -16,16 +16,22 @@ Describe the details of the convictions including the dates
       
       <form class="form" action="check-your-answers" method="post">  
         
-        <h1 class="govuk-heading-l">Applying for a license with a previous conviction for wildlife offences</h1>
+        <h1 class="govuk-heading-l">Convictions for animal or wildlife offences</h1>
 
-        <p class="govuk-body govuk-!-margin-bottom-7">Your licence, if granted will likely involve more compliance checks, including site visits etc. You may also be asked to submit further information at the request of Natural England during your application.
-        </p>
+        <p class="govuk-body">If people listed on this application have animal related or wildlife convictions the application may:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>be subject to more checks</li>
+          <li>take more time to process</li>
+        </ul>
+
+        <p class="govuk-body govuk-!-margin-bottom-7">You will need to give Natural England more information about these offences.</p>
 
         {{ govukTextarea({
             name: "conviction-details",
             id: "conviction-details",
             label: {
-              text: "Describe the details of the wildlife convictions including the dates",
+              text: "Describe the convictions and their dates",
               classes: "govuk-label--m"
             }
           }) }}
