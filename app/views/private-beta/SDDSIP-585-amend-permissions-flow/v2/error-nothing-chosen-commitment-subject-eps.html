@@ -1,0 +1,63 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: Are there other protected species covered by commitments on the site?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "You have not selected an option",
+            href: "#commitment-eps-check"
+          }
+        ]
+      }) }}
+      
+      <form class="form" action="commitment-eps-check" method="post">       
+
+        {{ govukRadios({
+            name: "commitment-eps-check",
+            fieldset: {
+              legend: {
+                text: "Are there other protected species covered by commitments on the site?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            errorMessage: {
+              text: "Select an option"
+            },
+            items: [
+              {
+                value: "Yes",
+                text: "Yes"
+              },
+              {
+                value: "No",
+                text: "No"
+              }
+            ]
+          }) }}
+        
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

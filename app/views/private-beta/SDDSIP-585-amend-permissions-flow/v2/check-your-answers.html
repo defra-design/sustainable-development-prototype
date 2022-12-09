@@ -1,0 +1,310 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Check your answers
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h2 class="govuk-heading-l">Check your answers</h2>
+
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Does the project need any permissions?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data['permissions-check'] }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="#">
+            Change<span class="govuk-visually-hidden"> does the project need any permissions?</span>
+          </a>
+        </dd>
+      </div>
+
+      {% if data['permissions-check'] == 'Yes' %}
+        
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            {{ data['consent-type-check'] }}
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <p>Local Planning Authority:<br>Leeds City Council</p><p>Reference:<br> {{ data['reference'] }}</p>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">
+                  Remove<span class="govuk-visually-hidden"> permission</span>
+                  </a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> permission</span>
+                </a>
+              </li>
+            </ul>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            {{ data['consent-type-check-another'] }}
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Reference:<br>
+            {{ data['reference-another'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">
+                  Remove<span class="govuk-visually-hidden"> permission</span>
+                  </a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> permission</span>
+                </a>
+              </li>
+            </ul>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Do you want to add another permission?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            No
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> do you want to add another permission?</span>
+            </a>
+          </dd>
+        </div>
+
+
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Have all relevant conditions been completed?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['conditions-reserved-matters-check'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> have all relevant conditions been completed?</span>
+                  </a>
+                </dd>
+              </div>
+        {% endif %}
+
+
+
+
+              {% if data['conditions-reserved-matters-check'] == 'No' %}
+
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Which conditions have not been completed?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['which-conditions-not-completed'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> which conditions have not been completed?</span>
+                  </a>
+                </dd>
+              </div>
+
+
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Why have they not been completed?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['why-conditions-not-completed'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> why have they not been completed?</span>
+                  </a>
+                </dd>
+              </div>
+
+        
+              {% endif %}   
+        
+        
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Is the site subject to any commitment that affects badgers?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['commitment-check'] }} 
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> is the site subject to any commitment that affects badgers?</span>
+            </a>
+          </dd>
+        </div>
+
+        {% if data['commitment-check'] == 'Yes' %}
+
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Has the commitment been met?
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['commitment-met-check'] }} 
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> has the commitment been met?</span>
+                </a>
+              </dd>
+            </div>
+
+        {% endif %}
+
+        {% if data['commitment-met-check'] == 'Yes' %}
+
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Describe how the commitment has been met
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['commitment-met-detail'] }} 
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> describe how the commitment has been met</span>
+                </a>
+              </dd>
+            </div>
+
+        {% endif %}
+
+
+        {% if data['commitment-met-check'] == 'No' %}
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              When will the commitment be complete?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['commitment-not-met-detail'] }} 
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> when will the commitment be complete?</span>
+              </a>
+            </dd>
+          </div>
+
+        {% endif %}
+
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Are there other protected species covered by commitments on the site?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['commitment-eps-check'] }} 
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> are there other protected species covered by commitments on the site??</span>
+            </a>
+          </dd>
+        </div>
+
+
+
+
+        {% if data['commitment-eps-check'] == 'Yes' %}
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Have the commitments been met?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['commitment-eps-met-check'] }}  
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> have the commitments been met?</span>
+            </a>
+          </dd>
+        </div>
+
+        {% endif %}
+
+
+        {% if data['commitment-eps-met-check'] == 'Yes' %}
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Describe how the commitments have been met
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['commitment-eps-met-detail'] }}   
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> describe how the commitments have been met?</span>
+            </a>
+          </dd>
+        </div>
+
+        {% endif %}
+
+
+        {% if data['commitment-eps-met-check'] == 'No' %}
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            When will the commitments be complete?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['commitment-eps-not-met-detail'] }}   
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> when will the commitments be complete?</span>
+            </a>
+          </dd>
+        </div>
+
+        {% endif %}
+
+      </dl>
+
+
+
+      
+      <form class="form" action="task-list-complete" method="post">
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+    
+    </div>
+  </div>
+
+{% endblock %}

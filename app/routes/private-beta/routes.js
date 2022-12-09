@@ -520,4 +520,66 @@ router.post('/private-beta/SDDSIP-525-conviction-questions/any-convictions-check
   } 
 });
 
+router.post('/private-beta/SDDSIP-585-amend-permissions-flow/v2/permissions-check', (req, res) => {
+  if(req.session.data['permissions-check'] == 'Yes'){
+      res.redirect('add-permission-start')
+  } else if(req.session.data['permissions-check'] == 'No'){
+      res.redirect('commitment-subject')
+  } 
+});
+
+router.post('/private-beta/SDDSIP-585-amend-permissions-flow/v2/add-another-permission-check', (req, res) => {
+  if(req.session.data['add-another-permission-check'] == 'Yes'){
+      res.redirect('consent-type-another')
+  } else if(req.session.data['add-another-permission-check'] == 'No'){
+      res.redirect('redirect')
+  } 
+});
+
+
+router.post('/private-beta/SDDSIP-585-amend-permissions-flow/v2/conditions-reserved-matters-check', (req, res) => {
+  if(req.session.data['conditions-reserved-matters-check'] == 'Yes'){
+      res.redirect('commitment-subject')
+  } else if(req.session.data['conditions-reserved-matters-check'] == 'No'){
+      res.redirect('which-not-completed')
+  } 
+});
+
+
+router.post('/private-beta/SDDSIP-585-amend-permissions-flow/v2/commitment-check', (req, res) => {
+  if(req.session.data['commitment-check'] == 'Yes'){
+      res.redirect('commitment-met')
+  } else if(req.session.data['commitment-check'] == 'No'){
+      res.redirect('commitment-subject-eps')
+  } 
+});
+
+
+router.post('/private-beta/SDDSIP-585-amend-permissions-flow/v2/commitment-eps-check', (req, res) => {
+  if(req.session.data['commitment-eps-check'] == 'Yes'){
+      res.redirect('commitment-eps-met')
+  } else if(req.session.data['commitment-eps-check'] == 'No'){
+      res.redirect('check-your-answers')
+  } 
+});
+
+
+router.post('/private-beta/SDDSIP-585-amend-permissions-flow/v2/consent-remove-another-check', (req, res) => {
+  if(req.session.data['consent-remove-another-check'] == 'Yes'){
+      res.redirect('cya-consents')
+  } else if(req.session.data['consent-remove-another-check'] == 'No'){
+      res.redirect('cya-consents-another')
+  } 
+});
+
+
+router.post('/private-beta/SDDSIP-585-amend-permissions-flow/v2/consent-remove-check', (req, res) => {
+  if(req.session.data['consent-remove-check'] == 'Yes'){
+      res.redirect('add-permission-start')
+  } else if(req.session.data['consent-remove-check'] == 'No'){
+      res.redirect('cya-consents')
+  } 
+});
+
+
 }

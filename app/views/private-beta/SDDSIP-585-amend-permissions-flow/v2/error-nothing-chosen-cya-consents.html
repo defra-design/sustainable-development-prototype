@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-You have added 1 permission
+Error: Do you want to add another permission?
 {% endblock %}
 
 {% block beforeContent %}
@@ -14,6 +14,18 @@ You have added 1 permission
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "You have not selected an option",
+            href: "#add-another-permission-check"
+          }
+        ]
+      }) }}
+
+
       <h1 class="govuk-heading-l">
         You have added 1 permission
       </h1>
@@ -26,7 +38,7 @@ You have added 1 permission
               text: data['consent-type-check']
             },
             value: {
-              html: "<p>Reference:<br>" + data['reference'] + "</p><p>Local Planning Authority<br>Leeds City Council</p>"
+              html: "Reference:<br>" + data['reference']
             },
             actions: {
               items: [
@@ -58,6 +70,9 @@ You have added 1 permission
               isPageHeading: true,
               classes: "govuk-fieldset__legend--m"
             }
+          },
+          errorMessage: {
+            text: "Select an option"
           },
           items: [
             {

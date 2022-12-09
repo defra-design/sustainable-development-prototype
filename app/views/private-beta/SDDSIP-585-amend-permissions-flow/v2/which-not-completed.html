@@ -1,0 +1,40 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Which conditions have not been completed?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <form class="form" action="why-not-completed" method="post">
+
+        {{ govukTextarea({
+          name: "which-conditions-not-completed",
+          id: "which-conditions-not-completed",
+          label: {
+            text: "Which conditions have not been completed?",
+            classes: "govuk-label--l",
+            isPageHeading: true
+          }
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

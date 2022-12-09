@@ -1,0 +1,118 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+You have added 1 permission
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">
+        You have added 1 permission
+      </h1>
+      
+      
+
+      {% if data['consent-type-check'] == 'Planning permission' %}
+
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                {{ data['consent-type-check'] }}
+              </dt>
+              <dd class="govuk-summary-list__value">
+                <p>Local Planning Authority:<br>{{ data['which-lpa'] }}</p>
+                <p>Reference:<br>{{ data['reference'] }}</p>
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <ul class="govuk-summary-list__actions-list">
+                  <li class="govuk-summary-list__actions-list-item">
+                    <a class="govuk-link" href="consent-remove">
+                      Remove<span class="govuk-visually-hidden"> name</span>
+                    </a>
+                  </li>
+                  <li class="govuk-summary-list__actions-list-item">
+                    <a class="govuk-link" href="#">
+                      Change<span class="govuk-visually-hidden"> name</span>
+                    </a>
+                  </li>
+                </ul>
+              </dd>
+            </div>
+          </dl>
+
+      {% else %}
+
+
+          {{ govukSummaryList({
+            classes: 'govuk-!-margin-bottom-9',
+            rows: [
+              {
+                key: {
+                  text: data['consent-type-check']
+                },
+                value: {
+                  html: "Reference:<br>" + data['reference'] 
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "consent-remove",
+                      text: "Remove",
+                      visuallyHiddenText: data['consent-type-check']
+                    },
+                    {
+                      href: "#",
+                      text: "Change",
+                      visuallyHiddenText: data['consent-type-check']
+                    }
+                  ]
+                }
+              }
+            ]
+          }) }}
+
+
+      {% endif %}
+
+
+      <form class="form" action="add-another-permission-check" method="post">
+
+        {{ govukRadios({
+          idPrefix: "add-another-permission-check",
+          name: "add-another-permission-check",
+          fieldset: {
+            legend: {
+              text: "Do you want to add another permission?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

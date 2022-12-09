@@ -20,11 +20,11 @@ SDDSIP 585 | Amend permissions flow
           In Progress
         </strong>
       </div>
-      
+
 
       {{ govukButton({
-        text: "View full flow",
-        href: "task-list"
+        text: "View v2 full flow",
+        href: "v2/task-list"
       }) }}
       
       
@@ -43,32 +43,32 @@ SDDSIP 585 | Amend permissions flow
         <tbody class="govuk-table__body">   
           <tr class="govuk-table__row">
             <th class="govuk-table__cell">Task list</th>
-            <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="task-list">task-list</a></td>
+            <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/task-list">task-list</a></td>
             <td class="govuk-table__cell"></td>
            </tr>
 
            <tr class="govuk-table__row">
             <th class="govuk-table__cell">Does the project need permissions</th>
-            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="permissions">permissions</a></td>
-            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-permissions">If nothing chosen</a></td>
-           </tr>
-
-           <tr class="govuk-table__row">
-            <th class="govuk-table__cell">Which Local Planning Authority - Autocomplete</th>
-            <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="lpa">lpa</a></td>
-            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-lpa">If nothing chosen</a></td>
+            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/permissions">permissions</a></td>
+            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-permissions">If nothing chosen</a></td>
            </tr>
 
            <tr class="govuk-table__row">
             <th class="govuk-table__cell">Tell us about each permission</th>
-            <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="add-permission-start">add-permission-start</a></td>
+            <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/add-permission-start">add-permission-start</a></td>
             <td class="govuk-table__cell"></td>
            </tr>
 
            <tr class="govuk-table__row">
             <th class="govuk-table__cell">What permission has the project got</th>
-            <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="consent-type">consent-type</a></td>
-            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-consent-type">If nothing chosen</a></td>
+            <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/consent-type">consent-type</a></td>
+            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-consent-type">If nothing chosen</a></td>
+           </tr>
+
+           <tr class="govuk-table__row">
+            <th class="govuk-table__cell">Which Local Planning Authority - Autocomplete</th>
+            <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/lpa">lpa</a></td>
+            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-lpa">If nothing chosen</a></td>
            </tr>
 
            <tr class="govuk-table__row">
@@ -79,78 +79,231 @@ SDDSIP 585 | Amend permissions flow
 
            <tr class="govuk-table__row">
             <th class="govuk-table__cell">Permission added / add another</th>
-            <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="cya-consents">cya-consents</a></td>
-            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-cya-consents">If nothing chosen</a></td>
+            <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/cya-consents">cya-consents</a></td>
+            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-cya-consents">If nothing chosen</a></td>
            </tr>
 
            <tr class="govuk-table__row">
             <th class="govuk-table__cell">All relevant conditions completed</th>
-            <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="conditions-reserved-matters">conditions-reserved-matters</a></td>
-            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-conditions-reserved-matters">If nothing chosen</a></td>
+            <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/conditions-reserved-matters">conditions-reserved-matters</a></td>
+            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-conditions-reserved-matters">If nothing chosen</a></td>
            </tr>
 
            <tr class="govuk-table__row">
             <th class="govuk-table__cell">Which conditions not completed</th>
-            <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="which-not-completed">which-not-completed</a></td>
-            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-blank-which-not-completed">If blank</a></td>
+            <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/which-not-completed">which-not-completed</a></td>
+            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-blank-which-not-completed">If blank</a></td>
            </tr>
 
            <tr class="govuk-table__row">
             <th class="govuk-table__cell">Why not completed</th>
-            <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="why-not-completed">why-not-completed</a></td>
-            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-blank-why-not-completed">If blank</a></td>
+            <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/why-not-completed">why-not-completed</a></td>
+            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-blank-why-not-completed">If blank</a></td>
            </tr>
 
            <tr class="govuk-table__row">
             <th class="govuk-table__cell">Any commitment that affects badgers</th>
-            <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="commitment-subject">commitment-subject</a></td>
-            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-commitment-subject">If nothing chosen</a></td>
+            <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/commitment-subject">commitment-subject</a></td>
+            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-commitment-subject">If nothing chosen</a></td>
            </tr>
 
            <tr class="govuk-table__row">
             <th class="govuk-table__cell">Has the commitment been met</th>
-            <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="commitment-met">commitment-met</a></td>
+            <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/commitment-met">commitment-met</a></td>
             <td class="govuk-table__cell">
-              <a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-commitment-met">If nothing chosen</a><br>
-              <a class="govuk-link govuk-link--no-visited-state" href="error-blank-commitment-met">If blank</a><br>
-              <a class="govuk-link govuk-link--no-visited-state" href="error-blank-commitment-not-met">If blank</a>
+              <a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-commitment-met">If nothing chosen</a><br>
+              <a class="govuk-link govuk-link--no-visited-state" href="v2/error-blank-commitment-met">If blank</a><br>
+              <a class="govuk-link govuk-link--no-visited-state" href="v2/error-blank-commitment-not-met">If blank</a>
             </td>
            </tr>
 
            <tr class="govuk-table__row">
             <th class="govuk-table__cell">Any commitments that affects other protected species</th>
-            <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="commitment-subject-eps">commitment-subject-eps</a></td>
-            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-commitment-subject-eps">If nothing chosen</a></td>
+            <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/commitment-subject-eps">commitment-subject-eps</a></td>
+            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-commitment-subject-eps">If nothing chosen</a></td>
            </tr>
 
            <tr class="govuk-table__row">
             <th class="govuk-table__cell">Have the commitments been met</th>
-            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="commitment-eps-met">commitment-eps-met</a></td>
+            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/commitment-eps-met">commitment-eps-met</a></td>
             <td class="govuk-table__cell">
-              <a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-commitment-eps-met">If nothing chosen</a><br>
-              <a class="govuk-link govuk-link--no-visited-state" href="error-blank-commitment-eps-met">If blank</a><br>
-              <a class="govuk-link govuk-link--no-visited-state" href="error-blank-commitment-eps-not-met">If blank</a>
+              <a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-commitment-eps-met">If nothing chosen</a><br>
+              <a class="govuk-link govuk-link--no-visited-state" href="v2/error-blank-commitment-eps-met">If blank</a><br>
+              <a class="govuk-link govuk-link--no-visited-state" href="v2/error-blank-commitment-eps-not-met">If blank</a>
             </td>
            </tr>
            
            <tr class="govuk-table__row">
             <th class="govuk-table__cell">Check your answers</th>
-            <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="check-your-answers">check-your-answers</a></td>
+            <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/check-your-answers">check-your-answers</a></td>
             <td class="govuk-table__cell"></td>
            </tr>
-           
 
             <tr class="govuk-table__row">
               <th class="govuk-table__cell">Task list</th>
-              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="task-list-complete">task-list-complete</a></td>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v2/task-list-complete">task-list-complete</a></td>
               <td class="govuk-table__cell"></td>
              </tr>
-
 
           </tbody>
         </table>
     
-        <p>GDS Accessible Autocomplete to be used for Local Planning Authority input - <a href="https://github.com/alphagov/accessible-autocomplete">https://github.com/alphagov/accessible-autocomplete</a></p>
+        <p class="govuk-!-margin-bottom-9">GDS Accessible Autocomplete to be used for Local Planning Authority input - <a href="https://github.com/alphagov/accessible-autocomplete">https://github.com/alphagov/accessible-autocomplete</a></p>
+
+
+
+
+
+
+
+
+
+      <!-- Version 1 -->
+
+
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Version 1
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+         
+          {{ govukButton({
+            text: "View full flow",
+            href: "task-list"
+          }) }}
+          
+          
+          <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+    
+          <h2 class="govuk-heading-m">Full page list and error states</h2>
+    
+          <table class="govuk-table">
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header">Page</th>
+                <th scope="col" class="govuk-table__header">Link</th>
+                <th scope="col" class="govuk-table__header">Error states</th>
+                </tr>
+            </thead>
+            <tbody class="govuk-table__body">   
+              <tr class="govuk-table__row">
+                <th class="govuk-table__cell">Task list</th>
+                <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="task-list">task-list</a></td>
+                <td class="govuk-table__cell"></td>
+               </tr>
+    
+               <tr class="govuk-table__row">
+                <th class="govuk-table__cell">Does the project need permissions</th>
+                <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="permissions">permissions</a></td>
+                <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-permissions">If nothing chosen</a></td>
+               </tr>
+    
+               <tr class="govuk-table__row">
+                <th class="govuk-table__cell">Which Local Planning Authority - Autocomplete</th>
+                <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="lpa">lpa</a></td>
+                <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-lpa">If nothing chosen</a></td>
+               </tr>
+    
+               <tr class="govuk-table__row">
+                <th class="govuk-table__cell">Tell us about each permission</th>
+                <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="add-permission-start">add-permission-start</a></td>
+                <td class="govuk-table__cell"></td>
+               </tr>
+    
+               <tr class="govuk-table__row">
+                <th class="govuk-table__cell">What permission has the project got</th>
+                <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="consent-type">consent-type</a></td>
+                <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-consent-type">If nothing chosen</a></td>
+               </tr>
+    
+               <tr class="govuk-table__row">
+                <th class="govuk-table__cell">What is the [permission] reference</th>
+                <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="consent-reference">consent-reference</a></td>
+                <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-blank-consent-reference">If blank</a></td>
+               </tr>
+    
+               <tr class="govuk-table__row">
+                <th class="govuk-table__cell">Permission added / add another</th>
+                <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="cya-consents">cya-consents</a></td>
+                <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-cya-consents">If nothing chosen</a></td>
+               </tr>
+    
+               <tr class="govuk-table__row">
+                <th class="govuk-table__cell">All relevant conditions completed</th>
+                <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="conditions-reserved-matters">conditions-reserved-matters</a></td>
+                <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-conditions-reserved-matters">If nothing chosen</a></td>
+               </tr>
+    
+               <tr class="govuk-table__row">
+                <th class="govuk-table__cell">Which conditions not completed</th>
+                <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="which-not-completed">which-not-completed</a></td>
+                <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-blank-which-not-completed">If blank</a></td>
+               </tr>
+    
+               <tr class="govuk-table__row">
+                <th class="govuk-table__cell">Why not completed</th>
+                <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="why-not-completed">why-not-completed</a></td>
+                <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-blank-why-not-completed">If blank</a></td>
+               </tr>
+    
+               <tr class="govuk-table__row">
+                <th class="govuk-table__cell">Any commitment that affects badgers</th>
+                <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="commitment-subject">commitment-subject</a></td>
+                <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-commitment-subject">If nothing chosen</a></td>
+               </tr>
+    
+               <tr class="govuk-table__row">
+                <th class="govuk-table__cell">Has the commitment been met</th>
+                <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="commitment-met">commitment-met</a></td>
+                <td class="govuk-table__cell">
+                  <a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-commitment-met">If nothing chosen</a><br>
+                  <a class="govuk-link govuk-link--no-visited-state" href="error-blank-commitment-met">If blank</a><br>
+                  <a class="govuk-link govuk-link--no-visited-state" href="error-blank-commitment-not-met">If blank</a>
+                </td>
+               </tr>
+    
+               <tr class="govuk-table__row">
+                <th class="govuk-table__cell">Any commitments that affects other protected species</th>
+                <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="commitment-subject-eps">commitment-subject-eps</a></td>
+                <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-commitment-subject-eps">If nothing chosen</a></td>
+               </tr>
+    
+               <tr class="govuk-table__row">
+                <th class="govuk-table__cell">Have the commitments been met</th>
+                <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="commitment-eps-met">commitment-eps-met</a></td>
+                <td class="govuk-table__cell">
+                  <a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-commitment-eps-met">If nothing chosen</a><br>
+                  <a class="govuk-link govuk-link--no-visited-state" href="error-blank-commitment-eps-met">If blank</a><br>
+                  <a class="govuk-link govuk-link--no-visited-state" href="error-blank-commitment-eps-not-met">If blank</a>
+                </td>
+               </tr>
+               
+               <tr class="govuk-table__row">
+                <th class="govuk-table__cell">Check your answers</th>
+                <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="check-your-answers">check-your-answers</a></td>
+                <td class="govuk-table__cell"></td>
+               </tr>
+               
+    
+                <tr class="govuk-table__row">
+                  <th class="govuk-table__cell">Task list</th>
+                  <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="task-list-complete">task-list-complete</a></td>
+                  <td class="govuk-table__cell"></td>
+                 </tr>
+    
+    
+              </tbody>
+            </table>
+        
+            <p>GDS Accessible Autocomplete to be used for Local Planning Authority input - <a href="https://github.com/alphagov/accessible-autocomplete">https://github.com/alphagov/accessible-autocomplete</a></p>
+
+        </div>
+      </details>
+      
+
+      
     </div>
   </div>
 
