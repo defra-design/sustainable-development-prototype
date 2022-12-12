@@ -582,4 +582,58 @@ router.post('/private-beta/SDDSIP-585-amend-permissions-flow/v2/consent-remove-c
 });
 
 
+router.post('/private-beta/SSDSIP-476-conservation-considerations/v3/on-or-within', (req, res) => {
+  if(req.session.data['on-or-within-designated-site'] == 'Yes'){
+      res.redirect('site-name')
+  } else if(req.session.data['on-or-within-designated-site'] == 'No'){
+      res.redirect('check-your-answers-none')
+  } 
+});
+
+router.post('/private-beta/SSDSIP-476-conservation-considerations/v3/permission-check', (req, res) => {
+  if(req.session.data['permission-check'] == 'Yes'){
+      res.redirect('details-of-consent')
+  } else if(req.session.data['permission-check'] == 'No'){
+      res.redirect('advice')
+  } 
+});
+
+
+router.post('/private-beta/SSDSIP-476-conservation-considerations/v3/advice-check', (req, res) => {
+  if(req.session.data['advice-check'] == 'Yes'){
+      res.redirect('outcome')
+  } else if(req.session.data['advice-check'] == 'No'){
+      res.redirect('advice-no')
+  } 
+});
+
+
+router.post('/private-beta/SSDSIP-476-conservation-considerations/v3/significant-effect-check', (req, res) => {
+  if(req.session.data['significant-effect-check'] == 'Yes'){
+      res.redirect('necessary-for-managing')
+  } else if(req.session.data['significant-effect-check'] == 'No'){
+      res.redirect('check-your-answers')
+  } 
+});
+
+
+router.post('/private-beta/SSDSIP-476-conservation-considerations/v3/necessary-check', (req, res) => {
+  if(req.session.data['necessary-check'] == 'Yes'){
+      res.redirect('necessary-site-name')
+  } else if(req.session.data['necessary-check'] == 'No'){
+      res.redirect('sites-loop-start')
+  } 
+});
+
+
+router.post('/private-beta/SSDSIP-476-conservation-considerations/v3/add-another-site-check', (req, res) => {
+  if(req.session.data['add-another-site-check'] == 'Yes'){
+      res.redirect('multiple-sites-another-designated-site-name')
+  } else if(req.session.data['add-another-site-check'] == 'No'){
+      res.redirect('check-your-answers')
+  } 
+});
+
+
+
 }

@@ -1,0 +1,39 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Why did you not get advice from Natural England or a designated site manager?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <form class="form" action="significant-effect" method="post">       
+
+        {{ govukTextarea({
+            name: "why-no-advice",
+            id: "why-no-advice",
+            label: {
+              text: "Why did you not get advice from Natural England or a designated site manager?",
+              classes: "govuk-label--l",
+              isPageHeading: true
+            }
+          }) }}
+
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}
