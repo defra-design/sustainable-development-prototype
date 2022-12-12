@@ -603,7 +603,7 @@ router.post('/private-beta/SSDSIP-476-conservation-considerations/v3/advice-chec
   if(req.session.data['advice-check'] == 'Yes'){
       res.redirect('outcome')
   } else if(req.session.data['advice-check'] == 'No'){
-      res.redirect('advice-no')
+      res.redirect('significant-effect')
   } 
 });
 
@@ -634,6 +634,14 @@ router.post('/private-beta/SSDSIP-476-conservation-considerations/v3/add-another
   } 
 });
 
+
+router.post('/private-beta/SSDSIP-476-conservation-considerations/v3/remove-site-check', (req, res) => {
+  if(req.session.data['remove-site-check'] == 'Yes'){
+      res.redirect('sites-loop-start')
+  } else if(req.session.data['remove-site-check'] == 'No'){
+      res.redirect('multiple-sites-review-add-another')
+  } 
+});
 
 
 }
