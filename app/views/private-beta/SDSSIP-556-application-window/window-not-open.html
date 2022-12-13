@@ -1,7 +1,7 @@
 {% extends "layout-pb-signed-out.html" %}
 
 {% block pageTitle %} 
-You cannot apply for this licence yet
+Applications for this type of licence are not being processed currently
 {% endblock %}
 
 {% block beforeContent %}
@@ -16,14 +16,17 @@ You cannot apply for this licence yet
     <div class="govuk-grid-column-two-thirds">
       
         <h1 class="govuk-heading-l">
-          You cannot apply for this licence yet
+          Applications for this type of licence are not being processed currently
         </h1>
 
-        <p class="govuk-body">You can only apply for a licence to affect badgers for development work from May 1 to November 31.</p>
-
-        <p class="govuk-body">You can fined or imprisoned if you disturb badgers outside this period.</p>
+        <p class="govuk-body">If you continue with an application it will not be dealt with until Natural England starts to process applications.</p>
 
         <p class="govuk-body">Find out more about <a href="https://www.gov.uk/guidance/wildlife-licences" target="_blank">what to do before you apply for a licence</a>.</p>
+
+        {{ govukButton({
+          text: "Continue",
+          href: "land-owner"
+        }) }}
 
     </div>
   </div>
