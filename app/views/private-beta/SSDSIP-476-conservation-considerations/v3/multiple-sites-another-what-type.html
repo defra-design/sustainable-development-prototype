@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-What type of designated site is Malham Tarn?
+What type of site is Malham Tarn?
 {% endblock %}
 
 {% block beforeContent %}
@@ -20,7 +20,7 @@ What type of designated site is Malham Tarn?
           name: "multiple-sites-another-what-type",
           fieldset: {
             legend: {
-              html: "What type of designated site is " + data['multiple-sites-designated-site-name-2'] + "?",
+              html: "What type of site is " + data['multiple-sites-designated-site-name-2'] + "?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
@@ -29,10 +29,6 @@ What type of designated site is Malham Tarn?
             text: "Select all that apply."
           },
           items: [
-            {
-              value: "Site of Special Scientific Interest",
-              text: "Site of Special Scientific Interest"
-            },
             {
               value: "Special Protection Area",
               text: "Special Protection Area"

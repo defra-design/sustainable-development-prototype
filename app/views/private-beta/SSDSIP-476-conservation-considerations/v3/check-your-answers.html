@@ -180,37 +180,37 @@ Check your answers
         {% if data['necessary-check'] == 'No' %}
         
 
-        <h2 class="govuk-heading-m govuk-!-margin-top-9">Designated sites</h2>
+        <h2 class="govuk-heading-m govuk-!-margin-top-9">Sites the work will affect</h2>
 
         <h3 class="govuk-heading-s">Site name: {{ data['multiple-sites-designated-site-name-1'] }}</h3>
   
-        <p><a href="remove-site">Remove designated site</a></p>
+        <p><a href="remove-site">Remove site</a></p>
   
     
         <dl class="govuk-summary-list">
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Name of the designated site
+              Name of the site
             </dt>
             <dd class="govuk-summary-list__value">
               {{ data['multiple-sites-designated-site-name-1'] }}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="add-person">
-                Change<span class="govuk-visually-hidden"> name of the designated site</span>
+                Change<span class="govuk-visually-hidden"> name of the site</span>
               </a>
             </dd>
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              What type of designated site?
+              What type of site?
             </dt>
             <dd class="govuk-summary-list__value">
               {{ data['multiple-sites-what-type'] }} 
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="add-person">
-                Change<span class="govuk-visually-hidden"> what type of designated site?</span>
+                Change<span class="govuk-visually-hidden"> what type of site?</span>
               </a>
             </dd>
           </div>
@@ -264,32 +264,32 @@ Check your answers
       {% if data['add-another-site-check'] == 'Yes' %}
         
           <h3 class="govuk-heading-s">Site name: {{ data['multiple-sites-designated-site-name-2'] }}</h3>
-          <p><a href="remove-site-another">Remove designated site</a></p>
+          <p><a href="remove-site-another">Remove site</a></p>
       
           <dl class="govuk-summary-list">
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Name of the designated site
+                Name of the site
               </dt>
               <dd class="govuk-summary-list__value">
                 {{ data['multiple-sites-designated-site-name-2'] }}
               </dd>
               <dd class="govuk-summary-list__actions">
                 <a class="govuk-link" href="add-person">
-                  Change<span class="govuk-visually-hidden"> name of the designated site</span>
+                  Change<span class="govuk-visually-hidden"> name of the site</span>
                 </a>
               </dd>
             </div>
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                What type of designated site?
+                What type of site?
               </dt>
               <dd class="govuk-summary-list__value">
                 {{ data['multiple-sites-another-what-type'] }} 
               </dd>
               <dd class="govuk-summary-list__actions">
                 <a class="govuk-link" href="add-person">
-                  Change<span class="govuk-visually-hidden"> what type of designated site?</span>
+                  Change<span class="govuk-visually-hidden"> what type of site?</span>
                 </a>
               </dd>
             </div>

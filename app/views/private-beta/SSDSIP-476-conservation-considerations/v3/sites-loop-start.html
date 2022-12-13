@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-  Tell us about each designated site the work will affect
+  Tell us about each site the work will affect
 {% endblock %}
 
 {% block beforeContent %}
@@ -15,14 +15,14 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">
-        Tell us about each designated site the work will affect
+        Tell us about each site the work will affect
       </h1>
       <p>
-        You can add more than one designated site.
+        You can add more than one site.
       </p>
 
       {{ govukButton({
-        text: "Tell us about the first designated site",
+        text: "Tell us about the first site",
         href: "multiple-sites-designated-site-name"
       }) }}
     </div>
