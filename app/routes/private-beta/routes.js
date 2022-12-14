@@ -644,4 +644,13 @@ router.post('/private-beta/SSDSIP-476-conservation-considerations/v3/remove-site
 });
 
 
+router.post('/private-beta/SSDSIP-476-conservation-considerations/v3/remove-site-another-check', (req, res) => {
+  if(req.session.data['remove-site-another-check'] == 'Yes'){
+      res.redirect('multiple-sites-review-add-another')
+  } else if(req.session.data['remove-site-another-check'] == 'No'){
+      res.redirect('multiple-sites-another-review-add-another')
+  } 
+});
+
+
 }

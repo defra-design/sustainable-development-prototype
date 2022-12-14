@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Is it likely to have a significant effect on a Special Protection Area, Special Area of Conservation or Ramsar site?
+Error: Is it likely to have a significant effect on a Special Protection Area, Special Area of Conservation or Ramsar site?
 {% endblock %}
 
 {% block beforeContent %}
@@ -13,19 +13,33 @@ Is it likely to have a significant effect on a Special Protection Area, Special 
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not selected an option",
+                href: "#significant-effect-check"
+              }
+            ]
+          }) }}
       
       <form class="form" action="significant-effect-check" method="post">       
 
-          <div class="govuk-form-group">
+          <div class="govuk-form-group govuk-form-group--error">
             <fieldset class="govuk-fieldset">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                 <h1 class="govuk-fieldset__heading">
                   Is it likely to have a significant effect on a Special Protection Area, Special Area of Conservation or Ramsar site?
                 </h1>
               </legend>
+              
               <p><a href="https://magic.defra.gov.uk/MagicMap.aspx?&startTopic=GreyRasters&chosenLayers=spaPIndex,spaIndex,backdropDIndex,backdropIndex,europeIndex,baseIndex&box=-187428:14658:846037:536153&useDefaultbackgroundMapping=false" target="_blank">Check the location of Special Protection Areas</a></p>
               <p><a href="https://magic.defra.gov.uk/MagicMap.aspx?&startTopic=GreyRasters&chosenLayers=sacPIndex,sacIndex,backdropDIndex,backdropIndex,europeIndex,baseIndex&box=-187428:14658:846037:536153&useDefaultbackgroundMapping=false" target="_blank">Check the location of Special Areas of Conservation</a></p>
               <p><a href="https://magic.defra.gov.uk/MagicMap.aspx?&startTopic=GreyRasters&chosenLayers=ramPIndex,ramIndex,backdropDIndex,backdropIndex,europeIndex,baseIndex&box=279318:63656:623806:237487&useDefaultbackgroundMapping=false" target="_blank">Check the location of Ramsar sites</a></p>
+              <p id="where-do-you-live-error" class="govuk-error-message">
+                <span class="govuk-visually-hidden">Error:</span> Select an option
+              </p>
               <div class="govuk-radios" data-module="govuk-radios">
                 <div class="govuk-radios__item">
                   <input class="govuk-radios__input" id="significant-effect-check" name="significant-effect-check" type="radio" value="Yes">

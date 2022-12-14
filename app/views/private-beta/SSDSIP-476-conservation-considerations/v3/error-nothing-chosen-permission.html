@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Error: Have you had advice about the activity from Natural England?
+Error: Do you have permission from the owner/occupier of the SSSI?
 {% endblock %}
 
 {% block beforeContent %}
@@ -19,28 +19,28 @@ Error: Have you had advice about the activity from Natural England?
             errorList: [
               {
                 text: "You have not selected an option",
-                href: "#advice-check"
+                href: "#permission-check"
               }
             ]
           }) }}
       
-      <form class="form" action="advice" method="post">       
+      <form class="form" action="permission-check" method="post">       
 
         {{ govukRadios({
-            name: "advice-check",
+            name: "permission-check",
             fieldset: {
               legend: {
-                text: "Have you had advice about the activity from Natural England?",
+                text: "Do you have permission from the owner/occupier of the SSSI?",
                 isPageHeading: true,
                 classes: "govuk-fieldset__legend--l"
               }
             },
             hint: {
-                text: "Select one."
+                text: "Your application may be delayed if you do not have permission. Select one."
               },
-            errorMessage: {
+              errorMessage: {
                 text: "Select an option"
-            },
+              },
             items: [
               {
                 value: "Yes",
