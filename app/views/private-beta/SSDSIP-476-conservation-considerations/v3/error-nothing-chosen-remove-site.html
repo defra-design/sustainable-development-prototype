@@ -15,32 +15,31 @@ Error: Do you want to remove this site?
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-        {{ govukErrorSummary({
-            titleText: "There is a problem",
-            errorList: [
-              {
-                text: "You have not selected an option",
-                href: "#remove-site-check"
-              }
-            ]
-          }) }}
-
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "You have not selected an option",
+            href: "#remove-site-check"
+          }
+        ]
+      }) }}
 
       <form class="form" action="remove-site-check" method="post"> 
 
-        <div class="govuk-form-group govuk-form-group--error">
-          <fieldset class="govuk-fieldset" aria-describedby="remove-site-check-error">
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-fieldset__heading">
                 Do you want to remove this site?
               </h1>
             </legend>
 
-            <p>Designated site: {{ data['multiple-sites-designated-site-name-1'] }}</p>
+            <p>Site: {{ data['multiple-sites-designated-site-name-1'] }}</p>
 
             <p id="where-do-you-live-error" class="govuk-error-message">
-                <span class="govuk-visually-hidden">Error:</span> Select an option
-              </p>
+              <span class="govuk-visually-hidden">Error:</span> Select an option
+            </p>
             <div class="govuk-radios" data-module="govuk-radios">
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="remove-site-check" name="remove-site-check" type="radio" value="Yes">
