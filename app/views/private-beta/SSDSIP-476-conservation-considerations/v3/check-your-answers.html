@@ -206,7 +206,9 @@ Check your answers
               What type of site?
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['multiple-sites-what-type'] }} 
+              {% for type in data['multiple-sites-what-type'] %}
+                <p>{{ type }}</p>
+              {% endfor %} 
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="add-person">
@@ -285,7 +287,9 @@ Check your answers
                 What type of site?
               </dt>
               <dd class="govuk-summary-list__value">
-                {{ data['multiple-sites-another-what-type'] }} 
+                {% for type in data['multiple-sites-another-what-type'] %}
+                  <p>{{ type }}</p>
+                {% endfor %}
               </dd>
               <dd class="govuk-summary-list__actions">
                 <a class="govuk-link" href="add-person">
