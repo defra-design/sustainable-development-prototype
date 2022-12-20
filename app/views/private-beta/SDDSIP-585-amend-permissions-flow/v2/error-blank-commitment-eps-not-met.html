@@ -18,7 +18,7 @@ Error: Have the commitments been met?
         titleText: "There is a problem",
         errorList: [
           {
-            text: "You have not entered when the commitments will be complete",
+            text: "You have not entered when you think the legal commitments will be complete",
             href: "#commitment-eps-not-met-detail"
           }
         ]
@@ -42,10 +42,10 @@ Error: Have the commitments been met?
             name: "commitment-eps-not-met-detail",
             id: "commitment-eps-not-met-detail",
             errorMessage: {
-              text: "Enter when the commitments will be complete"
+              text: "Enter when you think the commitments will be complete"
             },
             label: {
-              text: "When will the commitments be complete?"
+              text: "When do you think the legal commitments be complete?"
             }
           }) }}
         {% endset -%}
@@ -56,7 +56,7 @@ Error: Have the commitments been met?
             name: "commitment-eps-met-check",
             fieldset: {
               legend: {
-                text: "Have the commitments been met?",
+                text: "Will the legal commitments have been met within 6 weeks of this application being submitted?",
                 isPageHeading: true,
                 classes: "govuk-fieldset__legend--l"
               }

@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Which Local Planning Authority granted the consents for this development?
+Which planning authority granted the consents for this development?
 {% endblock %}
 
 {% block beforeContent %}
@@ -18,7 +18,7 @@ Which Local Planning Authority granted the consents for this development?
             titleText: "There is a problem",
             errorList: [
               {
-                text: "You have not selected a Local Planning Authority",
+                text: "You have not selected a planning authority",
                 href: "#which-lpa"
               }
             ]
@@ -28,12 +28,12 @@ Which Local Planning Authority granted the consents for this development?
       <form class="form" action="add-permission-start" method="post">
         {{ govukInput({
           label: {
-            text: "Which Local Planning Authority granted the consents for this development?",
+            text: "Which planning authority granted the consents for this development?",
             classes: "govuk-label--l",
             isPageHeading: true
           },
           errorMessage: {
-            text: "Select a Local Planning Authority"
+            text: "Select a planning authority"
           },
           id: "which-lpa",
           name: "which-lpa"

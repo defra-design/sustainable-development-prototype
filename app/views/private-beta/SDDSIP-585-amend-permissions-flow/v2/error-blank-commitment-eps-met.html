@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Error: Have the commitments been met?
+Error: Will the legal commitments have been met within 6 weeks of this application being submitted?
 {% endblock %}
 
 {% block beforeContent %}
@@ -20,7 +20,7 @@ Error: Have the commitments been met?
         titleText: "There is a problem",
         errorList: [
           {
-            text: "You have not described how the commitments have been met",
+            text: "You have not described how the legal commitments have been met",
             href: "#commitment-eps-met-detail"
           }
         ]
@@ -34,10 +34,10 @@ Error: Have the commitments been met?
           name: "commitment-eps-met-detail",
           id: "commitment-eps-met-detail",
           errorMessage: {
-              text: "Describe how the commitments have been met"
+              text: "Describe how the legal commitments have been met"
             },
           label: {
-            text: "Describe how the commitments have been met"
+            text: "Describe how the legal commitments have been met"
           }
         }) }}
       {% endset -%}
@@ -47,7 +47,7 @@ Error: Have the commitments been met?
           name: "commitment-eps-not-met-detail",
           id: "commitment-eps-not-met-detail",
           label: {
-            text: "When will the commitments be complete?"
+            text: "When do you think the legal commitments be complete?"
           }
         }) }}
       {% endset -%}
@@ -58,7 +58,7 @@ Error: Have the commitments been met?
           name: "commitment-eps-met-check",
           fieldset: {
             legend: {
-              text: "Have the commitments been met?",
+              text: "Will the legal commitments have been met within 6 weeks of this application being submitted?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
