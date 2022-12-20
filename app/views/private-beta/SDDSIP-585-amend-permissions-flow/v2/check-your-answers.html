@@ -97,7 +97,7 @@ Check your answers
 
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
-                  Have all relevant conditions been completed?
+                  Have all other wildlife or habitat-related conditions been met?
                 </dt>
                 <dd class="govuk-summary-list__value">
                   {{ data['conditions-reserved-matters-check'] }}
@@ -117,7 +117,7 @@ Check your answers
 
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
-                  Which conditions have not been completed?
+                  Which wildlife or habitat related conditions have not been completed?
                 </dt>
                 <dd class="govuk-summary-list__value">
                   {{ data['which-conditions-not-completed'] }}
@@ -132,7 +132,7 @@ Check your answers
 
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
-                  Why have they not been completed?
+                  Why have the wildlife or habitat related conditions not been completed?
                 </dt>
                 <dd class="govuk-summary-list__value">
                   {{ data['why-conditions-not-completed'] }}
@@ -148,7 +148,7 @@ Check your answers
               {% endif %}   
         
         
-        <div class="govuk-summary-list__row">
+       <!-- <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Is the site subject to any commitment that affects badgers?
           </dt>
@@ -196,7 +196,7 @@ Check your answers
               </dd>
             </div>
 
-        {% endif %}
+        {% endif %} 
 
 
         {% if data['commitment-met-check'] == 'No' %}
@@ -215,12 +215,12 @@ Check your answers
             </dd>
           </div>
 
-        {% endif %}
+        {% endif %} -->
 
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Are there other protected species covered by commitments on the site?
+            Are there any other legal commitments that affect protected species on the site?
           </dt>
           <dd class="govuk-summary-list__value">
             {{ data['commitment-eps-check'] }} 
@@ -239,7 +239,7 @@ Check your answers
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Have the commitments been met?
+            Will the legal commitments have been met within 6 weeks of this application being submitted?
           </dt>
           <dd class="govuk-summary-list__value">
             {{ data['commitment-eps-met-check'] }}  
@@ -258,7 +258,8 @@ Check your answers
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Describe how the commitments have been met
+            Describe how the legal commitments have been met
+
           </dt>
           <dd class="govuk-summary-list__value">
             {{ data['commitment-eps-met-detail'] }}   
@@ -277,7 +278,7 @@ Check your answers
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            When will the commitments be complete?
+            When do you think the legal commitments be complete?
           </dt>
           <dd class="govuk-summary-list__value">
             {{ data['commitment-eps-not-met-detail'] }}   
