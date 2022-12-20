@@ -524,7 +524,7 @@ router.post('/private-beta/SDDSIP-585-amend-permissions-flow/v2/permissions-chec
   if(req.session.data['permissions-check'] == 'Yes'){
       res.redirect('add-permission-start')
   } else if(req.session.data['permissions-check'] == 'No'){
-      res.redirect('commitment-subject')
+      res.redirect('commitment-subject-eps')
   } 
 });
 
@@ -539,7 +539,7 @@ router.post('/private-beta/SDDSIP-585-amend-permissions-flow/v2/add-another-perm
 
 router.post('/private-beta/SDDSIP-585-amend-permissions-flow/v2/conditions-reserved-matters-check', (req, res) => {
   if(req.session.data['conditions-reserved-matters-check'] == 'Yes'){
-      res.redirect('commitment-subject')
+      res.redirect('commitment-subject-eps')
   } else if(req.session.data['conditions-reserved-matters-check'] == 'No'){
       res.redirect('which-not-completed')
   } 
