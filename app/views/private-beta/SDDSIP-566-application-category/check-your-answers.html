@@ -73,6 +73,22 @@ Check your answers
           </div>
         {% endif %}
 
+
+        {% if data['sites-check'] == 'No' %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              What kind of development is happening at the site?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['category'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> what kind of development is happening at the site?</span>
+              </a>
+            </dd>
+          </div>
+        {% endif %}
         
         
 

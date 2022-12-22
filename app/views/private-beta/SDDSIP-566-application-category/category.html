@@ -14,10 +14,10 @@
 
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
-		<form class="form" action="check-your-answers" method="post">
+		<form class="form" action="cost" method="post">
 
 
-            {{ govukRadios({
+            <!--{{ govukRadios({
                 name: "category",
                 fieldset: {
                   legend: {
@@ -86,6 +86,76 @@
                   {
                     value: "Places of worship",
                     text: "Places of worship"
+                  },
+                  {
+                    value: "Public buildings and public land",
+                    text: "Public buildings and public land"
+                  },
+                  {
+                    value: "Tourism and leisure",
+                    text: "Tourism and leisure"
+                  },
+                  {
+                    value: "Transport, including roads",
+                    text: "Transport, including roads"
+                  },
+                  {
+                    value: "Waste management",
+                    text: "Waste management"
+                  },
+                  {
+                    value: "Water bodies, water supply and treatment",
+                    text: "Water bodies, water supply and treatment"
+                  }
+                ]
+              }) }}-->
+
+
+              {{ govukRadios({
+                name: "category",
+                fieldset: {
+                  legend: {
+                    text: "What kind of development is happening at the site?",
+                    isPageHeading: true,
+                    classes: "govuk-fieldset__legend--l"
+                  }
+                },
+                items: [
+                  {
+                    value: "Barn conversion",
+                    text: "Barn conversion"
+                  },
+                  {
+                    value: "Commercial",
+                    text: "Commercial"
+                  },
+                  {
+                    value: "Communications",
+                    text: "Communications"
+                  },
+                  {
+                    value: "Energy generation and supply",
+                    text: "Energy generation and supply"
+                  },
+                  {
+                    value: "Flood and coastal defences",
+                    text: "Flood and coastal defences"
+                  },
+                  {
+                    value: "Residential housing (not householder improvements)",
+                    text: "Residential housing (not householder improvements)"
+                  },
+                  {
+                    value: "Industrial or manufacturing",
+                    text: "Industrial or manufacturing"
+                  },
+                  {
+                    value: "Quarrying and mining",
+                    text: "Quarrying and mining"
+                  },
+                  {
+                    value: "Nationally significant infrastructure projects",
+                    text: "Nationally significant infrastructure projects"
                   },
                   {
                     value: "Public buildings and public land",
