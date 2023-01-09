@@ -1,0 +1,74 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+What type of planning permission was granted?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <form class="form" action="planning-reference" method="post">
+       
+        {% set otherHtml %}
+            {{ govukInput({
+            id: "other-planning",
+            name: "other-planning",
+            label: {
+                text: "Enter the other type of planning permission"
+            }
+            }) }}
+        {% endset -%}
+
+
+          {{ govukRadios({
+            name: "planning-type",
+            fieldset: {
+              legend: {
+                text: "What type of planning permission was granted?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            items: [
+              {
+                value: "Full",
+                text: "Full"
+              },
+              {
+                value: "Outline",
+                text: "Outline"
+              },
+              {
+                value: "Hybrid",
+                text: "Hybrid"
+              },
+              {
+                value: "Other",
+                text: "Other",
+                conditional: {
+                  html: otherHtml
+                }
+              }
+
+            ]
+          }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Are there other protected species covered by commitments on the site?
+Are there any potential conflicts between this application and other legal commitments?
 {% endblock %}
 
 {% block beforeContent %}
@@ -41,13 +41,13 @@ Are there other protected species covered by commitments on the site?
             name: "commitment-eps-check",
             fieldset: {
               legend: {
-                text: "Are there any other legal commitments that affect protected species on the site?",
+                text: "Are there any potential conflicts between this application and other legal commitments?",
                 isPageHeading: true,
                 classes: "govuk-fieldset__legend--l"
               }
             },
             hint: {
-              text: "For example, a Section 106 agreement or an environmental statement"
+              text: "For example, a Section 106 agreement or an Environmental Statement."
             },
             items: [
               {
