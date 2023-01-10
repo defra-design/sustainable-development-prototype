@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Error: Which wildlife or habitat related conditions have not been completed?
+Error: List these conditions and describe why they have not been completed
 {% endblock %}
 
 {% block beforeContent %}
@@ -18,7 +18,7 @@ Error: Which wildlife or habitat related conditions have not been completed?
         titleText: "There is a problem",
         errorList: [
           {
-            text: "You have not entered which wildlife or habitat related conditions have not been completed",
+            text: "You have not entered which conditions have not been completed",
             href: "#which-conditions-not-completed"
           }
         ]
@@ -26,18 +26,24 @@ Error: Which wildlife or habitat related conditions have not been completed?
       
       <form class="form" action="why-not-completed" method="post">
 
-        {{ govukTextarea({
-          name: "which-conditions-not-completed",
-          id: "which-conditions-not-completed",
-          errorMessage: {
-            text: "Enter which wildlife or habitat related conditions have not been completed"
-          },
-          label: {
-            text: "Which wildlife or habitat related conditions have not been completed?",
-            classes: "govuk-label--l",
-            isPageHeading: true
-          }
-        }) }}
+        <div class="govuk-form-group">
+          <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--l" for="which-conditions-not-completed">
+            List these conditions and describe why they have not been completed
+            </label>
+          </h1>
+          <p>If there are outstanding planning conditions relevant to this application, it may:</p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>delay a decision</li>
+            <li>cause the application to be rejected</li>
+          </ul>
+          <p id="more-detail-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> List the conditions and why they have not been completed
+          </p>
+          <textarea class="govuk-textarea govuk-textarea--error" id="which-conditions-not-completed" name="which-conditions-not-completed" rows="5" aria-describedby="which-conditions-not-completed-hint"></textarea>
+        </div>
+
+
+  
 
         {{ govukButton({
           text: "Continue"

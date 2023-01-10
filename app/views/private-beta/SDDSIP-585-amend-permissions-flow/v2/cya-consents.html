@@ -29,6 +29,14 @@ You have added 1 permission
               </dt>
               <dd class="govuk-summary-list__value">
                 <p>Planning authority:<br>{{ data['which-lpa'] }}</p>
+
+                {% if data['planning-type'] == 'Other' %}
+                  <p>Planning type:<br>{{ data['other-planning'] }}
+                {% else %}
+                  <p>Planning type:<br>{{ data['planning-type'] }}
+                {% endif %}
+                
+                </p>
                 <p>Reference:<br>{{ data['reference'] }}</p>
               </dd>
               <dd class="govuk-summary-list__actions">

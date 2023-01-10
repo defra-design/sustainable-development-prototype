@@ -38,7 +38,13 @@ Check your answers
             {{ data['consent-type-check'] }}
           </dt>
           <dd class="govuk-summary-list__value">
-            <p>Local Planning Authority:<br>Leeds City Council</p><p>Reference:<br> {{ data['reference'] }}</p>
+            <p>Local Planning Authority:<br>Leeds City Council</p>
+              {% if data['planning-type'] == 'Other' %}
+                  <p>Planning type:<br>{{ data['other-planning'] }}
+                {% else %}
+                  <p>Planning type:<br>{{ data['planning-type'] }}
+                {% endif %}
+              <p>Reference:<br> {{ data['reference'] }}</p>
           </dd>
           <dd class="govuk-summary-list__actions">
             <ul class="govuk-summary-list__actions-list">
@@ -130,7 +136,7 @@ Check your answers
               </div>
 
 
-              <div class="govuk-summary-list__row">
+              <!--<div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
                   Why have the wildlife or habitat related conditions not been completed?
                 </dt>
@@ -142,7 +148,7 @@ Check your answers
                     Change<span class="govuk-visually-hidden"> why have they not been completed?</span>
                   </a>
                 </dd>
-              </div>
+              </div>-->
 
         
               {% endif %}   
