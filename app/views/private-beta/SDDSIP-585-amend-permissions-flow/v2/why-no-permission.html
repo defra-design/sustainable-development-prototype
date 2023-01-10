@@ -1,0 +1,72 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Why is no permission required?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <form class="form" action="commitment-subject-eps" method="post">
+       
+        {% set otherHtml %}
+            {{ govukInput({
+            id: "other-reason",
+            name: "other-reason",
+            label: {
+                text: "Enter the other reason no permission is required"
+            }
+            }) }}
+        {% endset -%}
+
+
+          {{ govukRadios({
+            name: "no-permission-reason",
+            fieldset: {
+              legend: {
+                text: "Why is no permission required?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            items: [
+              {
+                value: "Permitted development",
+                text: "Permitted development"
+              },
+              {
+                value: "Health & safety",
+                text: "Health & safety"
+              },
+              {
+                value: "Other",
+                text: "Other",
+                conditional: {
+                  html: otherHtml
+                }
+              }
+
+            ]
+          }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+        
+
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

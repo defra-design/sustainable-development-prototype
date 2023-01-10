@@ -524,7 +524,7 @@ router.post('/private-beta/SDDSIP-585-amend-permissions-flow/v2/permissions-chec
   if(req.session.data['permissions-check'] == 'Yes'){
       res.redirect('add-permission-start')
   } else if(req.session.data['permissions-check'] == 'No'){
-      res.redirect('commitment-subject-eps')
+      res.redirect('why-no-permission')
   } 
 });
 

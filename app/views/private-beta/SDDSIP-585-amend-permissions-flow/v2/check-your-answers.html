@@ -18,18 +18,40 @@ Check your answers
 
       <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Does the project need any permissions?
-        </dt>
-        <dd class="govuk-summary-list__value">
-          {{ data['permissions-check'] }}
-        </dd>
-        <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="#">
-            Change<span class="govuk-visually-hidden"> does the project need any permissions?</span>
-          </a>
-        </dd>
-      </div>
+          <dt class="govuk-summary-list__key">
+            Does the project need any permissions?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['permissions-check'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> does the project need any permissions?</span>
+            </a>
+          </dd>
+        </div>
+
+      {% if data['permissions-check'] == 'No' %}
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Why is no permission required?
+          </dt>
+          <dd class="govuk-summary-list__value">
+                {% if data['no-permission-reason'] == 'Other' %}
+                  {{ data['other-reason'] }}
+                {% else %}
+                  {{ data['no-permission-reason'] }}
+                {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> why is no permission required?</span>
+            </a>
+          </dd>
+        </div>
+
+      {% endif %}
 
       {% if data['permissions-check'] == 'Yes' %}
         
