@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Is it likely to have a significant effect on a Special Protection Area, Special Area of Conservation or Ramsar site?
+Effects on Special Protection Areas, Special Areas of Conservation or Ramsar sites
 {% endblock %}
 
 {% block beforeContent %}
@@ -14,7 +14,7 @@ Is it likely to have a significant effect on a Special Protection Area, Special 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       
-      <form class="form" action="significant-effect-check" method="post">       
+      <!--<form class="form" action="significant-effect-check" method="post">       
 
           <div class="govuk-form-group">
             <fieldset class="govuk-fieldset">
@@ -57,9 +57,59 @@ Is it likely to have a significant effect on a Special Protection Area, Special 
           {{ govukButton({
             text: "Continue"
           }) }}
-      </form>
+      </form>-->
 
-      
+
+      <h1 class="govuk-heading-l">Effects on Special Protection Areas, Special Areas of Conservation or Ramsar sites</h1>
+
+      <p>You should have advice from a professional ecologist on whether the licensable activity is likely to have a significant impact on:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>Special Protection Areas</a> </li>
+        <li>Special Areas of Conservation</li>
+        <li>Ramsar sites</li>
+      </ul>
+
+      {{ govukDetails({
+        summaryText: "Check the location of these sites",
+        html: '
+        <p><a href="https://magic.defra.gov.uk/MagicMap.aspx?&startTopic=GreyRasters&chosenLayers=spaPIndex,spaIndex,backdropDIndex,backdropIndex,europeIndex,baseIndex&box=-187428:14658:846037:536153&useDefaultbackgroundMapping=false" target="_blank">Check the location of SPAs</a></p>
+        <p><a href="https://magic.defra.gov.uk/MagicMap.aspx?&startTopic=GreyRasters&chosenLayers=sacPIndex,sacIndex,backdropDIndex,backdropIndex,europeIndex,baseIndex&box=-187428:14658:846037:536153&useDefaultbackgroundMapping=false" target="_blank">Check the location of SACs</a></p>
+        <p><a href="https://magic.defra.gov.uk/MagicMap.aspx?&startTopic=GreyRasters&chosenLayers=ramPIndex,ramIndex,backdropDIndex,backdropIndex,europeIndex,baseIndex&box=279318:63656:623806:237487&useDefaultbackgroundMapping=false" target="_blank">Check the location of Ramsar sites</a></p>
+        '
+      }) }}
+
+     <form class="form" action="significant-effect-check" method="post">  
+
+        {{ govukRadios({
+          name: "significant-effect-check",
+          fieldset: {
+            legend: {
+              text: "Will the licensable activity affect one of these types of site?",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              text: "No"
+            },
+            {
+              value: "I have not had advice",
+              text: "I haven't had advice"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
     
     </div>
   </div>

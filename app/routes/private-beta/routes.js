@@ -613,7 +613,7 @@ router.post('/private-beta/SSDSIP-476-conservation-considerations/v3/significant
       res.redirect('sites-loop-start')
   } else if(req.session.data['significant-effect-check'] == 'No'){
       res.redirect('check-your-answers')
-  } else if(req.session.data['significant-effect-check'] == 'Do not know'){
+  } else if(req.session.data['significant-effect-check'] == 'I have not had advice'){
       res.redirect('check-your-answers')
   }  
 });
