@@ -1,0 +1,86 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Uploaded files
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">
+        Uploaded files
+      </h1>
+
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Uploaded file"
+            },
+            value: {
+              html: "<p>returns-evidence-21-10-22.docx</p>
+                     <p>Uploaded 12 August 2022 10:27am</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "file-removed",
+                  text: "Remove",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          }
+          
+        ]
+      }) }}
+
+
+
+
+
+
+
+      <form class="form" action="another-file" method="post">
+
+        {{ govukRadios({
+          idPrefix: "another-file-check",
+          name: "another-file-check",
+          fieldset: {
+            legend: {
+              text: "Do you want to upload another file?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+        
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

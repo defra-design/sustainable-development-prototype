@@ -685,5 +685,16 @@ router.post('/private-beta/SDDSIP-827-returns/upload-check', (req, res) => {
 });
 
 
+router.post('/private-beta/SDDSIP-827-returns/another-file', function (req, res) {
+  const editChoice = req.session.data['another-file-check']
+
+  if (editChoice === 'yes') {
+    res.redirect('upload-another')
+  } else if (editChoice === 'no') {
+    res.redirect('task-list-complete')
+  } 
+});
+
+
 
 }
