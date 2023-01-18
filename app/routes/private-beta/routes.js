@@ -655,4 +655,35 @@ router.post('/private-beta/SSDSIP-476-conservation-considerations/v3/remove-site
 });
 
 
+router.post('/private-beta/SDDSIP-827-returns/manage-licence-check', (req, res) => {
+  if(req.session.data['manage-licence-check'] == 'Submit a return'){
+      res.redirect('carried-out-work')
+  } else if(req.session.data['manage-licence-check'] == 'View licence'){
+      res.redirect('carried-out-work')
+  } else if(req.session.data['manage-licence-check'] == 'Renew licence'){
+      res.redirect('carried-out-work')
+  } else if(req.session.data['manage-licence-check'] == 'Cancel licence'){
+      res.redirect('carried-out-work')
+  }  
+});
+
+
+router.post('/private-beta/SDDSIP-827-returns/carried-out-work-check', (req, res) => {
+  if(req.session.data['carried-out-work-check'] == 'Yes'){
+      res.redirect('work-start-date')
+  } else if(req.session.data['carried-out-work-check'] == 'No'){
+      res.redirect('reported')
+  }  
+});
+
+router.post('/private-beta/SDDSIP-827-returns/upload-check', (req, res) => {
+  if(req.session.data['upload-check'] == 'Yes'){
+      res.redirect('upload-file')
+  } else if(req.session.data['upload-check'] == 'No'){
+      res.redirect('check-your-answers')
+  }  
+});
+
+
+
 }
