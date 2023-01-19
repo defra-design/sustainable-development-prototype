@@ -696,5 +696,13 @@ router.post('/private-beta/SDDSIP-827-returns/another-file', function (req, res)
 });
 
 
+router.post('/private-beta/SDDSIP-827-returns/reported-check', (req, res) => {
+  if(req.session.data['reported-check'] == 'Yes'){
+      res.redirect('describe-work')
+  } else if(req.session.data['reported-check'] == 'No'){
+      res.redirect('check-your-answers')
+  }  
+});
+
 
 }
