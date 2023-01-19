@@ -691,7 +691,7 @@ router.post('/private-beta/SDDSIP-827-returns/another-file', function (req, res)
   if (editChoice === 'yes') {
     res.redirect('upload-another')
   } else if (editChoice === 'no') {
-    res.redirect('task-list-complete')
+    res.redirect('check-your-answers')
   } 
 });
 

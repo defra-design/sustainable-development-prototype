@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Supporting information
+Uploaded files
 {% endblock %}
 
 {% block beforeContent %}
@@ -10,6 +10,7 @@ Supporting information
 {% endblock %}
 
 {% block content %}
+
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -25,36 +26,9 @@ Supporting information
               text: "Uploaded file"
             },
             value: {
-              html: "<p>returns-evidence-21-10-22.docx</p>
-                     <p>Uploaded 12 January 2023 10:27am</p>"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Remove",
-                  visuallyHiddenText: "name"
-                }
-              ]
+              html: "No file uploaded"
             }
-          },
-          {
-            key: {
-              text: "Uploaded file 2"
-            },
-            value: {
-              html: "<p>returns-evidence-21-10-22.pdf</p>
-                     <p>Uploaded 12 January 2023 10:27am</p>"
-            },
-            actions: {
-              items: [
-                {
-                  href: "files",
-                  text: "Remove",
-                  visuallyHiddenText: "name"
-                }
-              ]
-            }
+            
           }
           
         ]
@@ -66,13 +40,14 @@ Supporting information
 
 
 
+      <form class="form" action="upload-supp-file" method="post">
 
         {{ govukRadios({
-          idPrefix: "another-file",
-          name: "another-file",
+          idPrefix: "upload-supp-file-check",
+          name: "upload-supp-file-check",
           fieldset: {
             legend: {
-              text: "Do you want to upload another file?",
+              text: "Do you want to upload a file?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--m"
             }
@@ -91,9 +66,9 @@ Supporting information
         
 
         {{ govukButton({
-          text: "Continue",
-          href: "check-your-answers"
+          text: "Continue"
         }) }}
+      </form>
 
 
     </div>

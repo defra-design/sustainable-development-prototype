@@ -1,0 +1,140 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Check your answers
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h2 class="govuk-heading-l">Check your answers</h2>
+
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Have you carried out any work under the licence?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['carried-out-work-check'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> have you carried out any work under the licence?</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            When did you start the work?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['work-start-date-day'] + " " + data['work-start-date-month'] | toMonth + " " + data['work-start-date-year'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> when did you start the work?</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            When did you finish the work?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['work-end-date-day'] + " " + data['work-end-date-month'] | toMonth + " " + data['work-end-date-year'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> when did you finish the work?</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Describe the work that was done
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['work-carried-out'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> describe the work that was done</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Do you want to upload a document showing the work?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['upload-check'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> do you want to upload a document showing the work?</span>
+            </a>
+          </dd>
+        </div>
+
+        {% if data['upload-check'] == 'Yes' %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Uploaded file
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <p>returns-evidence-21-10-22.docx</p>
+            <p>Uploaded 12 January 2023 10:27am</p>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Remove
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+
+        {% if data['another-file-check'] == 'yes' %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Uploaded file
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <p>returns-evidence-21-10-22-B.docx</p>
+            <p>Uploaded 12 January 2023 10:27am</p>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Remove
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+
+
+        
+       
+      </dl>
+
+
+
+      
+      <form class="form" action="declaration" method="post">
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+    
+    </div>
+  </div>
+
+{% endblock %}
