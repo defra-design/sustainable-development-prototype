@@ -670,7 +670,7 @@ router.post('/private-beta/SDDSIP-827-returns/manage-licence-check', (req, res) 
 
 router.post('/private-beta/SDDSIP-827-returns/carried-out-work-check', (req, res) => {
   if(req.session.data['carried-out-work-check'] == 'Yes'){
-      res.redirect('work-start-date')
+      res.redirect('describe-work')
   } else if(req.session.data['carried-out-work-check'] == 'No'){
       res.redirect('reported')
   }  
