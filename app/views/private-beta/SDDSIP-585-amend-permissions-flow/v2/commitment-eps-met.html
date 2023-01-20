@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Will the legal commitments have been met within 6 weeks of this application being submitted?
+Describe the potential conflicts between this application and other legal commitments
 {% endblock %}
 
 {% block beforeContent %}
@@ -16,7 +16,7 @@ Will the legal commitments have been met within 6 weeks of this application bein
       
       <form class="form" action="check-your-answers" method="post">       
 
-        {% set commitmentHtml %}
+        <!-- {% set commitmentHtml %}
           {{ govukTextarea({
             name: "commitment-eps-met-detail",
             id: "commitment-eps-met-detail",
@@ -61,7 +61,21 @@ Will the legal commitments have been met within 6 weeks of this application bein
                 }
               }
             ]
+          }) }} -->
+
+          {{ govukTextarea({
+            name: "conflicts",
+            id: "conflicts",
+            label: {
+              text: "Describe the potential conflicts between this application and other legal commitments",
+              classes: "govuk-label--l",
+              isPageHeading: true
+            },
+            hint: {
+              text: "You will be able to upload documents showing permission granted."
+            }
           }) }}
+
         
           {{ govukButton({
             text: "Continue"

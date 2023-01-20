@@ -267,14 +267,14 @@ Check your answers
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Will the legal commitments have been met within 6 weeks of this application being submitted?
+            Describe the potential conflicts between this application and other legal commitments
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['commitment-eps-met-check'] }}  
+            {{ data['conflicts'] }}  
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="#">
-              Change<span class="govuk-visually-hidden"> have the commitments been met?</span>
+              Change<span class="govuk-visually-hidden"> describe the potential conflicts between this application and other legal commitments</span>
             </a>
           </dd>
         </div>
@@ -282,43 +282,7 @@ Check your answers
         {% endif %}
 
 
-        {% if data['commitment-eps-met-check'] == 'Yes' %}
-
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Describe how the legal commitments have been met
-
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['commitment-eps-met-detail'] }}   
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="#">
-              Change<span class="govuk-visually-hidden"> describe how the commitments have been met?</span>
-            </a>
-          </dd>
-        </div>
-
-        {% endif %}
-
-
-        {% if data['commitment-eps-met-check'] == 'No' %}
-
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            When do you think the legal commitments be complete?
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['commitment-eps-not-met-detail'] }}   
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="#">
-              Change<span class="govuk-visually-hidden"> when will the commitments be complete?</span>
-            </a>
-          </dd>
-        </div>
-
-        {% endif %}
+       
 
       </dl>
 

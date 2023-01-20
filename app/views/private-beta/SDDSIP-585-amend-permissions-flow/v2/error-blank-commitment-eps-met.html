@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Error: Will the legal commitments have been met within 6 weeks of this application being submitted?
+Error: Describe the potential conflicts between this application and other legal commitments
 {% endblock %}
 
 {% block beforeContent %}
@@ -20,8 +20,8 @@ Error: Will the legal commitments have been met within 6 weeks of this applicati
         titleText: "There is a problem",
         errorList: [
           {
-            text: "You have not described how the legal commitments will have been met",
-            href: "#commitment-eps-met-detail"
+            text: "You have not described the potential conflicts between this application and other legal commitments",
+            href: "#conflicts"
           }
         ]
       }) }}
@@ -29,58 +29,27 @@ Error: Will the legal commitments have been met within 6 weeks of this applicati
       <form class="form" action="check-your-answers" method="post">       
 
         
-        {% set commitmentHtml %}
+        
+
+
         {{ govukTextarea({
-          name: "commitment-eps-met-detail",
-          id: "commitment-eps-met-detail",
-          errorMessage: {
-              text: "Describe how the legal commitments will have been met"
-            },
+          name: "conflicts",
+          id: "conflicts",
           label: {
-            text: "Describe how the legal commitments will have been met"
-          }
-        }) }}
-      {% endset -%}
-
-      {% set commitmentNotMetHtml %}
-        {{ govukTextarea({
-          name: "commitment-eps-not-met-detail",
-          id: "commitment-eps-not-met-detail",
-          label: {
-            text: "When do you think the legal commitments will be complete?"
-          }
-        }) }}
-      {% endset -%}
-
-
-
-        {{ govukRadios({
-          name: "commitment-eps-met-check",
-          fieldset: {
-            legend: {
-              text: "Will the legal commitments have been met within 6 weeks of this application being submitted?",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
-            }
+            text: "Describe the potential conflicts between this application and other legal commitments",
+            classes: "govuk-label--l",
+            isPageHeading: true
           },
-          items: [
-            {
-              value: "Yes",
-              text: "Yes",
-              checked: true,
-              conditional: {
-                html: commitmentHtml
-              }
-            },
-            {
-              value: "No",
-              text: "No",
-              conditional: {
-                html: commitmentNotMetHtml
-              }
-            }
-          ]
+          errorMessage: {
+            text: "Describe the potential conflicts"
+          },
+          hint: {
+            text: "You will be able to upload documents showing permission granted."
+          }
         }) }}
+
+
+
 
         
           {{ govukButton({
