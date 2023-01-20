@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Which planning authority granted the consents for this development?
+Which planning authority granted the consent for this development?
 {% endblock %}
 
 {% block beforeContent %}
@@ -14,10 +14,10 @@ Which planning authority granted the consents for this development?
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       
-      <form class="form" action="planning-type" method="post">
+      <form class="form" action="consent-reference" method="post">
         {{ govukInput({
           label: {
-            text: "Which planning authority granted the consents for this development?",
+            text: "Which planning authority granted the consent for this development?",
             classes: "govuk-label--l",
             isPageHeading: true
           },

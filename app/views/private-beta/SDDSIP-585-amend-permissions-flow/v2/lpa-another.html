@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-What is the {{ data['consent-type-check'] | lower }} reference?
+Which planning authority granted the consent for this development?
 {% endblock %}
 
 {% block beforeContent %}
@@ -11,31 +11,23 @@ What is the {{ data['consent-type-check'] | lower }} reference?
 
 {% block content %}
 
-{% if data['consent-type-check'] == 'Planning permission' %}
-<script>
-    window.location.href = 'planning-type'
-</script>
-{% endif %}
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       
-      <form class="form" action="cya-consents" method="post">
+      <form class="form" action="consent-reference-another" method="post">
         {{ govukInput({
           label: {
-            text: "What is the " + data['consent-type-check'] | lower + " reference?",
+            text: "Which planning authority granted the " + data['consent-type-check-another'] | lower + " for this development?",
             classes: "govuk-label--l",
             isPageHeading: true
           },
-          classes: "govuk-input--width-20",
-          id: "reference",
-          name: "reference"
+          id: "which-lpa-another",
+          name: "which-lpa-another"
         }) }}
 
         {{ govukButton({
           text: "Continue"
         }) }}
-
 
         
       </form>
