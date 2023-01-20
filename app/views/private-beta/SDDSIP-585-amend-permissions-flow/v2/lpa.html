@@ -17,7 +17,7 @@ Which planning authority granted the consent for this development?
       <form class="form" action="consent-reference" method="post">
         {{ govukInput({
           label: {
-            text: "Which planning authority granted the consent for this development?",
+            text: "Which planning authority granted the " + data['consent-type-check'] | lower + " for this development?",
             classes: "govuk-label--l",
             isPageHeading: true
           },
