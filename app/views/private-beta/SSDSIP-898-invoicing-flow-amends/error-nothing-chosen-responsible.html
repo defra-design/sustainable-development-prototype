@@ -1,0 +1,70 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: Who is responsible for the invoice?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "You have not selected an option",
+            href: "#responsible-for-invoice-check"
+          }
+        ]
+      }) }}
+
+      <form class="form" action="responsible-for-invoice" method="post">
+        {{ govukRadios({
+          idPrefix: "responsible-for-invoice-check",
+          name: "responsible-for-invoice-check",
+          fieldset: {
+            legend: {
+              text: "Who is responsible for paying the invoice?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          errorMessage: {
+            text: "Select an option"
+          },
+          items: [
+            {
+              value: "applicant",
+              text: "John Doe, the applicant "
+            },
+            {
+              value: "ecologist",
+              text: "Jane Doe, the ecologist"
+            },
+            {
+              divider: "or"
+            },
+            {
+              value: "someone-else",
+              text: "Somebody else"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

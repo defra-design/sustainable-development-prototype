@@ -1,0 +1,61 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Who is responsible for paying the invoice?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <!--<form class="form" action="invoice-email-address" method="post">
+
+        <h1 class="govuk-heading-xl">Who is responsible for paying the invoice?</h1>
+       
+
+          {{ govukInput({
+            label: {
+              text: "Full name"
+            },
+            id: "invoice-name",
+            name: "invoice-name"
+          }) }}
+        
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+      </form>-->
+
+      <form class="form" action="invoice-email-address" method="post">       
+
+        {{ govukInput({
+          label: {
+            text: "Who is responsible for paying the invoice?",
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          hint: {
+            text: "Enter the full name"
+          },
+          id: "invoice-name",
+          name: "invoice-name"
+        }) }}
+        
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+      </form>
+
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

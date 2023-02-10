@@ -1,0 +1,138 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: Individual responsible for paying the invoice
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "You have not selected an option",
+            href: "#invoice-contact-details-check"
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-l">Individual responsible for paying the invoice</h2>
+
+
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Name"
+            },
+            value: {
+              html: "John Doe"
+            },
+            actions: {
+              items: [
+                {
+                  href: "responsible",
+                  text: "Change",
+                  visuallyHiddenText: "sett usage"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Email address"
+            },
+            value: {
+              html: "johndoe@gmail.com"
+            },
+            actions: {
+              items: [
+                {
+                 
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Organisation"
+            },
+            value: {
+              html: "ABC Construction Ltd"
+            },
+            actions: {
+              items: [
+                {
+                 
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Contact address"
+            },
+            value: {
+              html: "<p>Enterprise House<br>
+                Wharfe Business Park<br>
+                Otley<br>
+                LS21 1TY</p>"
+            },
+            actions: {
+              items: [
+                {
+                  
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      
+      <form class="form" action="invoice-contact-details" method="post">
+
+        {{ govukRadios({
+          idPrefix: "invoice-contact-details-check",
+          name: "invoice-contact-details-check",
+          fieldset: {
+            legend: {
+              text: "Are these the contact details to be used for the invoice?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          errorMessage: {
+            text: "Select an option"
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+    
+    </div>
+  </div>
+
+{% endblock %}

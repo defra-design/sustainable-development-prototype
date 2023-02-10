@@ -704,5 +704,28 @@ router.post('/private-beta/SDDSIP-827-returns/reported-check', (req, res) => {
   }  
 });
 
+router.post('/private-beta/SSDSIP-898-invoicing-flow-amends/responsible-for-invoice', function (req, res) {
+  const editChoice = req.session.data['responsible-for-invoice-check']
+
+  if (editChoice === 'applicant') {
+    res.redirect('contact-details')
+  } else if (editChoice === 'ecologist') {
+    res.redirect('contact-details-ecologist')
+  } else if (editChoice === 'someone-else') {
+    res.redirect('invoice-name')
+  } 
+  
+});
+
+
+router.post('/private-beta/SSDSIP-898-invoicing-flow-amends/invoice-contact-details', (req, res) => {
+  if(req.session.data['invoice-contact-details-check'] == 'Yes'){
+      res.redirect('purchase-order')
+  } else if(req.session.data['invoice-contact-details-check'] == 'No'){
+      res.redirect('invoice-name')
+  } 
+});
+
+
 
 }

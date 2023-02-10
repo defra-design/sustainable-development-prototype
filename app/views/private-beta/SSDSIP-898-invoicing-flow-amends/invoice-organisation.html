@@ -1,0 +1,66 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Is {{ data['invoice-name'] }} part of an organisation?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <form class="form" action="invoice-address" method="post">
+        
+
+
+      {% set organisationHtml %}
+      {{ govukInput({
+        id: "organisation-name",
+        name: "organisation-name",
+        label: {
+          text: "Name of organisation"
+        }
+      }) }}
+      {% endset -%}
+
+      {{ govukRadios({
+        idPrefix: "organisation-check",
+        name: "organisation-check",
+        fieldset: {
+          legend: {
+            html: "Is " + data['invoice-name'] + " part of an organisation?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes",
+            conditional: {
+              html: organisationHtml
+            }
+          },
+          {
+            value: "no",
+            text: "No"
+          }
+        ]
+      }) }}
+        
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}
