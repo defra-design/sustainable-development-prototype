@@ -1,0 +1,112 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Check your answers
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h2 class="govuk-heading-l">Check your answers</h2>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+
+    
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            What activity or development work do you plan to do?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['proposal'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> what activity or development work do you plan to do?</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Do you think the purpose of your project is exempt from payment?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['sites-check'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> do you think the purpose of your project is exempt from payment??</span>
+            </a>
+          </dd>
+        </div>
+
+        {% if data['sites-check'] == 'Yes' %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Why do you think your project is exempt from payment?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {% if data['other-reason'] %}
+
+                {{ data['other-reason'] }}
+
+              {% else %}
+
+                {{ data['reason'] }}
+
+              {% endif %}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> why do you think your project is exempt from payment??</span>
+              </a>
+            </dd>
+          </div>
+        {% endif %}
+
+
+        {% if data['sites-check'] == 'No' %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              What kind of development is happening at the site?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['category'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> what kind of development is happening at the site?</span>
+              </a>
+            </dd>
+          </div>
+        {% endif %}
+        
+        
+
+      </dl>
+
+
+
+      
+
+
+      {{ govukButton({
+        text: "Continue",
+        href: "task-list-complete"
+      }) }}
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

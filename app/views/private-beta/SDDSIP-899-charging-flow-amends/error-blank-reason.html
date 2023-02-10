@@ -1,0 +1,110 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: Why do you think your project is exempt from payment?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+ 
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not described why your project is exempt from license payments",
+                href: "#other-reason"
+              }
+            ]
+          }) }}
+
+      <form class="form" action="check-your-answers" method="post">
+
+
+          {% set otherHtml %}
+          {{ govukTextarea({
+            name: "other-reason",
+            id: "other-reason",
+            errorMessage: {
+                text: "Describe why your project is exempt from license payments"
+              },
+            label: {
+              text: "Describe why your project is exempt from license payments"
+            }
+          }) }}
+        {% endset -%}
+
+
+            {{ govukRadios({
+            name: "reason",
+            fieldset: {
+                legend: {
+                text: "Why do you think your project is exempt from payment?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+                }
+            },
+            hint: {
+                text: "Select one option."
+            },
+            items: [
+                {
+                  value: "Preserving public health and safety",
+                  text: "Preserving public health and safety"
+                },
+                {
+                    value: "Preventing damage to livestock, crops, timber or property",
+                    text: "Preventing damage to livestock, crops, timber or property"
+                },
+                {
+                    value: "Preventing disease spreading",
+                    text: "Preventing disease spreading"
+                },
+                {
+                    value: "Home improvement through householder planning permission or permitted development",
+                    text: "Home improvement through householder planning permission or permitted development"
+                },
+                {
+                    value: "Scientific, research or educational purposes",
+                    text: "Scientific, research or educational purposes"
+                },
+                {
+                    value: "Conservation of protected species, including protection of bat roosts",
+                    text: "Conservation of protected species, including protection of bat roosts"
+                },
+                {
+                    value: "Conserve scheduled monuments, listed buildings, places of worship, or traditional farm buildings",
+                    text: "Conserve scheduled monuments, listed buildings, places of worship, or traditional farm buildings"
+                },
+                {
+                    divider: "or"
+                },
+                {
+                value: "Other reason",
+                text: "Other",
+                checked: true,
+                conditional: {
+                    html: otherHtml
+                }
+                }
+            ]
+            }) }}
+
+
+        {{ govukButton({
+            text: "Continue"
+          }) }}
+        </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

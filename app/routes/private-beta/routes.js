@@ -727,5 +727,13 @@ router.post('/private-beta/SSDSIP-898-invoicing-flow-amends/invoice-contact-deta
 });
 
 
+router.post('/private-beta/SDDSIP-899-charging-flow-amends/paying-for-your-license-check', (req, res) => {
+  if(req.session.data['sites-check'] == 'Yes'){
+      res.redirect('reason')
+  } else if(req.session.data['sites-check'] == 'No'){
+      res.redirect('category')
+  } 
+});
+
 
 }

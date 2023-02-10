@@ -1,0 +1,92 @@
+{% extends "layout-pb-no-service-name.html" %}
+
+{% block pageTitle %} 
+SDDSIP 899 | Amends to charging flow
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <span class="govuk-caption-l">SDDSIP 899</span>
+      <h1 class="govuk-heading-l">Amends to charging flow</h1> 
+
+      <div class="govuk-!-margin-bottom-9">
+        <strong class="govuk-tag govuk-tag--green" >
+          In Progress
+        </strong>
+      </div>
+
+      {{ govukButton({
+        text: "View full flow",
+        href: "task-list"
+      }) }}
+      
+      
+      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+      <h2 class="govuk-heading-m">Full page list and error states</h2>
+
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Page</th>
+            <th scope="col" class="govuk-table__header">Link</th>
+            <th scope="col" class="govuk-table__header">Error states</th>
+            </tr>
+        </thead>
+        <tbody class="govuk-table__body">   
+          <tr class="govuk-table__row">
+            <th class="govuk-table__cell">Task list</th>
+            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="task-list">task-list</a></td>
+            <td class="govuk-table__cell"></td>
+           </tr>
+           <tr class="govuk-table__row">
+                <th class="govuk-table__cell">What activity or development work</th>
+                <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="proposal">proposal</a></td>
+                <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-blank-proposal">If blank</a></td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">Paying for your license</th>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="paying-for-your-license">paying-for-your-license</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-paying-for-your-license">If nothing chosen</a></td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">What reason is the development exempt?</th>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="reason">reason</a></td>
+              <td class="govuk-table__cell">
+                <a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-reason">If nothing chosen</a><br>
+                <a class="govuk-link govuk-link--no-visited-state" href="error-blank-reason">If blank</a>
+              </td>
+            </tr>
+           <tr class="govuk-table__row">
+              <th class="govuk-table__cell">What kind of development is happening at the site?</th>
+              <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="category">category</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-category">If nothing chosen</a></td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">Cost of this licence</th>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="cost">cost</a></td>
+              <td class="govuk-table__cell"></td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">Check your answers</th>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="check-your-answers">check-your-answers</a></td>
+              <td class="govuk-table__cell"></td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">Task list</th>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="task-list-complete">task-list-complete</a></td>
+              <td class="govuk-table__cell"></td>
+             </tr>
+          </tbody>
+        </table>
+    
+    </div>
+  </div>
+
+{% endblock %}

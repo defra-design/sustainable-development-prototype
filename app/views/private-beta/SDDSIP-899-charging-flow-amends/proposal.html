@@ -1,0 +1,42 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+What activity or development work do you plan to do?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form class="form" action="paying-for-your-license" method="post">
+
+
+            {{ govukTextarea({
+                name: "proposal",
+                id: "proposal",
+                label: {
+                  text: "What activity or development work do you plan to do?",
+                  classes: "govuk-label--l",
+                  isPageHeading: true
+                },
+                hint: {
+                  text: "For example, construction of a new road, maintenance of a bridge, construction of five flats with access road and car parking area."
+                }
+              }) }}
+
+            {{govukButton({
+                text: "Continue"
+            })}}
+
+        </form>
+
+	</div>
+</div>
+
+{% endblock %}
