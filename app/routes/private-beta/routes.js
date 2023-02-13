@@ -736,4 +736,43 @@ router.post('/private-beta/SDDSIP-899-charging-flow-amends/paying-for-your-licen
 });
 
 
+router.post('/private-beta/SDDSIP-827-returns/v2/manage-licence-check', (req, res) => {
+  if(req.session.data['manage-licence-check'] == 'Submit a return'){
+      res.redirect('licensed-actions')
+  } else if(req.session.data['manage-licence-check'] == 'View licence'){
+      res.redirect('#')
+  } else if(req.session.data['manage-licence-check'] == 'Renew licence'){
+      res.redirect('#')
+  } else if(req.session.data['manage-licence-check'] == 'Cancel licence'){
+      res.redirect('#')
+  }  
+});
+
+
+router.post('/private-beta/SDDSIP-827-returns/v2/licensed-actions-check', (req, res) => {
+  if(req.session.data['licensed-actions-check'] == 'Yes'){
+      res.redirect('complete-between-dates')
+  } else if(req.session.data['licensed-actions-check'] == 'No'){
+      res.redirect('why-not-carried-out')
+  } 
+});
+
+
+router.post('/private-beta/SDDSIP-827-returns/v2/complete-between-dates-check', (req, res) => {
+  if(req.session.data['complete-between-dates-check'] == 'Yes'){
+      res.redirect('licensed-action-1')
+  } else if(req.session.data['complete-between-dates-check'] == 'No'){
+      res.redirect('work-start-date')
+  } 
+});
+
+
+
+
+
+
+
+
+
+
 }

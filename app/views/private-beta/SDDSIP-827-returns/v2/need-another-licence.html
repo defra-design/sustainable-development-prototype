@@ -1,0 +1,52 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Will you need another licence for this development?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="check-your-answers" method="post">
+        {{ govukRadios({
+          idPrefix: "need-another-licence-check",
+          name: "need-another-licence-check",
+          fieldset: {
+            legend: {
+              text: "Will you need another licence for this development?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}
