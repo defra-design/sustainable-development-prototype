@@ -767,11 +767,31 @@ router.post('/private-beta/SDDSIP-827-returns/v2/complete-between-dates-check', 
 });
 
 
+router.post('/private-beta/SDDSIP-827-returns/v2/create-artificial-sett-check', (req, res) => {
+  if(req.session.data['create-artificial-sett-check'] == 'Yes'){
+      res.redirect('welfare-concerns')
+  } else if(req.session.data['create-artificial-sett-check'] == 'No'){
+      res.redirect('why-no-artificial-sett')
+  } 
+});
 
 
+router.post('/private-beta/SDDSIP-827-returns/v2/upload-check', (req, res) => {
+  if(req.session.data['upload-check'] == 'Yes'){
+      res.redirect('upload-file')
+  } else if(req.session.data['upload-check'] == 'No'){
+      res.redirect('check-your-answers')
+  } 
+});
 
 
-
+router.post('/private-beta/SDDSIP-827-returns/v2/another-file-check', (req, res) => {
+  if(req.session.data['another-file-check'] == 'Yes'){
+      res.redirect('upload-another')
+  } else if(req.session.data['another-file-check'] == 'No'){
+      res.redirect('check-your-answers')
+  } 
+});
 
 
 

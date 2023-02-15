@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Do you want to upload supporting information?
+Did the work carried out under the licence cause any concerns about badgers' welfare?
 {% endblock %}
 
 {% block beforeContent %}
@@ -15,24 +15,34 @@ Do you want to upload supporting information?
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <form class="form" action="upload-check" method="post">
+        {% set concernsHtml %}
+        {{ govukTextarea({
+            name: "welfare-concerns",
+            id: "welfare-concerns",
+            label: {
+              text: "Describe the welfare concerns"
+            }
+          }) }} 
+        {% endset -%}
+
+      <form class="form" action="upload" method="post">
         {{ govukRadios({
-          idPrefix: "upload-check",
-          name: "upload-check",
+          idPrefix: "welfare-concerns-check",
+          name: "welfare-concerns-check",
           fieldset: {
             legend: {
-              text: "Do you want to upload supporting information?",
+              text: "Did the work carried out under the licence cause any concerns about badgers' welfare?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
-          hint: {
-            text: "You can upload documents or images that are relevant to the actions you took under the licence."
-          },
           items: [
             {
               value: "Yes",
-              text: "Yes"
+              text: "Yes",
+              conditional: {
+                  html: concernsHtml
+              }
             },
             {
               value: "No",
@@ -47,7 +57,7 @@ Do you want to upload supporting information?
       </form>
 
       
-      
+    
     </div>
   </div>
 

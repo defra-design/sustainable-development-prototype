@@ -1,0 +1,64 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Why didn't you create an artificial sett?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        {% set settHtml %}
+        {{ govukTextarea({
+            name: "why-sett-not-made",
+            id: "why-sett-not-made",
+            label: {
+              text: "Why could an artificial sett not be made?"
+            }
+          }) }} 
+        {% endset -%}
+
+      <form class="form" action="welfare-concerns" method="post">
+        {{ govukRadios({
+          idPrefix: "why-not-carried-out-check",
+          name: "why-not-carried-out-check",
+          fieldset: {
+            legend: {
+              text: "Why didn't you create an artificial sett?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Artificial sett was not needed",
+              text: "Artificial sett was not needed"
+            },
+            {
+              value: "Artificial sett could not be made",
+              text: "Artificial sett could not be made",
+                conditional: {
+                    html: settHtml
+                }
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}
