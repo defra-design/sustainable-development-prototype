@@ -16,9 +16,10 @@ Licence application
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-            <h1 class="govuk-heading-l">
-                Licence application
-            </h1>
+        <span class="govuk-caption-l">Licence</span>
+        <h1 class="govuk-heading-l">
+            Badger mitigation
+        </h1>
 
             
         
@@ -114,12 +115,41 @@ Licence application
         
             <!-- View licence -->
             
-            <p class="govuk-body">
-                <!-- <a class="govuk-button" href="licence?application=2021-09273-SPM-WLM"> -->
-                <a class="govuk-button" href="#">
-                    View licence
-                </a>
-            </p>
+            <form class="form" action="manage-licence-check" method="post">
+
+                {{ govukRadios({
+                    name: "manage-licence-check",
+                    fieldset: {
+                    legend: {
+                        text: "Manage this licence",
+                        classes: "govuk-fieldset__legend--m"
+                    }
+                    },
+                    items: [
+                    {
+                        value: "View licence",
+                        text: "View licence"
+                    },
+                    {
+                        value: "Renew licence",
+                        text: "Renew licence"
+                    },
+                    {
+                        value: "Cancel licence",
+                        text: "Cancel licence"
+                    },
+                    {
+                        value: "Submit a return",
+                        text: "Submit a return"
+                    }
+                    ]
+                }) }}
+
+                {{ govukButton({
+                    text: "Continue"
+                }) }}
+
+            </form>
 		
     </div>
 </div>
