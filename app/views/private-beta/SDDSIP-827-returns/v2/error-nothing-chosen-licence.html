@@ -1,0 +1,181 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: Badger mitigation
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not selected an option",
+                href: "#manage-licence-check"
+              }
+            ]
+          }) }}
+
+            <span class="govuk-caption-l">Licence</span>
+            <h1 class="govuk-heading-l">
+                Badger mitigation
+            </h1>
+
+            
+        
+            <dl class="govuk-summary-list">
+        
+                <!-- status -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Status
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        
+                        <strong class="govuk-tag govuk-tag--pink govuk-!-margin-bottom-4" >
+                            Return due
+                        </strong>
+                        
+                    </dd>
+                </div>
+        
+                <!-- type -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Type
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        Badger mitigation
+                    </dd>
+                </div>
+        
+                <!-- reference -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Reference
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        2021-09273-SPM-WLM
+                    </dd>
+                </div>
+        
+                <!-- Licence holder -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Licence holder
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        Jane Doe
+                    </dd>
+                </div>
+        
+                <!-- site -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Site
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        90 Lower Eastside Farm
+                        
+                            <br>
+                            
+                                5 High Street<br>
+                                Oxford<br>
+                                Oxfordshire<br>
+                                B1 3AA
+                            
+                        
+                    </dd>
+                </div>
+        
+                
+                <!-- Valid from -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Valid from
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        1 November 2022
+                    </dd>
+                </div>
+                <!-- Expires -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Expires
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        1 November 2024
+                    </dd>
+                </div>
+                
+        
+                
+        
+            </dl>
+        
+       
+            <form class="form" action="manage-licence-check" method="post">
+
+                {{ govukRadios({
+                    name: "manage-licence-check",
+                    fieldset: {
+                    legend: {
+                        text: "Manage this licence",
+                        classes: "govuk-fieldset__legend--m"
+                    }
+                    },
+                    items: [
+                    {
+                        value: "View licence",
+                        text: "View licence"
+                    },
+                    {
+                        value: "Renew licence",
+                        text: "Renew licence"
+                    },
+                    {
+                        value: "Cancel licence",
+                        text: "Cancel licence"
+                    },
+                    {
+                        value: "Submit a return",
+                        text: "Submit a return"
+                    }
+                    ],
+                    errorMessage: {
+                        text: "Select an option"
+                      }
+                }) }}
+
+                {{ govukButton({
+                    text: "Continue"
+                }) }}
+
+            </form>
+
+
+		
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
