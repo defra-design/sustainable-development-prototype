@@ -320,14 +320,14 @@ Check your answers
         
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Do you want to upload a document showing the work?
+            Do you want to upload supporting information?
           </dt>
           <dd class="govuk-summary-list__value">
             {{ data['upload-check'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="#">
-              Change<span class="govuk-visually-hidden"> do you want to upload a document showing the work?</span>
+              Change<span class="govuk-visually-hidden"> do you want to upload supporting information?</span>
             </a>
           </dd>
         </div>
@@ -349,7 +349,7 @@ Check your answers
         </div>
         {% endif %}
 
-        {% if data['another-file-check'] == 'yes' %}
+        {% if data['another-file-check'] == 'Yes' %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Uploaded file
