@@ -77,17 +77,20 @@ SDDSIP 827 | Returns
             <tr class="govuk-table__row">
               <th class="govuk-table__cell">Will you need another licence for this development?</th>
               <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/need-another-licence">need-another-licence</a></td>
-              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-need-another-licence">If nothing chosen</a></td>
             </tr>
             <tr class="govuk-table__row">
               <th class="govuk-table__cell">Completed the licensed work between dates?</th>
               <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/complete-between-dates">complete-between-dates</a></td>
-              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-complete-between-dates">If nothing chosen</a></td>
             </tr>
             <tr class="govuk-table__row">
               <th class="govuk-table__cell">When did you start the work?</th>
               <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/work-start-date">work-start-date</a></td>
-              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell">
+                <a class="govuk-link govuk-link--no-visited-state" href="v2/error-blank-work-start-date">If blank</a><br>
+                <a class="govuk-link govuk-link--no-visited-state" href="v2/error-date-in-future-work-start-date">If date in the future</a>
+              </td>
             </tr>
             <tr class="govuk-table__row">
               <th class="govuk-table__cell">When did you finish the work?</th>
