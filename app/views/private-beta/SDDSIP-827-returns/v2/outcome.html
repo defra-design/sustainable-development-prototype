@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Did you destruct a vacant sett by hand and mechanical means? 
+Did the licensed actions achieve the intended licence purpose?  
 {% endblock %}
 
 {% block beforeContent %}
@@ -16,23 +16,23 @@ Did you destruct a vacant sett by hand and mechanical means?
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-        {% set workHtml %}
+        {% set whynotHtml %}
         {{ govukTextarea({
-            name: "work-done-action-4",
-            id: "work-done-action-4",
+            name: "why-not-achieved",
+            id: "why-not-achieved",
             label: {
-              text: "Describe the work that was done"
+              text: "Describe why the licensed actions did not achieve the intended licence purpose"
             }
           }) }} 
         {% endset -%}
 
-      <form class="form" action="destruction-date" method="post">
+      <form class="form" action="complete-between-dates" method="post">
         {{ govukRadios({
-          idPrefix: "licensed-action-4-check",
-          name: "licensed-action-4-check",
+          idPrefix: "licensed-action-1-check",
+          name: "licensed-action-1-check",
           fieldset: {
             legend: {
-              text: "Did you destruct a vacant sett by hand and mechanical means?",
+              text: "Did the licensed actions achieve the [intended licence purpose]?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
@@ -40,14 +40,14 @@ Did you destruct a vacant sett by hand and mechanical means?
           items: [
             {
               value: "Yes",
-              text: "Yes",
-              conditional: {
-                  html: workHtml
-              }
+              text: "Yes"
             },
             {
               value: "No",
-              text: "No"
+              text: "No",
+              conditional: {
+                  html: whynotHtml
+              }
             }
           ]
         }) }}

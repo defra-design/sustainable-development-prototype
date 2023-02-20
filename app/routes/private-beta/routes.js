@@ -751,7 +751,7 @@ router.post('/private-beta/SDDSIP-827-returns/v2/manage-licence-check', (req, re
 
 router.post('/private-beta/SDDSIP-827-returns/v2/licensed-actions-check', (req, res) => {
   if(req.session.data['licensed-actions-check'] == 'Yes'){
-      res.redirect('complete-between-dates')
+      res.redirect('outcome')
   } else if(req.session.data['licensed-actions-check'] == 'No'){
       res.redirect('why-not-carried-out')
   } 
@@ -769,7 +769,7 @@ router.post('/private-beta/SDDSIP-827-returns/v2/complete-between-dates-check', 
 
 router.post('/private-beta/SDDSIP-827-returns/v2/create-artificial-sett-check', (req, res) => {
   if(req.session.data['create-artificial-sett-check'] == 'Yes'){
-      res.redirect('welfare-concerns')
+      res.redirect('describe-artificial-sett')
   } else if(req.session.data['create-artificial-sett-check'] == 'No'){
       res.redirect('why-no-artificial-sett')
   } 

@@ -265,6 +265,47 @@ Check your answers
                 </a>
               </dd>
             </div>
+            {% if data['create-artificial-sett-check'] == 'Yes' %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Describe the work carried out to create the artificial sett
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['work-carried-out-artificial-sett'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> describe the work carried out to create the artificial sett</span>
+                  </a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Was the artificial sett created before the licenced sett was closed?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['sett-closure-check'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> was the artificial sett created before the licenced sett was closed?</span>
+                  </a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  What was the artificial sett's grid reference?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['artificial-sett-grid-ref'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> what was the artificial sett's grid reference?</span>
+                  </a>
+                </dd>
+              </div>
+            {% endif %}
             {% if data['create-artificial-sett-check'] == 'No' %}
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">

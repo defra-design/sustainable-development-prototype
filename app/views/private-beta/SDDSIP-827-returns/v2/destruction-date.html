@@ -1,0 +1,44 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+When did you destroy the vacant sett?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form class="form" action="create-artificial-sett" method="post">
+        {{ govukDateInput({
+            id: "work-end-date",
+            namePrefix: "work-end-date",
+            fieldset: {
+              legend: {
+                text: "When did you destroy the vacant sett?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            hint: {
+              text: "For example, 27 3 2007"
+            }
+          }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

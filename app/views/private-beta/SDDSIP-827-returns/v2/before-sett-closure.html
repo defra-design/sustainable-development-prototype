@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Did you destruct a vacant sett by hand and mechanical means? 
+Was the artificial sett created before the licenced sett was closed?
 {% endblock %}
 
 {% block beforeContent %}
@@ -16,34 +16,26 @@ Did you destruct a vacant sett by hand and mechanical means?
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-        {% set workHtml %}
-        {{ govukTextarea({
-            name: "work-done-action-4",
-            id: "work-done-action-4",
-            label: {
-              text: "Describe the work that was done"
-            }
-          }) }} 
-        {% endset -%}
+    
 
-      <form class="form" action="destruction-date" method="post">
+      <form class="form" action="artificial-sett-location" method="post">
         {{ govukRadios({
-          idPrefix: "licensed-action-4-check",
-          name: "licensed-action-4-check",
+          idPrefix: "sett-closure-check",
+          name: "sett-closure-check",
           fieldset: {
             legend: {
-              text: "Did you destruct a vacant sett by hand and mechanical means?",
+              text: "Was the artificial sett created before the licenced sett was closed?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
+          hint: {
+            text: "You will be able to upload documents showing the work carried out."
+          },
           items: [
             {
               value: "Yes",
-              text: "Yes",
-              conditional: {
-                  html: workHtml
-              }
+              text: "Yes"
             },
             {
               value: "No",

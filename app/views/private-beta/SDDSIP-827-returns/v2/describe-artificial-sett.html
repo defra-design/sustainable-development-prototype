@@ -1,0 +1,42 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Describe the work carried out to create the artificial sett
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form class="form" action="before-sett-closure" method="post">
+        {{ govukTextarea({
+            name: "work-carried-out-artificial-sett",
+            id: "work-carried-out-artificial-sett",
+            label: {
+              text: "Describe the work carried out to create the artificial sett",
+              classes: "govuk-label--l",
+              isPageHeading: true
+            },
+            hint: {
+              text: "You will be able to upload documents showing the work carried out."
+            }
+          }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}
