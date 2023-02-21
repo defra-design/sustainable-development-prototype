@@ -1,0 +1,239 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Licence application
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-full">
+
+       
+        <h1 class="govuk-heading-xl">
+            Badger mitigation licence
+        </h1>
+
+        <h2 class="govuk-heading-l">Contact details</h2>
+
+        <h3 class="govuk-heading-m">Give licence holder details</h3>
+        {{ govukSummaryList({
+          classes: 'govuk-!-margin-bottom-9',
+          rows: [
+            {
+              key: {
+                text: "Is the licence for you?"
+              },
+              value: {
+                text: "Yes"
+              }
+            },
+            {
+              key: {
+                text: "Are you part of an organisation?"
+              },
+              value: {
+                text: "Yes"
+              }
+            },
+            {
+                key: {
+                  text: "Name of organisation"
+                },
+                value: {
+                  text: "Eco Solutions Limited"
+                }
+            },
+            {
+                key: {
+                  text: "Your email address"
+                },
+                value: {
+                  text: "info@ecosolutions.com"
+                }
+            },
+            {
+              key: {
+                text: "Your contact address"
+              },
+              value: {
+                html: "72 Guild Street<br>London<br>SE23 6FH"
+              }
+            }
+          ]
+        }) }}   
+        
+
+        <h3 class="govuk-heading-m">Give ecologist details</h3>
+        
+        {{ govukSummaryList({
+          classes: 'govuk-!-margin-bottom-9',
+          rows: [
+            {
+              key: {
+                text: "Are you the ecologist for this application?"
+              },
+              value: {
+                text: "Yes"
+              }
+            },
+            {
+              key: {
+                text: "Are you part of an organisation?"
+              },
+              value: {
+                text: "Yes"
+              }
+            },
+            {
+                key: {
+                  text: "Name of organisation"
+                },
+                value: {
+                  text: "Eco Solutions Limited"
+                }
+            },
+            {
+                key: {
+                  text: "Your email address"
+                },
+                value: {
+                  text: "info@ecosolutions.com"
+                }
+            },
+            {
+              key: {
+                text: "Your contact address"
+              },
+              value: {
+                html: "72 Guild Street<br>London<br>SE23 6FH"
+              }
+            },
+            {
+                key: {
+                  text: "Your memberships"
+                },
+                value: {
+                  html: "Royal Institution of Chartered Surveyors (RICS)"
+                }
+              }
+          ]
+        }) }}   
+
+        <h3 class="govuk-heading-m">Add authorised people</h3>
+
+        {{ govukSummaryList({
+            classes: 'govuk-!-margin-bottom-9',
+            rows: [
+              {
+                key: {
+                  text: "Name"
+                },
+                value: {
+                  text: "Dave Smith"
+                }
+              },
+              {
+                key: {
+                  text: "Email address"
+                },
+                value: {
+                  text: "dave.smith@gmail.com"
+                }
+              },
+              {
+                key: {
+                  text: "Contact address"
+                },
+                value: {
+                  html: "12 Drury Street<br>London<br>SE23 6FH"
+                }
+              }
+            ]
+          }) }} 
+
+          <h3 class="govuk-heading-m">Add alternative contacts</h3>
+
+          {{ govukSummaryList({
+            classes: 'govuk-!-margin-bottom-9',
+            rows: [
+              {
+                key: {
+                  text: "Do you want to add an alternative contact?"
+                },
+                value: {
+                  text: "Yes"
+                }
+              },
+              {
+                key: {
+                  text: "Which of your previous contacts do you want to use?"
+                },
+                value: {
+                  text: "Sally Hughes"
+                }
+              },
+              {
+                key: {
+                  text: "Do you want to add an alternative ecologist contact?"
+                },
+                value: {
+                  html: "Yes"
+                }
+              },
+              {
+                key: {
+                  text: "Which of your previous ecologist contacts do you want to use?"
+                },
+                value: {
+                  html: "I want to add someone else"
+                }
+              },
+              {
+                key: {
+                  text: "Alternative ecologist contact name"
+                },
+                value: {
+                  html: "Andy Smith"
+                }
+              },
+              {
+                key: {
+                  text: "Alternative ecologist contact email address"
+                },
+                value: {
+                  html: "andy.smith@gmail.com"
+                }
+              }
+            ]
+          }) }} 
+
+          
+
+
+        <h2 class="govuk-heading-l">Planned work activity</h2>
+           
+		<h3 class="govuk-heading-s">Give ecologist details</h3>
+
+
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
