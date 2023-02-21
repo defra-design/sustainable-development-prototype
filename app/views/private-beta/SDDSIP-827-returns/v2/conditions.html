@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Was the artificial sett created before the licenced sett was closed?
+Were you able to comply with the conditions of the licence?
 {% endblock %}
 
 {% block beforeContent %}
@@ -15,16 +15,23 @@ Was the artificial sett created before the licenced sett was closed?
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+        {% set NoHtml %}
+        {{ govukTextarea({
+            name: "why-not-conditions",
+            id: "why-not-conditions",
+            label: {
+              text: "Why were you not able to comply with the conditions?"
+            }
+          }) }} 
+        {% endset -%}
 
-    
-
-      <form class="form" action="located-artificial-sett" method="post">
+      <form class="form" action="welfare-concerns" method="post">
         {{ govukRadios({
-          idPrefix: "sett-closure-check",
-          name: "sett-closure-check",
+          idPrefix: "why-not-carried-out-check",
+          name: "why-not-carried-out-check",
           fieldset: {
             legend: {
-              text: "Was the artificial sett created before the licenced sett was closed?",
+              text: "Were you able to comply with the conditions of the licence?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
@@ -36,7 +43,10 @@ Was the artificial sett created before the licenced sett was closed?
             },
             {
               value: "No",
-              text: "No"
+              text: "No",
+                conditional: {
+                    html: NoHtml
+                }
             }
           ]
         }) }}
