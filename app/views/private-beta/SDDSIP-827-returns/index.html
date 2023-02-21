@@ -67,9 +67,9 @@ SDDSIP 827 | Returns
               <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-licensed-actions">If nothing chosen</a></td>
             </tr>
             <tr class="govuk-table__row">
-              <th class="govuk-table__cell">Licenced actions achieve intended licence purpose?</th>
+              <th class="govuk-table__cell">Did licenced actions achieve intended licence purpose?</th>
               <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/outcome">outcome</a></td>
-              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-outcome">If nothing chosen</a></td>
             </tr>
             <tr class="govuk-table__row">
               <th class="govuk-table__cell">Why didn't you carry out these actions?</th>
@@ -154,17 +154,22 @@ SDDSIP 827 | Returns
             <tr class="govuk-table__row">
               <th class="govuk-table__cell">Describe the work carried out to create the artificial sett</th>
               <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/describe-artificial-sett">describe-artificial-sett</a></td>
-              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-blank-describe-artificial-sett">If blank</a></td>
             </tr>
+            
             <tr class="govuk-table__row">
               <th class="govuk-table__cell">Was the artificial sett created before the licenced sett was closed?</th>
               <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/before-sett-closure">before-sett-closure</a></td>
-              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-before-sett-closure">If nothing chosen</a></td>
             </tr>
             <tr class="govuk-table__row">
               <th class="govuk-table__cell">Artificial sett's grid reference</th>
               <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/artificial-sett-location">artificial-sett-location</a></td>
-              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell">
+                <a class="govuk-link govuk-link--no-visited-state" href="v2/error-blank-artificial-sett-location">If blank</a><br>
+                <a class="govuk-link govuk-link--no-visited-state" href="v2/error-wrong-format-artificial-sett-location">If wrong format</a><br>
+                <a class="govuk-link govuk-link--no-visited-state" href="v2/error-no-match-artificial-sett-location">Grid ref does not exist</a>
+              </td>
             </tr>
             <tr class="govuk-table__row">
               <th class="govuk-table__cell">Any concerns about badgers' welfare?</th>

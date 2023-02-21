@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-What is the artificial sett's grid reference
+Error: What was the artificial sett's grid reference?
 {% endblock %}
 
 {% block beforeContent %}
@@ -11,15 +11,21 @@ What is the artificial sett's grid reference
 
 {% block content %}
 
-{% if data['active-holes'] == '0' %}
-<script>
-    window.location.href = 'active-sett-dropout'
-</script>
-{% endif %}
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <form class="form" action="welfare-concerns" method="post"> 
+      <form class="form" action="work-start" method="post"> 
+
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: [
+            {
+              text: "The reference you have entered is not an existing grid reference",
+              href: "#artificial-sett-grid-ref"
+            }
+          ]
+        }) }}
+
+
         {{ govukInput({
           label: {
             text: "What was the artificial sett's grid reference?",
@@ -28,6 +34,9 @@ What is the artificial sett's grid reference
           },
           hint: {
             text: "For example, NY395557. Use the grid reference for the central point of the artificial sett if it had more than one entrance."
+          },
+          errorMessage: {
+            text: "Enter a national grid reference for the sett"
           },
           classes: "govuk-input--width-10",
           id: "artificial-sett-grid-ref",
