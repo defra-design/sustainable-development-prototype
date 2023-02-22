@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Were you able to comply with the conditions of the licence?
+Error: Were you able to comply with the conditions of the licence?
 {% endblock %}
 
 {% block beforeContent %}
@@ -15,6 +15,19 @@ Were you able to comply with the conditions of the licence?
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "You have not selected an option",
+            href: "#conditions-check"
+          }
+        ]
+      }) }}
+
+
+
         {% set NoHtml %}
         {{ govukTextarea({
             name: "why-not-conditions",
@@ -22,6 +35,7 @@ Were you able to comply with the conditions of the licence?
             label: {
               text: "Why were you not able to comply with the conditions?"
             }
+           
           }) }} 
         {% endset -%}
 
@@ -48,7 +62,10 @@ Were you able to comply with the conditions of the licence?
                     html: NoHtml
                 }
             }
-          ]
+          ],
+          errorMessage: {
+            text: "Select an option"
+          }
         }) }}
 
         {{ govukButton({

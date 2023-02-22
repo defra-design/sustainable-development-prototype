@@ -1,0 +1,57 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: What evidence is there that badgers located the artificial sett?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not entered evidence that badgers located the artificial sett",
+                href: "#badgers-located-artificial-sett"
+              }
+            ]
+          }) }}
+
+
+      <form class="form" action="artificial-sett-location" method="post">
+        {{ govukTextarea({
+            name: "badgers-located-artificial-sett",
+            id: "badgers-located-artificial-sett",
+            label: {
+              text: "What evidence is there that badgers located the artificial sett?",
+              classes: "govuk-label--l",
+              isPageHeading: true
+            },
+            errorMessage: {
+                text: "Enter evidence that badgers located the artificial sett"
+              },
+            hint: {
+              text: "You will be able to upload documents showing that badgers located the artificial sett."
+            }
+          }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}
