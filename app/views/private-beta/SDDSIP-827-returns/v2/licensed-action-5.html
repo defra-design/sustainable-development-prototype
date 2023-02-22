@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Did you destroy a vacant sett by hand or mechanical means?
+Did you disturb badgers?
 {% endblock %}
 
 {% block beforeContent %}
@@ -18,21 +18,21 @@ Did you destroy a vacant sett by hand or mechanical means?
 
         {% set workHtml %}
         {{ govukTextarea({
-            name: "work-done-action-4",
-            id: "work-done-action-4",
+            name: "work-done-action-5",
+            id: "work-done-action-5",
             label: {
               text: "Describe the work that was done"
             }
           }) }} 
         {% endset -%}
 
-      <form class="form" action="licensed-action-4-check" method="post">
+      <form class="form" action="create-artificial-sett" method="post">
         {{ govukRadios({
-          idPrefix: "licensed-action-4-check",
-          name: "licensed-action-4-check",
+          idPrefix: "licensed-action-5-check",
+          name: "licensed-action-5-check",
           fieldset: {
             legend: {
-              text: "Did you destroy a vacant sett by hand or mechanical means?",
+              text: "Did you disturb badgers?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }

@@ -794,5 +794,13 @@ router.post('/private-beta/SDDSIP-827-returns/v2/another-file-check', (req, res)
 });
 
 
+router.post('/private-beta/SDDSIP-827-returns/v2/licensed-action-4-check', (req, res) => {
+  if(req.session.data['licensed-action-4-check'] == 'Yes'){
+      res.redirect('destruction-date')
+  } else if(req.session.data['licensed-action-4-check'] == 'No'){
+      res.redirect('licensed-action-5')
+  } 
+});
+
 
 }
