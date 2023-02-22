@@ -14,215 +14,127 @@ Licence application
 
 
 <div class="govuk-grid-row">
-	<div class="govuk-grid-column-full">
+	<div class="govuk-grid-column-two-thirds">
 
        
-        <h1 class="govuk-heading-xl">
-            Badger mitigation licence
+        <h1 class="govuk-heading-l">
+            Badger mitigation licence application
         </h1>
 
-        <h2 class="govuk-heading-l">Contact details</h2>
-
-        <h3 class="govuk-heading-m">Give licence holder details</h3>
-        {{ govukSummaryList({
-          classes: 'govuk-!-margin-bottom-9',
-          rows: [
-            {
-              key: {
-                text: "Is the licence for you?"
-              },
-              value: {
-                text: "Yes"
-              }
-            },
-            {
-              key: {
-                text: "Are you part of an organisation?"
-              },
-              value: {
-                text: "Yes"
-              }
-            },
-            {
-                key: {
-                  text: "Name of organisation"
-                },
-                value: {
-                  text: "Eco Solutions Limited"
-                }
-            },
-            {
-                key: {
-                  text: "Your email address"
-                },
-                value: {
-                  text: "info@ecosolutions.com"
-                }
-            },
-            {
-              key: {
-                text: "Your contact address"
-              },
-              value: {
-                html: "72 Guild Street<br>London<br>SE23 6FH"
-              }
-            }
-          ]
-        }) }}   
+            
         
-
-        <h3 class="govuk-heading-m">Give ecologist details</h3>
+            <dl class="govuk-summary-list">
         
-        {{ govukSummaryList({
-          classes: 'govuk-!-margin-bottom-9',
-          rows: [
-            {
-              key: {
-                text: "Are you the ecologist for this application?"
-              },
-              value: {
-                text: "Yes"
-              }
-            },
-            {
-              key: {
-                text: "Are you part of an organisation?"
-              },
-              value: {
-                text: "Yes"
-              }
-            },
-            {
-                key: {
-                  text: "Name of organisation"
-                },
-                value: {
-                  text: "Eco Solutions Limited"
-                }
-            },
-            {
-                key: {
-                  text: "Your email address"
-                },
-                value: {
-                  text: "info@ecosolutions.com"
-                }
-            },
-            {
-              key: {
-                text: "Your contact address"
-              },
-              value: {
-                html: "72 Guild Street<br>London<br>SE23 6FH"
-              }
-            },
-            {
-                key: {
-                  text: "Your memberships"
-                },
-                value: {
-                  html: "Royal Institution of Chartered Surveyors (RICS)"
-                }
-              }
-          ]
-        }) }}   
+                <!-- status -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Status
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        
+                        <strong class="govuk-tag govuk-tag--grey" >
+                            Submitted
+                        </strong>
+                        
+                    </dd>
+                </div>
+        
+                <!-- type -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Type
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        Badger mitigation
+                    </dd>
+                </div>
+        
+                <!-- reference -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Reference
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        2021-09273-SPM-WLM
+                    </dd>
+                </div>
+        
+                <!-- Licence holder -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Licence holder
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        Jane Doe
+                    </dd>
+                </div>
+        
+                <!-- site -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Site
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        90 Lower Eastside Farm
+                        
+                            <br>
+                            
+                                5 High Street<br>
+                                Oxford<br>
+                                Oxfordshire<br>
+                                B1 3AA
+                            
+                        
+                    </dd>
+                </div>
+        
+                
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Submitted
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        1 November 2022
+                    </dd>
+                </div>
+             
+                
+        
+                
+        
+            </dl>
+        
+            <!-- View licence -->
+            
+            <form class="form" action="manage-licence-check" method="post">
 
-        <h3 class="govuk-heading-m">Add authorised people</h3>
+                {{ govukRadios({
+                    name: "manage-licence-check",
+                    fieldset: {
+                    legend: {
+                        text: "Manage this application",
+                        classes: "govuk-fieldset__legend--m"
+                    }
+                    },
+                    items: [
+                    {
+                        value: "View application",
+                        text: "View application"
+                    },
+                    {
+                        value: "Withdraw application",
+                        text: "Withdraw application"
+                    }
+                    ]
+                }) }}
 
-        {{ govukSummaryList({
-            classes: 'govuk-!-margin-bottom-9',
-            rows: [
-              {
-                key: {
-                  text: "Name"
-                },
-                value: {
-                  text: "Dave Smith"
-                }
-              },
-              {
-                key: {
-                  text: "Email address"
-                },
-                value: {
-                  text: "dave.smith@gmail.com"
-                }
-              },
-              {
-                key: {
-                  text: "Contact address"
-                },
-                value: {
-                  html: "12 Drury Street<br>London<br>SE23 6FH"
-                }
-              }
-            ]
-          }) }} 
+                {{ govukButton({
+                    text: "Continue",
+                    href: "application-data"
+                }) }}
 
-          <h3 class="govuk-heading-m">Add alternative contacts</h3>
-
-          {{ govukSummaryList({
-            classes: 'govuk-!-margin-bottom-9',
-            rows: [
-              {
-                key: {
-                  text: "Do you want to add an alternative contact?"
-                },
-                value: {
-                  text: "Yes"
-                }
-              },
-              {
-                key: {
-                  text: "Which of your previous contacts do you want to use?"
-                },
-                value: {
-                  text: "Sally Hughes"
-                }
-              },
-              {
-                key: {
-                  text: "Do you want to add an alternative ecologist contact?"
-                },
-                value: {
-                  html: "Yes"
-                }
-              },
-              {
-                key: {
-                  text: "Which of your previous ecologist contacts do you want to use?"
-                },
-                value: {
-                  html: "I want to add someone else"
-                }
-              },
-              {
-                key: {
-                  text: "Alternative ecologist contact name"
-                },
-                value: {
-                  html: "Andy Smith"
-                }
-              },
-              {
-                key: {
-                  text: "Alternative ecologist contact email address"
-                },
-                value: {
-                  html: "andy.smith@gmail.com"
-                }
-              }
-            ]
-          }) }} 
-
-          
-
-
-        <h2 class="govuk-heading-l">Planned work activity</h2>
-           
-		<h3 class="govuk-heading-s">Give ecologist details</h3>
-
-
+            </form>
+		
     </div>
 </div>
 
