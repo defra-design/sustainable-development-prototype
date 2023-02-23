@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Were you able to comply with the conditions of the licence?
+Did you comply with all the conditions of the licence?
 {% endblock %}
 
 {% block beforeContent %}
@@ -20,7 +20,7 @@ Were you able to comply with the conditions of the licence?
             name: "why-not-conditions",
             id: "why-not-conditions",
             label: {
-              text: "Why were you not able to comply with the conditions?"
+              text: "Describe which conditions of the licence you couldn't comply with and why you couldn't comply with them"
             }
           }) }} 
         {% endset -%}
@@ -31,7 +31,7 @@ Were you able to comply with the conditions of the licence?
           name: "conditions-check",
           fieldset: {
             legend: {
-              text: "Were you able to comply with the conditions of the licence?",
+              text: "Did you comply with all the conditions of the licence?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }

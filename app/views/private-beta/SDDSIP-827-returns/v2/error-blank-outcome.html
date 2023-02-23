@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Error: Did you comply with all the conditions of the licence?
+Error: Did the actions taken under the licence mean that the development could start?
 {% endblock %}
 
 {% block beforeContent %}
@@ -16,39 +16,37 @@ Error: Did you comply with all the conditions of the licence?
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-
         {{ govukErrorSummary({
             titleText: "There is a problem",
             errorList: [
               {
-                text: "You have not described why were you not able to comply with the conditions",
-                href: "#why-not-conditions"
+                text: "You have not entered why the development could not start",
+                href: "#why-not-achieved"
               }
             ]
           }) }}
 
 
-
-        {% set NoHtml %}
+        {% set whynotHtml %}
         {{ govukTextarea({
-            name: "why-not-conditions",
-            id: "why-not-conditions",
+            name: "why-not-achieved",
+            id: "why-not-achieved",
             label: {
-              text: "Describe which conditions of the licence you couldn't comply with and why you couldn't comply with them"
+              text: "Why could the development not start?"
             },
             errorMessage: {
-                text: "Describe why were you not able to comply with the conditions"
+                text: "Enter why the development could not start"
               }
           }) }} 
         {% endset -%}
 
-      <form class="form" action="welfare-concerns" method="post">
+      <form class="form" action="complete-between-dates" method="post">
         {{ govukRadios({
-          idPrefix: "conditions-check",
-          name: "conditions-check",
+          idPrefix: "outcome-check",
+          name: "outcome-check",
           fieldset: {
             legend: {
-              text: "Did you comply with all the conditions of the licence?",
+              text: "Did the actions taken under the licence mean that the development could start?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
@@ -60,11 +58,11 @@ Error: Did you comply with all the conditions of the licence?
             },
             {
               value: "No",
-              checked: true,
               text: "No",
-                conditional: {
-                    html: NoHtml
-                }
+              checked: true,
+              conditional: {
+                  html: whynotHtml
+              }
             }
           ]
         }) }}

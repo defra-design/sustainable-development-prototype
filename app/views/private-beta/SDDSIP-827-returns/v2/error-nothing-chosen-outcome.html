@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Error: Did the licensed actions achieve the intended licence purpose?  
+Error: Did the actions taken under the licence mean that the development could start?
 {% endblock %}
 
 {% block beforeContent %}
@@ -34,7 +34,7 @@ Error: Did the licensed actions achieve the intended licence purpose?
             name: "why-not-achieved",
             id: "why-not-achieved",
             label: {
-              text: "Describe why the licensed actions did not achieve the intended licence purpose"
+              text: "Why could the development not start?"
             }
           }) }} 
         {% endset -%}
@@ -45,7 +45,7 @@ Error: Did the licensed actions achieve the intended licence purpose?
           name: "outcome-check",
           fieldset: {
             legend: {
-              text: "Did the licensed actions achieve the intended licence purpose?",
+              text: "Did the actions taken under the licence mean that the development could start?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
