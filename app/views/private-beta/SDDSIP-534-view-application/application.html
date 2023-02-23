@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Licence application
+Application details
 {% endblock %}
 
 {% block beforeContent %}
@@ -18,7 +18,7 @@ Licence application
 
        
         <h1 class="govuk-heading-l">
-            Badger mitigation licence application
+            Application details
         </h1>
 
             
@@ -42,7 +42,7 @@ Licence application
                 <!-- type -->
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        Type
+                        Application type
                     </dt>
                     <dd class="govuk-summary-list__value">
                         Badger mitigation
@@ -52,7 +52,7 @@ Licence application
                 <!-- reference -->
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        Reference
+                        Application reference
                     </dt>
                     <dd class="govuk-summary-list__value">
                         2021-09273-SPM-WLM
@@ -62,7 +62,7 @@ Licence application
                 <!-- Licence holder -->
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        Licence holder
+                        Applicant
                     </dt>
                     <dd class="govuk-summary-list__value">
                         Jane Doe
@@ -72,7 +72,7 @@ Licence application
                 <!-- site -->
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        Site
+                        Site <address></address>
                     </dt>
                     <dd class="govuk-summary-list__value">
                         90 Lower Eastside Farm
@@ -108,11 +108,11 @@ Licence application
             
             <form class="form" action="manage-licence-check" method="post">
 
-                {{ govukRadios({
+                <!--{{ govukRadios({
                     name: "manage-licence-check",
                     fieldset: {
                     legend: {
-                        text: "Manage this application",
+                        text: "Select an option",
                         classes: "govuk-fieldset__legend--m"
                     }
                     },
@@ -126,10 +126,10 @@ Licence application
                         text: "Withdraw application"
                     }
                     ]
-                }) }}
+                }) }}-->
 
                 {{ govukButton({
-                    text: "Continue",
+                    text: "View application",
                     href: "application-data"
                 }) }}
 
