@@ -803,4 +803,22 @@ router.post('/private-beta/SDDSIP-827-returns/v2/licensed-action-4-check', (req,
 });
 
 
+
+router.post('/private-beta/SSDSIP-476-conservation-considerations/v4-mvp/on-or-within', (req, res) => {
+  if(req.session.data['on-or-within-designated-site'] == 'Yes'){
+      res.redirect('multiple-sites-start')
+  } else if(req.session.data['on-or-within-designated-site'] == 'No'){
+      res.redirect('check-your-answers-none')
+  } 
+});
+
+
+router.post('/private-beta/SSDSIP-476-conservation-considerations/v4-mvp/permission-check', (req, res) => {
+  if(req.session.data['permission-check'] == 'Yes'){
+      res.redirect('details-of-consent')
+  } else if(req.session.data['permission-check'] == 'No'){
+      res.redirect('advice')
+  } 
+});
+
 }

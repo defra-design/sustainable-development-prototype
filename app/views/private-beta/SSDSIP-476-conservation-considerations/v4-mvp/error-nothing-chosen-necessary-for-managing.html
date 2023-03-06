@@ -1,0 +1,66 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: Will the work be necessary for managing a Special Protection Area, Special Area of Conservation or Ramsar site?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not selected an option",
+                href: "#necessary-check"
+              }
+            ]
+          }) }}
+      
+      <form class="form" action="necessary-check" method="post">       
+
+        {{ govukRadios({
+            name: "necessary-check",
+            fieldset: {
+              legend: {
+                text: "Will the work be necessary for managing a Special Protection Area, Special Area of Conservation or Ramsar site?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            hint: {
+                text: "Select one."
+              },
+              errorMessage: {
+                text: "Select an option"
+            },
+            items: [
+              {
+                value: "Yes",
+                text: "Yes"
+              },
+              {
+                value: "No",
+                text: "No"
+              }
+            ]
+          }) }}
+        
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

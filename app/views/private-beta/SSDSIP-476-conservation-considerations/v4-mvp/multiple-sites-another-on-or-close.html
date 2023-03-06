@@ -1,0 +1,70 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Will it happen on the site or close to it?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <form class="form" action="multiple-sites-another-review-add-another" method="post">     
+        
+        {% set distanceHtml %}
+            {{ govukInput({
+            id: "distance-from-site-another",
+            name: "distance-from-site-another",
+            suffix: {
+                text: "km"
+              },
+            classes: "govuk-input--width-4",
+            label: {
+                text: "How close to the site will it happen?"
+            }
+            }) }}
+        {% endset -%}
+
+        {{ govukRadios({
+            name: "multiple-sites-another-on-or-close-check",
+            fieldset: {
+              legend: {
+                text: "Will it happen on the site or close to it?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            hint: {
+                text: "Select one."
+              },
+            items: [
+              {
+                value: "On the site",
+                text: "On the site"
+              },
+              {
+                value: "Close to the site",
+                text: "Close to the site",
+                conditional: {
+                    html: distanceHtml
+                }
+              }
+            ]
+          }) }}
+        
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

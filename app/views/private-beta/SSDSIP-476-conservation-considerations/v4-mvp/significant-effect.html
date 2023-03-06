@@ -1,0 +1,117 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Effects on Special Protection Areas, Special Areas of Conservation or Ramsar sites
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <!--<form class="form" action="significant-effect-check" method="post">       
+
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                <h1 class="govuk-fieldset__heading">
+                  Is it likely to have a significant effect on a Special Protection Area, Special Area of Conservation or Ramsar site?
+                </h1>
+              </legend>
+              <div id="event-name-hint" class="govuk-hint">
+                This should be based on advice, such as from a professional ecologist.<br>
+                Select "Don't know" if you have not had advice.
+              </div>
+              <p><a href="https://magic.defra.gov.uk/MagicMap.aspx?&startTopic=GreyRasters&chosenLayers=spaPIndex,spaIndex,backdropDIndex,backdropIndex,europeIndex,baseIndex&box=-187428:14658:846037:536153&useDefaultbackgroundMapping=false" target="_blank">Check the location of Special Protection Areas</a></p>
+              <p><a href="https://magic.defra.gov.uk/MagicMap.aspx?&startTopic=GreyRasters&chosenLayers=sacPIndex,sacIndex,backdropDIndex,backdropIndex,europeIndex,baseIndex&box=-187428:14658:846037:536153&useDefaultbackgroundMapping=false" target="_blank">Check the location of Special Areas of Conservation</a></p>
+              <p><a href="https://magic.defra.gov.uk/MagicMap.aspx?&startTopic=GreyRasters&chosenLayers=ramPIndex,ramIndex,backdropDIndex,backdropIndex,europeIndex,baseIndex&box=279318:63656:623806:237487&useDefaultbackgroundMapping=false" target="_blank">Check the location of Ramsar sites</a></p>
+              <div class="govuk-radios" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="significant-effect-check" name="significant-effect-check" type="radio" value="Yes">
+                  <label class="govuk-label govuk-radios__label" for="significant-effect-check">
+                    Yes
+                  </label>
+                </div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="significant-effect-check-2" name="significant-effect-check" type="radio" value="No">
+                  <label class="govuk-label govuk-radios__label" for="significant-effect-check-2">
+                    No
+                  </label>
+                </div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="significant-effect-check-3" name="significant-effect-check" type="radio" value="Do not know">
+                  <label class="govuk-label govuk-radios__label" for="significant-effect-check-3">
+                    Don't know
+                  </label>
+                </div>
+              </div>
+          
+            </fieldset>
+          </div>
+        
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+      </form>-->
+
+
+      <h1 class="govuk-heading-l">Effects on Special Protection Areas, Special Areas of Conservation or Ramsar sites</h1>
+
+      <p>You should have advice from a professional ecologist on whether the licensable activity is likely to have a significant impact on:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>Special Protection Areas</a> </li>
+        <li>Special Areas of Conservation</li>
+        <li>Ramsar sites</li>
+      </ul>
+
+      {{ govukDetails({
+        summaryText: "Check the location of these sites",
+        html: '
+        <p><a href="https://magic.defra.gov.uk/MagicMap.aspx?&startTopic=GreyRasters&chosenLayers=spaPIndex,spaIndex,backdropDIndex,backdropIndex,europeIndex,baseIndex&box=-187428:14658:846037:536153&useDefaultbackgroundMapping=false" target="_blank">Check the location of SPAs</a></p>
+        <p><a href="https://magic.defra.gov.uk/MagicMap.aspx?&startTopic=GreyRasters&chosenLayers=sacPIndex,sacIndex,backdropDIndex,backdropIndex,europeIndex,baseIndex&box=-187428:14658:846037:536153&useDefaultbackgroundMapping=false" target="_blank">Check the location of SACs</a></p>
+        <p><a href="https://magic.defra.gov.uk/MagicMap.aspx?&startTopic=GreyRasters&chosenLayers=ramPIndex,ramIndex,backdropDIndex,backdropIndex,europeIndex,baseIndex&box=279318:63656:623806:237487&useDefaultbackgroundMapping=false" target="_blank">Check the location of Ramsar sites</a></p>
+        '
+      }) }}
+
+     <form class="form" action="significant-effect-check" method="post">  
+
+        {{ govukRadios({
+          name: "significant-effect-check",
+          fieldset: {
+            legend: {
+              text: "Will the licensable activity affect one of these types of site?",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              text: "No"
+            },
+            {
+              value: "I have not had advice",
+              text: "I haven't had advice"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+    
+    </div>
+  </div>
+
+{% endblock %}
