@@ -1,0 +1,54 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Will the work happen on the site or close to it?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <form class="form" action="sites-review-add-another" method="post">     
+        
+
+        {{ govukRadios({
+            name: "on-or-close-check",
+            fieldset: {
+              legend: {
+                text: "Will the work happen on the site or close to it?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            hint: {
+                text: "Select one."
+              },
+            items: [
+              {
+                value: "On the site",
+                text: "On the site"
+              },
+              {
+                value: "Close to the site",
+                text: "Close to the site"
+              }
+            ]
+          }) }}
+        
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Will it happen on the site or close to it?
+Will the work happen on the site or close to it?
 {% endblock %}
 
 {% block beforeContent %}
@@ -14,27 +14,14 @@ Will it happen on the site or close to it?
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       
-      <form class="form" action="multiple-sites-review-add-another" method="post">     
+      <form class="form" action="sites-another-review-add-another" method="post">     
         
-        {% set distanceHtml %}
-            {{ govukInput({
-            id: "distance-from-site",
-            name: "distance-from-site",
-            suffix: {
-                text: "km"
-              },
-            classes: "govuk-input--width-4",
-            label: {
-                text: "How close to the site will it happen?"
-            }
-            }) }}
-        {% endset -%}
 
         {{ govukRadios({
-            name: "multiple-sites-on-or-close-check",
+            name: "another-on-or-close-check",
             fieldset: {
               legend: {
-                text: "Will it happen on the site or close to it?",
+                text: "Will the work happen on the site or close to it?",
                 isPageHeading: true,
                 classes: "govuk-fieldset__legend--l"
               }
@@ -49,10 +36,7 @@ Will it happen on the site or close to it?
               },
               {
                 value: "Close to the site",
-                text: "Close to the site",
-                conditional: {
-                    html: distanceHtml
-                }
+                text: "Close to the site"
               }
             ]
           }) }}
