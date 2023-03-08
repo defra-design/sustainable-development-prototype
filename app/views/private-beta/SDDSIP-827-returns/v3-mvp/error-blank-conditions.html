@@ -1,0 +1,82 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: Did you comply with all the conditions of the licence?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not described why were you not able to comply with the conditions",
+                href: "#why-not-conditions"
+              }
+            ]
+          }) }}
+
+
+
+        {% set NoHtml %}
+        {{ govukTextarea({
+            name: "why-not-conditions",
+            id: "why-not-conditions",
+            label: {
+              text: "Describe which conditions of the licence you couldn't comply with and why you couldn't comply with them"
+            },
+            errorMessage: {
+                text: "Describe why were you not able to comply with the conditions"
+              }
+          }) }} 
+        {% endset -%}
+
+      <form class="form" action="welfare-concerns" method="post">
+        {{ govukRadios({
+          idPrefix: "conditions-check",
+          name: "conditions-check",
+          fieldset: {
+            legend: {
+              text: "Did you comply with all the conditions of the licence?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              checked: true,
+              text: "No",
+                conditional: {
+                    html: NoHtml
+                }
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

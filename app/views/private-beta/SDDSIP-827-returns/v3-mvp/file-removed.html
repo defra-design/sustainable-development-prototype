@@ -1,0 +1,77 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Uploaded files
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">
+        Uploaded files
+      </h1>
+
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Uploaded file"
+            },
+            value: {
+              html: "No file uploaded"
+            }
+            
+          }
+          
+        ]
+      }) }}
+
+
+
+
+
+
+
+      <form class="form" action="upload-supp-file" method="post">
+
+        {{ govukRadios({
+          idPrefix: "upload-supp-file-check",
+          name: "upload-supp-file-check",
+          fieldset: {
+            legend: {
+              text: "Do you want to upload a file?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+        
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

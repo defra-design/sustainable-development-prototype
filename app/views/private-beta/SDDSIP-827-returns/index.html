@@ -21,8 +21,58 @@ SDDSIP 827 | Returns
         </strong>
       </div>
 
-      
-      
+
+      <h2 class="govuk-heading-m ">Full page list and error states - v3 MVP</h2>
+
+      {{ govukButton({
+        text: "View full flow",
+        href: "v3-mvp/start"
+      }) }}
+
+
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Page</th>
+            <th scope="col" class="govuk-table__header">Link</th>
+            <th scope="col" class="govuk-table__header">Error states</th>
+            </tr>
+        </thead>
+        <tbody class="govuk-table__body">    
+            <tr class="govuk-table__row">
+                <th class="govuk-table__cell">Start page</th>
+                <td class="govuk-table__cell" ><a class="govuk-link govuk-link--no-visited-state" href="v3-mvp/start">start</a></td>
+                <td class="govuk-table__cell"></td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">Sign in</th>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3-mvp/defra-id-signin">defra-id-signin</a></td>
+              <td class="govuk-table__cell"></td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">View licence applications</th>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3-mvp/applications">applications</a></td>
+              <td class="govuk-table__cell"></td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">Licence</th>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3-mvp/licence">licence</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3-mvp/error-nothing-chosen-licence">If nothing chosen</a></td>
+            </tr>
+            
+            
+          </tbody>
+        </table>
+
+
+       <!-- Version 2 -->
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Version 2
+          </span>
+        </summary>
+        <div class="govuk-details__text">
       
       
       <h2 class="govuk-heading-m ">Full page list and error states - v2</h2>
@@ -246,17 +296,15 @@ SDDSIP 827 | Returns
             
           </tbody>
         </table>
-
+      </div>
+    </details>
       
       
       
       
       
       
-      
-      
-      
-      
+      <!-- Version 1 -->
       <details class="govuk-details" data-module="govuk-details">
         <summary class="govuk-details__summary">
           <span class="govuk-details__summary-text">

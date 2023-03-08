@@ -1,0 +1,69 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: When did you start the work?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "You have not entered the date you started the work",
+            href: "#work-start-date-day"
+          }
+        ]
+      }) }}
+
+      <form class="form" action="work-end" method="post"> 
+        {{ govukDateInput({
+          id: "work-start-date",
+          namePrefix: "work-start-date",
+          fieldset: {
+            legend: {
+              text: "When did you start the work?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "For example, 27 3 2007"
+          },
+          errorMessage: {
+            text: "Enter the date you started the work"
+          },
+          items: [
+            {
+              classes: "govuk-input--width-2 govuk-input--error",
+              name: "day"
+            },
+            {
+              classes: "govuk-input--width-2 govuk-input--error",
+              name: "month"
+            },
+            {
+              classes: "govuk-input--width-4 govuk-input--error",
+              name: "year"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

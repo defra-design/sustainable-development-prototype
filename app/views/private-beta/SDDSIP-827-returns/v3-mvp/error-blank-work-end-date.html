@@ -1,0 +1,59 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: When did you finish the work?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not entered the date you finished the work",
+                href: "#work-end-date-day"
+              }
+            ]
+          }) }}
+
+
+      <form class="form" action="why-not-between-dates" method="post">
+        {{ govukDateInput({
+            id: "work-end-date",
+            namePrefix: "work-end-date",
+            fieldset: {
+              legend: {
+                text: "When did you finish the work?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            errorMessage: {
+                text: "Enter the date you finished the work"
+              },
+            hint: {
+              text: "For example, 27 3 2007"
+            }
+          }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

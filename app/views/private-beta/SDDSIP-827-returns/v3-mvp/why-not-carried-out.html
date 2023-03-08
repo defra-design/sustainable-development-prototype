@@ -1,0 +1,68 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Why didn't you carry out these actions?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        {% set otherHtml %}
+        {{ govukTextarea({
+            name: "more-detail",
+            id: "more-detail",
+            label: {
+              text: "Provide more detail why you didn't carry out these actions"
+            }
+          }) }} 
+        {% endset -%}
+
+      <form class="form" action="need-another-licence" method="post">
+        {{ govukRadios({
+          idPrefix: "why-not-carried-out-check",
+          name: "why-not-carried-out-check",
+          fieldset: {
+            legend: {
+              text: "Why didn't you carry out these actions?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "The development work did not happen",
+              text: "The development work did not happen"
+            },
+            {
+              value: "The sett was not in active use by badgers",
+              text: "The sett was not in active use by badgers"
+            },
+            {
+              value: "Other",
+              text: "Other",
+                conditional: {
+                    html: otherHtml
+                }
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}
