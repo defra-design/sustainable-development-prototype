@@ -806,7 +806,7 @@ router.post('/private-beta/SDDSIP-827-returns/v2/licensed-action-4-check', (req,
 
 router.post('/private-beta/SSDSIP-476-conservation-considerations/v4-mvp/on-or-within', (req, res) => {
   if(req.session.data['on-or-within-designated-site'] == 'Yes'){
-      res.redirect('multiple-sites-start')
+      res.redirect('sites-start')
   } else if(req.session.data['on-or-within-designated-site'] == 'No'){
       res.redirect('check-your-answers-none')
   } 
@@ -860,7 +860,7 @@ router.post('/private-beta/SSDSIP-476-conservation-considerations/v4-mvp/another
 
 router.post('/private-beta/SSDSIP-476-conservation-considerations/v4-mvp/remove-site-check', (req, res) => {
   if(req.session.data['remove-site-check'] == 'Yes'){
-      res.redirect('multiple-sites-start')
+      res.redirect('sites-start')
   } else if(req.session.data['remove-site-check'] == 'No'){
       res.redirect('sites-review-add-another')
   } 
