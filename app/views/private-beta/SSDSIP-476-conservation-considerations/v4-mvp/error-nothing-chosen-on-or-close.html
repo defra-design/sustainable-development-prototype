@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Error: Will it happen on the site or close to it?
+Error: Will the work happen on the site or close to it?
 {% endblock %}
 
 {% block beforeContent %}
@@ -18,36 +18,20 @@ Error: Will it happen on the site or close to it?
             titleText: "There is a problem",
             errorList: [
               {
-                text: "You have not entered how close to the site it will happen",
-                href: "#distance-from-site"
+                text: "You have not selected an option",
+                href: "#on-or-close-check"
               }
             ]
           }) }}
       
-      <form class="form" action="multiple-sites-review-add-another" method="post">     
+      <form class="form" action="sites-review-add-another" method="post">     
         
-        {% set distanceHtml %}
-            {{ govukInput({
-            id: "distance-from-site",
-            name: "distance-from-site",
-            suffix: {
-                text: "km"
-              },
-            classes: "govuk-input--width-4",
-            label: {
-                text: "How close to the site will it happen?"
-            },
-            errorMessage: {
-                text: "Enter how close to the site it will happen"
-              }
-            }) }}
-        {% endset -%}
 
         {{ govukRadios({
-            name: "multiple-sites-on-or-close-check",
+            name: "on-or-close-check",
             fieldset: {
               legend: {
-                text: "Will it happen on the site or close to it?",
+                text: "Will the work happen on the site or close to it?",
                 isPageHeading: true,
                 classes: "govuk-fieldset__legend--l"
               }
@@ -62,13 +46,12 @@ Error: Will it happen on the site or close to it?
               },
               {
                 value: "Close to the site",
-                text: "Close to the site",
-                checked: true,
-                conditional: {
-                    html: distanceHtml
-                }
+                text: "Close to the site"
               }
-            ]
+            ],
+            errorMessage: {
+                text: "Select an option"
+              }
           }) }}
         
           {{ govukButton({

@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Error: What is the name of the SSSI?
+Error: What is the name of the designated site?
 {% endblock %}
 
 {% block beforeContent %}
@@ -18,7 +18,7 @@ Error: What is the name of the SSSI?
             titleText: "There is a problem",
             errorList: [
               {
-                text: "You have not entered a site name",
+                text: "You have not entered a designated site name",
                 href: "#SSSI-name"
               }
             ]
@@ -28,12 +28,12 @@ Error: What is the name of the SSSI?
 
         {{ govukInput({
           label: {
-            text: "What is the name of the SSSI?",
+            text: "What is the name of the designated site?",
             classes: "govuk-label--l",
             isPageHeading: true
           },
           errorMessage: {
-            text: "Enter a site name"
+            text: "Enter a designated site name"
           },
           id: "SSSI-name",
           name: "SSSI-name"
