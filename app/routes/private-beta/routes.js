@@ -860,7 +860,7 @@ router.post('/private-beta/SSDSIP-476-conservation-considerations/v4-mvp/another
 
 router.post('/private-beta/SSDSIP-476-conservation-considerations/v4-mvp/remove-site-check', (req, res) => {
   if(req.session.data['remove-site-check'] == 'Yes'){
-      res.redirect('sites-start')
+      res.redirect('check-your-answers-none')
   } else if(req.session.data['remove-site-check'] == 'No'){
       res.redirect('sites-review-add-another')
   } 
