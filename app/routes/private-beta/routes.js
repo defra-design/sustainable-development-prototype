@@ -875,4 +875,31 @@ router.post('/private-beta/SSDSIP-476-conservation-considerations/v4-mvp/remove-
 });
 
 
+router.post('/private-beta/SDDSIP-827-returns/v3-mvp/manage-licence-check', (req, res) => {
+  if(req.session.data['manage-licence-check'] == 'Submit a return'){
+      res.redirect('licensed-actions')
+  } else if(req.session.data['manage-licence-check'] == 'Email a copy of the licence'){
+      res.redirect('carried-out-work')
+  }  
+});
+
+router.post('/private-beta/SDDSIP-827-returns/v3-mvp/licensed-actions-check', (req, res) => {
+  if(req.session.data['licensed-actions-check'] == 'Yes'){
+      res.redirect('complete-between-dates')
+  } else if(req.session.data['licensed-actions-check'] == 'No'){
+      res.redirect('why-not-carried-out')
+  } 
+});
+
+
+router.post('/private-beta/SDDSIP-827-returns/v3-mvp/complete-between-dates-check', (req, res) => {
+  if(req.session.data['complete-between-dates-check'] == 'Yes'){
+      res.redirect('licensed-action-1')
+  } else if(req.session.data['complete-between-dates-check'] == 'No'){
+      res.redirect('licensed-action-1')
+  } 
+});
+
+
+
 }
