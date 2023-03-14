@@ -901,5 +901,24 @@ router.post('/private-beta/SDDSIP-827-returns/v3-mvp/complete-between-dates-chec
 });
 
 
+router.post('/private-beta/SDDSIP-827-returns/v3-mvp/upload-check', (req, res) => {
+  if(req.session.data['upload-check'] == 'Yes'){
+      res.redirect('upload-file')
+  } else if(req.session.data['upload-check'] == 'No'){
+      res.redirect('check-your-answers')
+  }  
+});
+
+
+router.post('/private-beta/SDDSIP-827-returns/v3-mvp/another-file-check', (req, res) => {
+  if(req.session.data['another-file-check'] == 'Yes'){
+      res.redirect('upload-another')
+  } else if(req.session.data['another-file-check'] == 'No'){
+      res.redirect('check-your-answers')
+  } 
+});
+
+
+
 
 }

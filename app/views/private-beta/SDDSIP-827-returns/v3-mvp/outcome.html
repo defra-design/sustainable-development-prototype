@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Did the actions taken under the licence mean that the development could start? 
+Did the actions taken under the licence mean that the activity could start? 
 {% endblock %}
 
 {% block beforeContent %}
@@ -26,13 +26,13 @@ Did the actions taken under the licence mean that the development could start?
           }) }} 
         {% endset -%}
 
-      <form class="form" action="complete-between-dates" method="post">
+      <form class="form" action="welfare-concerns" method="post">
         {{ govukRadios({
           idPrefix: "achieve-purpose-check",
           name: "achieve-purpose-check",
           fieldset: {
             legend: {
-              text: "Did the actions taken under the licence mean that the development could start?",
+              text: "Did the actions taken under the licence mean that the activity could start?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
@@ -44,10 +44,7 @@ Did the actions taken under the licence mean that the development could start?
             },
             {
               value: "No",
-              text: "No",
-              conditional: {
-                  html: whynotHtml
-              }
+              text: "No"
             }
           ]
         }) }}
