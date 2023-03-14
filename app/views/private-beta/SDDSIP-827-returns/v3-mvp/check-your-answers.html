@@ -72,7 +72,7 @@ Check your answers
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Did you complete the licensed work between 1 April 2022 and 31 October 2022?
+            Did you complete the licensed work between [start date] and [end date]?
           </dt>
           <dd class="govuk-summary-list__value">
             {{ data['complete-between-dates-check'] }}
@@ -84,52 +84,7 @@ Check your answers
           </dd>
         </div>
 
-            {% if data['complete-between-dates-check'] == 'No' %}
-
-                <div class="govuk-summary-list__row">
-                  <dt class="govuk-summary-list__key">
-                    When did you start the work?
-                  </dt>
-                  <dd class="govuk-summary-list__value">
-                    {{ data['work-start-date-day'] + " " + data['work-start-date-month'] | toMonth + " " + data['work-start-date-year'] }}
-                  </dd>
-                  <dd class="govuk-summary-list__actions">
-                    <a class="govuk-link" href="#">
-                      Change<span class="govuk-visually-hidden"> when did you start the work?</span>
-                    </a>
-                  </dd>
-                </div>
-
-                <div class="govuk-summary-list__row">
-                  <dt class="govuk-summary-list__key">
-                    When did you finish the work?
-                  </dt>
-                  <dd class="govuk-summary-list__value">
-                    {{ data['work-end-date-day'] + " " + data['work-end-date-month'] | toMonth + " " + data['work-end-date-year'] }}
-                  </dd>
-                  <dd class="govuk-summary-list__actions">
-                    <a class="govuk-link" href="#">
-                      Change<span class="govuk-visually-hidden"> when did you finish the work?</span>
-                    </a>
-                  </dd>
-                </div>
-
-                <div class="govuk-summary-list__row">
-                  <dt class="govuk-summary-list__key">
-                    Why was the work not completed between 1 April 2022 and 31 October 2022??
-                  </dt>
-                  <dd class="govuk-summary-list__value">
-                    {{ data['why-work-not-between-dates'] }}
-                  </dd>
-                  <dd class="govuk-summary-list__actions">
-                    <a class="govuk-link" href="#">
-                      Change<span class="govuk-visually-hidden"> why was the work not completed between [start_date] and [end_date}?</span>
-                    </a>
-                  </dd>
-                </div>
-
-            {% endif %}
-
+          
         
           
    
