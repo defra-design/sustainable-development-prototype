@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Error: Did you complete the licensed work between 1 April 2022 and 31 October 2022?
+Error: Did you complete the licensed work between [start date] and [end date]?
 {% endblock %}
 
 {% block beforeContent %}
@@ -32,7 +32,7 @@ Error: Did you complete the licensed work between 1 April 2022 and 31 October 20
           name: "complete-between-dates-check",
           fieldset: {
             legend: {
-              text: "Did you complete the licensed work between 1 April 2022 and 31 October 2022?",
+              text: "Did you complete the licensed work between [start date] and [end date]?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }

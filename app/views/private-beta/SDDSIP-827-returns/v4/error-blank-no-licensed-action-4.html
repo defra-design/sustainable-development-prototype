@@ -16,7 +16,15 @@ Did you destroy a vacant sett by hand or mechanical means?
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not described why you did not destroy a vacant sett by hand or mechanical meanss",
+                href: "#work-not-done-action-4"
+              }
+            ]
+          }) }}
 
         {% set workHtml %}
         {{ govukTextarea({
@@ -34,7 +42,10 @@ Did you destroy a vacant sett by hand or mechanical means?
             id: "work-not-done-action-4",
             label: {
               text: "Why did you not destroy a vacant sett by hand or mechanical means?"
-            }
+            },
+            errorMessage: {
+                text: "Describe why you did not destroy a vacant sett by hand or mechanical means"
+              }
           }) }} 
         {% endset -%}
 
@@ -60,6 +71,7 @@ Did you destroy a vacant sett by hand or mechanical means?
             {
               value: "No",
               text: "No",
+              checked: true,
               conditional: {
                   html: whynotHtml
               }

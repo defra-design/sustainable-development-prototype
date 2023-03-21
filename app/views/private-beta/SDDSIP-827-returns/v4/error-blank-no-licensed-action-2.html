@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Did you destroy a vacant sett by hand or mechanical means?
+Did you obstruct access to sett entrances by blocking or proofing?  
 {% endblock %}
 
 {% block beforeContent %}
@@ -16,12 +16,20 @@ Did you destroy a vacant sett by hand or mechanical means?
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not described why you did not obstruct access to sett entrances by blocking or proofing",
+                href: "#work-not-done-action-2"
+              }
+            ]
+          }) }}
 
         {% set workHtml %}
         {{ govukTextarea({
-            name: "work-done-action-4",
-            id: "work-done-action-4",
+            name: "work-done-action-2",
+            id: "work-done-action-2",
             label: {
               text: "Describe the work that was done"
             }
@@ -30,21 +38,24 @@ Did you destroy a vacant sett by hand or mechanical means?
 
         {% set whynotHtml %}
         {{ govukTextarea({
-            name: "work-not-done-action-4",
-            id: "work-not-done-action-4",
+            name: "work-not-done-action-2",
+            id: "work-not-done-action-2",
             label: {
-              text: "Why did you not destroy a vacant sett by hand or mechanical means?"
-            }
+              text: "Why did you not obstruct access to sett entrances by blocking or proofing?"
+            },
+            errorMessage: {
+                text: "Describe why you did not obstruct access to sett entrances by blocking or proofing"
+              }
           }) }} 
         {% endset -%}
 
-      <form class="form" action="licensed-action-4-check" method="post">
+      <form class="form" action="licensed-action-3" method="post">
         {{ govukRadios({
-          idPrefix: "licensed-action-4-check",
-          name: "licensed-action-4-check",
+          idPrefix: "licensed-action-2-check",
+          name: "licensed-action-2-check",
           fieldset: {
             legend: {
-              text: "Did you destroy a vacant sett by hand or mechanical means?",
+              text: "Did you obstruct access to sett entrances by blocking or proofing?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
@@ -60,6 +71,7 @@ Did you destroy a vacant sett by hand or mechanical means?
             {
               value: "No",
               text: "No",
+              checked: true,
               conditional: {
                   html: whynotHtml
               }

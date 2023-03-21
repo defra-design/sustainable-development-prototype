@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Did you destroy a vacant sett by hand or mechanical means?
+Did you damage a sett by hand and mechanical means?  
 {% endblock %}
 
 {% block beforeContent %}
@@ -16,12 +16,20 @@ Did you destroy a vacant sett by hand or mechanical means?
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not described why you did damage a sett by hand and mechanical means",
+                href: "#work-not-done-action-3"
+              }
+            ]
+          }) }}
 
         {% set workHtml %}
         {{ govukTextarea({
-            name: "work-done-action-4",
-            id: "work-done-action-4",
+            name: "work-done-action-3",
+            id: "work-done-action-3",
             label: {
               text: "Describe the work that was done"
             }
@@ -30,21 +38,24 @@ Did you destroy a vacant sett by hand or mechanical means?
 
         {% set whynotHtml %}
         {{ govukTextarea({
-            name: "work-not-done-action-4",
-            id: "work-not-done-action-4",
+            name: "work-not-done-action-3",
+            id: "work-not-done-action-3",
             label: {
-              text: "Why did you not destroy a vacant sett by hand or mechanical means?"
-            }
+              text: "Why did you not damage a sett by hand and mechanical means?"
+            },
+            errorMessage: {
+                text: "Describe why you did not damage a sett by hand and mechanical means"
+              }
           }) }} 
         {% endset -%}
 
-      <form class="form" action="licensed-action-4-check" method="post">
+      <form class="form" action="licensed-action-4" method="post">
         {{ govukRadios({
-          idPrefix: "licensed-action-4-check",
-          name: "licensed-action-4-check",
+          idPrefix: "licensed-action-3-check",
+          name: "licensed-action-3-check",
           fieldset: {
             legend: {
-              text: "Did you destroy a vacant sett by hand or mechanical means?",
+              text: "Did you damage a sett by hand and mechanical means?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
@@ -60,6 +71,7 @@ Did you destroy a vacant sett by hand or mechanical means?
             {
               value: "No",
               text: "No",
+              checked: true,
               conditional: {
                   html: whynotHtml
               }
