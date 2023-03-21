@@ -739,13 +739,9 @@ router.post('/private-beta/SDDSIP-899-charging-flow-amends/paying-for-your-licen
 router.post('/private-beta/SDDSIP-827-returns/v2/manage-licence-check', (req, res) => {
   if(req.session.data['manage-licence-check'] == 'Submit a return'){
       res.redirect('licensed-actions')
-  } else if(req.session.data['manage-licence-check'] == 'View licence'){
+  } else if(req.session.data['manage-licence-check'] == 'Email a copy of the licence'){
       res.redirect('#')
-  } else if(req.session.data['manage-licence-check'] == 'Renew licence'){
-      res.redirect('#')
-  } else if(req.session.data['manage-licence-check'] == 'Cancel licence'){
-      res.redirect('#')
-  }  
+  } 
 });
 
 
@@ -918,6 +914,76 @@ router.post('/private-beta/SDDSIP-827-returns/v3-mvp/another-file-check', (req, 
   } 
 });
 
+
+router.post('/private-beta/SDDSIP-827-returns/v4/manage-licence-check', (req, res) => {
+  if(req.session.data['manage-licence-check'] == 'Submit a return'){
+      res.redirect('finished-work')
+  } else if(req.session.data['manage-licence-check'] == 'Email a copy of the licence'){
+      res.redirect('#')
+  } 
+});
+
+router.post('/private-beta/SDDSIP-827-returns/v4/finished-work-check', (req, res) => {
+  if(req.session.data['finished-work-check'] == 'Yes'){
+      res.redirect('licensed-actions')
+  } else if(req.session.data['finished-work-check'] == 'No'){
+      res.redirect('do-not-submit')
+  } 
+});
+
+
+router.post('/private-beta/SDDSIP-827-returns/v4/licensed-actions-check', (req, res) => {
+  if(req.session.data['licensed-actions-check'] == 'Yes'){
+      res.redirect('outcome')
+  } else if(req.session.data['licensed-actions-check'] == 'No'){
+      res.redirect('why-not-carried-out')
+  } 
+});
+
+
+router.post('/private-beta/SDDSIP-827-returns/v4/complete-between-dates-check', (req, res) => {
+  if(req.session.data['complete-between-dates-check'] == 'Yes'){
+      res.redirect('licensed-action-1')
+  } else if(req.session.data['complete-between-dates-check'] == 'No'){
+      res.redirect('work-start-date')
+  } 
+});
+
+
+router.post('/private-beta/SDDSIP-827-returns/v4/licensed-action-4-check', (req, res) => {
+  if(req.session.data['licensed-action-4-check'] == 'Yes'){
+      res.redirect('destruction-date')
+  } else if(req.session.data['licensed-action-4-check'] == 'No'){
+      res.redirect('licensed-action-5')
+  } 
+});
+
+
+router.post('/private-beta/SDDSIP-827-returns/v4/create-artificial-sett-check', (req, res) => {
+  if(req.session.data['create-artificial-sett-check'] == 'Yes'){
+      res.redirect('describe-artificial-sett')
+  } else if(req.session.data['create-artificial-sett-check'] == 'No'){
+      res.redirect('why-no-artificial-sett')
+  } 
+});
+
+
+router.post('/private-beta/SDDSIP-827-returns/v4/upload-check', (req, res) => {
+  if(req.session.data['upload-check'] == 'Yes'){
+      res.redirect('upload-file')
+  } else if(req.session.data['upload-check'] == 'No'){
+      res.redirect('check-your-answers')
+  } 
+});
+
+
+router.post('/private-beta/SDDSIP-827-returns/v4/another-file-check', (req, res) => {
+  if(req.session.data['another-file-check'] == 'Yes'){
+      res.redirect('upload-another')
+  } else if(req.session.data['another-file-check'] == 'No'){
+      res.redirect('check-your-answers')
+  } 
+});
 
 
 

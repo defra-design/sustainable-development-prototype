@@ -1,0 +1,39 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Why was the work not completed between 1 April 2022 and 31 October 2022?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form class="form" action="licensed-action-1" method="post">
+        {{ govukTextarea({
+            name: "why-work-not-between-dates",
+            id: "why-work-not-between-dates",
+            label: {
+              text: "Why was the work not completed between 1 April 2022 and 31 October 2022?",
+              classes: "govuk-label--l",
+              isPageHeading: true
+            }
+          }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

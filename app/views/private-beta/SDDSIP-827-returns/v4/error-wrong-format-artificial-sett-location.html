@@ -1,0 +1,55 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: What was the artificial sett's grid reference?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form class="form" action="work-start" method="post"> 
+
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: [
+            {
+              text: "The grid reference you have entered is not in the right format",
+              href: "#artificial-sett-grid-ref"
+            }
+          ]
+        }) }}
+
+
+        {{ govukInput({
+          label: {
+            text: "What was the artificial sett's grid reference?",
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          hint: {
+            text: "For example, NY395557. Use the grid reference for the central point of the artificial sett if it had more than one entrance."
+          },
+          errorMessage: {
+            text: "Enter a national grid reference that is 2 letters and 6 digits"
+          },
+          classes: "govuk-input--width-10",
+          id: "artificial-sett-grid-ref",
+          name: "artificial-sett-grid-ref"
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

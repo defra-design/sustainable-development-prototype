@@ -1,0 +1,68 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: Did you create an artificial sett? 
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not selected an option",
+                href: "#create-artificial-sett-check"
+              }
+            ]
+          }) }}
+
+      <form class="form" action="create-artificial-sett-check" method="post">
+        {{ govukRadios({
+          idPrefix: "create-artificial-sett-check",
+          name: "create-artificial-sett-check",
+          fieldset: {
+            legend: {
+              text: "Did you create an artificial sett?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "This includes any man-made sett or alternative shelter created for badgers."
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              text: "No"
+            }
+          ],
+          errorMessage: {
+            text: "Select an option"
+          }
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Did the actions taken under the licence mean that the development could start? 
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {% set whynotHtml %}
+        {{ govukTextarea({
+            name: "why-not-achieved",
+            id: "why-not-achieved",
+            label: {
+              text: "Why could the development not start?"
+            }
+          }) }} 
+        {% endset -%}
+
+      <form class="form" action="complete-between-dates" method="post">
+        {{ govukRadios({
+          idPrefix: "achieve-purpose-check",
+          name: "achieve-purpose-check",
+          fieldset: {
+            legend: {
+              text: "Did the actions taken under the licence mean that the development could start?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              text: "No",
+              conditional: {
+                  html: whynotHtml
+              }
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

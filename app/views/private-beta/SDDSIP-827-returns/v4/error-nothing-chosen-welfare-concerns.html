@@ -1,0 +1,81 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: Did the work carried out under the licence cause any concerns about badgers' welfare?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not selected an option",
+                href: "#welfare-concerns-check"
+              }
+            ]
+          }) }}
+
+
+
+
+        {% set concernsHtml %}
+        {{ govukTextarea({
+            name: "welfare-concerns",
+            id: "welfare-concerns",
+            label: {
+              text: "Describe the welfare concerns"
+            }
+          }) }} 
+        {% endset -%}
+
+      <form class="form" action="upload" method="post">
+        {{ govukRadios({
+          idPrefix: "welfare-concerns-check",
+          name: "welfare-concerns-check",
+          fieldset: {
+            legend: {
+              text: "Did the work carried out under the licence cause any concerns about badgers' welfare?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes",
+              conditional: {
+                  html: concernsHtml
+              }
+            },
+            {
+              value: "No",
+              text: "No"
+            }
+          ],
+          errorMessage: {
+            text: "Select an option"
+          }
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

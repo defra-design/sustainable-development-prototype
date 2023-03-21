@@ -1,0 +1,78 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Did you destroy a vacant sett by hand or mechanical means?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {% set workHtml %}
+        {{ govukTextarea({
+            name: "work-done-action-4",
+            id: "work-done-action-4",
+            label: {
+              text: "Describe the work that was done"
+            }
+          }) }} 
+        {% endset -%}
+
+        {% set whynotHtml %}
+        {{ govukTextarea({
+            name: "work-not-done-action-4",
+            id: "work-not-done-action-4",
+            label: {
+              text: "Why did you not destroy a vacant sett by hand or mechanical means?"
+            }
+          }) }} 
+        {% endset -%}
+
+      <form class="form" action="licensed-action-4-check" method="post">
+        {{ govukRadios({
+          idPrefix: "licensed-action-4-check",
+          name: "licensed-action-4-check",
+          fieldset: {
+            legend: {
+              text: "Did you destroy a vacant sett by hand or mechanical means?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes",
+              conditional: {
+                  html: workHtml
+              }
+            },
+            {
+              value: "No",
+              text: "No",
+              conditional: {
+                  html: whynotHtml
+              }
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

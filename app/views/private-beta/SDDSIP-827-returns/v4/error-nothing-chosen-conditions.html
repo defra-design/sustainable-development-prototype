@@ -1,0 +1,81 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: Did you comply with all the conditions of the licence?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "You have not selected an option",
+            href: "#conditions-check"
+          }
+        ]
+      }) }}
+
+
+
+        {% set NoHtml %}
+        {{ govukTextarea({
+            name: "why-not-conditions",
+            id: "why-not-conditions",
+            label: {
+              text: "Describe which conditions of the licence you couldn't comply with and why you couldn't comply with them"
+            }
+           
+          }) }} 
+        {% endset -%}
+
+      <form class="form" action="welfare-concerns" method="post">
+        {{ govukRadios({
+          idPrefix: "conditions-check",
+          name: "conditions-check",
+          fieldset: {
+            legend: {
+              text: "Did you comply with all the conditions of the licence?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              text: "No",
+                conditional: {
+                    html: NoHtml
+                }
+            }
+          ],
+          errorMessage: {
+            text: "Select an option"
+          }
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

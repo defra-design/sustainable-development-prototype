@@ -1,0 +1,81 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: Why didn't you create an artificial sett?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not selected an option",
+                href: "#why-no-artificial-sett-check"
+              }
+            ]
+          }) }}
+
+
+
+
+        {% set settHtml %}
+        {{ govukTextarea({
+            name: "why-sett-not-made",
+            id: "why-sett-not-made",
+            label: {
+              text: "Why could an artificial sett not be made?"
+            }
+          }) }} 
+        {% endset -%}
+
+      <form class="form" action="welfare-concerns" method="post">
+        {{ govukRadios({
+          idPrefix: "why-no-artificial-sett-check",
+          name: "why-no-artificial-sett-check",
+          fieldset: {
+            legend: {
+              text: "Why didn't you create an artificial sett?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+          {
+            value: "It was not required by the licence",
+            text: "It was not required by the licence"
+          },
+          {
+            value: "It could not be made",
+            text: "It could not be made",
+              conditional: {
+                  html: settHtml
+              }
+          }
+          ],
+          errorMessage: {
+            text: "Select an option"
+          }
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}
