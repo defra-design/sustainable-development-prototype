@@ -188,6 +188,21 @@ Check your answers
                 </dd>
               </div>
             {% endif %}
+            {% if data['licensed-action-1-check'] == 'No' %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Why did you not obstruct sett entrances by means of one-way badger gates?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['work-not-done-action-1'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> describe the work that was done</span>
+                  </a>
+                </dd>
+              </div>
+            {% endif %}
 
 
 
@@ -215,6 +230,21 @@ Check your answers
                 <dd class="govuk-summary-list__actions">
                   <a class="govuk-link" href="#">
                     Change<span class="govuk-visually-hidden"> describe the work that was done</span>
+                  </a>
+                </dd>
+              </div>
+            {% endif %}
+            {% if data['licensed-action-2-check'] == 'No' %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Why did you not obstruct access to sett entrances by blocking or proofing?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['work-not-done-action-2'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> why did you not obstruct access to sett entrances by blocking or proofing?</span>
                   </a>
                 </dd>
               </div>
@@ -250,6 +280,21 @@ Check your answers
                 </dd>
               </div>
             {% endif %}
+            {% if data['licensed-action-3-check'] == 'No' %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Why did you not damage a sett by hand and mechanical means?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['work-not-done-action-3'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> why did you not damage a sett by hand and mechanical means?</span>
+                  </a>
+                </dd>
+              </div>
+            {% endif %}
 
 
             <div class="govuk-summary-list__row">
@@ -276,6 +321,35 @@ Check your answers
                 <dd class="govuk-summary-list__actions">
                   <a class="govuk-link" href="#">
                     Change<span class="govuk-visually-hidden"> describe the work that was done</span>
+                  </a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  When did you destroy the vacant sett?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['destruction-date-day'] + " " + data['destruction-date-month'] | toMonth + " " + data['destruction-date-year'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> when did you destroy the vacant sett?
+                    </span>
+                  </a>
+                </dd>
+              </div>
+            {% endif %}
+            {% if data['licensed-action-4-check'] == 'No' %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Why did you not destroy a vacant sett by hand or mechanical means?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['work-not-done-action-4'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> why did you not destroy a vacant sett by hand or mechanical means?</span>
                   </a>
                 </dd>
               </div>
@@ -306,6 +380,21 @@ Check your answers
                 <dd class="govuk-summary-list__actions">
                   <a class="govuk-link" href="#">
                     Change<span class="govuk-visually-hidden"> describe the work that was done</span>
+                  </a>
+                </dd>
+              </div>
+            {% endif %}
+            {% if data['licensed-action-5-check'] == 'No' %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Why did you not disturb badgers?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['work-not-done-action-5'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> why did you not disturb badgers?</span>
                   </a>
                 </dd>
               </div>
@@ -401,28 +490,28 @@ Check your answers
 
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Were you able to comply with the conditions of the licence?
+                Did you comply with all the conditions of the licence?
               </dt>
               <dd class="govuk-summary-list__value">
                     {{ data['conditions-check'] }}
               </dd>
               <dd class="govuk-summary-list__actions">
                 <a class="govuk-link" href="#">
-                  Change<span class="govuk-visually-hidden"> were you able to comply with the conditions of the licence?</span>
+                  Change<span class="govuk-visually-hidden"> did you comply with all the conditions of the licence??</span>
                 </a>
               </dd>
             </div>
             {% if data['conditions-check'] == 'No' %}
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Why were you not able to comply with the conditions?
+                Describe which conditions of the licence you couldn't comply with and why you couldn't comply with them
               </dt>
               <dd class="govuk-summary-list__value">
                     {{ data['why-not-conditions'] }}
               </dd>
               <dd class="govuk-summary-list__actions">
                 <a class="govuk-link" href="#">
-                  Change<span class="govuk-visually-hidden"> describe the welfare concerns</span>
+                  Change<span class="govuk-visually-hidden"> describe which conditions of the licence you couldn't comply with and why you couldn't comply with them</span>
                 </a>
               </dd>
             </div>
