@@ -916,7 +916,7 @@ router.post('/private-beta/SDDSIP-827-returns/v3-mvp/another-file-check', (req, 
 
 
 router.post('/private-beta/SDDSIP-827-returns/v4/manage-licence-check', (req, res) => {
-  if(req.session.data['manage-licence-check'] == 'Submit a return'){
+  if(req.session.data['manage-licence-check'] == 'Submit a report of action'){
       res.redirect('finished-work')
   } else if(req.session.data['manage-licence-check'] == 'Email a copy of the licence'){
       res.redirect('#')
