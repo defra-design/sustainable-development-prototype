@@ -21,20 +21,12 @@ Did you disturb badgers?
             name: "work-done-action-5",
             id: "work-done-action-5",
             label: {
-              text: "Describe how the badgers were disturbed"
+              text: "Describe the evidence you have badger were disturbed"
             }
           }) }} 
         {% endset -%}
 
-        {% set whynotHtml %}
-        {{ govukTextarea({
-            name: "work-not-done-action-5",
-            id: "work-not-done-action-5",
-            label: {
-              text: "Why did you not disturb badgers?"
-            }
-          }) }} 
-        {% endset -%}
+
 
       <form class="form" action="create-artificial-sett" method="post">
         {{ govukRadios({
