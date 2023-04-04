@@ -1,0 +1,36 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+What bat species are present at roosts you will affect at this site? 
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+     
+      {% if data['bat-species'] > 3 %}
+        <script>
+          window.location.href = 'checkboxes-redirect-2'
+        </script>
+      {% endif %}
+
+
+
+      <h1>Shiiiit</h1>
+
+
+    
+      
+    </div>
+  </div>
+
+{% endblock %}
