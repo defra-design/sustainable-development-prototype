@@ -170,19 +170,34 @@ Check your answers
 
 
 
-      {% if data['responsible-for-invoice-check'] == 'someone-else' %}
+      {% if data['responsible-for-invoice-check'] == 'Somebody else' %}
+
+      
 
         <dl class="govuk-summary-list govuk-!-margin-bottom-9">
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Name of individual responsible for paying the invoice
+              Who is responsible for paying the invoice?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['responsible-for-invoice-check'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> who is responsible for paying the invoice?</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Individual responsible for paying the invoice
             </dt>
             <dd class="govuk-summary-list__value">
               {{ data['invoice-name'] }}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="#">
-                Change<span class="govuk-visually-hidden"> name of individual responsible for paying the invoice</span>
+                Change<span class="govuk-visually-hidden"> individual responsible for paying the invoice</span>
               </a>
             </dd>
           </div>
@@ -200,13 +215,17 @@ Check your answers
             </dd>
           </div>
 
-          {% if data['organisation-check'] == 'yes' %}
+          
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Organisation
+                Are they part of an organisation?
               </dt>
               <dd class="govuk-summary-list__value">
-                {{ data['organisation-name'] }}
+                {% if data['organisation-check'] == 'yes' %}
+                  {{ data['organisation-name'] }} 
+                {% else %}
+                  {{ data['organisation-check'] }}
+                {% endif %}
               </dd>
               <dd class="govuk-summary-list__actions">
                 <a class="govuk-link" href="#">
@@ -214,7 +233,7 @@ Check your answers
                 </a>
               </dd>
             </div>
-          {% endif %}
+            
 
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">

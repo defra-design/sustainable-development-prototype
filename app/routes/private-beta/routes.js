@@ -711,7 +711,7 @@ router.post('/private-beta/SSDSIP-898-invoicing-flow-amends/responsible-for-invo
     res.redirect('contact-details')
   } else if (editChoice === 'ecologist') {
     res.redirect('contact-details-ecologist')
-  } else if (editChoice === 'someone-else') {
+  } else if (editChoice === 'Somebody else') {
     res.redirect('invoice-name')
   } 
   
