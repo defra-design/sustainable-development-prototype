@@ -1,0 +1,125 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+What bat species are present at roosts you will affect at this site? 
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+    
+
+
+    
+
+      <form class="form" action="checkboxes-al2" method="post">
+        {{ govukCheckboxes({
+          name: "bat-species",
+          fieldset: {
+            legend: {
+              text: "What bat species are present at roosts you will affect at this site?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "Select all species with roosts at this site."
+          },
+          items: [
+            {
+              value: "Alcathoe",
+              text: "Alcathoe"
+            },
+            {
+              value: "Barbastelle",
+              text: "Barbastelle"
+            },
+            {
+              value: "Bechstein’s",
+              text: "Bechstein’s"
+            },
+            {
+              value: "Brandt’s",
+              text: "Brandt’s"
+            },
+            {
+              value: "Brown long-eared",
+              text: "Brown long-eared"
+            },
+            {
+              value: "Common pipistrelle",
+              text: "Common pipistrelle"
+            },
+            {
+              value: "Daubenton’s",
+              text: "Daubenton’s"
+            },
+            {
+              value: "Greater horseshoe",
+              text: "Greater horseshoe"
+            },
+            {
+              value: "Grey long-eared",
+              text: "Grey long-eared"
+            },
+            {
+              value: "Leisler’s",
+              text: "Leisler’s"
+            },
+            {
+              value: "Lesser horseshoe",
+              text: "Lesser horseshoe"
+            },
+            {
+              value: "Nathusius’ pipistrelle",
+              text: "Nathusius’ pipistrelle"
+            },
+            {
+              value: "Natterer’s",
+              text: "Natterer’s"
+            },
+            {
+              value: "Noctule",
+              text: "Noctule"
+            },
+            {
+              value: "Serotine",
+              text: "Serotine"
+            },
+            {
+              value: "Soprano pipistrelle",
+              text: "Soprano pipistrelle"
+            },
+            {
+              value: "Whiskered",
+              text: "Whiskered"
+            }
+
+
+          ]
+        }) }}
+
+        
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+     
+      
+    </div>
+  </div>
+
+{% endblock %}

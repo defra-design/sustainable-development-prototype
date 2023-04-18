@@ -986,6 +986,34 @@ router.post('/private-beta/SDDSIP-827-returns/v4/another-file-check', (req, res)
 });
 
 
+//Redirect based on number of species selected fpr AL1
+router.post('/private-beta/bat-er/SDDSIP-878-add-roosts/checkboxes-al1', function(req, res, next) {
+
+  var batsLength = req.session.data["bat-species"].length; //look at the array and count the length of items
+  
+  if (batsLength > 3) {
+    res.redirect('dropout-species-al1')
+  
+  } else {
+    res.redirect('how-many-roosts')
+  
+  }
+  });
+
+
+//Redirect based on number of species selected fpr AL2
+router.post('/private-beta/bat-er/SDDSIP-878-add-roosts/checkboxes-al2', function(req, res, next) {
+
+  var batsLength = req.session.data["bat-species"].length; //look at the array and count the length of items
+  
+  if (batsLength > 5) {
+    res.redirect('dropout-species-al2')
+  
+  } else {
+    res.redirect('how-many-roosts')
+  
+  }
+  });
 
 
 }

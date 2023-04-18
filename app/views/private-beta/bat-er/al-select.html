@@ -1,0 +1,49 @@
+{% extends "layout-pb-no-service-name.html" %}
+
+{% block pageTitle %} 
+What bat species are present at roosts you will affect at this site? 
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+    
+
+
+    
+
+      <form class="form" action="checkboxes-full" method="post">
+
+        {{ govukSelect({ 
+            id: "accreditation-level", 
+            name: "accreditation-level", 
+            label: { 
+                text: "Choose user accreditation level" 
+                }, 
+                items: [ 
+                    { value: "AL1", text: "AL1", selected: true }, 
+                    { value: "AL2", text: "AL2" }, 
+                    { value: "AL3", text: "AL3" }
+                ] 
+            }) }} 
+                
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+     
+      
+    </div>
+  </div>
+
+{% endblock %}

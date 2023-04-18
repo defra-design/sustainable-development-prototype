@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-What bat species are present at roosts you will affect at this site? 
+You cannot apply for a licence 
 {% endblock %}
 
 {% block beforeContent %}
@@ -17,17 +17,11 @@ What bat species are present at roosts you will affect at this site?
     <div class="govuk-grid-column-two-thirds">
 
      
-      {% if data['bat-species'] > 3 %}
-        <script>
-          window.location.href = 'checkboxes-redirect-2'
-        </script>
-      {% endif %}
+  
 
+      <h1 class="govuk-heading-l">You cannot apply for a licence</h1>
 
-
-      <h1>Shiiiit</h1>
-
-
+      <p>You do not have the... AL1</p>
     
       
     </div>
