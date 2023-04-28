@@ -15,18 +15,21 @@ What is this sett called?
     <div class="govuk-grid-column-two-thirds">
       
       <form class="form" action="sett-usage" method="post">
-        <div class="govuk-form-group">
-          <h1 class="govuk-label-wrapper">
-            <label class="govuk-label govuk-label--l" for="sett-name">
-              What is this sett called?
-            </label>
-          </h1>
+
+          <h1 class="govuk-heading-l">What is this sett called?</h1>
+     
           <p>
             Enter a name for the sett to identify and distinguish it from other setts. You should use the name it has on your maps or within your method statement. You can enter up to 100 characters.
           </p>
-          <input class="govuk-input" id="sett-name" name="sett-name" type="text">
-        </div>
+
         
+        {{ govukInput({
+          label: {
+            text: "Enter a sett name"
+          },
+          id: "sett-name",
+          name: "sett-name"
+        }) }}
           {{ govukButton({
             text: "Continue"
           }) }}
