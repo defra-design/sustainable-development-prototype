@@ -1,0 +1,56 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+    Does the site have high conservation value?  
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+      <form class="form" action="#" method="post">
+        {{ govukRadios({
+          idPrefix: "high-conservation-value",
+          name: "high-conservation-value",
+          fieldset: {
+            legend: {
+              text: "Does the site have high conservation value?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "Sites of high conservation value include bat mating and swarming sites."
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}
