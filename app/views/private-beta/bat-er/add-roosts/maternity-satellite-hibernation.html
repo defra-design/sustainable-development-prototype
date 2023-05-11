@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Is this site a mating site for any species of bats?
+Are any of the roosts, maternity, satellite or hibernation roosts?
 {% endblock %}
 
 {% block beforeContent %}
@@ -19,11 +19,11 @@ Is this site a mating site for any species of bats?
 
       <form class="form" action="#" method="post">
         {{ govukRadios({
-          idPrefix: "mating-site",
-          name: "mating-site",
+          idPrefix: "maternity-satellite-hibernation",
+          name: "maternity-satellite-hibernation",
           fieldset: {
             legend: {
-              text: "Is this site a mating site for any species of bats?",
+              text: "Are any of the roosts, maternity, satellite or hibernation roosts?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }

@@ -1,0 +1,44 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+    Describe how the site is of high conservation significance
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+      <form class="form" action="#" method="post">
+        {{ govukTextarea({
+            name: "describe-high-conservation-significance",
+            id: "describe-high-conservation-significance",
+            label: {
+              text: "Describe how the site is of high conservation significance",
+              classes: "govuk-label--l",
+              isPageHeading: true
+            },
+            hint: {
+              text: "Hint text TBC..."
+            }
+          }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

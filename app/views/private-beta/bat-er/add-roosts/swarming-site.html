@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Is this site a mating site for any species of bats?
+Is this site a swarming site for any species of bats?
 {% endblock %}
 
 {% block beforeContent %}
@@ -19,11 +19,11 @@ Is this site a mating site for any species of bats?
 
       <form class="form" action="#" method="post">
         {{ govukRadios({
-          idPrefix: "mating-site",
-          name: "mating-site",
+          idPrefix: "swarming-site",
+          name: "swarming-site",
           fieldset: {
             legend: {
-              text: "Is this site a mating site for any species of bats?",
+              text: "Is this site a swarming site for any species of bats?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
