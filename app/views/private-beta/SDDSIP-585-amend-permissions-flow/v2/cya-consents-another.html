@@ -52,7 +52,46 @@ You have added 1 permission
             </ul>
           </dd>
         </div>
+
+
+        <!-- Second planning permission -->
+
         <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            {{ data['consent-type-check'] }}
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <p>Planning authority:<br>{{ data['which-lpa-another'] }}</p>
+
+                {% if data['planning-type'] == 'Other' %}
+                  <p>Planning type:<br>{{ data['other-planning'] }}
+                {% else %}
+                  <p>Planning type:<br>{{ data['planning-type-another'] }}
+                {% endif %}
+                
+                </p>
+                <p>Reference:<br>{{ data['reference-another'] }}</p>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="consent-remove-another">
+                  Remove<span class="govuk-visually-hidden"> name</span>
+                </a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> name</span>
+                </a>
+              </li>
+            </ul>
+          </dd>
+        </div>
+
+
+        <!-- Standard permission -->
+
+        <!--<div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             {{ data['consent-type-check-another'] }}
           </dt>
@@ -74,7 +113,7 @@ You have added 1 permission
               </li>
             </ul>
           </dd>
-        </div>
+        </div>-->
       </dl>
 
   {% else %}

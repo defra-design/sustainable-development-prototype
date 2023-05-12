@@ -90,6 +90,11 @@ Check your answers
           </dt>
           <dd class="govuk-summary-list__value">
             <p>Planning authority:<br>{{ data['which-lpa-another'] }}</p>
+            {% if data['planning-type'] == 'Other' %}
+                  <p>Planning type:<br>{{ data['other-planning'] }}
+                {% else %}
+                  <p>Planning type:<br>{{ data['planning-type-another'] }}
+                {% endif %}
             <p>Reference:<br>{{ data['reference-another'] }}</p>
           </dd>
           <dd class="govuk-summary-list__actions">
