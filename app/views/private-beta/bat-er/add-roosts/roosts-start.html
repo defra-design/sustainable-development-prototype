@@ -1,0 +1,39 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Tell us about the first root
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">
+        Tell us about the first root
+      </h1>
+      <p>
+        You need to tell us about each roost, including:
+      </p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>where the roost is</li>
+        <li>how many bats</li>
+        <li>which species</li>
+        <li>what the bats are using it for</li>
+        <li>what compensations and mitigations you will do</li>
+      </ul>
+
+      {{ govukButton({
+        text: "Continue",
+        href: "roost-reference"
+      }) }}
+    </div>
+  </div>
+
+{% endblock %}

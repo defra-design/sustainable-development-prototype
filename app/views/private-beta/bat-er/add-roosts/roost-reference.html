@@ -1,0 +1,41 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+First roost
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">
+        First roost
+      </h1>
+      <p>Enter an individual reference for this roost.</p>
+      <p>This should match any maps you send us.</p>
+
+      <form class="form" action="roost-use" method="post"> 
+        {{ govukInput({
+          label: {
+            text: "Enter a roost reference",
+            classes: "govuk-label--m"
+          },
+          id: "roost-reference",
+          name: "roost-reference"
+        }) }}
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

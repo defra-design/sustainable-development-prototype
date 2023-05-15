@@ -1,0 +1,94 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+What bat species are present at roost " + data['roost-reference'] +"?"
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+    
+
+      <form class="form" action="roost-grid-ref" method="post">
+        {{ govukRadios({
+          name: "bat-species",
+          fieldset: {
+            legend: {
+              text: "What bat species are present at roost " + data['roost-reference'] +"?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "Select a species. Each species counts as a separate roost."
+          },
+          items: [
+            {
+              value: "Brandt’s",
+              text: "Brandt’s"
+            },
+            {
+              value: "Brown long-eared",
+              text: "Brown long-eared"
+            },
+            {
+              value: "Common pipistrelle",
+              text: "Common pipistrelle"
+            },
+            {
+              value: "Daubenton’s",
+              text: "Daubenton’s"
+            },
+            {
+              value: "Leisler’s",
+              text: "Leisler’s"
+            },
+            {
+              value: "Nathusius’ pipistrelle",
+              text: "Nathusius’ pipistrelle"
+            },
+            {
+              value: "Natterer’s",
+              text: "Natterer’s"
+            },
+            {
+              value: "Noctule",
+              text: "Noctule"
+            },
+            {
+              value: "Serotine",
+              text: "Serotine"
+            },
+            {
+              value: "Soprano pipistrellee",
+              text: "Soprano pipistrelle"
+            },
+            {
+              value: "Whiskered",
+              text: "Whiskered"
+            }
+          ]
+        }) }}
+
+        {{ govukDetails({
+          summaryText: "Why can I only see these species?",
+          text: "Content..."
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
