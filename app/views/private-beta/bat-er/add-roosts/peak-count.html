@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Enter the 10-digit grid reference for roost {{ data['roost-reference'] }}
+What is the peak count of {{ data['bat-species'] }} bats using roost {{ data['roost-reference'] }}?
 {% endblock %}
 
 {% block beforeContent %}
@@ -18,16 +18,14 @@ Enter the 10-digit grid reference for roost {{ data['roost-reference'] }}
       <form class="form" action="roost-location" method="post"> 
         {{ govukInput({
           label: {
-            text: "Enter the 10-digit grid reference for roost " + data['roost-reference'],
+            text: "What is the peak count of " + data['bat-species'] + " bats using roost " + data['roost-reference'] + "?",
             classes: "govuk-label--l ",
             isPageHeading: true
           },
-          hint: {
-            text: "For example, NY90210966."
-          },
-          classes: "govuk-input--width-10",
-          id: "grid-ref",
-          name: "grid-ref"
+
+          classes: "govuk-input--width-5",
+          id: "peak-count",
+          name: "peak-count"
         }) }}
 
         {{ govukButton({
@@ -38,3 +36,7 @@ Enter the 10-digit grid reference for roost {{ data['roost-reference'] }}
   </div>
 
 {% endblock %}
+
+
+
+

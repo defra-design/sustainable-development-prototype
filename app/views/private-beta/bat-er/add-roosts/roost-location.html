@@ -1,0 +1,133 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Where is roost {{ data['roost-reference'] }} located?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% set otherHtml %}
+        {{ govukTextarea({
+          name: "other-roost-location",
+          id: "other-roost-location",
+          label: {
+            text: "Describe the other location"
+          }
+        }) }}
+      {% endset -%}
+
+      <form class="form" action="peak-count" method="post">
+        {{ govukRadios({
+          name: "roost-location",
+          fieldset: {
+            legend: {
+              text: "Where is roost " + data['roost-reference'] + " located?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Under hanging tiles",
+              text: "Under hanging tiles"
+            },
+            {
+              value: "Under ridge tiles",
+              text: "Under ridge tiles"
+            },
+            {
+              value: "In a wall",
+              text: "In a wall"
+            },
+            {
+              value: "Under peeled paintwork or lifted rendering",
+              text: "Under peeled paintwork or lifted rendering"
+            },
+            {
+              value: "Under weatherboarding",
+              text: "Under weatherboarding"
+            },
+            {
+              value: "Under eaves",
+              text: "Under eaves"
+            },
+            {
+              value: "Associated with a soffit box",
+              text: "Associated with a soffit box"
+            },
+            {
+              value: "Associated with fascias",
+              text: "Associated with fascias"
+            },
+            {
+              value: "Under lead flashing (or equivalent)",
+              text: "Under lead flashing (or equivalent)"
+            },
+            {
+              value: "In a gap under felt",
+              text: "In a gap under felt"
+            },
+            {
+              value: "Under tiles or slates",
+              text: "Under tiles or slates"
+            },
+            {
+              value: "In an existing bat box",
+              text: "In an existing bat box"
+            },
+            {
+              value: "In a gap in brickwork or stonework",
+              text: "In a gap in brickwork or stonework"
+            },
+            {
+              value: "Associated with a window, sill, panes or surround",
+              text: "Associated with a window, sill, panes or surround"
+            },
+            {
+              value: "In a cellar",
+              text: "In a cellar"
+            },
+            {
+              value: "In a tree",
+              text: "In a tree"
+            },
+            {
+              value: "In a cave or natural underground structure",
+              text: "In a cave or natural underground structure"
+            },
+            {
+              divider: "or"
+            },
+            {
+              value: "Other",
+              text: "Other",
+              conditional: {
+                html: otherHtml
+              }
+            }
+
+          ]
+        }) }}
+
+        
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}
