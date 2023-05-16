@@ -1,0 +1,80 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+How will roost {{ data['roost-reference'] }} be impacted?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">    
+      
+      {% set otherHtml %}
+        {{ govukTextarea({
+          name: "other-roost-impact",
+          id: "other-roost-impact",
+          label: {
+            text: "Describe the other impact"
+          }
+        }) }}
+      {% endset -%}
+
+      <form class="form" action="impact" method="post"> 
+        {{ govukRadios({
+          name: "roost-impact",
+          fieldset: {
+            legend: {
+              text: "How will roost " + data['roost-reference'] + " be impacted?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Temporary loss",
+              text: "Temporary loss"
+            },
+            {
+              value: "Temporary damage",
+              text: "Temporary damage"
+            },
+            {
+              value: "Permanent destruction",
+              text: "Permanent destruction"
+            },
+            {
+              value: "Permanent damage",
+              text: "Permanent damage"
+            },
+            {
+              value: "Disturbance only",
+              text: "Disturbance only"
+            },
+            {
+              value: "Other",
+              text: "Other",
+              conditional: {
+                html: otherHtml
+              }
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+
+

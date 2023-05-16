@@ -1,0 +1,54 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Will you create compensation for roost {{ data['roost-reference'] }}?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">    
+
+      <form class="form" action="#" method="post"> 
+        {{ govukRadios({
+          name: "roost-modified-check",
+          fieldset: {
+            legend: {
+              text: "Will you create compensation for roost " +  data['roost-reference'] + "?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              text: "No"
+            },
+            {
+              value: "Not required",
+              text: "Not required"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+
+

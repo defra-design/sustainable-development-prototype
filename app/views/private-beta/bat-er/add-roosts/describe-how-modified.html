@@ -1,0 +1,40 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Describe how the roost will be modified
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">    
+
+      <form class="form" action="#" method="post"> 
+        {{ govukTextarea({
+          name: "roost-modified-description",
+          id: "roost-modified-description",
+          label: {
+            text: "Describe how the roost will be modified",
+            classes: "govuk-label--l",
+            isPageHeading: true
+          }
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+
+

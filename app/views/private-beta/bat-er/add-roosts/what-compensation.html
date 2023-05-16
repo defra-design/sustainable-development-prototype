@@ -1,0 +1,112 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+What compensation will you create?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">   
+      
+      {% set otherHtml %}
+        {{ govukTextarea({
+          name: "other-compensation",
+          id: "other-compensation",
+          label: {
+            text: "Describe the compensation you will create"
+          }
+        }) }}
+      {% endset -%}
+
+      <form class="form" action="#" method="post"> 
+        {{ govukCheckboxes({
+          name: "waste",
+          fieldset: {
+            legend: {
+              text: "What compensation will you create?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "Select all that apply."
+          },
+          items: [
+            {
+              value: "Like-for-like roost creation",
+              text: "Like-for-like roost creation"
+            },
+            {
+              value: "Bat tile/brick/tube",
+              text: "Bat tile/brick/tube"
+            },
+            {
+              value: "Bat box",
+              text: "Bat box"
+            },
+            {
+              value: "Heated bat box",
+              text: "Heated bat box"
+            },
+            {
+              value: "Creation of new crevice/s",
+              text: "Creation of new crevice/s"
+            },
+            {
+              value: "Creation of new access point/s",
+              text: "Creation of new access point/s"
+            },
+            {
+              value: "Habitat reinstatement (for temporary impacts)",
+              text: "Habitat reinstatement (for temporary impacts)"
+            },
+            {
+              value: "Provision of new foraging or commuting habitat",
+              text: "Provision of new foraging or commuting habitat"
+            },
+            {
+              value: "Tree veteranisation",
+              text: "Tree veteranisation"
+            },
+            {
+              value: "Greenbridge",
+              text: "Greenbridge"
+            },
+            {
+              value: "Standalone bat house",
+              text: "Standalone bat house"
+            },
+            {
+              value: "Underpass",
+              text: "Underpass"
+            },
+            {
+              value: "Other",
+              text: "Other",
+              conditional: {
+                html: otherHtml
+              }
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+
+
+{% endblock %}
+
+
+
+

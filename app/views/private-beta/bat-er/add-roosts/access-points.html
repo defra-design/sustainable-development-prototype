@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-What is the peak count of {{ data['bat-species'] }} bats using roost {{ data['roost-reference'] }}?
+How many access points does roost {{ data['roost-reference'] }} have?
 {% endblock %}
 
 {% block beforeContent %}
@@ -15,17 +15,19 @@ What is the peak count of {{ data['bat-species'] }} bats using roost {{ data['ro
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="access-points" method="post"> 
+      
+
+      <form class="form" action="impact" method="post"> 
         {{ govukInput({
           label: {
-            text: "What is the peak count of " + data['bat-species'] + " bats using roost " + data['roost-reference'] + "?",
+            text: "How many access points does roost " + data['roost-reference'] + " have?",
             classes: "govuk-label--l ",
             isPageHeading: true
           },
 
           classes: "govuk-input--width-5",
-          id: "peak-count",
-          name: "peak-count"
+          id: "access-points",
+          name: "access-points"
         }) }}
 
         {{ govukButton({
