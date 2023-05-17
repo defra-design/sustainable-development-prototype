@@ -11,11 +11,17 @@ Will the roost be retained?
 
 {% block content %}
 
+  <!-- Permanent destruction redirect -->
+  {% if data['roost-impact'] == 'Permanent destruction' %}
+  <script>
+      window.location.href = 'what-compensation'
+  </script>
+  {% endif %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">    
 
-      <form class="form" action="#" method="post"> 
+      <form class="form" action="roost-retained-check" method="post"> 
         {{ govukRadios({
           name: "roost-retained-check",
           fieldset: {

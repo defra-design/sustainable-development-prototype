@@ -1,0 +1,64 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Are you providing additional enhancements for roost {{ data['roost-reference'] }} ?"
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">  
+      
+      {% set enhancementsHtml %}
+        {{ govukTextarea({
+          name: "additional-enhancements-detail",
+          id: "additional-enhancements-detail",
+          label: {
+            text: "Describe the additional enhancements"
+          }
+        }) }}
+      {% endset -%}
+
+      <form class="form" action="check-answers-add-another" method="post"> 
+        {{ govukRadios({
+          name: "additional-enhancements-check",
+          fieldset: {
+            legend: {
+              text: "Are you providing additional enhancements for roost " +  data['roost-reference'] +"?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes",
+              conditional: {
+                html: enhancementsHtml
+              }
+            },
+            {
+              value: "No",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+
+

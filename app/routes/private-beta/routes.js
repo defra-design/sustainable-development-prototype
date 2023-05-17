@@ -1016,4 +1016,21 @@ router.post('/private-beta/bat-er/SDDSIP-878-add-roosts/checkboxes-al2', functio
   });
 
 
+router.post('/private-beta/bat-er/add-roosts/roost-retained-check', (req, res) => {
+    if(req.session.data['roost-retained-check'] == 'Yes'){
+        res.redirect('describe-how-retained')
+    } else if(req.session.data['roost-retained-check'] == 'No'){
+        res.redirect('roost-modified')
+    } 
+  });
+
+router.post('/private-beta/bat-er/add-roosts/roost-modified-check', (req, res) => {
+    if(req.session.data['roost-modified-check'] == 'Yes'){
+        res.redirect('describe-how-modified')
+    } else if(req.session.data['roost-modified-check'] == 'No'){
+        res.redirect('create-compensation')
+    } 
+  });
+
+
 }

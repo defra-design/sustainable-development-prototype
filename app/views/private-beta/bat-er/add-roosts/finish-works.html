@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-When will you have finished installing this compensation?
+When will you have finished undertaking works that impact roost {{ data['roost-reference'] }}?
 {% endblock %}
 
 {% block beforeContent %}
@@ -13,19 +13,19 @@ When will you have finished installing this compensation?
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <form class="form" action="affect" method="post"> 
+      <form class="form" action="roost-dimensions" method="post"> 
         {{ govukDateInput({
-          id: "finish-compensation",
-          namePrefix: "finish-compensation",
+          id: "finish-works",
+          namePrefix: "finish-works",
           fieldset: {
             legend: {
-              text: "When will you have finished installing this compensation?",
+              text: "When will you have finished undertaking works that impact roost " +  data['roost-reference'] +"?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
           hint: {
-            text: "Enter the date this compensation will be installed by. For example, 23 4 2024."
+            text: "Enter the date these works will be installed by. For example, 23 4 2024."
           }
         }) }}
 

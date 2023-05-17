@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Describe how the roost will be modified
+What are the dimensions and features of the new roost?
 {% endblock %}
 
 {% block beforeContent %}
@@ -15,12 +15,12 @@ Describe how the roost will be modified
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">    
 
-      <form class="form" action="finish-works" method="post"> 
+      <form class="form" action="#" method="post"> 
         {{ govukTextarea({
-          name: "roost-modified-description",
-          id: "roost-modified-description",
+          name: "new-roost-dimensions",
+          id: "new-roost-dimensions",
           label: {
-            text: "Describe how the roost will be modified",
+            text: "What are the dimensions and features of the new roost?",
             classes: "govuk-label--l",
             isPageHeading: true
           }

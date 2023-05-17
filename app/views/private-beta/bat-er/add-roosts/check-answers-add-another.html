@@ -1,0 +1,401 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Check your answers
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h2 class="govuk-heading-l">Check your answers</h2>
+
+      <h2 class="govuk-heading-m">Roost: {{ data['roost-reference'] }}</h2>
+
+      <p><a href="remove-roost">Remove roost</a></p>
+
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Roost reference
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['roost-reference'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> roost reference</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            What are the bats using roost for?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['roost-use'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> what are the bats using roost for?</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            What bat species are present?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['bat-species'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> what bat species are present?</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            10-digit grid reference
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['grid-ref'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> 10-digit grid reference</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Where is the roost located?
+          </dt>
+          <dd class="govuk-summary-list__value">
+                {% if data['roost-location'] == 'Other' %}
+                  {{ data['other-roost-location'] }}
+                {% else %}
+                  {{ data['roost-location'] }}
+                {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> where is the roost located?</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Peak count of bats using roost
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['peak-count'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> peak count of bats using roost</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            How many access points?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['access-points'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> how many access points?</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            How will the roost be impacted?
+          </dt>
+          <dd class="govuk-summary-list__value">
+                {% if data['roost-impact'] == 'Other' %}
+                  {{ data['other-roost-impact'] }}
+                {% else %}
+                  {{ data['roost-impact'] }}
+                {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> how will the roost be impacted?</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Will the roost be retained?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['roost-retained-check'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> will the roost be retained?</span>
+            </a>
+          </dd>
+        </div>
+
+          {% if data['roost-retained-check'] == 'Yes' %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Describe how the roost will be retained
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['roost-retained-description'] }}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> describe how the roost will be retained</span>
+                </a>
+              </dd>
+            </div>
+          {% endif %}
+
+          {% if data['roost-retained-check'] == 'No' %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Will the roost be modified?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['roost-modified-check'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> will the roost be modified?</span>
+              </a>
+            </dd>
+          </div>
+        {% endif %}
+
+        <!--<div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Work end date
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['work-end-day'] + " " + data['work-end-month'] | toMonth + " " + data['work-end-year'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> work end date</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Affect on badgers
+          </dt>
+          <dd class="govuk-summary-list__value">
+            
+            {% for affect in data['affect-on-badgers'] %}
+              <p>{{ affect }}</p>
+            {% endfor %}
+            
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> affect on badgers</span>
+            </a>
+          </dd>
+        </div>-->
+      </dl>
+
+
+
+      <!--
+        {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Sett usage"
+            },
+            value: {
+              html: data['sett-usage'] 
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "sett usage"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Reopening sett"
+            },
+            value: {
+              html: data['sett-reopened'] 
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "reopening sett"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Number of entrance holes"
+            },
+            value: {
+              html: data['entrance-holes'] 
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "number of entrance holes"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Number of active entrance holes"
+            },
+            value: {
+              html: data['active-holes'] 
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "number of active entrance holes"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Sett grid reference"
+            },
+            value: {
+              html: data['grid-ref']
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "sett grid reference"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Work start date"
+            },
+            value: {
+              html:  data['work-start-day'] + " " + data['work-start-month'] | toMonth + " " + data['work-start-year'] 
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "work start date"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Work end date"
+            },
+            value: {
+              html: data['work-end-day'] + " " + data['work-end-month'] | toMonth + " " + data['work-end-year'] 
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "work end date"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Affect on badgers"
+            },
+            value: {
+              html: "
+
+              {% for affect in data['affect-on-badgers'] %}
+                <p>{{ affect }}</p>
+              {% endfor %}
+
+              "
+                
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "affect on badgers"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+    -->
+      
+      <form class="form" action="add-another-sett-check" method="post">
+
+        {{ govukRadios({
+          idPrefix: "add-another-sett-check",
+          name: "add-another-sett-check",
+          fieldset: {
+            legend: {
+              text: "Do you want to add another badger sett?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+    
+    </div>
+  </div>
+
+{% endblock %}
