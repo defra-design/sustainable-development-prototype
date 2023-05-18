@@ -18,17 +18,17 @@ Where will you create the compensation?
 
       {% set otherHtml %}
         {{ govukTextarea({
-          name: "create-other-compensation",
-          id: "create-other-compensation",
+          name: "where-other-compensation",
+          id: "where-other-compensation",
           label: {
             text: "Describe where you will create the compensation"
           }
         }) }}
       {% endset -%}
 
-      <form class="form" action="peak-count" method="post">
+      <form class="form" action="finish-compensation" method="post">
         {{ govukRadios({
-          name: "roost-location",
+          name: "where-compensation",
           fieldset: {
             legend: {
               text: "Where will you create the compensation?",

@@ -133,6 +133,89 @@ Check your answers
             </a>
           </dd>
         </div>
+
+        <!-- Permanent destruction route -->
+        {% if data['roost-impact'] == 'Permanent destruction' %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Will you create compensation?
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['create-compensation-check'] }}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> will you create compensation?</span>
+                </a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Where will you create compensation?
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {% if data['where-compensation'] == 'Other' %}
+                  {{ data['where-other-compensation'] }}
+                {% else %}
+                  {{ data['where-compensation'] }}
+                {% endif %}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> where will you create compensation?</span>
+                </a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                When will you have finished installing this compensation?
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['finish-compensation-day'] + " " + data['finish-compensation-month'] | toMonth + " " + data['finish-compensation-year'] }}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> when will you have finished installing this compensation?</span>
+                </a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                What are the dimensions and features of the new roost?
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['new-roost-dimensions'] }}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> what are the dimensions and features of the new roost?</span>
+                </a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Are you providing additional enhancements?
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {% if data['additional-enhancements-check'] == 'Yes' %}
+                  {{ data['additional-enhancements-detail'] }}
+                {% else %}
+                  {{ data['additional-enhancements-check'] }}
+                {% endif %}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> are you providing additional enhancements?</span>
+                </a>
+              </dd>
+            </div>
+
+
+        {% endif %}
+        <!-- End of permanent destruction route -->
+
+
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Will the roost be retained?
@@ -213,166 +296,16 @@ Check your answers
 
 
 
-      <!--
-        {{ govukSummaryList({
-        classes: 'govuk-!-margin-bottom-9',
-        rows: [
-          {
-            key: {
-              text: "Sett usage"
-            },
-            value: {
-              html: data['sett-usage'] 
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "sett usage"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Reopening sett"
-            },
-            value: {
-              html: data['sett-reopened'] 
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "reopening sett"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Number of entrance holes"
-            },
-            value: {
-              html: data['entrance-holes'] 
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "number of entrance holes"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Number of active entrance holes"
-            },
-            value: {
-              html: data['active-holes'] 
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "number of active entrance holes"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Sett grid reference"
-            },
-            value: {
-              html: data['grid-ref']
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "sett grid reference"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Work start date"
-            },
-            value: {
-              html:  data['work-start-day'] + " " + data['work-start-month'] | toMonth + " " + data['work-start-year'] 
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "work start date"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Work end date"
-            },
-            value: {
-              html: data['work-end-day'] + " " + data['work-end-month'] | toMonth + " " + data['work-end-year'] 
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "work end date"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Affect on badgers"
-            },
-            value: {
-              html: "
-
-              {% for affect in data['affect-on-badgers'] %}
-                <p>{{ affect }}</p>
-              {% endfor %}
-
-              "
-                
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "affect on badgers"
-                }
-              ]
-            }
-          }
-        ]
-      }) }}
-
-    -->
       
-      <form class="form" action="add-another-sett-check" method="post">
+      
+      <form class="form" action="add-another-roost-check" method="post">
 
         {{ govukRadios({
-          idPrefix: "add-another-sett-check",
-          name: "add-another-sett-check",
+          idPrefix: "add-another-roost-check",
+          name: "add-another-roost-check",
           fieldset: {
             legend: {
-              text: "Do you want to add another badger sett?",
+              text: "Do you want to add another roost?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--m"
             }
