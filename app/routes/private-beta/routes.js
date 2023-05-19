@@ -1033,4 +1033,16 @@ router.post('/private-beta/bat-er/add-roosts/roost-modified-check', (req, res) =
   });
 
 
+  router.post('/private-beta/bat-er/add-roosts/create-compensation-check', (req, res) => {
+    if(req.session.data['create-compensation-check'] == 'Yes'){
+        res.redirect('what-compensation')
+    } else if(req.session.data['create-compensation-check'] == 'No'){
+        res.redirect('justification')
+    } else if(req.session.data['create-compensation-check'] == 'Not required'){
+        res.redirect('finish-works')
+    }
+  });
+
+  
+
 }
