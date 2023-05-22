@@ -1060,6 +1060,13 @@ router.post('/private-beta/bat-er/add-roosts/roost-modified-check', (req, res) =
     }
   });
 
-  
+
+  router.post('/private-beta/bat-er/add-roosts/remove-roost-check', (req, res) => {
+    if(req.session.data['remove-roost-check'] == 'Yes'){
+        res.redirect('roosts-start')
+    } else if(req.session.data['remove-roost-check'] == 'No'){
+        res.redirect('check-answers-add-another')
+    } 
+  });
 
 }
