@@ -1016,6 +1016,23 @@ router.post('/private-beta/bat-er/SDDSIP-878-add-roosts/checkboxes-al2', functio
   });
 
 
+router.post('/private-beta/bat-er/add-roosts/impact-check', (req, res) => {
+    if(req.session.data['impact-check'] == 'Permanent damage'){
+        res.redirect('roost-modified')
+    } else if(req.session.data['impact-check'] == 'Permanent destruction'){
+        res.redirect('create-compensation')
+    } else if(req.session.data['impact-check'] == 'Temporary loss'){
+        res.redirect('roost-retained')
+    } else if(req.session.data['impact-check'] == 'Temporary damage'){
+        res.redirect('roost-retained')
+    } else if(req.session.data['impact-check'] == 'Disturbance only'){
+        res.redirect('roost-retained')
+    } else if(req.session.data['impact-check'] == 'Other'){
+        res.redirect('roost-retained')
+    }    
+  });
+
+
 router.post('/private-beta/bat-er/add-roosts/roost-retained-check', (req, res) => {
     if(req.session.data['roost-retained-check'] == 'Yes'){
         res.redirect('describe-how-retained')

@@ -25,9 +25,9 @@ How will roost {{ data['roost-reference'] }} be impacted?
         }) }}
       {% endset -%}
 
-      <form class="form" action="roost-retained" method="post"> 
+      <form class="form" action="impact-check" method="post"> 
         {{ govukRadios({
-          name: "roost-impact",
+          name: "impact-check",
           fieldset: {
             legend: {
               text: "How will roost " + data['roost-reference'] + " be impacted?",
