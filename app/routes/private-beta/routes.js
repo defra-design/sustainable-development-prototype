@@ -1069,4 +1069,13 @@ router.post('/private-beta/bat-er/add-roosts/roost-modified-check', (req, res) =
     } 
   });
 
+  router.post('/private-beta/bat-er/add-roosts/add-another-roost-check', (req, res) => {
+    if(req.session.data['add-another-roost-check'] == 'Yes'){
+        res.redirect('roost-reference-another')
+    } else if(req.session.data['add-another-roost-check'] == 'No'){
+        res.redirect('task-list-complete')
+    } 
+  });
+
+  
 }
