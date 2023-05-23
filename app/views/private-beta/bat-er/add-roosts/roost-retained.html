@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Will the roost be retained?
+Will the roost {{ data['roost-reference'] }} be retained?
 {% endblock %}
 
 {% block beforeContent %}
@@ -19,14 +19,14 @@ Will the roost be retained?
   {% endif %}
 
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">    
-
+    <div class="govuk-grid-column-two-thirds">   
+      
       <form class="form" action="roost-retained-check" method="post"> 
         {{ govukRadios({
           name: "roost-retained-check",
           fieldset: {
             legend: {
-              text: "Will the roost be retained?",
+              text: "Will the roost " + data['roost-reference'] + " be retained?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }

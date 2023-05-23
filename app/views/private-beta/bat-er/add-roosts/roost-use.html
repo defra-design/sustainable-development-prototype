@@ -47,7 +47,10 @@ What are the bats using roost {{ data['roost-reference'] }} for?
 
         {{ govukDetails({
           summaryText: "Why can I only see these roost types?",
-          text: "Content..."
+          html: "
+          <p>You are only able to register a site with these roost types because of your level of accreditation. If you want to register a site with other roost types, you need higher accreditation level.</p>
+          <p>See <a href='#'>information on ecologist accreditation levels (opens in a new tab)</a>.</p>
+          "
         }) }}
 
         {{ govukButton({

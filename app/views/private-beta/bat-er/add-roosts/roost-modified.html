@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Will the roost be modified?
+Will the roost {{ data['roost-reference'] }} be modified?
 {% endblock %}
 
 {% block beforeContent %}
@@ -20,7 +20,7 @@ Will the roost be modified?
           name: "roost-modified-check",
           fieldset: {
             legend: {
-              text: "Will the roost be modified?",
+              text: "Will the roost " + data['roost-reference'] + " be modified?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }

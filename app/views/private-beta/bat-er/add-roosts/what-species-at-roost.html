@@ -80,7 +80,10 @@ What bat species are present at roost {{ data['roost-reference'] }}?
 
         {{ govukDetails({
           summaryText: "Why can I only see these species?",
-          text: "Content..."
+          html: "
+          <p>You are only able to register a site with these species because of your level of accreditation. If you want to register a site with other species, you need higher accreditation level.</p>
+          <p>See <a href='#'>information on ecologist accreditation levels (opens in a new tab)</a>.</p>
+          "
         }) }}
 
         {{ govukButton({
