@@ -136,10 +136,7 @@ Check your answers
 
 
 
-
-
-
-
+        <!-- /// Dynamic sections based on impact on roost selection /// -->
 
         <!-- /// Permanent destruction route /// -->
         {% if data['impact-check'] == 'Permanent destruction' %}
@@ -164,11 +161,9 @@ Check your answers
                     What compensation will you create?
                   </dt>
                   <dd class="govuk-summary-list__value">
-                    {% if data['what-compensation'] == 'Other' %}
-                      {{ data['other-compensation'] }}
-                    {% else %}
-                      {{ data['what-compensation'] }}
-                    {% endif %}
+                    {% for affect in data['what-compensation'] %}
+                        <p>{{ affect }}</p>
+                      {% endfor %}
                   </dd>
                   <dd class="govuk-summary-list__actions">
                     <a class="govuk-link" href="#">
@@ -283,22 +278,13 @@ Check your answers
                 </div>
               {% endif %}
               <!-- End of Permanent destruction - Create compensation - Not required -->
-
-        {% endif %}
-        <!-- /// End of permanent destruction route /// -->
-
-
-
-
-
-
-
+              <!-- /// End of permanent destruction route /// -->
 
 
 
 
         <!-- /// Permanent damage route /// -->
-        {% if data['impact-check'] == 'Permanent damage' %}
+        {% elseif data['impact-check'] == 'Permanent damage' %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Will the roost be modified?
@@ -380,11 +366,9 @@ Check your answers
                       What compensation will you create?
                     </dt>
                     <dd class="govuk-summary-list__value">
-                      {% if data['what-compensation'] == 'Other' %}
-                        {{ data['other-compensation'] }}
-                      {% else %}
-                        {{ data['what-compensation'] }}
-                      {% endif %}
+                      {% for affect in data['what-compensation'] %}
+                        <p>{{ affect }}</p>
+                      {% endfor %}
                     </dd>
                     <dd class="govuk-summary-list__actions">
                       <a class="govuk-link" href="#">
@@ -502,22 +486,13 @@ Check your answers
 
           {% endif %}
           <!-- End of Roost modified - No -->       
-
-        {% endif %}
-        <!-- /// End of permanent damage route /// -->
-
-
-
-
-
-
-
-
+          <!-- /// End of permanent damage route /// -->
 
 
 
 
         <!-- /// All other impact routes /// -->
+        {% elseif data['impact-check'] == 'Temporary loss' or 'Temporary damage' or 'Disturbance only' or 'Other' %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Will the roost be retained?
@@ -660,10 +635,13 @@ Check your answers
                       What compensation will you create?
                     </dt>
                     <dd class="govuk-summary-list__value">
+
+                      {% for affect in data['what-compensation'] %}
+                        <p>{{ affect }}</p>
+                      {% endfor %}
+
                       {% if data['what-compensation'] == 'Other' %}
-                        {{ data['other-compensation'] }}
-                      {% else %}
-                        {{ data['what-compensation'] }}
+                        <p>{{ data['other-compensation'] }}</p>
                       {% endif %}
                     </dd>
                     <dd class="govuk-summary-list__actions">
@@ -785,6 +763,8 @@ Check your answers
           
           {% endif %}
           <!-- /// End of All other impact routes - Roost retained - No /// -->
+
+          {% endif %}
      
       </dl>
       
