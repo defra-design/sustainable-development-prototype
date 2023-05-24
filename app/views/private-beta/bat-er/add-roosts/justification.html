@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-What is your justification for not creating compensation?
+Why are you not making compensation for roost {{  data['roost-reference'] }}?
 {% endblock %}
 
 {% block beforeContent %}
@@ -20,7 +20,7 @@ What is your justification for not creating compensation?
           name: "justification-detail",
           id: "justification-detail",
           label: {
-            text: "What is your justification for not creating compensation?",
+            text: "Why are you not making compensation for roost " +  data['roost-reference'] + "?",
             classes: "govuk-label--l",
             isPageHeading: true
           }
