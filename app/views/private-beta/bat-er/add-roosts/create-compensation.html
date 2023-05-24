@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Will you create compensation for roost {{ data['roost-reference'] }}?
+Will you compensate for the impact on roost {{ data['roost-reference'] }}?
 {% endblock %}
 
 {% block beforeContent %}
@@ -19,7 +19,7 @@ Will you create compensation for roost {{ data['roost-reference'] }}?
           name: "create-compensation-check",
           fieldset: {
             legend: {
-              text: "Will you create compensation for roost " +  data['roost-reference'] + "?",
+              text: "Will you compensate for the impact on roost " +  data['roost-reference'] + "?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }

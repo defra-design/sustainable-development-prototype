@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Where will you create the compensation?
+Where will you create this compensation for roost {{ data['roost-reference'] }}?
 {% endblock %}
 
 {% block beforeContent %}
@@ -31,7 +31,7 @@ Where will you create the compensation?
           name: "where-compensation",
           fieldset: {
             legend: {
-              text: "Where will you create the compensation?",
+              text: "Where will you create this compensation for roost " +  data['roost-reference'] + "?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
@@ -46,12 +46,12 @@ Where will you create the compensation?
               text: "In an existing building"
             },
             {
-              value: "In a bespoke new bat building",
-              text: "In a bespoke new bat building"
+              value: "In a new building",
+              text: "In a new building"
             },
             {
-              value: "A new building",
-              text: "A new building"
+              value: "In a bespoke new bat building",
+              text: "In a bespoke new bat building"
             },
             {
               divider: "or"

@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-What compensation will you create?
+How will you compensate for the impact on roost {{ data['roost-reference'] }}?
 {% endblock %}
 
 {% block beforeContent %}
@@ -29,54 +29,54 @@ What compensation will you create?
           name: "what-compensation",
           fieldset: {
             legend: {
-              text: "What compensation will you create?",
+              text: "How will you compensate for the impact on roost " +  data['roost-reference'] + "?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
           hint: {
-            text: "Select all that apply."
+            text: "Select all options that you will create or install."
           },
           items: [
             {
-              value: "Like-for-like roost creation",
-              text: "Like-for-like roost creation"
+              value: "Like-for-like roost",
+              text: "Like-for-like roost"
             },
             {
-              value: "Bat tile/brick/tube",
-              text: "Bat tile/brick/tube"
+              value: "Bat tile, brick or tube",
+              text: "Bat tile, brick or tube"
             },
             {
-              value: "Bat box",
-              text: "Bat box"
+              value: "Unheated bat box",
+              text: "Unheated bat box"
             },
             {
               value: "Heated bat box",
               text: "Heated bat box"
             },
             {
-              value: "Creation of new crevice's",
-              text: "Creation of new crevice's"
+              value: "New crevices",
+              text: "New crevices"
             },
             {
-              value: "Creation of new access point's",
-              text: "Creation of new access point's"
+              value: "New access points",
+              text: "New access points"
             },
             {
-              value: "Habitat reinstatement (for temporary impacts)",
-              text: "Habitat reinstatement (for temporary impacts)"
+              value: "Reinstated habitat",
+              text: "Reinstated habitat"
             },
             {
-              value: "Provision of new foraging or commuting habitat",
-              text: "Provision of new foraging or commuting habitat"
+              value: "New foraging or commuting habitat",
+              text: "New foraging or commuting habitat"
             },
             {
               value: "Tree veteranisation",
               text: "Tree veteranisation"
             },
             {
-              value: "Greenbridge",
-              text: "Greenbridge"
+              value: "Green bridge",
+              text: "Green bridge"
             },
             {
               value: "Standalone bat house",
