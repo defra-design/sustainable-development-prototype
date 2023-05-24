@@ -139,7 +139,7 @@ Check your answers
         <!-- /// Dynamic sections based on impact on roost selection /// -->
 
         <!-- /// Permanent destruction route /// -->
-        {% if data['impact-check'] == 'Permanent destruction' %}
+        {% if data['impact-check'] == 'Destroyed' %}
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
                 Will you create compensation?
@@ -284,7 +284,7 @@ Check your answers
 
 
         <!-- /// Permanent damage route /// -->
-        {% elseif data['impact-check'] == 'Permanent damage' %}
+        {% elseif data['impact-check'] == 'Damaged permanently' %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Will the roost be modified?
@@ -492,7 +492,7 @@ Check your answers
 
 
         <!-- /// All other impact routes /// -->
-        {% elseif data['impact-check'] == 'Temporary loss' or 'Temporary damage' or 'Disturbance only' or 'Other' %}
+        {% elseif data['impact-check'] == 'Lost temporarily' or 'Damaged temporarily' or 'Disturbance' or 'Other' %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Will the roost be retained?

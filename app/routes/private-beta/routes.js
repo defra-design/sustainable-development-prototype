@@ -1019,13 +1019,13 @@ router.post('/private-beta/bat-er/SDDSIP-878-add-roosts/checkboxes-al2', functio
 router.post('/private-beta/bat-er/add-roosts/impact-check', (req, res) => {
     if(req.session.data['impact-check'] == 'Permanent damage'){
         res.redirect('roost-modified')
-    } else if(req.session.data['impact-check'] == 'Permanent destruction'){
+    } else if(req.session.data['impact-check'] == 'Destroyed'){
         res.redirect('create-compensation')
-    } else if(req.session.data['impact-check'] == 'Temporary loss'){
+    } else if(req.session.data['impact-check'] == 'Lost temporarily'){
         res.redirect('roost-retained')
-    } else if(req.session.data['impact-check'] == 'Temporary damage'){
+    } else if(req.session.data['impact-check'] == 'Damaged temporarily'){
         res.redirect('roost-retained')
-    } else if(req.session.data['impact-check'] == 'Disturbance only'){
+    } else if(req.session.data['impact-check'] == 'Disturbance'){
         res.redirect('roost-retained')
     } else if(req.session.data['impact-check'] == 'Other'){
         res.redirect('roost-retained')
