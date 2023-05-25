@@ -1017,7 +1017,7 @@ router.post('/private-beta/bat-er/SDDSIP-878-add-roosts/checkboxes-al2', functio
 
 
 router.post('/private-beta/bat-er/add-roosts/impact-check', (req, res) => {
-    if(req.session.data['impact-check'] == 'Permanent damage'){
+    if(req.session.data['impact-check'] == 'Damaged permanently'){
         res.redirect('roost-modified')
     } else if(req.session.data['impact-check'] == 'Destroyed'){
         res.redirect('create-compensation')
