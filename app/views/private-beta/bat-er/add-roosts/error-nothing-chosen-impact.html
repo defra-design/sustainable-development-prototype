@@ -1,0 +1,99 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: What will be the impact on roost {{ data['roost-reference'] }}?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">    
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not selected an option",
+                href: "#impact-check"
+              }
+            ]
+          }) }}
+      
+      {% set otherHtml %}
+        {{ govukTextarea({
+          name: "other-roost-impact",
+          id: "other-roost-impact",
+          label: {
+            text: "Describe the other impact"
+          }
+        }) }}
+      {% endset -%}
+
+      <form class="form" action="impact-check" method="post"> 
+        {{ govukRadios({
+          name: "impact-check",
+          fieldset: {
+            legend: {
+              text: "What will be the impact on roost " + data['roost-reference'] + "?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "Select an option that describes how the roost will be affected."
+          },
+          items: [
+            {
+              value: "Temporary loss",
+              text: "Temporary loss"
+            },
+            {
+              value: "Temporary damage",
+              text: "Temporary damage"
+            },
+            {
+              value: "Permanent damage",
+              text: "Permanent damage"
+            },
+            {
+              value: "Permanent destruction",
+              text: "Permanent destruction"
+            },
+            {
+              value: "Disturbance only", 
+              text: "Disturbance only"
+            },
+            {
+              divider: "or"
+            },
+            {
+              value: "Other",
+              text: "Other",
+              conditional: {
+                html: otherHtml
+              }
+            }
+          ],
+          errorMessage: {
+            text: "Select an option"
+          }
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+
+

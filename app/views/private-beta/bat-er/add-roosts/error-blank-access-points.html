@@ -1,0 +1,55 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: How many access points does roost {{ data['roost-reference'] }} have?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not entered the how many access points the roost has",
+                href: "#access-points"
+              }
+            ]
+          }) }}
+
+      <form class="form" action="impact" method="post"> 
+        {{ govukInput({
+          label: {
+            text: "How many access points does roost " + data['roost-reference'] + " have?",
+            classes: "govuk-label--l ",
+            isPageHeading: true
+          },
+
+          classes: "govuk-input--width-5",
+          id: "access-points",
+          name: "access-points",
+          errorMessage: {
+            text: "Enter how many access points the roost has"
+          }
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+
+

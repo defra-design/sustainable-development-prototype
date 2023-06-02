@@ -1,0 +1,53 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: Describe how the roost will be retained
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">    
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not described how the roost will be retained",
+                href: "#roost-retained-description"
+              }
+            ]
+          }) }}
+
+      <form class="form" action="roost-dimensions" method="post"> 
+        {{ govukTextarea({
+          name: "roost-retained-description",
+          id: "roost-retained-description",
+          label: {
+            text: "Describe how the roost will be retained",
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          errorMessage: {
+            text: "Describe how the roost will be retained"
+          }
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+
+

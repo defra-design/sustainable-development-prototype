@@ -1,0 +1,70 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: Will roost {{ data['roost-reference'] }} be retained?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <!-- Permanent destruction redirect -->
+  {% if data['roost-impact'] == 'Destroyed' %}
+  <script>
+      window.location.href = 'what-compensation'
+  </script>
+  {% endif %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">   
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not selected an option",
+                href: "#roost-retained-check"
+              }
+            ]
+          }) }}
+      
+      <form class="form" action="roost-retained-check" method="post"> 
+        {{ govukRadios({
+          name: "roost-retained-check",
+          fieldset: {
+            legend: {
+              text: "Will roost " + data['roost-reference'] + " be retained?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              text: "No"
+            }
+          ],
+          errorMessage: {
+            text: "Select an option"
+          }
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+
+
