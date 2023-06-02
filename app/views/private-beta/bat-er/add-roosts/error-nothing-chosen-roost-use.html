@@ -1,0 +1,76 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: What are the bats using roost {{ data['roost-reference'] }} for?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not selected an option",
+                href: "#roost-use"
+              }
+            ]
+          }) }}
+
+      <form class="form" action="what-species-at-roost" method="post"> 
+        {{ govukRadios({
+          name: "roost-use",
+          fieldset: {
+            legend: {
+              text: "What are the bats using roost " + data['roost-reference'] + " for?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Day use",
+              text: "Day use"
+            },
+            {
+              value: "Night use",
+              text: "Night use"
+            },
+            {
+              value: "Feeding",
+              text: "Feeding"
+            },
+            {
+              value: "Transitional use",
+              text: "Transitional use"
+            }
+          ],
+          errorMessage: {
+            text: "Select an option"
+          }
+        }) }}
+
+        {{ govukDetails({
+          summaryText: "Why can I only see these roost types?",
+          html: "
+          <p>You are only able to register a site with these roost types because of your level of accreditation. If you want to register a site with other roost types, you need higher accreditation level.</p>
+          <p>See <a href='#'>information on ecologist accreditation levels (opens in a new tab)</a>.</p>
+          "
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

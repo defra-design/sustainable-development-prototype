@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Enter the 10-digit grid reference for roost {{ data['roost-reference'] }}
+Error: Enter the 10-digit grid reference for roost {{ data['roost-reference'] }}
 {% endblock %}
 
 {% block beforeContent %}
@@ -15,6 +15,16 @@ Enter the 10-digit grid reference for roost {{ data['roost-reference'] }}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not entered a grid reference",
+                href: "#grid-ref"
+              }
+            ]
+          }) }}
+
       <form class="form" action="roost-location" method="post"> 
         {{ govukInput({
           label: {
@@ -27,7 +37,10 @@ Enter the 10-digit grid reference for roost {{ data['roost-reference'] }}
           },
           classes: "govuk-input--width-10",
           id: "grid-ref",
-          name: "grid-ref"
+          name: "grid-ref",
+          errorMessage: {
+            text: "Enter a 10-digit national grid reference for the roost"
+          }
         }) }}
 
         {{ govukButton({
