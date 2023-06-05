@@ -1,0 +1,126 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: How will you compensate for the impact on roost {{ data['roost-reference'] }}?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">   
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not described the compensation you will create",
+                href: "#other-compensation"
+              }
+            ]
+          }) }}
+      
+      {% set otherHtml %}
+        {{ govukTextarea({
+          name: "other-compensation",
+          id: "other-compensation",
+          label: {
+            text: "Describe the compensation you will create"
+          },
+          errorMessage: {
+            text: "Describe the compensation you will create"
+          }
+        }) }}
+      {% endset -%}
+
+      <form class="form" action="where-compensation" method="post"> 
+        {{ govukCheckboxes({
+          name: "what-compensation",
+          fieldset: {
+            legend: {
+              text: "How will you compensate for the impact on roost " +  data['roost-reference'] + "?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "Select all options that you will create or install."
+          },
+          items: [
+            {
+              value: "Like-for-like roost",
+              text: "Like-for-like roost"
+            },
+            {
+              value: "Bat tile, brick or tube",
+              text: "Bat tile, brick or tube"
+            },
+            {
+              value: "Unheated bat box",
+              text: "Unheated bat box"
+            },
+            {
+              value: "Heated bat box",
+              text: "Heated bat box"
+            },
+            {
+              value: "New crevices",
+              text: "New crevices"
+            },
+            {
+              value: "New access points",
+              text: "New access points"
+            },
+            {
+              value: "Reinstated habitat",
+              text: "Reinstated habitat"
+            },
+            {
+              value: "New foraging or commuting habitat",
+              text: "New foraging or commuting habitat"
+            },
+            {
+              value: "Tree veteranisation",
+              text: "Tree veteranisation"
+            },
+            {
+              value: "Green bridge",
+              text: "Green bridge"
+            },
+            {
+              value: "Standalone bat house",
+              text: "Standalone bat house"
+            },
+            {
+              value: "Underpass",
+              text: "Underpass"
+            },
+            {
+              value: "Other",
+              text: "Other",
+              checked: true,
+              conditional: {
+                html: otherHtml
+              }
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+
+
+{% endblock %}
+
+
+
+
