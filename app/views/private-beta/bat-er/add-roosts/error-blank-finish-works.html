@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-When will you have finished work that will affect roost {{ data['roost-reference'] }}?
+Error: When will you have finished work that will affect roost {{ data['roost-reference'] }}?
 {% endblock %}
 
 {% block beforeContent %}
@@ -13,7 +13,18 @@ When will you have finished work that will affect roost {{ data['roost-reference
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <form class="form" action="check-answers-add-another" method="post"> 
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not entered a date the work will be finished by",
+                href: "#finish-works-day"
+              }
+            ]
+          }) }}
+
+     <form class="form" action="check-answers-add-another" method="post"> 
         {{ govukDateInput({
           id: "finish-works",
           namePrefix: "finish-works",
@@ -26,6 +37,9 @@ When will you have finished work that will affect roost {{ data['roost-reference
           },
           hint: {
             text: "Enter the date these works will be installed by. For example, 23 4 2024."
+          },
+          errorMessage: {
+            text: "Enter a date the work will be finished by"
           }
         }) }}
 

@@ -1,0 +1,821 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: Check your answers
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not selected an option",
+                href: "#add-another-roost-check"
+              }
+            ]
+          }) }}
+
+      <h2 class="govuk-heading-l">Check your answers</h2>
+
+      <h2 class="govuk-heading-m">Roost: {{ data['roost-reference'] }}</h2>
+
+      <p><a href="remove-roost">Remove roost</a></p>
+
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Roost reference
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['roost-reference'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> roost reference</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            What are the bats using roost for?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['roost-use'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> what are the bats using roost for?</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            What bat species are present?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['bat-species'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> what bat species are present?</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            10-digit grid reference
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['grid-ref'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> 10-digit grid reference</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Where is the roost located?
+          </dt>
+          <dd class="govuk-summary-list__value">
+                {% if data['roost-location'] == 'Other' %}
+                  {{ data['other-roost-location'] }}
+                {% else %}
+                  {{ data['roost-location'] }}
+                {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> where is the roost located?</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Peak count of bats using roost
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['peak-count'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> peak count of bats using roost</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            How many access points?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['access-points'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> how many access points?</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            What will be the impact on the roost?
+          </dt>
+          <dd class="govuk-summary-list__value">
+                {% if data['impact-check'] == 'Other' %}
+                  {{ data['other-roost-impact'] }}
+                {% else %}
+                  {{ data['impact-check'] }}
+                {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> what will be the impact on the roost?</span>
+            </a>
+          </dd>
+        </div>
+
+
+
+        <!-- /// Dynamic sections based on impact on roost selection /// -->
+
+        <!-- /// Permanent destruction route /// -->
+        {% if data['impact-check'] == 'Permanent destruction' %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Will you create compensation?
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['create-compensation-check'] }}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> will you create compensation?</span>
+                </a>
+              </dd>
+            </div>
+
+                <!-- Permanent destruction - Create compensation - Yes -->
+                {% if data['create-compensation-check'] == 'Yes' %}
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    What compensation will you create?
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    {% for affect in data['what-compensation'] %}
+                        <p>{{ affect }}</p>
+                      {% endfor %}
+                  </dd>
+                  <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="#">
+                      Change<span class="govuk-visually-hidden"> what compensation will you create?</span>
+                    </a>
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Where will you create compensation?
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    {% if data['where-compensation'] == 'Other' %}
+                      {{ data['where-other-compensation'] }}
+                    {% else %}
+                      {{ data['where-compensation'] }}
+                    {% endif %}
+                  </dd>
+                  <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="#">
+                      Change<span class="govuk-visually-hidden"> where will you create compensation?</span>
+                    </a>
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    When will you have finished installing this compensation?
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    {{ data['finish-compensation-day'] + " " + data['finish-compensation-month'] | toMonth + " " + data['finish-compensation-year'] }}
+                  </dd>
+                  <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="#">
+                      Change<span class="govuk-visually-hidden"> when will you have finished installing this compensation?</span>
+                    </a>
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    What are the dimensions and features of the new roost?
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    {{ data['new-roost-dimensions'] }}
+                  </dd>
+                  <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="#">
+                      Change<span class="govuk-visually-hidden"> what are the dimensions and features of the new roost?</span>
+                    </a>
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    When will you have finished undertaking works that impact the roost?
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    {{ data['finish-works-day'] + " " + data['finish-works-month'] | toMonth + " " + data['finish-works-year'] }}
+                  </dd>
+                  <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="#">
+                      Change<span class="govuk-visually-hidden"> when will you have finished undertaking works that impact the roost?</span>
+                    </a>
+                  </dd>
+                </div>
+              {% endif %}
+              <!-- End of Permanent destruction - Create compensation - Yes -->
+              
+              <!-- Permanent destruction - Create compensation - No -->
+              {% if data['create-compensation-check'] == 'No' %}
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Why are you not making compensation?
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    {{ data['justification-detail'] }}
+                  </dd>
+                  <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="#">
+                      Change<span class="govuk-visually-hidden"> why are you not making compensation?</span>
+                    </a>
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    When will you have finished work that will affect the roost?
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    {{ data['finish-works-day'] + " " + data['finish-works-month'] | toMonth + " " + data['finish-works-year'] }}
+                  </dd>
+                  <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="#">
+                      Change<span class="govuk-visually-hidden"> when will you have finished work that will affect the roost?</span>
+                    </a>
+                  </dd>
+                </div>
+              {% endif %}
+              <!-- End of Permanent destruction - Create compensation - No -->
+
+              <!-- Permanent destruction - Create compensation - Not required -->
+              {% if data['create-compensation-check'] == 'Not required' %}
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    When will you have finished work that will affect the roost?
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    {{ data['finish-works-day'] + " " + data['finish-works-month'] | toMonth + " " + data['finish-works-year'] }}
+                  </dd>
+                  <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="#">
+                      Change<span class="govuk-visually-hidden"> when will you have finished work that will affect the roost?</span>
+                    </a>
+                  </dd>
+                </div>
+              {% endif %}
+              <!-- End of Permanent destruction - Create compensation - Not required -->
+              <!-- /// End of permanent destruction route /// -->
+
+
+
+
+        <!-- /// Permanent damage route /// -->
+        {% elseif data['impact-check'] == 'Permanent damage' %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Will the roost be modified?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['roost-modified-check'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> will the roost be modified?</span>
+              </a>
+            </dd>
+          </div>
+
+              <!-- Permanent damage - Roost modified - Yes -->
+              {% if data['roost-modified-check'] == 'Yes' %}
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Describe how the roost will be modified
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    {{ data['roost-modified-description'] }}
+                  </dd>
+                  <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="#">
+                      Change<span class="govuk-visually-hidden"> will the roost be modified?</span>
+                    </a>
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    What are the final dimensions and features of the roost?
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    {{ data['roost-dimensions'] }}
+                  </dd>
+                  <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="#">
+                      Change<span class="govuk-visually-hidden"> will the roost be modified?</span>
+                    </a>
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    When will you have finished work that will affect the roost?
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    {{ data['finish-works-day'] + " " + data['finish-works-month'] | toMonth + " " + data['finish-works-year'] }}
+                  </dd>
+                  <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="#">
+                      Change<span class="govuk-visually-hidden"> when will you have finished work that will affect the roost?</span>
+                    </a>
+                  </dd>
+                </div>
+              {% endif %}
+              <!-- End of Permanent damage - Roost modified - Yes -->
+
+              <!-- Permanent damage - Roost modified - No -->
+              {% if data['roost-modified-check'] == 'No' %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Will you create compensation?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['create-compensation-check'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> will you create compensation?</span>
+                  </a>
+                </dd>
+              </div>
+
+                  <!-- Permanent damage - Roost modified - No - Create compensation - Yes -->
+                  {% if data['create-compensation-check'] == 'Yes' %}
+                  <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                      What compensation will you create?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                      {% for affect in data['what-compensation'] %}
+                        <p>{{ affect }}</p>
+                      {% endfor %}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                      <a class="govuk-link" href="#">
+                        Change<span class="govuk-visually-hidden"> what compensation will you create?</span>
+                      </a>
+                    </dd>
+                  </div>
+                  <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                      Where will you create compensation?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                      {% if data['where-compensation'] == 'Other' %}
+                        {{ data['where-other-compensation'] }}
+                      {% else %}
+                        {{ data['where-compensation'] }}
+                      {% endif %}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                      <a class="govuk-link" href="#">
+                        Change<span class="govuk-visually-hidden"> where will you create compensation?</span>
+                      </a>
+                    </dd>
+                  </div>
+                  <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                      When will you have finished installing this compensation?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                      {{ data['finish-compensation-day'] + " " + data['finish-compensation-month'] | toMonth + " " + data['finish-compensation-year'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                      <a class="govuk-link" href="#">
+                        Change<span class="govuk-visually-hidden"> when will you have finished installing this compensation?</span>
+                      </a>
+                    </dd>
+                  </div>
+                  <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                      What are the dimensions and features of the new roost?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                      {{ data['new-roost-dimensions'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                      <a class="govuk-link" href="#">
+                        Change<span class="govuk-visually-hidden"> what are the dimensions and features of the new roost?</span>
+                      </a>
+                    </dd>
+                  </div>
+                  <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                      When will you have finished work that will affect the roost?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                      {{ data['finish-works-day'] + " " + data['finish-works-month'] | toMonth + " " + data['finish-works-year'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                      <a class="govuk-link" href="#">
+                        Change<span class="govuk-visually-hidden"> when will you have finished work that will affect the roost?</span>
+                      </a>
+                    </dd>
+                  </div>
+                {% endif %}
+                <!-- End of Permanent damage - Roost modified - No - Create compensation - Yes-->
+        
+                <!-- Permanent damage - Roost modified - No - Create compensation - No -->
+                {% if data['create-compensation-check'] == 'No' %}
+                  <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                      Why are you not making compensation?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                      {{ data['justification-detail'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                      <a class="govuk-link" href="#">
+                        Change<span class="govuk-visually-hidden"> why are you not making compensation?</span>
+                      </a>
+                    </dd>
+                  </div>
+                  <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                      When will you have finished work that will affect the roost?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                      {{ data['finish-works-day'] + " " + data['finish-works-month'] | toMonth + " " + data['finish-works-year'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                      <a class="govuk-link" href="#">
+                        Change<span class="govuk-visually-hidden"> when will you have finished work that will affect the roost?</span>
+                      </a>
+                    </dd>
+                  </div>
+                {% endif %}
+                <!-- End of Permanent damage - Roost modified - No - Create compensation - No -->
+
+                <!-- Permanent damage - Roost modified - No - Create compensation - Not required -->
+                {% if data['create-compensation-check'] == 'Not required' %}
+                  <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                      When will you have finished work that will affect the roost?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                      {{ data['finish-works-day'] + " " + data['finish-works-month'] | toMonth + " " + data['finish-works-year'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                      <a class="govuk-link" href="#">
+                        Change<span class="govuk-visually-hidden"> when will you have finished work that will affect the roost?</span>
+                      </a>
+                    </dd>
+                  </div>
+                {% endif %}
+                <!-- End of Permanent damage - Roost modified - No - Create compensation - Not required-->
+
+          {% endif %}
+          <!-- End of Roost modified - No -->       
+          <!-- /// End of permanent damage route /// -->
+
+
+
+
+        <!-- /// All other impact routes /// -->
+        {% elseif data['impact-check'] == 'Temporary loss' or 'Temporary damage' or 'Disturbance only' or 'Other' %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Will the roost be retained?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['roost-retained-check'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> will the roost be retained?</span>
+            </a>
+          </dd>
+        </div>
+
+          <!-- All other impact routes - Roost retained - Yes -->
+          {% if data['roost-retained-check'] == 'Yes' %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Describe how the roost will be retained
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['roost-retained-description'] }}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> describe will the roost be retained</span>
+                </a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                What are the final dimensions and features of the roost?
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['roost-dimensions'] }}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> what are the final dimensions and features of the roost?</span>
+                </a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                When will you have finished work that will affect the roost?
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['finish-works-day'] + " " + data['finish-works-month'] | toMonth + " " + data['finish-works-year'] }}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> when will you have finished work that will affect the roost?</span>
+                </a>
+              </dd>
+            </div>
+          {% endif %}
+          <!-- End of All other impact routes - Roost retained - Yes  -->  
+
+          <!-- All other impact routes - Roost retained - No  -->
+          {% if data['roost-retained-check'] == 'No' %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Will the roost be modified?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['roost-modified-check'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> will the roost be modified?</span>
+              </a>
+            </dd>
+          </div>
+          
+            <!-- All other impact routes - Roost retained - No - Roost modified - Yes -->
+            {% if data['roost-modified-check'] == 'Yes' %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Describe how the roost will be modified
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['roost-modified-description'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> Describe how the roost will be modified</span>
+                  </a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  What are the final dimensions and features of the roost?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['roost-dimensions'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> what are the final dimensions and features of the roost?</span>
+                  </a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  When will you have finished work that will affect the roost?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['finish-works-day'] + " " + data['finish-works-month'] | toMonth + " " + data['finish-works-year'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> when will you have finished work that will affect the roost?</span>
+                  </a>
+                </dd>
+              </div>
+            {% endif %}
+            <!-- End of All other impact routes - Roost retained - No - Roost modified - Yes -->
+
+         
+            <!-- All other impact routes - Roost retained - No - Roost modified - No -->
+            {% if data['roost-modified-check'] == 'No' %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Will you create compensation?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['create-compensation-check'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> will you create compensation?</span>
+                  </a>
+                </dd>
+              </div>
+
+                  <!-- All other impact routes - Roost retained - No - Roost modified - No - Create compensation - Yes -->
+                  {% if data['create-compensation-check'] == 'Yes' %}
+                  <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                      What compensation will you create?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+
+                      {% for affect in data['what-compensation'] %}
+                        <p>{{ affect }}</p>
+                      {% endfor %}
+
+                      {% if data['what-compensation'] == 'Other' %}
+                        <p>{{ data['other-compensation'] }}</p>
+                      {% endif %}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                      <a class="govuk-link" href="#">
+                        Change<span class="govuk-visually-hidden"> what compensation will you create?</span>
+                      </a>
+                    </dd>
+                  </div>
+                  <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                      Where will you create compensation?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                      {% if data['where-compensation'] == 'Other' %}
+                        {{ data['where-other-compensation'] }}
+                      {% else %}
+                        {{ data['where-compensation'] }}
+                      {% endif %}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                      <a class="govuk-link" href="#">
+                        Change<span class="govuk-visually-hidden"> where will you create compensation?</span>
+                      </a>
+                    </dd>
+                  </div>
+                  <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                      When will you have finished installing this compensation?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                      {{ data['finish-compensation-day'] + " " + data['finish-compensation-month'] | toMonth + " " + data['finish-compensation-year'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                      <a class="govuk-link" href="#">
+                        Change<span class="govuk-visually-hidden"> when will you have finished installing this compensation?</span>
+                      </a>
+                    </dd>
+                  </div>
+                  <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                      What are the dimensions and features of the new roost?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                      {{ data['new-roost-dimensions'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                      <a class="govuk-link" href="#">
+                        Change<span class="govuk-visually-hidden"> what are the dimensions and features of the new roost?</span>
+                      </a>
+                    </dd>
+                  </div>
+                  <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                      When will you have finished work that will affect the roost??
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                      {{ data['finish-works-day'] + " " + data['finish-works-month'] | toMonth + " " + data['finish-works-year'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                      <a class="govuk-link" href="#">
+                        Change<span class="govuk-visually-hidden"> when will you have finished work that will affect the roost?</span>
+                      </a>
+                    </dd>
+                  </div>
+                {% endif %}
+                <!-- End of All other impact routes - Roost retained - No - Roost modified - No - Create compensation - Yes -->
+        
+                <!-- All other impact routes - Roost retained - No - Roost modified - No - Create compensation - No -->
+                {% if data['create-compensation-check'] == 'No' %}
+                  <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                      Why are you not making compensation?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                      {{ data['justification-detail'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                      <a class="govuk-link" href="#">
+                        Change<span class="govuk-visually-hidden"> why are you not making compensation?</span>
+                      </a>
+                    </dd>
+                  </div>
+                  <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                      When will you have finished work that will affect the roost?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                      {{ data['finish-works-day'] + " " + data['finish-works-month'] | toMonth + " " + data['finish-works-year'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                      <a class="govuk-link" href="#">
+                        Change<span class="govuk-visually-hidden"> when will you have finished work that will affect the roost?</span>
+                      </a>
+                    </dd>
+                  </div>
+                {% endif %}
+                <!-- End of All other impact routes - Roost retained - No - Roost modified - No - Create compensation - No -->
+
+                 <!-- All other impact routes - Roost retained - No - Roost modified - No - Create compensation - Not required -->
+                 {% if data['create-compensation-check'] == 'Not required' %}
+                 <div class="govuk-summary-list__row">
+                   <dt class="govuk-summary-list__key">
+                      When will you have finished work that will affect the roost?
+                   </dt>
+                   <dd class="govuk-summary-list__value">
+                     {{ data['finish-works-day'] + " " + data['finish-works-month'] | toMonth + " " + data['finish-works-year'] }}
+                   </dd>
+                   <dd class="govuk-summary-list__actions">
+                     <a class="govuk-link" href="#">
+                       Change<span class="govuk-visually-hidden"> when will you have finished work that will affect the roost?</span>
+                     </a>
+                   </dd>
+                 </div>
+               {% endif %}
+               <!-- End of All other impact routes - Roost retained - No - Roost modified - No - Create compensation - Not required -->
+
+            {% endif %}
+            <!-- End of All other impact routes - Roost retained - No - Roost modified - No -->
+          
+          {% endif %}
+          <!-- /// End of All other impact routes - Roost retained - No /// -->
+
+          {% endif %}
+     
+      </dl>
+      
+
+
+      
+      
+      <form class="form" action="add-another-roost-check" method="post">
+
+        {{ govukRadios({
+          idPrefix: "add-another-roost-check",
+          name: "add-another-roost-check",
+          fieldset: {
+            legend: {
+              text: "Do you want to add another roost?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              text: "No"
+            }
+          ],
+          errorMessage: {
+            text: "Select an option"
+          }
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+    
+    </div>
+  </div>
+
+{% endblock %}

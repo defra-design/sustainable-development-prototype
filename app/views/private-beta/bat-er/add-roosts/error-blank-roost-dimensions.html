@@ -1,0 +1,56 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: What are the final dimensions and features of roost {{ data['roost-reference'] }}?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">    
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not entered the final dimensions and features of the roost",
+                href: "#roost-dimensions"
+              }
+            ]
+          }) }}
+
+      <form class="form" action="finish-works" method="post"> 
+        {{ govukTextarea({
+          name: "roost-dimensions",
+          id: "roost-dimensions",
+          label: {
+            text: "What are the final dimensions and features of roost " +  data['roost-reference'] +"?",
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          hint: {
+            text: "Enter the height, depth and width of the roost in millimetres."
+          },
+          errorMessage: {
+            text: "Enter the final dimensions of the roost"
+          }
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+
+
