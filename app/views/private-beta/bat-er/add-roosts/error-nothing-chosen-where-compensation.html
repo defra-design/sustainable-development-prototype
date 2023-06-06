@@ -1,0 +1,94 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: Where will you create this compensation for roost {{ data['roost-reference'] }}?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not selected an option",
+                href: "#where-compensation"
+              }
+            ]
+          }) }}
+
+      {% set otherHtml %}
+        {{ govukTextarea({
+          name: "where-other-compensation",
+          id: "where-other-compensation",
+          label: {
+            text: "Describe where you will create the compensation"
+          }
+        }) }}
+      {% endset -%}
+
+      <form class="form" action="finish-compensation" method="post">
+        {{ govukRadios({
+          name: "where-compensation",
+          fieldset: {
+            legend: {
+              text: "Where will you create this compensation for roost " +  data['roost-reference'] + "?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "In the same building",
+              text: "In the same building"
+            },
+            {
+              value: "In an existing building",
+              text: "In an existing building"
+            },
+            {
+              value: "In a new building",
+              text: "In a new building"
+            },
+            {
+              value: "In a bespoke new bat building",
+              text: "In a bespoke new bat building"
+            },
+            {
+              divider: "or"
+            },
+            {
+              value: "Other",
+              text: "Other",
+              conditional: {
+                html: otherHtml
+              }
+            }
+
+          ],
+          errorMessage: {
+            text: "Select an option"
+          }
+        }) }}
+
+        
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: What are the dimensions and features of the compensation?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">    
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not entered the dimensions and features of the compensation",
+                href: "#new-roost-dimensions"
+              }
+            ]
+          }) }}
+
+      <form class="form" action="finish-works" method="post"> 
+        {{ govukTextarea({
+          name: "new-roost-dimensions",
+          id: "new-roost-dimensions",
+          label: {
+            text: "What are the dimensions and features of the compensation?",
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          hint: {
+            text: "Enter the height, depth and width of the compensation in millimetres."
+          },
+          errorMessage: {
+            text: "Enter the dimensions and features of the compensation"
+          }
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+
+

@@ -1,0 +1,72 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: When will you have finished installing this compensation?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "The date you will finish installing compensation must be in the future",
+                href: "#finish-compensation-year"
+              }
+            ]
+          }) }}
+
+      <form class="form" action="compensation-dimensions" method="post"> 
+        {{ govukDateInput({
+          id: "finish-compensation",
+          namePrefix: "finish-compensation",
+          fieldset: {
+            legend: {
+              text: "When will you have finished installing this compensation?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "Enter the date this compensation will be installed by. For example, 23 4 2024."
+          },
+          errorMessage: {
+            text: "Enter a finish date that is in the future"
+          },
+          items: [
+            {
+              classes: "govuk-input--width-2 govuk-input--error",
+              name: "day",
+              value: "6"
+            },
+            {
+              classes: "govuk-input--width-2 govuk-input--error",
+              name: "month",
+              value: "8"
+            },
+            {
+              classes: "govuk-input--width-4 govuk-input--error",
+              name: "year",
+              value: "2022"
+            }
+            ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+      
+    
+    </div>
+  </div>
+
+{% endblock %}
