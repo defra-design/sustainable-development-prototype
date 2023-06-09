@@ -1085,5 +1085,16 @@ router.post('/private-beta/bat-er/add-roosts/roost-modified-check', (req, res) =
         res.redirect('site-address-no-postcode')
     } 
   });
+
+  router.post('/private-beta/bat-er/give-site-information/high-conservation-value-check', (req, res) => {
+    if(req.session.data['high-conservation-value-check'] == 'Yes'){
+        res.redirect('mating-site')
+    } else if(req.session.data['high-conservation-value-check'] == 'No'){
+        res.redirect('maternity-satellite-hibernation')
+    } 
+  });
+
+
+  
   
 }
