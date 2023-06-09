@@ -1,0 +1,198 @@
+{% extends "layout-pb-no-service-name.html" %}
+
+{% block pageTitle %} 
+BAT ER | Give site information
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <span class="govuk-caption-l">Bat ER</span>
+      <h1 class="govuk-heading-l">Give site information</h1> 
+
+      <div class="govuk-!-margin-bottom-9">
+        <strong class="govuk-tag govuk-tag--green" >
+          In Progress
+        </strong>
+      </div>
+
+  
+      <form class="form" action="task-list" method="post">
+
+        <!--{{ govukSelect({ 
+            id: "accreditation-level", 
+            name: "accreditation-level", 
+            label: { 
+                text: "Choose user accreditation level" 
+                }, 
+                items: [ 
+                    { value: "AL1", text: "Accreditation Level 1", selected: true }, 
+                    { value: "AL2", text: "Accreditation Level 2" }, 
+                    { value: "AL3", text: "Accreditation Level 3" }
+                ] 
+            }) }} 
+          -->
+                
+
+        {{ govukButton({
+          text: "View full flow"
+        }) }}
+      </form>
+      
+      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+      <h2 class="govuk-heading-m">Full page list</h2>
+
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Page</th>
+            <th scope="col" class="govuk-table__header">Error states</th>
+            <th scope="col" class="govuk-table__header">Confidence</th>
+            <th scope="col" class="govuk-table__header">Notes</th>
+            </tr>
+        </thead>
+        <tbody class="govuk-table__body">    
+            <tr class="govuk-table__row">
+                <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="task-list">Task list</a></td>
+                <td class="govuk-table__cell"></td>
+                <td class="govuk-table__cell">
+                  <strong class="govuk-tag govuk-tag--yellow">
+                    Medium
+                  </strong>
+                </td>
+                <td class="govuk-table__cell">Not tested yet</td>
+            </tr>
+
+          
+
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="more-than-three-trees">More than 3 trees?</a></td>
+              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--yellow">
+                  Medium
+                </strong>
+              </td>
+              <td class="govuk-table__cell">Not tested yet</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="dropout-screen-1">Dropout 1 - woodland</a></td>
+              <td class="govuk-table__cell"> </td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--yellow">
+                  Medium
+                </strong>
+              </td>
+              <td class="govuk-table__cell">Not tested yet</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="high-conservation-value">High conservation value?</a></td>
+              <td class="govuk-table__cell"> </td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--yellow">
+                  Medium
+                </strong>
+              </td>
+              <td class="govuk-table__cell">Not tested yet</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="mating-site">Mating site?</a></td>
+              <td class="govuk-table__cell"> </td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--yellow">
+                  Medium
+                </strong>
+              </td>
+              <td class="govuk-table__cell">Not tested yet</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="swarming-site">Swarming site?</a></td>
+              <td class="govuk-table__cell"> </td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--yellow">
+                  Medium
+                </strong>
+              </td>
+              <td class="govuk-table__cell">Not tested yet</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="dropout-screen-2">Dropout 2 - high conservation</a></td>
+              <td class="govuk-table__cell"> </td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--yellow">
+                  Medium
+                </strong>
+              </td>
+              <td class="govuk-table__cell">Not tested yet</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="describe-high-conservation-value">Describe high conservation</a></td>
+              <td class="govuk-table__cell"> </td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--yellow">
+                  Medium
+                </strong>
+              </td>
+              <td class="govuk-table__cell">Not tested yet</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="maternity-satellite-hibernation">Maternity, satellite or hibernation?</a></td>
+              <td class="govuk-table__cell"> </td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--yellow">
+                  Medium
+                </strong>
+              </td>
+              <td class="govuk-table__cell">Not tested yet</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="what-species">What species present?</a></td>
+              <td class="govuk-table__cell"> </td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--yellow">
+                  Medium
+                </strong>
+              </td>
+              <td class="govuk-table__cell">Not tested yet</td>
+            </tr>
+
+           
+          </tbody>
+        </table>
+
+        
+        
+        
+        
+
+        <h2 class="govuk-heading-m govuk-!-margin-top-9">Design and research history</h2>
+
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Date</th>
+            <th scope="col" class="govuk-table__header">Changes</th>
+            <th scope="col" class="govuk-table__header">Rationale</th>
+            </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+                <th class="govuk-table__cell">8 June 2023</th>
+                <td class="govuk-table__cell"><a href="https://app.mural.co/t/ddtssddsdigitalprogrammeteam3057/m/ddtssddsdigitalprogrammeteam3057/1667571340492/9d832dd151797e0dc8159049f4f4752d19169e2f?wid=0-1686235002699" target="_blank">v1</a> of Mural site information flow provisionally approved by Rebecca Lee and Sophie Prideaux</td>
+                <td class="govuk-table__cell"></td>
+            </tr>
+
+          </tbody>
+        </table>
+
+    
+    </div>
+  </div>
+
+{% endblock %}
