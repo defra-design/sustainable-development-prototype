@@ -1077,5 +1077,13 @@ router.post('/private-beta/bat-er/add-roosts/roost-modified-check', (req, res) =
     } 
   });
 
+
+  router.post('/private-beta/bat-er/give-site-information/site-postcode-check', (req, res) => {
+    if(req.session.data['site-postcode-check'] == 'yes'){
+        res.redirect('select-address')
+    } else if(req.session.data['site-postcode-check'] == 'no'){
+        res.redirect('site-address-no-postcode')
+    } 
+  });
   
 }
