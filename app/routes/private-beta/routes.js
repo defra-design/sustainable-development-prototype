@@ -1094,6 +1094,32 @@ router.post('/private-beta/bat-er/add-roosts/roost-modified-check', (req, res) =
     } 
   });
 
+  router.post('/private-beta/bat-er/give-site-information/mating-site-check', (req, res) => {
+    if(req.session.data['mating-site-check'] == 'Yes'){
+        res.redirect('swarming-site')
+    } else if(req.session.data['mating-site-check'] == 'No'){
+        res.redirect('swarming-site')
+    } 
+  });
+
+  router.post('/private-beta/bat-er/give-site-information/swarming-site-check', (req, res) => {
+    if(req.session.data['swarming-site-check'] == 'Yes'){
+        res.redirect('describe-high-conservation-value')
+    } else if(req.session.data['swarming-site-check'] == 'No'){
+        res.redirect('describe-high-conservation-value')
+    } 
+  });
+
+
+  router.post('/private-beta/bat-er/give-site-information/maternity-satellite-hibernation-check', (req, res) => {
+    if(req.session.data['maternity-satellite-hibernation-check'] == 'Yes'){
+        res.redirect('what-species')
+    } else if(req.session.data['maternity-satellite-hibernation-check'] == 'No'){
+        res.redirect('what-species')
+    } 
+  });
+
+
 
   
   

@@ -1,0 +1,50 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+  How many roosts will you affect? 
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+    
+
+        <h1 class="govuk-heading-l">How many roosts will you affect?</h1>
+
+        <p>You cannot apply for a licence to affect more roosts than you are accredited to work on.</p>
+
+        <p>If more than one species is present in a roost, count these as separate roosts.</p>
+
+
+      <form class="form" action="check-your-answers" method="post">
+        {{ govukInput({
+          label: {
+            text: "Number of roosts",
+            classes: "govuk-label--s"
+          },
+          id: "number-of-roosts",
+          name: "number-of-roosts",
+          classes: "govuk-input--width-3", 
+          id: "width-3",
+          name: "width-3"
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      
+    </div>
+  </div>
+
+{% endblock %}
