@@ -31,8 +31,28 @@ Check your answers
           </dd>
         </div>
 
-        {% if data['site-postcode-check'] == 'yes' %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Does the site have a postcode?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['site-postcode-check'] == 'yes' %}
+            
+              {{ data['site-postcode'] }}
 
+            {% else %}
+
+              {{ data['site-postcode-check'] }}
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> does the site have a postcode?</span>
+            </a>
+          </dd>
+        </div>
+
+        {% if data['site-postcode-check'] == 'Yes' %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Site address
@@ -48,48 +68,27 @@ Check your answers
               </a>
             </dd>
           </div>
-
         {% endif %}
 
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Map of activity at the development site
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['file-upload-1'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="#">
-              Change<span class="govuk-visually-hidden"> current site map</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Map of mitigations during development
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['file-upload-2'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="#">
-              Change<span class="govuk-visually-hidden"> number of active entrance holes</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Map of mitigations after development
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['file-upload-3'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="#">
-              Change<span class="govuk-visually-hidden"> sett grid reference</span>
-            </a>
-          </dd>
-        </div>
+        {% if data['site-postcode-check'] == 'No' %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Site address
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['site-address-no-postcode-1'] }}<br>
+              {{ data['site-address-no-postcode-2'] }}<br>
+              {{ data['site-address-no-postcode-3'] }}<br>
+              {{ data['site-address-no-postcode-4'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> site address</span>
+              </a>
+            </dd>
+          </div>
+        {% endif %}
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Site’s National Grid Reference
@@ -99,10 +98,80 @@ Check your answers
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="#">
-              Change<span class="govuk-visually-hidden"> work start date</span>
+              Change<span class="govuk-visually-hidden"> Site’s National Grid Reference</span>
             </a>
           </dd>
         </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Are the roosts in more than 3 trees, or woodland?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['more-than-three-trees-check'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> are the roosts in more than 3 trees, or woodland?</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Does the site have high conservation value?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['high-conservation-value-check'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> does the site have high conservation value?</span>
+            </a>
+          </dd>
+        </div>
+
+        {% if data['high-conservation-value-check'] == 'Yes' %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Is this site a mating site for any species of bats?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['mating-site-check'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> is this site a mating site for any species of bats?</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Is this site a swarming site for any species of bats?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['swarming-site-check'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> is this site a swarming site for any species of bats?</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Describe how the site is of high conservation significance
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['describe-high-conservation-significance'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> describe how the site is of high conservation significance</span>
+              </a>
+            </dd>
+          </div>
+        {% endif %}
+
+
       </dl>
 
 

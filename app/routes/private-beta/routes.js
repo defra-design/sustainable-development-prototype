@@ -1079,9 +1079,9 @@ router.post('/private-beta/bat-er/add-roosts/roost-modified-check', (req, res) =
 
 
   router.post('/private-beta/bat-er/give-site-information/site-postcode-check', (req, res) => {
-    if(req.session.data['site-postcode-check'] == 'yes'){
+    if(req.session.data['site-postcode-check'] == 'Yes'){
         res.redirect('select-address')
-    } else if(req.session.data['site-postcode-check'] == 'no'){
+    } else if(req.session.data['site-postcode-check'] == 'No'){
         res.redirect('site-address-no-postcode')
     } 
   });
@@ -1120,7 +1120,13 @@ router.post('/private-beta/bat-er/add-roosts/roost-modified-check', (req, res) =
   });
 
 
-
+  router.post('/private-beta/bat-er/give-site-information/more-than-three-trees-check', (req, res) => {
+    if(req.session.data['more-than-three-trees-check'] == 'Yes'){
+        res.redirect('dropout-screen-1')
+    } else if(req.session.data['more-than-three-trees-check'] == 'No'){
+        res.redirect('high-conservation-value')
+    } 
+  });
   
   
 }
