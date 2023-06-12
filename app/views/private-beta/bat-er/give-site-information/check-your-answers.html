@@ -171,11 +171,53 @@ Check your answers
           </div>
         {% endif %}
 
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Are any of the roosts, maternity, satellite or hibernation roosts?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['maternity-satellite-hibernation-check'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> are any of the roosts, maternity, satellite or hibernation roosts?</span>
+            </a>
+          </dd>
+        </div>
 
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            What species are present at roosts you will affect?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% for species in data['bat-species'] %}
+              <p>{{ species }}</p>
+            {% endfor %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> what species are present at roosts you will affect?</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            How many roosts will you affect?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['number-of-roosts'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> how many roosts will you affect?</span>
+            </a>
+          </dd>
+        </div>
       </dl>
 
-
-
+      
+      
       
       <form class="form" action="task-list-complete" method="post">
 
