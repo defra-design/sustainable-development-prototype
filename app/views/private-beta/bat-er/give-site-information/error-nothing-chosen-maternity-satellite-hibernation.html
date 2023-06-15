@@ -1,0 +1,66 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: Are any of the roosts, maternity, satellite or hibernation roosts?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not selected an option",
+                href: "#maternity-satellite-hibernation-check"
+              }
+            ]
+          }) }}
+
+
+      <form class="form" action="maternity-satellite-hibernation-check" method="post">
+        {{ govukRadios({
+          idPrefix: "maternity-satellite-hibernation-check",
+          name: "maternity-satellite-hibernation-check",
+          fieldset: {
+            legend: {
+              text: "Are any of the roosts, maternity, satellite or hibernation roosts?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          errorMessage: {
+            text: "Select an option"
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

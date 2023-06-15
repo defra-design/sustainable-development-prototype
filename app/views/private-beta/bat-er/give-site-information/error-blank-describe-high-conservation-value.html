@@ -1,0 +1,57 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+    Error: Describe how the site is of high conservation significance
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not described how the site is of high conservation significance",
+                href: "#describe-high-conservation-significance"
+              }
+            ]
+          }) }}
+
+
+      <form class="form" action="maternity-satellite-hibernation" method="post">
+        {{ govukTextarea({
+            name: "describe-high-conservation-significance",
+            id: "describe-high-conservation-significance",
+            label: {
+              text: "Describe how the site is of high conservation significance",
+              classes: "govuk-label--l",
+              isPageHeading: true
+            },
+            errorMessage: {
+                text: "Describe how the site is of high conservation significance"
+              },
+            hint: {
+              text: "Hint text TBC..."
+            }
+          }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}
