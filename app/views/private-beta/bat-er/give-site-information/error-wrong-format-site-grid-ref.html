@@ -1,0 +1,55 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: What is the site's National Grid Reference
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form class="form" action="work-start" method="post"> 
+
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: [
+            {
+              text: "The grid reference you have entered is not in the right format",
+              href: "#grid-ref"
+            }
+          ]
+        }) }}
+
+
+        {{ govukInput({
+          label: {
+            text: "What is the site's National Grid Reference",
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          hint: {
+            text: "For example, NY395557"
+          },
+          errorMessage: {
+            text: "Enter a national grid reference that is 2 letters and 6 digits"
+          },
+          classes: "govuk-input--width-10",
+          id: "grid-ref",
+          name: "grid-ref"
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

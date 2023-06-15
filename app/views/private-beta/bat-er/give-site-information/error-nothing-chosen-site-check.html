@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Site address and National Grid Reference do not match
+Error: Site address and National Grid Reference do not match
 {% endblock %}
 
 {% block beforeContent %}
@@ -11,10 +11,24 @@ Site address and National Grid Reference do not match
 
 {% block content %}
 
+
+
+
+
         
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not selected an option",
+                href: "#siteCheck-1"
+              }
+            ]
+          }) }}
        
 
             <h1 class="govuk-heading-l">
@@ -23,15 +37,17 @@ Site address and National Grid Reference do not match
 
             <p class="govuk-body">The site address and national grid reference must be at the same location.</p>
 
-            <div class="govuk-form-group">
-                <fieldset class="govuk-fieldset" >
+            <div class="govuk-form-group govuk-form-group--error">
+                <fieldset class="govuk-fieldset">
 
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                         <h2 class="govuk-fieldset__heading">
                             Which one do you want to change?
                         </h2>
                     </legend>
-
+                    <p id="where-do-you-live-error" class="govuk-error-message">
+                        <span class="govuk-visually-hidden">Error:</span> Select an option
+                      </p>
                     <!-- <span class="govuk-hint">
                         If you upload a document or image, your application may take longer to process.
                     </span> -->
@@ -80,7 +96,7 @@ Site address and National Grid Reference do not match
                 </fieldset>
             </div>
 
-            <form class="form" action="redirect-t-annex" method="post"> 
+            <form class="form" action="check-your-answers" method="post"> 
             {{govukButton({
                 text: "Continue"
             })}}

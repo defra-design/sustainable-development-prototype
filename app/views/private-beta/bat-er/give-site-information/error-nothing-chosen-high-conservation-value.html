@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-    Does the site have high conservation value?  
+    Error: Does the site have high conservation value?  
 {% endblock %}
 
 {% block beforeContent %}
@@ -13,6 +13,16 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not selected an option",
+                href: "#high-conservation-value-check"
+              }
+            ]
+          }) }}
 
 
       <form class="form" action="high-conservation-value-check" method="post">
@@ -28,6 +38,9 @@
           },
           hint: {
             text: "Sites of high conservation value include bat mating and swarming sites."
+          },
+          errorMessage: {
+            text: "Select an option"
           },
           items: [
             {

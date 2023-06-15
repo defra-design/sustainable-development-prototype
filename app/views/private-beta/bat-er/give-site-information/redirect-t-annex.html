@@ -1,0 +1,21 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Is this site a mating site for any species of bats?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+{% if data['accreditation-level'] == 'no-t-annex' %}
+<script>
+    window.location.href = 'more-than-three-trees'
+</script>
+{% endif %}
+ 
+{% endblock %}

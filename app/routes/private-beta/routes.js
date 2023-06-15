@@ -1122,7 +1122,7 @@ router.post('/private-beta/bat-er/add-roosts/roost-modified-check', (req, res) =
 
   router.post('/private-beta/bat-er/give-site-information/more-than-three-trees-check', (req, res) => {
     if(req.session.data['more-than-three-trees-check'] == 'Yes'){
-        res.redirect('dropout-screen-1')
+        res.redirect('dropout-woodland')
     } else if(req.session.data['more-than-three-trees-check'] == 'No'){
         res.redirect('high-conservation-value')
     } 

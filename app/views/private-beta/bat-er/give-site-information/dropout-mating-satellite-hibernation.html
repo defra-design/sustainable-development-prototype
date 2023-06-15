@@ -1,0 +1,30 @@
+{% extends "layout-pb-signed-out.html" %}
+
+{% block pageTitle %} 
+You cannot register this site
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">You cannot register this site</h1>
+
+        <p class="govuk-body">You cannot register this site because you are not accredited to manage mating, satellite or hibernation roosts for any bat species.</p>
+
+        <p class="govuk-body">See <a href="">information on ecologist accreditation levels (opens in a new tab)</a>.</p>
+
+        <p>Use the back button in your browser if you need to change an answer.</p>
+
+        <p>If you have questions about this service, email <a href="#">supportemailaddress@needtoknowwhatthisis.com</a>.</p>
+
+	</div>
+</div>
+
+{% endblock %}

@@ -21,28 +21,30 @@ BAT ER | Give site information
         </strong>
       </div>
 
+      
   
       <form class="form" action="task-list" method="post">
 
-        <!--{{ govukSelect({ 
+        {{ govukSelect({ 
             id: "accreditation-level", 
             name: "accreditation-level", 
             label: { 
-                text: "Choose user accreditation level" 
+                text: "Choose user accreditation/annex level" 
                 }, 
                 items: [ 
-                    { value: "AL1", text: "Accreditation Level 1", selected: true }, 
-                    { value: "AL2", text: "Accreditation Level 2" }, 
-                    { value: "AL3", text: "Accreditation Level 3" }
+                    { value: "AL1", text: "User - Accreditation Level 1", selected: true }, 
+                    { value: "AL2", text: "User - Accreditation Level 2" }, 
+                    { value: "AL3", text: "User - Accreditation Level 3" },
+                    { value: "no-t-annex", text: "User - No T Annex" }
                 ] 
             }) }} 
-          -->
-                
-
+        
         {{ govukButton({
           text: "View full flow"
         }) }}
       </form>
+
+      <p><a href="https://app.mural.co/t/ddtssddsdigitalprogrammeteam3057/m/ddtssddsdigitalprogrammeteam3057/1667571340492/9d832dd151797e0dc8159049f4f4752d19169e2f?wid=0-1686235002699" target="_blank">Mural flow v1</a></p>
       
       <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
@@ -70,7 +72,7 @@ BAT ER | Give site information
             </tr>
             <tr class="govuk-table__row">
               <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="site-name">Site name?</a></td>
-              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-blank-site-name">If blank</a></td>
               <td class="govuk-table__cell">
                 <strong class="govuk-tag govuk-tag--yellow">
                   Medium
@@ -80,7 +82,11 @@ BAT ER | Give site information
             </tr>
             <tr class="govuk-table__row">
               <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="site-got-postcode">Site postcode?</a></td>
-              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell">
+                <a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-site-got-postcode">If nothing chosen</a><br>
+                <a class="govuk-link govuk-link--no-visited-state" href="error-blank-site-got-postcode">If blank</a><br>
+                <a class="govuk-link govuk-link--no-visited-state" href="error-format-site-got-postcode">If wrong format</a>
+              </td>
               <td class="govuk-table__cell">
                 <strong class="govuk-tag govuk-tag--yellow">
                   Medium
@@ -90,7 +96,7 @@ BAT ER | Give site information
             </tr>
             <tr class="govuk-table__row">
               <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="select-address">Select address</a></td>
-              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-selected-select-address">If nothing selected</a><br></td>
               <td class="govuk-table__cell">
                 <strong class="govuk-tag govuk-tag--yellow">
                   Medium
@@ -100,7 +106,7 @@ BAT ER | Give site information
             </tr>
             <tr class="govuk-table__row">
               <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="site-address-no-postcode">Site address - no postcode</a></td>
-              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-blank-site-address-no-postcode">If blank</a></td>
               <td class="govuk-table__cell">
                 <strong class="govuk-tag govuk-tag--yellow">
                   Medium
@@ -110,7 +116,10 @@ BAT ER | Give site information
             </tr>
             <tr class="govuk-table__row">
               <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="site-address-no-lookup">Site address - no postcode in lookup</a></td>
-              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell">
+                <a class="govuk-link govuk-link--no-visited-state" href="error-blank-site-address-no-lookup">If blank</a><br>
+                <a class="govuk-link govuk-link--no-visited-state" href="error-format-site-address-no-lookup">If wrong format</a>
+              </td>
               <td class="govuk-table__cell">
                 <strong class="govuk-tag govuk-tag--yellow">
                   Medium
@@ -120,7 +129,12 @@ BAT ER | Give site information
             </tr>
             <tr class="govuk-table__row">
               <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="site-grid-ref">Site grid reference?</a></td>
-              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell">
+                <a class="govuk-link govuk-link--no-visited-state" href="error-blank-site-grid-ref">If blank</a><br>
+                <a class="govuk-link govuk-link--no-visited-state" href="error-wrong-format-site-grid-ref">If wrong format</a><br>
+                <a class="govuk-link govuk-link--no-visited-state" href="error-no-match-site-grid-ref">Grid ref does not exist</a>
+                
+              </td>
               <td class="govuk-table__cell">
                 <strong class="govuk-tag govuk-tag--yellow">
                   Medium
@@ -130,7 +144,9 @@ BAT ER | Give site information
             </tr>
             <tr class="govuk-table__row">
               <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="site-check">Grid ref / address mismatch</a></td>
-              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell">
+                <a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-site-check">If nothing chosen</a>
+              </td>
               <td class="govuk-table__cell">
                 <strong class="govuk-tag govuk-tag--yellow">
                   Medium
@@ -140,7 +156,7 @@ BAT ER | Give site information
             </tr>
             <tr class="govuk-table__row">
               <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="more-than-three-trees">More than 3 trees?</a></td>
-              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-more-than-three-trees">If nothing chosen</a></td>
               <td class="govuk-table__cell">
                 <strong class="govuk-tag govuk-tag--yellow">
                   Medium
@@ -149,7 +165,7 @@ BAT ER | Give site information
               <td class="govuk-table__cell">Not tested yet</td>
             </tr>
             <tr class="govuk-table__row">
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="dropout-screen-1">Dropout 1 - woodland</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="dropout-woodland">Dropout - woodland</a></td>
               <td class="govuk-table__cell"> </td>
               <td class="govuk-table__cell">
                 <strong class="govuk-tag govuk-tag--yellow">
@@ -160,7 +176,7 @@ BAT ER | Give site information
             </tr>
             <tr class="govuk-table__row">
               <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="high-conservation-value">High conservation value?</a></td>
-              <td class="govuk-table__cell"> </td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-high-conservation-value">If nothing chosen</a></td>
               <td class="govuk-table__cell">
                 <strong class="govuk-tag govuk-tag--yellow">
                   Medium
@@ -189,7 +205,7 @@ BAT ER | Give site information
               <td class="govuk-table__cell">Not tested yet</td>
             </tr>
             <tr class="govuk-table__row">
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="dropout-screen-2">Dropout 2 - high conservation</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="dropout-high-conservation">Dropout - high conservation</a></td>
               <td class="govuk-table__cell"> </td>
               <td class="govuk-table__cell">
                 <strong class="govuk-tag govuk-tag--yellow">
@@ -219,6 +235,16 @@ BAT ER | Give site information
               <td class="govuk-table__cell">Not tested yet</td>
             </tr>
             <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="dropout-mating-satellite-hibernation">Dropout - maternity, satellite or hibernation</a></td>
+              <td class="govuk-table__cell"> </td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--yellow">
+                  Medium
+                </strong>
+              </td>
+              <td class="govuk-table__cell">Not tested yet</td>
+            </tr>
+            <tr class="govuk-table__row">
               <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="what-species">What species present?</a></td>
               <td class="govuk-table__cell"> </td>
               <td class="govuk-table__cell">
@@ -229,7 +255,37 @@ BAT ER | Give site information
               <td class="govuk-table__cell">Not tested yet</td>
             </tr>
             <tr class="govuk-table__row">
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="what-species">How many roosts?</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="dropout-species-al1">Dropout - species AL1</a></td>
+              <td class="govuk-table__cell"> </td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--yellow">
+                  Medium
+                </strong>
+              </td>
+              <td class="govuk-table__cell">Not tested yet</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="dropout-species-roost-types">Dropout - species and roosts</a></td>
+              <td class="govuk-table__cell"> </td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--yellow">
+                  Medium
+                </strong>
+              </td>
+              <td class="govuk-table__cell">Not tested yet</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="how-many-roosts">How many roosts?</a></td>
+              <td class="govuk-table__cell"> </td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--yellow">
+                  Medium
+                </strong>
+              </td>
+              <td class="govuk-table__cell">Not tested yet</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="dropout-roost-numbers">Dropout - roost numbers</a></td>
               <td class="govuk-table__cell"> </td>
               <td class="govuk-table__cell">
                 <strong class="govuk-tag govuk-tag--yellow">
