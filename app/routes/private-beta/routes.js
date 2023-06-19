@@ -1170,6 +1170,21 @@ router.post('/private-beta/bat-er/add-roosts/roost-modified-check', (req, res) =
   });
   
   
+  router.post('/private-beta/bat-er/prev-future-applications/upload-check', (req, res) => {
+    if(req.session.data['upload-check'] == 'Yes'){
+        res.redirect('upload-file')
+    } else if(req.session.data['upload-check'] == 'No'){
+        res.redirect('check-your-answers')
+    } 
+  });
   
+
+  router.post('/private-beta/bat-er/prev-future-applications/another-file-check', (req, res) => {
+    if(req.session.data['another-file-check'] == 'Yes'){
+        res.redirect('upload-another')
+    } else if(req.session.data['another-file-check'] == 'No'){
+        res.redirect('check-your-answers')
+    } 
+  });
   
 }
