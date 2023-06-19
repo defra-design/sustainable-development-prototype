@@ -1145,7 +1145,31 @@ router.post('/private-beta/bat-er/add-roosts/roost-modified-check', (req, res) =
     } 
   });
   
+  router.post('/private-beta/bat-er/prev-future-applications/prev-future-check', (req, res) => {
+    if(req.session.data['prev-future-check'] == 'Yes'){
+        res.redirect('previous-applications-decisions')
+    } else if(req.session.data['prev-future-check'] == 'No'){
+        res.redirect('previous-advice-from-natural-england')
+    } 
+  });
+  
+  router.post('/private-beta/bat-er/prev-future-applications/previous-applications-check', (req, res) => {
+    if(req.session.data['previous-applications-check'] == 'Yes'){
+        res.redirect('licence-number')
+    } else if(req.session.data['previous-applications-check'] == 'No'){
+        res.redirect('future-applications')
+    } 
+  });
 
+  router.post('/private-beta/bat-er/prev-future-applications/licence-number-check', (req, res) => {
+    if(req.session.data['licence-number-check'] == 'Yes'){
+        res.redirect('reference-number')
+    } else if(req.session.data['licence-number-check'] == 'No'){
+        res.redirect('sitename-location-dates')
+    } 
+  });
+  
+  
   
   
 }

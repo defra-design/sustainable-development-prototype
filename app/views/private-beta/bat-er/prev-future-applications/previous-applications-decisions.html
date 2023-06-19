@@ -1,0 +1,56 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Previous applications and decisions
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">
+        Previous applications and decisions
+      </h1>
+
+      <p>Tell us if you know of any previous bat applications or licence decisions for this site or nearby that:</p>
+      <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-6">
+        <li>have been made in the past 5 years, and</li>
+        <li>may have had a significant impact on the same populations of bats as this application</li>
+      </ul>
+
+      <form class="form" action="previous-applications-check" method="post">
+        {{ govukRadios({
+          name: "previous-applications-check",
+          fieldset: {
+            legend: {
+              text: "Have there been any of these applications?",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+        
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

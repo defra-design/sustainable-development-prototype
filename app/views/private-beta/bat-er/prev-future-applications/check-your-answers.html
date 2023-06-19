@@ -1,0 +1,106 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Check your answers
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h2 class="govuk-heading-l">Check your answers</h2>
+
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Site name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['site-name'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> site name</span>
+            </a>
+          </dd>
+        </div>
+
+        
+
+        {% if data['site-postcode-check'] == 'Yes' %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Site address
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['siteAddress'] }}<br>
+              Leeds<br>
+              {{ data['site-postcode'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> site address</span>
+              </a>
+            </dd>
+          </div>
+        {% endif %}
+
+        {% if data['site-postcode-check'] == 'No' %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Site address
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['site-address-no-postcode-1'] }}<br>
+              {{ data['site-address-no-postcode-2'] }}<br>
+              {{ data['site-address-no-postcode-3'] }}<br>
+              {{ data['site-address-no-postcode-4'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> site address</span>
+              </a>
+            </dd>
+          </div>
+        {% endif %}
+
+       
+
+        
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            How many roosts will you affect?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['number-of-roosts'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> how many roosts will you affect?</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+      
+      
+      
+      <form class="form" action="task-list-complete" method="post">
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+    
+    </div>
+  </div>
+
+{% endblock %}
