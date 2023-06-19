@@ -1,0 +1,67 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Upload the habitat management and maintenance plan for this site
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">
+        Upload the habitat management and maintenance plan for this site
+      </h1>
+
+
+      <p>The plan should show how you will measure the impact on the bat populations after development is complete.</p>
+
+      <p>You can upload the maintenance plan in two separate files if required.</p>
+
+
+      <h2 class="govuk-heading-m">
+        Upload a file
+      </h2>
+
+      <p>The file must be smaller than 30MB. It can be:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          an image (JPG, PNG, TIF or BMP)
+        </li>
+        <li>
+          map data (GeoJSON, KML or Shape)
+        </li>
+        <li>
+          text (DOC, DOCX, PDF or ODT)
+        </li>
+        <li>
+          a spreadsheet (XLS, XLSX or ODS)
+        </li>
+        <li>
+          ZIP files
+        </li>
+      </ul>
+
+      <form class="form" action="hmmp-files-another" method="post">
+        {{ govukFileUpload({
+          id: "file-upload-1",
+          name: "file-upload-1",
+          label: {
+            text: "Upload a file"
+          }
+        }) }}
+
+        {{ govukButton({
+          text: "Upload and continue"
+        }) }}
+      </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

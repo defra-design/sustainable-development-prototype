@@ -1127,6 +1127,25 @@ router.post('/private-beta/bat-er/add-roosts/roost-modified-check', (req, res) =
         res.redirect('high-conservation-value')
     } 
   });
+
+
+  router.post('/private-beta/bat-er/prev-future-applications/another-ossm-file-check', (req, res) => {
+    if(req.session.data['another-ossm-file-check'] == 'Yes'){
+        res.redirect('upload-another-ossm-file')
+    } else if(req.session.data['another-ossm-file-check'] == 'No'){
+        res.redirect('upload-hmmp-file')
+    } 
+  });
+
+  router.post('/private-beta/bat-er/prev-future-applications/another-hmmp-file-check', (req, res) => {
+    if(req.session.data['another-hmmp-file-check'] == 'Yes'){
+        res.redirect('upload-another-hmmp-file')
+    } else if(req.session.data['another-hmmp-file-check'] == 'No'){
+        res.redirect('any-previous-or-future-applications')
+    } 
+  });
+  
+
   
   
 }
