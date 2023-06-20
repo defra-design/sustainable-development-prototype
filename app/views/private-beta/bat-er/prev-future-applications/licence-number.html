@@ -13,9 +13,19 @@ Do you know the licence number?
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
+      {% set refHtml %}
+        {{ govukInput({
+          id: "reference-number",
+          name: "reference-number",
+          label: {
+            text: "Enter the Natural England reference number of the application"
+          }
+        }) }}
+      {% endset -%}
       
 
-      <form class="form" action="licence-number-check" method="post">
+      <form class="form" action="sitename-location-dates" method="post">
         {{ govukRadios({
             name: "licence-number-check",
             fieldset: {
@@ -28,7 +38,10 @@ Do you know the licence number?
             items: [
               {
                 value: "Yes",
-                text: "Yes"
+                text: "Yes",
+                conditional: {
+                  html: refHtml
+                }
               },
               {
                 value: "No",

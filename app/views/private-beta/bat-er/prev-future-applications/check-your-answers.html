@@ -19,57 +19,146 @@ Check your answers
       <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Site name
+            Phased or multiplot?
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['site-name'] }}
+            {{ data['ongoing-development-work-check'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="#">
-              Change<span class="govuk-visually-hidden"> site name</span>
+              Change<span class="govuk-visually-hidden"> phased or multiplot</span>
             </a>
           </dd>
         </div>
 
-        
-
-        {% if data['site-postcode-check'] == 'Yes' %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Site address
+              Overall species-specific masterplan
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['siteAddress'] }}<br>
-              Leeds<br>
-              {{ data['site-postcode'] }}
+              masterplan-1.docx
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="#">
-                Change<span class="govuk-visually-hidden"> site address</span>
+                Change<span class="govuk-visually-hidden"> overall species-specific masterplan</span>
               </a>
             </dd>
           </div>
-        {% endif %}
 
-        {% if data['site-postcode-check'] == 'No' %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Site address
+              Overall species-specific masterplan
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['site-address-no-postcode-1'] }}<br>
-              {{ data['site-address-no-postcode-2'] }}<br>
-              {{ data['site-address-no-postcode-3'] }}<br>
-              {{ data['site-address-no-postcode-4'] }}
+              masterplan-2.docx
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="#">
-                Change<span class="govuk-visually-hidden"> site address</span>
+                Change<span class="govuk-visually-hidden"> overall species-specific masterplan</span>
               </a>
             </dd>
           </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Habitat management and maintenance plan 
+            </dt>
+            <dd class="govuk-summary-list__value">
+              hmmp-1.docx
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> habitat management and maintenance plan</span>
+              </a>
+            </dd>
+          </div>
+
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Habitat management and maintenance plan 
+            </dt>
+            <dd class="govuk-summary-list__value">
+              hmmp-2.docx
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> habitat management and maintenance plan</span>
+              </a>
+            </dd>
+          </div>
+
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Any previous or future licence applications?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['prev-future-check'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> any previous or future licence applications?</span>
+              </a>
+            </dd>
+          </div>
+          
+
+        {% if data['prev-future-check'] == 'Yes' %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Any previous or future licence applications?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['previous-applications-check'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> any previous or future licence applications?</span>
+              </a>
+            </dd>
+          </div>
+
+                {% if data['previous-applications-check'] == 'Yes' %}
+                  <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                      Do you know the licence number?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                      {% if data['licence-number-check'] == 'Yes' %}
+                        {{ data['reference-number'] }}
+                      {% else %}
+                        {{ data['licence-number-check'] }}
+                      {% endif %}
+                      {{ data[''] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                      <a class="govuk-link" href="#">
+                        Change<span class="govuk-visually-hidden"> Do you know the licence number?</span>
+                      </a>
+                    </dd>
+                  </div>
+
+                {% endif %}
+
+            
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Describe site name, location and dates of future activity
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['sitename-location-dates'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> describe site name, location and dates of future activity</span>
+              </a>
+            </dd>
+          </div>
+
         {% endif %}
 
+       
        
 
         
