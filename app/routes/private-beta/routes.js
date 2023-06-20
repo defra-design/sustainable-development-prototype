@@ -1169,6 +1169,13 @@ router.post('/private-beta/bat-er/add-roosts/roost-modified-check', (req, res) =
     } 
   });
   
+  router.post('/private-beta/bat-er/prev-future-applications/future-applications-check', (req, res) => {
+    if(req.session.data['future-applications-check'] == 'Yes'){
+        res.redirect('sitename-location-dates-future')
+    } else if(req.session.data['future-applications-check'] == 'No'){
+        res.redirect('previous-advice-from-natural-england')
+    } 
+  });
   
   router.post('/private-beta/bat-er/prev-future-applications/upload-check', (req, res) => {
     if(req.session.data['upload-check'] == 'Yes'){

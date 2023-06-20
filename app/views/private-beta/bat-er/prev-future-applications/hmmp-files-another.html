@@ -15,7 +15,7 @@ Habitat management and maintenance plan
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">
-        Habitat management and maintenance plan
+        Habitat management and maintenance plan files
       </h1>
 
 
@@ -67,29 +67,6 @@ Habitat management and maintenance plan
 
 
       <form class="form" action="any-previous-or-future-applications" method="post">
-
-        {{ govukRadios({
-          idPrefix: "another-hmmp-file-check",
-          name: "another-hmmp-file-check",
-          fieldset: {
-            legend: {
-              text: "Do you want to upload another file?",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--m"
-            }
-          },
-          items: [
-            {
-              value: "Yes",
-              text: "Yes"
-            },
-            {
-              value: "No",
-              text: "No"
-            }
-          ]
-        }) }}
-        
 
         {{ govukButton({
           text: "Continue"

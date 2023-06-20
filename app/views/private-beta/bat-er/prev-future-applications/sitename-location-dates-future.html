@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Describe site name, location and dates of previous activity
+Describe site name, location and dates of future activity
 {% endblock %}
 
 {% block beforeContent %}
@@ -15,13 +15,13 @@ Describe site name, location and dates of previous activity
     <div class="govuk-grid-column-two-thirds">
       
 
-      <form class="form" action="future-applications" method="post">
+      <form class="form" action="cumulative-impacts" method="post">
 
         {{ govukTextarea({
-            name: "sitename-location-dates",
-            id: "sitename-location-dates",
+            name: "sitename-location-dates-future",
+            id: "sitename-location-dates-future",
             label: {
-              text: "Describe site name, location and dates of previous activity",
+              text: "Describe site name, location and dates of future activity",
               classes: "govuk-label--l",
               isPageHeading: true
             },
