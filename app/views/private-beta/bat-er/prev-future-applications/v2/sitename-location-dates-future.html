@@ -1,0 +1,39 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Describe site name, location and dates of future activity
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+
+      <form class="form" action="cumulative-impacts" method="post">
+
+        {{ govukTextarea({
+            name: "sitename-location-dates-future",
+            id: "sitename-location-dates-future",
+            label: {
+              text: "Describe site name, location and dates of future activity",
+              classes: "govuk-label--l",
+              isPageHeading: true
+            }
+          }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+        
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

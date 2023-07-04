@@ -1193,5 +1193,39 @@ router.post('/private-beta/bat-er/add-roosts/roost-modified-check', (req, res) =
         res.redirect('check-your-answers')
     } 
   });
+
+
+  router.post('/private-beta/bat-er/prev-future-applications/v2/another-ossm-file-check', (req, res) => {
+    if(req.session.data['another-ossm-file-check'] == 'Yes'){
+        res.redirect('upload-another-ossm-file')
+    } else if(req.session.data['another-ossm-file-check'] == 'No'){
+        res.redirect('upload-hmmp-file')
+    } 
+  });
+
+  router.post('/private-beta/bat-er/prev-future-applications/v2/another-hmmp-file-check', (req, res) => {
+    if(req.session.data['another-hmmp-file-check'] == 'Yes'){
+        res.redirect('upload-another-hmmp-file')
+    } else if(req.session.data['another-hmmp-file-check'] == 'No'){
+        res.redirect('references-previous')
+    } 
+  });
+
+  router.post('/private-beta/bat-er/prev-future-applications/v2/upload-check', (req, res) => {
+    if(req.session.data['upload-check'] == 'Yes'){
+        res.redirect('upload-file')
+    } else if(req.session.data['upload-check'] == 'No'){
+        res.redirect('check-your-answers')
+    } 
+  });
+  
+
+  router.post('/private-beta/bat-er/prev-future-applications/v2/another-file-check', (req, res) => {
+    if(req.session.data['another-file-check'] == 'Yes'){
+        res.redirect('upload-another')
+    } else if(req.session.data['another-file-check'] == 'No'){
+        res.redirect('check-your-answers')
+    } 
+  });
   
 }

@@ -1,0 +1,73 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Will other development affect this population of bats?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+
+      <form class="form" action="upload-ossm-file" method="post">
+          {{ govukCheckboxes({
+            name: "affect-bats",
+            fieldset: {
+              legend: {
+                text: "Will other development affect this population of bats?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            hint: {
+              text: "Select all that apply."
+            },
+            items: [
+              {
+                value: "Yes, phased development",
+                text: "Yes, phased development"
+              },
+              {
+                value: "Yes, multi-plot development",
+                text: "Yes, multi-plot development"
+              },
+              {
+                value: "Yes, previous licences or site registrations",
+                text: "Yes, previous licences or site registrations"
+              },
+              {
+                value: "Yes, future licence or site registrations applications",
+                text: "Yes, future licence or site registrations applications"
+              },
+              {
+                divider: "or"
+              },
+              {
+                value: "No, the bats will not be affected by other development",
+                text: "No, the bats will not be affected by other development",
+                behaviour: "exclusive"
+              }
+            ]
+          }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+        
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+
+] 
+[ ] 
+( ) 

@@ -1,0 +1,56 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Future applications
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">
+        Future applications
+      </h1>
+
+      <p>Tell us if you know of any future bat applications for this site or nearby that:</p>
+      <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-6">
+        <li>will be made in the next 5 years, and</li>
+        <li>may have a significant impact on the same populations of bats as this application</li>
+      </ul>
+
+      <form class="form" action="future-applications-check" method="post">
+        {{ govukRadios({
+          name: "future-applications-check",
+          fieldset: {
+            legend: {
+              text: "Do you know if there will be any of these applications?",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+        
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

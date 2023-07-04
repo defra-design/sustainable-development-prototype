@@ -1,0 +1,67 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Ongoing development work
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">
+        Ongoing development work
+      </h1>
+
+      <p>Tell us if the development work will:</p>
+      <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-9">
+        <li>happen in several phases</li>
+        <li>involve more than one site</li>
+      </ul>
+
+      <form class="form" action="upload-ossm-file" method="post">
+        {{ govukRadios({
+          name: "ongoing-development-work-check",
+          fieldset: {
+            legend: {
+              text: "Is the development work phased or multi-plot?",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "Yes, it's a phased development",
+              text: "Yes, it's a phased development"
+            },
+            {
+              value: "Yes, it's a multi-plot development",
+              text: "Yes, it's a multi-plot development"
+            },
+            {
+              value: "Yes, it's a phased multi-plot development",
+              text: "Yes, it's a phased multi-plot development"
+            },
+            {
+              divider: "or"
+            },
+            {
+              value: "No",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+        
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

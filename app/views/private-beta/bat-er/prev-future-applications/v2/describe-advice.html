@@ -1,0 +1,38 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Describe any advice that has been received about this site from Natural England
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">    
+
+      <form class="form" action="upload" method="post">
+
+        {{ govukTextarea({
+            name: "describe-natural-england-advice",
+            id: "describe-natural-england-advice",
+            label: {
+              text: "Describe any advice that has been received about this site from Natural England",
+              classes: "govuk-label--l",
+              isPageHeading: true
+            }
+          }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+        
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

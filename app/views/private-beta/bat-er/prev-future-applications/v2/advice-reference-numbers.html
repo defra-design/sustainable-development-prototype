@@ -1,0 +1,45 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Enter the Natural England reference numbers for any advice received
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {% if data['previous-advice'] == 'No' %}
+        <script>
+            window.location.href = 'upload'
+        </script>
+        {% endif %}
+      
+
+      <form class="form" action="describe-advice" method="post">
+
+        {{ govukTextarea({
+            name: "natural-england-reference-numbers",
+            id: "natural-england-reference-numbers",
+            label: {
+              text: "Enter the Natural England reference numbers for any advice received",
+              classes: "govuk-label--l",
+              isPageHeading: true
+            }
+          }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+        
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

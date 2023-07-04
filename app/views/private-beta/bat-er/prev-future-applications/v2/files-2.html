@@ -1,0 +1,102 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Supporting information
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">
+        Uploaded files
+      </h1>
+
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Uploaded file"
+            },
+            value: {
+              html: "<p>supporting-info.docx</p>
+                     <p>Uploaded 22 August 2023 10:27am</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Remove",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Uploaded file 2"
+            },
+            value: {
+              html: "<p>supporting-info-2.docx</p>
+                     <p>Uploaded 22 August 2023 10:27am</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "files",
+                  text: "Remove",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          }
+          
+        ]
+      }) }}
+
+
+
+
+
+
+
+
+        {{ govukRadios({
+          idPrefix: "another-file",
+          name: "another-file",
+          fieldset: {
+            legend: {
+              text: "Do you want to upload another file?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+        
+
+        {{ govukButton({
+          text: "Continue",
+          href: "check-your-answers"
+        }) }}
+
+
+    </div>
+  </div>
+
+{% endblock %}

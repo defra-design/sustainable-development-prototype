@@ -1,0 +1,86 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Habitat management and maintenance plan
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">
+        Habitat management and maintenance plan files
+      </h1>
+
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Uploaded file"
+            },
+            value: {
+              html: "<p>habitat-management-and-maintenance plan-1.docx</p>
+                     <p class='govuk-body-s'>Uploaded 12 August 2023 10:27am</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "supporting-information-file-removed",
+                  text: "Remove",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          }
+          
+        ]
+      }) }}
+
+
+
+
+
+
+
+      <form class="form" action="another-hmmp-file-check" method="post">
+
+        {{ govukRadios({
+          idPrefix: "another-hmmp-file-check",
+          name: "another-hmmp-file-check",
+          fieldset: {
+            legend: {
+              text: "Do you want to upload another file?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              text: "No"
+            }
+          ]
+        }) }}
+        
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

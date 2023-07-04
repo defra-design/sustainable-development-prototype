@@ -1,0 +1,49 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Have there been any previous or plan to be future licence applications that could impact the same population of bats?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+
+      <form class="form" action="prev-future-check" method="post">
+        {{ govukRadios({
+            name: "prev-future-check",
+            fieldset: {
+              legend: {
+                text: "Have there been any previous or future licence applications that could impact the same population of bats?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            items: [
+              {
+                value: "Yes",
+                text: "Yes"
+              },
+              {
+                value: "No",
+                text: "No"
+              }
+            ]
+          }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+        
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

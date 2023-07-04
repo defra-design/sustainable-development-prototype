@@ -1,0 +1,73 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Has anyone previously had advice from Natural England about this site?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+
+      <form class="form" action="advice-reference-numbers" method="post">
+          {{ govukCheckboxes({
+            name: "previous-advice",
+            fieldset: {
+              legend: {
+                text: "Has anyone previously had advice from Natural England about this site?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            hint: {
+              text: "Select all that apply."
+            },
+            items: [
+              {
+                value: "Pre-submission screening (PSS)",
+                text: "Pre-submission screening (PSS)"
+              },
+              {
+                value: "Discretionary advice service (DAS)",
+                text: "Discretionary advice service (DAS)"
+              },
+              {
+                value: "Letter of no impediment (LONI)",
+                text: "Letter of no impediment (LONI)"
+              },
+              {
+                value: "Letter of Comfort (LOC)",
+                text: "Letter of Comfort (LOC)"
+              },
+              {
+                divider: "or"
+              },
+              {
+                value: "No",
+                text: "No advice received previously",
+                behaviour: "exclusive"
+              }
+            ]
+          }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+        
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+
+] 
+[ ] 
+( ) 
