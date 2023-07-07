@@ -1,0 +1,62 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Monitoring
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">    
+
+       
+        <h1 class="govuk-heading-l">Monitoring</h1>
+
+        <p>You need to tell us about what type of monitoring you are proposing and when you are going to do it.</p>
+
+        <p>You can add more than one year.</p>
+
+        <form class="form" action="create-compensation-check" method="post"></form>
+        {{ govukRadios({
+          name: "monitoring-required-check",
+          fieldset: {
+            legend: {
+              text: "What type of monitoring are you proposing?",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "Hibernation monitoring",
+              text: "Hibernation monitoring"
+            },
+            {
+              value: "Maternity monitoring",
+              text: "Maternity monitoring"
+            },
+            {
+              value: "Both",
+              text: "Both"
+            }
+          ]
+        }) }}
+
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+
+
