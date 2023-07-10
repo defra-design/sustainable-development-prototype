@@ -1228,4 +1228,29 @@ router.post('/private-beta/bat-er/add-roosts/roost-modified-check', (req, res) =
     } 
   });
   
+  router.post('/private-beta/bat-er/post-impact/monitoring-required-check', (req, res) => {
+    if(req.session.data['monitoring-required-check'] == 'Yes'){
+        res.redirect('monitoring-minimum-expectations')
+    } else if(req.session.data['monitoring-required-check'] == 'No'){
+        res.redirect('mitigations-compensations-secured')
+    } 
+  });
+
+  router.post('/private-beta/bat-er/post-impact/another-maternity-year-check', (req, res) => {
+    if(req.session.data['another-maternity-year-check'] == 'Yes'){
+        res.redirect('maternity-monitoring-year-2')
+    } else if(req.session.data['another-maternity-year-check'] == 'No'){
+        res.redirect('hibernation-monitoring-year-1')
+    } 
+  });
+
+  router.post('/private-beta/bat-er/post-impact/another-hibernation-year-check', (req, res) => {
+    if(req.session.data['another-hibernation-year-check'] == 'Yes'){
+        res.redirect('hibernation-monitoring-year-2')
+    } else if(req.session.data['another-hibernation-year-check'] == 'No'){
+        res.redirect('minimum-expectations')
+    } 
+  });
+
+  
 }

@@ -1,0 +1,97 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Which monitoring techniques will you use?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">    
+
+      <form class="form" action="monitoring-techniques" method="post"> 
+
+        {{ govukCheckboxes({
+            name: "monitoring-techniques",
+            fieldset: {
+              legend: {
+                text: "Which monitoring techniques will you use?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            hint: {
+              text: "Select all that apply."
+            },
+            items: [
+              {
+                value: "Bat box checks",
+                text: "Bat box checks"
+              },
+              {
+                value: "Emergence survey",
+                text: "Emergence survey"
+              },
+              {
+                value: "Dawn re-entry survey",
+                text: "Dawn re-entry survey"
+              },
+              {
+                value: "Acoustic / static recording",
+                text: "Acoustic / static recording"
+              },
+              {
+                value: "DNA",
+                text: "DNA"
+              },
+              {
+                value: "Internal / External inspection",
+                text: "Internal / External inspection"
+              },
+              {
+                value: "Infrared imaging",
+                text: "Infrared imaging"
+              },
+              {
+                value: "Thermal imaging",
+                text: "Thermal imaging"
+              },
+              {
+                value: "Back tracking survey",
+                text: "Back tracking survey"
+              },
+              {
+                value: "Advanced Bat Survey Level Techniques",
+                text: "Advanced Bat Survey Level Techniques"
+              },
+              {
+                value: "Aerial inspections (involving trees)",
+                text: "Aerial inspections (involving trees)"
+              },
+              {
+                value: "Environmental conditions (humidity, airflow, lighting and temperature)",
+                text: "Environmental conditions (humidity, airflow, lighting and temperature)"
+              }
+            ]
+          }) }}
+        
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+
+

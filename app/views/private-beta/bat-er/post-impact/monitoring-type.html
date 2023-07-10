@@ -19,11 +19,11 @@ Monitoring
 
         <p>You need to tell us about what type of monitoring you are proposing and when you are going to do it.</p>
 
-        <p>You can add more than one year.</p>
+        <p class="govuk-!-margin-bottom-9">You can add more than one year.</p>
 
-        <form class="form" action="create-compensation-check" method="post"></form>
+        <form class="form" action="maternity-monitoring-year-1" method="post">
         {{ govukRadios({
-          name: "monitoring-required-check",
+          name: "monitoring-type-check",
           fieldset: {
             legend: {
               text: "What type of monitoring are you proposing?",

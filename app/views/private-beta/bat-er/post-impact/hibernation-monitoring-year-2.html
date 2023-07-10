@@ -1,0 +1,55 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Enter the month and year you propose to do hibernation monitoring
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">    
+
+      <form class="form" action="hibernation-monitoring-2" method="post"> 
+          {{ govukDateInput({
+            id: "hibernation-year-2",
+            namePrefix: "hibernation-year-2",
+            fieldset: {
+              legend: {
+                text: "Enter the month and year you propose to do hibernation monitoring",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            hint: {
+              text: "For example, 6 2024"
+            },
+            items: [
+              {
+                name: "month",
+                classes: "govuk-input--width-2"
+              },
+              {
+                name: "year",
+                classes: "govuk-input--width-4"
+              }
+            ]
+          }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+
+

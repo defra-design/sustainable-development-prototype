@@ -1,0 +1,78 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Maternity monitoring
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">
+        Maternity monitoring
+      </h1>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            First year of monitoring
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['maternity-year-1-month'] | toMonth + " " + data['maternity-year-1-year'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> maternity monitoring year</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+      
+
+
+
+
+
+
+
+      <form class="form" action="another-maternity-year-check" method="post">
+
+        {{ govukRadios({
+          idPrefix: "another-maternity-year-check",
+          name: "another-maternity-year-check",
+          fieldset: {
+            legend: {
+              text: "Do you want to add another year of maternity monitoring?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              text: "No"
+            }
+          ]
+        }) }}
+        
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

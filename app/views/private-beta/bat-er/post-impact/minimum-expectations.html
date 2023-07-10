@@ -1,0 +1,45 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Explain why not meeting the minimum expectations is acceptable
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+{% if data['monitoring-minimum-expectations-check'] == 'Yes' %}
+<script>
+    window.location.href = 'monitoring-techniques'
+</script>
+{% endif %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">    
+
+      <form class="form" action="monitoring-techniques" method="post"> 
+        {{ govukTextarea({
+            name: "more-detail",
+            id: "more-detail",
+            label: {
+              text: "Explain why not meeting the minimum expectations is acceptable",
+              classes: "govuk-label--l",
+              isPageHeading: true
+            }
+          }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+
+
