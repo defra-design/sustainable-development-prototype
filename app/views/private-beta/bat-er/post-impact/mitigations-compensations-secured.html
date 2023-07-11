@@ -1,0 +1,51 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Securing mitigations or compensations
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">    
+
+        <h1 class="govuk-heading-l">Securing mitigations or compensations</h1>
+
+        <p>This could include:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+            <li>restrictive covenant</li>
+            <li>clause to relinquish future development rights in S106 agreement</li>
+            <li>NERC Act agreement</li>
+            <li>explicit recognition of site in local planning documents</li>
+            <li>designation as County Wildlife Site</li>
+        </ul>
+
+
+      <form class="form" action="post-development-works-secured" method="post"> 
+        {{ govukTextarea({
+            name: "Mitigations-compensations-secured",
+            id: "Mitigations-compensations-secured",
+            label: {
+              text: "How will mitigations or compensations be secured?",
+              classes: "govuk-label--m"
+            }
+          }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+
+

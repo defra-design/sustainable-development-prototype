@@ -1,0 +1,275 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Check your answers
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h2 class="govuk-heading-l">Check your answers</h2>
+
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Is monitoring required?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['monitoring-required-check'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> is monitoring required?</span>
+            </a>
+          </dd>
+        </div>
+
+        <!-- Monitoring required - Yes -->
+        {% if data['monitoring-required-check'] == 'Yes' %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Will the monitoring you propose meet the minimum expectations?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['monitoring-minimum-expectations-check'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> will the monitoring you propose meet the minimum expectations?</span>
+              </a>
+            </dd>
+          </div>
+          
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              What type of monitoring are you proposing?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['monitoring-type-check'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> what type of monitoring are you proposing?</span>
+              </a>
+            </dd>
+          </div>
+
+
+          <!-- Hibernation monitoring -->
+          {% if data['monitoring-type-check'] == 'Hibernation monitoring' %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                First year of hibernation monitoring
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['hibernation-year-1-month'] | toMonth + " " + data['hibernation-year-1-year'] }}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> first year of hibernation monitoring</span>
+                </a>
+              </dd>
+            </div>
+
+            {% if data['another-hibernation-year-check'] == 'Yes' %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Second year of hibernation monitoring
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['hibernation-year-2-month'] | toMonth + " " + data['hibernation-year-2-year'] }}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> first year of hibernation monitoring</span>
+                </a>
+              </dd>
+            </div>
+            {% endif %}
+
+          {% endif %}
+          <!-- End of hibernation monitoring -->
+
+
+          <!-- Maternity monitoring --> 
+          {% if data['monitoring-type-check'] == 'Maternity monitoring' %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                First year of maternity monitoring
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['maternity-year-1-month'] | toMonth + " " + data['maternity-year-1-year'] }}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> first year of maternity monitoring</span>
+                </a>
+              </dd>
+            </div>
+
+            {% if data['another-maternity-year-check'] == 'Yes' %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Second year of maternity monitoring
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['maternity-year-2-month'] | toMonth + " " + data['maternity-year-2-year'] }}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> first year of maternity monitoring</span>
+                </a>
+              </dd>
+            </div>
+            {% endif %}
+
+          {% endif %}
+          <!-- End of maternity monitoring --> 
+
+
+          <!-- Both types of monitoring --> 
+          {% if data['monitoring-type-check'] == 'Both' %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              First year of hibernation monitoring
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['hibernation-year-1-month'] | toMonth + " " + data['hibernation-year-1-year'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> first year of hibernation monitoring</span>
+              </a>
+            </dd>
+          </div>
+
+          {% if data['another-hibernation-year-check'] == 'Yes' %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Second year of hibernation monitoring
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['hibernation-year-2-month'] | toMonth + " " + data['hibernation-year-2-year'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> first year of hibernation monitoring</span>
+              </a>
+            </dd>
+          </div>
+          {% endif %}
+
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                First year of maternity monitoring
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['maternity-year-1-month'] | toMonth + " " + data['maternity-year-1-year'] }}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> first year of maternity monitoring</span>
+                </a>
+              </dd>
+            </div>
+
+            {% if data['another-maternity-year-check'] == 'Yes' %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Second year of maternity monitoring
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['maternity-year-2-month'] | toMonth + " " + data['maternity-year-2-year'] }}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> first year of maternity monitoring</span>
+                </a>
+              </dd>
+            </div>
+            {% endif %}
+
+          {% endif %}
+          <!-- End of both types of monitoring --> 
+
+
+          {% if data['monitoring-minimum-expectations-check'] == 'No' %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Explain why not meeting the minimum expectations is acceptable
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['explain-minimum-expectations'] }}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> first year of maternity monitoring</span>
+                </a>
+              </dd>
+            </div>
+          {% endif %}
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Which monitoring techniques will you use?
+            </dt>
+            <dd class="govuk-summary-list__value">
+                      {% for technique in data['monitoring-techniques'] %}
+                        <p>{{ technique }}</p>
+                      {% endfor %}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> which monitoring techniques will you use?</span>
+              </a>
+            </dd>
+          </div>
+
+      {% endif %}
+      <!-- End of Monitoring required - Yes -->
+
+      
+
+
+
+
+
+
+
+
+
+        
+
+       
+
+        
+
+        
+
+
+      
+
+        
+
+      
+      
+      
+      <form class="form" action="task-list-complete" method="post">
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+    
+    </div>
+  </div>
+
+{% endblock %}

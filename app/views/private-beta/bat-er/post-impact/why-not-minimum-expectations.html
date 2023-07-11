@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Explain why not meeting the minimum expectations is acceptable
+Why will the minimum expectations not be met?
 {% endblock %}
 
 {% block beforeContent %}
@@ -11,21 +11,15 @@ Explain why not meeting the minimum expectations is acceptable
 
 {% block content %}
 
-{% if data['monitoring-minimum-expectations-check'] == 'Yes' %}
-<script>
-    window.location.href = 'monitoring-techniques'
-</script>
-{% endif %}
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">    
 
-      <form class="form" action="monitoring-techniques" method="post"> 
+      <form class="form" action="mitigations-compensations-secured" method="post"> 
         {{ govukTextarea({
-            name: "explain-minimum-expectations",
-            id: "explain-minimum-expectations",
+            name: "why-min-expectations-not-met",
+            id: "why-min-expectations-not-met",
             label: {
-              text: "Explain why not meeting the minimum expectations is acceptable",
+              text: "Why will the minimum expectations not be met?",
               classes: "govuk-label--l",
               isPageHeading: true
             }

@@ -1252,5 +1252,13 @@ router.post('/private-beta/bat-er/add-roosts/roost-modified-check', (req, res) =
     } 
   });
 
+  router.post('/private-beta/bat-er/post-impact/management-site-maintenance-check', (req, res) => {
+    if(req.session.data['management-site-maintenance-check'] == 'Yes'){
+        res.redirect('mitigations-compensations-secured')
+    } else if(req.session.data['management-site-maintenance-check'] == 'No'){
+        res.redirect('why-not-minimum-expectations')
+    } 
+  });
+
   
 }

@@ -1,0 +1,45 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Securing post-development works
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">    
+
+        <h1 class="govuk-heading-l">Securing post-development works</h1>
+
+        <p>These works include management, maintenance (including remedial action) and monitoring.</p>
+        
+        <p>You must commit this work being undertaken, and they means for doing the work (financial and practical) must be in place before applying for a licence.</p>
+
+
+      <form class="form" action="check-your-answers" method="post"> 
+        {{ govukTextarea({
+            name: "post-development-works-secured",
+            id: "post-development-works-secured",
+            label: {
+              text: "How will works done post-development be secured?",
+              classes: "govuk-label--m"
+            }
+          }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+
+
