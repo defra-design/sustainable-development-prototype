@@ -232,34 +232,71 @@ Check your answers
             </dd>
           </div>
 
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Will the management and site maintenance meet the minimum expectations?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['management-site-maintenance-check'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> will the management and site maintenance meet the minimum expectations?</span>
+              </a>
+            </dd>
+          </div>
+
+          {% if data['management-site-maintenance-check'] == 'No' %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Why will the minimum expectations not be met?
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['why-min-expectations-not-met'] }}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> why will the minimum expectations not be met?</span>
+                </a>
+              </dd>
+            </div>
+          {% endif %}
+
+
       {% endif %}
       <!-- End of Monitoring required - Yes -->
 
       
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          How will mitigations or compensations be secured?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data['mitigations-compensations-secured'] }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="#">
+            Change<span class="govuk-visually-hidden"> how will mitigations or compensations be secured?</span>
+          </a>
+        </dd>
+      </div>
 
 
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          How will works done post-development be secured?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data['post-development-works-secured'] }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="#">
+            Change<span class="govuk-visually-hidden"> how will works done post-development be secured?</span>
+          </a>
+        </dd>
+      </div>
 
-
-
-
-
-
-
-        
-
-       
-
-        
-
-        
-
-
-      
-
-        
-
-      
-      
+      </dl>
       
       <form class="form" action="task-list-complete" method="post">
 
