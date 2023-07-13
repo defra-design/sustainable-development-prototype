@@ -1230,7 +1230,7 @@ router.post('/private-beta/bat-er/add-roosts/roost-modified-check', (req, res) =
   
   router.post('/private-beta/bat-er/post-impact/monitoring-required-check', (req, res) => {
     if(req.session.data['monitoring-required-check'] == 'Yes'){
-        res.redirect('monitoring-minimum-expectations')
+        res.redirect('monitoring-type')
     } else if(req.session.data['monitoring-required-check'] == 'No'){
         res.redirect('mitigations-compensations-secured')
     } 
@@ -1248,7 +1248,7 @@ router.post('/private-beta/bat-er/add-roosts/roost-modified-check', (req, res) =
     if(req.session.data['another-hibernation-year-check'] == 'Yes'){
         res.redirect('hibernation-monitoring-year-2')
     } else if(req.session.data['another-hibernation-year-check'] == 'No'){
-        res.redirect('minimum-expectations')
+        res.redirect('monitoring-techniques')
     } 
   });
 
@@ -1257,6 +1257,14 @@ router.post('/private-beta/bat-er/add-roosts/roost-modified-check', (req, res) =
         res.redirect('mitigations-compensations-secured')
     } else if(req.session.data['management-site-maintenance-check'] == 'No'){
         res.redirect('why-not-minimum-expectations')
+    } 
+  });
+
+  router.post('/private-beta/bat-er/post-impact/monitoring-minimum-expectations-check', (req, res) => {
+    if(req.session.data['monitoring-minimum-expectations-check'] == 'Yes'){
+        res.redirect('management-site-maintenance')
+    } else if(req.session.data['monitoring-minimum-expectations-check'] == 'No'){
+        res.redirect('minimum-expectations')
     } 
   });
 
