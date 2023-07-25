@@ -1,0 +1,57 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: Enter the previous badger mitigation license details
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "Previous badger mitigation licence details must be 100 characters or less",
+            href: "#mitigation-license-details"
+          }
+        ]
+      }) }}
+
+      <form class="form" action="license" method="post">
+        {{ govukInput({
+          label: {
+            text: "Enter the previous badger mitigation licence details",
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          hint: {
+            text: "Enter the reference number of any previously held badger mitigation licence."
+          },
+          errorMessage: {
+            text: "Enter a reference number that is 100 characters or less"
+          },
+          classes: "govuk-input--width-20",
+          id: "mitigation-license-details",
+          name: "mitigation-license-details",
+          value: "ABC1231457832492349923499234BDHSJAKKAKKDKKDKKDKKKDKDKKKDKKDKKK1231245756786595959595959959595995959959"
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}
