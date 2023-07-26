@@ -88,14 +88,14 @@ Check your answers
           {% if data['monitoring-type-check'] == 'Maternity monitoring' %}
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                First year of maternity monitoring
+                First year of monitoring in the active bat period
               </dt>
               <dd class="govuk-summary-list__value">
                 {{ data['maternity-year-1-month'] | toMonth + " " + data['maternity-year-1-year'] }}
               </dd>
               <dd class="govuk-summary-list__actions">
                 <a class="govuk-link" href="#">
-                  Change<span class="govuk-visually-hidden"> first year of maternity monitoring</span>
+                  Change<span class="govuk-visually-hidden"> first year of monitoring in the active bat period</span>
                 </a>
               </dd>
             </div>
@@ -103,14 +103,14 @@ Check your answers
             {% if data['another-maternity-year-check'] == 'Yes' %}
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Second year of maternity monitoring
+                Second year of monitoring in the active bat period
               </dt>
               <dd class="govuk-summary-list__value">
                 {{ data['maternity-year-2-month'] | toMonth + " " + data['maternity-year-2-year'] }}
               </dd>
               <dd class="govuk-summary-list__actions">
                 <a class="govuk-link" href="#">
-                  Change<span class="govuk-visually-hidden"> first year of maternity monitoring</span>
+                  Change<span class="govuk-visually-hidden"> second year of monitoring in the active bat period</span>
                 </a>
               </dd>
             </div>
@@ -122,6 +122,37 @@ Check your answers
 
           <!-- Both types of monitoring --> 
           {% if data['monitoring-type-check'] == 'Both' %}
+          
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              First year of monitoring in the active bat period
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['maternity-year-1-month'] | toMonth + " " + data['maternity-year-1-year'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> first year of monitoring in the active bat period</span>
+              </a>
+            </dd>
+          </div>
+
+          {% if data['another-maternity-year-check'] == 'Yes' %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Second year of monitoring in the active bat period
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['maternity-year-2-month'] | toMonth + " " + data['maternity-year-2-year'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> first year of monitoring in the active bat period</span>
+              </a>
+            </dd>
+          </div>
+          {% endif %}
+
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               First year of hibernation monitoring
@@ -152,35 +183,7 @@ Check your answers
           </div>
           {% endif %}
 
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                First year of maternity monitoring
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{ data['maternity-year-1-month'] | toMonth + " " + data['maternity-year-1-year'] }}
-              </dd>
-              <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="#">
-                  Change<span class="govuk-visually-hidden"> first year of maternity monitoring</span>
-                </a>
-              </dd>
-            </div>
-
-            {% if data['another-maternity-year-check'] == 'Yes' %}
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Second year of maternity monitoring
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{ data['maternity-year-2-month'] | toMonth + " " + data['maternity-year-2-year'] }}
-              </dd>
-              <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="#">
-                  Change<span class="govuk-visually-hidden"> first year of maternity monitoring</span>
-                </a>
-              </dd>
-            </div>
-            {% endif %}
+            
 
           {% endif %}
           <!-- End of both types of monitoring --> 
