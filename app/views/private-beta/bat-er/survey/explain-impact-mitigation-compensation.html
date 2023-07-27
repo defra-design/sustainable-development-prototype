@@ -1,0 +1,45 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Explain the impact of your mitigation or compensation measures
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+      <form class="form" action="upload-evidence" method="post">
+        {{ govukTextarea({
+            name: "predict-impact",
+            id: "predict-impact",
+            label: {
+              text: "Explain the impact of your mitigation or compensation measures",
+              classes: "govuk-label--l",
+              isPageHeading: true
+            },
+            hint: {
+                text: "Mitigations and compensations must maintain or improve the bat species' conservation status."
+              }
+          }) }}
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

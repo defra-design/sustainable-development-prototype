@@ -1,0 +1,44 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Explain why you have not visited the site in the past 3 months
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+      <form class="form" action="which-survey-methods" method="post">
+        {{ govukTextarea({
+            name: "explain-why-not-visited-site",
+            id: "explain-why-not-visited-site",
+            label: {
+              text: "Explain why you have not visited the site in the past 3 months",
+              classes: "govuk-label--l",
+              isPageHeading: true
+            },
+            hint: {
+              text: "You should describe why you are satisfied in your knowledge of the site and its use by bats and that conditions on site have not changed. You should also justify why you can't confirm this."
+            }
+          }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

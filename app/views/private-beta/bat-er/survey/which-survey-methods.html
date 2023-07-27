@@ -1,0 +1,123 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Which survey methods were used?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">    
+
+
+      <form class="form" action="features-suitable-for-hibernation" method="post"> 
+
+        {% set otherHtml %}
+          {{ govukTextarea({
+            name: "other-survey-methods",
+            id: "other-survey-methods",
+            label: {
+              text: "Describe the other survey methods used"
+            }
+          }) }}
+        {% endset -%}
+
+        {{ govukCheckboxes({
+            name: "survey-methods",
+            fieldset: {
+              legend: {
+                text: "Which survey methods were used?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            hint: {
+              text: "Select all that apply."
+            },
+            items: [
+              {
+                value: "Emergence survey",
+                text: "Emergence survey"
+              },
+              {
+                value: "Dawn re-entry survey",
+                text: "Dawn re-entry survey"
+              },
+              {
+                value: "Back-tracking survey",
+                text: "Back-tracking survey"
+              },
+              {
+                value: "Internal and external building inspection",
+                text: "Internal and external building inspection"
+              },
+              {
+                value: "Static audio device during hibernation period",
+                text: "Static audio device during hibernation period"
+              },
+              {
+                value: "Infra-red imaging camera",
+                text: "Infra-red imaging camera"
+              },
+              {
+                value: "Thermal imaging camera",
+                text: "Thermal imaging camera"
+              },
+              {
+                value: "Hand netting",
+                text: "Hand netting"
+              },
+              {
+                value: "Harp trapping",
+                text: "Harp trapping"
+              },
+              {
+                value: "Static audio device during typical bat active period",
+                text: "Static audio device during typical bat active period"
+              },
+              {
+                value: "Mist netting",
+                text: "Mist netting"
+              },
+              {
+                value: "Radio tracking",
+                text: "Radio tracking"
+              },
+              {
+                value: "Aerial inspection, such as tree-climbing",
+                text: "Aerial inspection, such as tree-climbing"
+              },
+              {
+                value: "DNA analysis",
+                text: "DNA analysis"
+              },
+              {
+                value: "Other",
+                text: "Other",
+                conditional: {
+                  html: otherHtml
+                }
+              }
+            ]
+          }) }}
+        
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+
+

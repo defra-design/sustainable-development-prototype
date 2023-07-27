@@ -1,0 +1,50 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Why has LP4 been applied at this site?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+      <form class="form" action="explain-cost-time" method="post">
+        {{ govukTextarea({
+            name: "why-lp4",
+            id: "why-lp4",
+            label: {
+              text: "Why has LP4 been applied at this site?",
+              classes: "govuk-label--l",
+              isPageHeading: true
+            },
+            hint: {
+                text: "You should explain why LP4 is more appropriate than a standard survey approach with constraints."
+              }
+          }) }}
+
+          {{ govukDetails({
+            summaryText: "What is LP4?",
+            text: "Content needed..."
+          }) }}
+  
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

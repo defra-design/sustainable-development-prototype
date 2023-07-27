@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Have you visited the site in the past 3 months?
+Did you do hibernation surveys?
 {% endblock %}
 
 {% block beforeContent %}
@@ -14,18 +14,15 @@ Have you visited the site in the past 3 months?
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">    
 
-      <form class="form" action="visited-site-check" method="post"> 
+      <form class="form" action="hibernation-surveys-check" method="post"> 
         {{ govukRadios({
-          name: "visited-site-check",
+          name: "hibernation-surveys-check",
           fieldset: {
             legend: {
-              text: "Have you visited the site in the past 3 months?",
+              text: "Did you do hibernation surveys?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
-          },
-          hint: {
-            text: "If anyone has visited the site on your behalf, they must hold a bats: survey or research level 2 licence (CL18)."
           },
           items: [
             {

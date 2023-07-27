@@ -1,0 +1,52 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Upload the impacts map or map data
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+ 
+
+      <h1 class="govuk-heading-l">
+        Upload the impacts map or map data
+      </h1>
+
+
+      <p>You can upload:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>GeoJSON files</li>
+        <li>KML files</li>
+        <li>common shapefiles</li>
+        <li>PDF, jpg or PNG files (if these are used, your application may take longer to process)</li>
+        <li>ZIP files</li>
+      </ul>
+      <p>The file must be smaller than 30MB.</p>
+
+      
+      <form class="form" action="check-your-answers" method="post">
+        {{ govukFileUpload({
+          id: "file-upload-1",
+          name: "file-upload-1",
+          label: {
+            text: "Upload a file"
+          }
+        }) }}
+
+        {{ govukButton({
+          text: "Upload and continue"
+        }) }}
+      </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

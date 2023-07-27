@@ -1,0 +1,45 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Explain why the cost or time for standard survey is disproportionate
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+      <form class="form" action="approach-predict-impact" method="post">
+        {{ govukTextarea({
+            name: "why-disproportionate",
+            id: "why-disproportionate",
+            label: {
+              text: "Explain why the cost or time for standard survey is disproportionate",
+              classes: "govuk-label--l",
+              isPageHeading: true
+            },
+            hint: {
+                text: "It must be disproportionate to the certainty that surveys would bring."
+              }
+          }) }}
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

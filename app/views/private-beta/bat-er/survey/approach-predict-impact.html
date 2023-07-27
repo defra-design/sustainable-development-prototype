@@ -1,0 +1,45 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+How will your approach predict the impact of development on bat species?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+      <form class="form" action="explain-impact-mitigation-compensation" method="post">
+        {{ govukTextarea({
+            name: "predict-impact",
+            id: "predict-impact",
+            label: {
+              text: "How will your approach predict the impact of development on bat species?",
+              classes: "govuk-label--l",
+              isPageHeading: true
+            },
+            hint: {
+                text: "You must show how you can predict the impact of development on the bat species at this site without standard surveys."
+              }
+          }) }}
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

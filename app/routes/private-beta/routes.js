@@ -1268,5 +1268,65 @@ router.post('/private-beta/bat-er/add-roosts/roost-modified-check', (req, res) =
     } 
   });
 
+  router.post('/private-beta/bat-er/survey/visited-site-check', (req, res) => {
+    if(req.session.data['visited-site-check'] == 'Yes'){
+        res.redirect('which-survey-methods')
+    } else if(req.session.data['visited-site-check'] == 'No'){
+        res.redirect('explain-why-not-visited')
+    } 
+  });
+  
+  router.post('/private-beta/bat-er/survey/features-suitable-check', (req, res) => {
+    if(req.session.data['features-suitable-check'] == 'Yes'){
+        res.redirect('hibernation-surveys')
+    } else if(req.session.data['features-suitable-check'] == 'No'){
+        res.redirect('non-standard-survey-techniques')
+    } 
+  });
+
+  router.post('/private-beta/bat-er/survey/hibernation-surveys-check', (req, res) => {
+    if(req.session.data['hibernation-surveys-check'] == 'Yes'){
+        res.redirect('non-standard-survey-techniques')
+    } else if(req.session.data['hibernation-surveys-check'] == 'No'){
+        res.redirect('why-no-hibernation-surveys')
+    } 
+  });
+
+  router.post('/private-beta/bat-er/survey/non-standard-surveys-check', (req, res) => {
+    if(req.session.data['non-standard-surveys-check'] == 'Yes'){
+        res.redirect('describe-non-standard-surveys')
+    } else if(req.session.data['non-standard-surveys-check'] == 'No'){
+        res.redirect('surveys-for-bat-potential')
+    } 
+  });
+
+  router.post('/private-beta/bat-er/survey/identified-bat-potential-check', (req, res) => {
+    if(req.session.data['identified-bat-potential-check'] == 'Yes'){
+        res.redirect('upload-survey-map-data')
+    } else if(req.session.data['identified-bat-potential-check'] == 'No'){
+        res.redirect('explain-why-no-lp4')
+    } else if(req.session.data['identified-bat-potential-check'] == 'No, but LP4 has been applied'){
+        res.redirect('explain-why-lp4')
+    }  
+  });
+
+
+  router.post('/private-beta/bat-er/survey/upload-evidence-check', (req, res) => {
+    if(req.session.data['upload-evidence-check'] == 'Yes'){
+        res.redirect('upload-information')
+    } else if(req.session.data['upload-evidence-check'] == 'No'){
+        res.redirect('upload-survey-map-data')
+    } 
+  });
+  
+
+  router.post('/private-beta/bat-er/survey/another-file-check', (req, res) => {
+    if(req.session.data['another-file-check'] == 'Yes'){
+        res.redirect('upload-information-2')
+    } else if(req.session.data['another-file-check'] == 'No'){
+        res.redirect('upload-survey-map-data')
+    } 
+  });
+
   
 }

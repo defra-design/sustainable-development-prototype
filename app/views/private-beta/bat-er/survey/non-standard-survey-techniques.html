@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Have you visited the site in the past 3 months?
+Did you use non-standard survey techniques?
 {% endblock %}
 
 {% block beforeContent %}
@@ -14,18 +14,18 @@ Have you visited the site in the past 3 months?
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">    
 
-      <form class="form" action="visited-site-check" method="post"> 
+      <form class="form" action="non-standard-surveys-check" method="post"> 
         {{ govukRadios({
-          name: "visited-site-check",
+          name: "non-standard-surveys-check",
           fieldset: {
             legend: {
-              text: "Have you visited the site in the past 3 months?",
+              text: "Did you use non-standard survey techniques?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
           hint: {
-            text: "If anyone has visited the site on your behalf, they must hold a bats: survey or research level 2 licence (CL18)."
+            text: "For example, new, untested methods of surveying."
           },
           items: [
             {

@@ -1,0 +1,71 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Surveys for bat potential
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">    
+
+        <h1 class="govuk-heading-l">Surveys for bat potential</h1>
+
+        <p>Your surveys should have identified:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+            <li>buildings, structures or trees that could potentially be used by bats</li>
+            <li>the species of bats likely to be present</li>
+            <li>the type of roosts likely to be present</li>
+        </ul>
+        
+        
+        
+
+      <form class="form" action="identified-bat-potential-check" method="post"> 
+        {{ govukRadios({
+          name: "identified-bat-potential-check",
+          fieldset: {
+            legend: {
+              text: "Are you confident that your surveys would have identified bat potential?",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              text: "No"
+            },
+            {
+              value: "No, but LP4 has been applied",
+              text: "No, but LP4 has been applied"
+            }
+          ]
+        }) }}
+
+        {{ govukDetails({
+          summaryText: "What is LP4?",
+          text: "Content needed..."
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+
+

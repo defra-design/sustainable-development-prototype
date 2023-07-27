@@ -1,0 +1,321 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Check your answers
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h2 class="govuk-heading-l">Check your answers</h2>
+
+      <!--<dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Phased or multiplot?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['ongoing-development-work-check'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> phased or multiplot</span>
+            </a>
+          </dd>
+        </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Overall species-specific masterplan
+            </dt>
+            <dd class="govuk-summary-list__value">
+             	overall-species-specific-masterplan-1.docx
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> overall species-specific masterplan</span>
+              </a>
+            </dd>
+          </div>
+          {% if data['another-ossm-file-check'] == 'Yes' %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Overall species-specific masterplan
+              </dt>
+              <dd class="govuk-summary-list__value">
+                overall-species-specific-masterplan-2.docx
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> overall species-specific masterplan</span>
+                </a>
+              </dd>
+            </div>
+          {% endif %}
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Habitat management and maintenance plan 
+            </dt>
+            <dd class="govuk-summary-list__value">
+              habitat-management-and-maintenance plan-1.docx
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> habitat management and maintenance plan</span>
+              </a>
+            </dd>
+          </div>
+          {% if data['another-hmmp-file-check'] == 'Yes' %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Habitat management and maintenance plan 
+            </dt>
+            <dd class="govuk-summary-list__value">
+              	habitat-management-and-maintenance plan-2.docx
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> habitat management and maintenance plan</span>
+              </a>
+            </dd>
+          </div>
+          {% endif %}
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Any previous or future licence applications that could impact the same population of bats?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['prev-future-check'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> any previous or future licence applications that could impact the same population of bats?</span>
+              </a>
+            </dd>
+          </div>
+          
+
+        {% if data['prev-future-check'] == 'Yes' %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Any previous applications and decisions?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['previous-applications-check'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> any previous or future licence applications?</span>
+              </a>
+            </dd>
+          </div>
+
+                {% if data['previous-applications-check'] == 'Yes' %}
+                  <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                      Do you know the licence number?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                      {% if data['licence-number-check'] == 'Yes' %}
+                        {{ data['reference-number'] }}
+                      {% else %}
+                        {{ data['licence-number-check'] }}
+                      {% endif %}
+                      {{ data[''] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                      <a class="govuk-link" href="#">
+                        Change<span class="govuk-visually-hidden"> Do you know the licence number?</span>
+                      </a>
+                    </dd>
+                  </div>
+                  <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                      Describe site name, location and dates of previous activity
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                      {{ data['sitename-location-dates'] }}
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                      <a class="govuk-link" href="#">
+                        Change<span class="govuk-visually-hidden"> describe site name, location and dates of previous activity</span>
+                      </a>
+                    </dd>
+                  </div>
+                {% endif %}
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Any future applications?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['future-applications-check'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> any future applications?</span>
+              </a>
+            </dd>
+          </div>
+
+          {% if data['future-applications-check'] == 'Yes' %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Describe site name, location and dates of future activity
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['sitename-location-dates-future'] }}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> describe site name, location and dates of future activity</span>
+                </a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Describe how you will address any cumulative impacts
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['cumulative-impacts'] }}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> describe how you will address any cumulative impacts</span>
+                </a>
+              </dd>
+            </div>
+          {% endif %}
+
+        {% endif %}
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Has anyone previously had advice from Natural England about this site?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% for advice in data['previous-advice'] %}
+              <p>{{ advice }}</p>
+            {% endfor %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> has anyone previously had advice from Natural England about this site?</span>
+            </a>
+          </dd>
+        </div>
+
+        {% if data['previous-advice'] == 'No' %}
+       
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Do you want to upload supporting information?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['upload-check'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> do you want to upload supporting information?</span>
+              </a>
+            </dd>
+          </div>
+
+          {% if data['upload-check'] == 'Yes' %}  
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Uploaded file
+              </dt>
+              <dd class="govuk-summary-list__value">
+                filename.docx
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> uploaded file</span>
+                </a>
+              </dd>
+            </div>
+            {% endif %}
+
+        {% else %}
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Enter the Natural England reference numbers for any advice received
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['natural-england-reference-numbers'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> enter the Natural England reference numbers for any advice received</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Describe any advice that has been received about this site from Natural England
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['describe-natural-england-advice'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> describe any advice that has been received about this site from Natural England</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Do you want to upload supporting information?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['upload-check'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> do you want to upload supporting information?</span>
+              </a>
+            </dd>
+          </div>
+
+          
+            {% if data['upload-check'] == 'Yes' %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Uploaded file
+              </dt>
+              <dd class="govuk-summary-list__value">
+                filename.docx
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> uploaded file</span>
+                </a>
+              </dd>
+            </div>
+            {% endif %}
+
+        {% endif %}
+      </dl>
+    -->
+      <form class="form" action="task-list-complete" method="post">
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+    
+    </div>
+  </div>
+
+{% endblock %}
