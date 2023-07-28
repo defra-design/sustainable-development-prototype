@@ -16,297 +16,319 @@ Check your answers
 
       <h2 class="govuk-heading-l">Check your answers</h2>
 
-      <!--<dl class="govuk-summary-list">
+      <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Phased or multiplot?
+            Have you visited the site in the past 3 months?
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['ongoing-development-work-check'] }}
+            {{ data['visited-site-check'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="#">
-              Change<span class="govuk-visually-hidden"> phased or multiplot</span>
+              Change<span class="govuk-visually-hidden"> have you visited the site in the past 3 months?</span>
             </a>
           </dd>
         </div>
+        {% if data['visited-site-check'] == 'No' %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Overall species-specific masterplan
+              Explain why you have not visited the site in the past 3 months
             </dt>
             <dd class="govuk-summary-list__value">
-             	overall-species-specific-masterplan-1.docx
+              {{ data['explain-why-not-visited-site'] }}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="#">
-                Change<span class="govuk-visually-hidden"> overall species-specific masterplan</span>
+                Change<span class="govuk-visually-hidden"> explain why you have not visited the site in the past 3 months</span>
               </a>
             </dd>
           </div>
-          {% if data['another-ossm-file-check'] == 'Yes' %}
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Overall species-specific masterplan
-              </dt>
-              <dd class="govuk-summary-list__value">
-                overall-species-specific-masterplan-2.docx
-              </dd>
-              <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="#">
-                  Change<span class="govuk-visually-hidden"> overall species-specific masterplan</span>
-                </a>
-              </dd>
-            </div>
-          {% endif %}
-
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Habitat management and maintenance plan 
-            </dt>
-            <dd class="govuk-summary-list__value">
-              habitat-management-and-maintenance plan-1.docx
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="#">
-                Change<span class="govuk-visually-hidden"> habitat management and maintenance plan</span>
-              </a>
-            </dd>
-          </div>
-          {% if data['another-hmmp-file-check'] == 'Yes' %}
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Habitat management and maintenance plan 
-            </dt>
-            <dd class="govuk-summary-list__value">
-              	habitat-management-and-maintenance plan-2.docx
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="#">
-                Change<span class="govuk-visually-hidden"> habitat management and maintenance plan</span>
-              </a>
-            </dd>
-          </div>
-          {% endif %}
-
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Any previous or future licence applications that could impact the same population of bats?
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{ data['prev-future-check'] }}
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="#">
-                Change<span class="govuk-visually-hidden"> any previous or future licence applications that could impact the same population of bats?</span>
-              </a>
-            </dd>
-          </div>
-          
-
-        {% if data['prev-future-check'] == 'Yes' %}
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Any previous applications and decisions?
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{ data['previous-applications-check'] }}
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="#">
-                Change<span class="govuk-visually-hidden"> any previous or future licence applications?</span>
-              </a>
-            </dd>
-          </div>
-
-                {% if data['previous-applications-check'] == 'Yes' %}
-                  <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key">
-                      Do you know the licence number?
-                    </dt>
-                    <dd class="govuk-summary-list__value">
-                      {% if data['licence-number-check'] == 'Yes' %}
-                        {{ data['reference-number'] }}
-                      {% else %}
-                        {{ data['licence-number-check'] }}
-                      {% endif %}
-                      {{ data[''] }}
-                    </dd>
-                    <dd class="govuk-summary-list__actions">
-                      <a class="govuk-link" href="#">
-                        Change<span class="govuk-visually-hidden"> Do you know the licence number?</span>
-                      </a>
-                    </dd>
-                  </div>
-                  <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key">
-                      Describe site name, location and dates of previous activity
-                    </dt>
-                    <dd class="govuk-summary-list__value">
-                      {{ data['sitename-location-dates'] }}
-                    </dd>
-                    <dd class="govuk-summary-list__actions">
-                      <a class="govuk-link" href="#">
-                        Change<span class="govuk-visually-hidden"> describe site name, location and dates of previous activity</span>
-                      </a>
-                    </dd>
-                  </div>
-                {% endif %}
-
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Any future applications?
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{ data['future-applications-check'] }}
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="#">
-                Change<span class="govuk-visually-hidden"> any future applications?</span>
-              </a>
-            </dd>
-          </div>
-
-          {% if data['future-applications-check'] == 'Yes' %}
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Describe site name, location and dates of future activity
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{ data['sitename-location-dates-future'] }}
-              </dd>
-              <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="#">
-                  Change<span class="govuk-visually-hidden"> describe site name, location and dates of future activity</span>
-                </a>
-              </dd>
-            </div>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Describe how you will address any cumulative impacts
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{ data['cumulative-impacts'] }}
-              </dd>
-              <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="#">
-                  Change<span class="govuk-visually-hidden"> describe how you will address any cumulative impacts</span>
-                </a>
-              </dd>
-            </div>
-          {% endif %}
-
         {% endif %}
+         
 
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Has anyone previously had advice from Natural England about this site?
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {% for advice in data['previous-advice'] %}
-              <p>{{ advice }}</p>
-            {% endfor %}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="#">
-              Change<span class="govuk-visually-hidden"> has anyone previously had advice from Natural England about this site?</span>
-            </a>
-          </dd>
-        </div>
-
-        {% if data['previous-advice'] == 'No' %}
-       
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Do you want to upload supporting information?
+              Which survey methods were used?
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['upload-check'] }}
+              {% for method in data['survey-methods'] %}
+                <p>{{ method }}</p>
+              {% endfor %}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="#">
-                Change<span class="govuk-visually-hidden"> do you want to upload supporting information?</span>
+                Change<span class="govuk-visually-hidden"> which survey methods were used?</span>
               </a>
             </dd>
           </div>
-
-          {% if data['upload-check'] == 'Yes' %}  
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Does the site have features suitable for hibernation roosts?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['features-suitable-check'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> does the site have features suitable for hibernation roosts?</span>
+              </a>
+            </dd>
+          </div>
+          {% if data['features-suitable-check'] == 'Yes' %}
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Uploaded file
+                Did you do hibernation surveys?
               </dt>
               <dd class="govuk-summary-list__value">
-                filename.docx
+                {{ data['hibernation-surveys-check'] }}
               </dd>
               <dd class="govuk-summary-list__actions">
                 <a class="govuk-link" href="#">
-                  Change<span class="govuk-visually-hidden"> uploaded file</span>
+                  Change<span class="govuk-visually-hidden"> did you do hibernation surveys?</span>
                 </a>
               </dd>
             </div>
+            {% if data['hibernation-surveys-check'] == 'No' %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Why did you not do hibernation surveys?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['why-no-hibernation-surveys'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> why did you not do hibernation surveys?</span>
+                  </a>
+                </dd>
+              </div>
+            {% endif %}
+          {% endif %}
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Did you use non-standard survey techniques?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['non-standard-surveys-check'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> did you use non-standard survey techniques?</span>
+              </a>
+            </dd>
+          </div>
+          {% if data['non-standard-surveys-check'] == 'Yes' %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Describe the surveys used
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['describe-non-standard-surveys'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> describe the surveys used</span>
+                  </a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Upload the survey report
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  ns-survey-report-june-23.pdf
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> upload the survey report</span>
+                  </a>
+                </dd>
+              </div>
             {% endif %}
 
-        {% else %}
-
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Enter the Natural England reference numbers for any advice received
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{ data['natural-england-reference-numbers'] }}
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="#">
-                Change<span class="govuk-visually-hidden"> enter the Natural England reference numbers for any advice received</span>
-              </a>
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Describe any advice that has been received about this site from Natural England
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{ data['describe-natural-england-advice'] }}
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="#">
-                Change<span class="govuk-visually-hidden"> describe any advice that has been received about this site from Natural England</span>
-              </a>
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Do you want to upload supporting information?
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{ data['upload-check'] }}
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="#">
-                Change<span class="govuk-visually-hidden"> do you want to upload supporting information?</span>
-              </a>
-            </dd>
-          </div>
-
-          
-            {% if data['upload-check'] == 'Yes' %}
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Uploaded file
+                Are you confident that your surveys would have identified bat potential?
               </dt>
               <dd class="govuk-summary-list__value">
-                filename.docx
+                {{ data['identified-bat-potential-check'] }}
               </dd>
               <dd class="govuk-summary-list__actions">
                 <a class="govuk-link" href="#">
-                  Change<span class="govuk-visually-hidden"> uploaded file</span>
+                  Change<span class="govuk-visually-hidden"> are you confident that your surveys would have identified bat potential?</span>
                 </a>
               </dd>
             </div>
+            {% if data['identified-bat-potential-check'] == 'No, but LP4 has been applied' %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Why has LP4 been applied at this site?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['why-lp4'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> why has LP4 been applied at this site?</span>
+                  </a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Why has LP4 been applied at this site?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['why-lp4'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> why has LP4 been applied at this site?</span>
+                  </a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Explain why the cost or time for standard survey is disproportionate
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['why-disproportionate'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> explain why the cost or time for standard survey is disproportionate</span>
+                  </a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  How will your approach predict the impact of development on bat species?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['predict-impact'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> how will your approach predict the impact of development on bat species?</span>
+                  </a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Explain the impact of your mitigation or compensation measures
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['explain-impact-of-mitigation'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> explain the impact of your mitigation or compensation measures</span>
+                  </a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Explain the impact of your mitigation or compensation measures
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['explain-impact-of-mitigation'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> explain the impact of your mitigation or compensation measures</span>
+                  </a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Do you want to upload any evidence supporting the surveys?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['upload-evidence-check'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> do you want to upload any evidence supporting the surveys?</span>
+                  </a>
+                </dd>
+              </div>
+              {% if data['non-standard-surveys-check'] == 'Yes' %}
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Uploaded file
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    supporting-evidence.pdf
+                  </dd>
+                  <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="#">
+                      Change<span class="govuk-visually-hidden"> uploaded file?</span>
+                    </a>
+                  </dd>
+                </div>
+              {% endif %}
+              {% if data['another-file-check'] == 'Yes' %}
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Uploaded file
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    additional-supporting-evidence.pdf
+                  </dd>
+                  <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="#">
+                      Change<span class="govuk-visually-hidden"> uploaded file?</span>
+                    </a>
+                  </dd>
+                </div>
+              {% endif %}
             {% endif %}
 
-        {% endif %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Upload the survey map or map data
+              </dt>
+              <dd class="govuk-summary-list__value">
+                survey-map.shp
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> upload the survey map or map data</span>
+                </a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Upload the impacts map or map data
+              </dt>
+              <dd class="govuk-summary-list__value">
+                impacts-map.shp
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> upload the impacts map or map data</span>
+                </a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Upload your assessment of the impacts
+              </dt>
+              <dd class="govuk-summary-list__value">
+                impacts-assessment.shp
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> upload your assessment of the impacts</span>
+                </a>
+              </dd>
+            </div>
+
+
+        
       </dl>
-    -->
+    
       <form class="form" action="task-list-complete" method="post">
 
         {{ govukButton({
