@@ -1305,7 +1305,7 @@ router.post('/private-beta/bat-er/add-roosts/roost-modified-check', (req, res) =
         res.redirect('upload-survey-map-data')
     } else if(req.session.data['identified-bat-potential-check'] == 'No'){
         res.redirect('explain-why-no-lp4')
-    } else if(req.session.data['identified-bat-potential-check'] == 'No, but LP4 has been applied'){
+    } else if(req.session.data['identified-bat-potential-check'] == 'No, but we will use alternative evidence (LP4)'){
         res.redirect('explain-why-lp4')
     }  
   });
