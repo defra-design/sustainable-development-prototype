@@ -1329,4 +1329,12 @@ router.post('/private-beta/bat-er/add-roosts/roost-modified-check', (req, res) =
   });
 
   
+  router.post('/private-beta/bat-er/purpose/exceptions-check', (req, res) => {
+    if(req.session.data['exceptions-check'] == 'Yes'){
+        res.redirect('upload-reasoned-statement')
+    } else if(req.session.data['exceptions-check'] == 'No'){
+        res.redirect('why-no-reasoned-statement')
+    } 
+  });
+  
 }

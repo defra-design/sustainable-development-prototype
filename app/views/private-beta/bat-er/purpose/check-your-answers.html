@@ -1,0 +1,93 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Check your answers
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h2 class="govuk-heading-l">Check your answers</h2>
+
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Does your development work need a reasoned statement?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['exceptions-check'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> does your development work need a reasoned statement?</span>
+            </a>
+          </dd>
+        </div>
+        {% if data['exceptions-check'] == 'Yes' %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Upload a reasoned statement
+            </dt>
+            <dd class="govuk-summary-list__value">
+              reasonsed-statement-23.pdf
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> upload a reasoned statements</span>
+              </a>
+            </dd>
+          </div>
+        {% endif %}
+
+         
+        {% if data['exceptions-check'] == 'No' %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Why are you not submitting a reasoned statement?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['not-submitting-reasoned-statement'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden">  why are you not submitting a reasoned statement?</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Explain why this development development does not need a reasoned statement
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['explain-why-no-reasoned-statement'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> explain why this development development does not need a reasoned statement</span>
+              </a>
+            </dd>
+          </div>
+        {% endif %}
+
+        
+      </dl>
+    
+      <form class="form" action="task-list-complete" method="post">
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+    
+    </div>
+  </div>
+
+{% endblock %}

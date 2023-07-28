@@ -1,0 +1,42 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Purpose of the development work
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+ 
+
+      <h1 class="govuk-heading-l">
+        Purpose of the development work
+      </h1>
+
+      <p>To register a site for bat mitigation work, you must show that the reason for the development on the site either:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>has no satisfactory alternative</li>
+        <li>is to preserve public health and safety</li>
+        <li>is for overriding public interest</li>
+      </ul>
+      
+      <p>In most cases, you will need to <a href="https://www.gov.uk/government/publications/reasoned-statement-to-support-a-mitigation-licence-application" class="govuk-link" rel="noreferrer noopener" target="_blank">submit a reasoned statement (opens in new tab)</a>.</p>
+
+      
+      <form class="form" action="exceptions" method="post">
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

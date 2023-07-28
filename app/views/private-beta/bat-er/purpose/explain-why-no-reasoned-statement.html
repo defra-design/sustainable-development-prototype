@@ -1,0 +1,40 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Explain why this development development does not need a reasoned statement
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+ 
+
+      
+      <form class="form" action="check-your-answers" method="post">
+
+        {{ govukTextarea({
+          name: "explain-why-no-reasoned-statement",
+          id: "explain-why-no-reasoned-statement",
+          label: {
+            text: "Explain why this development development does not need a reasoned statement",
+            classes: "govuk-label--l",
+            isPageHeading: true
+          }
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}
