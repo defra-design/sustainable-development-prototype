@@ -161,6 +161,22 @@ Check your answers
                 </a>
               </dd>
             </div>
+            {% if data['identified-bat-potential-check'] == 'No' %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Explain why LP4 has not been applied if you were not confident your surveys would have identified bat potential
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['explain-why-no-lp4-applied'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> explain why LP4 has not been applied if you were not confident your surveys would have identified bat potential</span>
+                  </a>
+                </dd>
+              </div>
+            {% endif %}
+
             {% if data['identified-bat-potential-check'] == 'No, but LP4 has been applied' %}
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
