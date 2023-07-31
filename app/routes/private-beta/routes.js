@@ -1336,5 +1336,15 @@ router.post('/private-beta/bat-er/add-roosts/roost-modified-check', (req, res) =
         res.redirect('why-no-reasoned-statement')
     } 
   });
+
+
+  router.post('/private-beta/bat-er/mitigations-compensations/non-standard-mitigation-compensation-measures-check', (req, res) => {
+    if(req.session.data['non-standard-mitigation-compensation-measures-check'] == 'Yes'){
+        res.redirect('what-non-standard-mitigation-compensation-measures')
+    } else if(req.session.data['non-standard-mitigation-compensation-measures-check'] == 'No'){
+        res.redirect('roofing-membranes-safety')
+    } 
+  });
+  
   
 }

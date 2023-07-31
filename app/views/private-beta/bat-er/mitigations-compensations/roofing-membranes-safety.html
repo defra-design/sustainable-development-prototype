@@ -1,0 +1,63 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Safety of roofing membranes
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">    
+
+        <h1 class="govuk-heading-l">Safety of roofing membranes</h1>
+
+        <p>To prevent harm to bats, you should not use, or remove if present, and Non-bitumen coated roofing membranes (NBRCM) (also known as breathable roofing membranes).</p>
+        
+
+
+      <form class="form" action="non-standard-mitigation-compensation-measures" method="post"> 
+        {{ govukRadios({
+            name: "nbrcm-check",
+            fieldset: {
+              legend: {
+                text: "Are non-bitumen coated roofing membranes (NBRCM) being proposed?",
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            items: [
+              {
+                value: "Yes, NBCRM's are already present",
+                text: "Yes, NBCRM's are already present"
+              },
+              {
+                value: "Yes, NBCRM's are being proposed",
+                text: "Yes, NBCRM's are being proposed"
+              },
+              {
+                value: "No, NBCRMs are not present",
+                text: "No, NBCRMs are not present"
+              },
+              {
+                value: "No, bats cannot access NBCRMs",
+                text: "No, bats cannot access NBCRMs"
+              }
+            ]
+          }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+
+

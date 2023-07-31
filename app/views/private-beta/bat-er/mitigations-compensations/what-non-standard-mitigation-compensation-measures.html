@@ -1,0 +1,41 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+What non-standard compensations or mitigations are you proposing?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">    
+
+
+      <form class="form" action="roofing-membranes-safety" method="post"> 
+        {{ govukTextarea({
+            name: "what-non-standard-compensations",
+            id: "what-non-standard-compensations",
+            label: {
+              text: "What non-standard compensations or mitigations are you proposing?",
+              classes: "govuk-label--l",
+              isPageHeading: true
+            }
+            
+          }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+
+

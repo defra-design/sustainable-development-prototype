@@ -1,0 +1,52 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Will you use any non-standard mitigation or compensation measures?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">    
+
+      <form class="form" action="non-standard-mitigation-compensation-measures-check" method="post"> 
+        {{ govukRadios({
+          name: "non-standard-mitigation-compensation-measures-check",
+          fieldset: {
+            legend: {
+              text: "Will you use any non-standard mitigation or compensation measures?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+
+

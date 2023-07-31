@@ -1,0 +1,44 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Favourable conservation status
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">    
+
+        <h1 class="govuk-heading-l">Favourable conservation status</h1>
+
+        <p>You must explain how the mitigation and compensation measures will maintain favourable conservation status of local populations of the bat species present at this site.</p>
+        
+
+
+      <form class="form" action="non-standard-mitigation-compensation-measures" method="post"> 
+        {{ govukTextarea({
+            name: "favourable-conservation-status-details",
+            id: "favourable-conservation-status-details",
+            label: {
+              text: "How will the mitigation and compensation measures at this site maintain favourable conservation status?",
+              classes: "govuk-label--m"
+            }
+          }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+
+
