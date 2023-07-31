@@ -1,0 +1,359 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Check your answers
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h2 class="govuk-heading-l">Check your answers</h2>
+
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Have you visited the site in the past 3 months?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['visited-site-check'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> have you visited the site in the past 3 months?</span>
+            </a>
+          </dd>
+        </div>
+        {% if data['visited-site-check'] == 'No' %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Explain why you have not visited the site in the past 3 months
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['explain-why-not-visited-site'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> explain why you have not visited the site in the past 3 months</span>
+              </a>
+            </dd>
+          </div>
+        {% endif %}
+         
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Which survey methods were used?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {% for method in data['survey-methods'] %}
+                <p>{{ method }}</p>
+              {% endfor %}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> which survey methods were used?</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Does the site have features suitable for hibernation roosts?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['features-suitable-check'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> does the site have features suitable for hibernation roosts?</span>
+              </a>
+            </dd>
+          </div>
+          {% if data['features-suitable-check'] == 'Yes' %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Did you do hibernation surveys?
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['hibernation-surveys-check'] }}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> did you do hibernation surveys?</span>
+                </a>
+              </dd>
+            </div>
+            {% if data['hibernation-surveys-check'] == 'No' %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Why did you not do hibernation surveys?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['why-no-hibernation-surveys'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> why did you not do hibernation surveys?</span>
+                  </a>
+                </dd>
+              </div>
+            {% endif %}
+          {% endif %}
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Did you use non-standard survey techniques?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['non-standard-surveys-check'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> did you use non-standard survey techniques?</span>
+              </a>
+            </dd>
+          </div>
+          {% if data['non-standard-surveys-check'] == 'Yes' %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Describe the surveys used
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['describe-non-standard-surveys'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> describe the surveys used</span>
+                  </a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Upload the survey report
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  ns-survey-report-june-23.pdf
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> upload the survey report</span>
+                  </a>
+                </dd>
+              </div>
+            {% endif %}
+
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Are you confident that your surveys would have identified bat potential?
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['identified-bat-potential-check'] }}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> are you confident that your surveys would have identified bat potential?</span>
+                </a>
+              </dd>
+            </div>
+            {% if data['identified-bat-potential-check'] == 'No' %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Explain why LP4 has not been applied if you were not confident your surveys would have identified bat potential
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['explain-why-no-lp4-applied'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> explain why LP4 has not been applied if you were not confident your surveys would have identified bat potential</span>
+                  </a>
+                </dd>
+              </div>
+            {% endif %}
+
+            {% if data['identified-bat-potential-check'] == 'No, but LP4 has been applied' %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Why has LP4 been applied at this site?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['why-lp4'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> why has LP4 been applied at this site?</span>
+                  </a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Why has LP4 been applied at this site?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['why-lp4'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> why has LP4 been applied at this site?</span>
+                  </a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Explain why the cost or time for standard survey is disproportionate
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['why-disproportionate'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> explain why the cost or time for standard survey is disproportionate</span>
+                  </a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  How will your approach predict the impact of development on bat species?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['predict-impact'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> how will your approach predict the impact of development on bat species?</span>
+                  </a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Explain the impact of your mitigation or compensation measures
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['explain-impact-of-mitigation'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> explain the impact of your mitigation or compensation measures</span>
+                  </a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Explain the impact of your mitigation or compensation measures
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['explain-impact-of-mitigation'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> explain the impact of your mitigation or compensation measures</span>
+                  </a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Do you want to upload any evidence supporting the surveys?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['upload-evidence-check'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> do you want to upload any evidence supporting the surveys?</span>
+                  </a>
+                </dd>
+              </div>
+              {% if data['non-standard-surveys-check'] == 'Yes' %}
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Uploaded file
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    supporting-evidence.pdf
+                  </dd>
+                  <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="#">
+                      Change<span class="govuk-visually-hidden"> uploaded file?</span>
+                    </a>
+                  </dd>
+                </div>
+              {% endif %}
+              {% if data['another-file-check'] == 'Yes' %}
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Uploaded file
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    additional-supporting-evidence.pdf
+                  </dd>
+                  <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="#">
+                      Change<span class="govuk-visually-hidden"> uploaded file?</span>
+                    </a>
+                  </dd>
+                </div>
+              {% endif %}
+            {% endif %}
+
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Upload the survey map or map data
+              </dt>
+              <dd class="govuk-summary-list__value">
+                survey-map.shp
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> upload the survey map or map data</span>
+                </a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Upload the impacts map or map data
+              </dt>
+              <dd class="govuk-summary-list__value">
+                impacts-map.shp
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> upload the impacts map or map data</span>
+                </a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Upload your assessment of the impacts
+              </dt>
+              <dd class="govuk-summary-list__value">
+                impacts-assessment.shp
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> upload your assessment of the impacts</span>
+                </a>
+              </dd>
+            </div>
+
+
+        
+      </dl>
+    
+      <form class="form" action="task-list-complete" method="post">
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+    
+    </div>
+  </div>
+
+{% endblock %}

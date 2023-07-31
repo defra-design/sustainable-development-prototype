@@ -1346,5 +1346,27 @@ router.post('/private-beta/bat-er/add-roosts/roost-modified-check', (req, res) =
     } 
   });
   
+  router.post('/private-beta/bat-er/mitigations-compensations/nbrcm-check', (req, res) => {
+    if(req.session.data['nbrcm-check'] == 'Yes, NBCRMs are already present'){
+        res.redirect('why-nbcrm')
+    } else if(req.session.data['nbrcm-check'] == 'Yes, NBCRMs are being proposed'){
+        res.redirect('why-nbcrm')
+    } else if(req.session.data['nbrcm-check'] == 'No, NBCRMs are not present'){
+        res.redirect('compensations-minimum-expectations')
+    } else if(req.session.data['nbrcm-check'] == 'No, bats cannot access NBCRMs'){
+        res.redirect('compensations-minimum-expectations')
+    }   
+  });
+  
+
+  router.post('/private-beta/bat-er/mitigations-compensations/compensations-expectations-check', (req, res) => {
+    if(req.session.data['compensations-expectations-check'] == 'Yes'){
+        res.redirect('upload-compensation-map')
+    } else if(req.session.data['compensations-expectations-check'] == 'No'){
+        res.redirect('why-not-minimum-expectations')
+    } 
+  });
+
+  
   
 }

@@ -1,0 +1,41 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Explain why the proposed compensations do not meet the minimum expectations
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">    
+
+
+      <form class="form" action="upload-compensation-map" method="post"> 
+        {{ govukTextarea({
+            name: "why-not-minimum-expectations",
+            id: "why-not-minimum-expectations",
+            label: {
+              text: "Explain why the proposed compensations do not meet the minimum expectations",
+              classes: "govuk-label--l",
+              isPageHeading: true
+            }
+            
+          }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+
+

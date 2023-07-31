@@ -1,0 +1,41 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Why is NBRCM present or being used?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">    
+
+
+      <form class="form" action="upload-membrane-documents" method="post"> 
+        {{ govukTextarea({
+            name: "why-nbcrm",
+            id: "why-nbcrm",
+            label: {
+              text: "Why is NBRCM present or being used?",
+              classes: "govuk-label--l",
+              isPageHeading: true
+            }
+            
+          }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+
+

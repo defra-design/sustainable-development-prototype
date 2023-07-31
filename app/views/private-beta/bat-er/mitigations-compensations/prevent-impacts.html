@@ -1,0 +1,41 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+What are you doing to prevent impacts on light-averse bat species?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">    
+
+
+      <form class="form" action="upload-lighting-plan" method="post"> 
+        {{ govukTextarea({
+            name: "prevent-impacts",
+            id: "prevent-impacts",
+            label: {
+              text: "What are you doing to prevent impacts on light-averse bat species?",
+              classes: "govuk-label--l",
+              isPageHeading: true
+            }
+            
+          }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+
+
