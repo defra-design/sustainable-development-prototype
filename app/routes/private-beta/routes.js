@@ -809,7 +809,24 @@ router.post('/private-beta/SSDSIP-476-conservation-considerations/v4-mvp/on-or-w
 });
 
 
+router.post('/private-beta/SSDSIP-476-conservation-considerations/v5/on-or-within', (req, res) => {
+  if(req.session.data['on-or-within-designated-site'] == 'Yes'){
+      res.redirect('sites-start')
+  } else if(req.session.data['on-or-within-designated-site'] == 'No'){
+      res.redirect('check-your-answers-none')
+  } 
+});
+
+
 router.post('/private-beta/SSDSIP-476-conservation-considerations/v4-mvp/permission-check', (req, res) => {
+  if(req.session.data['permission-check'] == 'Yes'){
+      res.redirect('details-of-consent')
+  } else if(req.session.data['permission-check'] == 'No'){
+      res.redirect('advice')
+  } 
+});
+
+router.post('/private-beta/SSDSIP-476-conservation-considerations/v5/permission-check', (req, res) => {
   if(req.session.data['permission-check'] == 'Yes'){
       res.redirect('details-of-consent')
   } else if(req.session.data['permission-check'] == 'No'){
@@ -827,7 +844,24 @@ router.post('/private-beta/SSDSIP-476-conservation-considerations/v4-mvp/advice-
 });
 
 
+router.post('/private-beta/SSDSIP-476-conservation-considerations/v5/advice-check', (req, res) => {
+  if(req.session.data['advice-check'] == 'Yes'){
+      res.redirect('outcome')
+  } else if(req.session.data['advice-check'] == 'No'){
+      res.redirect('on-or-close')
+  } 
+});
+
+
 router.post('/private-beta/SSDSIP-476-conservation-considerations/v4-mvp/add-another-site-check', (req, res) => {
+  if(req.session.data['add-another-site-check'] == 'Yes'){
+      res.redirect('another-designated-site-name')
+  } else if(req.session.data['add-another-site-check'] == 'No'){
+      res.redirect('task-list-complete')
+  } 
+});
+
+router.post('/private-beta/SSDSIP-476-conservation-considerations/v5/add-another-site-check', (req, res) => {
   if(req.session.data['add-another-site-check'] == 'Yes'){
       res.redirect('another-designated-site-name')
   } else if(req.session.data['add-another-site-check'] == 'No'){
@@ -837,6 +871,14 @@ router.post('/private-beta/SSDSIP-476-conservation-considerations/v4-mvp/add-ano
 
 
 router.post('/private-beta/SSDSIP-476-conservation-considerations/v4-mvp/another-permission-check', (req, res) => {
+  if(req.session.data['another-permission-check'] == 'Yes'){
+      res.redirect('another-details-of-consent')
+  } else if(req.session.data['another-permission-check'] == 'No'){
+      res.redirect('another-advice')
+  } 
+});
+
+router.post('/private-beta/SSDSIP-476-conservation-considerations/v5/another-permission-check', (req, res) => {
   if(req.session.data['another-permission-check'] == 'Yes'){
       res.redirect('another-details-of-consent')
   } else if(req.session.data['another-permission-check'] == 'No'){
@@ -854,7 +896,24 @@ router.post('/private-beta/SSDSIP-476-conservation-considerations/v4-mvp/another
 });
 
 
+router.post('/private-beta/SSDSIP-476-conservation-considerations/v5/another-advice-check', (req, res) => {
+  if(req.session.data['another-advice-check'] == 'Yes'){
+      res.redirect('another-outcome')
+  } else if(req.session.data['another-advice-check'] == 'No'){
+      res.redirect('another-on-or-close')
+  } 
+});
+
+
 router.post('/private-beta/SSDSIP-476-conservation-considerations/v4-mvp/remove-site-check', (req, res) => {
+  if(req.session.data['remove-site-check'] == 'Yes'){
+      res.redirect('check-your-answers-none')
+  } else if(req.session.data['remove-site-check'] == 'No'){
+      res.redirect('sites-review-add-another')
+  } 
+});
+
+router.post('/private-beta/SSDSIP-476-conservation-considerations/v5/remove-site-check', (req, res) => {
   if(req.session.data['remove-site-check'] == 'Yes'){
       res.redirect('check-your-answers-none')
   } else if(req.session.data['remove-site-check'] == 'No'){
@@ -869,6 +928,15 @@ router.post('/private-beta/SSDSIP-476-conservation-considerations/v4-mvp/remove-
       res.redirect('sites-another-review-add-another')
   } 
 });
+
+router.post('/private-beta/SSDSIP-476-conservation-considerations/v5/remove-site-another-check', (req, res) => {
+  if(req.session.data['remove-site-another-check'] == 'Yes'){
+      res.redirect('sites-review-add-another')
+  } else if(req.session.data['remove-site-another-check'] == 'No'){
+      res.redirect('sites-another-review-add-another')
+  } 
+});
+
 
 
 router.post('/private-beta/SDDSIP-827-returns/v3-mvp/manage-licence-check', (req, res) => {
