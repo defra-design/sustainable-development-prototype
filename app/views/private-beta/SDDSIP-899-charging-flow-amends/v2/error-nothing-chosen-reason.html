@@ -1,0 +1,102 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: Why do you think your project is exempt from payment?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+ 
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not selected an option",
+                href: "#reason"
+              }
+            ]
+          }) }}
+
+      <form class="form" action="check-your-answers" method="post">
+
+
+          {% set otherHtml %}
+          {{ govukTextarea({
+            name: "other-reason",
+            id: "other-reason",
+            label: {
+              text: "Describe why your project is exempt from license payments"
+            }
+          }) }}
+        {% endset -%}
+
+
+            {{ govukRadios({
+            name: "reason",
+            fieldset: {
+                legend: {
+                text: "Why do you think your project is exempt from payment?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+                }
+            },
+            errorMessage: {
+                text: "Select an option"
+              },
+                items: [
+                {
+                  value: "the purpose of the licence is to preserve public health and safety",
+                  text: "the purpose of the licence is to preserve public health and safety"
+                },
+                {
+                    value: "the purpose of the licence is to prevent damage to livestock, crops, timber or property",
+                    text: "the purpose of the licence is to prevent damage to livestock, crops, timber or property"
+                },
+                {
+                    value: "the purpose of the licence is to improve my home through householder planning permission or permitted development",
+                    text: "the purpose of the licence is to improve my home through householder planning permission or permitted development"
+                },
+                {
+                    value: "the primary aim of the project is science, research or education for a protected species or protected site",
+                    text: "the primary aim of the project is science, research or education for a protected species or protected site"
+                },
+                {
+                    value: "the primary aim of the project is conservation of the protected species",
+                    text: "the primary aim of the project is conservation of the protected species"
+                },
+                {
+                    value: "the primary aim of the project is to conserve a scheduled monument, listed building, place of worship or traditional farm building in a stewardship agreement",
+                    text: "the primary aim of the project is to conserve a scheduled monument, listed building, place of worship or traditional farm building in a stewardship agreement"
+                },
+                {
+                    divider: "or"
+                },
+                {
+                value: "Other reason",
+                text: "Other",
+                conditional: {
+                    html: otherHtml
+                }
+                }
+            ]
+            }) }}
+
+
+        {{ govukButton({
+            text: "Continue"
+          }) }}
+        </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

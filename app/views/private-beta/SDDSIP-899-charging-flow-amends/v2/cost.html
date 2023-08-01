@@ -1,0 +1,50 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Cost of this licence    
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">
+        Cost of this licence
+      </h1>
+
+        <p>The cost of this licence typically ranges from £300 to £800.</p>
+
+        <p>More complex licences cost more. Things that can increase the cost of a licence include:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>if the development affects a protected site</li>
+          <li>if badgers are present</li>
+          <li>greater impact on badgers, such as disconnecting territories, affecting more setts, and proposals to close setts</li>
+          <li>new or more complex methods being used</li>
+          <li>incomplete, inaccurate or unnecessary information in the application</li>
+          <li>poor quality surveys</li>
+          <li>issues with ecologist experience</li>
+          <li>phased or multi-plot developments</li>
+          <li>planning permission is not fully in place</li> 
+        </ul>     
+
+        <p>The cost will be more if you need to make a change in your application once you have submitted it.</p>
+
+
+      <form class="form" action="check-your-answers" method="post">
+        {{ govukButton({
+            text: "Continue"
+          }) }}
+        </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

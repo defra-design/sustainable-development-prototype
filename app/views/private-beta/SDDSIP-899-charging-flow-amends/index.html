@@ -1,7 +1,7 @@
 {% extends "layout-pb-no-service-name.html" %}
 
 {% block pageTitle %} 
-SDDSIP 899 | Amends to charging flow
+SDDSIP 899 | Amends to charging flow / Work activity details
 {% endblock %}
 
 {% block beforeContent %}
@@ -13,17 +13,17 @@ SDDSIP 899 | Amends to charging flow
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
       <span class="govuk-caption-l">SDDSIP 899</span>
-      <h1 class="govuk-heading-l">Amends to charging flow</h1> 
+      <h1 class="govuk-heading-l">Amends to charging flow / Work activity details</h1> 
 
       <div class="govuk-!-margin-bottom-9">
-        <strong class="govuk-tag govuk-tag--pink">
-          TESTED
-       </strong>
+        <strong class="govuk-tag govuk-tag--green" >
+          In Progress
+        </strong>
       </div>
 
       {{ govukButton({
-        text: "View full flow",
-        href: "task-list"
+        text: "View v2 full flow",
+        href: "v2/task-list"
       }) }}
       
       
@@ -42,7 +42,7 @@ SDDSIP 899 | Amends to charging flow
         </thead>
         <tbody class="govuk-table__body">   
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="task-list">Task list</a></td>
+            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/task-list">Task list</a></td>
             <td class="govuk-table__cell"></td>
             <td class="govuk-table__cell">
               <strong class="govuk-tag govuk-tag--green">
@@ -52,10 +52,10 @@ SDDSIP 899 | Amends to charging flow
             <td class="govuk-table__cell">Tested well</td>
            </tr>
            <tr class="govuk-table__row">
-                <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="proposal">What activity or development work</a></td>
+                <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/proposal">What activity or development work</a></td>
                 <td class="govuk-table__cell">
-                  <a class="govuk-link govuk-link--no-visited-state" href="error-blank-proposal">If blank</a><br>
-                  <a class="govuk-link govuk-link--no-visited-state" href="error-too-long-proposal">If too many characters</a>
+                  <a class="govuk-link govuk-link--no-visited-state" href="v2/error-blank-proposal">If blank</a><br>
+                  <a class="govuk-link govuk-link--no-visited-state" href="v2/error-too-long-proposal">If too many characters</a>
                 </td>
                 <td class="govuk-table__cell">
                   <strong class="govuk-tag govuk-tag--yellow">
@@ -65,8 +65,8 @@ SDDSIP 899 | Amends to charging flow
                 <td class="govuk-table__cell">Question felt like it was directed more at a developer than an ecologist</td>
             </tr>
             <tr class="govuk-table__row">
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="paying-for-your-license">Paying for your license</a></td>
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-paying-for-your-license">If nothing chosen</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/paying-for-your-license">Paying for your license</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-paying-for-your-license">If nothing chosen</a></td>
               <td class="govuk-table__cell">
                 <strong class="govuk-tag govuk-tag--red">
                   Low
@@ -75,10 +75,10 @@ SDDSIP 899 | Amends to charging flow
               <td class="govuk-table__cell">Page felt a bit 'wordy', text duplicated on the next page as radios, some confusion as some list items were felt to not apply to A24</td>
             </tr>
             <tr class="govuk-table__row">
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="reason">What reason exempt?</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/reason">What reason exempt?</a></td>
               <td class="govuk-table__cell">
-                <a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-reason">If nothing chosen</a><br>
-                <a class="govuk-link govuk-link--no-visited-state" href="error-blank-reason">If blank</a>
+                <a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-reason">If nothing chosen</a><br>
+                <a class="govuk-link govuk-link--no-visited-state" href="v2/error-blank-reason">If blank</a>
               </td>
               <td class="govuk-table__cell">
                 <strong class="govuk-tag govuk-tag--red">
@@ -88,8 +88,8 @@ SDDSIP 899 | Amends to charging flow
               <td class="govuk-table__cell">Radios were duplicated from text on previous page, users felt repetition was unneccessary</td>
             </tr>
            <tr class="govuk-table__row">
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="category">What kind of development?</a></td>
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-category">If nothing chosen</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/category">What kind of development?</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-category">If nothing chosen</a></td>
               <td class="govuk-table__cell">
                 <strong class="govuk-tag govuk-tag--red">
                   Low
@@ -98,7 +98,7 @@ SDDSIP 899 | Amends to charging flow
               <td class="govuk-table__cell">Categories too broad, users confused, couldn't choose a category with confidence</td>
             </tr>
             <tr class="govuk-table__row">
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="cost">Cost of this licence</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/cost">Cost of this licence</a></td>
               <td class="govuk-table__cell"></td>
               <td class="govuk-table__cell">
                 <strong class="govuk-tag govuk-tag--red">
@@ -108,7 +108,7 @@ SDDSIP 899 | Amends to charging flow
               <td class="govuk-table__cell">Users who felt they were exempt were alarmed by this page, some would stop and bail out at this point. Large range between costs unhelful. Users felt some items in the list were irrelevant to an A24 application.</td>
             </tr>
             <tr class="govuk-table__row">
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="check-your-answers">Check your answers</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/check-your-answers">Check your answers</a></td>
               <td class="govuk-table__cell"></td>
               <td class="govuk-table__cell">
                 <strong class="govuk-tag govuk-tag--green">
@@ -118,7 +118,7 @@ SDDSIP 899 | Amends to charging flow
               <td class="govuk-table__cell">Tested well</td>
             </tr>
             <tr class="govuk-table__row">
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="task-list-complete">Task list</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/task-list-complete">Task list</a></td>
               <td class="govuk-table__cell"></td>
               <td class="govuk-table__cell">
                 <strong class="govuk-tag govuk-tag--yellow">
@@ -128,7 +128,7 @@ SDDSIP 899 | Amends to charging flow
               <td class="govuk-table__cell">Not tested yet</td>
              </tr>
              <tr class="govuk-table__row">
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="declaration">Declaration</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/declaration">Declaration</a></td>
               <td class="govuk-table__cell"></td>
               <td class="govuk-table__cell">
                 <strong class="govuk-tag govuk-tag--yellow">
@@ -139,6 +139,133 @@ SDDSIP 899 | Amends to charging flow
              </tr>
           </tbody>
         </table>
+
+
+      <!-- Version 1 -->
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Version 1
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+
+        
+          <h2 class="govuk-heading-m">Full page list and error states - v1</h2>
+
+          <table class="govuk-table">
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header">Page</th>
+                  <th scope="col" class="govuk-table__header">Error states</th>
+                  <th scope="col" class="govuk-table__header">Confidence</th>
+                  <th scope="col" class="govuk-table__header govuk-!-width-one-third">Notes</th>
+                </tr>
+            </thead>
+            <tbody class="govuk-table__body">   
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="task-list">Task list</a></td>
+                <td class="govuk-table__cell"></td>
+                <td class="govuk-table__cell">
+                  <strong class="govuk-tag govuk-tag--green">
+                    HIGH
+                  </strong>
+                </td>
+                <td class="govuk-table__cell">Tested well</td>
+               </tr>
+               <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="proposal">What activity or development work</a></td>
+                    <td class="govuk-table__cell">
+                      <a class="govuk-link govuk-link--no-visited-state" href="error-blank-proposal">If blank</a><br>
+                      <a class="govuk-link govuk-link--no-visited-state" href="error-too-long-proposal">If too many characters</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--yellow">
+                        Medium
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">Question felt like it was directed more at a developer than an ecologist</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="paying-for-your-license">Paying for your license</a></td>
+                  <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-paying-for-your-license">If nothing chosen</a></td>
+                  <td class="govuk-table__cell">
+                    <strong class="govuk-tag govuk-tag--red">
+                      Low
+                    </strong>
+                  </td>
+                  <td class="govuk-table__cell">Page felt a bit 'wordy', text duplicated on the next page as radios, some confusion as some list items were felt to not apply to A24</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="reason">What reason exempt?</a></td>
+                  <td class="govuk-table__cell">
+                    <a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-reason">If nothing chosen</a><br>
+                    <a class="govuk-link govuk-link--no-visited-state" href="error-blank-reason">If blank</a>
+                  </td>
+                  <td class="govuk-table__cell">
+                    <strong class="govuk-tag govuk-tag--red">
+                      Low
+                    </strong>
+                  </td>
+                  <td class="govuk-table__cell">Radios were duplicated from text on previous page, users felt repetition was unneccessary</td>
+                </tr>
+               <tr class="govuk-table__row">
+                  <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="category">What kind of development?</a></td>
+                  <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="error-nothing-chosen-category">If nothing chosen</a></td>
+                  <td class="govuk-table__cell">
+                    <strong class="govuk-tag govuk-tag--red">
+                      Low
+                    </strong>
+                  </td>
+                  <td class="govuk-table__cell">Categories too broad, users confused, couldn't choose a category with confidence</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="cost">Cost of this licence</a></td>
+                  <td class="govuk-table__cell"></td>
+                  <td class="govuk-table__cell">
+                    <strong class="govuk-tag govuk-tag--red">
+                      Low
+                    </strong>
+                  </td>
+                  <td class="govuk-table__cell">Users who felt they were exempt were alarmed by this page, some would stop and bail out at this point. Large range between costs unhelful. Users felt some items in the list were irrelevant to an A24 application.</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="check-your-answers">Check your answers</a></td>
+                  <td class="govuk-table__cell"></td>
+                  <td class="govuk-table__cell">
+                    <strong class="govuk-tag govuk-tag--green">
+                      HIGH
+                    </strong>
+                  </td>
+                  <td class="govuk-table__cell">Tested well</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="task-list-complete">Task list</a></td>
+                  <td class="govuk-table__cell"></td>
+                  <td class="govuk-table__cell">
+                    <strong class="govuk-tag govuk-tag--yellow">
+                      Medium
+                    </strong>
+                  </td>
+                  <td class="govuk-table__cell">Not tested yet</td>
+                 </tr>
+                 <tr class="govuk-table__row">
+                  <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="declaration">Declaration</a></td>
+                  <td class="govuk-table__cell"></td>
+                  <td class="govuk-table__cell">
+                    <strong class="govuk-tag govuk-tag--yellow">
+                      Medium
+                    </strong>
+                  </td>
+                  <td class="govuk-table__cell">Update to text due to changes to this flow</td>
+                 </tr>
+              </tbody>
+            </table>
+
+        </div>
+      </details>
+
+
 
 
       <h2 class="govuk-heading-m govuk-!-margin-top-9">Design and research history</h2>
@@ -153,8 +280,13 @@ SDDSIP 899 | Amends to charging flow
         </thead>
         <tbody class="govuk-table__body">
           <tr class="govuk-table__row">
+            <th class="govuk-table__cell">1 Aug 2023</th>
+            <td class="govuk-table__cell">v2 flow created for design iterations based on research findings</td>
+            <td class="govuk-table__cell"></td>
+          </tr> 
+          <tr class="govuk-table__row">
             <th class="govuk-table__cell">13 Jun 2023</th>
-            <td class="govuk-table__cell">Confidence levels in each page based on UR findings reviewed by UCD Team</td>
+            <td class="govuk-table__cell">Confidence levels in each page of v1 flow reviewed by UCD Team</td>
             <td class="govuk-table__cell"></td>
           </tr>  
           <tr class="govuk-table__row">
