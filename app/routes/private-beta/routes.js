@@ -528,7 +528,23 @@ router.post('/private-beta/SDDSIP-585-amend-permissions-flow/v2/permissions-chec
   } 
 });
 
+router.post('/private-beta/SDDSIP-585-amend-permissions-flow/v3/permissions-check', (req, res) => {
+  if(req.session.data['permissions-check'] == 'Yes'){
+      res.redirect('add-permission-start')
+  } else if(req.session.data['permissions-check'] == 'No'){
+      res.redirect('why-no-permission')
+  } 
+});
+
 router.post('/private-beta/SDDSIP-585-amend-permissions-flow/v2/add-another-permission-check', (req, res) => {
+  if(req.session.data['add-another-permission-check'] == 'Yes'){
+      res.redirect('consent-type-another')
+  } else if(req.session.data['add-another-permission-check'] == 'No'){
+      res.redirect('redirect')
+  } 
+});
+
+router.post('/private-beta/SDDSIP-585-amend-permissions-flow/v3/add-another-permission-check', (req, res) => {
   if(req.session.data['add-another-permission-check'] == 'Yes'){
       res.redirect('consent-type-another')
   } else if(req.session.data['add-another-permission-check'] == 'No'){
@@ -554,8 +570,24 @@ router.post('/private-beta/SDDSIP-585-amend-permissions-flow/v2/commitment-check
   } 
 });
 
+router.post('/private-beta/SDDSIP-585-amend-permissions-flow/v3/commitment-check', (req, res) => {
+  if(req.session.data['commitment-check'] == 'Yes'){
+      res.redirect('commitment-met')
+  } else if(req.session.data['commitment-check'] == 'No'){
+      res.redirect('commitment-subject-eps')
+  } 
+});
+
 
 router.post('/private-beta/SDDSIP-585-amend-permissions-flow/v2/commitment-eps-check', (req, res) => {
+  if(req.session.data['commitment-eps-check'] == 'Yes'){
+      res.redirect('commitment-eps-met')
+  } else if(req.session.data['commitment-eps-check'] == 'No'){
+      res.redirect('check-your-answers')
+  } 
+});
+
+router.post('/private-beta/SDDSIP-585-amend-permissions-flow/v3/commitment-eps-check', (req, res) => {
   if(req.session.data['commitment-eps-check'] == 'Yes'){
       res.redirect('commitment-eps-met')
   } else if(req.session.data['commitment-eps-check'] == 'No'){
