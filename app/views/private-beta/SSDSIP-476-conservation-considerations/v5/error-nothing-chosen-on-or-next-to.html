@@ -1,0 +1,82 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: Designated sites
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+        
+      
+          <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds">
+
+              {{ govukErrorSummary({
+                titleText: "There is a problem",
+                errorList: [
+                  {
+                    text: "You have not selected an option",
+                    href: "#on-or-within-designated-site"
+                  }
+                ]
+              }) }}
+        
+              <h1 class="govuk-heading-l">Designated sites</h1>
+        
+              <p>You must tell us if the proposed activities you need the licence for could affect any of these designated sites:</p>
+        
+              <ul class="govuk-list govuk-list--bullet">
+                <li>Site of Special Scientific Interest (SSSI)</li>
+                <li>Special Protection Area (SPA)</li>
+                <li>Special Area of Conservation (SAC)</li>
+                <li>Ramsar Site</li>
+              </ul>
+              
+              <p><a href="https://magic.defra.gov.uk/MagicMap.aspx?chosenLayers=sssiPIndex,sssiIndex,backdropDIndex,backdropIndex,europeIndex,vmlBWIndex,25kBWIndex,50kBWIndex,250kBWIndex,miniscaleBWIndex,baseIndex&box=-187122:5095:1034155:705095&useDefaultbackgroundMapping=false" target="_blank">Check the location of designated sites (opens in new tab)</a></p>
+        
+              <form class="form" action="on-or-within" method="post">       
+        
+                {{ govukRadios({
+                  name: "on-or-within-designated-site",
+                  fieldset: {
+                    legend: {
+                      text: "Will the activity take place on or next to any designated sites?",
+                      classes: "govuk-fieldset__legend--m govuk-!-padding-top-6"
+                    }
+                  },
+                  items: [
+                    {
+                      value: "Yes",
+                      text: "Yes"
+                    },
+                    {
+                      value: "No",
+                      text: "No"
+                    }
+                  ],
+                  errorMessage: {
+                    text: "Select an option"
+                  }
+                }) }}
+        
+        
+        
+              
+        
+                {{ govukButton({
+                  text: "Continue"
+                }) }}
+              </form>
+        
+        
+              
+            
+            </div>
+          </div>
+
+{% endblock %}

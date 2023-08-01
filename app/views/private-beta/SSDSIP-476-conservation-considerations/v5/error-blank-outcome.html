@@ -1,0 +1,84 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: Advice about the activity
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <form class="form" action="development-continue" method="post">       
+
+       
+
+          <h1 class="govuk-heading-l">Advice about the activity</h1>
+
+          {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not entered who gave you the advice",
+                href: "#advice-giver"
+              },
+              {
+                text: "You have not entered a description of the outcome",
+                href: "#advice-given"
+              }
+            ]
+          }) }}
+
+      <form action="/form-handler" method="post" novalidate>
+
+        {{ govukInput({
+          label: {
+            text: "Who did you receive the advice from?",
+            classes: "govuk-label--m"
+          },
+          hint: {
+            text: "Enter the full name"
+          },
+          errorMessage: {
+            text: "Enter the name of who gave you the advice"
+          },
+          id: "advice-giver",
+          name: "advice-giver"
+        }) }}
+
+        {{ govukTextarea({
+          name: "advice-given",
+          id: "advice-given",
+          errorMessage: {
+            text: "Enter a description of the outcome"
+          },
+          label: {
+            text: "Describe the outcome of the advice",
+            classes: "govuk-label--m"
+          },
+          hint: {
+            text: "For example, dates and names.
+            You will be able to upload documents showing the advice."
+          }
+        }) }}
+
+        
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

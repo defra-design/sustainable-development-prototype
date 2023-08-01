@@ -1,0 +1,52 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: What is the name of the designated site?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not entered a designated site name",
+                href: "#SSSI-name"
+              }
+            ]
+          }) }}
+      
+      <form class="form" action="permission" method="post">       
+
+        {{ govukInput({
+          label: {
+            text: "What is the name of the designated site?",
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          errorMessage: {
+            text: "Enter a designated site name"
+          },
+          id: "SSSI-name",
+          name: "SSSI-name"
+        }) }}
+        
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}
