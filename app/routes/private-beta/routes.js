@@ -767,6 +767,13 @@ router.post('/private-beta/SDDSIP-899-charging-flow-amends/paying-for-your-licen
   } 
 });
 
+router.post('/private-beta/SDDSIP-899-charging-flow-amends/v2/paying-for-your-license-check', (req, res) => {
+  if(req.session.data['sites-check'] == 'Yes'){
+      res.redirect('reason')
+  } else if(req.session.data['sites-check'] == 'No'){
+      res.redirect('category')
+  } 
+});
 
 router.post('/private-beta/SDDSIP-827-returns/v2/manage-licence-check', (req, res) => {
   if(req.session.data['manage-licence-check'] == 'Submit a return'){
