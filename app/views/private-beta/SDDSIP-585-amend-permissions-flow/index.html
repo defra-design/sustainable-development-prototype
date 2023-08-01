@@ -16,21 +16,233 @@ SDDSIP 585 | Amend permissions flow
       <h1 class="govuk-heading-l">Amend permissions flow</h1> 
 
       <div class="govuk-!-margin-bottom-9">
-        <strong class="govuk-tag govuk-tag--pink" >
-          TESTED
+        <strong class="govuk-tag govuk-tag--green" >
+          In Progress
         </strong>
       </div>
 
 
       {{ govukButton({
-        text: "View v2 full flow",
-        href: "v2/task-list"
+        text: "View v3 full flow",
+        href: "v3/task-list"
       }) }}
       
       
       <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
       <h2 class="govuk-heading-m">Full page list and error states</h2>
+
+      <div class="govuk-inset-text">
+        <p><strong>NB</strong> In order for the flow to display correctly, add 'planning permission' first and second when adding permissions in the loop.</p>
+      </div>
+
+      
+
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Page</th>
+            <th scope="col" class="govuk-table__header">Error states</th>
+            <th scope="col" class="govuk-table__header">Confidence</th>
+            <th scope="col" class="govuk-table__header govuk-!-width-one-third">Notes</th>
+            </tr>
+        </thead>
+        <tbody class="govuk-table__body">   
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/task-list">Task list</a></td>
+            <td class="govuk-table__cell"></td>
+            <td class="govuk-table__cell">
+              <strong class="govuk-tag govuk-tag--yellow">
+                Medium
+              </strong>
+            </td>
+            <td class="govuk-table__cell">Tested well on the whole but review the label for permissions, could be more specific about planning</td>
+           </tr>
+
+           <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/permissions">Project need permissions?</a></td>
+            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/error-nothing-chosen-permissions">If nothing chosen</a></td>
+            <td class="govuk-table__cell">
+              <strong class="govuk-tag govuk-tag--yellow">
+                Medium
+              </strong>
+            </td>
+            <td class="govuk-table__cell">Users felt the content could be clearer, i.e. What permission? From the landowner? Or planning?</td>
+           </tr>
+
+           <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/why-no-permission">Why no permission required?</a></td>
+            <td class="govuk-table__cell">
+              <a class="govuk-link govuk-link--no-visited-state" href="v3/error-nothing-chosen-why-no-permission">If nothing chosen</a><br>
+              <a class="govuk-link govuk-link--no-visited-state" href="v3/error-blank-why-no-permission">If blank</a>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--yellow">
+                  Medium
+                </strong>
+              </td>
+              <td class="govuk-table__cell">Not tested as users were taken down the 'happy path'</td>
+            </td>
+           </tr>
+
+           <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/add-permission-start">Tell us about each permission</a></td>
+            <td class="govuk-table__cell"></td>
+            <td class="govuk-table__cell">
+              <strong class="govuk-tag govuk-tag--yellow">
+                Medium
+              </strong>
+            </td>
+            <td class="govuk-table__cell">Content could be improved to emphasise you start by adding the first permission</td>
+           </tr>
+
+           <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/consent-type">What permissions has the project got?</a></td>
+            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/error-nothing-chosen-consent-type">If nothing chosen</a></td>
+            <td class="govuk-table__cell">
+              <strong class="govuk-tag govuk-tag--yellow">
+                Medium
+              </strong>
+            </td>
+            <td class="govuk-table__cell">Page generally well understood but users wanted to specify planning permission type on this page as well, some permissions may be missing?</td>
+           </tr>
+
+           <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/lpa">Which planning authority? - Autocomplete</a></td>
+            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/error-nothing-chosen-lpa">If nothing chosen</a></td>
+            <td class="govuk-table__cell">
+              <strong class="govuk-tag govuk-tag--yellow">
+                Medium
+              </strong>
+            </td>
+            <td class="govuk-table__cell">Typeahead not tested in the prototype</td>
+           </tr>
+
+           <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/planning-type">What type of planning permission was granted?</a></td>
+            <td class="govuk-table__cell">
+              <a class="govuk-link govuk-link--no-visited-state" href="v3/error-nothing-chosen-planning-type">If nothing chosen</a><br>
+              <a class="govuk-link govuk-link--no-visited-state" href="v3/error-blank-planning-type">If blank</a>
+            </td>
+            <td class="govuk-table__cell">
+              <strong class="govuk-tag govuk-tag--red">
+                Low
+              </strong>
+            </td>
+            <td class="govuk-table__cell">Some users not sure what hybrid meant, expectation was also to select more than one option, some users seemed to have forgotten they were adding permissions individually at this point</td>
+           </tr>
+
+           <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/consent-reference">What is the [permission] reference?</a></td>
+            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/error-blank-consent-reference">If blank</a></td>
+            <td class="govuk-table__cell">
+              <strong class="govuk-tag govuk-tag--green">
+                HIGH
+              </strong>
+            </td>
+            <td class="govuk-table__cell">Tested well</td>
+           </tr>
+
+           <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/cya-consents">Permission added / add another</a></td>
+            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-cya-consents">If nothing chosen</a></td>
+            <td class="govuk-table__cell">
+              <strong class="govuk-tag govuk-tag--yellow">
+                MEDIUM
+              </strong>
+            </td>
+            <td class="govuk-table__cell">Some users wanted to add more specific information around certain apects of each permission</td>
+           </tr>
+
+           <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/conditions-reserved-matters">Other conditions been met?</a></td>
+            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/error-nothing-chosen-conditions-reserved-matters">If nothing chosen</a></td>
+            <td class="govuk-table__cell">
+              <strong class="govuk-tag govuk-tag--red">
+                Low
+              </strong>
+            </td>
+            <td class="govuk-table__cell">Users had major issues with this page, didn't feel it was at all relevant to the application</td>
+           </tr>
+
+           <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/which-not-completed">List conditions not completed</a></td>
+            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/error-blank-which-not-completed">If blank</a></td>
+            <td class="govuk-table__cell">
+              <strong class="govuk-tag govuk-tag--red">
+                Low
+              </strong>
+            </td>
+            <td class="govuk-table__cell">Users had major issues with this page, didn't feel it was at all relevant to the application</td>
+           </tr>
+
+           <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/commitment-subject-eps">Any potential conflicts?</a></td>
+            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/error-nothing-chosen-commitment-subject-eps">If nothing chosen</a></td>
+            <td class="govuk-table__cell">
+              <strong class="govuk-tag govuk-tag--red">
+                Low
+              </strong>
+            </td>
+            <td class="govuk-table__cell">Users had major issues with this page, didn't feel it was at all relevant to the application</td>
+           </tr>
+
+           <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/commitment-eps-met">Describe potential conflicts</a></td>
+            <td class="govuk-table__cell">
+              <a class="govuk-link govuk-link--no-visited-state" href="v3/error-blank-commitment-eps-met">If blank</a><br>
+            </td>
+            <td class="govuk-table__cell">
+              <strong class="govuk-tag govuk-tag--red">
+                Low
+              </strong>
+            </td>
+            <td class="govuk-table__cell">Users had major issues with this page, didn't feel it was at all relevant to the application</td>
+           </tr>
+           
+           <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/check-your-answers">Check your answers</a></td>
+            <td class="govuk-table__cell"></td>
+            <td class="govuk-table__cell">
+              <strong class="govuk-tag govuk-tag--green">
+                HIGH
+              </strong>
+            </td>
+            <td class="govuk-table__cell">Tested well</td>
+           </tr>
+
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/task-list-complete">Task list - complete</a></td>
+              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--yellow">
+                  Medium
+                </strong>
+              </td>
+              <td class="govuk-table__cell">Not tested yet</td>
+             </tr>
+
+          </tbody>
+        </table>
+    
+        <p class="govuk-!-margin-bottom-9">GDS Accessible Autocomplete to be used for planning authority input - <a href="https://github.com/alphagov/accessible-autocomplete">https://github.com/alphagov/accessible-autocomplete</a></p>
+
+
+
+
+
+
+
+         <!-- Version 2 -->
+        <details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              Version 2
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+
+
+            <h2 class="govuk-heading-m">Full page list and error states</h2>
 
       <div class="govuk-inset-text">
         <p><strong>NB</strong> In order for the flow to display correctly, add 'planning permission' first and second when adding permissions in the loop.</p>
@@ -228,6 +440,9 @@ SDDSIP 585 | Amend permissions flow
 
 
 
+          </div>
+        </details>
+
 
 
 
@@ -235,8 +450,6 @@ SDDSIP 585 | Amend permissions flow
 
 
       <!-- Version 1 -->
-
-
       <details class="govuk-details" data-module="govuk-details">
         <summary class="govuk-details__summary">
           <span class="govuk-details__summary-text">
@@ -389,7 +602,13 @@ SDDSIP 585 | Amend permissions flow
             <th scope="col" class="govuk-table__header">Rationale</th>
             </tr>
         </thead>
+        
         <tbody class="govuk-table__body"> 
+          <tr class="govuk-table__row">
+            <th class="govuk-table__cell">1 Aug 2023</th>
+            <td class="govuk-table__cell">v3 flow created for design iterations based on research findings</td>
+            <td class="govuk-table__cell"></td>
+          </tr> 
           <tr class="govuk-table__row">
             <th class="govuk-table__cell">13 Jun 2023</th>
             <td class="govuk-table__cell">Confidence levels in each page based on UR findings reviewed by UCD Team</td>

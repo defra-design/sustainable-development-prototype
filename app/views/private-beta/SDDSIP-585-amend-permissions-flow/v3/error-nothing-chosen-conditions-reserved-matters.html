@@ -1,0 +1,69 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: Have all other wildlife or habitat-related conditions been met?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "You have not selected an option",
+            href: "#conditions-reserved-matters-check"
+          }
+        ]
+      }) }}
+
+      <form class="form" action="conditions-reserved-matters-check" method="post">       
+
+        <div class="govuk-form-group govuk-form-group--error">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                <h1 class="govuk-fieldset__heading">
+                  Have all other wildlife or habitat-related conditions been met?
+                </h1>
+              </legend>
+              <p>These include:</p>
+              <ul class="govuk-list govuk-list--bullet">
+                <li>planning conditions</li>
+                <li>reserved matters</li>
+                <li>Section 106 agreements</li>
+                <li>commitments made at a Public Enquiry or in an Environmental Statement</li>
+              </ul>
+              <p id="where-do-you-live-error" class="govuk-error-message">
+                <span class="govuk-visually-hidden">Error:</span> Select an option
+              </p>
+              <div class="govuk-radios" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="conditions-reserved-matters-check" name="conditions-reserved-matters-check" type="radio" value="Yes">
+                  <label class="govuk-label govuk-radios__label" for="conditions-reserved-matters-check">
+                    Yes
+                  </label>
+                </div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="conditions-reserved-matters-check-2" name="conditions-reserved-matters-check" type="radio" value="No">
+                  <label class="govuk-label govuk-radios__label" for="conditions-reserved-matters-check-2">
+                    No
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,95 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: Have the commitments been met?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "You have not entered when you think the legal commitments will be complete",
+            href: "#commitment-eps-not-met-detail"
+          }
+        ]
+      }) }}
+      
+      <form class="form" action="check-your-answers" method="post">  
+        
+        
+        {% set commitmentHtml %}
+          {{ govukTextarea({
+            name: "commitment-eps-met-detail",
+            id: "commitment-eps-met-detail",
+            label: {
+              text: "Describe how the commitments will have been met"
+            }
+          }) }}
+        {% endset -%}
+
+        {% set commitmentNotMetHtml %}
+          {{ govukTextarea({
+            name: "commitment-eps-not-met-detail",
+            id: "commitment-eps-not-met-detail",
+            errorMessage: {
+              text: "Enter when you think the commitments will be complete"
+            },
+            label: {
+              text: "When do you think the legal commitments will be complete?"
+            }
+          }) }}
+        {% endset -%}
+
+
+
+          {{ govukRadios({
+            name: "commitment-eps-met-check",
+            fieldset: {
+              legend: {
+                text: "Will the legal commitments have been met within 6 weeks of this application being submitted?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            items: [
+              {
+                value: "Yes",
+                text: "Yes",
+                conditional: {
+                  html: commitmentHtml
+                }
+              },
+              {
+                value: "No",
+                text: "No",
+                checked: true,
+                conditional: {
+                  html: commitmentNotMetHtml
+                }
+              }
+            ]
+          }) }}
+
+
+        
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

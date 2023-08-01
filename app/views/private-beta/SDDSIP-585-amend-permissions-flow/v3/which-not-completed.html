@@ -1,0 +1,43 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+List these conditions and describe why they have not been completed.
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <form class="form" action="commitment-subject-eps" method="post">
+
+        <div class="govuk-form-group">
+          <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--l" for="which-conditions-not-completed">
+            List these conditions and describe why they have not been completed
+            </label>
+          </h1>
+          <p>If there are outstanding planning conditions relevant to this application, it may:</p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>delay a decision</li>
+            <li>cause the application to be rejected</li>
+          </ul>
+          <textarea class="govuk-textarea" id="which-conditions-not-completed" name="which-conditions-not-completed" rows="5" aria-describedby="which-conditions-not-completed-hint"></textarea>
+        </div>
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

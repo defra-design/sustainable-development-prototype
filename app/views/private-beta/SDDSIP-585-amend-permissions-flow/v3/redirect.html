@@ -1,0 +1,25 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+You have added 1 permission
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+{% if data['consent-type-check'] == 'Planning permission' %}
+<script>
+    window.location.href = 'conditions-reserved-matters'
+</script>
+{% else %}
+<script>
+  window.location.href = 'commitment-subject'
+</script>
+{% endif %}
+ 
+
+{% endblock %}

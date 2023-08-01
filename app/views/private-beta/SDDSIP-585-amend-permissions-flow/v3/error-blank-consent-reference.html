@@ -1,0 +1,55 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: What is the planning permission reference?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "You have not entered a planning permission reference",
+            href: "#reference"
+          }
+        ]
+      }) }}
+      
+      <form class="form" action="cya-consents" method="post">
+        {{ govukInput({
+          label: {
+            text: "What is the " + data['consent-type-check'] | lower + " reference?",
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          errorMessage: {
+            text: "Enter a planning permission reference"
+          },
+          classes: "govuk-input--width-20",
+          id: "reference",
+          name: "reference"
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+
+        
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

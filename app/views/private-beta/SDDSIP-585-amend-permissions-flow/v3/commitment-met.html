@@ -1,0 +1,78 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Has the commitment been met?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <form class="form" action="commitment-subject-eps" method="post">       
+
+        
+
+        {% set commitmentHtml %}
+          {{ govukTextarea({
+            name: "commitment-met-detail",
+            id: "commitment-met-detail",
+            label: {
+              text: "Describe how the commitment has been met"
+            }
+          }) }}
+        {% endset -%}
+
+        {% set commitmentNotMetHtml %}
+        {{ govukTextarea({
+          name: "commitment-not-met-detail",
+          id: "commitment-not-met-detail",
+          label: {
+            text: "When will the commitment be complete?"
+          }
+        }) }}
+      {% endset -%}
+
+        {{ govukRadios({
+            name: "commitment-met-check",
+            fieldset: {
+              legend: {
+                text: "Has the commitment been met?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            items: [
+              {
+                value: "Yes",
+                text: "Yes",
+                conditional: {
+                  html: commitmentHtml
+                }
+              },
+              {
+                value: "No",
+                text: "No",
+                conditional: {
+                  html: commitmentNotMetHtml
+                }
+              }
+            ]
+          }) }}
+        
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

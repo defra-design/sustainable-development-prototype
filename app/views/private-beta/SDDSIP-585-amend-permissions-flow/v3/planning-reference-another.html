@@ -1,0 +1,43 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+What is the planning permission reference?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <form class="form" action="cya-consents-another" method="post">
+        {{ govukInput({
+          label: {
+            text: "What is the planning permission reference?",
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          classes: "govuk-input--width-20",
+          id: "reference-another",
+          name: "reference-another"
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+
+        
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}
