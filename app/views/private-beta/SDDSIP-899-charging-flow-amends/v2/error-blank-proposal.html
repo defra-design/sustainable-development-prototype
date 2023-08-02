@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Error: What activity or development work do you plan to do?
+Error: What development work is planned?
 {% endblock %}
 
 {% block beforeContent %}
@@ -20,7 +20,7 @@ Error: What activity or development work do you plan to do?
                 titleText: "There is a problem",
                 errorList: [
                   {
-                    text: "You have not entered what activity or development work you plan to do",
+                    text: "You have not entered what development work you plan to do",
                     href: "#proposal"
                   }
                 ]
@@ -31,7 +31,7 @@ Error: What activity or development work do you plan to do?
                 name: "proposal",
                 id: "proposal",
                 label: {
-                  text: "What activity or development work do you plan to do?",
+                  text: "What development work is planned?",
                   classes: "govuk-label--l",
                   isPageHeading: true
                 },
@@ -39,7 +39,7 @@ Error: What activity or development work do you plan to do?
                   text: "For example, construction of a new road, maintenance of a bridge, construction of five flats with access road and car parking area."
                 },
                 errorMessage: {
-                    text: "Enter the activity or development work you plan to do"
+                    text: "Enter the development work you plan to do"
                   }
               }) }}
 
