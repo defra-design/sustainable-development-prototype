@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Give details of the permission
+Give details of the permission from the owner or occupier
 {% endblock %}
 
 {% block beforeContent %}
@@ -14,13 +14,13 @@ Give details of the permission
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       
-      <form class="form" action="another-advice" method="post">       
+      <form class="form" action="another-on-or-close" method="post">       
 
           {{ govukTextarea({
             name: "another-permission-detail",
             id: "another-permission-detail",
             label: {
-              text: "Give details of the permission",
+              text: "Give details of the permission from the owner or occupier",
               classes: "govuk-label--l",
               isPageHeading: true
             },

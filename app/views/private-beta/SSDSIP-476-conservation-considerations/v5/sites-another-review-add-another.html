@@ -51,34 +51,6 @@ Check your answers
             </a>
           </dd>
         </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Do you have permission from the owner or occupier of the designated site?
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['permission-check'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="add-person">
-              Change<span class="govuk-visually-hidden"> do you have permission from the owner or occupier of the designated site?</span>
-            </a>
-          </dd>
-        </div>
-        {% if data['permission-check'] == 'Yes' %}
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Give details of the permission
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{ data['permission-detail'] }} 
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="add-person">
-                Change<span class="govuk-visually-hidden"> give details of the permission</span>
-              </a>
-            </dd>
-          </div>
-        {% endif %}
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
@@ -126,18 +98,52 @@ Check your answers
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Will the activity happen on the site or next to it?
+            Do you have permission from the owner or occupier of the designated site?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['permission-check'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="add-person">
+              Change<span class="govuk-visually-hidden"> do you have permission from the owner or occupier of the designated site?</span>
+            </a>
+          </dd>
+        </div>
+        {% if data['permission-check'] == 'Yes' %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Give details of the permission from the owner or occupier
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['permission-detail'] }} 
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="add-person">
+                Change<span class="govuk-visually-hidden"> give details of the permission from the owner or occupier</span>
+              </a>
+            </dd>
+          </div>
+        {% endif %}
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Will the activity happen on the designated site or adjacent to it?
           </dt>
           <dd class="govuk-summary-list__value">
             {{ data['on-or-close-check'] }} 
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="add-person">
-              Change<span class="govuk-visually-hidden"> will the activity happen on the site or next to it?</span>
+              Change<span class="govuk-visually-hidden"> will the activity happen on the designated site or adjacent to it?</span>
             </a>
           </dd>
         </div>
       </dl>
+
+
+
+
+
 
 
 
@@ -158,34 +164,6 @@ Check your answers
             </a>
           </dd>
         </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Do you have permission from the owner or occupier of the designated site?
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['another-permission-check'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="add-person">
-              Change<span class="govuk-visually-hidden"> do you have permission from the owner or occupier of the designated site?</span>
-            </a>
-          </dd>
-        </div>
-        {% if data['another-permission-check'] == 'Yes' %}
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Give details of the permission
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{ data['another-permission-detail'] }} 
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="add-person">
-                Change<span class="govuk-visually-hidden"> give details of the permission</span>
-              </a>
-            </dd>
-          </div>
-        {% endif %}
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
@@ -233,14 +211,45 @@ Check your answers
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Will the activity happen on the site or next to it?
+            Do you have permission from the owner or occupier of the designated site?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['another-permission-check'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="add-person">
+              Change<span class="govuk-visually-hidden"> do you have permission from the owner or occupier of the designated site?</span>
+            </a>
+          </dd>
+        </div>
+        {% if data['another-permission-check'] == 'Yes' %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Give details of the permission from the owner or occupier
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['another-permission-detail'] }} 
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="add-person">
+                Change<span class="govuk-visually-hidden"> give details of the permission from the owner or occupier</span>
+              </a>
+            </dd>
+          </div>
+        {% endif %}
+
+        
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Will the activity happen on the designated site or adjacent to it?
           </dt>
           <dd class="govuk-summary-list__value">
             {{ data['another-on-or-close-check'] }} 
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="add-person">
-              Change<span class="govuk-visually-hidden"> will the activity happen on the site or next to it?</span>
+              Change<span class="govuk-visually-hidden"> will the activity happen on the designated site or adjacent to it?</span>
             </a>
           </dd>
         </div>

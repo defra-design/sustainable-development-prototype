@@ -632,7 +632,7 @@ router.post('/private-beta/SSDSIP-476-conservation-considerations/v3/on-or-withi
 
 router.post('/private-beta/SSDSIP-476-conservation-considerations/v3/permission-check', (req, res) => {
   if(req.session.data['permission-check'] == 'Yes'){
-      res.redirect('details-of-consent')
+      res.redirect('details-of-consent') 
   } else if(req.session.data['permission-check'] == 'No'){
       res.redirect('advice')
   } 
@@ -877,7 +877,7 @@ router.post('/private-beta/SSDSIP-476-conservation-considerations/v5/permission-
   if(req.session.data['permission-check'] == 'Yes'){
       res.redirect('details-of-consent')
   } else if(req.session.data['permission-check'] == 'No'){
-      res.redirect('advice')
+      res.redirect('on-or-close')
   } 
 });
 
@@ -895,7 +895,7 @@ router.post('/private-beta/SSDSIP-476-conservation-considerations/v5/advice-chec
   if(req.session.data['advice-check'] == 'Yes'){
       res.redirect('outcome')
   } else if(req.session.data['advice-check'] == 'No'){
-      res.redirect('on-or-close')
+      res.redirect('permission')
   } 
 });
 
@@ -929,7 +929,7 @@ router.post('/private-beta/SSDSIP-476-conservation-considerations/v5/another-per
   if(req.session.data['another-permission-check'] == 'Yes'){
       res.redirect('another-details-of-consent')
   } else if(req.session.data['another-permission-check'] == 'No'){
-      res.redirect('another-advice')
+      res.redirect('another-on-or-close')
   } 
 });
 
@@ -947,7 +947,7 @@ router.post('/private-beta/SSDSIP-476-conservation-considerations/v5/another-adv
   if(req.session.data['another-advice-check'] == 'Yes'){
       res.redirect('another-outcome')
   } else if(req.session.data['another-advice-check'] == 'No'){
-      res.redirect('another-on-or-close')
+      res.redirect('another-designated-permission')
   } 
 });
 
