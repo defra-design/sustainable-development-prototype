@@ -561,6 +561,14 @@ router.post('/private-beta/SDDSIP-585-amend-permissions-flow/v2/conditions-reser
   } 
 });
 
+router.post('/private-beta/SDDSIP-585-amend-permissions-flow/v3/conditions-reserved-matters-check', (req, res) => {
+  if(req.session.data['conditions-reserved-matters-check'] == 'Yes'){
+      res.redirect('commitment-subject-eps')
+  } else if(req.session.data['conditions-reserved-matters-check'] == 'No'){
+      res.redirect('which-not-completed')
+  } 
+});
+
 
 router.post('/private-beta/SDDSIP-585-amend-permissions-flow/v2/commitment-check', (req, res) => {
   if(req.session.data['commitment-check'] == 'Yes'){

@@ -266,8 +266,6 @@ Check your answers
         </div>
 
 
-
-
         {% if data['commitment-eps-check'] == 'Yes' %}
 
         <div class="govuk-summary-list__row">
@@ -286,15 +284,12 @@ Check your answers
 
         {% endif %}
 
-
-       
-
       </dl>
 
 
 
       
-      <form class="form" action="../../SSDSIP-476-conservation-considerations/v4-mvp/task-list" method="post">
+      <form class="form" action="task-list-complete" method="post">
 
         {{ govukButton({
           text: "Continue"
