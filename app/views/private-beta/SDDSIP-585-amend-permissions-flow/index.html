@@ -319,17 +319,6 @@ SDDSIP 585 | Amend permissions flow
            </tr>
 
            <tr class="govuk-table__row">
-            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/lpa">Which planning authority? - Autocomplete</a></td>
-            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-lpa">If nothing chosen</a></td>
-            <td class="govuk-table__cell">
-              <strong class="govuk-tag govuk-tag--yellow">
-                Medium
-              </strong>
-            </td>
-            <td class="govuk-table__cell">Typeahead not tested in the prototype</td>
-           </tr>
-
-           <tr class="govuk-table__row">
             <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/planning-type">What type of planning permission was granted?</a></td>
             <td class="govuk-table__cell">
               <a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-planning-type">If nothing chosen</a><br>
@@ -341,6 +330,17 @@ SDDSIP 585 | Amend permissions flow
               </strong>
             </td>
             <td class="govuk-table__cell">Some users not sure what hybrid meant, expectation was also to select more than one option, some users seemed to have forgotten they were adding permissions individually at this point</td>
+           </tr>
+
+           <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/lpa">Which planning authority? - Autocomplete</a></td>
+            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-lpa">If nothing chosen</a></td>
+            <td class="govuk-table__cell">
+              <strong class="govuk-tag govuk-tag--yellow">
+                Medium
+              </strong>
+            </td>
+            <td class="govuk-table__cell">Typeahead not tested in the prototype</td>
            </tr>
 
            <tr class="govuk-table__row">
@@ -603,7 +603,22 @@ SDDSIP 585 | Amend permissions flow
             </tr>
         </thead>
         
-        <tbody class="govuk-table__body"> 
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__cell">2 Aug 2023</th>
+            <td class="govuk-table__cell">Removed hint text from legal commitments question</td>
+            <td class="govuk-table__cell">It confused users, they felt it was unrelated to the question and was confusing</td>
+          </tr>  
+          <tr class="govuk-table__row">
+            <th class="govuk-table__cell">2 Aug 2023</th>
+            <td class="govuk-table__cell">Added details component to explain what Hybrid planning means</td>
+            <td class="govuk-table__cell">Some users were not sure what Hybrid planning was</td>
+          </tr>  
+          <tr class="govuk-table__row">
+            <th class="govuk-table__cell">2 Aug 2023</th>
+            <td class="govuk-table__cell">Moved planning permission type question to appear after directly after the what permissions question</td>
+            <td class="govuk-table__cell">Users commented that this question was appearing in the wrong place and should come directly after the permissions type question</td>
+          </tr> 
           <tr class="govuk-table__row">
             <th class="govuk-table__cell">1 Aug 2023</th>
             <td class="govuk-table__cell">v3 flow created for design iterations based on research findings</td>

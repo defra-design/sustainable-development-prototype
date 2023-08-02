@@ -1,0 +1,27 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Planning
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+{% if data['consent-type-check'] == 'Planning permission' %}
+<script>
+    window.location.href = 'planning-type'
+</script>
+{% else %}
+<script>
+  window.location.href = 'lpa'
+</script>
+{% endif %}
+ 
+
+{% endblock %}
+
+
