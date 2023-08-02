@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-What activity or development work do you plan to do?
+What development work is planned?
 {% endblock %}
 
 {% block beforeContent %}
@@ -14,14 +14,14 @@ What activity or development work do you plan to do?
 
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
-		<form class="form" action="paying-for-your-license" method="post">
+		<form class="form" action="cost" method="post">
 
 
             {{ govukTextarea({
                 name: "proposal",
                 id: "proposal",
                 label: {
-                  text: "What activity or development work do you plan to do?",
+                  text: "What development work is planned?",
                   classes: "govuk-label--l",
                   isPageHeading: true
                 },

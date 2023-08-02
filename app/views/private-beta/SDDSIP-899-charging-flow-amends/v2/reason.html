@@ -16,7 +16,11 @@ Why do you think your project is exempt from payment?
     <div class="govuk-grid-column-two-thirds">
  
 
-      <form class="form" action="category" method="post">
+      <form class="form" action="check-your-answers" method="post">
+
+        <h1 class="govuk-heading-l">Paying for this licence</h1>
+
+        <p>In some circumstances, the development may be exempt from licence payment or incur no charge.</p>
 
 
           {% set otherHtml %}
@@ -35,8 +39,7 @@ Why do you think your project is exempt from payment?
             fieldset: {
                 legend: {
                 text: "Why do you think your project is exempt from payment?",
-                isPageHeading: true,
-                classes: "govuk-fieldset__legend--l"
+                classes: "govuk-fieldset__legend--m"
                 }
             },
             items: [
