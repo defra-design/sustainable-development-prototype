@@ -1,0 +1,56 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Will you meet the minimum expectations if you are not monitoring?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">    
+
+      <form class="form" action="minimum-expectations-no-monitoring-check" method="post"> 
+        {{ govukRadios({
+          name: "minimum-expectations-no-monitoring-check",
+          fieldset: {
+            legend: {
+              text: "Will you meet the minimum expectations if you are not monitoring?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        {{ govukDetails({
+            summaryText: "What are the minimum expectations?",
+            text: "Minimum monitoring expectations are set out in BAT EARNED RECOGNITION PILOT:
+            MINIMUM EXPECTATIONS FOR BAT MITIGATION COMPENSATION, MONITORING AND MANAGEMENT - CONTENT NEEDED"
+          }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+
+

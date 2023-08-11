@@ -1347,9 +1347,18 @@ router.post('/private-beta/bat-er/add-roosts/roost-modified-check', (req, res) =
     if(req.session.data['monitoring-required-check'] == 'Yes'){
         res.redirect('monitoring-type')
     } else if(req.session.data['monitoring-required-check'] == 'No'){
-        res.redirect('mitigations-compensations-secured')
+        res.redirect('minimum-expectations-no-monitoring')
     } 
   });
+
+  router.post('/private-beta/bat-er/post-impact/minimum-expectations-no-monitoring-check', (req, res) => {
+    if(req.session.data['minimum-expectations-no-monitoring-check'] == 'Yes'){
+        res.redirect('management-site-maintenance')
+    } else if(req.session.data['minimum-expectations-no-monitoring-check'] == 'No'){
+        res.redirect('minimum-expectations')
+    } 
+  });
+
 
   router.post('/private-beta/bat-er/post-impact/another-maternity-year-check', (req, res) => {
     if(req.session.data['another-maternity-year-check'] == 'Yes'){
