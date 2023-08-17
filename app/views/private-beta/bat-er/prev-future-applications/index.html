@@ -22,6 +22,14 @@ BAT ER | Give details of previous and future applications
       </div>
 
 
+      <form class="form" action="v2/task-list" method="post">
+
+
+        {{ govukButton({
+          text: "View v2 full flow"
+        }) }}
+      </form>
+
 
       <p><a href="https://app.mural.co/t/ddtssddsdigitalprogrammeteam3057/m/ddtssddsdigitalprogrammeteam3057/1667571340492/9d832dd151797e0dc8159049f4f4752d19169e2f?wid=0-1687360591146" target="_blank">Mural flows</a></p>
       
@@ -239,6 +247,14 @@ BAT ER | Give details of previous and future applications
           </span>
         </summary>
         <div class="govuk-details__text">
+
+          <form class="form" action="task-list" method="post">
+                    
+    
+            {{ govukButton({
+              text: "View v1 full flow"
+            }) }}
+          </form>
         
 
           <h2 class="govuk-heading-m">Full page list</h2>
@@ -462,7 +478,7 @@ BAT ER | Give details of previous and future applications
                     </strong>
                   </td>
                   <td class="govuk-table__cell">Not tested yet</td>
-                </tr>-->
+                </tr>
                 <tr class="govuk-table__row">
                   <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="task-list-complete">Task list complete</a></td>
                   <td class="govuk-table__cell"></td>
