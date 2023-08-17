@@ -177,7 +177,8 @@ Check your answers
               </div>
             {% endif %}
 
-            {% if data['identified-bat-potential-check'] == 'No, but LP4 has been applied' %}
+            {% if data['identified-bat-potential-check'] == 'No, but we will use licensing policy 4 (LP4)' %}
+              
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
                   Why has LP4 been applied at this site?
@@ -193,27 +194,14 @@ Check your answers
               </div>
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
-                  Why has LP4 been applied at this site?
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  {{ data['why-lp4'] }}
-                </dd>
-                <dd class="govuk-summary-list__actions">
-                  <a class="govuk-link" href="#">
-                    Change<span class="govuk-visually-hidden"> why has LP4 been applied at this site?</span>
-                  </a>
-                </dd>
-              </div>
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Explain why the cost or time for standard survey is disproportionate
+                  Explain why the cost or time for standard surveys is disproportionate
                 </dt>
                 <dd class="govuk-summary-list__value">
                   {{ data['why-disproportionate'] }}
                 </dd>
                 <dd class="govuk-summary-list__actions">
                   <a class="govuk-link" href="#">
-                    Change<span class="govuk-visually-hidden"> explain why the cost or time for standard survey is disproportionate</span>
+                    Change<span class="govuk-visually-hidden"> explain why the cost or time for standard surveys is disproportionate</span>
                   </a>
                 </dd>
               </div>
@@ -245,31 +233,31 @@ Check your answers
               </div>
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
-                  Explain the impact of your mitigation or compensation measures
+                  Describe your mitigation or compensation measures where LP4 is applied
                 </dt>
                 <dd class="govuk-summary-list__value">
                   {{ data['explain-impact-of-mitigation'] }}
                 </dd>
                 <dd class="govuk-summary-list__actions">
                   <a class="govuk-link" href="#">
-                    Change<span class="govuk-visually-hidden"> explain the impact of your mitigation or compensation measures</span>
+                    Change<span class="govuk-visually-hidden"> describe your mitigation or compensation measures where LP4 is applied</span>
                   </a>
                 </dd>
               </div>
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
-                  Do you want to upload any evidence supporting the surveys?
+                  Do you want to upload any evidence supporting your use of LP4?
                 </dt>
                 <dd class="govuk-summary-list__value">
                   {{ data['upload-evidence-check'] }}
                 </dd>
                 <dd class="govuk-summary-list__actions">
                   <a class="govuk-link" href="#">
-                    Change<span class="govuk-visually-hidden"> do you want to upload any evidence supporting the surveys?</span>
+                    Change<span class="govuk-visually-hidden"> do you want to upload any evidence supporting your use of LP4?</span>
                   </a>
                 </dd>
               </div>
-              {% if data['non-standard-surveys-check'] == 'Yes' %}
+              {% if data['upload-evidence-check'] == 'Yes' %}
                 <div class="govuk-summary-list__row">
                   <dt class="govuk-summary-list__key">
                     Uploaded file
