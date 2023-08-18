@@ -21,22 +21,17 @@ Enter the first year you propose to do monitoring in the active bat period
     <div class="govuk-grid-column-two-thirds">    
 
       <form class="form" action="maternity-monitoring" method="post"> 
-          {{ govukDateInput({
-            id: "maternity-year-1",
-            namePrefix: "maternity-year-1",
-            fieldset: {
-              legend: {
-                text: "Enter the first year you propose to do monitoring in the active bat period",
-                isPageHeading: true,
-                classes: "govuk-fieldset__legend--l"
-              }
+        
+
+          {{ govukInput({
+            label: {
+              text: "Enter the first year you propose to do monitoring in the active bat period",
+              classes: "govuk-label--l",
+              isPageHeading: true
             },
-            items: [
-              {
-                name: "Enter year",
-                classes: "govuk-input--width-4"
-              }
-            ]
+            classes: "govuk-input--width-5",
+            id: "maternity-year-1",
+            name: "maternity-year-1"
           }) }}
 
         {{ govukButton({

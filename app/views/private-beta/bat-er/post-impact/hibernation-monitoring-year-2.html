@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Enter the month and year you propose to do hibernation monitoring
+Enter the second year you propose to do hibernation monitoring
 {% endblock %}
 
 {% block beforeContent %}
@@ -16,30 +16,16 @@ Enter the month and year you propose to do hibernation monitoring
     <div class="govuk-grid-column-two-thirds">    
 
       <form class="form" action="hibernation-monitoring-2" method="post"> 
-          {{ govukDateInput({
-            id: "hibernation-year-2",
-            namePrefix: "hibernation-year-2",
-            fieldset: {
-              legend: {
-                text: "Enter the month and year you propose to do hibernation monitoring",
-                isPageHeading: true,
-                classes: "govuk-fieldset__legend--l"
-              }
-            },
-            hint: {
-              text: "For example, 6 2024"
-            },
-            items: [
-              {
-                name: "month",
-                classes: "govuk-input--width-2"
-              },
-              {
-                name: "year",
-                classes: "govuk-input--width-4"
-              }
-            ]
-          }) }}
+        {{ govukInput({
+          label: {
+            text: "Enter the second year you propose to do hibernation monitoring",
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          classes: "govuk-input--width-5",
+          id: "hibernation-year-2",
+          name: "hibernation-year-2"
+        }) }}
 
         {{ govukButton({
           text: "Continue"

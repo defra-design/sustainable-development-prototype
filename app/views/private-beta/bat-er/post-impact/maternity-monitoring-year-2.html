@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Enter the month and year you propose to do monitoring in the active bat period
+Enter the second year you propose to do monitoring in the active bat perio
 {% endblock %}
 
 {% block beforeContent %}
@@ -16,29 +16,17 @@ Enter the month and year you propose to do monitoring in the active bat period
     <div class="govuk-grid-column-two-thirds">    
 
       <form class="form" action="maternity-monitoring-2" method="post"> 
-          {{ govukDateInput({
+         
+
+          {{ govukInput({
+            label: {
+              text: "Enter the second year you propose to do monitoring in the active bat period",
+              classes: "govuk-label--l",
+              isPageHeading: true
+            },
+            classes: "govuk-input--width-5",
             id: "maternity-year-2",
-            namePrefix: "maternity-year-2",
-            fieldset: {
-              legend: {
-                text: "Enter the month and year you propose to do monitoring in the active bat period",
-                isPageHeading: true,
-                classes: "govuk-fieldset__legend--l"
-              }
-            },
-            hint: {
-              text: "For example, 6 2024"
-            },
-            items: [
-              {
-                name: "month",
-                classes: "govuk-input--width-2"
-              },
-              {
-                name: "year",
-                classes: "govuk-input--width-4"
-              }
-            ]
+            name: "maternity-year-2"
           }) }}
 
         {{ govukButton({
