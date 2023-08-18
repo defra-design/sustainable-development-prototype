@@ -1492,5 +1492,14 @@ router.post('/private-beta/bat-er/add-roosts/roost-modified-check', (req, res) =
   });
 
   
+  router.post('/private-beta/IDM/alternate-applicant/add-alternate-applicant-check', (req, res) => {
+    if(req.session.data['add-alternate-applicant-check'] == 'Yes'){
+        res.redirect('name')
+    } else if(req.session.data['add-alternate-applicant-check'] == 'No'){
+        res.redirect('check-your-answers')
+    } 
+  });
+
+  
   
 }
