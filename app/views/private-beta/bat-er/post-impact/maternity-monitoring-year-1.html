@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Enter the month and year you propose to do monitoring in the active bat period
+Enter the first year you propose to do monitoring in the active bat period
 {% endblock %}
 
 {% block beforeContent %}
@@ -26,21 +26,14 @@ Enter the month and year you propose to do monitoring in the active bat period
             namePrefix: "maternity-year-1",
             fieldset: {
               legend: {
-                text: "Enter the month and year you propose to do monitoring in the active bat period",
+                text: "Enter the first year you propose to do monitoring in the active bat period",
                 isPageHeading: true,
                 classes: "govuk-fieldset__legend--l"
               }
             },
-            hint: {
-              text: "For example, 6 2024"
-            },
             items: [
               {
-                name: "month",
-                classes: "govuk-input--width-2"
-              },
-              {
-                name: "year",
+                name: "Enter year",
                 classes: "govuk-input--width-4"
               }
             ]
