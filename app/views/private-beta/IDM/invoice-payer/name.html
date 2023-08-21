@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Who is the alternate ecologist?
+Who should we send the invoice to?
 {% endblock %}
 
 {% block beforeContent %}
@@ -18,15 +18,15 @@ Who is the alternate ecologist?
 
         {{ govukInput({
           label: {
-            text: "Who is the alternate ecologist?",
+            text: "Who should we send the invoice to?",
             classes: "govuk-label--l",
             isPageHeading: true
           },
           hint: {
             text: "Enter the full name"
           },
-          id: "alternate-ecologist-name",
-          name: "alternate-ecologist-name"
+          id: "invoice-name",
+          name: "invoice-name"
         }) }}
         
           {{ govukButton({
