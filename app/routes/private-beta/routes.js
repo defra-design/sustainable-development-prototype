@@ -1500,6 +1500,13 @@ router.post('/private-beta/bat-er/add-roosts/roost-modified-check', (req, res) =
     } 
   });
 
+  router.post('/private-beta/IDM/alternate-ecologist/add-alternate-ecologist-check', (req, res) => {
+    if(req.session.data['add-alternate-ecologist-check'] == 'Yes'){
+        res.redirect('name')
+    } else if(req.session.data['add-alternate-ecologist-check'] == 'No'){
+        res.redirect('check-your-answers')
+    } 
+  });
   
   
 }

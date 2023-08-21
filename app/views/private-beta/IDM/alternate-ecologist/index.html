@@ -1,0 +1,192 @@
+{% extends "layout-pb-no-service-name.html" %}
+
+{% block pageTitle %} 
+IDM | Alternate ecologist
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <span class="govuk-caption-l">IDM</span>
+      <h1 class="govuk-heading-l">Alternate ecologist</h1> 
+
+      <div class="govuk-!-margin-bottom-9">
+        <strong class="govuk-tag govuk-tag--green" >
+          In Progress
+        </strong>
+      </div>
+
+      <form class="form" action="task-list" method="post">
+
+        {{ govukButton({
+          text: "View full flow"
+        }) }}
+      </form>
+
+
+      <p><a href="https://app.mural.co/t/ddtssddsdigitalprogrammeteam3057/m/ddtssddsdigitalprogrammeteam3057/1683281340925/b110132ca3487adc042f373107b850756cd8e509?wid=0-1692373244368" target="_blank">Mural flow</a></p>
+      
+      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+      <h2 class="govuk-heading-m">Full page list</h2>
+
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Page</th>
+            <th scope="col" class="govuk-table__header">Error states</th>
+            <th scope="col" class="govuk-table__header">Confidence</th>
+            <th scope="col" class="govuk-table__header">Notes</th>
+            </tr>
+        </thead>
+        <tbody class="govuk-table__body">    
+            <tr class="govuk-table__row">
+                <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="task-list">Task list</a></td>
+                <td class="govuk-table__cell"></td>
+                <td class="govuk-table__cell">
+                  <strong class="govuk-tag govuk-tag--yellow">
+                    Medium
+                  </strong>
+                </td>
+                <td class="govuk-table__cell">Not tested yet</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="add-alternate-applicant">Add alternate applicant?</a></td>
+              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--yellow">
+                  Medium
+                </strong>
+              </td>
+              <td class="govuk-table__cell">Not tested yet</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="name">Who is alternate applicant?</a></td>
+              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--yellow">
+                  Medium
+                </strong>
+              </td>
+              <td class="govuk-table__cell">Not tested yet</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="postcode">Postcode?</a></td>
+              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--yellow">
+                  Medium
+                </strong>
+              </td>
+              <td class="govuk-table__cell">Not tested yet</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="select-address">Select address</a></td>
+              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--yellow">
+                  Medium
+                </strong>
+              </td>
+              <td class="govuk-table__cell">Not tested yet</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="no-postcode">Address with no postcode</a></td>
+              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--yellow">
+                  Medium
+                </strong>
+              </td>
+              <td class="govuk-table__cell">Not tested yet</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="no-lookup">Address not found in lookup</a></td>
+              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--yellow">
+                  Medium
+                </strong>
+              </td>
+              <td class="govuk-table__cell">Not tested yet</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="email-address">Email address?</a></td>
+              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--yellow">
+                  Medium
+                </strong>
+              </td>
+              <td class="govuk-table__cell">Not tested yet</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="check-your-answers">Check your answers</a></td>
+              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--yellow">
+                  Medium
+                </strong>
+              </td>
+              <td class="govuk-table__cell">Not tested yet</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="task-list-complete">Task list complete</a></td>
+              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--yellow">
+                  Medium
+                </strong>
+              </td>
+              <td class="govuk-table__cell">Not tested yet</td>
+            </tr>
+          </tbody>
+        </table>
+
+
+        
+
+
+
+
+
+
+        
+        
+        
+        
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-9">Design and research history</h2>
+
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Date</th>
+            <th scope="col" class="govuk-table__header">Changes</th>
+            <th scope="col" class="govuk-table__header">Rationale</th>
+            </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__cell">18 August 2023</th>
+            <td class="govuk-table__cell"><a href="https://app.mural.co/t/ddtssddsdigitalprogrammeteam3057/m/ddtssddsdigitalprogrammeteam3057/1683281340925/b110132ca3487adc042f373107b850756cd8e509?wid=0-1692373244368" target="_blank">v1</a> of the Mural flow built in the prototype.</td>
+            <td class="govuk-table__cell"></td>
+          </tr>
+           <tr class="govuk-table__row">
+            <th class="govuk-table__cell">11 August 2023</th>
+            <td class="govuk-table__cell"><a href="https://app.mural.co/t/ddtssddsdigitalprogrammeteam3057/m/ddtssddsdigitalprogrammeteam3057/1683281340925/b110132ca3487adc042f373107b850756cd8e509?wid=0-1692373244368" target="_blank">v1</a> of the Mural flow reviewed with Graham Willis.</td>
+            <td class="govuk-table__cell"></td>
+          </tr>
+          </tbody>
+        </table>
+
+    
+    </div>
+  </div>
+
+{% endblock %}
