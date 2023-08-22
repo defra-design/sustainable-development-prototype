@@ -1,0 +1,50 @@
+{% extends "layout-pb-signed-out.html" %}
+
+{% block pageTitle %} 
+Does the applicant own the land?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+        <form class="form" action="consent" method="post">
+            {{ govukRadios({
+                name: "land-owner-check",
+                fieldset: {
+                legend: {
+                    text: "Does the applicant own the land?",
+                    isPageHeading: true,
+                    classes: "govuk-fieldset__legend--l"
+                    }
+                },
+                items: [
+                {
+                    value: "Yes",
+                    text: "Yes"
+                },
+                {
+                    value: "No",
+                    text: "No"
+                }
+                ]
+            }) }}
+
+            
+            {{ govukButton({
+                text: "Continue"
+            }) }}
+          </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

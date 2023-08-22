@@ -1,0 +1,54 @@
+{% extends "layout-pb-signed-out.html" %}
+
+{% block pageTitle %} 
+    Which species will the work affect?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+        <form class="form" action="nsip" method="post">
+            {{ govukRadios({
+                name: "which-species-check",
+                fieldset: {
+                legend: {
+                    text: "Which species will the work affect?",
+                    isPageHeading: true,
+                    classes: "govuk-fieldset__legend--l"
+                }
+                },
+                items: [
+                {
+                    value: "Badgers",
+                    text: "Badgers"
+                },
+                {
+                    value: "Bats",
+                    text: "Bats"
+                },
+                {
+                    value: "Great crested newts",
+                    text: "Great crested newts"
+                }
+                ]
+            }) }}
+
+            
+            {{ govukButton({
+                text: "Continue"
+            }) }}
+          </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

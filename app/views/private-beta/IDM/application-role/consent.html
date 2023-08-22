@@ -1,0 +1,53 @@
+{% extends "layout-pb-signed-out.html" %}
+
+{% block pageTitle %} 
+Does the project need any permissions?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+        <form class="form" action="eligible" method="post">
+            {{ govukRadios({
+                name: "consent-check",
+                fieldset: {
+                legend: {
+                    text: "Does the project need any permissions?",
+                    isPageHeading: true,
+                    classes: "govuk-fieldset__legend--l"
+                    }
+                },
+                hint: {
+                    text: "For example, planning permission or listed building consent."
+                  },
+                items: [
+                {
+                    value: "Yes",
+                    text: "Yes"
+                },
+                {
+                    value: "No",
+                    text: "No"
+                }
+                ]
+            }) }}
+
+            
+            {{ govukButton({
+                text: "Continue"
+            }) }}
+          </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -21,10 +21,17 @@ IDM | Your application role
         </strong>
       </div>
 
-      <form class="form" action="task-list" method="post">
+      <form class="form" action="start" method="post">
 
         {{ govukButton({
-          text: "View full flow"
+          text: "View full flow - User signed out"
+        }) }}
+      </form>
+
+      <form class="form" action="applications" method="post">
+
+        {{ govukButton({
+          text: "View full flow - User signed in"
         }) }}
       </form>
 
@@ -44,7 +51,77 @@ IDM | Your application role
             <th scope="col" class="govuk-table__header">Notes</th>
             </tr>
         </thead>
-        <tbody class="govuk-table__body">    
+        <tbody class="govuk-table__body">  
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="start">Start page</a></td>
+              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--yellow">
+                  Medium
+                </strong>
+              </td>
+              <td class="govuk-table__cell">Not tested yet</td>
+            </tr>  
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="which-species">Which species?</a></td>
+              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--yellow">
+                  Medium
+                </strong>
+              </td>
+              <td class="govuk-table__cell">Not tested yet</td>
+            </tr> 
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="nsip">Nationally Significant Infrastructure Project?</a></td>
+              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--yellow">
+                  Medium
+                </strong>
+              </td>
+              <td class="govuk-table__cell">Not tested yet</td>
+            </tr> 
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="land-owner">Applicant own the land?</a></td>
+              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--yellow">
+                  Medium
+                </strong>
+              </td>
+              <td class="govuk-table__cell">Not tested yet</td>
+            </tr> 
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="consent">Project need any permissions?</a></td>
+              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--yellow">
+                  Medium
+                </strong>
+              </td>
+              <td class="govuk-table__cell">Not tested yet</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="eligible">Eligible to apply</a></td>
+              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--yellow">
+                  Medium
+                </strong>
+              </td>
+              <td class="govuk-table__cell">Not tested yet</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="defra-id-signin">Sign in</a></td>
+              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--yellow">
+                  Medium
+                </strong>
+              </td>
+              <td class="govuk-table__cell">Not tested yet</td>
+            </tr>
             <tr class="govuk-table__row">
                 <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="application-role">Your application role</a></td>
                 <td class="govuk-table__cell"></td>
@@ -55,7 +132,16 @@ IDM | Your application role
                 </td>
                 <td class="govuk-table__cell">Not tested yet</td>
             </tr>
-
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="task-list">Task list</a></td>
+              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--yellow">
+                  Medium
+                </strong>
+              </td>
+              <td class="govuk-table__cell">Not tested yet</td>
+          </tr>
           </tbody>
         </table>
 
