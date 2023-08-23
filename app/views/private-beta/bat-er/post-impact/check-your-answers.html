@@ -19,17 +19,50 @@ Check your answers
       <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Is monitoring required?
+            Will you be monitoring any of the roosts or compensation features?
           </dt>
           <dd class="govuk-summary-list__value">
             {{ data['monitoring-required-check'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="#">
-              Change<span class="govuk-visually-hidden"> is monitoring required?</span>
+              Change<span class="govuk-visually-hidden"> will you be monitoring any of the roosts or compensation features?</span>
             </a>
           </dd>
         </div>
+
+         <!-- Monitoring - No -->
+         {% if data['monitoring-required-check'] == 'No' %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Will you meet the minimum expectations if you are not monitoring?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['minimum-expectations-no-monitoring-check'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> will you meet the minimum expectations if you are not monitoring?</span>
+              </a>
+            </dd>
+          </div>
+              {% if data['minimum-expectations-no-monitoring-check'] == 'No' %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Explain why not meeting the minimum expectations for monitoring is acceptable
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['explain-minimum-expectations'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> explain why not meeting the minimum expectations for monitoring is acceptable</span>
+                  </a>
+                </dd>
+              </div>
+            {% endif %}
+         {% endif %}
+         
 
         <!-- Monitoring required - Yes -->
         {% if data['monitoring-required-check'] == 'Yes' %}
@@ -85,7 +118,7 @@ Check your answers
 
 
           <!-- Maternity monitoring --> 
-          {% if data['monitoring-type-check'] == 'Maternity monitoring' %}
+          {% if data['monitoring-type-check'] == 'Monitoring within the active bat period' %}
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
                 First year of monitoring in the active bat period
@@ -183,8 +216,6 @@ Check your answers
           </div>
           {% endif %}
 
-            
-
           {% endif %}
           <!-- End of both types of monitoring --> 
 
@@ -236,39 +267,38 @@ Check your answers
             </div>
           {% endif %}
 
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Will the management and site maintenance meet the minimum expectations?
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{ data['management-site-maintenance-check'] }}
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="#">
-                Change<span class="govuk-visually-hidden"> will the management and site maintenance meet the minimum expectations?</span>
-              </a>
-            </dd>
-          </div>
-
-          {% if data['management-site-maintenance-check'] == 'No' %}
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Why will the minimum expectations not be met?
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{ data['why-min-expectations-not-met'] }}
-              </dd>
-              <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="#">
-                  Change<span class="govuk-visually-hidden"> why will the minimum expectations not be met?</span>
-                </a>
-              </dd>
-            </div>
-          {% endif %}
-
-
       {% endif %}
       <!-- End of Monitoring required - Yes -->
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Will the management and site maintenance meet the minimum expectations?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data['management-site-maintenance-check'] }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="#">
+            Change<span class="govuk-visually-hidden"> will the management and site maintenance meet the minimum expectations?</span>
+          </a>
+        </dd>
+      </div>
+
+      {% if data['management-site-maintenance-check'] == 'No' %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Explain why not meeting the minimum expectations for habitat management and site maintenance is acceptable
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['why-min-expectations-not-met'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> explain why not meeting the minimum expectations for habitat management and site maintenance is acceptable?</span>
+            </a>
+          </dd>
+        </div>
+      {% endif %}
 
       
       <div class="govuk-summary-list__row">

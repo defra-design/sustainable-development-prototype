@@ -11,6 +11,11 @@ Enter the first year you propose to do hibernation monitoring
 
 {% block content %}
 
+{% if data['monitoring-type-check'] == 'Monitoring within the active bat period' %}
+<script>
+    window.location.href = 'monitoring-techniques'
+</script>
+{% endif %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">    
