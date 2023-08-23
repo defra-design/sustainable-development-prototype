@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Who is the licence for?
+Who is the main ecologist?
 {% endblock %}
 
 {% block beforeContent %}
@@ -18,7 +18,7 @@ Who is the licence for?
 
         {{ govukInput({
           label: {
-            text: "Who is the licence for?",
+            text: "Who is the main ecologist?",
             classes: "govuk-label--l",
             isPageHeading: true
           },
@@ -26,7 +26,8 @@ Who is the licence for?
             text: "Enter the full name"
           },
           id: "applicant-name",
-          name: "applicant-name"
+          name: "applicant-name",
+          value: "Dave Smith"
         }) }}
         
           {{ govukButton({
