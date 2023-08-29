@@ -46,42 +46,91 @@ Check your answers
             </a>
           </dd>
         </div> 
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Organisation
-            </dt>
-            <dd class="govuk-summary-list__value">
-              ABC Construction Ltd
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              
-            </dd>
-          </div>   
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Contact address
-            </dt>
-            <dd class="govuk-summary-list__value">
-                Enterprise House<br>
-                Wharfe Business Park<br>
-                Otley<br>
-                LS21 1TY<br>
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              
-            </dd>
-          </div> 
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Email address
-            </dt>
-            <dd class="govuk-summary-list__value">
-                johndoe@email.com
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              
-            </dd>
-          </div> 
+
+            {% if data['invoice-contact-details-check'] == 'Yes' %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Organisation
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  ABC Construction Ltd
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  
+                </dd>
+              </div>   
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Contact address
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    Enterprise House<br>
+                    Wharfe Business Park<br>
+                    Otley<br>
+                    LS21 1TY<br>
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  
+                </dd>
+              </div> 
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Email address
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    johndoe@email.com
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  
+                </dd>
+              </div> 
+            {% endif %}
+
+            {% if data['invoice-contact-details-check'] == 'No' %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Who should we send the invoice to?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['invoice-name'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> who should we send the invoice to?</span>
+                  </a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                {{ data['invoice-name'] }}'s contact address
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  3 High Street<br>
+                  Oxford<br>
+                  Oxfordshire<br>
+                  OX11BD
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> {{ data['invoice-name'] }}'s contact address</span>
+                  </a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                {{ data['invoice-name'] }}'s email address
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['email-address'] }} 
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> {{ data['invoice-name'] }}'s email address</span>
+                  </a>
+                </dd>
+              </div>
+            {% endif %}
+
         {% endif %}
 
         {% if data['responsible-for-invoice-check'] == 'Jane Doe, the ecologist' %}
@@ -98,42 +147,91 @@ Check your answers
             </a>
           </dd>
         </div> 
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Organisation
-            </dt>
-            <dd class="govuk-summary-list__value">
-              ABC Ecology Ltd
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              
-            </dd>
-          </div>   
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Contact address
-            </dt>
-            <dd class="govuk-summary-list__value">
-                Enterprise House<br>
-                Wharfe Business Park<br>
-                Otley<br>
-                LS21 1TY<br>
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              
-            </dd>
-          </div> 
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Email address
-            </dt>
-            <dd class="govuk-summary-list__value">
-                janedoe@email.com
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              
-            </dd>
-          </div> 
+          
+        {% if data['invoice-contact-details-check'] == 'Yes' %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Organisation
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  ABC Ecology Ltd
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  
+                </dd>
+              </div>   
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Contact address
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    Enterprise House<br>
+                    Wharfe Business Park<br>
+                    Otley<br>
+                    LS21 1TY<br>
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  
+                </dd>
+              </div> 
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Email address
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    janedoe@email.com
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  
+                </dd>
+              </div> 
+            {% endif %}
+
+            {% if data['invoice-contact-details-check'] == 'No' %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Who should we send the invoice to?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['invoice-name'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> who should we send the invoice to?</span>
+                  </a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                {{ data['invoice-name'] }}'s contact address
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  3 High Street<br>
+                  Oxford<br>
+                  Oxfordshire<br>
+                  OX11BD
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> {{ data['invoice-name'] }}'s contact address</span>
+                  </a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                {{ data['invoice-name'] }}'s email address
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['email-address'] }} 
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="#">
+                    Change<span class="govuk-visually-hidden"> {{ data['invoice-name'] }}'s email address</span>
+                  </a>
+                </dd>
+              </div>
+            {% endif %}
+
         {% endif %}
 
         {% if data['responsible-for-invoice-check'] == 'Somebody else' %}
