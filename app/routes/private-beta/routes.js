@@ -1508,5 +1508,29 @@ router.post('/private-beta/bat-er/add-roosts/roost-modified-check', (req, res) =
     } 
   });
   
+
+  router.post('/private-beta/IDM/invoice-payer/responsible-for-invoice-check', function (req, res) {
+    const editChoice = req.session.data['responsible-for-invoice-check']
   
+    if (editChoice === 'John Doe, the applicant') {
+      res.redirect('contact-details')
+    } else if (editChoice === 'Jane Doe, the ecologist') {
+      res.redirect('contact-details-ecologist')
+    } else if (editChoice === 'Somebody else') {
+      res.redirect('name')
+    } 
+    
+  });
+  
+
+  router.post('/private-beta/IDM/invoice-payer/invoice-contact-details-check', (req, res) => {
+    if(req.session.data['invoice-contact-details-check'] == 'Yes'){
+        res.redirect('purchase-order')
+    } else if(req.session.data['invoice-contact-details-check'] == 'No'){
+        res.redirect('name')
+    } 
+  });
+
+
+
 }

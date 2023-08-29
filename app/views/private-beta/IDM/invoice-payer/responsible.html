@@ -1,0 +1,64 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Who is responsible for the invoice?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form class="form" action="responsible-for-invoice-check" method="post">
+        {{ govukRadios({
+          idPrefix: "responsible-for-invoice-check",
+          name: "responsible-for-invoice-check",
+          fieldset: {
+            legend: {
+              text: "Who is responsible for paying the invoice?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "John Doe, the applicant",
+              text: "John Doe, the applicant"
+            },
+            {
+              value: "Jane Doe, the ecologist",
+              text: "Jane Doe, the ecologist"
+            },
+            {
+              value: "Jim Doe, the alternate applicant",
+              text: "Jim Doe, the alternate applicant"
+            },
+            {
+              value: "Jenny Doe, the alternate ecologist",
+              text: "Jenny Doe, the alternate ecologist"
+            },
+            {
+              divider: "or"
+            },
+            {
+              value: "Somebody else",
+              text: "Somebody else"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}
