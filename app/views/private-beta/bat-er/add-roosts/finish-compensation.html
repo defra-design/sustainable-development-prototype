@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-When will you have finished installing this compensation?
+When is the latest this compensation feature will be installed?
 {% endblock %}
 
 {% block beforeContent %}
@@ -19,17 +19,27 @@ When will you have finished installing this compensation?
           namePrefix: "finish-compensation",
           fieldset: {
             legend: {
-              text: "When will you have finished installing this compensation?",
+              text: "When is the latest this compensation feature will be installed?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
           hint: {
-            text: "Enter the date this compensation will be installed by. For example, 23 4 2024."
-          }
+            text: "Enter the date this compensation will be installed by."
+          },
+          items: [
+            {
+              classes: "govuk-input--width-2",
+              name: "month"
+            },
+            {
+              classes: "govuk-input--width-4",
+              name: "year"
+            }
+          ]
         }) }}
 
-        <!-- When is the latest this compensation feature will be installed? -->
+        <!-- Get rid of the Day field -->
 
         {{ govukButton({
           text: "Continue"
@@ -41,3 +51,4 @@ When will you have finished installing this compensation?
   </div>
 
 {% endblock %}
+
