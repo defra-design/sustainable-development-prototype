@@ -1514,7 +1514,7 @@ router.post('/private-beta/bat-er/add-roosts/roost-modified-check', (req, res) =
   
     if (editChoice === 'applicant') {
       res.redirect('contact-details')
-    } else if (editChoice === 'Dave Smith, the ecologist') {
+    } else if (editChoice === 'ecologist') {
       res.redirect('contact-details')
     } else if (editChoice === 'alternate applicant') {
       res.redirect('contact-details')
