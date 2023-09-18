@@ -1512,16 +1512,21 @@ router.post('/private-beta/bat-er/add-roosts/roost-modified-check', (req, res) =
   router.post('/private-beta/IDM/invoice-payer/responsible-for-invoice-check', function (req, res) {
     const editChoice = req.session.data['responsible-for-invoice-check']
   
-    if (editChoice === 'John Doe, the applicant') {
+    if (editChoice === 'applicant') {
       res.redirect('contact-details')
     } else if (editChoice === 'Dave Smith, the ecologist') {
-      res.redirect('contact-details-ecologist')
+      res.redirect('contact-details')
+    } else if (editChoice === 'alternate applicant') {
+      res.redirect('contact-details')
+    } else if (editChoice === 'alternate ecologist') {
+      res.redirect('contact-details')
     } else if (editChoice === 'Somebody else') {
       res.redirect('name')
     } 
     
   });
   
+
 
   router.post('/private-beta/IDM/invoice-payer/invoice-contact-details-check', (req, res) => {
     if(req.session.data['invoice-contact-details-check'] == 'Yes'){

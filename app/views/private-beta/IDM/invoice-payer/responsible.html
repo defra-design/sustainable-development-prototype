@@ -26,20 +26,20 @@ Who is responsible for the invoice?
           },
           items: [
             {
-              value: "John Doe, the applicant",
-              text: "John Doe, the applicant"
+              value: "applicant",
+              text: data['applicant-name'] + ", the applicant"
             },
             {
-              value: "Dave Smith, the ecologist",
+              value: "ecologist",
               text: "Dave Smith, the ecologist"
             },
             {
-              value: "Jim Doe, the alternate applicant",
-              text: "Jim Doe, the alternate applicant"
+              value: "alternate applicant",
+              text: data['alternate-applicant-name'] + ", the alternate applicant"
             },
             {
-              value: "Jenny Doe, the alternate ecologist",
-              text: "Jenny Doe, the alternate ecologist"
+              value: "alternate ecologist",
+              text: data['alternate-ecologist-name'] + ", the alternate ecologist"
             },
             {
               divider: "or"
@@ -56,7 +56,7 @@ Who is responsible for the invoice?
         }) }}
       </form>
 
-      
+
     
     </div>
   </div>

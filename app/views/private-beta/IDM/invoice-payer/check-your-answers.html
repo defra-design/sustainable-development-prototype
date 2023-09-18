@@ -18,12 +18,13 @@ Check your answers
 
       <dl class="govuk-summary-list">
 
+        {% if data['responsible-for-invoice-check'] == 'applicant' %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Who is responsible for paying the invoice?
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['responsible-for-invoice-check'] }}
+            {{ data['applicant-name'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="#">
@@ -32,7 +33,7 @@ Check your answers
           </dd>
         </div>
 
-        {% if data['responsible-for-invoice-check'] == 'John Doe, the applicant' %}
+       
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Are these the contact details to be used for the invoice?
@@ -53,7 +54,7 @@ Check your answers
                   Organisation
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  ABC Construction Ltd
+                  {{ data['organisation-name'] }} 
                 </dd>
                 <dd class="govuk-summary-list__actions">
                   
@@ -64,10 +65,10 @@ Check your answers
                   Contact address
                 </dt>
                 <dd class="govuk-summary-list__value">
-                    Enterprise House<br>
-                    Wharfe Business Park<br>
-                    Otley<br>
-                    LS21 1TY<br>
+                  3 High Street<br>
+                  Oxford<br>
+                  Oxfordshire<br>
+                  OX11BD
                 </dd>
                 <dd class="govuk-summary-list__actions">
                   
@@ -78,7 +79,7 @@ Check your answers
                   Email address
                 </dt>
                 <dd class="govuk-summary-list__value">
-                    johndoe@email.com
+                  {{ data['email-address'] }} 
                 </dd>
                 <dd class="govuk-summary-list__actions">
                   
@@ -133,7 +134,21 @@ Check your answers
 
         {% endif %}
 
-        {% if data['responsible-for-invoice-check'] == 'Dave Smith, the ecologist' %}
+        {% if data['responsible-for-invoice-check'] == 'ecologist' %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Who is responsible for paying the invoice?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Dave Smith
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> who is responsible for paying the invoice?</span>
+            </a>
+          </dd>
+        </div>
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Are these the contact details to be used for the invoice?
