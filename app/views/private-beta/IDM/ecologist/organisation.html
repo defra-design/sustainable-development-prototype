@@ -20,8 +20,8 @@ Is Dave Smith part of an organisation?
 
       {% set organisationHtml %}
       {{ govukInput({
-        id: "organisation-name",
-        name: "organisation-name",
+        id: "ecologist-organisation-name",
+        name: "ecologist-organisation-name",
         value: "Oxford Ecology Ltd.",
         label: {
           text: "Name of organisation"
@@ -30,8 +30,8 @@ Is Dave Smith part of an organisation?
       {% endset -%}
 
       {{ govukRadios({
-        idPrefix: "organisation-check",
-        name: "organisation-check",
+        idPrefix: "ecologist-organisation-check",
+        name: "ecologist-organisation-check",
         fieldset: {
           legend: {
             html: "Is Dave Smith part of an organisation?",
