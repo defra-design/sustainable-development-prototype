@@ -14,17 +14,21 @@ What is Dave Smith's email address?
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       
-      <form class="form" action="check-your-answers" method="post">
+      <form class="form" action="confirm-details" method="post">
         <div class="govuk-form-group">
           <h1 class="govuk-label-wrapper">
             <label class="govuk-label govuk-label--l" for="email-address">
               What is Dave Smith's email address?
             </label>
           </h1>
-          <input class="govuk-input" id="email-address" name="email-address" type="email" spellcheck="false" aria-describedby="email-hint" autocomplete="email">
+          <div class="govuk-inset-text">
+            <p>This change will only apply to this application. Your email address will remain the same in your Defra ID account.</p>
+          </div>
+          <input class="govuk-input" id="email-address" name="email-address" type="email" spellcheck="false" aria-describedby="email-hint" autocomplete="email" value="dave.smith@oxfordecology.co.uk">
         </div>
 
-        <p>This change will only apply to this application, your email address will remain the same in your Defra ID account.</p>
+        
+        
         
           {{ govukButton({
             text: "Continue"
