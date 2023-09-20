@@ -1568,13 +1568,13 @@ router.post('/private-beta/bat-er/add-roosts/roost-modified-check', (req, res) =
     if(req.session.data['consent-check'] == 'Yes'){
         res.redirect('consent-granted')
     } else if(req.session.data['consent-check'] == 'No'){
-        res.redirect('eligible')
+        res.redirect('application-role')
     } 
   });
 
   router.post('/private-beta/IDM/application-role/consent-granted-check', (req, res) => {
     if(req.session.data['consent-granted-check'] == 'Yes'){
-        res.redirect('eligible')
+        res.redirect('application-role')
     } else if(req.session.data['consent-granted-check'] == 'No'){
         res.redirect('dropout-consent-granted')
     } 
