@@ -1537,5 +1537,47 @@ router.post('/private-beta/bat-er/add-roosts/roost-modified-check', (req, res) =
   });
 
 
+  router.post('/private-beta/IDM/application-role/nsip-check', (req, res) => {
+    if(req.session.data['nsip-check'] == 'Yes'){
+        res.redirect('land-owner')
+    } else if(req.session.data['nsip-check'] == 'No'){
+        res.redirect('window-not-open')
+    } 
+  });
+
+
+  router.post('/private-beta/IDM/application-role/land-owner-check', (req, res) => {
+    if(req.session.data['land-owner-check'] == 'Yes'){
+        res.redirect('consent')
+    } else if(req.session.data['land-owner-check'] == 'No'){
+        res.redirect('land-owner-permission')
+    } 
+  });
+
+
+  router.post('/private-beta/IDM/application-role/land-owner-permission-check', (req, res) => {
+    if(req.session.data['land-owner-permission-check'] == 'Yes'){
+        res.redirect('consent')
+    } else if(req.session.data['land-owner-permission-check'] == 'No'){
+        res.redirect('dropout-land-owner')
+    } 
+  });
+
+
+  router.post('/private-beta/IDM/application-role/consent-check', (req, res) => {
+    if(req.session.data['consent-check'] == 'Yes'){
+        res.redirect('consent-granted')
+    } else if(req.session.data['consent-check'] == 'No'){
+        res.redirect('eligible')
+    } 
+  });
+
+  router.post('/private-beta/IDM/application-role/consent-granted-check', (req, res) => {
+    if(req.session.data['consent-granted-check'] == 'Yes'){
+        res.redirect('eligible')
+    } else if(req.session.data['consent-granted-check'] == 'No'){
+        res.redirect('dropout-consent-granted')
+    } 
+  });
 
 }

@@ -1,7 +1,7 @@
 {% extends "layout-pb-signed-out.html" %}
 
 {% block pageTitle %} 
-Does the applicant own the land?
+Has the project got all permissions for work to start?
 {% endblock %}
 
 {% block beforeContent %}
@@ -15,12 +15,12 @@ Does the applicant own the land?
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       
-        <form class="form" action="land-owner-check" method="post">
+        <form class="form" action="consent-granted-check" method="post">
             {{ govukRadios({
-                name: "land-owner-check",
+                name: "consent-granted-check",
                 fieldset: {
                 legend: {
-                    text: "Does the applicant own the land?",
+                    text: "Has the project got all permissions for work to start?",
                     isPageHeading: true,
                     classes: "govuk-fieldset__legend--l"
                     }
