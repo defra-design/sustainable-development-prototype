@@ -145,7 +145,7 @@ Check your answers
             Who is responsible for paying the invoice?
           </dt>
           <dd class="govuk-summary-list__value">
-            Dave Smith
+            {{ data['ecologist-name'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="#">
@@ -174,7 +174,7 @@ Check your answers
                   Organisation
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  Oxford Ecology Ltd.
+                  {{ data['ecologist-organisation-name'] }}
                 </dd>
                 <dd class="govuk-summary-list__actions">
                   
@@ -199,7 +199,7 @@ Check your answers
                   Email address
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  dave.smith@oxfordecology.co.uk
+                  {{ data['ecologist-email-address'] }}
                 </dd>
                 <dd class="govuk-summary-list__actions">
                   
