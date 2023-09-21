@@ -23,17 +23,19 @@ Your Defra account
         <p>To complete your registration, we'll ask for some personal details and for information about who wants to use this service.</p>
 
         <p>To find out how we use, process and store your data, read our <a href="#">Privacy notice</a>.</p>
-
-        {{ govukCheckboxes({
-            name: "countries",
-            items: [
-              {
-                value: "france",
-                text: "I have read and agree to the Terms and conditions."
-              }
-            ]
-          }) }}
         
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" aria-describedby="waste-hint">            
+              <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="waste" name="waste" type="checkbox" value="carcasses">
+                  <label class="govuk-label govuk-checkboxes__label" for="waste">
+                    I have read and agree to the <a href="#">Terms and conditions</a>.
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
 
         <a href="name" role="button" draggable="false" class="govuk-button govuk-!-margin-top-2 govuk-!-margin-bottom-8" data-module="govuk-button">
             Continue
