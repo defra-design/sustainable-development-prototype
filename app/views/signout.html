@@ -1,0 +1,47 @@
+{% extends "layout-pb-signed-out.html" %}
+
+{% block pageTitle %} 
+You are signed out
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        <form method="POST">
+
+            <div class="govuk-panel govuk-panel--confirmation">
+                <h1 class="govuk-panel__title">
+                    You are signed out
+                </h1>
+                <div class="govuk-panel__body">
+                    We’ve saved the details you entered so far.
+                </div>
+            </div>
+
+            <h2 class="govuk-heading-m govuk-!-margin-top-6">Return to an existing application</h2>
+
+            <p class="govuk-body" >
+                Return to an existing application by signing in then selecting it from your list of licence applications.
+            </p>
+
+            <p class="govuk-body">
+                <a class="govuk-link govuk-link--no-visited-state" href="defra-id-signin?returnURL=applications">
+                    Sign in to continue an application
+                </a>
+            </p>
+
+        </form>
+
+	</div>
+</div>
+
+
+{% endblock %}
