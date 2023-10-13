@@ -50,30 +50,67 @@ Check your answers
         {% if data['exceptions-check'] == 'No' %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Why are you not submitting a reasoned statement?
+              Why are you not providing a reasoned statement?
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['not-submitting-reasoned-statement'] }}
+              {{ data['why-no-reasoned-statement-check'] }}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="#">
-                Change<span class="govuk-visually-hidden">  why are you not submitting a reasoned statement?</span>
+                Change<span class="govuk-visually-hidden">  why are you not providing a reasoned statement?</span>
               </a>
             </dd>
           </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Explain how {{ data['not-submitting-reasoned-statement'] | lower }} 
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{ data['explain-why-no-reasoned-statement'] }}
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="#">
-                Change<span class="govuk-visually-hidden"> explain how {{ data['not-submitting-reasoned-statement'] | lower }} </span>
-              </a>
-            </dd>
-          </div>
+
+          {% if data['why-no-reasoned-statement-check'] == 'The development is for home improvements or small-scale housing development' %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Describe how the development project fits this into this category
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['home-housing-detail'] }}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> describe how the development project fits this into this category</span>
+                </a>
+              </dd>
+            </div>
+          {% endif %}
+
+          {% if data['why-no-reasoned-statement-check'] == 'The development is on a listed building, scheduled monument or place of worship' %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Describe how the development project fits this into this category
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['worship-detail'] }}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> describe how the development project fits this into this category</span>
+                </a>
+              </dd>
+            </div>
+          {% endif %}
+
+          {% if data['why-no-reasoned-statement-check'] == 'The development is to maintain or improve public buildings or develop land that is part of the public estate' %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Describe how the development project fits this into this category
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['public-detail'] }}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> describe how the development project fits this into this category</span>
+                </a>
+              </dd>
+            </div>
+          {% endif %}
+
+
         {% endif %}
 
         
