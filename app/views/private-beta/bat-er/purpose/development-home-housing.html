@@ -1,0 +1,50 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Development for home improvements or small-scale housing development
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+ 
+
+      <h1 class="govuk-heading-l">
+        Development for home improvements or small-scale housing development
+      </h1>
+
+      <p>You do not have provide a reasoned statement for development for home improvements or small-scale housing development.</p>
+
+
+      
+      <form class="form" action="check-your-answers" method="post">
+        
+        {{ govukTextarea({
+            name: "moreDetail",
+            id: "more-detail",
+            label: {
+              text: "Describe how the development project fits this into this category",
+              classes: "govuk-label--m",
+              isPageHeading: true
+            }
+
+          }) }}
+
+      
+      
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

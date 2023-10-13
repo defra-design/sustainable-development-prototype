@@ -1,0 +1,55 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Development on public buildings, scheduled monuments or places of worship
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+ 
+
+      <h1 class="govuk-heading-l">
+        Development on public buildings, scheduled monuments or places of worship
+      </h1>
+
+      <p>You do not have provide a reasoned statement for development on:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>public buildings</li>
+        <li>scheduled monuments</li>
+        <li>places of worship</li>
+      </ul>
+      
+      
+      <form class="form" action="check-your-answers" method="post">
+        
+        {{ govukTextarea({
+            name: "moreDetail",
+            id: "more-detail",
+            label: {
+              text: "Describe how the development project fits this into this category",
+              classes: "govuk-label--m",
+              isPageHeading: true
+            }
+
+          }) }}
+
+      
+      
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

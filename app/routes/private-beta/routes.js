@@ -1580,4 +1580,16 @@ router.post('/private-beta/bat-er/add-roosts/roost-modified-check', (req, res) =
     } 
   });
 
+
+  router.post('/private-beta/bat-er/purpose/why-no-reasoned-statement-check', (req, res) => {
+    if(req.session.data['why-no-reasoned-statement-check'] == 'The development is for home improvements or small-scale housing development'){
+        res.redirect('development-home-housing')
+    } else if(req.session.data['why-no-reasoned-statement-check'] == 'The development is on a listed building, scheduled monument or place of worship'){
+        res.redirect('development-listed-monument-worship')
+    } else if(req.session.data['why-no-reasoned-statement-check'] == 'The development is to maintain or improve public buildings or develop land that is part of the public estate'){
+        res.redirect('development-public')
+    }  
+  });
+
+
 }
