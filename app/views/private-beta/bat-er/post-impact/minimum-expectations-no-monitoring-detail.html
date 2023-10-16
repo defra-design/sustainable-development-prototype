@@ -1,0 +1,39 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Explain why not meeting the minimum expectations for monitoring is acceptable
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">    
+
+      <form class="form" action="check-your-answers" method="post"> 
+        {{ govukTextarea({
+            name: "explain-minimum-expectations-no-monitoring",
+            id: "explain-minimum-expectations-no-monitoring",
+            label: {
+              text: "Explain why not meeting the minimum expectations for monitoring is acceptable",
+              classes: "govuk-label--l",
+              isPageHeading: true
+            }
+          }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+
+

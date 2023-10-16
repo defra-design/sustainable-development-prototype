@@ -52,7 +52,7 @@ Check your answers
                   Explain why not meeting the minimum expectations for monitoring is acceptable
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {{ data['explain-minimum-expectations'] }}
+                  {{ data['explain-minimum-expectations-no-monitoring'] }}
                 </dd>
                 <dd class="govuk-summary-list__actions">
                   <a class="govuk-link" href="#">
@@ -267,8 +267,7 @@ Check your answers
             </div>
           {% endif %}
 
-      {% endif %}
-      <!-- End of Monitoring required - Yes -->
+     
 
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
@@ -315,7 +314,9 @@ Check your answers
         </dd>
       </div>
 
-
+      
+      <!-- End of Monitoring required - Yes -->
+      {% endif %}
       <!--<div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
           How will works done post-development be secured?

@@ -1353,9 +1353,9 @@ router.post('/private-beta/bat-er/add-roosts/roost-modified-check', (req, res) =
 
   router.post('/private-beta/bat-er/post-impact/minimum-expectations-no-monitoring-check', (req, res) => {
     if(req.session.data['minimum-expectations-no-monitoring-check'] == 'Yes'){
-        res.redirect('management-site-maintenance')
+        res.redirect('check-your-answers')
     } else if(req.session.data['minimum-expectations-no-monitoring-check'] == 'No'){
-        res.redirect('minimum-expectations')
+        res.redirect('minimum-expectations-no-monitoring-detail')
     } 
   });
 
