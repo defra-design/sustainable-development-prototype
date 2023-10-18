@@ -68,8 +68,16 @@ router.post('/private-beta/SDDSIP-453-ecologist-experience/class-mitigation-lice
 
 router.post('/private-beta/SDDSIP-436-sett-details/add-another-sett-check', (req, res) => {
   if(req.session.data['add-another-sett-check'] == 'Yes'){
-      res.redirect('task-list-complete')
+      res.redirect('sett-name-another')
   } else if(req.session.data['add-another-sett-check'] == 'No'){
+      res.redirect('task-list-complete')
+  } 
+});
+
+router.post('/private-beta/SDDSIP-436-sett-details/add-another-another-sett-check', (req, res) => {
+  if(req.session.data['add-another-another-sett-check'] == 'Yes'){
+      res.redirect('sett-name-another')
+  } else if(req.session.data['add-another-another-sett-check'] == 'No'){
       res.redirect('task-list-complete')
   } 
 });

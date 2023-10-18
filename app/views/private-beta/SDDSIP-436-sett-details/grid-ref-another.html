@@ -1,0 +1,46 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+What is the badger sett's grid reference?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+{% if data['active-holes'] == '0' %}
+<script>
+    window.location.href = 'active-sett-dropout'
+</script>
+{% endif %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form class="form" action="work-start-another" method="post"> 
+        {{ govukInput({
+          label: {
+            text: "What is the badger sett's grid reference?",
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          hint: {
+            text: "For example, NY395557. Use the grid reference for the central point of the sett if it has more than one entrance."
+          },
+          classes: "govuk-input--width-10",
+          id: "grid-ref-another",
+          name: "grid-ref-another"
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

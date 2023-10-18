@@ -1,0 +1,41 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+When will the work end?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form class="form" action="affect-another" method="post"> 
+        {{ govukDateInput({
+          id: "work-end",
+          namePrefix: "work-end-another",
+          fieldset: {
+            legend: {
+              text: "When will the work end?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "The work must be finished before the end of the license period (30 November)."
+          }
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

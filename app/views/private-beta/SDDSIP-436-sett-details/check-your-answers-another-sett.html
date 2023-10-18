@@ -21,6 +21,19 @@ Check your answers
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
+            Sett name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['sett-name'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> sett name</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
             Sett usage
           </dt>
           <dd class="govuk-summary-list__value">
@@ -130,17 +143,30 @@ Check your answers
       </dl>
 
 
-      <h2 class="govuk-heading-m">Sett: Example of another sett</h2>
+      <h2 class="govuk-heading-m">Sett: {{ data['sett-name-another'] }}</h2>
 
       <p><a href="remove-sett">Remove sett</a></p>
 
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
+            Sett name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['sett-name-another'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> sett name</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
             Sett usage
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['sett-usage'] }}
+            {{ data['sett-usage-another'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="#">
@@ -153,7 +179,7 @@ Check your answers
             Reopening sett
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['sett-reopened'] }}
+            {{ data['sett-reopened-another'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="#">
@@ -166,7 +192,7 @@ Check your answers
             Number of entrance holes
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['entrance-holes'] }}
+            {{ data['entrance-holes-another'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="#">
@@ -179,7 +205,7 @@ Check your answers
             Number of active entrance holes
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['active-holes'] }}
+            {{ data['active-holes-another'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="#">
@@ -192,7 +218,7 @@ Check your answers
             Sett grid reference
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['grid-ref'] }}
+            {{ data['grid-ref-another'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="#">
@@ -205,7 +231,7 @@ Check your answers
             Work start date
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['work-start-day'] + " " + data['work-start-month'] | toMonth + " " + data['work-start-year'] }}
+            {{ data['work-start-another-day'] + " " + data['work-start-another-month'] | toMonth + " " + data['work-start-another-year'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="#">
@@ -218,7 +244,7 @@ Check your answers
             Work end date
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['work-end-day'] + " " + data['work-end-month'] | toMonth + " " + data['work-end-year'] }}
+            {{ data['work-end-another-day'] + " " + data['work-end-another-month'] | toMonth + " " + data['work-end-another-year'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="#">
@@ -232,7 +258,7 @@ Check your answers
           </dt>
           <dd class="govuk-summary-list__value">
             
-            {% for affect in data['affect-on-badgers'] %}
+            {% for affect in data['affect-on-badgers-another'] %}
               <p>{{ affect }}</p>
             {% endfor %}
             
@@ -246,11 +272,11 @@ Check your answers
       </dl>
 
       
-      <form class="form" action="add-another-sett-check" method="post">
+      <form class="form" action="add-another-another-sett-check" method="post">
 
       {{ govukRadios({
-        idPrefix: "add-another-sett-check",
-        name: "add-another-sett-check",
+        idPrefix: "add-another-another-sett-check",
+        name: "add-another-another-sett-check",
         fieldset: {
           legend: {
             text: "Do you want to add another badger sett?",
