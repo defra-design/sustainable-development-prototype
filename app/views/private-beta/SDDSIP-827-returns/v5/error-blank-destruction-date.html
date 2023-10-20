@@ -1,0 +1,58 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+When did you destroy the vacant sett?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not entered the date you destroyed the vacant sett",
+                href: "#destruction-date-day"
+              }
+            ]
+          }) }}
+
+      <form class="form" action="licensed-action-5" method="post">
+        {{ govukDateInput({
+            id: "destruction-date",
+            namePrefix: "destruction-date",
+            fieldset: {
+              legend: {
+                text: "When did you destroy the vacant sett?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            hint: {
+              text: "For example, 27 3 2007"
+            },
+            errorMessage: {
+                text: "Enter the date you destroyed the vacant sett"
+              }
+          }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

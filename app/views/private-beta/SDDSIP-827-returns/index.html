@@ -16,14 +16,507 @@ SDDSIP 827 | Returns
       <h1 class="govuk-heading-l">Returns</h1> 
 
       <div class="govuk-!-margin-bottom-9">
-        <strong class="govuk-tag govuk-tag--pink">
-          TESTED
+        <strong class="govuk-tag govuk-tag--green">
+          In progress
        </strong>
       </div>
 
+      <p><a href="https://sustainable-prototype.herokuapp.com/public/docs/Badger-Returns-usbaility-testing-share-back.pptx" class="govuk-link govuk-link--no-visited-state" target="_blank">User Research Feedback -  Returns - August 2023</a></p>
+            
+
+            <!-- Version 5 -->
+            <h2 class="govuk-heading-m ">Full page list - v5</h2>
+      
+            {{ govukButton({
+              text: "View full flow",
+              href: "v5/email"
+            }) }}
+      
+            
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                  <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header">Page</th>
+                    <th scope="col" class="govuk-table__header">Error states</th>
+                    <th scope="col" class="govuk-table__header">Confidence</th>
+                    <th scope="col" class="govuk-table__header govuk-!-width-one-half">Notes</th>
+                  </tr>
+              </thead>
+              <tbody class="govuk-table__body"> 
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/email">Email notification</a></td>
+                  <td class="govuk-table__cell"></td>
+                  <td class="govuk-table__cell">
+                    <strong class="govuk-tag govuk-tag--yellow">
+                      Medium
+                    </strong>
+                  </td>
+                  <td class="govuk-table__cell">Email is useful, but not specific enough. For users with multiple licenses in various submission stages, it lacked clarity regarding the specific license it referred to.</td>
+              </tr>   
+                  <tr class="govuk-table__row">
+                      <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/start">Start page</a></td>
+                      <td class="govuk-table__cell"></td>
+                      <td class="govuk-table__cell">
+                        <strong class="govuk-tag govuk-tag--yellow">
+                          Medium
+                        </strong>
+                      </td>
+                      <td class="govuk-table__cell">Not tested yet?</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/defra-id-signin">Sign in</a></td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--yellow">
+                        Medium
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">Participants felt uneasy about using the prospect of using a personal account for business, since they were unsure about what information would be linked.</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/applications">View licences and applications</a></td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--yellow">
+                        Medium
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">Universally understood but participants found the correct 'action needed' option with varying effort.</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/licence">Licence</a></td>
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/error-nothing-chosen-licence">If nothing chosen</a></td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--yellow">
+                        Medium
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">Although understood, lack of specificity increased participant effort on this page. 'Action needed' is not specific enough as a status.</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/licence-resume-roa">Licence - unfinished report of action</a></td>
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/error-nothing-chosen-licence">If nothing chosen</a></td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--yellow">
+                        Medium
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">As above</td>
+                  </tr>
+                  <!--<tr class="govuk-table__row">
+                    <th class="govuk-table__cell">Finished all work?</th>
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v4/finished-work">finished-work</a></td>
+                    <td class="govuk-table__cell"></td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <th class="govuk-table__cell">You cannot submit a partial return</th>
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v4/do-not-submit">do-not-submit</a></td>
+                    <td class="govuk-table__cell"></td>
+                  </tr>-->
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/licensed-actions">Your licensed actions</a></td>
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/error-nothing-chosen-licensed-actions">If nothing chosen</a></td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--yellow">
+                        Medium
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">Completing actions may not as simple as yes/no, they can be partially completed.</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/outcome">Did licensed actions mean development could start?</a></td>
+                    <td class="govuk-table__cell">
+                      <a class="govuk-link govuk-link--no-visited-state" href="v5/error-nothing-chosen-outcome">If nothing chosen</a><br>
+                      <a class="govuk-link govuk-link--no-visited-state" href="v5/error-blank-outcome">If blank</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--yellow">
+                        Medium
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">Purpose of the question was unclear, participants were unsure how this was related to licence reports.</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/why-not-carried-out">Why didn't you carry out these actions?</a></td>
+                    <td class="govuk-table__cell">
+                      <a class="govuk-link govuk-link--no-visited-state" href="v5/error-nothing-chosen-why-not-carried-out">If nothing chosen</a><br>
+                      <a class="govuk-link govuk-link--no-visited-state" href="v5/error-blank-why-not-carried-out">If blank</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--yellow">
+                        Medium
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">Not tested in this round of research.</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/need-another-licence">Will you need another licence?</a></td>
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/error-nothing-chosen-need-another-licence">If nothing chosen</a></td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--yellow">
+                        Medium
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">Not tested in this round of research.</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/complete-between-dates">Completed the licensed work between dates?</a></td>
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/error-nothing-chosen-complete-between-dates">If nothing chosen</a></td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--green">
+                        High
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">This page was understood.</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/work-start-date">When did you start the work?</a></td>
+                    <td class="govuk-table__cell">
+                      <a class="govuk-link govuk-link--no-visited-state" href="v5/error-blank-work-start-date">If blank</a><br>
+                      <a class="govuk-link govuk-link--no-visited-state" href="v5/error-date-in-future-work-start-date">If date in the future</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--yellow">
+                        Medium
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">Not tested in this round of research.</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/work-end-date">When did you finish the work?</a></td>
+                    <td class="govuk-table__cell">
+                      <a class="govuk-link govuk-link--no-visited-state" href="v5/error-blank-work-end-date">If blank</a><br>
+                      <a class="govuk-link govuk-link--no-visited-state" href="v5/error-date-in-future-work-end-date">If date in the future</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--yellow">
+                        Medium
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">Not tested in this round of research.</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/why-not-between-dates">Why not completed between dates?</a></td>
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/error-blank-why-not-between-dates">If blank</a></td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--yellow">
+                        Medium
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">Not tested in this round of research.</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/licensed-action-1">Licensed action 1 - Obstruct sett entrances</a></td>
+                    <td class="govuk-table__cell">
+                      <a class="govuk-link govuk-link--no-visited-state" href="v5/error-nothing-chosen-licensed-action-1">If nothing chosen</a><br>
+                      <a class="govuk-link govuk-link--no-visited-state" href="v5/error-blank-licensed-action-1">If blank - Yes</a><br>
+                      <a class="govuk-link govuk-link--no-visited-state" href="v5/error-blank-no-licensed-action-1">If blank - No</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--yellow">
+                        Medium
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">Participants felt suspicious of the question and were afraid of giving too much away.</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/licensed-action-2">Licensed action 2 - Obstruct access to sett entrances</a></td>
+                    <td class="govuk-table__cell">
+                      If nothing chosen - As per licensed action 1<br> 
+                      If blank - Yes - As per licensed action 1<br> 
+                      If blank - No - As per licensed action 1
+                    </td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--yellow">
+                        Medium
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">Participants were unsure how much information to add in the text area. Realised at this point they were dealing with questions from the old form and their reports in 'small chunks'.</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/licensed-action-3">Licensed action 3 - Damage a set</a></td>
+                    <td class="govuk-table__cell">
+                      If nothing chosen - As per licensed action 1<br> 
+                      If blank - Yes - As per licensed action 1<br> 
+                      If blank - No - As per licensed action 1
+                    </td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--yellow">
+                        Medium
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">Participants were unsure how much information or wha information to add in the text area.</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/licensed-action-4">Licensed action 4 - Destroy a sett</a></td>
+                    <td class="govuk-table__cell">
+                      If nothing chosen - As per licensed action 1<br> 
+                      If blank - Yes - As per licensed action 1<br> 
+                      If blank - No - As per licensed action 1
+                    </td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--red">
+                        Low
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">Participants were not sure which sett this question referred to if they were submitting a return a for multiple setts. Participants felt that they are being monitored, unsure as to why the question is otherwise being asked. Participants were unsure of the difference between 'damage' and 'destroy'. 
+                    </td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/destruction-date">When did you destroy the vacant sett?</a></td>
+                    <td class="govuk-table__cell">
+                      <a class="govuk-link govuk-link--no-visited-state" href="v5/error-blank-destruction-date">If blank</a><br>
+                      <a class="govuk-link govuk-link--no-visited-state" href="v5/error-date-in-future-destruction-date">If date in the future</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--red">
+                        Low
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">Multiple participants explained they've had situations previously where they've closed a sett over multiple days.</td>
+                  </tr>
+                  <!--<tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v4/destruction-date-start">When did you start destroying the vacant sett?</a></td>
+                    <td class="govuk-table__cell">
+                      <a class="govuk-link govuk-link--no-visited-state" href="v4/error-blank-destruction-date-start">If blank</a><br>
+                      <a class="govuk-link govuk-link--no-visited-state" href="v4/error-date-in-future-destruction-date-start">If date in the future</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--yellow">
+                        Medium
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">Not tested yet</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v4/destruction-date-finish">When did you finish destroying the vacant sett?</a></td>
+                    <td class="govuk-table__cell">
+                      <a class="govuk-link govuk-link--no-visited-state" href="v4/error-blank-destruction-date-finish">If blank</a><br>
+                      <a class="govuk-link govuk-link--no-visited-state" href="v4/error-date-in-future-destruction-date-finish">If date in the future</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--yellow">
+                        Medium
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">Not tested yet</td>
+                  </tr>-->
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/licensed-action-5">Licensed action 5 - Disturb badgers</a></td>
+                    <td class="govuk-table__cell">
+                      <a class="govuk-link govuk-link--no-visited-state" href="v5/error-nothing-chosen-licensed-action-5">If nothing chosen</a><br>
+                      <a class="govuk-link govuk-link--no-visited-state" href="v5/error-blank-licensed-action-5">If blank</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--yellow">
+                        Medium
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">Participants grasped this question, but upon reflection, confusion arose about its relevance and meaning.</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/create-artificial-sett">Did you create an artificial sett?</a></td>
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/error-nothing-chosen-create-artificial-sett">If nothing chosen</a></td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--green">
+                        High
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">Participants all understood this page and there were no issues.</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/why-no-artificial-sett">Why no artificial sett?</a></td>
+                    <td class="govuk-table__cell">
+                      <a class="govuk-link govuk-link--no-visited-state" href="v5/error-nothing-chosen-why-no-artificial-sett">If nothing chosen</a><br>
+                      <a class="govuk-link govuk-link--no-visited-state" href="v5/error-blank-why-no-artificial-sett">If blank</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--yellow">
+                        Medium
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">Not tested in this round of research.</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/describe-artificial-sett">Describe work on artificial sett</a></td>
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/error-blank-describe-artificial-sett">If blank</a></td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--yellow">
+                        Medium
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">While generally understood, participants were not clear how much and what detail was necessary to include on this page.</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/located-artificial-sett">Evidence badgers located the artificial sett?</a></td>
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/error-blank-located-artificial-sett">If blank</a></td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--yellow">
+                        Medium
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">Not tested yet.</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/before-sett-closure">Artificial sett created before sett closed?</a></td>
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/error-nothing-chosen-before-sett-closure">If nothing chosen</a></td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--yellow">
+                        Medium
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">Users understood the question but were uncertain how much/what information to provide in the text area.</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/artificial-sett-location">Artificial sett's grid reference</a></td>
+                    <td class="govuk-table__cell">
+                      <a class="govuk-link govuk-link--no-visited-state" href="v5/error-blank-artificial-sett-location">If blank</a><br>
+                      <a class="govuk-link govuk-link--no-visited-state" href="v5/error-wrong-format-artificial-sett-location">If wrong format</a><br>
+                      <a class="govuk-link govuk-link--no-visited-state" href="v5/error-no-match-artificial-sett-location">Grid ref does not exist</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--yellow">
+                        Medium
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">Participants understood this, although tend to use other location references such as What3Words or Google pins.</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/conditions">Able to comply with the conditions of the licence?</a></td>
+                    <td class="govuk-table__cell">
+                      <a class="govuk-link govuk-link--no-visited-state" href="v5/error-nothing-chosen-conditions">If nothing chosen</a><br>
+                      <a class="govuk-link govuk-link--no-visited-state" href="v5/error-blank-conditions">If blank</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--yellow">
+                        Medium
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">Participants comprehended the literal meaning of the question, but they questioned its relevance. Participants felt uncertain and anxious because they weren't sure about the consequences of making changes.</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/welfare-concerns">Any concerns about badgers' welfare?</a></td>
+                    <td class="govuk-table__cell">
+                      <a class="govuk-link govuk-link--no-visited-state" href="v5/error-nothing-chosen-welfare-concerns">If nothing chosen</a><br>
+                      <a class="govuk-link govuk-link--no-visited-state" href="v5/error-blank-welfare-concerns">If blank</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--green">
+                        High
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">This page was understood.</td>
+                  </tr>
+      
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/upload">Upload supporting information?</a></td>
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/error-nothing-chosen-upload">If nothing chosen</a></td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--yellow">
+                        Medium
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">Participants thought it would be better to upload files 'as you go' rather than 'all in one' at the end.</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/upload-file">Upload a file</a></td>
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/error-no-file-selected-upload-file">If no file selected</a></td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--yellow">
+                        Medium
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">Participants thought it would be better to upload files 'as you go' rather than 'all in one' at the end.</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/files">Uploaded files / upload another</a></td>
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/error-nothing-chosen-files">If nothing chosen</a></td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--yellow">
+                        Medium
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">Participants thought it would be better to upload files 'as you go' rather than 'all in one' at the end.</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/files-2">Uploaded files / upload another</a></td>
+                    <td class="govuk-table__cell">As above</td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--yellow">
+                        Medium
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">Participants thought it would be better to upload files 'as you go' rather than 'all in one' at the end.</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/check-your-answers">Check your answers</a></td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--red">
+                        Low
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">Understood by the particpants but they wanted a copy of the information to share with their clients.</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/declaration">Declaration</a></td>
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/error-nothing-chosen-declaration">If nothing chosen</a></td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--red">
+                        Low
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">Participants understood this but is raised (sometimes) serious concerns. </td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/confirmation">Confirmation</a></td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--yellow">
+                        Medium
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">Participants understood that this page confirmed successful report of action submission but were unsure what would happen about closure of the licence.</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/confirmation-nil-return">Confirmation - Nil return</a></td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--yellow">
+                        Medium
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">Not tested in this round of research.</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v5/applications-submitted">View licences and applications - ROA sent</a></td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--green">
+                        High
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">This page was understood.</td>
+                  </tr>
+                  
+                </tbody>
+              </table>
 
 
-            <!-- Version 4 -->
+
+
+
+          <!-- Version 4 -->
+          <details class="govuk-details" data-module="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+                Version 4
+              </span>
+            </summary>
+            <div class="govuk-details__text">
+              
+    
+            
             <h2 class="govuk-heading-m ">Full page list - v4</h2>
       
             {{ govukButton({
@@ -501,6 +994,18 @@ SDDSIP 827 | Returns
                   
                 </tbody>
               </table>
+
+
+            </div>
+          </details>
+
+
+
+
+
+
+
+
 
 
 
@@ -1015,7 +1520,11 @@ SDDSIP 827 | Returns
               </tr>
           </thead>
           <tbody class="govuk-table__body"> 
-            
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">20 October 2023</th>
+              <td class="govuk-table__cell">v5 of the Returns journey created in the prototype</td>
+              <td class="govuk-table__cell"></td>
+            </tr>
             <tr class="govuk-table__row">
               <th class="govuk-table__cell">7 August 2023</th>
               <td class="govuk-table__cell">v4 of the Returns journey tested with 5 users</td>

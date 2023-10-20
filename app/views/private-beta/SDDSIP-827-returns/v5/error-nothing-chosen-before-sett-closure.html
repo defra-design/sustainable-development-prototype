@@ -1,0 +1,65 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: Was the artificial sett created before the licensed sett was closed?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not selected an option",
+                href: "#sett-closure-check"
+              }
+            ]
+          }) }}
+
+      <form class="form" action="artificial-sett-location" method="post">
+        {{ govukRadios({
+          idPrefix: "sett-closure-check",
+          name: "sett-closure-check",
+          fieldset: {
+            legend: {
+              text: "Was the artificial sett created before the licensed sett was closed?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              text: "No"
+            }
+          ],
+          errorMessage: {
+            text: "Select an option"
+          }
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

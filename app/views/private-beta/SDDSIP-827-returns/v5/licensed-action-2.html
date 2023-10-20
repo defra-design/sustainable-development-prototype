@@ -1,0 +1,78 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Did you obstruct access to sett entrances by blocking or proofing?  
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {% set workHtml %}
+        {{ govukTextarea({
+            name: "work-done-action-2",
+            id: "work-done-action-2",
+            label: {
+              text: "Describe the work that was done"
+            }
+          }) }} 
+        {% endset -%}
+
+        {% set whynotHtml %}
+        {{ govukTextarea({
+            name: "work-not-done-action-2",
+            id: "work-not-done-action-2",
+            label: {
+              text: "Describe why you did not do this licensed activity"
+            }
+          }) }} 
+        {% endset -%}
+
+      <form class="form" action="licensed-action-3" method="post">
+        {{ govukRadios({
+          idPrefix: "licensed-action-2-check",
+          name: "licensed-action-2-check",
+          fieldset: {
+            legend: {
+              text: "Did you obstruct access to sett entrances by blocking or proofing?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes",
+              conditional: {
+                  html: workHtml
+              }
+            },
+            {
+              value: "No",
+              text: "No",
+              conditional: {
+                  html: whynotHtml
+              }
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

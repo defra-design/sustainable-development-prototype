@@ -1,0 +1,90 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+    Error: Your licensed actions
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not selected an option",
+                href: "#licensed-actions-check"
+              }
+            ]
+          }) }}
+
+
+            <h1 class="govuk-heading-l">
+                Your licensed actions
+            </h1>
+
+            <p>You were licensed to:</p>
+
+            <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-9">
+                <li>Obstruct sett entrances by means of one-way badger gates</li>
+                <li>Obstruct access to sett entrances by blocking or proofing</li>
+                <li>Damage a sett by hand and mechanical means</li>
+                <li>Destruct a vacant sett by hand and mechanical means</li>
+              </ul>
+        
+
+            <form class="form" action="licensed-actions-check" method="post">
+
+                {{ govukRadios({
+                    name: "licensed-actions-check",
+                    fieldset: {
+                    legend: {
+                        text: "Did you carry out any of these actions?",
+                        classes: "govuk-fieldset__legend--m"
+                    }
+                    },
+                    items: [
+                    {
+                        value: "Yes",
+                        text: "Yes"
+                    },
+                    {
+                        value: "No",
+                        text: "No"
+                    }
+                    ],
+                    errorMessage: {
+                        text: "Select an option"
+                      }
+                }) }}
+
+                {{ govukButton({
+                    text: "Continue"
+                }) }}
+
+            </form>
+
+
+		
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+

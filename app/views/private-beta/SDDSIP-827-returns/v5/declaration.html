@@ -1,0 +1,65 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+  Declaration
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">
+        Declaration
+      </h1>
+
+      <!--<p>By sending this report of action taken under the licence 2021-09273-SPM-WLM you agree that you have given complete and correct information.</p>-->
+
+      <p>By sending the report of action taken under the licence you confirm that:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>an appropriate ecologist has been involved in carrying out the work</li>
+        <li>the ecologist supports the details given in this report</li>
+        <li>the details in the report of action are correct to the best of your knowledge and belief</li>
+      </ul>
+
+
+      <p>If you are making this report of action on behalf of another person, you confirm that you have their permission to do so.</p>
+        
+        <p>By sending the report of action, they agree that they continue to uphold any conditions of the licence and will abide by the terms and conditions of this service.</p>
+
+     
+
+      {{ govukRadios({
+        name: "who-is-declaring",
+        fieldset: {
+          legend: {
+            text: "Who is making this declaration?",
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+          {
+            value: "I am the ecologist and I agree to this declaration and confirm the information given",
+            text: "I am the ecologist and I agree to this declaration and confirm the information given"
+          },
+          {
+            value: "I am the licence holder and I agree to this declaration and confirm the information given",
+            text: "I am the licence holder and I agree to this declaration and confirm the information given"
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Agree and send",
+        href: "confirmation"
+      }) }}
+    </div>
+  </div>
+
+{% endblock %}

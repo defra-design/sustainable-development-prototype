@@ -1,0 +1,93 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+    Error: Did you obstruct sett entrances by means of one-way badger gates?   
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not selected an option",
+                href: "#licensed-action-1-check"
+              }
+            ]
+          }) }}
+
+
+
+        {% set workHtml %}
+        {{ govukTextarea({
+            name: "work-done-action-1",
+            id: "work-done-action-1",
+            label: {
+              text: "Describe the work that was done"
+            }
+          }) }} 
+        {% endset -%}
+
+        {% set whynotHtml %}
+        {{ govukTextarea({
+            name: "work-not-done-action-1",
+            id: "work-not-done-action-1",
+            label: {
+              text: "Describe why you did not do this licensed activity"
+            }
+          }) }} 
+        {% endset -%}
+
+      <form class="form" action="licensed-action-2" method="post">
+        {{ govukRadios({
+          idPrefix: "licensed-action-1-check",
+          name: "licensed-action-1-check",
+          fieldset: {
+            legend: {
+              text: "Did you obstruct sett entrances by means of one-way badger gates?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          errorMessage: {
+            text: "Select an option"
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes",
+              conditional: {
+                  html: workHtml
+              }
+            },
+            {
+              value: "No",
+              text: "No",
+              conditional: {
+                  html: whynotHtml
+              }
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

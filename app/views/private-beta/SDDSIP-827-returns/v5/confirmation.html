@@ -1,0 +1,42 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Report of action sent
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+{% if data['licensed-actions-check'] == 'No' %}
+<script>
+    window.location.href = 'confirmation-nil-return'
+</script>
+{% endif %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        {{ govukPanel({
+            titleText: "Report of action sent",
+            html: "Your reference number<br><strong>2021-09273-SPM-WLM</strong>"
+          }) }}
+      
+        <h2 class="govuk-heading-m">What happens next</h2>
+
+        <p class="govuk-body">
+            Natural England will review your report of action. You may be contacted to give more information to support your report of action.
+        </p>
+
+      {{ govukButton({
+        text: "View licences and applications",
+        href: "applications-submitted"
+      }) }}
+    </div>
+  </div>
+
+{% endblock %}

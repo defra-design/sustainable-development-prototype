@@ -1,0 +1,132 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+View licences and applications
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">
+            View licences and applications
+        </h1>
+        <p class="govuk-body">
+            <a class="govuk-button" href="#">
+                Apply for a licence
+            </a>
+        </p>
+    </div>
+</div>
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-full">
+		
+        <table class="govuk-table responsive">
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header app-custom-class">Application</th>
+                    <th scope="col" class="govuk-table__header app-custom-class">Site</th>
+                    <th scope="col" class="govuk-table__header app-custom-class">Reference</th>
+                    <th scope="col" class="govuk-table__header app-custom-class">Status</th>
+                </tr>
+            </thead>
+    
+            
+            <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">
+
+                        <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-2">
+                            <a href="#" class="govuk-link govuk-link--no-visited-state">Badger mitigation</a>
+                        </p>
+
+                    </th>
+                    <td class="govuk-table__cell" >
+                        <span class="visually-hidden-desktop">Site:<br></span>
+                            Belt Wood
+                        </p>
+                    </td>
+                    <td class="govuk-table__cell" >
+                        <p class="govuk-body govuk-!-margin-bottom-2">
+                            <!-- <span class="visually-hidden-desktop">Reference:<br></span> -->
+                            2021-12345-SPM-WLM
+                        </p>
+                    </td>
+                    <td class="govuk-table__cell" >
+                        <strong class="govuk-tag govuk-!-margin-bottom-4" >
+                            In progress
+                        </strong>
+                    </td>
+                </tr>
+                
+                
+                
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">
+                        <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-2">
+                            <a href="licence" class="govuk-link govuk-link--no-visited-state">Badger mitigation</a>
+                        </p>
+                        
+                    </th>
+                    <td class="govuk-table__cell" >
+                            <p class="govuk-body govuk-!-margin-bottom-2">
+                            <span class="visually-hidden-desktop">Site:<br></span>
+                            90 Lower Eastside Farm
+                            </p>
+                    </td>
+                    <td class="govuk-table__cell" >
+                        <p class="govuk-body govuk-!-margin-bottom-2">
+                            <!-- <span class="visually-hidden-desktop">Reference:<br></span> -->
+                            2021-09273-SPM-WLM
+                        </p>
+                    </td>
+                    <td class="govuk-table__cell" >
+                        <strong class="govuk-tag govuk-tag--pink govuk-!-margin-bottom-4" >
+                            ACTION NEEDED
+                        </strong>
+                    </td>
+                </tr>
+                
+                
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">
+                        <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-2">
+                            <a href="#" class="govuk-link govuk-link--no-visited-state">Badger mitigation</a>
+                        </p>
+                        
+                    </th>
+                    <td class="govuk-table__cell" >
+                        
+                            <p class="govuk-body govuk-!-margin-bottom-2">
+                            <span class="visually-hidden-desktop">Site:<br></span>
+                            Smiths Farmyard
+                            </p>
+                    </td>
+                    <td class="govuk-table__cell" >
+                        <p class="govuk-body govuk-!-margin-bottom-2">
+                            <!-- <span class="visually-hidden-desktop">Reference:<br></span> -->
+                            2021-98765-EPS-MIT
+                        </p>
+                    </td>
+                    <td class="govuk-table__cell" >
+                        <strong class="govuk-tag govuk-tag--grey govuk-!-margin-bottom-4" >
+                            Submitted
+                        </strong>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+    </div>
+</div>
+
+
+{% endblock %}

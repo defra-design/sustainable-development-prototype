@@ -1,0 +1,81 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+    Error: Did you disturb badgers? 
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not described the evidence you have that badgers were disturbed",
+                href: "#work-done-action-5"
+              }
+            ]
+          }) }}
+
+
+
+        {% set workHtml %}
+        {{ govukTextarea({
+            name: "work-done-action-5",
+            id: "work-done-action-5",
+            label: {
+              text: "Describe the evidence you have badgers were disturbed"
+            },
+            errorMessage: {
+                text: "Enter a description"
+              }
+          }) }} 
+        {% endset -%}
+
+      <form class="form" action="licensed-action-2" method="post">
+        {{ govukRadios({
+          idPrefix: "licensed-action-5-check",
+          name: "licensed-action-5-check",
+          fieldset: {
+            legend: {
+              text: "Did you disturb badgers?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes",
+              checked: true,
+              conditional: {
+                  html: workHtml
+              }
+            },
+            {
+              value: "No",
+              text: "No, there was no evidence that badgers were disturbed"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}
