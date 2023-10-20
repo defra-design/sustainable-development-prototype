@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Did you disturb badgers?
+Did you find evidence that badgers were disturbed by your licensed activity?
 {% endblock %}
 
 {% block beforeContent %}
@@ -28,13 +28,13 @@ Did you disturb badgers?
 
 
 
-      <form class="form" action="create-artificial-sett" method="post">
+      <form class="form" action="check-your-answers-licensed-actions" method="post">
         {{ govukRadios({
           idPrefix: "licensed-action-5-check",
           name: "licensed-action-5-check",
           fieldset: {
             legend: {
-              text: "Did you disturb badgers?",
+              text: "Did you find evidence that badgers were disturbed by your licensed activity?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
@@ -48,8 +48,8 @@ Did you disturb badgers?
               }
             },
             {
-              value: "No, there was no evidence that badgers were disturbed",
-              text: "No, there was no evidence that badgers were disturbed"
+              value: "No",
+              text: "No"
             }
           ]
         }) }}

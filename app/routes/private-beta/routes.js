@@ -1600,4 +1600,41 @@ router.post('/private-beta/bat-er/add-roosts/roost-modified-check', (req, res) =
   });
 
 
+  router.post('/private-beta/SDDSIP-827-returns/v5/manage-licence-check', (req, res) => {
+    if(req.session.data['manage-licence-check'] == 'Submit a report of action'){
+        res.redirect('roa-start')
+    } else if(req.session.data['manage-licence-check'] == 'Email a copy of the licence'){
+        res.redirect('#')
+    } 
+  });
+  
+
+  router.post('/private-beta/SDDSIP-827-returns/v5/licensed-actions-check', (req, res) => {
+    if(req.session.data['licensed-actions-check'] == 'Yes'){
+        res.redirect('task-list')
+    } else if(req.session.data['licensed-actions-check'] == 'No'){
+        res.redirect('why-not-carried-out')
+    } 
+  });
+
+  router.post('/private-beta/SDDSIP-827-returns/v5/complete-between-dates-check', (req, res) => {
+    if(req.session.data['complete-between-dates-check'] == 'Yes'){
+        res.redirect('licensed-action-1')
+    } else if(req.session.data['complete-between-dates-check'] == 'No'){
+        res.redirect('work-start-date')
+    } 
+  });
+
+
+  router.post('/private-beta/SDDSIP-827-returns/v5/licensed-action-4-check', (req, res) => {
+    if(req.session.data['licensed-action-4-check'] == 'Yes'){
+        res.redirect('destruction-date-start')
+    } else if(req.session.data['licensed-action-4-check'] == 'No'){
+        res.redirect('licensed-action-5')
+    } 
+  });
+
+
+
+
 }
