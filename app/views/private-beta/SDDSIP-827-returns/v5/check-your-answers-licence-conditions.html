@@ -1,0 +1,100 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Check your answers
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h2 class="govuk-heading-l">Check your answers</h2>
+
+      <dl class="govuk-summary-list">
+        
+    
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+                Were they any factors outside of your control that meant you could not comply with all the conditions of the licence?
+            </dt>
+            <dd class="govuk-summary-list__value">
+                  {{ data['conditions-check'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> were they any factors outside of your control that meant you could not comply with all the conditions of the licence?</span>
+              </a>
+            </dd>
+          </div>
+          {% if data['conditions-check'] == 'Yes' %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+                Describe which licence conditions were not complied with and what factors caused this
+            </dt>
+            <dd class="govuk-summary-list__value">
+                  {{ data['why-not-conditions'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> describe which licence conditions were not complied with and what factors caused this</span>
+              </a>
+            </dd>
+          </div>
+          {% endif %}
+
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Did the work carried out under the licence cause any concerns about badgers' welfare?
+            </dt>
+            <dd class="govuk-summary-list__value">
+                  {{ data['welfare-concerns-check'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> did the work carried out under the licence cause any concerns about badgers' welfare?</span>
+              </a>
+            </dd>
+          </div>
+          {% if data['welfare-concerns-check'] == 'Yes' %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Describe the welfare concerns
+            </dt>
+            <dd class="govuk-summary-list__value">
+                  {{ data['welfare-concerns'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> describe the welfare concerns</span>
+              </a>
+            </dd>
+          </div>
+          {% endif %}
+
+          
+       
+      </dl>
+
+
+
+      
+      <form class="form" action="task-list-4" method="post">
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+    
+    </div>
+  </div>
+
+{% endblock %}

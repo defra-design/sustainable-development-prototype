@@ -1635,6 +1635,13 @@ router.post('/private-beta/bat-er/add-roosts/roost-modified-check', (req, res) =
   });
 
 
-
+  router.post('/private-beta/SDDSIP-827-returns/v5/create-artificial-sett-check', (req, res) => {
+    if(req.session.data['create-artificial-sett-check'] == 'Yes'){
+        res.redirect('describe-artificial-sett')
+    } else if(req.session.data['create-artificial-sett-check'] == 'No'){
+        res.redirect('why-no-artificial-sett')
+    } 
+  });
+  
 
 }
