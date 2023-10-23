@@ -1644,4 +1644,12 @@ router.post('/private-beta/bat-er/add-roosts/roost-modified-check', (req, res) =
   });
   
 
+  router.post('/private-beta/SDDSIP-827-returns/v5/upload-check', (req, res) => {
+    if(req.session.data['upload-check'] == 'Yes'){
+        res.redirect('upload-file')
+    } else if(req.session.data['upload-check'] == 'No'){
+        res.redirect('check-your-answers-upload-nothing')
+    } 
+  });
+
 }
