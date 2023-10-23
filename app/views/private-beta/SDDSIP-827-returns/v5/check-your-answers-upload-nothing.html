@@ -1,0 +1,52 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Check your answers
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h2 class="govuk-heading-l">Check your answers</h2>
+
+      <dl class="govuk-summary-list">
+        
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+                Do you want to upload supporting information?
+            </dt>
+            <dd class="govuk-summary-list__value">
+                  {{ data['upload-check'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> do you want to upload supporting information?</span>
+              </a>
+            </dd>
+          </div>
+       
+      </dl>
+
+
+
+      
+      <form class="form" action="task-list-5" method="post">
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+    
+    </div>
+  </div>
+
+{% endblock %}
