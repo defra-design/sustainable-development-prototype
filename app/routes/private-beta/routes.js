@@ -1612,7 +1612,7 @@ router.post('/private-beta/bat-er/add-roosts/roost-modified-check', (req, res) =
   router.post('/private-beta/SDDSIP-827-returns/v5/licensed-actions-check', (req, res) => {
     if(req.session.data['licensed-actions-check'] == 'Yes'){
         res.redirect('task-list')
-    } else if(req.session.data['licensed-actions-check'] == 'No'){
+    } else if(req.session.data['licensed-actions-check'] == 'No, I am submitting a nil report of action'){
         res.redirect('why-not-carried-out')
     } 
   });
