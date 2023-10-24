@@ -24,28 +24,28 @@ Check your answers
         
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Did the licensed actions achieve the intended licence purpose?
+              Did the actions taken under the licence mean that the development could start?
             </dt>
             <dd class="govuk-summary-list__value">
               {{ data['achieve-purpose-check'] }}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="#">
-                Change<span class="govuk-visually-hidden"> did the licensed actions achieve the intended licence purpose?</span>
+                Change<span class="govuk-visually-hidden"> did the actions taken under the licence mean that the development could start?</span>
               </a>
             </dd>
           </div>
           {% if data['achieve-purpose-check'] == 'No' %}
                 <div class="govuk-summary-list__row">
                   <dt class="govuk-summary-list__key">
-                    Describe why the licensed actions did not achieve the intended licence purpose
+                    Why could the development not start?
                   </dt>
                   <dd class="govuk-summary-list__value">
                     {{ data['why-not-achieved'] }}
                   </dd>
                   <dd class="govuk-summary-list__actions">
                     <a class="govuk-link" href="#">
-                      Change<span class="govuk-visually-hidden"> describe why the licensed actions did not achieve the intended licence purpose</span>
+                      Change<span class="govuk-visually-hidden"> why could the development not start?</span>
                     </a>
                   </dd>
                 </div>
