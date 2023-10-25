@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-    Error: Did you obstruct sett entrances by means of one-way badger gates?   
+    Error: Did you obstruct any sett entrances by means of one way gates? 
 {% endblock %}
 
 {% block beforeContent %}
@@ -20,7 +20,7 @@
             titleText: "There is a problem",
             errorList: [
               {
-                text: "You have not described the work that was done",
+                text: "You have not described the work that was done to the sett or setts affected",
                 href: "#work-done-action-1"
               }
             ]
@@ -33,7 +33,7 @@
             name: "work-done-action-1",
             id: "work-done-action-1",
             label: {
-              text: "Describe the work that was done"
+              text: "Describe the work that was done to the sett or setts affected"
             },
             errorMessage: {
                 text: "Enter a description"
@@ -47,7 +47,7 @@
           name: "licensed-action-1-check",
           fieldset: {
             legend: {
-              text: "Did you obstruct sett entrances by means of one-way badger gates?",
+              text: "Did you obstruct any sett entrances by means of one way gates?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }

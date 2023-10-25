@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Error: Badger mitigation
+Error: Licence details
 {% endblock %}
 
 {% block beforeContent %}
@@ -26,11 +26,9 @@ Error: Badger mitigation
             ]
           }) }}
 
-            <span class="govuk-caption-l">Licence</span>
-            <h1 class="govuk-heading-l">
-                Badger mitigation
-            </h1>
-
+          <h1 class="govuk-heading-l">
+            Licence details
+          </h1>
             
         
             <dl class="govuk-summary-list">
@@ -42,8 +40,8 @@ Error: Badger mitigation
                     </dt>
                     <dd class="govuk-summary-list__value">
                         
-                        <strong class="govuk-tag govuk-tag--pink govuk-!-margin-bottom-4" >
-                            Return due
+                        <strong class="govuk-tag govuk-tag--pink" >
+                            REPORT OF ACTION DUE
                         </strong>
                         
                     </dd>
@@ -52,7 +50,7 @@ Error: Badger mitigation
                 <!-- type -->
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        Type
+                        Licence type
                     </dt>
                     <dd class="govuk-summary-list__value">
                         Badger mitigation
@@ -62,7 +60,7 @@ Error: Badger mitigation
                 <!-- reference -->
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        Reference
+                        Licence reference
                     </dt>
                     <dd class="govuk-summary-list__value">
                         2021-09273-SPM-WLM
@@ -78,14 +76,24 @@ Error: Badger mitigation
                         Jane Doe
                     </dd>
                 </div>
+
+                <!-- Named ecologist -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Named ecologist
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        Dave Smith
+                    </dd>
+                </div>
         
                 <!-- site -->
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        Site
+                        Site address
                     </dt>
                     <dd class="govuk-summary-list__value">
-                        90 Lower Eastside Farm
+                        Lower Eastside Farm
                         
                             <br>
                             
@@ -117,9 +125,6 @@ Error: Badger mitigation
                         1 November 2024
                     </dd>
                 </div>
-                
-        
-                
         
             </dl>
         
@@ -130,26 +135,18 @@ Error: Badger mitigation
                     name: "manage-licence-check",
                     fieldset: {
                     legend: {
-                        text: "Manage this licence",
+                        text: "Select an option",
                         classes: "govuk-fieldset__legend--m"
                     }
                     },
                     items: [
                     {
-                        value: "View licence",
-                        text: "View licence"
+                        value: "Submit a report of action",
+                        text: "Submit a report of action"
                     },
                     {
-                        value: "Renew licence",
-                        text: "Renew licence"
-                    },
-                    {
-                        value: "Cancel licence",
-                        text: "Cancel licence"
-                    },
-                    {
-                        value: "Submit a return",
-                        text: "Submit a return"
+                        value: "Email a copy of the licence",
+                        text: "Email a copy of the licence"
                     }
                     ],
                     errorMessage: {
@@ -161,6 +158,8 @@ Error: Badger mitigation
                     text: "Continue"
                 }) }}
 
+
+                
             </form>
 
 
