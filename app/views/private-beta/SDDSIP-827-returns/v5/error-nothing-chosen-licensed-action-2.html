@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Error: Did you obstruct access to any sett entrances by blocking or proofing?  
+Error: Did you obstruct access to any of the sett entrances by blocking or proofing?
 {% endblock %}
 
 {% block beforeContent %}
@@ -20,18 +20,19 @@ Error: Did you obstruct access to any sett entrances by blocking or proofing?
             titleText: "There is a problem",
             errorList: [
               {
-                text: "You have not described why you did not do this licensed activity",
-                href: "#work-not-done-action-2"
+                text: "You have not selected an option",
+                href: "#licensed-action-2-check"
               }
             ]
           }) }}
+
 
         {% set workHtml %}
         {{ govukTextarea({
             name: "work-done-action-2",
             id: "work-done-action-2",
             label: {
-              text: "Describe the work that was done"
+              text: "Describe the work that was done to the sett or setts affected"
             }
           }) }} 
         {% endset -%}
@@ -42,10 +43,7 @@ Error: Did you obstruct access to any sett entrances by blocking or proofing?
             id: "work-not-done-action-2",
             label: {
               text: "Describe why you did not do this licensed activity"
-            },
-            errorMessage: {
-                text: "Enter a description"
-              }
+            }
           }) }} 
         {% endset -%}
 
@@ -60,6 +58,9 @@ Error: Did you obstruct access to any sett entrances by blocking or proofing?
               classes: "govuk-fieldset__legend--l"
             }
           },
+          errorMessage: {
+            text: "Select an option"
+          },
           items: [
             {
               value: "Yes",
@@ -71,7 +72,6 @@ Error: Did you obstruct access to any sett entrances by blocking or proofing?
             {
               value: "No",
               text: "No",
-              checked: true,
               conditional: {
                   html: whynotHtml
               }

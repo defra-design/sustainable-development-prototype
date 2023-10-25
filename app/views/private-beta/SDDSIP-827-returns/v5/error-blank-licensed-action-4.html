@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Error: Did you obstruct access to any sett entrances by blocking or proofing?  
+Error: Did you destroy any of the vacant setts by hand and mechanical means?
 {% endblock %}
 
 {% block beforeContent %}
@@ -20,28 +20,18 @@ Error: Did you obstruct access to any sett entrances by blocking or proofing?
             titleText: "There is a problem",
             errorList: [
               {
-                text: "You have not described why you did not do this licensed activity",
-                href: "#work-not-done-action-2"
+                text: "You have not described the work that was done to the sett or setts affected",
+                href: "#work-done-action-4"
               }
             ]
           }) }}
 
         {% set workHtml %}
         {{ govukTextarea({
-            name: "work-done-action-2",
-            id: "work-done-action-2",
+            name: "work-done-action-4",
+            id: "work-done-action-4",
             label: {
-              text: "Describe the work that was done"
-            }
-          }) }} 
-        {% endset -%}
-
-        {% set whynotHtml %}
-        {{ govukTextarea({
-            name: "work-not-done-action-2",
-            id: "work-not-done-action-2",
-            label: {
-              text: "Describe why you did not do this licensed activity"
+              text: "Describe the work that was done to the sett or setts affected"
             },
             errorMessage: {
                 text: "Enter a description"
@@ -49,13 +39,23 @@ Error: Did you obstruct access to any sett entrances by blocking or proofing?
           }) }} 
         {% endset -%}
 
-      <form class="form" action="licensed-action-3" method="post">
+        {% set whynotHtml %}
+        {{ govukTextarea({
+            name: "work-not-done-action-4",
+            id: "work-not-done-action-4",
+            label: {
+              text: "Describe why you did not do this licensed activity"
+            }
+          }) }} 
+        {% endset -%}
+
+      <form class="form" action="licensed-action-4-check" method="post">
         {{ govukRadios({
-          idPrefix: "licensed-action-2-check",
-          name: "licensed-action-2-check",
+          idPrefix: "licensed-action-4-check",
+          name: "licensed-action-4-check",
           fieldset: {
             legend: {
-              text: "Did you obstruct access to any sett entrances by blocking or proofing?",
+              text: "Did you destroy any of the vacant setts by hand and mechanical means?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
@@ -64,6 +64,7 @@ Error: Did you obstruct access to any sett entrances by blocking or proofing?
             {
               value: "Yes",
               text: "Yes",
+              checked: true,
               conditional: {
                   html: workHtml
               }
@@ -71,7 +72,6 @@ Error: Did you obstruct access to any sett entrances by blocking or proofing?
             {
               value: "No",
               text: "No",
-              checked: true,
               conditional: {
                   html: whynotHtml
               }
