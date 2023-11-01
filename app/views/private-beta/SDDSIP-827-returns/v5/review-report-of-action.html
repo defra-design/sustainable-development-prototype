@@ -20,6 +20,14 @@ Review your report of action before you submit
 
         <p>You were licensed to carry out work on <strong>3 setts</strong>.</p>
 
+        <!--<hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+        <p>You can send this page to other people, such as the licence holder, to ensure everyone agrees with the information you are submitting.</p>-->
+
+        {{ govukInsetText({
+          text: "You can send this page to other people, such as the licence holder, to ensure everyone agrees with the information you are submitting."
+        }) }}
+
         <button class="govuk-button govuk-button--secondary" data-module="govuk-button" onclick="window.print();return false;">
           Save or print a copy of this page
         </button>
