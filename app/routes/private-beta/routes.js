@@ -1660,6 +1660,40 @@ router.post('/private-beta/bat-er/add-roosts/roost-modified-check', (req, res) =
         res.redirect('task-list-5')
     } 
   });
+
+
+  router.post('/private-beta/IDM/authorised-people/add-person', (req, res) => {
+    if(req.session.data['add-person-check'] == 'yes'){
+        res.redirect('name')
+    } else if(req.session.data['add-person-check'] == 'no'){
+        res.redirect('check-your-answers-not-added')
+    } 
+  });
   
+
+  router.post('/private-beta/IDM/authorised-people/add-another-authorised-person', (req, res) => {
+    if(req.session.data['add-another-authorised-person-check'] == 'Yes'){
+        res.redirect('name-2')
+    } else if(req.session.data['add-another-authorised-person-check'] == 'No'){
+        res.redirect('task-list-complete')
+    } 
+  });
+
+
+  router.post('/private-beta/IDM/authorised-people/are-you-sure', (req, res) => {
+    if(req.session.data['remove-person-check'] == 'yes'){
+        res.redirect('add-person')
+    } else if(req.session.data['remove-person-check'] == 'no'){
+        res.redirect('check-your-answers')
+    } 
+  });
+
+  router.post('/private-beta/IDM/authorised-people/are-you-sure-2', (req, res) => {
+    if(req.session.data['remove-person-check'] == 'yes'){
+      res.redirect('check-your-answers')
+  } else if(req.session.data['remove-person-check'] == 'no'){
+      res.redirect('check-your-answers-2')
+  } 
+});
 
 }
