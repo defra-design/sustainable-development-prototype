@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Did you destroy any of the vacant setts by hand and mechanical means?
+Did you destroy any sett?
 {% endblock %}
 
 {% block beforeContent %}
@@ -23,7 +23,7 @@ Did you destroy any of the vacant setts by hand and mechanical means?
             name: "work-done-action-4",
             id: "work-done-action-4",
             label: {
-              text: "Describe the work that was done to the sett or setts affected"
+              text: "Briefly describe the work that destroyed the setts. You can upload a report on sett destruction."
             }
           }) }} 
         {% endset -%}
@@ -44,10 +44,13 @@ Did you destroy any of the vacant setts by hand and mechanical means?
           name: "licensed-action-4-check",
           fieldset: {
             legend: {
-              text: "Did you destroy any of the vacant setts by hand and mechanical means?",
+              text: "Did you destroy any sett?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
+          },
+          hint: {
+            text: "Destruction could be by hand or mechanical means."
           },
           items: [
             {
