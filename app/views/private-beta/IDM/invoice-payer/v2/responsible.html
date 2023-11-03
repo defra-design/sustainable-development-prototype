@@ -1,0 +1,79 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Who is responsible for the invoice?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form class="form" action="responsible-for-invoice-check" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-fieldset__heading">
+                Who is responsible for paying the invoice?
+              </h1>
+            </legend>
+            <div class="govuk-radios" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="responsible-for-invoice-check" name="responsible-for-invoice-check" type="radio" value="applicant">
+                <label class="govuk-label govuk-radios__label" for="responsible-for-invoice-check">
+                  {{ data['applicant-name'] + ", the applicant" }}
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="responsible-for-invoice-check-2" name="responsible-for-invoice-check" type="radio" value="ecologist">
+                <label class="govuk-label govuk-radios__label" for="responsible-for-invoice-check-2">
+                  {{ data['ecologist-name'] + ", the ecologist" }}
+                </label>
+              </div>
+
+              {% if data['add-alternate-applicant-check'] == 'Yes' %}
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="responsible-for-invoice-checke-3" name="responsible-for-invoice-check" type="radio" value="alternate applicant">
+                  <label class="govuk-label govuk-radios__label" for="responsible-for-invoice-check-3">
+                    {{ data['alternate-applicant-name'] + ", the alternate applicant" }}
+                  </label>
+                </div>
+              {% endif %}
+
+              {% if data['add-alternate-ecologist-check'] == 'Yes' %}
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="responsible-for-invoice-check-4" name="responsible-for-invoice-check" type="radio" value="alternate ecologist">
+                  <label class="govuk-label govuk-radios__label" for="responsible-for-invoice-check-4">
+                    {{ data['alternate-ecologist-name'] + ", the alternate ecologist" }}
+                  </label>
+                </div>
+              {% endif %}
+
+              <div class="govuk-radios__divider">or</div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="responsible-for-invoice-check-6" name="responsible-for-invoice-check" type="radio" value="Somebody else">
+                <label class="govuk-label govuk-radios__label" for="responsible-for-invoice-check-6">
+                  Somebody else
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      
+
+    
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+What is Dave Smith's email address?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <form class="form" action="confirm-details" method="post">
+        <div class="govuk-form-group">
+          <h1 class="govuk-label-wrapper">
+            <label class="govuk-label govuk-label--l" for="email-address">
+              What is {{ data['ecologist-name'] }}'s email address?
+            </label>
+          </h1>
+         <!-- <div class="govuk-inset-text">
+            <p>This change will only apply to this application. Your email address will remain the same in your Defra ID account.</p>
+          </div>-->
+          <input class="govuk-input" id="ecologist-email-address" name="ecologist-email-address" type="email" spellcheck="false" aria-describedby="email-hint" autocomplete="email" value=" {{ data['ecologist-email-address'] }} ">
+        </div>
+
+        
+        
+        
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

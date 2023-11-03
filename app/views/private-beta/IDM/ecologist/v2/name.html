@@ -1,0 +1,43 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Who is the main ecologist?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <form class="form" action="confirm-details" method="post">       
+
+        {{ govukInput({
+          label: {
+            text: "Who is the main ecologist?",
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          hint: {
+            text: "Enter the full name"
+          },
+          id: "ecologist-name",
+          name: "ecologist-name",
+          value: data['ecologist-name'] 
+        }) }}
+        
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}
