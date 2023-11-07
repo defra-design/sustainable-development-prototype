@@ -82,6 +82,12 @@ Upload a file
         </li>
       </ul>
 
+      {{ govukInsetText({
+        text: "Use unique filenames that clearly identify each file you upload."
+      }) }}
+
+   
+
       <form class="form" action="files" method="post">
         {{ govukFileUpload({
           id: "file-upload-1",
