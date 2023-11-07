@@ -1,0 +1,45 @@
+{% extends "layout_unbranded.html" %}
+
+{% block pageTitle %} 
+User research - November
+{% endblock %}
+
+{% block beforeContent %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <span class="govuk-caption-l">November</span>
+      <h1 class="govuk-heading-l">User research</h1> 
+
+      {{ govukButton({
+        text: "Start here",
+        href: "../SDDSIP-827-returns/v5/email"
+      }) }}
+      
+    
+
+
+      
+      <p class="govuk-body govuk-!-margin-top-9"><a href="../SDDSIP-827-returns/v5/email">Begin from email</a></p>
+
+      <p><a href="../SDDSIP-827-returns/v5/start">Begin from start page</a></p>
+
+      <!--<p><a href="../SDDSIP-453-ecologist-experience/task-list">Give ecologist's experience</a></p>
+
+      <p><a href="../SDDSIP-286-supplementary-file-upload/task-list">Upload supporting information</a></p>
+
+      <p><a href="../SDDSIP-525-conviction-questions/task-list">Declare convictions</a></p>
+
+      <p><a href="../SDDSIP-288-declaration/task-list">Agree to terms and send application</a></p>
+
+      <p><a href="../SDDSIP-534-view-application/applications">View licences and applications</a></p>
+
+      <p class="govuk-body govuk-!-margin-top-9"><a href="/">Prototype home page</a></p>-->
+
+    </div>
+  </div>
+
+{% endblock %}
