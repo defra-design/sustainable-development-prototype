@@ -1,4 +1,4 @@
-{% extends "layout-pb.html" %}
+{% extends "layout.html" %}
 
 {% block pageTitle %} 
 Give feedback on Apply for and manage a wildlife licence
@@ -6,7 +6,6 @@ Give feedback on Apply for and manage a wildlife licence
 
 {% block beforeContent %}
     {% include "includes/alpha-banner.html" %}
-    {% include "includes/back-link.html" %}
 {% endblock %}
 
 {% block content %}
@@ -14,6 +13,8 @@ Give feedback on Apply for and manage a wildlife licence
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
+
       <h1 class="govuk-heading-l">Give feedback on Apply for and manage a wildlife licence</h1>
 
 
@@ -65,7 +66,7 @@ Give feedback on Apply for and manage a wildlife licence
 
       {{ govukButton({
         text: "Send feedback",
-        href: "confirmation"
+        href: "feedback-sent"
       }) }}
     </div>
   </div>
