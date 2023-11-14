@@ -1,0 +1,178 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+View licenses and applications
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">
+            View licenses and applications
+        </h1>
+        <p class="govuk-body">
+            <a class="govuk-button" href="#">
+                New application
+            </a>
+        </p>
+    </div>
+</div>
+
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-full">
+
+        <!-- Applications -->
+        {% set applicationsHtml %}
+            <table class="govuk-table responsive">
+                <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                        <th scope="col" class="govuk-table__header app-custom-class">Licence reference and type</th>
+                        <th scope="col" class="govuk-table__header app-custom-class">Purpose</th>
+                        <th scope="col" class="govuk-table__header app-custom-class">Site</th>
+                        <th scope="col" class="govuk-table__header app-custom-class">Date submitted or saved</th>
+                        <th scope="col" class="govuk-table__header app-custom-class">Status</th>
+                    </tr>
+                </thead>
+                <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">
+                            <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-2">
+                                <a href="#" class="govuk-link govuk-link--no-visited-state">2021-12345-SPM-WLM</a>
+                            </p>
+                            <p class="govuk-body govuk-!-margin-bottom-2">
+                                <!-- <span class="visually-hidden-desktop">Reference:<br></span> -->
+                                Badger mitigation
+                            </p>
+                        </th>
+                        <td class="govuk-table__cell">
+                            Development
+                        </td>
+                        <td class="govuk-table__cell">
+                            90 Lower Eastside Farm
+                        </td>
+                        <td class="govuk-table__cell" >
+                            <p class="govuk-body govuk-!-margin-bottom-2">
+                                Last saved:<br>
+                                13 November 2023
+                            </p>
+                        </td>
+                        <td class="govuk-table__cell">
+                            <strong class="govuk-tag govuk-!-margin-bottom-2">
+                                In progress
+                            </strong>
+                            <p class="govuk-body govuk-!-margin-bottom-2">
+                                2 of 15 sections completed
+                            </p>
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">
+                            <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-2">
+                                <a href="#" class="govuk-link govuk-link--no-visited-state">2022-34567-SPM-WLM</a>
+                            </p>
+                            <p class="govuk-body govuk-!-margin-bottom-2">
+                                <!-- <span class="visually-hidden-desktop">Reference:<br></span> -->
+                                Badger mitigation
+                            </p>
+                        </th>
+                        <td class="govuk-table__cell">
+                            Development
+                        </td>
+                        <td class="govuk-table__cell">
+                            Belt Wood
+                        </td>
+                        <td class="govuk-table__cell" >
+                            <p class="govuk-body govuk-!-margin-bottom-2">
+                                Last saved:<br>
+                                13 November 2023
+                            </p>
+                        </td>
+                        <td class="govuk-table__cell">
+                            <strong class="govuk-tag govuk-!-margin-bottom-2">
+                                In progress
+                            </strong>
+                            <p class="govuk-body govuk-!-margin-bottom-2">
+                                4 of 15 sections completed
+                            </p>
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">
+                            <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-2">
+                                <a href="#" class="govuk-link govuk-link--no-visited-state">2022-34567-SPM-WLM</a>
+                            </p>
+                            <p class="govuk-body govuk-!-margin-bottom-2">
+                                <!-- <span class="visually-hidden-desktop">Reference:<br></span> -->
+                                Badger mitigation
+                            </p>
+                        </th>
+                        <td class="govuk-table__cell">
+                            Householder
+                        </td>
+                        <td class="govuk-table__cell">
+                            This is a really long site name this is going to wrap hopefully
+                        </td>
+                        <td class="govuk-table__cell" >
+                            <p class="govuk-body govuk-!-margin-bottom-2">
+                                Submitted:<br>
+                                1 November 2023
+                            </p>
+                        </td>
+                        <td class="govuk-table__cell">
+                            <strong class="govuk-tag govuk-tag--turquoise govuk-!-margin-bottom-2" >
+                                Submitted
+                            </strong>
+                            <p class="govuk-body govuk-!-margin-bottom-2">
+                                15 of 15 sections completed
+                            </p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        {% endset -%}
+
+		
+
+       
+        
+
+
+
+        <!-- Tabs -->
+        {{ govukTabs({
+            items: [
+              {
+                label: "Applications",
+                id: "applications",
+                panel: {
+                  html: applicationsHtml
+                }
+              },
+              {
+                label: "Licences",
+                id: "licences",
+                panel: {
+                  html: licencesHtml
+                }
+              },
+              {
+                label: "Expired licences",
+                id: "expiredlicences",
+                panel: {
+                  html: expiredlicencesHtml
+                }
+              }
+            ]
+          }) }}
+	</div>
+</div>
+
+
+{% endblock %}
