@@ -30,14 +30,19 @@ View licenses and applications
 
         <!-- Applications -->
         {% set applicationsHtml %}
+
+            <h2 class="govuk-heading-m">
+                Applications
+            </h2>
+
             <table class="govuk-table responsive">
                 <thead class="govuk-table__head">
                     <tr class="govuk-table__row">
-                        <th scope="col" class="govuk-table__header app-custom-class">Licence reference and type</th>
+                        <th scope="col" class="govuk-table__header app-custom-class govuk-!-width-one-quarter">Licence reference and type</th>
                         <th scope="col" class="govuk-table__header app-custom-class">Purpose</th>
                         <th scope="col" class="govuk-table__header app-custom-class">Site</th>
                         <th scope="col" class="govuk-table__header app-custom-class">Date submitted or saved</th>
-                        <th scope="col" class="govuk-table__header app-custom-class">Status</th>
+                        <th scope="col" class="govuk-table__header app-custom-class govuk-!-width-one-quarter">Status</th>
                     </tr>
                 </thead>
                 <tbody class="govuk-table__body">
@@ -141,7 +146,179 @@ View licenses and applications
 		
 
        
-        
+                <!-- Licences -->
+                {% set licencesHtml %}
+                <h2 class="govuk-heading-m">
+                    Licences
+                </h2>
+                <table class="govuk-table responsive">
+                    <thead class="govuk-table__head">
+                        <tr class="govuk-table__row">
+                            <th scope="col" class="govuk-table__header app-custom-class govuk-!-width-one-quarter">Licence reference and type</th>
+                            <th scope="col" class="govuk-table__header app-custom-class">Purpose</th>
+                            <th scope="col" class="govuk-table__header app-custom-class">Site</th>
+                            <th scope="col" class="govuk-table__header app-custom-class">Licence period</th>
+                            <th scope="col" class="govuk-table__header app-custom-class govuk-!-width-one-quarter">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody class="govuk-table__body">
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">
+                                <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-2">
+                                    <a href="#" class="govuk-link govuk-link--no-visited-state">2022-63568-SPM-WLM</a>
+                                </p>
+                                <p class="govuk-body govuk-!-margin-bottom-2">
+                                    <!-- <span class="visually-hidden-desktop">Reference:<br></span> -->
+                                    Badger mitigation
+                                </p>
+                            </th>
+                            <td class="govuk-table__cell">
+                                Development
+                            </td>
+                            <td class="govuk-table__cell">
+                                Belt Wood
+                            </td>
+                            <td class="govuk-table__cell" >
+                                <p class="govuk-body govuk-!-margin-bottom-2">
+                                    Valid from:<br>
+                                    20 October 2022
+                                </p>
+                                <p class="govuk-body govuk-!-margin-bottom-2">
+                                    Expires:<br>
+                                    20 October 2023
+                                </p>
+                            </td>
+                            <td class="govuk-table__cell">
+                                <strong class="govuk-tag govuk-tag--pink" >
+                                    Report of action due
+                                </strong>
+                            </td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">
+                                <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-2">
+                                    <a href="#" class="govuk-link govuk-link--no-visited-state">2022-34567-SPM-WLM</a>
+                                </p>
+                                <p class="govuk-body govuk-!-margin-bottom-2">
+                                    <!-- <span class="visually-hidden-desktop">Reference:<br></span> -->
+                                    Badger mitigation
+                                </p>
+                            </th>
+                            <td class="govuk-table__cell">
+                                Householder
+                            </td>
+                            <td class="govuk-table__cell">
+                                Spring Wood Park
+                            </td>
+                            <td class="govuk-table__cell" >
+                                <p class="govuk-body govuk-!-margin-bottom-2">
+                                    Valid from:<br>
+                                    20 October 2022
+                                </p>
+                                <p class="govuk-body govuk-!-margin-bottom-2">
+                                    Expires:<br>
+                                    20 October 2023
+                                </p>
+                            </td>
+                            <td class="govuk-table__cell">
+                                <strong class="govuk-tag govuk-tag--pink" >
+                                    Report of action due
+                                </strong>
+                            </td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">
+                                <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-2">
+                                    <a href="#" class="govuk-link govuk-link--no-visited-state">2023-86734-SPM-WLM</a>
+                                </p>
+                                <p class="govuk-body govuk-!-margin-bottom-2">
+                                    <!-- <span class="visually-hidden-desktop">Reference:<br></span> -->
+                                    Badger mitigation
+                                </p>
+                            </th>
+                            <td class="govuk-table__cell">
+                                Development
+                            </td>
+                            <td class="govuk-table__cell">
+                                Wharfeside Mews
+                            </td>
+                            <td class="govuk-table__cell" >
+                                <p class="govuk-body govuk-!-margin-bottom-2">
+                                    Valid from:<br>
+                                    20 October 2023
+                                </p>
+                                <p class="govuk-body govuk-!-margin-bottom-2">
+                                    Expires:<br>
+                                    20 October 2024
+                                </p>
+                            </td>
+                            <td class="govuk-table__cell">
+                                <strong class="govuk-tag govuk-tag--green" >
+                                    Granted
+                                </strong>
+                            </td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            {% endset -%}
+
+
+
+            <!-- Expired licences -->
+            {% set expiredlicencesHtml %}
+                <h2 class="govuk-heading-m">
+                    Expired licences
+                </h2>
+                <table class="govuk-table responsive">
+                    <thead class="govuk-table__head">
+                        <tr class="govuk-table__row">
+                            <th scope="col" class="govuk-table__header app-custom-class govuk-!-width-one-quarter">Licence reference and type</th>
+                            <th scope="col" class="govuk-table__header app-custom-class">Purpose</th>
+                            <th scope="col" class="govuk-table__header app-custom-class">Site</th>
+                            <th scope="col" class="govuk-table__header app-custom-class">Report of action submitted</th>
+                            <th scope="col" class="govuk-table__header app-custom-class">Licence closed date</th>
+                            <th scope="col" class="govuk-table__header app-custom-class">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody class="govuk-table__body">
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">
+                                <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-2">
+                                    <a href="#" class="govuk-link govuk-link--no-visited-state">2022-63568-SPM-WLM</a>
+                                </p>
+                                <p class="govuk-body govuk-!-margin-bottom-2">
+                                    <!-- <span class="visually-hidden-desktop">Reference:<br></span> -->
+                                    Badger mitigation
+                                </p>
+                            </th>
+                            <td class="govuk-table__cell">
+                                Development
+                            </td>
+                            <td class="govuk-table__cell">
+                                Belt Wood
+                            </td>
+                            <td class="govuk-table__cell" >
+                                <p class="govuk-body govuk-!-margin-bottom-2">
+                                    20 October 2022
+                                </p>
+                            </td>
+                            <td class="govuk-table__cell">
+                                25 October 2023
+                            </td>
+                            <td class="govuk-table__cell">
+                                <strong class="govuk-tag govuk-tag--grey" >
+                                    Closed
+                                </strong>
+                            </td>
+                        </tr>    
+                    </tbody>
+                </table>
+            {% endset -%}
+    
+
+
+
 
 
 
