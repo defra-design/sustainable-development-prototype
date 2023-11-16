@@ -1740,4 +1740,21 @@ router.post('/private-beta/IDM/alternate-ecologist/v2/add-alternate-ecologist-ch
   } 
 });
 
+router.post('/private-beta/IDM/invoice-payer/v2/responsible-for-invoice-check', function (req, res) {
+  const editChoice = req.session.data['responsible-for-invoice-check']
+
+  if (editChoice === 'applicant') {
+    res.redirect('contact-details')
+  } else if (editChoice === 'ecologist') {
+    res.redirect('contact-details')
+  } else if (editChoice === 'alternate applicant') {
+    res.redirect('contact-details')
+  } else if (editChoice === 'alternate ecologist') {
+    res.redirect('contact-details')
+  } else if (editChoice === 'Somebody else') {
+    res.redirect('name')
+  } 
+  
+});
+
 }
