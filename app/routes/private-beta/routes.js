@@ -1705,4 +1705,39 @@ router.post('/private-beta/IDM/alternate-applicant/v2/add-alternate-applicant-ch
   } 
 });
 
+
+router.post('/private-beta/IDM/application-role/v2/nsip-check', (req, res) => {
+  if(req.session.data['nsip-check'] == 'Yes'){
+      res.redirect('land-owner')
+  } else if(req.session.data['nsip-check'] == 'No'){
+      res.redirect('window-not-open')
+  } 
+});
+
+
+router.post('/private-beta/IDM/application-role/v2/land-owner-check', (req, res) => {
+  if(req.session.data['land-owner-check'] == 'Yes'){
+      res.redirect('consent')
+  } else if(req.session.data['land-owner-check'] == 'No'){
+      res.redirect('land-owner-permission')
+  } 
+});
+
+
+router.post('/private-beta/IDM/application-role/v2/consent-check', (req, res) => {
+  if(req.session.data['consent-check'] == 'Yes'){
+      res.redirect('consent-granted')
+  } else if(req.session.data['consent-check'] == 'No'){
+      res.redirect('application-role')
+  } 
+});
+
+router.post('/private-beta/IDM/alternate-ecologist/v2/add-alternate-ecologist-check', (req, res) => {
+  if(req.session.data['add-alternate-ecologist-check'] == 'Yes'){
+      res.redirect('name')
+  } else if(req.session.data['add-alternate-ecologist-check'] == 'No'){
+      res.redirect('check-your-answers')
+  } 
+});
+
 }
