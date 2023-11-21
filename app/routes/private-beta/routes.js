@@ -1757,4 +1757,17 @@ router.post('/private-beta/IDM/invoice-payer/v2/responsible-for-invoice-check', 
   
 });
 
+router.post('/private-beta/IDM/invoice-payer/v2/invoice-contact-details-check', (req, res) => {
+  if(req.session.data['invoice-contact-details-check'] == 'Yes'){
+      res.redirect('purchase-order')
+  } else if(req.session.data['invoice-contact-details-check'] == 'No'){
+      res.redirect('name')
+  } 
+});
+
+
+
+
+
+
 }
