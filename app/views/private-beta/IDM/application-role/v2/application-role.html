@@ -16,7 +16,7 @@ Your application role
 
         <h1 class="govuk-heading-l">Your application role</h1>
 
-        <p class="govuk-!-padding-bottom-6">You must tell us what role you have in relation to this application and the licence, if issued.</p>
+        <p class="govuk-!-padding-bottom-3">You must explain to Natural England your role in this application, and the licence, if issued.</p>
 
 
 
@@ -31,12 +31,18 @@ Your application role
             },
             items: [
               {
-                value: "I will hold the licence, if issued",
-                text: "I will hold the licence, if issued"
-              },
-              {
                 value: "I am the named ecologist",
                 text: "I am the named ecologist"
+              },  
+              {
+                value: "I will hold the licence, if issued",
+                text: "I will hold the licence, if issued",
+                hint: {
+                  text: "The person who holds this licence will usually be someone from the organisation that is undertaking the development project."
+                }
+              },
+              {
+                divider: "or"
               },
               {
                 value: "I am someone else",

@@ -1766,8 +1766,21 @@ router.post('/private-beta/IDM/invoice-payer/v2/invoice-contact-details-check', 
 });
 
 
+router.post('/private-beta/IDM/application-role/v2/land-owner-permission-check', (req, res) => {
+  if(req.session.data['land-owner-permission-check'] == 'Yes'){
+      res.redirect('consent')
+  } else if(req.session.data['land-owner-permission-check'] == 'No'){
+      res.redirect('dropout-land-owner')
+  } 
+});
 
 
-
+router.post('/private-beta/IDM/application-role/v2/consent-granted-check', (req, res) => {
+  if(req.session.data['consent-granted-check'] == 'Yes'){
+      res.redirect('application-role')
+  } else if(req.session.data['consent-granted-check'] == 'No'){
+      res.redirect('dropout-consent-granted')
+  } 
+});
 
 }
