@@ -1783,4 +1783,15 @@ router.post('/private-beta/IDM/application-role/v2/consent-granted-check', (req,
   } 
 });
 
+router.post('/private-beta/IDM/applicant/v2/organisation-check', (req, res) => {
+  if(req.session.data['organisation-check'] == 'Yes'){
+      res.redirect('postcode')
+  } else if(req.session.data['organisation-check'] == 'No'){
+      res.redirect('postcode-no-org')
+  } 
+});
+
+
+
+
 }

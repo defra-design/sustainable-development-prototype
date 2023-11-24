@@ -1,7 +1,17 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-What is {{ data['applicant-name'] }}'s email address at {{ data['organisation-name'] }}?
+
+    {% if data['organisation-check'] == 'Yes' %}
+
+    What is {{ data['applicant-name'] }}'s email address at {{ data['organisation-name'] }}?
+
+    {% else %}
+
+    What is {{ data['applicant-name'] }}'s contact address?
+
+    {% endif %}
+
 {% endblock %}
 
 {% block beforeContent %}
@@ -18,7 +28,21 @@ What is {{ data['applicant-name'] }}'s email address at {{ data['organisation-na
         <div class="govuk-form-group">
           <h1 class="govuk-label-wrapper">
             <label class="govuk-label govuk-label--l" for="email-address">
+
+              {% if data['organisation-check'] == 'Yes' %}
+
               What is {{ data['applicant-name'] }}'s email address at {{ data['organisation-name'] }}?
+
+             {% else %}
+
+              What is {{ data['applicant-name'] }}'s contact address?
+
+              {% endif %}
+
+
+              
+
+
             </label>
           </h1>
           <input class="govuk-input" id="email-address" name="email-address" type="email" spellcheck="false" aria-describedby="email-hint" autocomplete="email">

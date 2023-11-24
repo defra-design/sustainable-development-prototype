@@ -1,18 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-
-    {% if data['organisation-check'] == 'Yes' %}
-
-      What is {{ data['applicant-name'] }}'s postcode at {{ data['organisation-name'] }}?
-
-    {% else %}
-
-      What is {{ data['applicant-name'] }}'s postcode?
-
-    {% endif %}
-
-
+  What is {{ data['applicant-name'] }}'s postcode?
 {% endblock %}
 
 {% block beforeContent %}
@@ -27,18 +16,7 @@
       
       <form class="form" action="select-address" method="post">
         <h1 class="govuk-heading-l">
-
-          {% if data['organisation-check'] == 'Yes' %}
-
-            What is {{ data['applicant-name'] }}'s work postcode at {{ data['organisation-name'] }}?
-
-          {% else %}
-
-            What is {{ data['applicant-name'] }}'s postcode?
-
-          {% endif %}
-
-          
+          What is {{ data['applicant-name'] }}'s postcode?
         </h1>
         <div class="govuk-form-group">
           {{ govukInput({
