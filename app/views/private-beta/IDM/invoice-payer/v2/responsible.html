@@ -36,23 +36,7 @@ Who is responsible for the invoice?
                 </label>
               </div>
 
-              {% if data['add-alternate-applicant-check'] == 'Yes' %}
-                <div class="govuk-radios__item">
-                  <input class="govuk-radios__input" id="responsible-for-invoice-checke-3" name="responsible-for-invoice-check" type="radio" value="alternate applicant">
-                  <label class="govuk-label govuk-radios__label" for="responsible-for-invoice-check-3">
-                    {{ data['alternate-applicant-name'] + ", the alternate applicant" }}
-                  </label>
-                </div>
-              {% endif %}
-
-              {% if data['add-alternate-ecologist-check'] == 'Yes' %}
-                <div class="govuk-radios__item">
-                  <input class="govuk-radios__input" id="responsible-for-invoice-check-4" name="responsible-for-invoice-check" type="radio" value="alternate ecologist">
-                  <label class="govuk-label govuk-radios__label" for="responsible-for-invoice-check-4">
-                    {{ data['alternate-ecologist-name'] + ", the alternate ecologist" }}
-                  </label>
-                </div>
-              {% endif %}
+              
 
               <div class="govuk-radios__divider">or</div>
               <div class="govuk-radios__item">

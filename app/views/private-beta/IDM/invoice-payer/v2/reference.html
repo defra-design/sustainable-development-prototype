@@ -1,0 +1,45 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Enter a unique reference for the invoice
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="check-your-answers" method="post">
+        
+        {{ govukInput({
+          label: {
+            text: "Enter a unique reference for the invoice",
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          hint: {
+            text: "You will have to pay a £101 administration charge if you want to change this after the application is submitted."
+          },
+          id: "reference",
+          name: "reference"
+        }) }}
+
+          
+            {{ govukButton({
+              text: "Continue"
+            }) }}
+        </form>
+      
+     
+
+    
+    </div>
+  </div>
+
+{% endblock %}

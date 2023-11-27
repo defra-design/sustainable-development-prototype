@@ -257,223 +257,6 @@ Check your answers
 
 
 
-
-                <!-- Alternate Applicant -->
-                {% if data['responsible-for-invoice-check'] == 'alternate applicant' %}
-                <div class="govuk-summary-list__row">
-                  <dt class="govuk-summary-list__key">
-                    Who is responsible for paying the invoice?
-                  </dt>
-                  <dd class="govuk-summary-list__value">
-                    {{ data['alternate-applicant-name'] }}
-                  </dd>
-                  <dd class="govuk-summary-list__actions">
-                    <a class="govuk-link" href="#">
-                      Change<span class="govuk-visually-hidden"> who is responsible for paying the invoice?</span>
-                    </a>
-                  </dd>
-                </div>
-        
-                <div class="govuk-summary-list__row">
-                  <dt class="govuk-summary-list__key">
-                    Are these the contact details to be used for the invoice?
-                  </dt>
-                  <dd class="govuk-summary-list__value">
-                    {{ data['invoice-contact-details-check'] }}
-                  </dd>
-                  <dd class="govuk-summary-list__actions">
-                    <a class="govuk-link" href="#">
-                      Change<span class="govuk-visually-hidden"> are these the contact details to be used for the invoice?</span>
-                    </a>
-                  </dd>
-                </div> 
-        
-                    {% if data['invoice-contact-details-check'] == 'Yes' %}
-                      <div class="govuk-summary-list__row">
-                        <dt class="govuk-summary-list__key">
-                          Contact address
-                        </dt>
-                        <dd class="govuk-summary-list__value">
-                          3 High Street<br>
-                          Oxford<br>
-                          Oxfordshire<br>
-                          OX11BD
-                        </dd>
-                        <dd class="govuk-summary-list__actions">
-                          
-                        </dd>
-                      </div> 
-                      <div class="govuk-summary-list__row">
-                        <dt class="govuk-summary-list__key">
-                          Email address
-                        </dt>
-                        <dd class="govuk-summary-list__value">
-                          {{ data['alternate-applicant-email-address'] }} 
-                        </dd>
-                        <dd class="govuk-summary-list__actions">
-                          
-                        </dd>
-                      </div> 
-                    {% endif %}
-        
-                    {% if data['invoice-contact-details-check'] == 'No' %}
-                      <div class="govuk-summary-list__row">
-                        <dt class="govuk-summary-list__key">
-                          Who should we send the invoice to?
-                        </dt>
-                        <dd class="govuk-summary-list__value">
-                          {{ data['invoice-name'] }}
-                        </dd>
-                        <dd class="govuk-summary-list__actions">
-                          <a class="govuk-link" href="#">
-                            Change<span class="govuk-visually-hidden"> who should we send the invoice to?</span>
-                          </a>
-                        </dd>
-                      </div>
-                      <div class="govuk-summary-list__row">
-                        <dt class="govuk-summary-list__key">
-                        {{ data['invoice-name'] }}'s contact address
-                        </dt>
-                        <dd class="govuk-summary-list__value">
-                          3 High Street<br>
-                          Oxford<br>
-                          Oxfordshire<br>
-                          OX11BD
-                        </dd>
-                        <dd class="govuk-summary-list__actions">
-                          <a class="govuk-link" href="#">
-                            Change<span class="govuk-visually-hidden"> {{ data['invoice-name'] }}'s contact address</span>
-                          </a>
-                        </dd>
-                      </div>
-                      <div class="govuk-summary-list__row">
-                        <dt class="govuk-summary-list__key">
-                        {{ data['invoice-name'] }}'s email address
-                        </dt>
-                        <dd class="govuk-summary-list__value">
-                          {{ data['email-address'] }} 
-                        </dd>
-                        <dd class="govuk-summary-list__actions">
-                          <a class="govuk-link" href="#">
-                            Change<span class="govuk-visually-hidden"> {{ data['invoice-name'] }}'s email address</span>
-                          </a>
-                        </dd>
-                      </div>
-                    {% endif %}
-        
-                {% endif %}
-                <!-- End of Alternate Applicant -->
-
-
-
-        <!-- Alternate Ecologist -->
-        {% if data['responsible-for-invoice-check'] == 'alternate ecologist' %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Who is responsible for paying the invoice?
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['alternate-ecologist-name'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="#">
-              Change<span class="govuk-visually-hidden"> who is responsible for paying the invoice?</span>
-            </a>
-          </dd>
-        </div>
-
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Are these the contact details to be used for the invoice?
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['invoice-contact-details-check'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="#">
-              Change<span class="govuk-visually-hidden"> are these the contact details to be used for the invoice?</span>
-            </a>
-          </dd>
-        </div> 
-
-            {% if data['invoice-contact-details-check'] == 'Yes' %}
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Contact address
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  3 High Street<br>
-                  Oxford<br>
-                  Oxfordshire<br>
-                  OX11BD
-                </dd>
-                <dd class="govuk-summary-list__actions">
-                  
-                </dd>
-              </div> 
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Email address
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  {{ data['alternate-ecologist-email-address'] }} 
-                </dd>
-                <dd class="govuk-summary-list__actions">
-                  
-                </dd>
-              </div> 
-            {% endif %}
-
-            {% if data['invoice-contact-details-check'] == 'No' %}
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Who should we send the invoice to?
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  {{ data['invoice-name'] }}
-                </dd>
-                <dd class="govuk-summary-list__actions">
-                  <a class="govuk-link" href="#">
-                    Change<span class="govuk-visually-hidden"> who should we send the invoice to?</span>
-                  </a>
-                </dd>
-              </div>
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                {{ data['invoice-name'] }}'s contact address
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  3 High Street<br>
-                  Oxford<br>
-                  Oxfordshire<br>
-                  OX11BD
-                </dd>
-                <dd class="govuk-summary-list__actions">
-                  <a class="govuk-link" href="#">
-                    Change<span class="govuk-visually-hidden"> {{ data['invoice-name'] }}'s contact address</span>
-                  </a>
-                </dd>
-              </div>
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                {{ data['invoice-name'] }}'s email address
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  {{ data['email-address'] }} 
-                </dd>
-                <dd class="govuk-summary-list__actions">
-                  <a class="govuk-link" href="#">
-                    Change<span class="govuk-visually-hidden"> {{ data['invoice-name'] }}'s email address</span>
-                  </a>
-                </dd>
-              </div>
-            {% endif %}
-
-        {% endif %}
-        <!-- End of Alternate Applicant -->
-
-
-
         <!-- Somebody else -->
         {% if data['responsible-for-invoice-check'] == 'Somebody else' %}
           <div class="govuk-summary-list__row">
@@ -486,6 +269,32 @@ Check your answers
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="#">
                 Change<span class="govuk-visually-hidden"> who should we send the invoice to?</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+             Is {{ data['invoice-name'] }} part of an organisation?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['organisation-check'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> is {{ data['invoice-name'] }} part of an organisation?</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Name of organisation
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['organisation-name'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> name of organisation</span>
               </a>
             </dd>
           </div>
@@ -518,25 +327,72 @@ Check your answers
               </a>
             </dd>
           </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+             {{ data['invoice-name'] }}'s phone number
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['phone-number'] }} 
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> {{ data['invoice-name'] }}'s phone number</span>
+              </a>
+            </dd>
+          </div>
         {% endif %}
         <!-- End of Somebody else -->
 
 
-
-        
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Reference / Purchase order
+            Does the invoice have a purchase order number?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['purchase-order-check'] }} 
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> does the invoice have a purchase order number?</span>
+            </a>
+          </dd>
+        </div> 
+
+        
+
+        <!-- PO / Ref -->
+        {% if data['purchase-order-check'] == 'Yes' %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Purchase order number
           </dt>
           <dd class="govuk-summary-list__value">
             {{ data['purchase-order'] }} 
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="#">
-              Change<span class="govuk-visually-hidden"> Reference / Purchase order</span>
+              Change<span class="govuk-visually-hidden"> purchase order number</span>
             </a>
           </dd>
         </div> 
+        {% endif %}
+
+        {% if data['purchase-order-check'] == 'No' %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Invoice reference
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['purchase-order'] }} 
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> invoice reference</span>
+            </a>
+          </dd>
+        </div> 
+        {% endif %}
+
       </dl>
     
       <form class="form" action="task-list-complete" method="post">

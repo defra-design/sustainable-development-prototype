@@ -1759,7 +1759,7 @@ router.post('/private-beta/IDM/invoice-payer/v2/responsible-for-invoice-check', 
 
 router.post('/private-beta/IDM/invoice-payer/v2/invoice-contact-details-check', (req, res) => {
   if(req.session.data['invoice-contact-details-check'] == 'Yes'){
-      res.redirect('purchase-order')
+      res.redirect('got-purchase-order')
   } else if(req.session.data['invoice-contact-details-check'] == 'No'){
       res.redirect('name')
   } 
@@ -1783,6 +1783,8 @@ router.post('/private-beta/IDM/application-role/v2/consent-granted-check', (req,
   } 
 });
 
+
+
 router.post('/private-beta/IDM/applicant/v2/organisation-check', (req, res) => {
   if(req.session.data['organisation-check'] == 'Yes'){
       res.redirect('postcode')
@@ -1791,6 +1793,14 @@ router.post('/private-beta/IDM/applicant/v2/organisation-check', (req, res) => {
   } 
 });
 
+
+router.post('/private-beta/IDM/invoice-payer/v2/purchase-order-check', (req, res) => {
+  if(req.session.data['purchase-order-check'] == 'Yes'){
+      res.redirect('check-your-answers')
+  } else if(req.session.data['purchase-order-check'] == 'No'){
+      res.redirect('reference')
+  } 
+});
 
 
 

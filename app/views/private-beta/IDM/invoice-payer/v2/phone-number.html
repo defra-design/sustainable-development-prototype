@@ -1,15 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-{% if data['organisation-check'] == 'Yes' %}
-
-                What is {{ data['applicant-name'] }}'s phone number at {{ data['organisation-name'] }}?
-
-              {% else %}
-
-                What is {{ data['applicant-name'] }}'s phone number?
-
-              {% endif %}
+  What is {{ data['invoice-name'] }}'s phone number?
 {% endblock %}
 
 {% block beforeContent %}
@@ -22,23 +14,11 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       
-      <form class="form" action="check-your-answers" method="post">
+      <form class="form" action="got-purchase-order" method="post">
         <div class="govuk-form-group">
           <h1 class="govuk-label-wrapper">
             <label class="govuk-label govuk-label--l" for="email-address">
-
-              {% if data['organisation-check'] == 'Yes' %}
-
-                What is {{ data['applicant-name'] }}'s phone number at {{ data['organisation-name'] }}?
-
-              {% else %}
-
-                What is {{ data['applicant-name'] }}'s phone number?
-
-              {% endif %}
-
-
-              
+              What is {{ data['invoice-name'] }}'s phone number?
             </label>
           </h1>
           <div id="event-name-hint" class="govuk-hint">

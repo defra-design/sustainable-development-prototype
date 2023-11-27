@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Who should we send the invoice to?
+Enter the full name of the person responsible for the invoice
 {% endblock %}
 
 {% block beforeContent %}
@@ -14,16 +14,13 @@ Who should we send the invoice to?
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       
-      <form class="form" action="postcode" method="post">       
+      <form class="form" action="organisation" method="post">       
 
         {{ govukInput({
           label: {
-            text: "Who should we send the invoice to?",
+            text: "Enter the full name of the person responsible for the invoice",
             classes: "govuk-label--l",
             isPageHeading: true
-          },
-          hint: {
-            text: "Enter the full name"
           },
           id: "invoice-name",
           name: "invoice-name"

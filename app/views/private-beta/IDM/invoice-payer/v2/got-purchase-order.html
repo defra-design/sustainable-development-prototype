@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Is {{ data['invoice-name'] }} part of an organisation?
+Enter a reference or purchase order number
 {% endblock %}
 
 {% block beforeContent %}
@@ -11,39 +11,42 @@ Is {{ data['invoice-name'] }} part of an organisation?
 
 {% block content %}
 
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      
-      <form class="form" action="postcode" method="post">
-        
+
+      <form class="form" action="purchase-order-check" method="post">
 
 
-      {% set organisationHtml %}
+      {% set purchaseOrderHtml %}
       {{ govukInput({
-        id: "organisation-name",
-        name: "organisation-name",
+        id: "purchase-order",
+        name: "purchase-order",
         label: {
-          text: "Name of organisation"
+          text: "Purchase order number"
         }
       }) }}
       {% endset -%}
 
       {{ govukRadios({
-        idPrefix: "organisation-check",
-        name: "organisation-check",
+        idPrefix: "purchase-order-check",
+        name: "purchase-order-check",
         fieldset: {
           legend: {
-            html: "Is " + data['invoice-name'] + " part of an organisation?",
+            html: "Does the invoice have a purchase order number?",
             isPageHeading: true,
             classes: "govuk-fieldset__legend--l"
           }
         },
+        hint: {
+            text: "You will have to pay a £101 administration charge if you want to change this after the application is submitted."
+          },
         items: [
           {
             value: "Yes",
             text: "Yes",
             conditional: {
-              html: organisationHtml
+              html: purchaseOrderHtml
             }
           },
           {
@@ -58,7 +61,9 @@ Is {{ data['invoice-name'] }} part of an organisation?
           }) }}
       </form>
 
-      
+    
+
+
     
     </div>
   </div>
