@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-What is your email address?
+What is your phone number?
 {% endblock %}
 
 {% block beforeContent %}
@@ -14,17 +14,19 @@ What is your email address?
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       
-      <form class="form" action="phone-number" method="post">
+      <form class="form" action="check-your-answers-defra-account" method="post">
         <div class="govuk-form-group">
           <h1 class="govuk-label-wrapper">
             <label class="govuk-label govuk-label--l" for="email-address">
-              What is your email address?
+              What is your phone number?
             </label>
           </h1>
-         <!-- <div class="govuk-inset-text">
-            <p>This change will only apply to this application. Your email address will remain the same in your Defra ID account.</p>
-          </div>-->
-          <input class="govuk-input" id="ecologist-email-address" name="ecologist-email-address" type="email" spellcheck="false" aria-describedby="email-hint" autocomplete="email">
+          <div id="telephone-number-hint" class="govuk-hint">
+            For international numbers include the country code.
+          </div>
+      
+          
+          <input class="govuk-input govuk-input--width-20" id="ecologist-phone-number" name="ecologist-phone-number" type="tel" autocomplete="tel">
         </div>
 
         
