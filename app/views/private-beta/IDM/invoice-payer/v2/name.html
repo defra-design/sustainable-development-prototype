@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Enter the full name of the person responsible for the invoice
+Who should we send the invoice to?
 {% endblock %}
 
 {% block beforeContent %}
@@ -18,9 +18,12 @@ Enter the full name of the person responsible for the invoice
 
         {{ govukInput({
           label: {
-            text: "Enter the full name of the person responsible for the invoice",
+            text: "Who should we send the invoice to?",
             classes: "govuk-label--l",
             isPageHeading: true
+          },
+          hint: {
+            text: "Enter the full name of an individual. Do not enter the name of an organisation or department."
           },
           id: "invoice-name",
           name: "invoice-name"
@@ -32,6 +35,7 @@ Enter the full name of the person responsible for the invoice
       </form>
 
       
+
     
     </div>
   </div>

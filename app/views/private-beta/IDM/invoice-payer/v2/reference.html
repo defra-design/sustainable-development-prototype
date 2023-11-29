@@ -17,20 +17,23 @@ Enter a unique reference for the invoice
 
       <form class="form" action="check-your-answers" method="post">
         
+       
+
+        <h1 class="govuk-heading-l">Enter a unique reference for the invoice</h1>
+
+        <p>We will use this reference in all communication about the invoice and payment for this licence.</p> 
+        <p>You will have to pay a £101 administration charge if you want to change this after the application is submitted.</p>
+          
         {{ govukInput({
           label: {
-            text: "Enter a unique reference for the invoice",
-            classes: "govuk-label--l",
-            isPageHeading: true
-          },
-          hint: {
-            text: "You will have to pay a £101 administration charge if you want to change this after the application is submitted."
+            text: "Invoice reference",
+            classes: "govuk-label--m"
           },
           id: "reference",
           name: "reference"
         }) }}
 
-          
+
             {{ govukButton({
               text: "Continue"
             }) }}
@@ -43,3 +46,5 @@ Enter a unique reference for the invoice
   </div>
 
 {% endblock %}
+
+

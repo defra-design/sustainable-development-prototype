@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Enter a reference or purchase order number
+Do you have a purchase order number?
 {% endblock %}
 
 {% block beforeContent %}
@@ -15,6 +15,10 @@ Enter a reference or purchase order number
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      <h1 class="govuk-heading-l">Purchase order</h1>
+
+      <p>You will have to pay a £101 administration charge if you want to change this after the application is submitted.</p>
+
       <form class="form" action="purchase-order-check" method="post">
 
 
@@ -23,7 +27,7 @@ Enter a reference or purchase order number
         id: "purchase-order",
         name: "purchase-order",
         label: {
-          text: "Purchase order number"
+          text: "Enter the purchase order number"
         }
       }) }}
       {% endset -%}
@@ -33,14 +37,10 @@ Enter a reference or purchase order number
         name: "purchase-order-check",
         fieldset: {
           legend: {
-            html: "Does the invoice have a purchase order number?",
-            isPageHeading: true,
-            classes: "govuk-fieldset__legend--l"
+            html: "Do you have a purchase order number?",
+            classes: "govuk-fieldset__legend--m"
           }
         },
-        hint: {
-            text: "You will have to pay a £101 administration charge if you want to change this after the application is submitted."
-          },
         items: [
           {
             value: "Yes",
