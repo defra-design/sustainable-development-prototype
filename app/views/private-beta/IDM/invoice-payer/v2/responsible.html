@@ -24,17 +24,18 @@ Who is responsible for the invoice?
             </legend>
             <div class="govuk-radios" data-module="govuk-radios">
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="responsible-for-invoice-check" name="responsible-for-invoice-check" type="radio" value="applicant">
-                <label class="govuk-label govuk-radios__label" for="responsible-for-invoice-check">
-                  {{ data['applicant-name'] + ", the applicant" }}
-                </label>
-              </div>
-              <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="responsible-for-invoice-check-2" name="responsible-for-invoice-check" type="radio" value="ecologist">
                 <label class="govuk-label govuk-radios__label" for="responsible-for-invoice-check-2">
                   {{ data['ecologist-name'] + ", the ecologist" }}
                 </label>
               </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="responsible-for-invoice-check" name="responsible-for-invoice-check" type="radio" value="applicant">
+                <label class="govuk-label govuk-radios__label" for="responsible-for-invoice-check">
+                  {{ data['applicant-name'] + ", the person who will hold the licence, if issued" }}
+                </label>
+              </div>
+              
 
               
 
