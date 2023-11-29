@@ -1,7 +1,17 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-  What is {{ data['invoice-name'] }}'s contact address? 
+
+    {% if data['organisation-check'] == 'Yes' %}
+
+    What is {{ data['invoice-name'] }}'s contact address at {{ data['organisation-name'] }}?
+
+    {% else %}
+
+    What is {{ data['invoice-name'] }}'s contact address?
+
+    {% endif %}
+    
 {% endblock %}
 
 {% block beforeContent %}
@@ -16,7 +26,17 @@
       
       <form class="form" action="email-address" method="post">
         <h1 class="govuk-heading-l">
-          What is {{ data['invoice-name'] }}'s contact address?
+          
+
+          {% if data['organisation-check'] == 'Yes' %}
+
+            What is {{ data['invoice-name'] }}'s contact address at {{ data['organisation-name'] }}?
+
+          {% else %}
+
+            What is {{ data['invoice-name'] }}'s contact address?
+
+          {% endif %}
         </h1>
         
 
