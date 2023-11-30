@@ -1,0 +1,92 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: Give feedback on the apply for and manage a wildlife licence service
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/alpha-banner-no-feedback.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "You have entered too many characters",
+            href: "#feedback"
+          }
+        ]
+      }) }}
+
+
+      <h1 class="govuk-heading-l">Give feedback on the apply for and manage a wildlife licence service</h1>
+
+      
+
+
+      {{ govukRadios({
+        name: "nps-satisfaction",
+        fieldset: {
+          legend: {
+            text: "Overall, how did you feel about the service today?",
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+          {
+            value: "Very satisfied",
+            text: "Very satisfied"
+          },
+          {
+            value: "Satisfied",
+            text: "Satisfied"
+          },
+          {
+            value: "Neither satisfied nor dissatisfied",
+            text: "Neither satisfied nor dissatisfied"
+          },
+          {
+            value: "Dissatisfied",
+            text: "Dissatisfied"
+          },
+          {
+            value: "Very dissatisfied",
+            text: "Very dissatisfied"
+          }
+        ]
+      }) }}
+
+     
+      {{ govukCharacterCount({
+        name: "feedback",
+        id: "feedback",
+        maxlength: 4000,
+        value: " A content designer works on the end-to-end journey of a service to help users complete their goal and government deliver a policy intent. Their work may involve the creation of, or change to, a transaction, product or single piece of content that stretches across digital and offline channels. They make sure appropriate content is shown to a user in the right place and in the best format. A content designer works on the end-to-end journey of a service to help users complete their goal and government deliver a policy intent. Their work may involve the creation of, or change to, a transaction, product or single piece of content that stretches across digital and offline channels. They make sure appropriate content is shown to a user in the right place and in the best format. A content designer works on the end-to-end journey of a service to help users complete their goal and government deliver a policy intent. Their work may involve the creation of, or change to, a transaction, product or single piece of content that stretches across digital and offline channels. They make sure appropriate content is shown to a user in the right place and in the best format.A content designer works on the end-to-end journey of a service to help users complete their goal and government deliver a policy intent. Their work may involve the creation of, or change to, a transaction, product or single piece of content that stretches across digital and offline channels. They make sure appropriate content is shown to a user in the right place and in the best format.A content designer works on the end-to-end journey of a service to help users complete their goal and government deliver a policy intent. Their work may involve the creation of, or change to, a transaction, product or single piece of content that stretches across digital and offline channels. They make sure appropriate content is shown to a user in the right place and in the best format.A content designer works on the end-to-end journey of a service to help users complete their goal and government deliver a policy intent. Their work may involve the creation of, or change to, a transaction, product or single piece of content that stretches across digital and offline channels. They make sure appropriate content is shown to a user in the right place and in the best format.A content designer works on the end-to-end journey of a service to help users complete their goal and government deliver a policy intent. Their work may involve the creation of, or change to, a transaction, product or single piece of content that stretches across digital and offline channels. They make sure appropriate content is shown to a user in the right place and in the best format.A content designer works on the end-to-end journey of a service to help users complete their goal and government deliver a policy intent. Their work may involve the creation of, or change to, a transaction, product or single piece of content that stretches across digital and offline channels. They make sure appropriate content is shown to a user in the right place and in the best format.A content designer works on the end-to-end journey of a service to help users complete their goal and government deliver a policy intent. Their work may involve the creation of, or change to, a transaction, product or single piece of content that stretches across digital and offline channels. They make sure appropriate content is shown to a user in the right place and in the best format.A content designer works on the end-to-end journey of a service to help users complete their goal and government deliver a policy intent. Their work may involve the creation of, or change to, a transaction, product or single piece of content that stretches across digital and offline channels. They make sure appropriate content is shown to a user in the right place and in the best format. A content designer works on the end-to-end journey of a service to help users complete their goal and government deliver a policy intent. ",
+        label: {
+          text: "How can we improve this service?",
+          classes: "govuk-label--m"
+        },
+        errorMessage: {
+            text: "Feedback must be 4000 characters or less"
+          },
+        hint: {
+          text: "Do not include personal or financial information like your National Insurance number or credit card details."
+        }
+      }) }}
+
+      {{ govukButton({
+        text: "Send feedback",
+        href: "feedback-sent"
+      }) }}
+    </div>
+  </div>
+
+{% endblock %}
