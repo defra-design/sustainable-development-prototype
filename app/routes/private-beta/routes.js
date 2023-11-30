@@ -1796,11 +1796,12 @@ router.post('/private-beta/IDM/applicant/v2/organisation-check', (req, res) => {
 
 router.post('/private-beta/IDM/invoice-payer/v2/purchase-order-check', (req, res) => {
   if(req.session.data['purchase-order-check'] == 'Yes'){
-      res.redirect('check-your-answers')
+      res.redirect('purchase-order')
   } else if(req.session.data['purchase-order-check'] == 'No'){
       res.redirect('reference')
   } 
 });
+
 
 
 

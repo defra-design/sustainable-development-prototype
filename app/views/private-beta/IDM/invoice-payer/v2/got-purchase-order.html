@@ -15,22 +15,8 @@ Do you have a purchase order number?
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-l">Purchase order</h1>
-
-      <p>You will have to pay a £101 administration charge if you want to change this after the application is submitted.</p>
 
       <form class="form" action="purchase-order-check" method="post">
-
-
-      {% set purchaseOrderHtml %}
-      {{ govukInput({
-        id: "purchase-order",
-        name: "purchase-order",
-        label: {
-          text: "Enter the purchase order number"
-        }
-      }) }}
-      {% endset -%}
 
       {{ govukRadios({
         idPrefix: "purchase-order-check",
@@ -38,7 +24,8 @@ Do you have a purchase order number?
         fieldset: {
           legend: {
             html: "Do you have a purchase order number?",
-            classes: "govuk-fieldset__legend--m"
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
           }
         },
         items: [
