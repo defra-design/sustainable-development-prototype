@@ -16,16 +16,11 @@ Who should we send the invoice to?
       
       <form class="form" action="organisation" method="post">       
 
-        <h1 class="govuk-heading-l">Invoice payer details</h1>
-
-        <div class="govuk-inset-text">
-          You will have to pay a £101 administration charge if you want to change this after the application is submitted.
-        </div>
-
         {{ govukInput({
           label: {
             text: "Who should we send the invoice to?",
-            classes: "govuk-label--m"
+            classes: "govuk-label--l",
+            isPageHeading: true
           },
           hint: {
             text: "Enter the full name of an individual. Do not enter the name of an organisation or department."

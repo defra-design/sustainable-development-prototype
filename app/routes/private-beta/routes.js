@@ -1761,7 +1761,7 @@ router.post('/private-beta/IDM/invoice-payer/v2/invoice-contact-details-check', 
   if(req.session.data['invoice-contact-details-check'] == 'Yes'){
       res.redirect('got-purchase-order')
   } else if(req.session.data['invoice-contact-details-check'] == 'No'){
-      res.redirect('name')
+      res.redirect('name-different')
   } 
 });
 
