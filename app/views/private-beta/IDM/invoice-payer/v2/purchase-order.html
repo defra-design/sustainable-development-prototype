@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Enter a reference or purchase order number
+Enter your purchase order number
 {% endblock %}
 
 {% block beforeContent %}
@@ -18,14 +18,12 @@ Enter a reference or purchase order number
       <form class="form" action="check-your-answers" method="post">
         
     
-        <h1 class="govuk-heading-l">Enter your purchase order number</h1>
-
-        <p>You will have to pay a £101 administration charge if you want to change this after the application is submitted.</p>
           
         {{ govukInput({
           label: {
-            text: "Purchase order number",
-            classes: "govuk-label--m"
+            text: "Enter your purchase order number",
+            classes: "govuk-label--l",
+            isPageHeading: true
           },
           id: "purchase-order",
           name: "purchase-order"
