@@ -1803,5 +1803,13 @@ router.post('/private-beta/IDM/invoice-payer/v2/purchase-order-check', (req, res
 });
 
 
+router.post('/private-beta/IDM/authorised-people/v2/add-person', (req, res) => {
+  if(req.session.data['add-person-check'] == 'yes'){
+      res.redirect('name')
+  } else if(req.session.data['add-person-check'] == 'no'){
+      res.redirect('check-your-answers-not-added')
+  } 
+});
+
 
 }
