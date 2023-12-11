@@ -1,7 +1,17 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-  What is {{ data['authorised-name-2'] }}'s contact address? 
+  
+    {% if data['authorised-name-2-organisation-check'] == 'Yes' %}
+
+      What is {{ data['authorised-name-2'] }}'s postcode at {{ data['authorised-name-2-organisation-name'] }}?
+
+    {% else %}
+
+      What is {{ data['authorised-name-2'] }}'s postcode?
+
+    {% endif %}
+
 {% endblock %}
 
 {% block beforeContent %}
@@ -16,7 +26,17 @@
       
       <form class="form" action="select-address-2" method="post">
         <h1 class="govuk-heading-l">
-          What is {{ data['authorised-name-2'] }}'s contact address?
+          
+          {% if data['authorised-name-2-organisation-check'] == 'Yes' %}
+
+            What is {{ data['authorised-name-2'] }}'s postcode at {{ data['authorised-name-2-organisation-name'] }}?
+
+          {% else %}
+
+            What is {{ data['authorised-name-2'] }}'s postcode?
+
+          {% endif %}
+
         </h1>
         <div class="govuk-form-group">
           {{ govukInput({

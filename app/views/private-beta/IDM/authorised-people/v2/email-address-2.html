@@ -1,7 +1,17 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-What is {{ data['authorised-name-2'] }}'s email address?
+
+    {% if data['authorised-name-2-organisation-check'] == 'Yes' %}
+
+      What is {{ data['authorised-name-2'] }}'s email address at {{ data['authorised-name-2-organisation-name'] }}?
+
+    {% else %}
+
+      What is {{ data['authorised-name-2'] }}'s email address?
+
+    {% endif %}
+
 {% endblock %}
 
 {% block beforeContent %}
@@ -17,8 +27,18 @@ What is {{ data['authorised-name-2'] }}'s email address?
       <form class="form" action="address-2" method="post">
         <div class="govuk-form-group">
           <h1 class="govuk-label-wrapper">
-            <label class="govuk-label govuk-label--l" for="sett-name">
-              What is {{ data['authorised-name-2'] }}'s email address?
+            <label class="govuk-label govuk-label--l" for="authorised-email-address-2">
+              
+              {% if data['authorised-name-2-organisation-check'] == 'Yes' %}
+
+                What is {{ data['authorised-name-2'] }}'s email address at {{ data['authorised-name-2-organisation-name'] }}?
+
+              {% else %}
+
+                What is {{ data['authorised-name-2'] }}'s email address?
+
+              {% endif %}
+
             </label>
           </h1>
           <input class="govuk-input" id="authorised-email-address-2" name="authorised-email-address-2" type="email" spellcheck="false" aria-describedby="email-hint" autocomplete="email">

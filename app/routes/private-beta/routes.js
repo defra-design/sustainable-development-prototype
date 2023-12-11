@@ -1812,4 +1812,30 @@ router.post('/private-beta/IDM/authorised-people/v2/add-person', (req, res) => {
 });
 
 
+router.post('/private-beta/IDM/authorised-people/v2/are-you-sure', (req, res) => {
+  if(req.session.data['remove-person-check'] == 'yes'){
+      res.redirect('add-person')
+  } else if(req.session.data['remove-person-check'] == 'no'){
+      res.redirect('check-your-answers')
+  } 
+});
+
+router.post('/private-beta/IDM/authorised-people/v2/are-you-sure-2', (req, res) => {
+  if(req.session.data['remove-person-check'] == 'yes'){
+    res.redirect('check-your-answers')
+} else if(req.session.data['remove-person-check'] == 'no'){
+    res.redirect('check-your-answers-2')
+} 
+});
+
+
+router.post('/private-beta/IDM/authorised-people/v2/add-another-authorised-person', (req, res) => {
+  if(req.session.data['add-another-authorised-person-check'] == 'Yes'){
+      res.redirect('name-2')
+  } else if(req.session.data['add-another-authorised-person-check'] == 'No'){
+      res.redirect('task-list-complete')
+  } 
+});
+
+
 }

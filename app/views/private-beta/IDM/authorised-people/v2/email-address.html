@@ -27,7 +27,7 @@
       <form class="form" action="address" method="post">
         <div class="govuk-form-group">
           <h1 class="govuk-label-wrapper">
-            <label class="govuk-label govuk-label--l" for="sett-name">
+            <label class="govuk-label govuk-label--l" for="authorised-email-address">
 
               {% if data['authorised-name-organisation-check'] == 'Yes' %}
 
@@ -38,7 +38,7 @@
                 What is {{ data['authorised-name'] }}'s email address?
 
               {% endif %}
-              
+
             </label>
           </h1>
           <input class="govuk-input" id="authorised-email-address" name="authorised-email-address" type="email" spellcheck="false" aria-describedby="email-hint" autocomplete="email">
