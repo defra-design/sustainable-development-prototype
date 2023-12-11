@@ -1,7 +1,19 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-What is {{ data['alternate-ecologist-name'] }}'s email address?
+
+
+    {% if data['alternate-ecologist-organisation-check'] == 'Yes' %}
+
+      What is {{ data['alternate-ecologist-name'] }}'s email address at {{ data['alternate-ecologist-organisation-name'] }}?
+
+    {% else %}
+
+      What is {{ data['alternate-ecologist-name'] }}'s email address?
+
+    {% endif %}
+
+
 {% endblock %}
 
 {% block beforeContent %}
@@ -18,7 +30,17 @@ What is {{ data['alternate-ecologist-name'] }}'s email address?
         <div class="govuk-form-group">
           <h1 class="govuk-label-wrapper">
             <label class="govuk-label govuk-label--l" for="email-address">
-              What is {{ data['alternate-ecologist-name'] }}'s email address?
+
+              {% if data['alternate-ecologist-organisation-check'] == 'Yes' %}
+
+                What is {{ data['alternate-ecologist-name'] }}'s email address at {{ data['alternate-ecologist-organisation-name'] }}?
+
+              {% else %}
+
+                What is {{ data['alternate-ecologist-name'] }}'s email address?
+
+              {% endif %}
+
             </label>
           </h1>
           <input class="govuk-input" id="alternate-ecologist-email-address" name="alternate-ecologist-email-address" type="email" spellcheck="false" aria-describedby="email-hint" autocomplete="email">

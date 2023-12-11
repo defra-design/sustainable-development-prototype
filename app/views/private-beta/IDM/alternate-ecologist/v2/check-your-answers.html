@@ -47,6 +47,34 @@ Check your answers
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
+              Is {{ data['alternate-ecologist-name'] }} part of an organisation?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['alternate-ecologist-organisation-check'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> is {{ data['alternate-ecologist-name'] }} part of an organisation?</span>
+              </a>
+            </dd>
+          </div>
+          {% if data['alternate-ecologist-organisation-check'] == 'Yes' %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Name of organisation
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['alternate-ecologist-organisation-name'] }} 
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> name of organisation</span>
+                </a>
+              </dd>
+            </div>
+          {% endif %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
              {{ data['alternate-ecologist-name'] }}'s contact address
             </dt>
             <dd class="govuk-summary-list__value">

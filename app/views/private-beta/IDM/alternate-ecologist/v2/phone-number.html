@@ -1,7 +1,19 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-What is {{ data['alternate-ecologist-name'] }}'s phone number?
+
+
+    {% if data['alternate-ecologist-organisation-check'] == 'Yes' %}
+
+      What is {{ data['alternate-ecologist-name'] }}'s phone number at {{ data['alternate-ecologist-organisation-name'] }}?
+
+    {% else %}
+
+      What is {{ data['alternate-ecologist-name'] }}'s phone number?
+
+    {% endif %}
+
+
 {% endblock %}
 
 {% block beforeContent %}
@@ -18,7 +30,17 @@ What is {{ data['alternate-ecologist-name'] }}'s phone number?
         <div class="govuk-form-group">
           <h1 class="govuk-label-wrapper">
             <label class="govuk-label govuk-label--l" for="alternate-applicant-phone-number">
-              What is {{ data['alternate-ecologist-name'] }}'s phone number?
+              
+              {% if data['alternate-ecologist-organisation-check'] == 'Yes' %}
+
+                What is {{ data['alternate-ecologist-name'] }}'s phone number at {{ data['alternate-ecologist-organisation-name'] }}?
+
+              {% else %}
+
+                What is {{ data['alternate-ecologist-name'] }}'s phone number?
+
+              {% endif %}
+
             </label>
           </h1>
           <div id="telephone-number-hint" class="govuk-hint">
