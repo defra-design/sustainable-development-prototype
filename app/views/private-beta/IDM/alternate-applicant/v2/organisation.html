@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Is {{ data['invoice-name'] }} part of an organisation?
+Is {{ data['alternate-applicant-name'] }} part of an organisation?
 {% endblock %}
 
 {% block beforeContent %}
@@ -20,8 +20,8 @@ Is {{ data['invoice-name'] }} part of an organisation?
 
       {% set organisationHtml %}
       {{ govukInput({
-        id: "organisation-name",
-        name: "organisation-name",
+        id: "alternate-applicant-organisation-name",
+        name: "alternate-applicant-organisation-name",
         label: {
           text: "Name of organisation"
         }
@@ -29,11 +29,11 @@ Is {{ data['invoice-name'] }} part of an organisation?
       {% endset -%}
 
       {{ govukRadios({
-        idPrefix: "organisation-check",
-        name: "organisation-check",
+        idPrefix: "alternate-applicant-organisation-check",
+        name: "alternate-applicant-organisation-check",
         fieldset: {
           legend: {
-            html: "Is " + data['applicant-name'] + " part of an organisation?",
+            html: "Is " + data['alternate-applicant-name'] + " part of an organisation?",
             isPageHeading: true,
             classes: "govuk-fieldset__legend--l"
           }

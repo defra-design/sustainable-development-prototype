@@ -1,7 +1,17 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-  What is {{ data['applicant-name'] }}'s contact address? 
+  
+    {% if data['alternate-applicant-organisation-check'] == 'Yes' %}
+
+      What is {{ data['alternate-applicant-name'] }}'s contact address at {{ data['alternate-applicant-organisation-name'] }}?
+
+    {% else %}
+
+      What is {{ data['alternate-applicant-name'] }}'s contact address?
+
+    {% endif %}
+
 {% endblock %}
 
 {% block beforeContent %}
@@ -21,7 +31,17 @@
         <fieldset class="govuk-fieldset">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
             <h1 class="govuk-heading-l">
-              What is {{ data['alternate-applicant-name'] }}'s contact address?
+
+              {% if data['alternate-applicant-organisation-check'] == 'Yes' %}
+
+                What is {{ data['alternate-applicant-name'] }}'s contact address at {{ data['alternate-applicant-organisation-name'] }}?
+
+              {% else %}
+
+                What is {{ data['alternate-applicant-name'] }}'s contact address?
+
+              {% endif %}
+
             </h1>
           </legend>
         
@@ -29,41 +49,41 @@
           
           
           <div class="govuk-form-group ">
-            <label class="govuk-label" for="applicantAddress1">
+            <label class="govuk-label" for="alternate-applicant-address1">
               Building and street <span class="govuk-visually-hidden">line 1 of 2</span>
             </label>
               
-            <input class="govuk-input " id="applicantAddress1" name="applicantAddress1" type="text" autocomplete="address-line1" value="">
+            <input class="govuk-input " id="alternate-applicant-address1" name="alternate-applicant-address1" type="text" autocomplete="address-line1" value="">
           </div>
         
           
           
           <div class="govuk-form-group ">
-            <label class="govuk-label" for="applicantAddress2">
+            <label class="govuk-label" for="alternate-applicant-address2">
               <span class="govuk-visually-hidden">Building and street line 2 of 2</span>
             </label>
             
-            <input class="govuk-input " id="applicantAddress2" name="applicantAddress2" type="text" autocomplete="address-line2" value="">
+            <input class="govuk-input " id="alternate-applicant-address2" name="alternate-applicant-address2" type="text" autocomplete="address-line2" value="">
           </div>
         
           
           
           <div class="govuk-form-group ">
-            <label class="govuk-label" for="applicantAddress3">
+            <label class="govuk-label" for="alternate-applicant-address3">
               Town or city
             </label>
             
-            <input class="govuk-input govuk-!-width-two-thirds " id="applicantAddress3" name="applicantAddress3" type="text" autocomplete="address-level2" value="">
+            <input class="govuk-input govuk-!-width-two-thirds " id="alternate-applicant-address3" name="alternate-applicant-address3" type="text" autocomplete="address-level2" value="">
           </div>
         
           
           
           <div class="govuk-form-group ">
-            <label class="govuk-label" for="applicantAddress4">
+            <label class="govuk-label" for="alternate-applicant-address4">
               County
             </label>
             
-            <input class="govuk-input govuk-!-width-two-thirds " id="applicantAddress4" name="applicantAddress4" type="text" value=""></div>
+            <input class="govuk-input govuk-!-width-two-thirds " id="alternate-applicant-address4" name="alternate-applicant-address4" type="text" value=""></div>
         
           
         

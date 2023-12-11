@@ -47,6 +47,34 @@ Check your answers
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
+              Is {{ data['alternate-applicant-name'] }} part of an organisation?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['alternate-applicant-organisation-check'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> is {{ data['alternate-applicant-name'] }} part of an organisation?</span>
+              </a>
+            </dd>
+          </div>
+          {% if data['alternate-applicant-organisation-check'] == 'Yes' %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Name of organisation
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['alternate-applicant-organisation-name'] }} 
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> name of organisation</span>
+                </a>
+              </dd>
+            </div>
+          {% endif %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
              {{ data['alternate-applicant-name'] }}'s contact address
             </dt>
             <dd class="govuk-summary-list__value">
