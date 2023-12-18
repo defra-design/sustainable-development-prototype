@@ -1,0 +1,65 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+
+      Error: What is John Doe's postcode at ABC Ecology?
+
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "Enter a full UK postcode",
+                href: "#postcode"
+              }
+            ]
+          }) }}
+      
+      <form class="form" action="select-address" method="post">
+        <h1 class="govuk-heading-l">
+
+            What is John Doe's postcode at ABC Ecology?
+
+        </h1>
+        <div class="govuk-form-group">
+          {{ govukInput({
+            label: {
+              text: "Postcode"
+            },
+            classes: "govuk-input--width-10",
+            id: "postcode",
+            name: "postcode",
+            value: "Not a postcode",
+            errorMessage: {
+                text: "Enter a full UK postcode"
+              }
+          }) }}
+        </div>
+
+        <p><a href="no-postcode">The address doesn't have a postcode</a></p>
+        
+          {{ govukButton({
+            text: "Find address"
+          }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}
+
+
+What is [user_name]'s postcode  [organisation_name]
