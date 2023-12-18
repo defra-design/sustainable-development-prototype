@@ -1,0 +1,61 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+
+Error: What is Jane Doe's postcode at DEF Developers?
+
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "Enter a postcode",
+                href: "#alternate-applicant-postcode"
+              }
+            ]
+          }) }}
+      
+      <form class="form" action="select-address" method="post">
+        <h1 class="govuk-heading-l">
+
+            What is Jane Doe's postcode at DEF Developers?
+
+        </h1>
+        <div class="govuk-form-group">
+          {{ govukInput({
+            label: {
+              text: "Postcode"
+            },
+            classes: "govuk-input--width-10",
+            id: "alternate-applicant-postcode",
+            name: "alternate-applicant-postcode",
+            errorMessage: {
+                text: "Enter a postcode"
+              }
+          }) }}
+        </div>
+
+        <p><a href="no-postcode">The address doesn't have a postcode</a></p>
+        
+          {{ govukButton({
+            text: "Find address"
+          }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

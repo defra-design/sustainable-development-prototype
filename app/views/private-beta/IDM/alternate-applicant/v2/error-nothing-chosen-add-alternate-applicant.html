@@ -1,0 +1,70 @@
+{% extends "layout-pb.html" %}
+
+
+{% block pageTitle %} 
+Error: Do you want to add an alternate applicant?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "Select an option",
+                href: "#add-alternate-applicant-check"
+              }
+            ]
+          }) }}
+
+
+      <form class="form" action="add-alternate-applicant-check" method="post">
+        {{ govukRadios({
+          idPrefix: "add-alternate-applicant-check",
+          name: "add-alternate-applicant-check",
+          fieldset: {
+            legend: {
+              text: "Do you want to add an alternate applicant?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "This person will not hold the licence, but will receive messages about this application."
+          },
+          errorMessage: {
+            text: "Select an option"
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

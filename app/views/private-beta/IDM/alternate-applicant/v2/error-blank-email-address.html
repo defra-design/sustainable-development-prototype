@@ -2,7 +2,7 @@
 
 {% block pageTitle %} 
 
-    Error: What is John Doe's phone number at ABC Ecology?
+    Error: What is Jane Doe's email address at DEF Developers?
 
 {% endblock %}
 
@@ -20,28 +20,25 @@
             titleText: "There is a problem",
             errorList: [
               {
-                text: "Enter a telephone number, like 01632 960 001, 07700 900 982 or +44 808 157 0192",
-                href: "#phone-number"
+                text: "Enter an email address",
+                href: "#alternate-applicant-email-address"
               }
             ]
           }) }}
       
-      <form class="form" action="check-your-answers" method="post">
+      <form class="form" action="phone-number" method="post">
         <div class="govuk-form-group govuk-form-group--error">
           <h1 class="govuk-label-wrapper">
             <label class="govuk-label govuk-label--l" for="email-address">
 
-              What is John Doe's phone number at ABC Ecology?
-              
+                Error: What is Jane Doe's email address at DEF Developers?
+
             </label>
           </h1>
-          <div id="event-name-hint" class="govuk-hint">
-            For international numbers include the country code.
-          </div>
           <p id="address-town-error" class="govuk-error-message">
-            <span class="govuk-visually-hidden">Error:</span> Enter a telephone number, like 01632 960 001, 07700 900 982 or +44 808 157 0192
+            <span class="govuk-visually-hidden">Error:</span> Enter an email address
           </p>
-          <input class="govuk-input govuk-input--width-20" id="phone-number" name="phone-number" type="tel" autocomplete="tel" value="000000000000000000000000">
+          <input class="govuk-input" id="alternate-applicant-email-address" name="alternate-applicant-email-address" type="email" spellcheck="false" aria-describedby="email-hint" autocomplete="email">
         </div>
         
           {{ govukButton({
@@ -55,5 +52,3 @@
   </div>
 
 {% endblock %}
-
-
