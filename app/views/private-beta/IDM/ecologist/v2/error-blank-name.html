@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Who is the named ecologist?
+Error: Who is the named ecologist?
 {% endblock %}
 
 {% block beforeContent %}
@@ -13,6 +13,16 @@ Who is the named ecologist?
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "Enter a full name",
+                href: "#ecologist-name"
+              }
+            ]
+          }) }}
       
       <form class="form" action="confirm-details" method="post">       
 
@@ -24,6 +34,9 @@ Who is the named ecologist?
           },
           hint: {
             text: "Enter the full name"
+          },
+          errorMessage: {
+            text: "Enter a full name"
           },
           id: "ecologist-name",
           name: "ecologist-name",
