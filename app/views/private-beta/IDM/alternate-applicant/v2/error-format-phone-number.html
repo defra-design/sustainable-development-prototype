@@ -20,7 +20,7 @@ Error: What is Jane Doe's phone number at DEF Developers?
             titleText: "There is a problem",
             errorList: [
               {
-                text: "Enter a telephone number, like 01632 960 001, 07700 900 982 or +44 808 157 0192",
+                text: "Enter a phone number in a valid format",
                 href: "#alternate-applicant-phone-number"
               }
             ]
@@ -39,9 +39,9 @@ Error: What is Jane Doe's phone number at DEF Developers?
             For international numbers include the country code.
           </div>
           <p id="address-town-error" class="govuk-error-message">
-            <span class="govuk-visually-hidden">Error:</span> Enter a telephone number, like 01632 960 001, 07700 900 982 or +44 808 157 0192
+            <span class="govuk-visually-hidden">Error:</span> Enter a phone number in a valid format
           </p>
-          <input class="govuk-input" id="alternate-applicant-phone-number" name="alternate-applicant-phone-number" type="tel" autocomplete="tel" value="000000000000000000000000">
+          <input class="govuk-input govuk-input--width-20" id="alternate-applicant-phone-number" name="alternate-applicant-phone-number" type="tel" autocomplete="tel" value="000000000000000000000000">
         </div>
         
           {{ govukButton({
