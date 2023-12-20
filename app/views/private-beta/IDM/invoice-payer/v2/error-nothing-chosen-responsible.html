@@ -1,0 +1,79 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: Who is responsible for the invoice?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "Select an option",
+                href: "#responsible-for-invoice-check"
+              }
+            ]
+          }) }}
+
+
+      <form class="form" action="responsible-for-invoice-check" method="post">
+
+        <div class="govuk-form-group govuk-form-group--error">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-fieldset__heading">
+                Who is responsible for paying the invoice?
+              </h1>
+            </legend>
+            <p id="whereDoYouLive-error" class="govuk-error-message">
+                <span class="govuk-visually-hidden">Error:</span> Select an option
+              </p>
+            <div class="govuk-radios" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="responsible-for-invoice-check" name="responsible-for-invoice-check" type="radio" value="ecologist">
+                <label class="govuk-label govuk-radios__label" for="responsible-for-invoice-check-2">
+                  Jane Doe, the ecologist
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="responsible-for-invoice-check-2" name="responsible-for-invoice-check" type="radio" value="applicant">
+                <label class="govuk-label govuk-radios__label" for="responsible-for-invoice-check">
+                    John Doe, the person who will hold the licence, if issued
+                </label>
+              </div>
+              
+
+              
+
+              <div class="govuk-radios__divider">or</div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="responsible-for-invoice-check-3" name="responsible-for-invoice-check" type="radio" value="Somebody else">
+                <label class="govuk-label govuk-radios__label" for="responsible-for-invoice-check-3">
+                  Somebody else
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      
+
+    
+    </div>
+  </div>
+
+{% endblock %}
