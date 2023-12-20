@@ -14,15 +14,15 @@ Error: Is Jim Doe part of an organisation?
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {{ govukErrorSummary({
-        titleText: "There is a problem",
-        errorList: [
-          {
-            text: "Select an option",
-            href: "#alternate-ecologist-organisation-check"
-          }
-        ]
-      }) }}
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "Enter the name of the organisation",
+                href: "#alternate-ecologist-organisation-name"
+              }
+            ]
+          }) }}
       
       <form class="form" action="postcode" method="post">
 
@@ -32,7 +32,10 @@ Error: Is Jim Doe part of an organisation?
         name: "alternate-ecologist-organisation-name",
         label: {
           text: "Name of organisation"
-        }
+        },
+        errorMessage: {
+            text: "Enter the name of the organisation"
+          }
       }) }}
       {% endset -%}
 
@@ -46,13 +49,11 @@ Error: Is Jim Doe part of an organisation?
             classes: "govuk-fieldset__legend--l"
           }
         },
-        errorMessage: {
-          text: "Select an option"
-        },
         items: [
           {
             value: "Yes",
             text: "Yes",
+            checked: true,
             conditional: {
               html: organisationHtml
             }
