@@ -1,9 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-
-    Error: What is John Doe's contact address at DEF Developers?
-
+Error: What is Jason Doe's contact address at ABC Ecology? 
 {% endblock %}
 
 {% block beforeContent %}
@@ -18,7 +16,6 @@
       
       <form class="form" action="email-address" method="post">
         
-       
         {{ govukErrorSummary({
             titleText: "There is a problem",
             errorList: [
@@ -28,15 +25,14 @@
               }
             ]
           }) }}
+
         
         <fieldset class="govuk-fieldset">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
             <h1 class="govuk-heading-l">
-                What is John Doe's contact address at DEF Developers?
+                What is Jason Doe's contact address at ABC Ecology? 
             </h1>
           </legend>
-        
-
           
           
           <div class="govuk-form-group">
@@ -83,6 +79,8 @@
               </p>
               <input class="govuk-input govuk-input--width-10" id="address-postcode" name="address-postcode" type="text" value="Not a postcode" autocomplete="postal-code">
             </div>
+
+
         
         </fieldset>
         

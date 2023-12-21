@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-What is Jason Doe's phone number at ABC Ecology?
+    Error: What is Jason Doe's phone number at ABC Ecology?
 {% endblock %}
 
 {% block beforeContent %}
@@ -13,19 +13,31 @@ What is Jason Doe's phone number at ABC Ecology?
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "Enter a phone number in a valid format",
+                href: "#ecologist-phone-number"
+              }
+            ]
+          }) }}
       
       <form class="form" action="confirm-details" method="post">
-        <div class="govuk-form-group">
+        <div class="govuk-form-group govuk-form-group--error">
           <h1 class="govuk-label-wrapper">
             <label class="govuk-label govuk-label--l" for="ecologist-phone-number">
-              What is Jason Doe's phone number at ABC Ecology?
+                What is Jason Doe's phone number at ABC Ecology?
             </label>
           </h1>
          <!-- <div class="govuk-inset-text">
             <p>This change will only apply to this application. Your email address will remain the same in your Defra ID account.</p>
           </div>-->
-          
-          <input class="govuk-input govuk-input--width-20" id="ecologist-phone-number" name="ecologist-phone-number" type="tel" autocomplete="tel" value="07787147327">
+          <p id="address-town-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> Enter a phone number in a valid format
+          </p>
+          <input class="govuk-input govuk-input--width-20" id="phone-number" name="phone-number" type="tel" autocomplete="tel" value="000000000000000000000000">
         </div>
 
         
