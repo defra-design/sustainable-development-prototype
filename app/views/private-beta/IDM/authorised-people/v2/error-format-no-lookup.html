@@ -1,9 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-
-    What is James Doe's contact address at DEF Developments?
-
+  Error: What is Janet Doe's contact address at ABC Ecology?
 {% endblock %}
 
 {% block beforeContent %}
@@ -16,24 +14,24 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-        {{ govukErrorSummary({
-            titleText: "There is a problem",
-            errorList: [
-              {
-                text: "Enter a full UK postcode",
-                href: "#address-postcode"
-              }
-            ]
-          }) }}
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "Enter a full UK postcode",
+            href: "#address-postcode"
+          }
+        ]
+      }) }}
       
-      <form class="form" action="email-address" method="post">
+      <form class="form" action="purchase-order" method="post">
         
        
         
         <fieldset class="govuk-fieldset">
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
             <h1 class="govuk-heading-l">
-                What is James Doe's contact address at DEF Developments?
+              What is Janet Doe's contact address at ABC Ecology?
             </h1>
           </legend>
         
@@ -72,7 +70,6 @@
             <label class="govuk-label" for="applicantAddress4">
               County
             </label>
-
             <input class="govuk-input govuk-!-width-two-thirds " id="applicantAddress4" name="applicantAddress4" type="text" value=""></div>
         
             <div class="govuk-form-group govuk-form-group--error">
@@ -82,8 +79,9 @@
               <p id="address-town-error" class="govuk-error-message">
                 <span class="govuk-visually-hidden">Error:</span> Enter a full UK postcode
               </p>
-              <input class="govuk-input govuk-input--width-10" id="address-postcode" name="address-postcode" type="text" value="Not a postcode" autocomplete="postal-code">
+              <input class="govuk-input govuk-input--width-10" id="address-postcode" name="address-postcode" type="text" autocomplete="postal-code" value="Not a post code">
             </div>
+            
         
         </fieldset>
         

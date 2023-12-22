@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-  Error: What is Andy Smith's contact address? 
+  Error: What is Janet Doe's postcode at ABC Ecology?
 {% endblock %}
 
 {% block beforeContent %}
@@ -18,7 +18,7 @@
         titleText: "There is a problem",
         errorList: [
           {
-            text: "You have not entered a correct postcode",
+            text: "Enter a full UK postcode",
             href: "#postcode"
           }
         ]
@@ -26,7 +26,7 @@
       
       <form class="form" action="select-address" method="post">
         <h1 class="govuk-heading-l">
-          What is Andy Smith's contact address?
+          What is Janet Doe's postcode at ABC Ecology?
         </h1>
         <div class="govuk-form-group">
           {{ govukInput({
@@ -34,11 +34,12 @@
               text: "Postcode"
             },
             errorMessage: {
-              text: "Enter a real postcode"
+              text: "Enter a full UK postcode"
             },
             classes: "govuk-input--width-10",
             id: "postcode",
-            name: "postcode"
+            name: "postcode",
+            value: "Not a postcode"
           }) }}
         </div>
 

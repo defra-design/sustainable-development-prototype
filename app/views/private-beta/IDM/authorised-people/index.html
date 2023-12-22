@@ -16,8 +16,8 @@ IDM | Add authorised people
       <h1 class="govuk-heading-l">Add authorised people</h1> 
 
       <div class="govuk-!-margin-bottom-9">
-        <strong class="govuk-tag govuk-tag--green">
-          In progress
+        <strong class="govuk-tag">
+          Dev ready
        </strong>
       </div>
 
@@ -63,7 +63,10 @@ IDM | Add authorised people
 
                 <tr class="govuk-table__row">
                   <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/organisation">Organisation?</a></td>
-                  <td class="govuk-table__cell"></td>
+                  <td class="govuk-table__cell">
+                    <a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-organisation">If nothing chosen</a><br>
+                    <a class="govuk-link govuk-link--no-visited-state" href="v2/error-blank-organisation">If blank</a>
+                  </td>
                   <td class="govuk-table__cell"></td>
                   <td class="govuk-table__cell"></td>
                 </tr>
@@ -94,7 +97,10 @@ IDM | Add authorised people
 
                 <tr class="govuk-table__row">
                   <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/address-no-lookup">Address - no address in select menu</a></td>
-                  <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-blank-address-no-lookup">If blank</a></td>
+                  <td class="govuk-table__cell">
+                    <a class="govuk-link govuk-link--no-visited-state" href="v2/error-blank-address-no-lookup">If blank</a><br>
+                    <a class="govuk-link govuk-link--no-visited-state" href="v2/error-format-no-lookup">If wrong format</a>
+                  </td>
                   <td class="govuk-table__cell"></td>
                   <td class="govuk-table__cell"></td>
                 </tr>
@@ -268,6 +274,16 @@ IDM | Add authorised people
                   </tr>
               </thead>
               <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  <th class="govuk-table__cell">21 December 2023</th>
+                  <td class="govuk-table__cell">Updated status to DEVREADY.</td>
+                  <td class="govuk-table__cell"></td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <th class="govuk-table__cell">21 December 2023</th>
+                  <td class="govuk-table__cell">Added error states to v2 flow.</td>
+                  <td class="govuk-table__cell"></td>
+                </tr>
                 <tr class="govuk-table__row">
                   <th class="govuk-table__cell">12 December 2023</th>
                   <td class="govuk-table__cell">Moved email address question to appear after contact address questions.</td>

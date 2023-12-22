@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-  Error: What is Andy Smith's contact address? 
+  Error: What is Janet Doe's contact address at ABC Ecology?
 {% endblock %}
 
 {% block beforeContent %}
@@ -18,7 +18,7 @@
         titleText: "There is a problem",
         errorList: [
           {
-            text: "You have not selected an address",
+            text: "Select the address",
             href: "#applicantAddress"
           }
         ]
@@ -26,7 +26,7 @@
       
       <form class="form" action="purchase-order" method="post">
         <h1 class="govuk-heading-l">
-          What is Andy Smith's contact address?
+          What is Janet Doe's contact address at ABC Ecology?
         </h1>
         
 
@@ -45,7 +45,7 @@
               Select an address
           </label>
           <p id="event-name-error" class="govuk-error-message">
-            <span class="govuk-visually-hidden">Error:</span> Select an address
+            <span class="govuk-visually-hidden">Error:</span> Select the address
           </p>
 
           <select class="govuk-select govuk-input--error" id="applicantAddress" name="applicantAddress">
