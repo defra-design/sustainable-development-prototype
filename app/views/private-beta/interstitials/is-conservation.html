@@ -1,0 +1,41 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+    Designated sites
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">
+            Designated sites
+        </h1>
+
+        <p class="govuk-body">You must provide information about any designated sites affected by the development work.</p>
+
+        <p class="govuk-body">This includes:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+            <li>relevant advice or permission from Natural England</li>
+            <li>permission from the owner or occupier of the designated site</li>
+            <li>whether development is on or adjacent to the designated site</li>
+        </ul>
+
+    
+  
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+
+    </div>
+  </div>
+
+{% endblock %}

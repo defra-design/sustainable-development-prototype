@@ -1,0 +1,64 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+    Alternate ecologist
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">
+            Alternate ecologist
+        </h1>
+
+        <p class="govuk-body">You can add information about another ecologist who will support the named ecologist in carrying out the licensed activities. They will receive messages about this licence.</p>
+
+        <p class="govuk-body">You will need to provide:</p>
+        <ul class="govuk-list govuk-list--bullet">
+            <li>their full name</li>
+            <li>their organisation name, if relevant</li>
+            <li>their work address</li>
+            <li>their work email address</li>
+            <li>their work telephone number</li>
+        </ul>
+
+        {{ govukRadios({
+            idPrefix: "add-alternate-ecologist-check",
+            name: "add-alternate-ecologist-check",
+            fieldset: {
+              legend: {
+                text: "Do you want to add an alternate ecologist?",
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            hint: {
+              text: "This person will not hold the licence, but will receive messages about this application."
+            },
+            items: [
+              {
+                value: "Yes",
+                text: "Yes"
+              },
+              {
+                value: "No",
+                text: "No"
+              }
+            ]
+          }) }}
+  
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+
+    </div>
+  </div>
+
+{% endblock %}

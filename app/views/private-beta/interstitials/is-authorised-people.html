@@ -1,0 +1,62 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+    Authorised people
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">
+            Authorised people
+        </h1>
+
+        <p class="govuk-body">You must provide information about anyone else responsible for this licence.</p>
+
+        <p class="govuk-body">You do not have to include anyone working under supervision of the licence holder, named ecologist or other authorised people.</p>
+
+        <p class="govuk-body">You will need to provide:</p>
+        <ul class="govuk-list govuk-list--bullet">
+            <li>their full name</li>
+            <li>their organisation name, if relevant</li>
+            <li>their work address</li>
+            <li>their work email address</li>
+        </ul>
+
+        {{ govukRadios({
+            idPrefix: "add-alternate-ecologist-check",
+            name: "add-alternate-ecologist-check",
+            fieldset: {
+              legend: {
+                text: "Do you want to add an authorised person?",
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            items: [
+              {
+                value: "Yes",
+                text: "Yes"
+              },
+              {
+                value: "No",
+                text: "No"
+              }
+            ]
+          }) }}
+  
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+
+    </div>
+  </div>
+
+{% endblock %}

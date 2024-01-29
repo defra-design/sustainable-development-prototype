@@ -1,0 +1,40 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+    The person who will hold the licence
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">
+            The person who will hold the licence
+        </h1>
+
+        <p class="govuk-body">You must provide information about the person who will hold the licence, if issued. They will be legally responsible for the activity carried out under it.</p>
+
+        <p class="govuk-body">You will need to provide:</p>
+        <ul class="govuk-list govuk-list--bullet">
+            <li>their full name</li>
+            <li>their organisation name, if relevant</li>
+            <li>their work address</li>
+            <li>their work email address</li>
+            <li>their work telephone number</li>
+        </ul>
+
+        {{ govukButton({
+            text: "Continue"
+          }) }}
+
+    </div>
+  </div>
+
+{% endblock %}

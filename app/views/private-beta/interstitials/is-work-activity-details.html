@@ -1,0 +1,36 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+    Work activity
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">
+            Work activity
+        </h1>
+
+        <p class="govuk-body">You must provide information about the type of development work being done. This will help Natural England understand the priorities of the project and whether you will need to pay for the licence.</p>
+
+        <p class="govuk-body">You will also need to give a reason, if you believe you are exempt from paying for this licence.</p>
+
+       
+
+  
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+
+    </div>
+  </div>
+
+{% endblock %}

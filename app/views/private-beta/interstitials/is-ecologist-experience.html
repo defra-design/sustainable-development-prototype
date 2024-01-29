@@ -1,0 +1,39 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+    Ecologist's relevant experience
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">
+            Ecologist's relevant experience
+        </h1>
+
+        <p class="govuk-body">You must provide information about:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+            <li>previous licences the named ecologist has held, including class licences</li>
+            <li>the ecologist's experience of badger ecology and surveying</li>
+            <li>the ecologist's experience of the methods to be used under this licence</li>
+        </ul>
+
+    
+  
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+
+    </div>
+  </div>
+
+{% endblock %}

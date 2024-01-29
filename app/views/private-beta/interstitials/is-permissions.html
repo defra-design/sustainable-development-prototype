@@ -1,0 +1,40 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+    Permission for development
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">
+            Permission for development
+        </h1>
+
+        <p class="govuk-body">You must provide information about:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+            <li>any permissions, including planning permission and permitted development, including the planning authority</li>
+            <li>any wildlife or habitat-related conditions on the permission</li>
+            <li>any potential conflicts between the licensed activity and any other legal commitments</li>
+        </ul>
+
+       
+
+  
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+
+    </div>
+  </div>
+
+{% endblock %}

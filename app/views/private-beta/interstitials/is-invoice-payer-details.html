@@ -1,0 +1,42 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+    Person who will pay the invoice
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">
+            Person who will pay the invoice
+        </h1>
+
+        <p class="govuk-body">You must provide information about the person who is responsible for paying the invoice this licence if one is charged. This can be someone already named in this application.</p>
+
+        <p class="govuk-body">You will need to provide:</p>
+        <ul class="govuk-list govuk-list--bullet">
+            <li>their full name</li>
+            <li>their organisation name, if relevant</li>
+            <li>their work address</li>
+            <li>their work email address</li>
+            <li>their work telephone number</li>
+            <li>a unique reference, such as a purchase order number</li>
+        </ul>
+
+  
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+
+    </div>
+  </div>
+
+{% endblock %}
