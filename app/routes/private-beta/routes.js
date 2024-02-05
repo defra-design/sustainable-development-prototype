@@ -1838,4 +1838,13 @@ router.post('/private-beta/IDM/authorised-people/v2/add-another-authorised-perso
 });
 
 
+router.post('/private-beta/IDM/application-role/v2/account-type-check', (req, res) => {
+  if(req.session.data['account-type-check'] == 'organisation'){
+      res.redirect('uk-organisation')
+  } else if(req.session.data['account-type-check'] == 'individual'){
+      res.redirect('personal-name')
+  } 
+});
+
+
 }
