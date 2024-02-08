@@ -1,0 +1,31 @@
+{% extends "layout-pb-signed-out.html" %}
+
+{% block pageTitle %} 
+You cannot apply for this licence yet
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+        <h1 class="govuk-heading-l">
+          You cannot apply for this licence yet
+        </h1>
+
+        <p class="govuk-body">You need the landowner's permission before you apply for a wildlife licence.</p>
+
+        <p class="govuk-body">Get advice on <a class="govuk-link govuk-link--no-visited-state" href="https://www.gov.uk/guidance/pre-submission-screening-service-advice-on-planning-proposals-affecting-protected-species" target="_blank">planning and development proposals</a> for projects that need a protected species mitigation licence.</p>
+
+        <p class="govuk-body">Find out more about <a href="https://www.gov.uk/guidance/wildlife-licences" target="_blank">what to do before you apply for a licence</a>.</p>
+
+    </div>
+  </div>
+
+{% endblock %}

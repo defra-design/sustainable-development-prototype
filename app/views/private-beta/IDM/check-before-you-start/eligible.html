@@ -1,0 +1,36 @@
+{% extends "layout-pb-signed-out.html" %}
+
+{% block pageTitle %} 
+You’re eligible to apply for a licence
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+        <h1 class="govuk-heading-l">
+            You’re eligible to apply for a licence
+        </h1>
+
+        <!--<p>To apply for this licence online, you must have Government Gateway sign in details.</p>
+
+        <p>If you do not have a Defra account, you will be asked to create one after you sign in.</p>-->
+
+
+        {{ govukButton({
+            text: "Continue",
+            href: "defra-id-signin"
+          }) }}
+
+
+    </div>
+  </div>
+
+{% endblock %}

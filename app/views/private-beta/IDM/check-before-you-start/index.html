@@ -1,0 +1,138 @@
+{% extends "layout-pb-no-service-name.html" %}
+
+{% block pageTitle %} 
+SDDSIP ---- | Check before you start - eligibility checker
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <span class="govuk-caption-l">SDDSIP ----</span>
+      <h1 class="govuk-heading-l">Check before you start - eligibility checker</h1> 
+
+      <div class="govuk-!-margin-bottom-9">
+        <strong class="govuk-tag govuk-tag--green" >
+          In Progress
+        </strong>
+      </div>
+
+      
+
+      
+      <table class="govuk-table">
+        <tdead class="govuk-table__head">
+            <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Page</th>
+            <th scope="col" class="govuk-table__header">Error state</th>
+            <th scope="col" class="govuk-table__header">Confidence</th>
+            <th scope="col" class="govuk-table__header">Notes</th>
+            </tr>
+        </thead>
+        <tbody class="govuk-table__body">  
+            <tr class="govuk-table__row">
+                <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="task-list">Task list</a></td>
+                <td class="govuk-table__cell"></td>
+                <td class="govuk-table__cell"></td>
+                <td class="govuk-table__cell"></td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/which-species">Which species?</a></td>
+              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--yellow">
+                  Medium
+                </strong>
+              </td>
+              <td class="govuk-table__cell">Not tested yet</td>
+            </tr> 
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/nsip">Nationally Significant Infrastructure Project?</a></td>
+              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--yellow">
+                  Medium
+                </strong>
+              </td>
+              <td class="govuk-table__cell">Not tested yet</td>
+            </tr> 
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/land-owner">Applicant own the land?</a></td>
+              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--yellow">
+                  Medium
+                </strong>
+              </td>
+              <td class="govuk-table__cell">Not tested yet</td>
+            </tr> 
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/consent">Project need any permissions?</a></td>
+              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--yellow">
+                  Medium
+                </strong>
+              </td>
+              <td class="govuk-table__cell">Not tested yet</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/eligible">Eligible to apply</a></td>
+              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--yellow">
+                  Medium
+                </strong>
+              </td>
+              <td class="govuk-table__cell">Not tested yet</td>
+            </tr>
+            <tr class="govuk-table__row">
+                <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/application-role">Your application role</a></td>
+                <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-application-role">If nothing chosen</a></td>
+                <td class="govuk-table__cell">
+                  <strong class="govuk-tag govuk-tag--yellow">
+                    Medium
+                  </strong>
+                </td>
+                <td class="govuk-table__cell">Not tested yet</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/task-list">Task list</a></td>
+              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--yellow">
+                  Medium
+                </strong>
+              </td>
+              <td class="govuk-table__cell">Not tested yet</td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+          </tbody>
+        </table>
+
+
+
+
+
+
+
+    </div>
+  </div>
+
+{% endblock %}

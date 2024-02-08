@@ -1,0 +1,138 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Check your answers
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h2 class="govuk-heading-l">Check your answers</h2>
+
+      <dl class="govuk-summary-list">
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Which species will the work affect?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['which-species-check'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> which species will the work affect?</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Is the development a Nationally Significant Infrastructure Project?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['nsip-check'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> is the development a Nationally Significant Infrastructure Project?</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Does the applicant own the land?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['land-owner-check'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> does the applicant own the land?</span>
+            </a>
+          </dd>
+        </div>
+        {% if data['land-owner-check'] == 'No' %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Does the applicant have the landowner’s permission to apply?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['land-owner-permission-check'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> does the applicant have the landowner’s permission to apply?</span>
+              </a>
+            </dd>
+          </div>
+        {% endif %}
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Does the project need any permissions?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['consent-check'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> does the project need any permissions?</span>
+            </a>
+          </dd>
+        </div>
+        {% if data['consent-check'] == 'Yes' %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Has the project got all permissions for work to start?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['consent-granted-check'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> has the project got all permissions for work to start?</span>
+              </a>
+            </dd>
+          </div>
+        {% endif %}
+          
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            What is your role in this application?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['application-role-check'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> what is your role in this application?</span>
+            </a>
+          </dd>
+        </div>
+        
+   
+
+       
+
+        
+      </dl>
+    
+      <form class="form" action="eligible" method="post">
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+    
+    </div>
+  </div>
+
+{% endblock %}

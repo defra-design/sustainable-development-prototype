@@ -1,0 +1,43 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Badger specific start page
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+        <h1 class="govuk-heading-l">Apply for a licence to do work that affects badgers</h1>
+
+        <p class="govuk-body">Use this service to apply for an A24 badger mitigation licence.</p>
+
+        <h2 class="govuk-heading-m">Before you start</h2>
+        
+        <p class="govuk-body">You can only apply if:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+            <li>you have the landowner's permission</li>
+            <li>the project has got all permissions for work to start (for example, planning permission or listed building consent)</li>
+            <li>you know the licence holder's contact details</li>
+        </ul>
+
+        <a href="task-list" role="button" draggable="false" class="govuk-button govuk-!-margin-top-2 govuk-!-margin-bottom-8" data-module="govuk-button">
+            Continue
+        </a>
+
+    
+
+
+
+
+    </div>
+  </div>
+
+{% endblock %}
