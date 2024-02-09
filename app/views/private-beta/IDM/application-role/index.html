@@ -1,7 +1,7 @@
 {% extends "layout-pb-no-service-name.html" %}
 
 {% block pageTitle %} 
-IDM | Your application role
+IDM | Check before you start / Your application role
 {% endblock %}
 
 {% block beforeContent %}
@@ -13,7 +13,7 @@ IDM | Your application role
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
       <span class="govuk-caption-l">IDM</span>
-      <h1 class="govuk-heading-l">Your application role</h1> 
+      <h1 class="govuk-heading-l">Check before you start / Your application role</h1> 
 
       <div class="govuk-!-margin-bottom-9">
         <strong class="govuk-tag">
@@ -21,9 +21,9 @@ IDM | Your application role
        </strong>
       </div>
 
-      <form class="form" action="v2/start" method="post">
+      <form class="form" action="v3/applications" method="post">
         {{ govukButton({
-          text: "View full flow - User signed out - v2"
+          text: "View full flow - User signed out - v3"
         }) }}
       </form>
 
@@ -39,7 +39,7 @@ IDM | Your application role
       
       <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-      <h2 class="govuk-heading-m">Full page list - v2</h2>
+      <h2 class="govuk-heading-m">Full page list - v3</h2>
 
       <table class="govuk-table">
         <thead class="govuk-table__head">
@@ -52,7 +52,7 @@ IDM | Your application role
         </thead>
         <tbody class="govuk-table__body"> 
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/applications">View licences and applications - Signed in user start page</a></td>
+            <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/applications">View licences and applications</a></td>
             <td class="govuk-table__cell"></td>
             <td class="govuk-table__cell">
               <strong class="govuk-tag govuk-tag--yellow">
@@ -60,19 +60,9 @@ IDM | Your application role
               </strong>
             </td>
             <td class="govuk-table__cell">Not tested yet</td>
-          </tr>  
+          </tr>   
             <tr class="govuk-table__row">
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/start">Start page - Signed out user start page</a></td>
-              <td class="govuk-table__cell"></td>
-              <td class="govuk-table__cell">
-                <strong class="govuk-tag govuk-tag--yellow">
-                  Medium
-                </strong>
-              </td>
-              <td class="govuk-table__cell">Not tested yet</td>
-            </tr>  
-            <tr class="govuk-table__row">
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/which-species">Which species?</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/which-species">Which species?</a></td>
               <td class="govuk-table__cell"></td>
               <td class="govuk-table__cell">
                 <strong class="govuk-tag govuk-tag--yellow">
@@ -82,7 +72,7 @@ IDM | Your application role
               <td class="govuk-table__cell">Not tested yet</td>
             </tr> 
             <tr class="govuk-table__row">
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/nsip">Nationally Significant Infrastructure Project?</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/nsip">Nationally Significant Infrastructure Project?</a></td>
               <td class="govuk-table__cell"></td>
               <td class="govuk-table__cell">
                 <strong class="govuk-tag govuk-tag--yellow">
@@ -92,7 +82,7 @@ IDM | Your application role
               <td class="govuk-table__cell">Not tested yet</td>
             </tr> 
             <tr class="govuk-table__row">
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/land-owner">Applicant own the land?</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/land-owner">Applicant own the land?</a></td>
               <td class="govuk-table__cell"></td>
               <td class="govuk-table__cell">
                 <strong class="govuk-tag govuk-tag--yellow">
@@ -102,7 +92,7 @@ IDM | Your application role
               <td class="govuk-table__cell">Not tested yet</td>
             </tr> 
             <tr class="govuk-table__row">
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/consent">Project need any permissions?</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/consent">Project need any permissions?</a></td>
               <td class="govuk-table__cell"></td>
               <td class="govuk-table__cell">
                 <strong class="govuk-tag govuk-tag--yellow">
@@ -112,38 +102,8 @@ IDM | Your application role
               <td class="govuk-table__cell">Not tested yet</td>
             </tr>
             <tr class="govuk-table__row">
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/eligible">Eligible to apply</a></td>
-              <td class="govuk-table__cell"></td>
-              <td class="govuk-table__cell">
-                <strong class="govuk-tag govuk-tag--yellow">
-                  Medium
-                </strong>
-              </td>
-              <td class="govuk-table__cell">Not tested yet</td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/defra-id-signin">Sign in</a></td>
-              <td class="govuk-table__cell"></td>
-              <td class="govuk-table__cell">
-                <strong class="govuk-tag govuk-tag--yellow">
-                  Medium
-                </strong>
-              </td>
-              <td class="govuk-table__cell">Not tested yet</td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/species-start-page">Species / license specific start page - Badgers</a></td>
-              <td class="govuk-table__cell"></td>
-              <td class="govuk-table__cell">
-                <strong class="govuk-tag govuk-tag--yellow">
-                  Medium
-                </strong>
-              </td>
-              <td class="govuk-table__cell">Not tested yet</td>
-            </tr>
-            <tr class="govuk-table__row">
-                <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/application-role">Your application role</a></td>
-                <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-application-role">If nothing chosen</a></td>
+                <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/application-role">Your application role</a></td>
+                <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/error-nothing-chosen-application-role">If nothing chosen</a></td>
                 <td class="govuk-table__cell">
                   <strong class="govuk-tag govuk-tag--yellow">
                     Medium
@@ -152,7 +112,17 @@ IDM | Your application role
                 <td class="govuk-table__cell">Not tested yet</td>
             </tr>
             <tr class="govuk-table__row">
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/task-list">Task list</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/eligible">Eligible to apply</a></td>
+              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--yellow">
+                  Medium
+                </strong>
+              </td>
+              <td class="govuk-table__cell">Not tested yet</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/task-list">Task list</a></td>
               <td class="govuk-table__cell"></td>
               <td class="govuk-table__cell">
                 <strong class="govuk-tag govuk-tag--yellow">
@@ -166,6 +136,156 @@ IDM | Your application role
 
 
 
+
+        <!-- Version 2 -->  
+        <details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              Version 2
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+
+            <form class="form" action="v2/start" method="post">
+              {{ govukButton({
+                text: "View full flow - User signed out - v2"
+              }) }}
+            </form>
+      
+                  
+            <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+      
+            <h2 class="govuk-heading-m">Full page list - v2</h2>
+      
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                  <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header">Page</th>
+                  <th scope="col" class="govuk-table__header">Error states</th>
+                  <th scope="col" class="govuk-table__header">Confidence</th>
+                  <th scope="col" class="govuk-table__header">Notes</th>
+                  </tr>
+              </thead>
+              <tbody class="govuk-table__body"> 
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/applications">View licences and applications - Signed in user start page</a></td>
+                  <td class="govuk-table__cell"></td>
+                  <td class="govuk-table__cell">
+                    <strong class="govuk-tag govuk-tag--yellow">
+                      Medium
+                    </strong>
+                  </td>
+                  <td class="govuk-table__cell">Not tested yet</td>
+                </tr>  
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/start">Start page - Signed out user start page</a></td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--yellow">
+                        Medium
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">Not tested yet</td>
+                  </tr>  
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/which-species">Which species?</a></td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--yellow">
+                        Medium
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">Not tested yet</td>
+                  </tr> 
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/nsip">Nationally Significant Infrastructure Project?</a></td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--yellow">
+                        Medium
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">Not tested yet</td>
+                  </tr> 
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/land-owner">Applicant own the land?</a></td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--yellow">
+                        Medium
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">Not tested yet</td>
+                  </tr> 
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/consent">Project need any permissions?</a></td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--yellow">
+                        Medium
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">Not tested yet</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/eligible">Eligible to apply</a></td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--yellow">
+                        Medium
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">Not tested yet</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/defra-id-signin">Sign in</a></td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--yellow">
+                        Medium
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">Not tested yet</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/species-start-page">Species / license specific start page - Badgers</a></td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--yellow">
+                        Medium
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">Not tested yet</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                      <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/application-role">Your application role</a></td>
+                      <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-application-role">If nothing chosen</a></td>
+                      <td class="govuk-table__cell">
+                        <strong class="govuk-tag govuk-tag--yellow">
+                          Medium
+                        </strong>
+                      </td>
+                      <td class="govuk-table__cell">Not tested yet</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/task-list">Task list</a></td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--yellow">
+                        Medium
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">Not tested yet</td>
+                </tr>
+                </tbody>
+              </table>
+          </div>
+        </details>
+
+
+
+
+
         
          <!-- Version 1 -->        
          <details class="govuk-details" data-module="govuk-details">
@@ -175,6 +295,8 @@ IDM | Your application role
             </span>
           </summary>
           <div class="govuk-details__text">
+
+          
 
 
             <form class="form" action="start" method="post">

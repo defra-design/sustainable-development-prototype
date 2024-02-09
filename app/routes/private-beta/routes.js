@@ -1847,4 +1847,40 @@ router.post('/private-beta/IDM/application-role/v2/account-type-check', (req, re
 });
 
 
+router.post('/private-beta/IDM/application-role/v3/nsip-check', (req, res) => {
+  if(req.session.data['nsip-check'] == 'Yes'){
+      res.redirect('land-owner')
+  } else if(req.session.data['nsip-check'] == 'No'){
+      res.redirect('window-not-open')
+  } 
+});
+
+
+router.post('/private-beta/IDM/application-role/v3/land-owner-check', (req, res) => {
+  if(req.session.data['land-owner-check'] == 'Yes'){
+      res.redirect('consent')
+  } else if(req.session.data['land-owner-check'] == 'No'){
+      res.redirect('land-owner-permission')
+  } 
+});
+
+
+router.post('/private-beta/IDM/application-role/v3/consent-check', (req, res) => {
+  if(req.session.data['consent-check'] == 'Yes'){
+      res.redirect('consent-granted')
+  } else if(req.session.data['consent-check'] == 'No'){
+      res.redirect('application-role')
+  } 
+});
+
+
+router.post('/private-beta/IDM/application-role/v3/consent-granted-check', (req, res) => {
+  if(req.session.data['consent-granted-check'] == 'Yes'){
+      res.redirect('application-role')
+  } else if(req.session.data['consent-granted-check'] == 'No'){
+      res.redirect('dropout-consent-granted')
+  } 
+});
+
+
 }

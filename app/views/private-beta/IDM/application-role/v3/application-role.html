@@ -1,0 +1,65 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Your application role
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">    
+
+        <h1 class="govuk-heading-l">Your application role</h1>
+
+        <p class="govuk-!-padding-bottom-3">You must explain to Natural England your role in this application, and the licence, if issued.</p>
+
+
+
+      <form class="form" action="check-your-answers" method="post"> 
+          {{ govukRadios({
+            name: "application-role-check",
+            fieldset: {
+              legend: {
+                text: "What is your role in this application?",
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            items: [
+              {
+                value: "I am the named ecologist",
+                text: "I am the named ecologist"
+              },  
+              {
+                value: "I will hold the licence, if issued",
+                text: "I will hold the licence, if issued",
+                hint: {
+                  text: "The person who holds this licence will usually be someone from the organisation that is undertaking the development project."
+                }
+              },
+              {
+                divider: "or"
+              },
+              {
+                value: "I am someone else",
+                text: "I am someone else"
+              }
+            ]
+          }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+
+
