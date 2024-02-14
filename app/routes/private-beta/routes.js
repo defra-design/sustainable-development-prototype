@@ -1883,4 +1883,13 @@ router.post('/private-beta/IDM/application-role/v3/consent-granted-check', (req,
 });
 
 
+router.post('/private-beta/IDM/application-role/v3/land-owner-permission-check', (req, res) => {
+  if(req.session.data['land-owner-permission-check'] == 'Yes'){
+      res.redirect('consent')
+  } else if(req.session.data['land-owner-permission-check'] == 'No'){
+      res.redirect('dropout-land-owner')
+  } 
+});
+
+
 }

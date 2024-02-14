@@ -1,0 +1,158 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Licence details
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+       
+        <h1 class="govuk-heading-l">
+            Licence details
+        </h1>
+
+            
+        
+            <dl class="govuk-summary-list">
+        
+                <!-- status -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Status
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <strong class="govuk-tag govuk-tag--green" >
+                            Granted
+                        </strong>
+                    </dd>
+                </div>
+        
+                <!-- type -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Licence type
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        Badger mitigation
+                    </dd>
+                </div>
+        
+                <!-- reference -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Licence reference
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        2021-09273-SPM-WLM
+                    </dd>
+                </div>
+        
+                <!-- Licence holder -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Licence holder
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        Jane Doe
+                    </dd>
+                </div>
+        
+                <!-- site -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Site address
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        90 Lower Eastside Farm
+                        
+                            <br>
+                            
+                                5 High Street<br>
+                                Oxford<br>
+                                Oxfordshire<br>
+                                B1 3AA
+                            
+                        
+                    </dd>
+                </div>
+        
+                
+                <!-- Valid from -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Valid from
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        1 November 2022
+                    </dd>
+                </div>
+                <!-- Expires -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Expires
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        1 November 2024
+                    </dd>
+                </div>
+                
+        
+                
+        
+            </dl>
+        
+            <!-- View licence -->
+            
+            <form class="form" action="manage-licence-check" method="post">
+
+                {{ govukRadios({
+                    name: "manage-licence-check",
+                    fieldset: {
+                    legend: {
+                        text: "Select an option",
+                        classes: "govuk-fieldset__legend--m"
+                    }
+                    },
+                    items: [
+                    {
+                        value: "Email a copy of the licence",
+                        text: "Email a copy of the licence"
+                    },
+                    {
+                        value: "Submit a report of action",
+                        text: "Submit a report of action"
+                    }
+                    ]
+                }) }}
+
+                {{ govukButton({
+                    text: "Continue",
+                    href: "confirmation"
+                }) }}
+
+            </form>
+		
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+

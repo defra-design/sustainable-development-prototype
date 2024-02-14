@@ -1,0 +1,145 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Application details
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+       
+        <h1 class="govuk-heading-l">
+            Application details
+        </h1>
+
+            
+        
+            <dl class="govuk-summary-list">
+        
+                <!-- status -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Status
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        
+                        <strong class="govuk-tag  govuk-tag--purple" >
+                            Being assessed
+                        </strong>
+                        
+                    </dd>
+                </div>
+        
+                <!-- type -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Application type
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        Badger mitigation
+                    </dd>
+                </div>
+        
+                <!-- reference -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Application reference
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        2021-34689-EPS-MIT
+                    </dd>
+                </div>
+        
+                <!-- Licence holder -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Applicant
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        Richard Smith
+                    </dd>
+                </div>
+        
+                <!-- site -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Site address<address></address>
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        3 High Street<br>
+                        Oxford<br>
+                        Oxfordshire<br>
+                        OX11BD
+                    </dd>
+                </div>
+        
+                
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Submitted
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        1 November 2023
+                    </dd>
+                </div>
+             
+                
+        
+                
+        
+            </dl>
+        
+            <!-- View licence -->
+            
+            <form class="form" action="manage-licence-check" method="post">
+
+                {{ govukRadios({
+                    name: "manage-licence-check",
+                    fieldset: {
+                    legend: {
+                        text: "Select an option",
+                        classes: "govuk-fieldset__legend--m"
+                    }
+                    },
+                    items: [
+                    {
+                        value: "View application",
+                        text: "View application"
+                    },
+                    {
+                        value: "View application",
+                        text: "Email a copy of the application"
+                    }
+                    ]
+                }) }}
+
+                {{ govukButton({
+                    text: "Continue",
+                    href: "application-data"
+                }) }}
+
+            </form>
+		
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
