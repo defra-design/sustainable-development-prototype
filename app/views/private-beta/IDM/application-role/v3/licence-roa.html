@@ -1,7 +1,7 @@
 {% extends "layout-pb.html" %}
 
 {% block pageTitle %} 
-Application details
+Licence details
 {% endblock %}
 
 {% block beforeContent %}
@@ -16,10 +16,9 @@ Application details
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-       
-        <h1 class="govuk-heading-l">
-            Application details
-        </h1>
+            <h1 class="govuk-heading-l">
+                Licence details
+            </h1>
 
             
         
@@ -32,8 +31,8 @@ Application details
                     </dt>
                     <dd class="govuk-summary-list__value">
                         
-                        <strong class="govuk-tag govuk-tag--turquoise" >
-                            Submitted
+                        <strong class="govuk-tag govuk-tag--pink" >
+                            REPORT OF ACTION DUE
                         </strong>
                         
                     </dd>
@@ -42,7 +41,7 @@ Application details
                 <!-- type -->
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        Application type
+                        Licence type
                     </dt>
                     <dd class="govuk-summary-list__value">
                         Badger mitigation
@@ -52,54 +51,78 @@ Application details
                 <!-- reference -->
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        Application reference
+                        Licence reference
                     </dt>
                     <dd class="govuk-summary-list__value">
-                        2021-98765-EPS-MIT
+                        2021-09273-SPM-WLM
                     </dd>
                 </div>
         
                 <!-- Licence holder -->
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        Applicant
+                        Licence holder
                     </dt>
                     <dd class="govuk-summary-list__value">
-                        Richard Smith
+                        Jane Doe
+                    </dd>
+                </div>
+
+                <!-- Named ecologist -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Named ecologist
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        Dave Smith
                     </dd>
                 </div>
         
                 <!-- site -->
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        Site address<address></address>
+                        Site address
                     </dt>
                     <dd class="govuk-summary-list__value">
-                        3 High Street<br>
-                        Oxford<br>
-                        Oxfordshire<br>
-                        OX11BD
+                        Lower Eastside Farm
+                        
+                            <br>
+                            
+                                5 High Street<br>
+                                Oxford<br>
+                                Oxfordshire<br>
+                                B1 3AA
+                            
+                        
                     </dd>
                 </div>
         
                 
+                <!-- Valid from -->
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                        Submitted
+                        Valid from
                     </dt>
                     <dd class="govuk-summary-list__value">
-                        1 November 2023
+                        17 June 2023
                     </dd>
                 </div>
-             
+                <!-- Expires -->
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Expires
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        22 July 2023
+                    </dd>
+                </div>
                 
         
                 
         
             </dl>
         
-            <!-- View licence -->
-            
+       
             <form class="form" action="manage-licence-check" method="post">
 
                 {{ govukRadios({
@@ -112,22 +135,24 @@ Application details
                     },
                     items: [
                     {
-                        value: "View application",
-                        text: "View application"
+                        value: "Submit a report of action",
+                        text: "Submit a report of action"
                     },
                     {
-                        value: "View application",
-                        text: "Email a copy of the application"
+                        value: "Email a copy of the licence",
+                        text: "Email a copy of the licence"
                     }
+                    
                     ]
                 }) }}
 
                 {{ govukButton({
-                    text: "Continue",
-                    href: "application-data"
+                    text: "Continue"
                 }) }}
 
             </form>
+
+
 		
     </div>
 </div>
