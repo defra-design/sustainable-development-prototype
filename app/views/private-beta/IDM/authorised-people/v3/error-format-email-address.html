@@ -1,0 +1,50 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: What is Janet Doe's email address at ABC Ecology?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "Enter an email address in the correct format, for example, name@example.com",
+            href: "#authorised-email-address"
+          }
+        ]
+      }) }}
+      
+      <form class="form" action="authorised-persons" method="post">
+        <div class="govuk-form-group govuk-form-group--error">
+          <h1 class="govuk-label-wrapper">
+            <label class="govuk-label govuk-label--l" for="sett-name">
+              What is Janet Doe's email address at ABC Ecology?
+            </label>
+          </h1>
+          <p id="email-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> Enter an email address in the correct format, for example, name@example.com
+          </p>
+          <input class="govuk-input govuk-input--error" id="authorised-email-address" name="authorised-email-address" type="email" spellcheck="false" aria-describedby="email-hint" autocomplete="email" value="Not an email address">
+        </div>
+        
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

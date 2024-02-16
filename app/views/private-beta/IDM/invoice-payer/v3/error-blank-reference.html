@@ -1,0 +1,62 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: Enter a unique reference for the invoice
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="check-your-answers" method="post">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "Enter a reference",
+                href: "#reference"
+              }
+            ]
+          }) }}
+        
+       
+
+        <h1 class="govuk-heading-l">Enter a unique reference for the invoice</h1>
+
+        <p>We will use this reference in all communication about the invoice and payment for this licence.</p> 
+          
+        {{ govukInput({
+          label: {
+            text: "Invoice reference",
+            classes: "govuk-label--m"
+          },
+          errorMessage: {
+            text: "Enter a reference"
+          },
+          id: "reference",
+          name: "reference"
+        }) }}
+
+
+            {{ govukButton({
+              text: "Continue"
+            }) }}
+        </form>
+      
+     
+
+    
+    </div>
+  </div>
+
+{% endblock %}
+
+

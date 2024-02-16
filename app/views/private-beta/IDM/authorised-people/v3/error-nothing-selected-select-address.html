@@ -1,0 +1,100 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+  Error: What is Janet Doe's contact address at ABC Ecology?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "Select the address",
+            href: "#applicantAddress"
+          }
+        ]
+      }) }}
+      
+      <form class="form" action="purchase-order" method="post">
+        <h1 class="govuk-heading-l">
+          What is Janet Doe's contact address at ABC Ecology?
+        </h1>
+        
+
+        <p class="govuk-body govuk-!-margin-bottom-6">
+          <span class="govuk-!-font-weight-bold">Postcode</span><br>
+          {{ data['postcode'] }}<br>
+          <a class="govuk-link govuk-link--no-visited-state" href="applicant-postcode">
+              Change
+          </a>
+      </p>
+      
+
+      <div class="govuk-form-group govuk-form-group--error">
+
+          <label class="govuk-label govuk-!-font-weight-bold" for="applicantAddress">
+              Select an address
+          </label>
+          <p id="event-name-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> Select the address
+          </p>
+
+          <select class="govuk-select govuk-input--error" id="applicantAddress" name="applicantAddress">
+              <option value="select" selected >12 addresses found</option>
+              
+                  
+                  <option value="1 High Street" >1 High Street, OXFORD {{ data['postcode'] }}</option>
+                  
+                  <option value="2 High Street" >2 High Street, OXFORD {{ data['postcode'] }}</option>
+                  
+                  <option value="3 High Street" >3 High Street, OXFORD {{ data['postcode'] }}</option>
+                  
+                  <option value="4 High Street" >4 High Street, OXFORD {{ data['postcode'] }}</option>
+                  
+                  <option value="5 High Street" >5 High Street, OXFORD {{ data['postcode'] }}</option>
+                  
+                  <option value="6 High Street" >6 High Street, OXFORD {{ data['postcode'] }}</option>
+                  
+                  <option value="7 High Street" >7 High Street, OXFORD {{ data['postcode'] }}</option>
+                  
+                  <option value="8 High Street" >8 High Street, OXFORD {{ data['postcode'] }}</option>
+                  
+                  <option value="9 High Street" >9 High Street, OXFORD {{ data['postcode'] }}</option>
+                  
+                  <option value="10 High Street" >10 High Street, OXFORD {{ data['postcode'] }}</option>
+                  
+                  <option value="11 High Street" >11 High Street, OXFORD {{ data['postcode'] }}</option>
+                  
+                  <option value="12 High Street" >12 High Street, OXFORD {{ data['postcode'] }}</option>
+                  
+          </select>
+
+      </div>
+
+        <p class="govuk-body govuk-!-margin-bottom-6">
+            <a class="govuk-link govuk-link--no-visited-state" href="invoice-address-no-postcode">
+                I can’t find the address in the list
+            </a>
+        </p>
+
+
+        <button class="govuk-button" data-module="govuk-button">
+        Continue
+        </button>
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends "layout-pb.html" %}
+
+
+
+{% block pageTitle %} 
+Error: Do you want to add an authorised person?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "Select an option",
+                href: "#add-person-check"
+              }
+            ]
+          }) }}
+
+      <form class="form" action="add-person" method="post">
+        {{ govukRadios({
+          idPrefix: "add-person-check",
+          name: "add-person-check",
+          fieldset: {
+            legend: {
+              text: "Do you want to add an authorised person?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "This is a person authorised to carry out the licensed activities."
+          },
+          errorMessage: {
+            text: "Select an option"
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

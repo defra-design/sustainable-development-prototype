@@ -1,0 +1,58 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Do you have a purchase order number?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+      <form class="form" action="purchase-order-check" method="post">
+
+      {{ govukRadios({
+        idPrefix: "purchase-order-check",
+        name: "purchase-order-check",
+        fieldset: {
+          legend: {
+            html: "Do you have a purchase order number?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: "Yes",
+            text: "Yes",
+            conditional: {
+              html: purchaseOrderHtml
+            }
+          },
+          {
+            value: "No",
+            text: "No"
+          }
+        ]
+      }) }}
+        
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+      </form>
+
+    
+
+
+    
+    </div>
+  </div>
+
+{% endblock %}

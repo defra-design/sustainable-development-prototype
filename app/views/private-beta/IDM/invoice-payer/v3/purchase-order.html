@@ -1,0 +1,43 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Enter your purchase order number
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="check-your-answers" method="post">
+        
+    
+          
+        {{ govukInput({
+          label: {
+            text: "Enter your purchase order number",
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          id: "purchase-order",
+          name: "purchase-order"
+        }) }}
+
+
+            {{ govukButton({
+              text: "Continue"
+            }) }}
+        </form>
+
+
+    
+    </div>
+  </div>
+
+{% endblock %}

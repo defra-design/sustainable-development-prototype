@@ -1,0 +1,33 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+You have removed all authorised people
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">You have removed all authorised people</h1>
+
+       <p>We have not saved any personal details.</p>
+
+       
+
+      <div>
+        {{ govukButton({
+          text: "Continue",
+          href: "add-person"
+        }) }}
+      </div>
+
+    </div>
+  </div>
+
+{% endblock %}

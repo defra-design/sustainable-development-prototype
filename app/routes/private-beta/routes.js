@@ -1918,4 +1918,40 @@ router.post('/private-beta/IDM/alternate-ecologist/v3/add-alternate-ecologist-ch
 });
 
 
+router.post('/private-beta/IDM/invoice-payer/v3/responsible-for-invoice-check', function (req, res) {
+  const editChoice = req.session.data['responsible-for-invoice-check']
+
+  if (editChoice === 'applicant') {
+    res.redirect('contact-details')
+  } else if (editChoice === 'ecologist') {
+    res.redirect('contact-details')
+  } else if (editChoice === 'alternate applicant') {
+    res.redirect('contact-details')
+  } else if (editChoice === 'alternate ecologist') {
+    res.redirect('contact-details')
+  } else if (editChoice === 'Somebody else') {
+    res.redirect('name')
+  } 
+  
+});
+
+
+router.post('/private-beta/IDM/invoice-payer/v3/invoice-contact-details-check', (req, res) => {
+  if(req.session.data['invoice-contact-details-check'] == 'Yes'){
+      res.redirect('got-purchase-order')
+  } else if(req.session.data['invoice-contact-details-check'] == 'No'){
+      res.redirect('name-different')
+  } 
+});
+
+
+router.post('/private-beta/IDM/invoice-payer/v3/purchase-order-check', (req, res) => {
+  if(req.session.data['purchase-order-check'] == 'Yes'){
+      res.redirect('purchase-order')
+  } else if(req.session.data['purchase-order-check'] == 'No'){
+      res.redirect('reference')
+  } 
+});
+
+
 }

@@ -1,0 +1,48 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Who should we send the invoice to?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <form class="form" action="organisation" method="post">       
+
+        <h1 class="govuk-heading-l">Invoice payer details</h1>
+
+        <div class="govuk-inset-text">
+          You will have to pay a £101 administration charge if you want to change these details after the application is submitted.
+        </div>
+
+        {{ govukInput({
+          label: {
+            text: "Who should we send the invoice to?",
+            classes: "govuk-label--m"
+          },
+          hint: {
+            text: "Enter the full name of an individual. Do not enter the name of an organisation or department."
+          },
+          id: "invoice-name",
+          name: "invoice-name"
+        }) }}
+        
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+      </form>
+
+      
+
+    
+    </div>
+  </div>
+
+{% endblock %}
