@@ -1,0 +1,108 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+  
+    Error: What is Jane Doe's contact address at DEF Developers?
+
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <form class="form" action="email-address" method="post">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "Enter the first line of the address",
+                href: "#applicantAddress1"
+              },
+              {
+                text: "Enter a town or city",
+                href: "#applicantAddress3"
+              },
+              {
+                text: "Enter a county",
+                href: "#applicantAddress4"
+              }
+            ]
+          }) }}
+        
+       
+        
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-l">
+                What is Jane Doe's contact address at DEF Developers?
+            </h1>
+          </legend>
+        
+
+          
+          
+          <div class="govuk-form-group govuk-form-group--error">
+            <label class="govuk-label" for="applicantAddress1">
+              Building and street <span class="govuk-visually-hidden">line 1 of 2</span>
+            </label>
+            <p id="address-line-1-error" class="govuk-error-message">
+                <span class="govuk-visually-hidden">Error:</span> Enter the first line of the address
+              </p>
+            <input class="govuk-input " id="applicantAddress1" name="applicantAddress1" type="text" autocomplete="address-line1" value="">
+          </div>
+        
+          
+          
+          <div class="govuk-form-group ">
+            <label class="govuk-label" for="applicantAddress2">
+              <span class="govuk-visually-hidden">Building and street line 2 of 2</span>
+            </label>
+            
+            <input class="govuk-input " id="applicantAddress2" name="applicantAddress2" type="text" autocomplete="address-line2" value="">
+          </div>
+        
+          
+          
+          <div class="govuk-form-group govuk-form-group--error">
+            <label class="govuk-label" for="applicantAddress3">
+              Town or city
+            </label>
+            <p id="address-town-error" class="govuk-error-message">
+                <span class="govuk-visually-hidden">Error:</span> Enter a town or city
+              </p>
+            <input class="govuk-input govuk-!-width-two-thirds " id="applicantAddress3" name="applicantAddress3" type="text" autocomplete="address-level2" value="">
+          </div>
+        
+          
+          
+          <div class="govuk-form-group govuk-form-group--error">
+            <label class="govuk-label" for="applicantAddress4">
+              County
+            </label>
+            <p id="address-town-error" class="govuk-error-message">
+                <span class="govuk-visually-hidden">Error:</span> Enter a county
+              </p>
+            <input class="govuk-input govuk-!-width-two-thirds " id="applicantAddress4" name="applicantAddress4" type="text" value=""></div>
+        
+          
+        
+        </fieldset>
+        
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

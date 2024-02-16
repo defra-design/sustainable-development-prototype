@@ -1,0 +1,81 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: Is John Doe part of an organisation?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "Enter the name of the organisation",
+                href: "#organisation-name"
+              }
+            ]
+          }) }}
+      
+      <form class="form" action="organisation-check" method="post">
+
+      {% set organisationHtml %}
+      {{ govukInput({
+        id: "organisation-name",
+        name: "organisation-name",
+        label: {
+          text: "Name of organisation"
+        },
+        errorMessage: {
+            text: "Enter the name of the organisation"
+          }
+      }) }}
+      {% endset -%}
+
+      {{ govukRadios({
+        idPrefix: "organisation-check",
+        name: "organisation-check",
+        fieldset: {
+          legend: {
+            html: "Is John Doe part of an organisation?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: "Yes",
+            text: "Yes",
+            checked: true,
+            conditional: {
+              html: organisationHtml
+            }
+          },
+          {
+            value: "No",
+            text: "No"
+          }
+        ]
+      }) }}
+        
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+
+
+          
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

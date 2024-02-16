@@ -1,0 +1,45 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+  What is Jason Doe's postcode? 
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <form class="form" action="select-address" method="post">
+        <h1 class="govuk-heading-l">
+          What is Jason Doe's postcode?
+        </h1>
+        <div class="govuk-form-group">
+          {{ govukInput({
+            label: {
+              text: "Postcode"
+            },
+            classes: "govuk-input--width-10",
+            id: "ecologist-postcode",
+            name: "ecologist-postcode",
+            value: "OX11BD"
+          }) }}
+        </div>
+
+        <p><a href="no-postcode">The address doesn't have a postcode</a></p>
+        
+          {{ govukButton({
+            text: "Find address"
+          }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

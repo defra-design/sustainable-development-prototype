@@ -1,0 +1,109 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+
+  
+    {% if data['alternate-applicant-organisation-check'] == 'Yes' %}
+
+        What is {{ data['alternate-applicant-name'] }}'s contact address at {{ data['alternate-applicant-organisation-name'] }}?
+
+    {% else %}
+
+        What is {{ data['alternate-applicant-name'] }}'s contact address?
+
+    {% endif %}
+
+
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <form class="form" action="email-address" method="post">
+        
+       
+        
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-heading-l">
+              
+              {% if data['alternate-applicant-organisation-check'] == 'Yes' %}
+
+                What is {{ data['alternate-applicant-name'] }}'s contact address at {{ data['alternate-applicant-organisation-name'] }}?
+
+              {% else %}
+
+                What is {{ data['alternate-applicant-name'] }}'s contact address?
+
+              {% endif %}
+
+            </h1>
+          </legend>
+        
+
+          
+          
+          <div class="govuk-form-group ">
+            <label class="govuk-label" for="alternate-applicant-address1">
+              Building and street <span class="govuk-visually-hidden">line 1 of 2</span>
+            </label>
+              
+            <input class="govuk-input " id="alternate-applicant-address1" name="alternate-applicant-address1" type="text" autocomplete="address-line1" value="">
+          </div>
+        
+          
+          
+          <div class="govuk-form-group ">
+            <label class="govuk-label" for="alternate-applicant-address2">
+              <span class="govuk-visually-hidden">Building and street line 2 of 2</span>
+            </label>
+            
+            <input class="govuk-input " id="alternate-applicant-address2" name="alternate-applicant-address2" type="text" autocomplete="address-line2" value="">
+          </div>
+        
+          
+          
+          <div class="govuk-form-group ">
+            <label class="govuk-label" for="alternate-applicant-address3">
+              Town or city
+            </label>
+            
+            <input class="govuk-input govuk-!-width-two-thirds " id="alternate-applicant-address3" name="alternate-applicant-address3" type="text" autocomplete="address-level2" value="">
+          </div>
+        
+          
+          
+          <div class="govuk-form-group ">
+            <label class="govuk-label" for="alternate-applicant-address4">
+              County
+            </label>
+            
+            <input class="govuk-input govuk-!-width-two-thirds " id="alternate-applicant-address4" name="alternate-applicant-address4" type="text" value=""></div>
+        
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="alternate-applicant-address-postcode">
+                Postcode
+              </label>
+              <input class="govuk-input govuk-input--width-10" id="alternate-applicant-address-postcode" name="alternate-applicant-address-postcode" type="text" autocomplete="postal-code">
+            </div>
+        
+        </fieldset>
+        
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

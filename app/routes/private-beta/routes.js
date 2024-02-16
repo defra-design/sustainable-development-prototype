@@ -1892,4 +1892,30 @@ router.post('/private-beta/IDM/application-role/v3/land-owner-permission-check',
 });
 
 
+router.post('/private-beta/IDM/applicant/v3/organisation-check', (req, res) => {
+  if(req.session.data['organisation-check'] == 'Yes'){
+      res.redirect('postcode')
+  } else if(req.session.data['organisation-check'] == 'No'){
+      res.redirect('postcode-no-org')
+  } 
+});
+
+router.post('/private-beta/IDM/alternate-applicant/v3/add-alternate-applicant-check', (req, res) => {
+  if(req.session.data['add-alternate-applicant-check'] == 'Yes'){
+      res.redirect('name')
+  } else if(req.session.data['add-alternate-applicant-check'] == 'No'){
+      res.redirect('check-your-answers')
+  } 
+});
+
+
+router.post('/private-beta/IDM/alternate-ecologist/v3/add-alternate-ecologist-check', (req, res) => {
+  if(req.session.data['add-alternate-ecologist-check'] == 'Yes'){
+      res.redirect('name')
+  } else if(req.session.data['add-alternate-ecologist-check'] == 'No'){
+      res.redirect('check-your-answers')
+  } 
+});
+
+
 }

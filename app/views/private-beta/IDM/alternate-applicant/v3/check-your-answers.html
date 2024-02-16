@@ -1,0 +1,138 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Check your answers
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h2 class="govuk-heading-l">Check your answers</h2>
+
+      <dl class="govuk-summary-list">
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Do you want to add an alternate applicant?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['add-alternate-applicant-check'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> do you want to add an alternate applicant?</span>
+            </a>
+          </dd>
+        </div>
+        {% if data['add-alternate-applicant-check'] == 'Yes' %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Who is the alternate applicant?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['alternate-applicant-name'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> who is the alternate applicant?</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Is {{ data['alternate-applicant-name'] }} part of an organisation?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['alternate-applicant-organisation-check'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> is {{ data['alternate-applicant-name'] }} part of an organisation?</span>
+              </a>
+            </dd>
+          </div>
+          {% if data['alternate-applicant-organisation-check'] == 'Yes' %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Name of organisation
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['alternate-applicant-organisation-name'] }} 
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> name of organisation</span>
+                </a>
+              </dd>
+            </div>
+          {% endif %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+             {{ data['alternate-applicant-name'] }}'s contact address
+            </dt>
+            <dd class="govuk-summary-list__value">
+              3 High Street<br>
+              Oxford<br>
+              Oxfordshire<br>
+              OX11BD
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> {{ data['alternate-applicant-name'] }}'s contact address</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+             {{ data['alternate-applicant-name'] }}'s email address
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['alternate-applicant-email-address'] }} 
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> {{ data['alternate-applicant-name'] }}'s email address</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+             {{ data['alternate-applicant-name'] }}'s phone number
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['alternate-applicant-phone-number'] }} 
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> {{ data['alternate-applicant-name'] }}'s phone number</span>
+              </a>
+            </dd>
+          </div>
+        {% endif %}
+        
+   
+
+       
+
+        
+      </dl>
+    
+      <form class="form" action="task-list-complete" method="post">
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+    
+    </div>
+  </div>
+
+{% endblock %}

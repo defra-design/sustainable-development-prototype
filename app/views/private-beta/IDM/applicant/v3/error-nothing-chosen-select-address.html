@@ -1,0 +1,101 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+
+    Error: What is John Doe's contact address at DEF Developers?
+
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "Select the address",
+                href: "#applicantAddress"
+              }
+            ]
+          }) }}
+      
+      <form class="form" action="email-address" method="post">
+        <h1 class="govuk-heading-l">
+            What is John Doe's contact address at DEF Developers?
+        </h1>
+        
+
+        <p class="govuk-body govuk-!-margin-bottom-6">
+          <span class="govuk-!-font-weight-bold">Postcode</span><br>
+          OX11EF<br>
+          <a class="govuk-link govuk-link--no-visited-state" href="postcode">
+              Change
+          </a>
+      </p>
+      
+
+      <div class="govuk-form-group govuk-form-group--error">
+
+          <label class="govuk-label govuk-!-font-weight-bold" for="applicantAddress">
+              Select an address
+          </label>
+          <p id="location-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> Select the address
+          </p>
+          <select class="govuk-select " id="applicantAddress" name="applicantAddress">
+              <option value="select" selected >12 addresses found</option>
+              
+                  
+                  <option value="1 High Street, OXFORD" >1 High Street, OXFORD, OX11EF</option>
+                  
+                  <option value="2 High Street, OXFORD" >2 High Street, OXFORD, OX11EF</option>
+                  
+                  <option value="3 High Street, OXFORD" >3 High Street, OXFORD, OX11EF</option>
+                  
+                  <option value="4 High Street, OXFORD" >4 High Street, OXFORD, OX11EF</option>
+                  
+                  <option value="5 High Street, OXFORD" >5 High Street, OXFORD, OX11EF</option>
+                  
+                  <option value="6 High Street, OXFORD" >6 High Street, OXFORD, OX11EF</option>
+
+                  <option value="1 High Street, OXFORD" >7 High Street, OXFORD, OX11EF</option>
+                  
+                  <option value="2 High Street, OXFORD" >8 High Street, OXFORD, OX11EF</option>
+                  
+                  <option value="3 High Street, OXFORD" >9 High Street, OXFORD, OX11EF</option>
+                  
+                  <option value="4 High Street, OXFORD" >10 High Street, OXFORD, OX11EF</option>
+                  
+                  <option value="5 High Street, OXFORD" >11 High Street, OXFORD, OX11EF</option>
+                  
+                  <option value="6 High Street, OXFORD" >12 High Street, OXFORD, OX11EF</option>
+                  
+          </select>
+
+      </div>
+
+        <p class="govuk-body govuk-!-margin-bottom-6">
+            <a class="govuk-link govuk-link--no-visited-state" href="no-lookup">
+                I can’t find the address in the list
+            </a>
+        </p>
+
+
+        <button class="govuk-button" data-module="govuk-button">
+        Continue
+        </button>
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

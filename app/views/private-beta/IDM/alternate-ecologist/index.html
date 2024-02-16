@@ -16,14 +16,14 @@ IDM | Alternate ecologist
       <h1 class="govuk-heading-l">Alternate ecologist</h1> 
 
       <div class="govuk-!-margin-bottom-9">
-        <strong class="govuk-tag">
-          Dev ready
+        <strong class="govuk-tag govuk-tag--green" >
+          In Progress
         </strong>
       </div>
 
-      <form class="form" action="v2/task-list" method="post">
+      <form class="form" action="v3/task-list" method="post">
         {{ govukButton({
-          text: "View full flow - v2"
+          text: "View full flow - v3"
         }) }}
       </form>
 
@@ -32,7 +32,7 @@ IDM | Alternate ecologist
       
       <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-      <h2 class="govuk-heading-m">Full page list - v2</h2>
+      <h2 class="govuk-heading-m">Full page list - v3</h2>
 
       <table class="govuk-table">
         <thead class="govuk-table__head">
@@ -45,7 +45,7 @@ IDM | Alternate ecologist
         </thead>
         <tbody class="govuk-table__body">    
             <tr class="govuk-table__row">
-                <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/task-list">Task list</a></td>
+                <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/task-list">Task list</a></td>
                 <td class="govuk-table__cell"></td>
                 <td class="govuk-table__cell">
                   <strong class="govuk-tag govuk-tag--yellow">
@@ -55,8 +55,8 @@ IDM | Alternate ecologist
                 <td class="govuk-table__cell">Not tested yet</td>
             </tr>
             <tr class="govuk-table__row">
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/add-alternate-ecologist">Add alternate ecologist?</a></td>
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-add-alternate-ecologist">If nothing chosen</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/add-alternate-ecologist">Add alternate ecologist?</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/error-nothing-chosen-add-alternate-ecologist">If nothing chosen</a></td>
               <td class="govuk-table__cell">
                 <strong class="govuk-tag govuk-tag--yellow">
                   Medium
@@ -65,8 +65,8 @@ IDM | Alternate ecologist
               <td class="govuk-table__cell">Not tested yet</td>
             </tr>
             <tr class="govuk-table__row">
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/name">Who is alternate ecologist?</a></td>
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-blank-name">If blank</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/name">Who is alternate ecologist?</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/error-blank-name">If blank</a></td>
               <td class="govuk-table__cell">
                 <strong class="govuk-tag govuk-tag--yellow">
                   Medium
@@ -75,23 +75,10 @@ IDM | Alternate ecologist
               <td class="govuk-table__cell">Not tested yet</td>
             </tr>
             <tr class="govuk-table__row">
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/organisation">Organisation?</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/organisation">Organisation?</a></td>
               <td class="govuk-table__cell">
-                <a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-organisation">If nothing chosen</a><br>
-                <a class="govuk-link govuk-link--no-visited-state" href="v2/error-blank-organisation">If blank</a>
-              </td>
-              <td class="govuk-table__cell">
-                <strong class="govuk-tag govuk-tag--yellow">
-                  Medium
-                </strong>
-              </td>
-              <td class="govuk-table__cell">Not tested yet</td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/postcode">Postcode?</a></td>
-              <td class="govuk-table__cell">
-                <a class="govuk-link govuk-link--no-visited-state" href="v2/error-blank-postcode">If blank</a><br>
-                <a class="govuk-link govuk-link--no-visited-state" href="v2/error-format-postcode">If wrong format</a>
+                <a class="govuk-link govuk-link--no-visited-state" href="v3/error-nothing-chosen-organisation">If nothing chosen</a><br>
+                <a class="govuk-link govuk-link--no-visited-state" href="v3/error-blank-organisation">If blank</a>
               </td>
               <td class="govuk-table__cell">
                 <strong class="govuk-tag govuk-tag--yellow">
@@ -101,30 +88,10 @@ IDM | Alternate ecologist
               <td class="govuk-table__cell">Not tested yet</td>
             </tr>
             <tr class="govuk-table__row">
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/select-address">Select address</a></td>
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-select-address">If nothing chosen</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/postcode">Postcode?</a></td>
               <td class="govuk-table__cell">
-                <strong class="govuk-tag govuk-tag--yellow">
-                  Medium
-                </strong>
-              </td>
-              <td class="govuk-table__cell">Not tested yet</td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/no-postcode">Address with no postcode</a></td>
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-blank-no-postcode">If blank</a></td>
-              <td class="govuk-table__cell">
-                <strong class="govuk-tag govuk-tag--yellow">
-                  Medium
-                </strong>
-              </td>
-              <td class="govuk-table__cell">Not tested yet</td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/no-lookup">Address not found in lookup</a></td>
-              <td class="govuk-table__cell">
-                <a class="govuk-link govuk-link--no-visited-state" href="v2/error-blank-no-lookup">If blank</a><br>
-                <a class="govuk-link govuk-link--no-visited-state" href="v2/error-format-no-lookup">If wrong format</a>
+                <a class="govuk-link govuk-link--no-visited-state" href="v3/error-blank-postcode">If blank</a><br>
+                <a class="govuk-link govuk-link--no-visited-state" href="v3/error-format-postcode">If wrong format</a>
               </td>
               <td class="govuk-table__cell">
                 <strong class="govuk-tag govuk-tag--yellow">
@@ -134,10 +101,30 @@ IDM | Alternate ecologist
               <td class="govuk-table__cell">Not tested yet</td>
             </tr>
             <tr class="govuk-table__row">
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/email-address">Email address?</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/select-address">Select address</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/error-nothing-chosen-select-address">If nothing chosen</a></td>
               <td class="govuk-table__cell">
-                <a class="govuk-link govuk-link--no-visited-state" href="v2/error-blank-email-address">If blank</a><br>
-                <a class="govuk-link govuk-link--no-visited-state" href="v2/error-format-email-address">If wrong format</a>
+                <strong class="govuk-tag govuk-tag--yellow">
+                  Medium
+                </strong>
+              </td>
+              <td class="govuk-table__cell">Not tested yet</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/no-postcode">Address with no postcode</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/error-blank-no-postcode">If blank</a></td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--yellow">
+                  Medium
+                </strong>
+              </td>
+              <td class="govuk-table__cell">Not tested yet</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/no-lookup">Address not found in lookup</a></td>
+              <td class="govuk-table__cell">
+                <a class="govuk-link govuk-link--no-visited-state" href="v3/error-blank-no-lookup">If blank</a><br>
+                <a class="govuk-link govuk-link--no-visited-state" href="v3/error-format-no-lookup">If wrong format</a>
               </td>
               <td class="govuk-table__cell">
                 <strong class="govuk-tag govuk-tag--yellow">
@@ -147,10 +134,10 @@ IDM | Alternate ecologist
               <td class="govuk-table__cell">Not tested yet</td>
             </tr>
             <tr class="govuk-table__row">
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="phone-number">Phone number?</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/email-address">Email address?</a></td>
               <td class="govuk-table__cell">
-                <a class="govuk-link govuk-link--no-visited-state" href="v2/error-blank-phone-number">If blank</a><br>
-                <a class="govuk-link govuk-link--no-visited-state" href="v2/error-format-phone-number">If wrong format</a>
+                <a class="govuk-link govuk-link--no-visited-state" href="v3/error-blank-email-address">If blank</a><br>
+                <a class="govuk-link govuk-link--no-visited-state" href="v3/error-format-email-address">If wrong format</a>
               </td>
               <td class="govuk-table__cell">
                 <strong class="govuk-tag govuk-tag--yellow">
@@ -160,7 +147,20 @@ IDM | Alternate ecologist
               <td class="govuk-table__cell">Not tested yet</td>
             </tr>
             <tr class="govuk-table__row">
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/check-your-answers">Check your answers</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/phone-number">Phone number?</a></td>
+              <td class="govuk-table__cell">
+                <a class="govuk-link govuk-link--no-visited-state" href="v3/error-blank-phone-number">If blank</a><br>
+                <a class="govuk-link govuk-link--no-visited-state" href="v3/error-format-phone-number">If wrong format</a>
+              </td>
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag govuk-tag--yellow">
+                  Medium
+                </strong>
+              </td>
+              <td class="govuk-table__cell">Not tested yet</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/check-your-answers">Check your answers</a></td>
               <td class="govuk-table__cell"></td>
               <td class="govuk-table__cell">
                 <strong class="govuk-tag govuk-tag--yellow">
@@ -170,7 +170,7 @@ IDM | Alternate ecologist
               <td class="govuk-table__cell">Not tested yet</td>
             </tr>
             <tr class="govuk-table__row">
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/task-list-complete">Task list complete</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v3/task-list-complete">Task list complete</a></td>
               <td class="govuk-table__cell"></td>
               <td class="govuk-table__cell">
                 <strong class="govuk-tag govuk-tag--yellow">
@@ -183,7 +183,168 @@ IDM | Alternate ecologist
         </table>
 
 
-        
+      
+      <!-- Version 2 -->        
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Version 2
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+
+          <h2 class="govuk-heading-m">Full page list - v2</h2>
+
+          <table class="govuk-table">
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header">Page</th>
+                <th scope="col" class="govuk-table__header">Error states</th>
+                <th scope="col" class="govuk-table__header">Confidence</th>
+                <th scope="col" class="govuk-table__header">Notes</th>
+                </tr>
+            </thead>
+            <tbody class="govuk-table__body">    
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/task-list">Task list</a></td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag govuk-tag--yellow">
+                        Medium
+                      </strong>
+                    </td>
+                    <td class="govuk-table__cell">Not tested yet</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/add-alternate-ecologist">Add alternate ecologist?</a></td>
+                  <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-add-alternate-ecologist">If nothing chosen</a></td>
+                  <td class="govuk-table__cell">
+                    <strong class="govuk-tag govuk-tag--yellow">
+                      Medium
+                    </strong>
+                  </td>
+                  <td class="govuk-table__cell">Not tested yet</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/name">Who is alternate ecologist?</a></td>
+                  <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-blank-name">If blank</a></td>
+                  <td class="govuk-table__cell">
+                    <strong class="govuk-tag govuk-tag--yellow">
+                      Medium
+                    </strong>
+                  </td>
+                  <td class="govuk-table__cell">Not tested yet</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/organisation">Organisation?</a></td>
+                  <td class="govuk-table__cell">
+                    <a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-organisation">If nothing chosen</a><br>
+                    <a class="govuk-link govuk-link--no-visited-state" href="v2/error-blank-organisation">If blank</a>
+                  </td>
+                  <td class="govuk-table__cell">
+                    <strong class="govuk-tag govuk-tag--yellow">
+                      Medium
+                    </strong>
+                  </td>
+                  <td class="govuk-table__cell">Not tested yet</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/postcode">Postcode?</a></td>
+                  <td class="govuk-table__cell">
+                    <a class="govuk-link govuk-link--no-visited-state" href="v2/error-blank-postcode">If blank</a><br>
+                    <a class="govuk-link govuk-link--no-visited-state" href="v2/error-format-postcode">If wrong format</a>
+                  </td>
+                  <td class="govuk-table__cell">
+                    <strong class="govuk-tag govuk-tag--yellow">
+                      Medium
+                    </strong>
+                  </td>
+                  <td class="govuk-table__cell">Not tested yet</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/select-address">Select address</a></td>
+                  <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-nothing-chosen-select-address">If nothing chosen</a></td>
+                  <td class="govuk-table__cell">
+                    <strong class="govuk-tag govuk-tag--yellow">
+                      Medium
+                    </strong>
+                  </td>
+                  <td class="govuk-table__cell">Not tested yet</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/no-postcode">Address with no postcode</a></td>
+                  <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/error-blank-no-postcode">If blank</a></td>
+                  <td class="govuk-table__cell">
+                    <strong class="govuk-tag govuk-tag--yellow">
+                      Medium
+                    </strong>
+                  </td>
+                  <td class="govuk-table__cell">Not tested yet</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/no-lookup">Address not found in lookup</a></td>
+                  <td class="govuk-table__cell">
+                    <a class="govuk-link govuk-link--no-visited-state" href="v2/error-blank-no-lookup">If blank</a><br>
+                    <a class="govuk-link govuk-link--no-visited-state" href="v2/error-format-no-lookup">If wrong format</a>
+                  </td>
+                  <td class="govuk-table__cell">
+                    <strong class="govuk-tag govuk-tag--yellow">
+                      Medium
+                    </strong>
+                  </td>
+                  <td class="govuk-table__cell">Not tested yet</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/email-address">Email address?</a></td>
+                  <td class="govuk-table__cell">
+                    <a class="govuk-link govuk-link--no-visited-state" href="v2/error-blank-email-address">If blank</a><br>
+                    <a class="govuk-link govuk-link--no-visited-state" href="v2/error-format-email-address">If wrong format</a>
+                  </td>
+                  <td class="govuk-table__cell">
+                    <strong class="govuk-tag govuk-tag--yellow">
+                      Medium
+                    </strong>
+                  </td>
+                  <td class="govuk-table__cell">Not tested yet</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="phone-number">Phone number?</a></td>
+                  <td class="govuk-table__cell">
+                    <a class="govuk-link govuk-link--no-visited-state" href="v2/error-blank-phone-number">If blank</a><br>
+                    <a class="govuk-link govuk-link--no-visited-state" href="v2/error-format-phone-number">If wrong format</a>
+                  </td>
+                  <td class="govuk-table__cell">
+                    <strong class="govuk-tag govuk-tag--yellow">
+                      Medium
+                    </strong>
+                  </td>
+                  <td class="govuk-table__cell">Not tested yet</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/check-your-answers">Check your answers</a></td>
+                  <td class="govuk-table__cell"></td>
+                  <td class="govuk-table__cell">
+                    <strong class="govuk-tag govuk-tag--yellow">
+                      Medium
+                    </strong>
+                  </td>
+                  <td class="govuk-table__cell">Not tested yet</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/task-list-complete">Task list complete</a></td>
+                  <td class="govuk-table__cell"></td>
+                  <td class="govuk-table__cell">
+                    <strong class="govuk-tag govuk-tag--yellow">
+                      Medium
+                    </strong>
+                  </td>
+                  <td class="govuk-table__cell">Not tested yet</td>
+                </tr>
+              </tbody>
+            </table>    
+
+        </div>
+      </details>
 
 
 
@@ -335,6 +496,16 @@ IDM | Alternate ecologist
             </tr>
         </thead>
         <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__cell">16 February 2023</th>
+            <td class="govuk-table__cell">Task list updated to latest GDS Design System component</td>
+            <td class="govuk-table__cell"></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th class="govuk-table__cell">16 February 2023</th>
+            <td class="govuk-table__cell">v3 of the flow created</td>
+            <td class="govuk-table__cell"></td>
+          </tr>
           <tr class="govuk-table__row">
             <th class="govuk-table__cell">21 December 2023</th>
             <td class="govuk-table__cell">Updated status to DEVREADY.</td>

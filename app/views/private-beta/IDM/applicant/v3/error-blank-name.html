@@ -1,0 +1,53 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: Who is the licence for?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "Enter the name",
+                href: "#applicant-name"
+              }
+            ]
+          }) }}
+      
+      
+      <form class="form" action="organisation" method="post">       
+
+        {{ govukInput({
+          label: {
+            text: "Who is the licence for?",
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          hint: {
+            text: "Enter the full name of the person who will be the licence holder."
+          },
+          errorMessage: {
+            text: "Enter the name"
+          },
+          id: "applicant-name",
+          name: "applicant-name"
+        }) }}
+        
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

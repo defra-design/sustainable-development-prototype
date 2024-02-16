@@ -1,0 +1,44 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+What is Jason Doe's phone number at ABC Ecology?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <form class="form" action="confirm-details" method="post">
+        <div class="govuk-form-group">
+          <h1 class="govuk-label-wrapper">
+            <label class="govuk-label govuk-label--l" for="ecologist-phone-number">
+              What is Jason Doe's phone number at ABC Ecology?
+            </label>
+          </h1>
+         <!-- <div class="govuk-inset-text">
+            <p>This change will only apply to this application. Your email address will remain the same in your Defra ID account.</p>
+          </div>-->
+          
+          <input class="govuk-input govuk-input--width-20" id="ecologist-phone-number" name="ecologist-phone-number" type="tel" autocomplete="tel" value="07787147327">
+        </div>
+
+        
+        
+        
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}
