@@ -1,0 +1,109 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: Site address and National Grid Reference do not match
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+
+
+        
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not selected an option",
+                href: "#siteCheck-1"
+              }
+            ]
+          }) }}
+       
+
+            <h1 class="govuk-heading-l">
+                Site address and National Grid Reference do not match
+            </h1>
+
+            <p class="govuk-body">The site address and national grid reference must be at the same location.</p>
+
+            <div class="govuk-form-group govuk-form-group--error">
+                <fieldset class="govuk-fieldset">
+
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                        <h2 class="govuk-fieldset__heading">
+                            Which one do you want to change?
+                        </h2>
+                    </legend>
+                    <p id="where-do-you-live-error" class="govuk-error-message">
+                        <span class="govuk-visually-hidden">Error:</span> Select an option
+                      </p>
+                    <!-- <span class="govuk-hint">
+                        If you upload a document or image, your application may take longer to process.
+                    </span> -->
+
+
+                    <div class="govuk-radios" data-module="govuk-radios">
+
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="siteCheck-1" name="siteCheck" type="radio" value="address" >
+                            <label class="govuk-label govuk-radios__label" for="siteCheck-1">
+                                <span class="govuk-!-font-weight-bold">Address</span>
+                                <br>
+                                Oxford<br>
+                                Oxfordshire<br>
+                                {{ data['site-postcode'] }}
+                            </label>
+                        </div>
+                        
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="siteCheck-2" name="siteCheck" type="radio" value="gridref" >
+                            <label class="govuk-label govuk-radios__label" for="siteCheck-2">
+                                <span class="govuk-!-font-weight-bold">National Grid Reference</span>
+                                <br>
+                                {{ data['site-grid-ref'] }}<br>
+                                Located in:<br>
+                                Carlisle<br>
+                                Cumbria<br>
+                                CA2 5XE
+                            </label>
+                        </div>
+
+                        <div class="govuk-checkboxes__divider">or</div>
+
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="siteCheck-3" name="siteCheck" type="radio" value="correct" >
+                            <label class="govuk-label govuk-radios__label" for="siteCheck-3">
+                                These are correct
+                            </label>
+                            <div class="govuk-hint govuk-radios__hint">
+                                Your application may take longer to process if you don't give accurate site locations.
+                            </div>
+                        </div>
+
+                    </div>
+
+                </fieldset>
+            </div>
+
+            <form class="form" action="check-your-answers" method="post"> 
+            {{govukButton({
+                text: "Continue"
+            })}}
+
+            </form>
+
+	</div>
+</div>
+
+{% endblock %}

@@ -2043,4 +2043,13 @@ router.post('/private-beta/SSDSIP-476-conservation-considerations/v6/add-another
   } 
 });
 
+
+router.post('/private-beta/SDDSIP-214-site-map-upload/v3/site-postcode-check', (req, res) => {
+  if(req.session.data['site-postcode-check'] == 'yes'){
+      res.redirect('select-address')
+  } else if(req.session.data['site-postcode-check'] == 'no'){
+      res.redirect('site-address-no-postcode')
+  } 
+});
+
 }

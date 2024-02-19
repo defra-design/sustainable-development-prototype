@@ -1,0 +1,64 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Does the site have a postcode?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form class="form" action="site-postcode-check" method="post"> 
+
+        {% set postcodeHtml %}
+          {{ govukInput({
+            id: "site-postcode",
+            name: "site-postcode",
+            classes: "govuk-input--width-10",
+            label: {
+              text: "Postcode"
+            }
+          }) }}
+        {% endset -%}
+
+        {{ govukRadios({
+          idPrefix: "site-postcode-check",
+          name: "site-postcode-check",
+          fieldset: {
+            legend: {
+              text: "Does the site have a postcode?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes",
+              conditional: {
+                html: postcodeHtml
+              }
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

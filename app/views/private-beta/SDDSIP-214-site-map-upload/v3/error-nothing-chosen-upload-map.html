@@ -1,0 +1,87 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: Map of your activity at the development site
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not selected a file to upload",
+                href: "#file-upload-1"
+              }
+            ]
+          }) }}
+    
+      <h1 class="govuk-heading-l">
+        Map of your activity at the development site
+      </h1>
+
+      <p>
+        You must send a survey map showing the site before any of the planned activity.
+      </p>
+
+      <p>Your survey map should include:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>habitat locations</li>
+        <li>type of habitat</li>
+        <li>entrances</li>
+        <li>survey positions</li>
+      </ul>
+
+      <p>
+        You can upload:
+      </p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          GeoJSON files
+        </li>
+        <li>
+          KML files
+        </li>
+        <li>
+          common shapefiles
+        </li>
+        <li>
+          PDF, jpg or PNG files (if these are used, your application may take longer to process)
+        </li>
+        <li>ZIP files</li>
+      </ul>
+
+      <p>The file must be smaller than 30MB.</p>
+
+      <form class="form" action="upload-map-2" method="post">
+        {{ govukFileUpload({
+          id: "file-upload-1",
+          name: "file-upload-1",
+          label: {
+            text: "Upload a file",
+            classes: "govuk-label--s"
+          },
+          errorMessage: {
+            text: "Select a file to upload"
+          }
+        }) }}
+
+        {{ govukButton({
+          text: "Upload and continue"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+We need three site maps
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">
+        We need three site maps
+      </h1>
+
+      <p>
+        You need to upload a current, during and future site map.
+      </p>
+
+
+
+      <form class="form" action="upload-current-sitemap" method="post">
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
