@@ -20,30 +20,8 @@ Do you want to add an authorised person?
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <form class="form" action="add-person" method="post">
-        <!--{{ govukRadios({
-          idPrefix: "add-person-check",
-          name: "add-person-check",
-          fieldset: {
-            legend: {
-              text: "Do you want to add an authorised person?",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
-            }
-          },
-          hint: {
-            text: "This is a person who will be responsible for everything done under the licence. It does not include any assistants who will work under the direct supervision of the licence holder or any authorised people."
-          },
-          items: [
-            {
-              value: "yes",
-              text: "Yes"
-            },
-            {
-              value: "no",
-              text: "No"
-            }
-          ]
-        }) }}-->
+
+
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset">
@@ -57,7 +35,7 @@ Do you want to add an authorised person?
             <div class="govuk-radios" data-module="govuk-radios">
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="add-person-check" name="add-person-check" type="radio" value="yes">
-                <label class="govuk-label govuk-radios__label" for="where-do-you-live">
+                <label class="govuk-label govuk-radios__label" for="add-person-check">
                   Yes
                 </label>
               </div>

@@ -4,6 +4,8 @@
 Is {{ data['applicant-name'] }} part of an organisation?
 {% endblock %}
 
+{{ data | dump }}
+
 {% block beforeContent %}
     {% include "includes/alpha-banner.html" %}
     {% include "includes/back-save-link.html" %}

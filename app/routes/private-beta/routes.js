@@ -1954,4 +1954,22 @@ router.post('/private-beta/IDM/invoice-payer/v3/purchase-order-check', (req, res
 });
 
 
+router.post('/private-beta/IDM/authorised-people/v3/add-person', (req, res) => {
+  if(req.session.data['add-person-check'] == 'yes'){
+      res.redirect('name')
+  } else if(req.session.data['add-person-check'] == 'no'){
+      res.redirect('check-your-answers-not-added')
+  } 
+});
+
+
+router.post('/private-beta/IDM/authorised-people/v3/add-another-authorised-person', (req, res) => {
+  if(req.session.data['add-another-authorised-person-check'] == 'Yes'){
+      res.redirect('name-2')
+  } else if(req.session.data['add-another-authorised-person-check'] == 'No'){
+      res.redirect('task-list-complete')
+  } 
+});
+
+
 }
