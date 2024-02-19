@@ -1,0 +1,54 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Will the development happen on the designated site or adjacent to it?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <form class="form" action="sites-another-review-add-another" method="post">     
+        
+
+        {{ govukRadios({
+            name: "another-on-or-close-check",
+            fieldset: {
+              legend: {
+                text: "Will the development happen on the designated site or adjacent to it?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            hint: {
+                text: "Select one."
+              },
+            items: [
+              {
+                value: "On the site",
+                text: "On the site"
+              },
+              {
+                value: "Adjacent to the site",
+                text: "Adjacent to the site"
+              }
+            ]
+          }) }}
+        
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

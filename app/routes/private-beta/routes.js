@@ -2008,4 +2008,39 @@ router.post('/private-beta/SDDSIP-585-amend-permissions-flow/v4/commitment-eps-c
 });
 
 
+router.post('/private-beta/SSDSIP-476-conservation-considerations/v6/on-or-within', (req, res) => {
+  if(req.session.data['on-or-within-designated-site'] == 'Yes'){
+      res.redirect('sites-start')
+  } else if(req.session.data['on-or-within-designated-site'] == 'No'){
+      res.redirect('check-your-answers-none')
+  } 
+});
+
+
+router.post('/private-beta/SSDSIP-476-conservation-considerations/v6/advice-check', (req, res) => {
+  if(req.session.data['advice-check'] == 'Yes'){
+      res.redirect('outcome')
+  } else if(req.session.data['advice-check'] == 'No'){
+      res.redirect('permission')
+  } 
+});
+
+
+router.post('/private-beta/SSDSIP-476-conservation-considerations/v6/permission-check', (req, res) => {
+  if(req.session.data['permission-check'] == 'Yes'){
+      res.redirect('details-of-consent')
+  } else if(req.session.data['permission-check'] == 'No'){
+      res.redirect('on-or-close')
+  } 
+});
+
+
+router.post('/private-beta/SSDSIP-476-conservation-considerations/v6/add-another-site-check', (req, res) => {
+  if(req.session.data['add-another-site-check'] == 'Yes'){
+      res.redirect('another-designated-site-name')
+  } else if(req.session.data['add-another-site-check'] == 'No'){
+      res.redirect('task-list-complete')
+  } 
+});
+
 }

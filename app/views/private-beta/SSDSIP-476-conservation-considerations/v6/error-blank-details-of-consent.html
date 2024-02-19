@@ -1,0 +1,56 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: Give details of the permission from the owner or occupier
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not entered details of the permission",
+                href: "#permission-detail"
+              }
+            ]
+          }) }}
+      
+      <form class="form" action="advice" method="post">       
+
+          {{ govukTextarea({
+            name: "permission-detail",
+            id: "permission-detail",
+            label: {
+              text: "Give details of the permission from the owner or occupier",
+              classes: "govuk-label--l",
+              isPageHeading: true
+            },
+            hint: {
+              text: "For example, dates and names.
+              You will be able to upload documents showing permission granted."
+            },
+            errorMessage: {
+                text: "Enter details of the permission"
+              }
+          }) }}
+
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

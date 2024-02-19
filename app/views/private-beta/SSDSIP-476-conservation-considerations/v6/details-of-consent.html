@@ -1,0 +1,43 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Give details of the permission from the owner or occupier
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <form class="form" action="on-or-close" method="post">       
+
+          {{ govukTextarea({
+            name: "permission-detail",
+            id: "permission-detail",
+            label: {
+              text: "Give details of the permission from the owner or occupier",
+              classes: "govuk-label--l",
+              isPageHeading: true
+            },
+            hint: {
+              text: "For example, dates and names.
+              You will be able to upload documents showing permission granted."
+            }
+          }) }}
+
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,371 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Check your answers
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+{% if data['more-than-one-site-check'] == 'Yes' %}
+  <script>
+      window.location.href = 'check-your-answers-multiple'
+  </script>
+{% endif %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">Check your answers</h1>
+
+  
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Will the development take place on or next to a Site of Special Scientific Interest (SSSI)?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['on-or-within-designated-site'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="add-person">
+              Change<span class="govuk-visually-hidden"> will the development take place on or next to a Site of Special Scientific Interest (SSSI)?</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            What is the name of the SSSI?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['SSSI-name'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="add-person">
+              Change<span class="govuk-visually-hidden"> what is the name of the SSSI?</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Permission from the owner/occupier of the SSSI?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['permission-check'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="add-person">
+              Change<span class="govuk-visually-hidden"> permission from the owner/occupier of the SSSI?</span>
+            </a>
+          </dd>
+        </div>
+
+        {% if data['permission-check'] == 'Yes' %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Give details of the permission
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['permission-detail'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="add-person">
+                Change<span class="govuk-visually-hidden"> give details of the permission</span>
+              </a>
+            </dd>
+          </div>
+        {% endif %}
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Have you had advice about the activity from Natural England?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['advice-check'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="add-person">
+              Change<span class="govuk-visually-hidden"> have you had advice about the activity from Natural England?</span>
+            </a>
+          </dd>
+        </div>
+       
+        {% if data['advice-check'] == 'Yes' %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Who did you receive the advice from?
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['advice-giver'] }}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="add-person">
+                  Change<span class="govuk-visually-hidden"> who did you receive the advice from?</span>
+                </a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Describe the outcome of the advice
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['advice-given'] }}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="add-person">
+                  Change<span class="govuk-visually-hidden"> describe the outcome of the advice</span>
+                </a>
+              </dd>
+            </div>
+        {% endif %}
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Will the work be necessary for managing a Special Protection Area, Special Area of Conservation or Ramsar site?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['necessary-check'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="add-person">
+              Change<span class="govuk-visually-hidden"> will the work be necessary for managing a Special Protection Area, Special Area of Conservation or Ramsar site?</span>
+            </a>
+          </dd>
+        </div>
+
+        {% if data['necessary-check'] == 'Yes' %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              What is the name of the site?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['necessary-site-name'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="add-person">
+                Change<span class="govuk-visually-hidden"> what is the name of the site?</span>
+              </a>
+            </dd>
+          </div>
+        </dl>
+        {% endif %}
+
+
+        {% if data['necessary-check'] == 'No' %}
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Is it likely to have a significant effect on a Special Protection Area, Special Area of Conservation or Ramsar site?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['significant-effect-check'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="add-person">
+              Change<span class="govuk-visually-hidden"> is it likely to have a significant effect on a Special Protection Area, Special Area of Conservation or Ramsar site??</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+   
+      {% endif %}  
+       
+            
+
+
+        <!-- Display multiple sites loop-->
+
+        {% if data['significant-effect-check'] == 'Yes' %}
+        
+
+        <h2 class="govuk-heading-m govuk-!-margin-top-9">SPA, SAC and Ramsar sites the work will affect</h2>
+
+        <h3 class="govuk-heading-s">Site name: {{ data['multiple-sites-designated-site-name-1'] }}</h3>
+  
+        <p><a href="remove-site">Remove site</a></p>
+  
+    
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Name of the site
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['multiple-sites-designated-site-name-1'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="add-person">
+                Change<span class="govuk-visually-hidden"> name of the site</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              What type of site?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {% for type in data['multiple-sites-what-type'] %}
+                <p>{{ type }}</p>
+              {% endfor %} 
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="add-person">
+                Change<span class="govuk-visually-hidden"> what type of site?</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              What is the likely effect on the site?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['multiple-sites-likely-effect'] }} 
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="add-person">
+                Change<span class="govuk-visually-hidden"> what is the likely effect on the site??</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Will it happen on the site or close to it?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['multiple-sites-on-or-close-check'] }} 
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="add-person">
+                Change<span class="govuk-visually-hidden"> will it happen on the site or close to it?</span>
+              </a>
+            </dd>
+          </div>
+          
+          {% if data['multiple-sites-on-or-close-check'] == 'Close to the site' %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  How close to the site will it happen?
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['distance-from-site'] }}km
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="add-person">
+                    Change<span class="govuk-visually-hidden"> how close to the site will it happen?</span>
+                  </a>
+                </dd>
+              </div>
+          {% endif %}
+  
+        </dl>
+
+
+
+      {% if data['add-another-site-check'] == 'Yes' %}
+        
+          <h3 class="govuk-heading-s">Site name: {{ data['multiple-sites-designated-site-name-2'] }}</h3>
+          <p><a href="remove-site-another">Remove site</a></p>
+      
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Name of the site
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['multiple-sites-designated-site-name-2'] }}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="add-person">
+                  Change<span class="govuk-visually-hidden"> name of the site</span>
+                </a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                What type of site?
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {% for type in data['multiple-sites-another-what-type'] %}
+                  <p>{{ type }}</p>
+                {% endfor %}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="add-person">
+                  Change<span class="govuk-visually-hidden"> what type of site?</span>
+                </a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                What is the likely effect on the site?
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['multiple-sites-another-likely-effect'] }} 
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="add-person">
+                  Change<span class="govuk-visually-hidden"> what is the likely effect on the site??</span>
+                </a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Will it happen on the site or close to it?
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['multiple-sites-another-on-or-close-check'] }} 
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="add-person">
+                  Change<span class="govuk-visually-hidden"> will it happen on the site or close to it?</span>
+                </a>
+              </dd>
+            </div>
+            
+            {% if data['multiple-sites-another-on-or-close-check'] == 'Close to the site' %}
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    How close to the site will it happen?
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    {{ data['distance-from-site-another'] }}km
+                  </dd>
+                  <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="add-person">
+                      Change<span class="govuk-visually-hidden"> how close to the site will it happen?</span>
+                    </a>
+                  </dd>
+                </div>
+            {% endif %}
+
+        
+        
+      </dl>
+
+      {% endif %}
+
+
+
+
+        {% endif %}
+
+       
+
+        
+
+     
+
+        {{ govukButton({
+          text: "Continue",
+          href: "task-list-complete"
+        }) }}
+
+
+    </div>
+  </div>
+
+{% endblock %}

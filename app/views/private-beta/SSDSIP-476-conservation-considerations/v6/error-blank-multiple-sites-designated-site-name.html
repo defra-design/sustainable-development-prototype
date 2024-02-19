@@ -1,0 +1,52 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: What is the name of the site?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not entered a site name",
+                href: "#mutiple-sites-designated-site-name-1"
+              }
+            ]
+          }) }}
+      
+      <form class="form" action="multiple-sites-what-type" method="post">       
+
+        {{ govukInput({
+          label: {
+            text: "What is the name of the site?",
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          errorMessage: {
+            text: "Enter a site name"
+          },
+          id: "mutiple-sites-designated-site-name-1",
+          name: "multiple-sites-designated-site-name-1"
+        }) }}
+        
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}
