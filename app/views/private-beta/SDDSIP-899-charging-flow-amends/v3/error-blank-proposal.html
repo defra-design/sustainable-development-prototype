@@ -1,0 +1,55 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: What development work is planned?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form class="form" action="paying-for-your-license" method="post">
+
+            {{ govukErrorSummary({
+                titleText: "There is a problem",
+                errorList: [
+                  {
+                    text: "You have not entered what development work you plan to do",
+                    href: "#proposal"
+                  }
+                ]
+              }) }}
+
+
+            {{ govukTextarea({
+                name: "proposal",
+                id: "proposal",
+                label: {
+                  text: "What development work is planned?",
+                  classes: "govuk-label--l",
+                  isPageHeading: true
+                },
+                hint: {
+                  text: "For example, construction of a new road, maintenance of a bridge, construction of five flats with access road and car parking area."
+                },
+                errorMessage: {
+                    text: "Enter the development work you plan to do"
+                  }
+              }) }}
+
+            {{govukButton({
+                text: "Continue"
+            })}}
+
+        </form>
+
+	</div>
+</div>
+
+{% endblock %}
