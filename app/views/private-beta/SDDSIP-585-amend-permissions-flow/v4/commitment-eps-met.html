@@ -1,0 +1,87 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Describe the potential conflicts between this application and other legal commitments
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <form class="form" action="check-your-answers" method="post">       
+
+        <!-- {% set commitmentHtml %}
+          {{ govukTextarea({
+            name: "commitment-eps-met-detail",
+            id: "commitment-eps-met-detail",
+            label: {
+              text: "Describe how the legal commitments will have been met"
+            }
+          }) }}
+        {% endset -%}
+
+        {% set commitmentNotMetHtml %}
+          {{ govukTextarea({
+            name: "commitment-eps-not-met-detail",
+            id: "commitment-eps-not-met-detail",
+            label: {
+              text: "When do you think the legal commitments will be complete?"
+            }
+          }) }}
+        {% endset -%}
+
+        {{ govukRadios({
+            name: "commitment-eps-met-check",
+            fieldset: {
+              legend: {
+                text: "Will the legal commitments have been met within 6 weeks of this application being submitted?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            items: [
+              {
+                value: "Yes",
+                text: "Yes",
+                conditional: {
+                  html: commitmentHtml
+                }
+              },
+              {
+                value: "No",
+                text: "No",
+                conditional: {
+                  html: commitmentNotMetHtml
+                }
+              }
+            ]
+          }) }} -->
+
+          {{ govukTextarea({
+            name: "conflicts",
+            id: "conflicts",
+            label: {
+              text: "Describe the potential conflicts between this application and other legal commitments",
+              classes: "govuk-label--l",
+              isPageHeading: true
+            }
+          }) }}
+
+        
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

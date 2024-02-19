@@ -1,0 +1,94 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Have all other wildlife or habitat-related conditions been met?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <form class="form" action="conditions-reserved-matters-check" method="post">       
+
+       <!--<h1 class="govuk-heading-l">Relevant consent conditions</h1>
+
+        <p>These are conditions that relate to wildlife and habitats. This includes:</p>
+
+                <ul class="govuk-list govuk-list--bullet">
+                  <li>reserved matters</li>
+                  <li>section 106 agreements</li>
+                  <li>commitments made at a Public Enquiry</li>
+                  <li>commitments made in an Environmental Statement</li>
+                </ul>
+
+        {{ govukRadios({
+            name: "conditions-reserved-matters-check",
+            fieldset: {
+              legend: {
+                text: "Have all relevant conditions been completed?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            items: [
+              {
+                value: "Yes",
+                text: "Yes"
+              },
+              {
+                value: "No",
+                text: "No"
+              }
+            ]
+          }) }}-->
+
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                <h1 class="govuk-fieldset__heading">
+                  Have all other wildlife or habitat-related conditions been met?
+                </h1>
+              </legend>
+              <p>These include:</p>
+              <ul class="govuk-list govuk-list--bullet">
+                <li>planning conditions</li>
+                <li>reserved matters</li>
+                <li>Section 106 agreements</li>
+                <li>commitments made at a Public Enquiry or in an Environmental Statement</li>
+              </ul>
+              <div class="govuk-radios" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="conditions-reserved-matters-check" name="conditions-reserved-matters-check" type="radio" value="Yes">
+                  <label class="govuk-label govuk-radios__label" for="conditions-reserved-matters-check">
+                    Yes
+                  </label>
+                </div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="conditions-reserved-matters-check-2" name="conditions-reserved-matters-check" type="radio" value="No">
+                  <label class="govuk-label govuk-radios__label" for="conditions-reserved-matters-check-2">
+                    No
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+      </form>
+
+
+     
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

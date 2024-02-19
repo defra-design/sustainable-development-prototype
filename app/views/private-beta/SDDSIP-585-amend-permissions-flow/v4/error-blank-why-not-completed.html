@@ -1,0 +1,53 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: Why have the wildlife or habitat related conditions not been completed?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "You have not entered why the wildlife or habitat related conditions have not been completed",
+            href: "#why-conditions-not-completed"
+          }
+        ]
+      }) }}
+      
+      <form class="form" action="commitment-subject" method="post">
+
+        {{ govukTextarea({
+          name: "why-conditions-not-completed",
+          id: "why-conditions-not-completed",
+          errorMessage: {
+            text: "Enter why the wildlife or habitat related conditions have not been completed"
+          },
+          label: {
+            text: "Why have the wildlife or habitat related conditions not been completed?",
+            classes: "govuk-label--l",
+            isPageHeading: true
+          }
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

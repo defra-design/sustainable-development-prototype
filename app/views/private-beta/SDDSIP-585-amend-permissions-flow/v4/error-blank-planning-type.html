@@ -1,0 +1,100 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: What type of planning permission was granted?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not entered a planning type",
+                href: "#other-planning"
+              }
+            ]
+          }) }}
+      
+      <form class="form" action="planning-reference" method="post">
+
+
+       
+        {% set otherHtml %}
+            {{ govukInput({
+            id: "other-planning",
+            name: "other-planning",
+            errorMessage: {
+                text: "Enter a planning type"
+              },
+            label: {
+                text: "Enter the other type of planning permission"
+            }
+            }) }}
+        {% endset -%}
+
+
+          {{ govukRadios({
+            name: "planning-type",
+            fieldset: {
+              legend: {
+                text: "What type of planning permission was granted?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            hint: {
+                text: "Check your planning permission documents if you are unsure what permission type you have."
+              },
+            items: [
+              {
+                value: "Full",
+                text: "Full"
+              },
+              {
+                value: "Outline",
+                text: "Outline"
+              },
+              {
+                value: "Hybrid",
+                text: "Hybrid"
+              },
+              {
+                value: "Other",
+                text: "Other",
+                checked: true,
+                conditional: {
+                  html: otherHtml
+                }
+              }
+
+            ]
+          }) }}
+
+          {{ govukDetails({
+            summaryText: "What is hybrid planning permission?",
+            text: "Hybrid planning permission is where a development has outline planning permission for one part and full planning permission for another part of the same site."
+          }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+        
+
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

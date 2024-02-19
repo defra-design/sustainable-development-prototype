@@ -1,0 +1,96 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: What permission has the project got?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "You have not selected an option",
+            href: "#consent-type-check"
+          }
+        ]
+      }) }}
+      
+      <form class="form" action="consent-reference" method="post">       
+
+        {{ govukRadios({
+            name: "consent-type-check",
+            fieldset: {
+              legend: {
+                text: "What permission has the project got?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            errorMessage: {
+              text: "Select an option"
+            },
+            items: [
+            {
+              value: "Planning permission",
+              text: "Planning permission"
+            },
+            {
+              value: "Demolition consent",
+              text: "Demolition consent"
+            },
+            {
+              value: "Listed building consent",
+              text: "Listed building consent"
+            },
+            {
+              value: "Highways Act consent",
+              text: "Highways Act consent"
+            },
+            {
+              value: "Mineral consent",
+              text: "Mineral consent"
+            },
+            {
+              value: "Mineral control order",
+              text: "Mineral control order"
+            },
+            {
+              value: "Tree preservation order",
+              text: "Tree preservation order"
+            },
+            {
+              value: "Development consent order",
+              text: "Development consent order"
+            }
+            ]
+          }) }}
+        
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+      </form>
+
+
+      
+
+
+
+
+
+
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

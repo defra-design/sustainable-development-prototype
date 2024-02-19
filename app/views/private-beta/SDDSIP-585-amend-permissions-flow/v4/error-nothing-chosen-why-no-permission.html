@@ -1,0 +1,85 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: Why is no permission required?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not selected an option",
+                href: "#no-permission-reason"
+              }
+            ]
+          }) }}
+      
+      <form class="form" action="commitment-subject-eps" method="post">
+       
+        {% set otherHtml %}
+            {{ govukInput({
+            id: "other-reason",
+            name: "other-reason",
+            label: {
+                text: "Enter the other reason no permission is required"
+            }
+            }) }}
+        {% endset -%}
+
+
+          {{ govukRadios({
+            name: "no-permission-reason",
+            fieldset: {
+              legend: {
+                text: "Why is no permission required?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            errorMessage: {
+                text: "Select an option"
+              },
+            items: [
+              {
+                value: "Permitted development",
+                text: "Permitted development"
+              },
+              {
+                value: "Health and safety",
+                text: "Health and safety"
+              },
+              {
+                value: "Other",
+                text: "Other",
+                conditional: {
+                  html: otherHtml
+                }
+              }
+
+            ]
+          }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+        
+
+      </form>
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}
