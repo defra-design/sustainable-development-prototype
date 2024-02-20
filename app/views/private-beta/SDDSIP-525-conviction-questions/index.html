@@ -16,18 +16,18 @@ SDDSIP 525 | Declare convictions
       <h1 class="govuk-heading-l">Declare convictions</h1> 
 
       <div class="govuk-!-margin-bottom-9">
-        <strong class="govuk-tag govuk-tag--pink">
-          TESTED
+        <strong class="govuk-tag govuk-tag--green">
+          In progress
        </strong>
       </div>
 
       
 
-      <h2 class="govuk-heading-m ">Full page list and error states</h2>
+      <h2 class="govuk-heading-m ">Full page list and error states - v2</h2>
 
       {{ govukButton({
-        text: "View full flow",
-        href: "task-list"
+        text: "View full flow - v2",
+        href: "v2/task-list"
       }) }}
 
 
@@ -42,37 +42,109 @@ SDDSIP 525 | Declare convictions
         </thead>
         <tbody class="govuk-table__body">    
             <tr class="govuk-table__row">
-                <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="task-list">Task list</a></td>
+                <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/task-list">Task list</a></td>
                 <td class="govuk-table__cell"></td>
                 <td class="govuk-table__cell"></td>
                 <td class="govuk-table__cell"></td>
             </tr>
             <tr class="govuk-table__row">
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="any-convictions">Any convictions?</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/any-convictions">Any convictions?</a></td>
               <td class="govuk-table__cell"></td>
               <td class="govuk-table__cell"></td>
               <td class="govuk-table__cell"></td>
             </tr>
             <tr class="govuk-table__row">
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="conviction-details">Give details of the convictions</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/conviction-details">Give details of the convictions</a></td>
               <td class="govuk-table__cell"></td>
               <td class="govuk-table__cell"></td>
               <td class="govuk-table__cell"></td>
             </tr>
             <tr class="govuk-table__row">
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="check-your-answers">Check your answers</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/check-your-answers">Check your answers</a></td>
               <td class="govuk-table__cell"></td>
               <td class="govuk-table__cell"></td>
               <td class="govuk-table__cell"></td>
             </tr>
             <tr class="govuk-table__row">
-              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="task-list-complete">Task list - completed task</a></td>
+              <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="v2/task-list-complete">Task list - completed task</a></td>
               <td class="govuk-table__cell"></td>
               <td class="govuk-table__cell"></td>
               <td class="govuk-table__cell"></td>
             </tr>
           </tbody>
         </table>
+
+
+        <!-- Version 1 -->
+        <details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              Version 1
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+
+            <div class="govuk-!-margin-bottom-9">
+              <strong class="govuk-tag govuk-tag--pink">
+                TESTED
+             </strong>
+            </div>
+      
+            
+      
+            <h2 class="govuk-heading-m ">Full page list and error states</h2>
+      
+            {{ govukButton({
+              text: "View full flow",
+              href: "task-list"
+            }) }}
+      
+      
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                  <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header">Page</th>
+                    <th scope="col" class="govuk-table__header">Error states</th>
+                    <th scope="col" class="govuk-table__header">Confidence</th>
+                    <th scope="col" class="govuk-table__header govuk-!-width-one-third">Notes</th>
+                  </tr>
+              </thead>
+              <tbody class="govuk-table__body">    
+                  <tr class="govuk-table__row">
+                      <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="task-list">Task list</a></td>
+                      <td class="govuk-table__cell"></td>
+                      <td class="govuk-table__cell"></td>
+                      <td class="govuk-table__cell"></td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="any-convictions">Any convictions?</a></td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell"></td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="conviction-details">Give details of the convictions</a></td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell"></td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="check-your-answers">Check your answers</a></td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell"></td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="task-list-complete">Task list - completed task</a></td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell"></td>
+                  </tr>
+                </tbody>
+              </table>
+
+          </div>
+        </details>
 
 
 
@@ -87,6 +159,16 @@ SDDSIP 525 | Declare convictions
               </tr>
           </thead>
           <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">20 February 2024</th>
+              <td class="govuk-table__cell">Task list updated to latest GDS Design System component.</td>
+              <td class="govuk-table__cell"></td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th class="govuk-table__cell">20 February 2024</th>
+              <td class="govuk-table__cell">v2 flow created.</td>
+              <td class="govuk-table__cell"></td>
+            </tr>
               <tr class="govuk-table__row">
                 <th class="govuk-table__cell">25 to 30 October 2023</th>
                 <td class="govuk-table__cell">Flow tested with 4 ecologists</td>

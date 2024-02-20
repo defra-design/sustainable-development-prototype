@@ -2113,4 +2113,13 @@ router.post('/private-beta/SDDSIP-286-supplementary-file-upload/v2/another-file'
 });
 
 
+router.post('/private-beta/SDDSIP-525-conviction-questions/v2/any-convictions-check', (req, res) => {
+  if(req.session.data['any-convictions-check'] == 'Yes'){
+      res.redirect('conviction-details')
+  } else if(req.session.data['any-convictions-check'] == 'No'){
+      res.redirect('check-your-answers')
+  } 
+});
+
+
 }
