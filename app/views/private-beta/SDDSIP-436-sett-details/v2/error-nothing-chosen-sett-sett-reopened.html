@@ -1,0 +1,63 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: Will the badger sett be reopened once development is complete?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "You have not selected an option",
+            href: "#sett-reopened"
+          }
+        ]
+      }) }}
+
+
+      <form class="form" action="entrance-holes" method="post"> 
+        {{ govukRadios({
+          idPrefix: "sett-reopened",
+          name: "sett-reopened",
+          fieldset: {
+            legend: {
+              text: "Will the badger sett be reopened once development is complete?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          errorMessage: {
+            text: "Select an option"
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

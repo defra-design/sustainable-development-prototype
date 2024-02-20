@@ -1,0 +1,50 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: Enter the ecologist's experience of badger ecology and surveying
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "You have not entered the ecologist's experience",
+            href: "#experience"
+          }
+        ]
+      }) }}
+
+      <form class="form" action="enter-methods" method="post">
+        {{ govukCharacterCount({
+          name: "experience",
+          id: "experience",
+          maxlength: 4000,
+          rows: "10",
+          errorMessage: {
+            text: "Enter details of the ecologist's experience of badger ecology and surveying"
+          },
+          label: {
+            text: "Enter the ecologist's experience of badger ecology and surveying",
+            classes: "govuk-label--l",
+            isPageHeading: true
+          }
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

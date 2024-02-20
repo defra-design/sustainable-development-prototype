@@ -1,0 +1,48 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Will the badger sett be reopened once development is complete?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form class="form" action="entrance-holes-another" method="post"> 
+        {{ govukRadios({
+          idPrefix: "sett-reopened-another",
+          name: "sett-reopened-another",
+          fieldset: {
+            legend: {
+              text: "Will the badger sett be reopened once development is complete?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

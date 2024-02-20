@@ -1,0 +1,80 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Previous badger mitigation licences
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">
+        Previous badger mitigation licences
+      </h1>
+
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Badger mitigation licence"
+            },
+            value: {
+              html: "No licence added" 
+            },
+            actions: {
+              
+            }
+          }
+          
+        ]
+      }) }}
+
+
+
+
+
+
+
+      
+
+        {{ govukRadios({
+          idPrefix: "another-license-check",
+          name: "another-license-check",
+          fieldset: {
+            legend: {
+              text: "Do you want to add a previous badger mitigation license?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+        
+
+        {{ govukButton({
+          text: "Continue",
+          href: "enter-license-details"
+        }) }}
+      
+
+
+    </div>
+  </div>
+
+{% endblock %}

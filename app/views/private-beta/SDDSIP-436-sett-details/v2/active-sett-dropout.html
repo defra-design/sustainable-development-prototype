@@ -1,0 +1,28 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Badger sett must be active
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">
+        You cannot apply for this licence if the badger sett is inactive
+      </h1>
+      <p>
+        To apply for a license the badger sett must be active.
+      </p>
+
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,94 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: Previous badger mitigiation licences
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "You have not selected an option",
+            href: "#another-license-check"
+          }
+        ]
+      }) }}
+
+
+      <h1 class="govuk-heading-l">
+        Previous badger mitigiation licences
+      </h1>
+
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Badger mitigiation licence"
+            },
+            value: {
+              html: "No licence added" 
+            },
+            actions: {
+              
+            }
+          }
+          
+        ]
+      }) }}
+
+
+
+
+
+
+
+      
+
+        {{ govukRadios({
+          idPrefix: "another-license-check",
+          name: "another-license-check",
+          fieldset: {
+            legend: {
+              text: "Do you want to add a previous badger mitigation licence?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          errorMessage: {
+            text: "Select an option"
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+        
+
+        {{ govukButton({
+          text: "Continue",
+          href: "enter-license-details"
+        }) }}
+      
+
+
+    </div>
+  </div>
+
+{% endblock %}

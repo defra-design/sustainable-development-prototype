@@ -2052,4 +2052,65 @@ router.post('/private-beta/SDDSIP-214-site-map-upload/v3/site-postcode-check', (
   } 
 });
 
+
+router.post('/private-beta/SDDSIP-436-sett-details/v2/add-another-sett-check', (req, res) => {
+  if(req.session.data['add-another-sett-check'] == 'Yes'){
+      res.redirect('sett-name-another')
+  } else if(req.session.data['add-another-sett-check'] == 'No'){
+      res.redirect('task-list-complete')
+  } 
+});
+
+router.post('/private-beta/SDDSIP-453-ecologist-experience/v2/previous-license', function (req, res) {
+  const editChoice = req.session.data['previous-license-check']
+
+  if (editChoice === 'yes') {
+    res.redirect('enter-license-details')
+  } else if (editChoice === 'no') {
+    res.redirect('enter-experience')
+  } 
+});
+
+
+router.post('/private-beta/SDDSIP-453-ecologist-experience/v2/another-license', function (req, res) {
+  const editChoice = req.session.data['another-license-check']
+
+  if (editChoice === 'yes') {
+    res.redirect('enter-license-details-extra')
+  } else if (editChoice === 'no') {
+    res.redirect('enter-experience')
+  } 
+});
+
+router.post('/private-beta/SDDSIP-453-ecologist-experience/v2/another-license-extra', function (req, res) {
+  const editChoice = req.session.data['another-license-extra-check']
+
+  if (editChoice === 'yes') {
+    res.redirect('enter-license-details-extra')
+  } else if (editChoice === 'no') {
+    res.redirect('enter-experience')
+  } 
+});
+
+
+router.post('/private-beta/SDDSIP-453-ecologist-experience/v2/class-mitigation-license-check', (req, res) => {
+  if(req.session.data['class-mitigation-license-check'] == 'Yes'){
+      res.redirect('enter-class-mitigation-details')
+  } else if(req.session.data['class-mitigation-license-check'] == 'No'){
+      res.redirect('check-your-answers')
+  } 
+});
+
+
+router.post('/private-beta/SDDSIP-286-supplementary-file-upload/v2/another-file', function (req, res) {
+  const editChoice = req.session.data['another-file-check']
+
+  if (editChoice === 'yes') {
+    res.redirect('upload-another')
+  } else if (editChoice === 'no') {
+    res.redirect('task-list-complete')
+  } 
+});
+
+
 }

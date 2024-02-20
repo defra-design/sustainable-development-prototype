@@ -1,0 +1,308 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Check your answers
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h2 class="govuk-heading-l">Check your answers</h2>
+
+
+      <h2 class="govuk-heading-m">Sett: {{ data['sett-name'] }}</h2>
+
+
+      <p><a href="remove-sett">Remove sett</a></p>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Sett name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['sett-name'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> sett name</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Sett usage
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['sett-usage'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> sett usage</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Reopening sett
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['sett-reopened'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> reopening sett</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Number of entrance holes
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['entrance-holes'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> number of entrance holes</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Number of active entrance holes
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['active-holes'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> number of active entrance holes</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Sett grid reference
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['grid-ref'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> sett grid reference</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Work start date
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['work-start-day'] + " " + data['work-start-month'] | toMonth + " " + data['work-start-year'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> work start date</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Work end date
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['work-end-day'] + " " + data['work-end-month'] | toMonth + " " + data['work-end-year'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> work end date</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Affect on badgers
+          </dt>
+          <dd class="govuk-summary-list__value">
+            
+            {% for affect in data['affect-on-badgers'] %}
+              <p>{{ affect }}</p>
+            {% endfor %}
+            
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> affect on badgers</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+
+      <h2 class="govuk-heading-m">Sett: {{ data['sett-name-another'] }}</h2>
+
+      <p><a href="remove-sett">Remove sett</a></p>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Sett name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['sett-name-another'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> sett name</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Sett usage
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['sett-usage-another'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> sett usage</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Reopening sett
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['sett-reopened-another'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> reopening sett</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Number of entrance holes
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['entrance-holes-another'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> number of entrance holes</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Number of active entrance holes
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['active-holes-another'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> number of active entrance holes</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Sett grid reference
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['grid-ref-another'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> sett grid reference</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Work start date
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['work-start-another-day'] + " " + data['work-start-another-month'] | toMonth + " " + data['work-start-another-year'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> work start date</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Work end date
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['work-end-another-day'] + " " + data['work-end-another-month'] | toMonth + " " + data['work-end-another-year'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> work end date</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Affect on badgers
+          </dt>
+          <dd class="govuk-summary-list__value">
+            
+            {% for affect in data['affect-on-badgers-another'] %}
+              <p>{{ affect }}</p>
+            {% endfor %}
+            
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> affect on badgers</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+      
+      <form class="form" action="add-another-another-sett-check" method="post">
+
+      {{ govukRadios({
+        idPrefix: "add-another-another-sett-check",
+        name: "add-another-another-sett-check",
+        fieldset: {
+          legend: {
+            text: "Do you want to add another badger sett?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes"
+          },
+          {
+            value: "No",
+            text: "No"
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+    
+    </div>
+  </div>
+
+{% endblock %}

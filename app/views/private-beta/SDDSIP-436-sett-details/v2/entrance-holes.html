@@ -1,0 +1,36 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+How many entrance holes does the badger sett have?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form class="form" action="active-holes" method="post"> 
+        {{ govukInput({
+          label: {
+            text: "How many entrance holes does the badger sett have?",
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          classes: "govuk-input--width-4",
+          id: "entrance-holes",
+          name: "entrance-holes"
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

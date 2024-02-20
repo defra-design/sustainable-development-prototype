@@ -1,0 +1,41 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+When will the work start?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form class="form" action="work-end" method="post"> 
+        {{ govukDateInput({
+          id: "work-start",
+          namePrefix: "work-start",
+          fieldset: {
+            legend: {
+              text: "When will the work start?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "The work must start during the license period (From 1 May to 30 November)."
+          }
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+      
+    
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Error: Enter the ecologist's experience of using the methods to be licensed
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "You have not entered the ecologist's experience of using the methods to be licensed",
+            href: "#methods"
+          }
+        ]
+      }) }}
+
+
+      <form class="form" action="class-mitigation" method="post">
+        {{ govukCharacterCount({
+          name: "methods",
+          id: "methods",
+          maxlength: 4000,
+          rows: "10",
+          errorMessage: {
+            text: "Enter details of the ecologist's experience of using the methods to be licensed"
+          },
+          label: {
+            text: "Enter the ecologist's experience of using the methods to be licensed",
+            classes: "govuk-label--l",
+            isPageHeading: true
+          }
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>    
+    </div>
+  </div>
+
+{% endblock %}
