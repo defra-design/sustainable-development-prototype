@@ -1,0 +1,117 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Did you obstruct access to any of the sett entrances by blocking or proofing?
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-save-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">Warren Lane sett licensed actions</h1>
+
+      
+        {{ govukRadios({
+          idPrefix: "licensed-action-2-check",
+          name: "licensed-action-2-check",
+          fieldset: {
+            legend: {
+              text: "Did you obstruct the sett entrance by means of one way gates?",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes",
+              conditional: {
+                  html: workHtml
+              }
+            },
+            {
+              value: "No",
+              text: "No",
+              conditional: {
+                  html: whynotHtml
+              }
+            }
+          ]
+        }) }}
+
+
+        {{ govukRadios({
+            idPrefix: "licensed-action-2-check",
+            name: "licensed-action-2-check",
+            fieldset: {
+              legend: {
+                text: "Did you obstruct access to the sett entrance by blocking or proofing?",
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            items: [
+              {
+                value: "Yes",
+                text: "Yes",
+                conditional: {
+                    html: workHtml
+                }
+              },
+              {
+                value: "No",
+                text: "No",
+                conditional: {
+                    html: whynotHtml
+                }
+              }
+            ]
+          }) }}
+
+
+          {{ govukRadios({
+            idPrefix: "licensed-action-2-check",
+            name: "licensed-action-2-check",
+            fieldset: {
+              legend: {
+                text: "Did you damage the sett?",
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            items: [
+              {
+                value: "Yes",
+                text: "Yes",
+                conditional: {
+                    html: workHtml
+                }
+              },
+              {
+                value: "No",
+                text: "No",
+                conditional: {
+                    html: whynotHtml
+                }
+              }
+            ]
+          }) }}
+
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+    
+
+      
+    
+    </div>
+  </div>
+
+{% endblock %}
