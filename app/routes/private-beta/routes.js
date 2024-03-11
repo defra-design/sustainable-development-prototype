@@ -2122,4 +2122,21 @@ router.post('/private-beta/SDDSIP-525-conviction-questions/v2/any-convictions-ch
 });
 
 
+router.post('/private-beta/IDM/authorised-people/v3/are-you-sure', (req, res) => {
+  if(req.session.data['remove-person-check'] == 'yes'){
+      res.redirect('add-person')
+  } else if(req.session.data['remove-person-check'] == 'no'){
+      res.redirect('check-your-answers')
+  } 
+});
+
+router.post('/private-beta/IDM/authorised-people/v3/are-you-sure-2', (req, res) => {
+  if(req.session.data['remove-person-check'] == 'yes'){
+    res.redirect('check-your-answers')
+} else if(req.session.data['remove-person-check'] == 'no'){
+    res.redirect('check-your-answers-2')
+} 
+});
+
+
 }
