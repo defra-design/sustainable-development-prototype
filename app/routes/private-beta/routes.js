@@ -2139,4 +2139,21 @@ router.post('/private-beta/IDM/authorised-people/v3/are-you-sure-2', (req, res) 
 });
 
 
+router.post('/private-beta/SDDSIP-585-amend-permissions-flow/v4/consent-remove-check', (req, res) => {
+  if(req.session.data['consent-remove-check'] == 'Yes'){
+      res.redirect('add-permission-start')
+  } else if(req.session.data['consent-remove-check'] == 'No'){
+      res.redirect('cya-consents')
+  } 
+});
+
+
+router.post('/private-beta/SDDSIP-585-amend-permissions-flow/v4/consent-remove-another-check', (req, res) => {
+  if(req.session.data['consent-remove-another-check'] == 'Yes'){
+      res.redirect('cya-consents')
+  } else if(req.session.data['consent-remove-another-check'] == 'No'){
+      res.redirect('cya-consents-another')
+  } 
+});
+
 }

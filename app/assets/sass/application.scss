@@ -40,6 +40,7 @@
 
 .govuk-summary-list__actions-list-item:not(:last-child) {
     border-right: 1px solid #b1b4b6;
+    border-left:none;
 }
 
 .signout-link {
@@ -53,4 +54,16 @@
 
 .govuk-tag {
     max-width: 170px;
+}
+
+.govuk-summary-list__actions-list-item{
+    border-left: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.govuk-summary-list__actions-list-item:not(:first-child) {
+     border-left: none;
+     margin-right: 0;
+    padding-right: 0;
 }
