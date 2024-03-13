@@ -2193,4 +2193,13 @@ router.post('/private-beta/SSDSIP-476-conservation-considerations/v6/another-per
 });
 
 
+router.post('/private-beta/SDDSIP-436-sett-details/v2/remove-sett-check', (req, res) => {
+  if(req.session.data['remove-this-sett'] == 'Yes'){
+      res.redirect('task-list')
+  } else if(req.session.data['remove-this-sett'] == 'No'){
+      res.redirect('check-your-answers')
+  } 
+});
+
+
 }
