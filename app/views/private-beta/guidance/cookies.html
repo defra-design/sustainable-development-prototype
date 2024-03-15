@@ -1,0 +1,110 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Accessibility statement
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">
+          Cookies
+        </h1>
+        <p class="govuk-body">Cookies are small files saved on your phone, tablet or computer when you visit a website. We use cookies to make this site work and to collect data about how the site is used.</p>
+
+
+        <h2 class="govuk-heading-m">
+          Essential cookies
+        </h2>
+        <p class="govuk-body">
+          Essential cookies keep your information secure while you use this service. We do not need to ask permission to use them.
+        </p>
+
+        {{ govukTable({
+            captionClasses: "govuk-table__caption--m",
+            firstCellIsHeader: true,
+            head: [
+              {
+                text: "Name"
+              },
+              {
+                text: "Purpose"
+              },
+              {
+                text: "Expires"
+              }
+            ],
+            rows: [
+              [
+                {
+                  text: "sid"
+                },
+                {
+                  text: "Identification"
+                },
+                {
+                    text: "After one hour"
+                  }
+              ],
+              [
+                {
+                  text: "crumb"
+                },
+                {
+                  text: "Security"
+                },
+                {
+                    text: "When you close your browser"
+                }
+              ]
+            ]
+          }) }}
+
+        <h2 class="govuk-heading-m">
+          Analytics cookies (optional)
+        </h2>
+        <p class="govuk-body">
+          With your permission, we use Google Analytics to collect information about how you use the service. This information helps us improve the service.
+        </p>
+        <p class="govuk-body">
+          Google is not allowed to use or share our analytics data with anyone else. Analytics data is anonymous. Analytics cookies are named _ga* and persist for two years.
+        </p>
+    
+        {{ govukRadios({
+            name: "accept-cookies",
+            fieldset: {
+              legend: {
+                text: "Do you want to accept analytics cookies?",
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            items: [
+              {
+                value: "Yes",
+                text: "Yes"
+              },
+              {
+                value: "No",
+                text: "No"
+              }
+            ]
+          }) }}
+
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+  
+          
+
+    </div>
+  </div>
+
+{% endblock %}
