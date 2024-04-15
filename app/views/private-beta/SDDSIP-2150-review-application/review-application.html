@@ -1,0 +1,1056 @@
+{% extends "layout-pb.html" %}
+
+{% block pageTitle %} 
+Review your application before you submit
+{% endblock %}
+
+{% block beforeContent %}
+    {% include "includes/alpha-banner.html" %}
+    {% include "includes/back-link.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-full">
+
+       
+        
+        <h1 class="govuk-heading-l">Review your application before you submit</h1>
+
+        {{ govukInsetText({
+          text: "You can send this page to other people, such as the licence holder, to ensure everyone agrees with the information you are submitting."
+        }) }}
+
+        <button class="govuk-button govuk-button--secondary" data-module="govuk-button" onclick="window.print();return false;">
+          Save or print a copy of this page
+        </button>
+
+    
+
+        
+        
+
+        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible govuk-!-margin-bottom-6 govuk-!-margin-top-6">
+
+        <h2 class="govuk-heading-l">Contact details</h2>
+
+        <h3 class="govuk-heading-m govuk-!-margin-top-9">Give applicant details</h3>
+        <dl class="govuk-summary-list govuk-!-padding-bottom-6">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Who is the licence for?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              John Doe
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Is John Doe part of an organisation?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Yes
+            </dd>
+          </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Name of organisation
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Persimmon Homes
+              </dd>
+            </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              John Doe's contact address
+            </dt>
+            <dd class="govuk-summary-list__value">
+              3 High Street<br>
+              Oxford<br>
+              Oxfordshire<br>
+              OX11BD
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              John Doe's email address
+            </dt>
+            <dd class="govuk-summary-list__value">
+              jd@persimmon.co.uk
+            </dd>  
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              John Doe's phone number
+            </dt>
+            <dd class="govuk-summary-list__value">
+              07787 147 346
+            </dd>  
+          </div>
+        </dl>
+        
+
+        <h3 class="govuk-heading-m govuk-!-margin-top-9">Confirm named ecologist details</h3>
+        <dl class="govuk-summary-list govuk-!-padding-bottom-6">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Named ecologist	
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Jane Doe
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Organisation
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Oxford Ecology Ltd.
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+             Contact address
+            </dt>
+            <dd class="govuk-summary-list__value">
+              52 Main Street<br>
+                Oxford<br>
+                Oxfordshire<br>
+                OX26BD
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+             Email address
+            </dt>
+            <dd class="govuk-summary-list__value">
+              jane.doeh@oxfordecology.co.uk
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+             Phone number
+            </dt>
+            <dd class="govuk-summary-list__value">
+              07787 147 342
+            </dd>
+          </div>
+        </dl>
+
+
+        <h3 class="govuk-heading-m govuk-!-margin-top-9">Give alternate applicant details</h3>
+        <dl class="govuk-summary-list govuk-!-padding-bottom-6">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Do you want to add an alternate applicant?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Yes
+            </dd>
+          </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Who is the alternate applicant?
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Jim Doe
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Is Jim Doe part of an organisation?
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Yes
+              </dd>
+            </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Name of organisation
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  Persimmon Homes
+                </dd>
+              </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Jim Doe's contact address
+              </dt>
+              <dd class="govuk-summary-list__value">
+                3 High Street<br>
+                Oxford<br>
+                Oxfordshire<br>
+                OX11BD
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Jim Doe's email address
+              </dt>
+              <dd class="govuk-summary-list__value">
+                jimdoe@persimmon.co.uk
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Jim Doe's phone number
+              </dt>
+              <dd class="govuk-summary-list__value">
+                07787 147 349
+              </dd>  
+            </div>
+        </dl>
+
+
+        <h3 class="govuk-heading-m govuk-!-margin-top-9">Give alternate ecologist details</h3>
+        <dl class="govuk-summary-list govuk-!-padding-bottom-6">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Do you want to add an alternate ecologist?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Yes
+            </dd>
+          </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Who is the alternate ecologist?
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Janet Doe
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Is Janet Doe part of an organisation?
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Yes
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Name of organisation
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Oxford Ecology Ltd.
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Janet Doe's contact address
+              </dt>
+              <dd class="govuk-summary-list__value">
+                52 Main Street<br>
+                Oxford<br>
+                Oxfordshire<br>
+                OX26BD
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+               Janet Doe's email address
+              </dt>
+              <dd class="govuk-summary-list__value">
+                janet.doeh@oxfordecology.co.uk
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+               Janet Doe's phone number
+              </dt>
+              <dd class="govuk-summary-list__value">
+                07787 147 342
+              </dd>
+            </div>
+        </dl>
+          
+
+        <h3 class="govuk-heading-m govuk-!-margin-top-9">Give invoice payer details</h3>
+        <dl class="govuk-summary-list govuk-!-padding-bottom-6">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Who is responsible for paying the invoice?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              John Doe, the person who will hold the licence, if issued
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Are these the contact details to be used for the invoice?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Yes
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+             Organisation
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Persimmon Homes
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+             Contact address
+            </dt>
+            <dd class="govuk-summary-list__value">
+              3 High Street<br>
+              Oxford<br>
+              Oxfordshire<br>
+              OX11BD
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+             Email address
+            </dt>
+            <dd class="govuk-summary-list__value">
+              jd@persimmon.co.uk
+            </dd>  
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Phone number
+            </dt>
+            <dd class="govuk-summary-list__value">
+              07787 147 346
+            </dd>  
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Does the invoice have a purchase order number?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Yes
+            </dd>  
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Purchase order number
+            </dt>
+            <dd class="govuk-summary-list__value">
+             PSH7610345
+            </dd>  
+          </div>
+      </dl>
+
+
+      <h3 class="govuk-heading-m govuk-!-margin-top-9">Add authorised people</h3>
+      <dl class="govuk-summary-list govuk-!-padding-bottom-6">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Do you want to add an authorised person?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Yes
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            What is the authorised person's name?
+          </dt>
+          <dd class="govuk-summary-list__value">
+           Jason Doe
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+           Is Jason Doe part of an organisation?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Yes
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+           Organisation
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Persimmon Homes
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+           Contact address
+          </dt>
+          <dd class="govuk-summary-list__value">
+            3 High Street<br>
+            Oxford<br>
+            Oxfordshire<br>
+            OX11BD
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            What is Jason Doe's email address at Persimmon Homes?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            jasond@persimmon.co.uk
+          </dd>  
+        </div>
+    </dl>
+          
+
+
+    <h2 class="govuk-heading-l govuk-!-margin-top-9">Planned work activity</h2>
+           
+		<h3 class="govuk-heading-m govuk-!-margin-top-9">Give work activity details</h3>
+    <dl class="govuk-summary-list govuk-!-padding-bottom-6">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          What activity or development work do you plan to do?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Construction of 6 detached houses with access road.
+        </dd>
+      </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Do you think your project is exempt from payment?
+          </dt>
+          <dd class="govuk-summary-list__value">
+              No - the purpose of the licence or aim of the development project is chargeable 
+          </dd>
+        </div>
+    </dl>
+
+
+    <h3 class="govuk-heading-m govuk-!-margin-top-9">Give details of development permissions</h3>
+    <dl class="govuk-summary-list govuk-!-padding-bottom-6">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Does the project need any permissions?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Yes
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Planning permission
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <p>Local Planning Authority:<br>Oxford City Council</p>
+                <p>Planning type:<br>Full
+            <p>Reference:<br> OXLHA123</p>
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Demolition consent
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <p>Planning authority:<br>Oxford City Council</p>
+                <p>Planning type:<br>
+          <p>Reference:<br>OX1243</p>
+        </dd>
+      </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Have all other wildlife or habitat-related conditions been met?
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Yes
+              </dd>
+            </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Are there any potential conflicts between this application and other legal commitments?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          No 
+        </dd>
+      </div>
+    </dl>
+
+
+    <h3 class="govuk-heading-m govuk-!-margin-top-9">Give details of designated sites</h3>
+    <dl class="govuk-summary-list govuk-!-padding-bottom-6">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Site name
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Wyekham Tarn
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Have you had advice or permission for the development from Natural England?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Yes 
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Who did you receive the advice from?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Ben Smith 
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Describe the outcome of the advice
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Advice given about what to do at the Tarn. 
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Do you have permission from the owner or occupier of the designated site?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Yes
+        </dd>
+      </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Give details of the permission from the owner or occupier
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Permission granted by Field Studies Council. 
+          </dd>
+        </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Will the development happen on the designated site or adjacent to it?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          On the site 
+        </dd>
+      </div>
+    </dl>
+    <dl class="govuk-summary-list govuk-!-padding-bottom-6">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Site name
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Wyekham Cove
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Have you had advice or permission for the development from Natural England?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Yes 
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Who did you receive the advice from?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Ben Smith 
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Describe the outcome of the advice
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Advice given about what to do at the cove. 
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Do you have permission from the owner or occupier of the designated site?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Yes
+        </dd>
+      </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Give details of the permission from the owner or occupier
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Permission granted by the Field Studies Council. 
+          </dd>
+        </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Will the development happen on the designated site or adjacent to it?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Adjacent to the site 
+        </dd>
+      </div>
+    </dl>
+
+
+    <h3 class="govuk-heading-m govuk-!-margin-top-9">Give site information</h3>
+    <dl class="govuk-summary-list govuk-!-padding-bottom-6">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Site name
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Smiths Farmyard
+        </dd>
+      </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Site address
+          </dt>
+          <dd class="govuk-summary-list__value">
+            11 Green Lane<br>
+            Oxford<br>
+            OX122DH
+          </dd>
+        </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Map of activity at the development site
+        </dt>
+        <dd class="govuk-summary-list__value">
+          activity.pdf
+        </dd>
+        <dd class="govuk-summary-list__actions">
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Map of mitigations during development
+        </dt>
+        <dd class="govuk-summary-list__value">
+          mitigations.pdf
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Map of mitigations after development
+        </dt>
+        <dd class="govuk-summary-list__value">
+          post-mitigations.pdf
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Site’s National Grid Reference
+        </dt>
+        <dd class="govuk-summary-list__value">
+          NY395557
+        </dd>
+      </div>
+    </dl>
+
+
+    <h3 class="govuk-heading-m govuk-!-margin-top-9">Add setts the work will affect</h3>
+    <dl class="govuk-summary-list govuk-!-padding-bottom-6">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Sett name
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Sett 1
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Sett usage
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Main
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Reopening sett
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Yes
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Number of entrance holes
+        </dt>
+        <dd class="govuk-summary-list__value">
+          2
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Number of active entrance holes
+        </dt>
+        <dd class="govuk-summary-list__value">
+          1
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Sett grid reference
+        </dt>
+        <dd class="govuk-summary-list__value">
+          NY395557
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Work start date
+        </dt>
+        <dd class="govuk-summary-list__value">
+          1 July 2024
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Work end date
+        </dt>
+        <dd class="govuk-summary-list__value">
+          1 August 2023
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Affect on badgers
+        </dt>
+        <dd class="govuk-summary-list__value">
+            <p>Obstructing sett entrances by means of one way badger gates</p>
+            <p>Damaging a sett by hand and mechanical means</p>
+            <p>Disturbance of badgers</p>
+        </dd>
+      </div>
+    </dl>
+
+
+    <h3 class="govuk-heading-m govuk-!-margin-top-9">Give ecologist's experience</h3>
+    <dl class="govuk-summary-list govuk-!-padding-bottom-6">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Previous mitigation licence
+        </dt>
+        <dd class="govuk-summary-list__value govuk-!-width-three-quarters">
+          Yes
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Previous licence number
+        </dt>
+        <dd class="govuk-summary-list__value">
+          ABC123
+        </dd>
+      </div> 
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Previous experience of badger ecology and surveying
+        </dt>
+        <dd class="govuk-summary-list__value">
+          I started my journey into the sector whilst I was still studying for my degree, and nearly 4 years later I think I have found a great consultancy to work with that cares about my professional development and wellbeing. However, it wasn’t all plain sailing, so here are some things I learnt along the way.
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Previous experience of methods to be licensed
+        </dt>
+        <dd class="govuk-summary-list__value">
+          I have found a great consultancy to work with that cares about my professional development and wellbeing. I started my journey into the sector whilst I was still studying for my degree. However, it wasn’t all plain sailing, so here are some things I learnt along the way.
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Class licence held
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Yes
+        </dd>
+      </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Class licence number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            ABC123456
+          </dd>
+        </div>
+    </dl>
+
+
+    <h3 class="govuk-heading-m govuk-!-margin-top-9">Upload supporting information</h3>
+    <dl class="govuk-summary-list govuk-!-padding-bottom-6">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Uploaded file
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <p>badger-supplementary-information-13-08-22-FINAL.docx</p>              
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Uploaded file 2
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <p>badger-supplementary-information-15-08-22-FINAL-2.docx</p>
+        </dd>
+      </div>
+    </dl>
+
+
+    <h3 class="govuk-heading-m govuk-!-margin-top-9">Declare convictions</h3>
+    <dl class="govuk-summary-list govuk-!-padding-bottom-6">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Have you or any person listed in the application been convicted of any wildlife-related or animal welfare offence?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          No
+        </dd>
+      </div>
+    </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <!--<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible govuk-!-margin-bottom-6 govuk-!-margin-top-6">
+
+        <h2 class="govuk-heading-l">Contact details</h2>
+
+        <h3 class="govuk-heading-m">Give licence holder details</h3>
+        {{ govukSummaryList({
+          classes: 'govuk-!-margin-bottom-9',
+          rows: [
+            {
+              key: {
+                text: "Is the licence for you?"
+              },
+              value: {
+                text: "Yes"
+              }
+            },
+            {
+              key: {
+                text: "Are you part of an organisation?"
+              },
+              value: {
+                text: "Yes"
+              }
+            },
+            {
+                key: {
+                  text: "Name of organisation"
+                },
+                value: {
+                  text: "Eco Solutions Limited"
+                }
+            },
+            {
+                key: {
+                  text: "Your email address"
+                },
+                value: {
+                  text: "info@ecosolutions.com"
+                }
+            },
+            {
+              key: {
+                text: "Your contact address"
+              },
+              value: {
+                html: "72 Guild Street<br>London<br>SE23 6FH"
+              }
+            }
+          ]
+        }) }}   
+        
+
+        <h3 class="govuk-heading-m">Give ecologist details</h3>
+        
+        {{ govukSummaryList({
+          classes: 'govuk-!-margin-bottom-9',
+          rows: [
+            {
+              key: {
+                text: "Are you the ecologist for this application?"
+              },
+              value: {
+                text: "Yes"
+              }
+            },
+            {
+              key: {
+                text: "Are you part of an organisation?"
+              },
+              value: {
+                text: "Yes"
+              }
+            },
+            {
+                key: {
+                  text: "Name of organisation"
+                },
+                value: {
+                  text: "Eco Solutions Limited"
+                }
+            },
+            {
+                key: {
+                  text: "Your email address"
+                },
+                value: {
+                  text: "info@ecosolutions.com"
+                }
+            },
+            {
+              key: {
+                text: "Your contact address"
+              },
+              value: {
+                html: "72 Guild Street<br>London<br>SE23 6FH"
+              }
+            },
+            {
+                key: {
+                  text: "Your memberships"
+                },
+                value: {
+                  html: "Royal Institution of Chartered Surveyors (RICS)"
+                }
+              }
+          ]
+        }) }}   
+
+        <h3 class="govuk-heading-m">Add authorised people</h3>
+
+        {{ govukSummaryList({
+            classes: 'govuk-!-margin-bottom-9',
+            rows: [
+              {
+                key: {
+                  text: "Name"
+                },
+                value: {
+                  text: "Dave Smith"
+                }
+              },
+              {
+                key: {
+                  text: "Email address"
+                },
+                value: {
+                  text: "dave.smith@gmail.com"
+                }
+              },
+              {
+                key: {
+                  text: "Contact address"
+                },
+                value: {
+                  html: "12 Drury Street<br>London<br>SE23 6FH"
+                }
+              }
+            ]
+          }) }} 
+
+          <h3 class="govuk-heading-m">Add alternative contacts</h3>
+
+          {{ govukSummaryList({
+            classes: 'govuk-!-margin-bottom-9',
+            rows: [
+              {
+                key: {
+                  text: "Do you want to add an alternative contact?"
+                },
+                value: {
+                  text: "Yes"
+                }
+              },
+              {
+                key: {
+                  text: "Which of your previous contacts do you want to use?"
+                },
+                value: {
+                  text: "Sally Hughes"
+                }
+              },
+              {
+                key: {
+                  text: "Do you want to add an alternative ecologist contact?"
+                },
+                value: {
+                  html: "Yes"
+                }
+              },
+              {
+                key: {
+                  text: "Which of your previous ecologist contacts do you want to use?"
+                },
+                value: {
+                  html: "I want to add someone else"
+                }
+              },
+              {
+                key: {
+                  text: "Alternative ecologist contact name"
+                },
+                value: {
+                  html: "Andy Smith"
+                }
+              },
+              {
+                key: {
+                  text: "Alternative ecologist contact email address"
+                },
+                value: {
+                  html: "andy.smith@gmail.com"
+                }
+              }
+            ]
+          }) }} 
+
+          
+
+
+        <h2 class="govuk-heading-l">Planned work activity</h2>
+           
+		<h3 class="govuk-heading-s">Give ecologist details</h3>-->
+
+
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
